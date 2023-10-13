@@ -38412,6 +38412,10 @@ components:
           $ref: '#/components/schemas/RoutingRuleStayItemsUpdateParameters'
       additionalProperties: false
     Rule:
+      required:
+        - CreatedUtc
+        - Id
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -38419,6 +38423,14 @@ components:
           format: uuid
         Conditions:
           $ref: '#/components/schemas/RuleConditions'
+        CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
     RuleAction:
       type: object
@@ -38565,6 +38577,8 @@ components:
           items:
             type: string
             format: uuid
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
         Extent:
           $ref: '#/components/schemas/RuleExtent'
       additionalProperties: false
@@ -40320,6 +40334,8 @@ components:
           items:
             type: string
           nullable: true
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
       additionalProperties: false
     VoucherResult:
       type: object
