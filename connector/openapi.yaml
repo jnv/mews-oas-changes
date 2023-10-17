@@ -18253,6 +18253,130 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/accounts/merge:
+    post:
+      tags:
+        - ConnectorApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleAccountMergeParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/cancellationPolicies/getAll:
     post:
       tags:
@@ -21163,6 +21287,26 @@ components:
           nullable: true
         IsActive:
           type: boolean
+      additionalProperties: false
+    AccountMergeParameter:
+      required:
+        - AccountType
+        - SourceAccountIds
+        - TargetAccountId
+      type: object
+      properties:
+        SourceAccountIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+        TargetAccountId:
+          type: string
+          format: uuid
+        AccountType:
+          $ref: '#/components/schemas/MergeAccountType'
       additionalProperties: false
     AccountNote:
       required:
@@ -29704,6 +29848,11 @@ components:
         Ordering:
           $ref: '#/components/schemas/Int32UpdateValue'
       additionalProperties: false
+    MergeAccountType:
+      enum:
+        - Customer
+        - Company
+      type: string
     Message:
       required:
         - CreatedUtc
@@ -29970,6 +30119,44 @@ components:
           type: string
           format: uuid
           nullable: true
+      additionalProperties: false
+    MultipleAccountMergeParameters:
+      required:
+        - AccessToken
+        - AccountMergeParameters
+        - Client
+        - ClientToken
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        AccessToken:
+          minLength: 1
+          type: string
+        MaskedAccessToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ClientToken:
+          minLength: 1
+          type: string
+        MaskedClientToken:
+          type: string
+          nullable: true
+          readOnly: true
+        AccountMergeParameters:
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMergeParameter'
       additionalProperties: false
     MultipleAccountNoteAddParameters:
       required:
@@ -32985,6 +33172,7 @@ components:
       required:
         - AccountId
         - Amount
+        - CreatedUtc
         - Description
         - EnterpriseId
         - ExpirationUtc
@@ -32992,6 +33180,7 @@ components:
         - Reason
         - State
         - Type
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -33030,6 +33219,14 @@ components:
         Notes:
           type: string
           nullable: true
+        CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
     PaymentRequestAddParameters:
       required:
@@ -33119,6 +33316,8 @@ components:
             type: string
             format: uuid
           nullable: true
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
         States:
           type: array
           items:
@@ -36839,6 +37038,15 @@ components:
                   additionalProperties: false
       additionalProperties: false
     ResourceAccessToken:
+      required:
+        - CreatedUtc
+        - EnterpriseId
+        - Id
+        - ServiceOrderId
+        - Type
+        - UpdatedUtc
+        - ValidityEndUtc
+        - ValidityStartUtc
       type: object
       properties:
         Id:
@@ -36859,8 +37067,7 @@ components:
           format: uuid
           nullable: true
         Type:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/ResourceAccessTokenType'
         Value:
           type: string
           nullable: true
@@ -36868,13 +37075,23 @@ components:
           type: string
           nullable: true
         ValidityStartUtc:
+          minLength: 1
           type: string
-          nullable: true
+          format: date-time
         ValidityEndUtc:
+          minLength: 1
           type: string
-          nullable: true
+          format: date-time
         Permissions:
           $ref: '#/components/schemas/ResourceAccessTokenPermissions'
+        CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
     ResourceAccessTokenDeleteParameters:
       required:
@@ -36967,6 +37184,8 @@ components:
           nullable: true
         CollidingUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
         ActivityStates:
           type: array
           items:
@@ -37042,6 +37261,11 @@ components:
           format: uuid
           nullable: true
       additionalProperties: false
+    ResourceAccessTokenType:
+      enum:
+        - PinCode
+        - RfidTag
+      type: string
     ResourceAccessTokenUpdateParameters:
       type: object
       properties:
@@ -38169,9 +38393,11 @@ components:
         - Applicability
         - CompanyId
         - CompanyRelation
+        - CreatedUtc
         - EnterpriseId
         - Id
         - RouteType
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -38195,6 +38421,14 @@ components:
           nullable: true
         SelectedStayItems:
           $ref: '#/components/schemas/RoutingRuleStayItems'
+        CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
     RoutingRuleAddParameter:
       required:
@@ -38325,6 +38559,8 @@ components:
             type: string
             format: uuid
           nullable: true
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
       additionalProperties: false
     RoutingRuleResult:
       required:
@@ -38632,7 +38868,9 @@ components:
       type: string
     Service:
       required:
+        - CreatedUtc
         - EnterpriseId
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -38678,6 +38916,14 @@ components:
           maxLength: 255
           type: string
           nullable: true
+        CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
     ServiceAvailabilityFilterParameters:
       required:
@@ -38874,6 +39120,8 @@ components:
             type: string
             format: uuid
           nullable: true
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
       additionalProperties: false
     ServiceOptions:
       type: object
