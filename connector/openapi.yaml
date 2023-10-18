@@ -27918,6 +27918,7 @@ components:
         - Name
         - Pricing
         - TimeZoneIdentifier
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -27931,6 +27932,10 @@ components:
           type: string
           format: uuid
         CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
           minLength: 1
           type: string
           format: date-time
@@ -28010,6 +28015,7 @@ components:
         - Name
         - Pricing
         - TimeZoneIdentifier
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -28023,6 +28029,10 @@ components:
           type: string
           format: uuid
         CreatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        UpdatedUtc:
           minLength: 1
           type: string
           format: date-time
@@ -28127,6 +28137,8 @@ components:
             type: string
           nullable: true
         LinkedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
+        UpdatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
         Limitation:
           $ref: '#/components/schemas/Limitation'
