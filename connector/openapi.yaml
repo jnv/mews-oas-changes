@@ -15042,7 +15042,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BillPdfResult'
+                $ref: '#/components/schemas/BillResult'
         '400':
           description: Bad Request
           content:
@@ -23038,21 +23038,25 @@ components:
           items:
             $ref: '#/components/schemas/AccountingItem'
           nullable: true
+          deprecated: true
         Payments:
           type: array
           items:
             $ref: '#/components/schemas/AccountingItem'
           nullable: true
+          deprecated: true
         OrderItems:
           type: array
           items:
             $ref: '#/components/schemas/OrderItemOld'
           nullable: true
+          deprecated: true
         PaymentItems:
           type: array
           items:
             $ref: '#/components/schemas/PaymentItemOld'
           nullable: true
+          deprecated: true
         AssigneeData:
           title: AssigneeData
           properties:
@@ -23305,7 +23309,6 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - Extent
         - Limitation
       type: object
       properties:
@@ -23418,13 +23421,6 @@ components:
         DisplayCid:
           $ref: '#/components/schemas/BooleanUpdateValue'
       additionalProperties: false
-    BillPdfFile:
-      type: object
-      properties:
-        Base64Data:
-          type: string
-          nullable: true
-      additionalProperties: false
     BillPdfParameters:
       required:
         - AccessToken
@@ -23463,34 +23459,6 @@ components:
           type: string
           format: uuid
           nullable: true
-      additionalProperties: false
-    BillPdfResult:
-      type: object
-      properties:
-        BillId:
-          type: string
-          format: uuid
-        Result:
-          title: Result
-          properties:
-            discriminator:
-              $ref: '#/components/schemas/BillPdfResultDiscriminator'
-            value:
-              oneOf:
-                - $ref: '#/components/schemas/BillPdfFile'
-                - $ref: '#/components/schemas/BillPrintEvent'
-      additionalProperties: false
-    BillPdfResultDiscriminator:
-      enum:
-        - BillPdfFile
-        - BillPrintEvent
-      type: string
-    BillPrintEvent:
-      type: object
-      properties:
-        BillPrintEventId:
-          type: string
-          format: uuid
       additionalProperties: false
     BillResult:
       type: object
