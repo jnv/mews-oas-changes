@@ -32122,6 +32122,10 @@ components:
           type: string
           nullable: true
           readOnly: true
+        EnterpriseId:
+          type: string
+          format: uuid
+          nullable: true
         ServiceId:
           type: string
           format: uuid
