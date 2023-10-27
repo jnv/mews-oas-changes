@@ -28394,7 +28394,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - Limitation
+        - ExportIds
       type: object
       properties:
         Client:
@@ -28420,27 +28420,15 @@ components:
           type: string
           nullable: true
           readOnly: true
-        Limitation:
-          $ref: '#/components/schemas/Limitation'
         ExportIds:
           maxItems: 1000
           type: array
           items:
             type: string
             format: uuid
-          nullable: true
-        EntityType:
-          anyOf:
-            - $ref: '#/components/schemas/ExportEntityType'
-          nullable: true
       additionalProperties: false
     ExportResult:
       type: object
-      properties:
-        Cursor:
-          type: string
-          format: uuid
-          nullable: true
       additionalProperties: false
     ExportStatus:
       enum:
