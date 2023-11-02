@@ -7,6 +7,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: tasks_getAll
       requestBody:
         content:
           application/json:
@@ -131,6 +132,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: tasks_add
       requestBody:
         content:
           application/json:
@@ -255,6 +257,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_getAll
       requestBody:
         content:
           application/json:
@@ -379,6 +382,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_getAllByIds
       requestBody:
         content:
           application/json:
@@ -504,6 +508,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_getAllByEmails
       requestBody:
         content:
           application/json:
@@ -629,6 +634,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: addresses_getAll
       requestBody:
         content:
           application/json:
@@ -753,6 +759,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: addresses_add
       requestBody:
         content:
           application/json:
@@ -877,6 +884,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_search
       requestBody:
         content:
           application/json:
@@ -1001,6 +1009,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_getAllByName
       requestBody:
         content:
           application/json:
@@ -1127,6 +1136,7 @@ paths:
       tags:
         - ConnectorApi
       description: Use payments/getAll and orderItems/getAll
+      operationId: customers_getOpenItems
       requestBody:
         content:
           application/json:
@@ -1252,6 +1262,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_add
       requestBody:
         content:
           application/json:
@@ -1376,6 +1387,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_update
       requestBody:
         content:
           application/json:
@@ -1501,6 +1513,7 @@ paths:
       tags:
         - ConnectorApi
       description: Use accounts/merge instead.
+      operationId: customers_merge
       requestBody:
         content:
           application/json:
@@ -1626,6 +1639,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_addFile
       requestBody:
         content:
           application/json:
@@ -1750,6 +1764,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: customers_charge
       requestBody:
         content:
           application/json:
@@ -1875,6 +1890,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: addresses_update
       requestBody:
         content:
           application/json:
@@ -1999,6 +2015,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: vouchers_getAll
       requestBody:
         content:
           application/json:
@@ -2123,6 +2140,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: vouchers_add
       requestBody:
         content:
           application/json:
@@ -2247,6 +2265,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: vouchers_update
       requestBody:
         content:
           application/json:
@@ -2371,6 +2390,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: vouchers_delete
       requestBody:
         content:
           application/json:
@@ -2495,6 +2515,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: voucherCodes_add
       requestBody:
         content:
           application/json:
@@ -2619,6 +2640,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: voucherCodes_delete
       requestBody:
         content:
           application/json:
@@ -2743,6 +2765,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: voucherCodes_getAll
       requestBody:
         content:
           application/json:
@@ -2867,6 +2890,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservationGroups_getAll
       requestBody:
         content:
           application/json:
@@ -2991,6 +3015,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceCategories_getAll
       requestBody:
         content:
           application/json:
@@ -3115,6 +3140,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceCategoryAssignments_getAll
       requestBody:
         content:
           application/json:
@@ -3239,6 +3265,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceCategoryImageAssignments_getAll
       requestBody:
         content:
           application/json:
@@ -3363,6 +3390,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceFeatures_getAll
       requestBody:
         content:
           application/json:
@@ -3483,10 +3511,136 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/resourceFeatureAssignments/getAll:
+    post:
+      tags:
+        - ConnectorApi
+      operationId: resourceFeatureAssignments_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceFeatureAssignmentFilterParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeatureAssignmentResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/serviceOrderNotes/add:
     post:
       tags:
         - ConnectorApi
+      operationId: serviceOrderNotes_add
       requestBody:
         content:
           application/json:
@@ -3611,6 +3765,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: serviceOrderNotes_update
       requestBody:
         content:
           application/json:
@@ -3735,6 +3890,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: serviceOrderNotes_getAll
       requestBody:
         content:
           application/json:
@@ -3859,6 +4015,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: serviceOrderNotes_delete
       requestBody:
         content:
           application/json:
@@ -3983,6 +4140,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: productServiceOrders_getAll
       requestBody:
         content:
           application/json:
@@ -4107,6 +4265,8 @@ paths:
     post:
       tags:
         - ConnectorApi
+      description: Use the equivalent endpoint reservations/getAll/2023-06-06
+      operationId: serviceOrders_reservations_getAll
       requestBody:
         content:
           application/json:
@@ -4227,10 +4387,12 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+      deprecated: true
   /api/connector/v1/reservations/getAll/2023-06-06:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_getAll_2023-06-06
       requestBody:
         content:
           application/json:
@@ -4355,6 +4517,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: services_getAll
       requestBody:
         content:
           application/json:
@@ -4479,6 +4642,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: services_updateAvailability
       requestBody:
         content:
           application/json:
@@ -4603,6 +4767,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: services_getAvailability
       requestBody:
         content:
           application/json:
@@ -4727,6 +4892,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: availabilityAdjustments_getAll
       requestBody:
         content:
           application/json:
@@ -4851,6 +5017,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: availabilityBlocks_getAll
       requestBody:
         content:
           application/json:
@@ -4975,6 +5142,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: availabilityBlocks_add
       requestBody:
         content:
           application/json:
@@ -5099,6 +5267,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: availabilityBlocks_update
       requestBody:
         content:
           application/json:
@@ -5223,6 +5392,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: availabilityBlocks_delete
       requestBody:
         content:
           application/json:
@@ -5347,6 +5517,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: orders_add
       requestBody:
         content:
           application/json:
@@ -5471,6 +5642,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: products_getAll
       requestBody:
         content:
           application/json:
@@ -5595,6 +5767,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: products_delete
       requestBody:
         content:
           application/json:
@@ -5719,6 +5892,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: rules_getAll
       requestBody:
         content:
           application/json:
@@ -5843,6 +6017,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: businessSegments_getAll
       requestBody:
         content:
           application/json:
@@ -5967,6 +6142,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: rates_getAll
       requestBody:
         content:
           application/json:
@@ -6091,6 +6267,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: rates_add
       requestBody:
         content:
           application/json:
@@ -6215,6 +6392,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: rates_getPricing
       requestBody:
         content:
           application/json:
@@ -6339,6 +6517,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: rates_updatePrice
       requestBody:
         content:
           application/json:
@@ -6463,6 +6642,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: restrictions_getAll
       requestBody:
         content:
           application/json:
@@ -6587,6 +6767,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: restrictions_add
       requestBody:
         content:
           application/json:
@@ -6711,6 +6892,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: restrictions_delete
       requestBody:
         content:
           application/json:
@@ -6835,6 +7017,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: restrictions_set
       requestBody:
         content:
           application/json:
@@ -6959,6 +7142,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: restrictions_clear
       requestBody:
         content:
           application/json:
@@ -7083,6 +7267,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companionships_getAll
       requestBody:
         content:
           application/json:
@@ -7208,6 +7393,7 @@ paths:
       tags:
         - ConnectorApi
       description: Use reservations/getAll/2023-06-06.
+      operationId: reservations_getAll
       requestBody:
         content:
           application/json:
@@ -7333,6 +7519,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_getAllByIds
       requestBody:
         content:
           application/json:
@@ -7458,6 +7645,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_getAllByCustomers
       requestBody:
         content:
           application/json:
@@ -7583,6 +7771,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_getAllByNumbers
       requestBody:
         content:
           application/json:
@@ -7708,6 +7897,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_price
       requestBody:
         content:
           application/json:
@@ -7832,6 +8022,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_add
       requestBody:
         content:
           application/json:
@@ -7956,6 +8147,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_update
       requestBody:
         content:
           application/json:
@@ -8080,6 +8272,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_confirm
       requestBody:
         content:
           application/json:
@@ -8204,6 +8397,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_start
       requestBody:
         content:
           application/json:
@@ -8328,6 +8522,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_process
       requestBody:
         content:
           application/json:
@@ -8452,6 +8647,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_cancel
       requestBody:
         content:
           application/json:
@@ -8576,6 +8772,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_updateCustomer
       requestBody:
         content:
           application/json:
@@ -8700,6 +8897,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_updateInterval
       requestBody:
         content:
           application/json:
@@ -8824,6 +9022,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_addCompanion
       requestBody:
         content:
           application/json:
@@ -8948,6 +9147,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_deleteCompanion
       requestBody:
         content:
           application/json:
@@ -9072,6 +9272,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: reservations_addProduct
       requestBody:
         content:
           application/json:
@@ -9197,6 +9398,7 @@ paths:
       tags:
         - ConnectorApi
       description: Use orderItems/getAll.
+      operationId: reservations_getAllItems
       requestBody:
         content:
           application/json:
@@ -9322,6 +9524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: ageCategories_getAll
       requestBody:
         content:
           application/json:
@@ -9446,6 +9649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: sourceAssignments_getAll
       requestBody:
         content:
           application/json:
@@ -9570,6 +9774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: sources_getAll
       requestBody:
         content:
           application/json:
@@ -9694,6 +9899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: commands_getAllByIds
       requestBody:
         content:
           application/json:
@@ -9818,6 +10024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: commands_getAllActive
       requestBody:
         content:
           application/json:
@@ -9942,6 +10149,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: commands_addPrinter
       requestBody:
         content:
           application/json:
@@ -10066,6 +10274,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: commands_addKeyCutter
       requestBody:
         content:
           application/json:
@@ -10190,6 +10399,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: commands_update
       requestBody:
         content:
           application/json:
@@ -10314,6 +10524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: images_getUrls
       requestBody:
         content:
           application/json:
@@ -10438,6 +10649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyPrograms_getAll
       requestBody:
         content:
           application/json:
@@ -10562,6 +10774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyPrograms_add
       requestBody:
         content:
           application/json:
@@ -10686,6 +10899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyPrograms_update
       requestBody:
         content:
           application/json:
@@ -10810,6 +11024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyPrograms_delete
       requestBody:
         content:
           application/json:
@@ -10934,6 +11149,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyMemberships_getAll
       requestBody:
         content:
           application/json:
@@ -11058,6 +11274,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyMemberships_add
       requestBody:
         content:
           application/json:
@@ -11182,6 +11399,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyMemberships_update
       requestBody:
         content:
           application/json:
@@ -11306,6 +11524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyMemberships_delete
       requestBody:
         content:
           application/json:
@@ -11430,6 +11649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyTiers_getAll
       requestBody:
         content:
           application/json:
@@ -11554,6 +11774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyTiers_add
       requestBody:
         content:
           application/json:
@@ -11678,6 +11899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyTiers_update
       requestBody:
         content:
           application/json:
@@ -11802,6 +12024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: loyaltyTiers_delete
       requestBody:
         content:
           application/json:
@@ -11926,6 +12149,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: messageThreads_getAll
       requestBody:
         content:
           application/json:
@@ -12050,6 +12274,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: messageThreads_add
       requestBody:
         content:
           application/json:
@@ -12174,6 +12399,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: messages_getAll
       requestBody:
         content:
           application/json:
@@ -12298,6 +12524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: messages_add
       requestBody:
         content:
           application/json:
@@ -12422,6 +12649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: orderItems_getAll
       requestBody:
         content:
           application/json:
@@ -12546,6 +12774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: outlets_getAll
       requestBody:
         content:
           application/json:
@@ -12670,6 +12899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: payments_getAll
       requestBody:
         content:
           application/json:
@@ -12794,6 +13024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: payments_refund
       requestBody:
         content:
           application/json:
@@ -12918,6 +13149,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: productCategories_getAll
       requestBody:
         content:
           application/json:
@@ -13042,6 +13274,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: countries_getAll
       requestBody:
         content:
           application/json:
@@ -13166,6 +13399,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: currencies_getAll
       requestBody:
         content:
           application/json:
@@ -13290,6 +13524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: taxEnvironments_getAll
       requestBody:
         content:
           application/json:
@@ -13414,6 +13649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: taxations_getAll
       requestBody:
         content:
           application/json:
@@ -13538,6 +13774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: languages_getAll
       requestBody:
         content:
           application/json:
@@ -13662,6 +13899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: cultures_getAll
       requestBody:
         content:
           application/json:
@@ -13786,6 +14024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: languages_getTexts
       requestBody:
         content:
           application/json:
@@ -13910,6 +14149,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: configuration_get
       requestBody:
         content:
           application/json:
@@ -14034,6 +14274,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: devices_getAll
       requestBody:
         content:
           application/json:
@@ -14158,6 +14399,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: exports_add
       requestBody:
         content:
           application/json:
@@ -14282,6 +14524,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: exports_getAll
       requestBody:
         content:
           application/json:
@@ -14406,6 +14649,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: cashiers_getAll
       requestBody:
         content:
           application/json:
@@ -14530,6 +14774,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: cashierTransactions_getAll
       requestBody:
         content:
           application/json:
@@ -14654,6 +14899,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountingCategories_getAll
       requestBody:
         content:
           application/json:
@@ -14778,6 +15024,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountingItems_update
       requestBody:
         content:
           application/json:
@@ -14903,6 +15150,7 @@ paths:
       tags:
         - ConnectorApi
       description: Use payments/getall or orderItems/getall.
+      operationId: accountingItems_getAll
       requestBody:
         content:
           application/json:
@@ -15028,6 +15276,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_getAll
       requestBody:
         content:
           application/json:
@@ -15152,6 +15401,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_getAllByIds
       requestBody:
         content:
           application/json:
@@ -15277,6 +15527,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_getAllByCustomers
       requestBody:
         content:
           application/json:
@@ -15402,6 +15653,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_getAllClosed
       requestBody:
         content:
           application/json:
@@ -15527,6 +15779,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_getPdf
       requestBody:
         content:
           application/json:
@@ -15651,6 +15904,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_add
       requestBody:
         content:
           application/json:
@@ -15775,6 +16029,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_delete
       requestBody:
         content:
           application/json:
@@ -15899,6 +16154,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: bills_close
       requestBody:
         content:
           application/json:
@@ -16023,6 +16279,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: payments_addAlternative
       requestBody:
         content:
           application/json:
@@ -16147,6 +16404,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: payments_addCreditCard
       requestBody:
         content:
           application/json:
@@ -16271,6 +16529,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: payments_addExternal
       requestBody:
         content:
           application/json:
@@ -16395,6 +16654,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: creditCards_getAll
       requestBody:
         content:
           application/json:
@@ -16519,6 +16779,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: creditCards_getAllByIds
       requestBody:
         content:
           application/json:
@@ -16644,6 +16905,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: creditCards_getAllByCustomers
       requestBody:
         content:
           application/json:
@@ -16769,6 +17031,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: creditCards_charge
       requestBody:
         content:
           application/json:
@@ -16893,6 +17156,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: creditCards_addTokenized
       requestBody:
         content:
           application/json:
@@ -17017,6 +17281,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: preauthorizations_getAllByCustomers
       requestBody:
         content:
           application/json:
@@ -17141,6 +17406,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: outletItems_getAll
       requestBody:
         content:
           application/json:
@@ -17265,6 +17531,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: outletBills_add
       requestBody:
         content:
           application/json:
@@ -17389,6 +17656,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: routingRules_getAll
       requestBody:
         content:
           application/json:
@@ -17513,6 +17781,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: routingRules_add
       requestBody:
         content:
           application/json:
@@ -17637,6 +17906,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: routingRules_update
       requestBody:
         content:
           application/json:
@@ -17761,6 +18031,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: routingRules_delete
       requestBody:
         content:
           application/json:
@@ -17885,6 +18156,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: paymentRequests_getAll
       requestBody:
         content:
           application/json:
@@ -18009,6 +18281,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: paymentRequests_add
       requestBody:
         content:
           application/json:
@@ -18133,6 +18406,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: paymentRequests_cancel
       requestBody:
         content:
           application/json:
@@ -18257,6 +18531,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountNotes_getAll
       requestBody:
         content:
           application/json:
@@ -18381,6 +18656,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountNotes_add
       requestBody:
         content:
           application/json:
@@ -18505,6 +18781,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountNotes_update
       requestBody:
         content:
           application/json:
@@ -18629,6 +18906,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accountNotes_delete
       requestBody:
         content:
           application/json:
@@ -18753,6 +19031,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: accounts_merge
       requestBody:
         content:
           application/json:
@@ -18877,6 +19156,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: cancellationPolicies_getAll
       requestBody:
         content:
           application/json:
@@ -19001,6 +19281,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companies_add
       requestBody:
         content:
           application/json:
@@ -19125,6 +19406,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companies_update
       requestBody:
         content:
           application/json:
@@ -19249,6 +19531,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companies_getAll
       requestBody:
         content:
           application/json:
@@ -19373,6 +19656,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companies_getAllByName
       requestBody:
         content:
           application/json:
@@ -19498,6 +19782,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companyContracts_getAll
       requestBody:
         content:
           application/json:
@@ -19622,6 +19907,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companyContracts_add
       requestBody:
         content:
           application/json:
@@ -19746,6 +20032,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companyContracts_update
       requestBody:
         content:
           application/json:
@@ -19870,6 +20157,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: companyContracts_delete
       requestBody:
         content:
           application/json:
@@ -19994,6 +20282,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: departments_getAll
       requestBody:
         content:
           application/json:
@@ -20118,6 +20407,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: enterprises_getAll
       requestBody:
         content:
           application/json:
@@ -20242,6 +20532,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: exchangeRates_getAll
       requestBody:
         content:
           application/json:
@@ -20366,6 +20657,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: counters_getAll
       requestBody:
         content:
           application/json:
@@ -20490,6 +20782,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resources_getAll
       requestBody:
         content:
           application/json:
@@ -20614,6 +20907,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resources_add
       requestBody:
         content:
           application/json:
@@ -20738,6 +21032,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resources_update
       requestBody:
         content:
           application/json:
@@ -20862,6 +21157,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceBlocks_getAll
       requestBody:
         content:
           application/json:
@@ -20986,6 +21282,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceBlocks_add
       requestBody:
         content:
           application/json:
@@ -21110,6 +21407,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceBlocks_delete
       requestBody:
         content:
           application/json:
@@ -21234,6 +21532,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceAccessTokens_getAll
       requestBody:
         content:
           application/json:
@@ -21358,6 +21657,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceAccessTokens_add
       requestBody:
         content:
           application/json:
@@ -21482,6 +21782,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceAccessTokens_update
       requestBody:
         content:
           application/json:
@@ -21606,6 +21907,7 @@ paths:
     post:
       tags:
         - ConnectorApi
+      operationId: resourceAccessTokens_delete
       requestBody:
         content:
           application/json:
@@ -29015,6 +29317,7 @@ components:
         - CrossSettlement
         - Cash
         - CreditCard
+        - DepositWireTransfer
       type: string
     FiscalMachineCommandData:
       type: object
@@ -38454,14 +38757,19 @@ components:
           type: boolean
         ResourceCategories:
           type: boolean
+          deprecated: true
         ResourceCategoryAssignments:
           type: boolean
+          deprecated: true
         ResourceCategoryImageAssignments:
           type: boolean
+          deprecated: true
         ResourceFeatures:
           type: boolean
+          deprecated: true
         ResourceFeatureAssignments:
           type: boolean
+          deprecated: true
         Inactive:
           type: boolean
       additionalProperties: false
@@ -38538,6 +38846,83 @@ components:
           minLength: 1
           type: string
           format: date-time
+      additionalProperties: false
+    ResourceFeatureAssignmentFilterParameters:
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+        - ResourceFeatureIds
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        AccessToken:
+          minLength: 1
+          type: string
+        MaskedAccessToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ClientToken:
+          minLength: 1
+          type: string
+        MaskedClientToken:
+          type: string
+          nullable: true
+          readOnly: true
+        Limitation:
+          $ref: '#/components/schemas/Limitation'
+        EnterpriseIds:
+          maxItems: 1000
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        ResourceFeatureAssignmentIds:
+          maxItems: 1000
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        ResourceFeatureIds:
+          maxItems: 1000
+          type: array
+          items:
+            type: string
+            format: uuid
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          nullable: true
+      additionalProperties: false
+    ResourceFeatureAssignmentResult:
+      required:
+        - ResourceFeatureAssignments
+      type: object
+      properties:
+        ResourceFeatureAssignments:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceFeatureAssignment'
+        Cursor:
+          type: string
+          format: uuid
+          nullable: true
       additionalProperties: false
     ResourceFeatureClassification:
       enum:
@@ -38711,26 +39096,31 @@ components:
           items:
             $ref: '#/components/schemas/ResourceCategory'
           nullable: true
+          deprecated: true
         ResourceCategoryAssignments:
           type: array
           items:
             $ref: '#/components/schemas/ResourceCategoryAssignment'
           nullable: true
+          deprecated: true
         ResourceCategoryImageAssignments:
           type: array
           items:
             $ref: '#/components/schemas/ResourceCategoryImageAssignment'
           nullable: true
+          deprecated: true
         ResourceFeatures:
           type: array
           items:
             $ref: '#/components/schemas/ResourceFeature'
           nullable: true
+          deprecated: true
         ResourceFeatureAssignments:
           type: array
           items:
             $ref: '#/components/schemas/ResourceFeatureAssignment'
           nullable: true
+          deprecated: true
         Cursor:
           type: string
           format: uuid
