@@ -33890,6 +33890,7 @@ components:
         - SpaceOrder
         - ProductOrder
         - Surcharge
+        - TaxCorrection
       type: string
     OrderItemTypeOld:
       enum:
@@ -33903,6 +33904,7 @@ components:
         - SpaceOrder
         - ProductOrder
         - Other
+        - TaxCorrection
       type: string
     OrderNote:
       title: OrderNote
