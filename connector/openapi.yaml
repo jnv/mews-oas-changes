@@ -37345,7 +37345,7 @@ components:
         PersonCounts:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceOrderPersonCount'
+            $ref: '#/components/schemas/ReservationPersonCount'
           nullable: true
       additionalProperties: false
       x-schema-id: Reservation
@@ -38286,6 +38286,18 @@ components:
           type: boolean
       additionalProperties: false
       x-schema-id: ReservationOptions
+    ReservationPersonCount:
+      title: ReservationPersonCount
+      type: object
+      properties:
+        AgeCategoryId:
+          type: string
+          format: uuid
+        Count:
+          type: integer
+          format: int32
+      additionalProperties: false
+      x-schema-id: ReservationPersonCount
     ReservationPrice:
       title: ReservationPrice
       type: object
@@ -41763,18 +41775,6 @@ components:
         - Connector
         - Navigator
       type: string
-    ServiceOrderPersonCount:
-      title: ServiceOrderPersonCount
-      type: object
-      properties:
-        AgeCategoryId:
-          type: string
-          format: uuid
-        Count:
-          type: integer
-          format: int32
-      additionalProperties: false
-      x-schema-id: ServiceOrderPersonCount
     ServiceOrderState:
       enum:
         - Inquired
