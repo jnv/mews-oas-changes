@@ -23576,6 +23576,7 @@ components:
         - LastTimeUnitStartUtc
         - ResourceCategoryId
         - UnitCount
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -23613,6 +23614,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          format: date-time
       additionalProperties: false
       x-schema-id: AvailabilityAdjustment
     AvailabilityAdjustmentParameters:
@@ -29324,6 +29329,7 @@ components:
     Enterprise:
       title: Enterprise
       required:
+        - AccountingEditableHistoryInterval
         - AddressId
         - ChainId
         - CreatedUtc
@@ -29333,6 +29339,7 @@ components:
         - Id
         - LegalEnvironmentCode
         - Name
+        - OperationalEditableHistoryInterval
         - Pricing
         - TimeZoneIdentifier
         - UpdatedUtc
@@ -29378,6 +29385,13 @@ components:
           minLength: 1
           type: string
         EditableHistoryInterval:
+          minLength: 1
+          type: string
+          deprecated: true
+        AccountingEditableHistoryInterval:
+          minLength: 1
+          type: string
+        OperationalEditableHistoryInterval:
           minLength: 1
           type: string
         WebsiteUrl:
@@ -29424,6 +29438,7 @@ components:
     EnterpriseBase:
       title: EnterpriseBase
       required:
+        - AccountingEditableHistoryInterval
         - AddressId
         - ChainId
         - CreatedUtc
@@ -29432,6 +29447,7 @@ components:
         - Id
         - LegalEnvironmentCode
         - Name
+        - OperationalEditableHistoryInterval
         - Pricing
         - TimeZoneIdentifier
         - UpdatedUtc
@@ -29477,6 +29493,13 @@ components:
           minLength: 1
           type: string
         EditableHistoryInterval:
+          minLength: 1
+          type: string
+          deprecated: true
+        AccountingEditableHistoryInterval:
+          minLength: 1
+          type: string
+        OperationalEditableHistoryInterval:
           minLength: 1
           type: string
         WebsiteUrl:
@@ -29719,6 +29742,8 @@ components:
     ExportEntityType:
       enum:
         - OrderItem
+        - Payment
+        - Reservation
       type: string
     ExportFileEntry:
       title: ExportFileEntry
@@ -36218,14 +36243,38 @@ components:
         Name:
           type: string
           nullable: true
+          deprecated: true
+        Names:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
         ExternalName:
           type: string
+          nullable: true
+          deprecated: true
+        ExternalNames:
+          type: object
+          additionalProperties:
+            type: string
           nullable: true
         ShortName:
           type: string
           nullable: true
+          deprecated: true
+        ShortNames:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
         Description:
           type: string
+          nullable: true
+          deprecated: true
+        Descriptions:
+          type: object
+          additionalProperties:
+            type: string
           nullable: true
         Charging:
           type: string
