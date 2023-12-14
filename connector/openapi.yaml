@@ -25600,6 +25600,10 @@ components:
           type: string
           format: uuid
           nullable: true
+        MergeTargetId:
+          type: string
+          format: uuid
+          nullable: true
         TaxIdentificationNumber:
           type: string
           nullable: true
