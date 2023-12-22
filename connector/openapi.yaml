@@ -30025,6 +30025,7 @@ components:
         - CrossSettlement
         - Cash
         - CreditCard
+        - PayPal
         - Twint
         - DepositWireTransfer
       type: string
