@@ -27103,7 +27103,6 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - CustomerId
         - OverwriteExisting
       type: object
       properties:
@@ -27130,9 +27129,6 @@ components:
           type: string
           nullable: true
           readOnly: true
-        CustomerId:
-          type: string
-          format: uuid
         Title:
           type: string
           nullable: true
@@ -27184,6 +27180,10 @@ components:
           nullable: true
         TaxIdentificationNumber:
           type: string
+          nullable: true
+        CompanyId:
+          type: string
+          format: uuid
           nullable: true
         Address:
           $ref: '#/components/schemas/AddressParameters'
@@ -27701,9 +27701,6 @@ components:
           type: string
           nullable: true
           readOnly: true
-        CustomerId:
-          type: string
-          format: uuid
         Title:
           type: string
           nullable: true
@@ -27756,6 +27753,10 @@ components:
         TaxIdentificationNumber:
           type: string
           nullable: true
+        CompanyId:
+          type: string
+          format: uuid
+          nullable: true
         Address:
           $ref: '#/components/schemas/AddressParameters'
         IdentityCard:
@@ -27784,6 +27785,9 @@ components:
           type: string
           format: uuid
           nullable: true
+        CustomerId:
+          type: string
+          format: uuid
         ItalianDestinationCode:
           $ref: '#/components/schemas/StringUpdateValue'
         ItalianFiscalCode:
