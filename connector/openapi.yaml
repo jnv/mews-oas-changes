@@ -25846,6 +25846,26 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CompanyAddParameters
+    CompanyClassificationUpdateParameters:
+      title: CompanyClassificationUpdateParameters
+      type: object
+      properties:
+        Corporate:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Internal:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Private:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        OnlineTravelAgency:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        GlobalDistributionSystem:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Marketing:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Inactive:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+      additionalProperties: false
+      x-schema-id: CompanyClassificationUpdateParameters
     CompanyClassifications:
       title: CompanyClassifications
       type: object
@@ -26085,6 +26105,16 @@ components:
           type: string
       additionalProperties: false
       x-schema-id: CompanyNameParameters
+    CompanyOptionUpdateParameters:
+      title: CompanyOptionUpdateParameters
+      type: object
+      properties:
+        Invoiceable:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        AddFeesToInvoices:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+      additionalProperties: false
+      x-schema-id: CompanyOptionUpdateParameters
     CompanyOptions:
       title: CompanyOptions
       type: object
@@ -26126,36 +26156,6 @@ components:
         - Created
         - Updated
       type: string
-    CompanyUpdateClassificationParameters:
-      title: CompanyUpdateClassificationParameters
-      type: object
-      properties:
-        Corporate:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        Internal:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        Private:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        OnlineTravelAgency:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        GlobalDistributionSystem:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        Marketing:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        Inactive:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-      additionalProperties: false
-      x-schema-id: CompanyUpdateClassificationParameters
-    CompanyUpdateOptionParameters:
-      title: CompanyUpdateOptionParameters
-      type: object
-      properties:
-        Invoiceable:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-        AddFeesToInvoices:
-          $ref: '#/components/schemas/BooleanUpdateValue'
-      additionalProperties: false
-      x-schema-id: CompanyUpdateOptionParameters
     CompanyUpdateParameters:
       title: CompanyUpdateParameters
       required:
@@ -26206,7 +26206,7 @@ components:
         InvoiceDueInterval:
           $ref: '#/components/schemas/StringUpdateValue'
         Options:
-          $ref: '#/components/schemas/CompanyUpdateOptionParameters'
+          $ref: '#/components/schemas/CompanyOptionUpdateParameters'
         CreditRating:
           $ref: '#/components/schemas/CreditRatingUpdateParameters'
         Department:
