@@ -22337,6 +22337,9 @@ components:
           nullable: true
         IsActive:
           type: boolean
+        IsUpdatedByMe:
+          type: boolean
+          nullable: true
       additionalProperties: false
       x-schema-id: AccountAddress
     AccountMergeParameter:
@@ -25737,6 +25740,9 @@ components:
           maxLength: 255
           type: string
           nullable: true
+        IsUpdatedByMe:
+          type: boolean
+          nullable: true
       additionalProperties: false
       x-schema-id: Company
     CompanyAddParameters:
@@ -27220,6 +27226,9 @@ components:
         ActivityState:
           minLength: 1
           type: string
+        IsUpdatedByMe:
+          type: boolean
+          nullable: true
       additionalProperties: false
       x-schema-id: Customer
     CustomerAddParameters:
