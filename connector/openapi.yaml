@@ -39395,6 +39395,7 @@ components:
         - CreatedUtc
         - EnterpriseId
         - Id
+        - IsActive
         - ServiceOrderId
         - Type
         - UpdatedUtc
@@ -39445,6 +39446,8 @@ components:
           minLength: 1
           type: string
           format: date-time
+        IsActive:
+          type: boolean
       additionalProperties: false
       x-schema-id: ResourceAccessToken
     ResourceAccessTokenDeleteParameters:
