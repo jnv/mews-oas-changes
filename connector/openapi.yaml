@@ -503,6 +503,131 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/accounts/update:
+    post:
+      tags:
+        - AccountsConnectorApi
+      operationId: accounts_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleAccountUpdateParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/accounts/merge:
     post:
       tags:
@@ -11761,131 +11886,6 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-  /api/connector/v1/rules/getAll:
-    post:
-      tags:
-        - ConnectorApi
-      operationId: rules_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RuleFilterParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RuleResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/businessSegments/getAll:
     post:
       tags:
@@ -20276,6 +20276,131 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/rules/getAll:
+    post:
+      tags:
+        - RulesConnectorApi
+      operationId: rules_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleFilterParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/serviceOrderNotes/add:
     post:
       tags:
@@ -22281,6 +22406,22 @@ paths:
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
 components:
   schemas:
+    Account:
+      title: Account
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Discriminator:
+          type: string
+          nullable: true
+        Customer:
+          $ref: '#/components/schemas/CustomerAccount'
+        Company:
+          $ref: '#/components/schemas/CompanyAccount'
+      additionalProperties: false
+      x-schema-id: Account
     AccountAddress:
       title: AccountAddress
       type: object
@@ -22342,6 +22483,108 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AccountAddress
+    AccountCompanyUpdateParameters:
+      title: AccountCompanyUpdateParameters
+      type: object
+      properties:
+        Email:
+          $ref: '#/components/schemas/StringUpdateValue'
+        TaxIdentifier:
+          $ref: '#/components/schemas/StringUpdateValue'
+        BillingCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        AccountingCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Notes:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Name:
+          $ref: '#/components/schemas/StringUpdateValue'
+        MotherCompanyId:
+          $ref: '#/components/schemas/GuidNullableUpdateValue'
+        WebsiteUrl:
+          $ref: '#/components/schemas/StringUpdateValue'
+        InvoiceDueInterval:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Classifications:
+          $ref: '#/components/schemas/CompanyClassificationUpdateParameters'
+        Options:
+          $ref: '#/components/schemas/CompanyOptionUpdateParameters'
+        CreditRatingBasic:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Department:
+          $ref: '#/components/schemas/StringUpdateValue'
+        DunsNumber:
+          $ref: '#/components/schemas/StringUpdateValue'
+        ReferenceId:
+          $ref: '#/components/schemas/StringUpdateValue'
+        ExternalIdentifier:
+          $ref: '#/components/schemas/StringUpdateValue'
+        AdditionalTaxIdentifier:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Contact:
+          $ref: '#/components/schemas/StringUpdateValue'
+        ContactPerson:
+          $ref: '#/components/schemas/StringUpdateValue'
+        FiscalIdentifier:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Iata:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Telephone:
+          $ref: '#/components/schemas/StringUpdateValue'
+        SourceId:
+          $ref: '#/components/schemas/GuidNullableUpdateValue'
+      additionalProperties: false
+      x-schema-id: AccountCompanyUpdateParameters
+    AccountCustomerUpdateParameters:
+      title: AccountCustomerUpdateParameters
+      type: object
+      properties:
+        Email:
+          $ref: '#/components/schemas/StringUpdateValue'
+        TaxIdentifier:
+          $ref: '#/components/schemas/StringUpdateValue'
+        BillingCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        AccountingCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Notes:
+          $ref: '#/components/schemas/StringUpdateValue'
+        LastName:
+          $ref: '#/components/schemas/StringUpdateValue'
+        FirstName:
+          $ref: '#/components/schemas/StringUpdateValue'
+        SecondLastName:
+          $ref: '#/components/schemas/StringUpdateValue'
+        BirthPlace:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Telephone:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Occupation:
+          $ref: '#/components/schemas/StringUpdateValue'
+        CarRegistrationNumber:
+          $ref: '#/components/schemas/StringUpdateValue'
+        LoyaltyCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        NationalityCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        CompanyId:
+          $ref: '#/components/schemas/GuidNullableUpdateValue'
+        BirthDate:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Sex:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Title:
+          $ref: '#/components/schemas/StringUpdateValue'
+        PreferredLanguageCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        Options:
+          $ref: '#/components/schemas/CustomerOptionUpdateParameters'
+        Classifications:
+          $ref: '#/components/schemas/CustomerClassificationUpdateParameters'
+        LegalEntityIdentifiers:
+          $ref: '#/components/schemas/LegalEntityIdentifierUpdateParameters'
+      additionalProperties: false
+      x-schema-id: AccountCustomerUpdateParameters
     AccountMergeParameter:
       title: AccountMergeParameter
       required:
@@ -22586,11 +22829,38 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AccountNoteUpdateResult
+    AccountResult:
+      title: AccountResult
+      type: object
+      properties:
+        Accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: AccountResult
     AccountType:
       enum:
         - Company
         - Customer
       type: string
+    AccountUpdateParameters:
+      title: AccountUpdateParameters
+      type: object
+      properties:
+        Id:
+          type: string
+          format: uuid
+        Discriminator:
+          type: string
+          nullable: true
+        Customer:
+          $ref: '#/components/schemas/AccountCustomerUpdateParameters'
+        Company:
+          $ref: '#/components/schemas/AccountCompanyUpdateParameters'
+      additionalProperties: false
+      x-schema-id: AccountUpdateParameters
     AccountingCategory:
       title: AccountingCategory
       required:
@@ -25745,6 +26015,123 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: Company
+    CompanyAccount:
+      title: CompanyAccount
+      type: object
+      properties:
+        ChainId:
+          type: string
+          format: uuid
+        CreatedUtc:
+          type: string
+          nullable: true
+        UpdatedUtc:
+          type: string
+          nullable: true
+        UpdaterProfileId:
+          type: string
+          format: uuid
+        Email:
+          type: string
+          nullable: true
+        TaxIdentifier:
+          type: string
+          nullable: true
+        BillingCode:
+          type: string
+          nullable: true
+        AccountingCode:
+          type: string
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        MotherCompanyId:
+          type: string
+          format: uuid
+          nullable: true
+        WebsiteUrl:
+          type: string
+          nullable: true
+        InvoiceDueInterval:
+          type: string
+          nullable: true
+        CreditRatingBasic:
+          type: string
+          nullable: true
+        Department:
+          type: string
+          nullable: true
+        DunsNumber:
+          type: string
+          nullable: true
+        ReferenceId:
+          type: string
+          nullable: true
+        ExternalIdentifier:
+          type: string
+          nullable: true
+        AdditionalTaxIdentifier:
+          type: string
+          nullable: true
+        Contact:
+          type: string
+          nullable: true
+        ContactPerson:
+          type: string
+          nullable: true
+        FiscalIdentifier:
+          type: string
+          nullable: true
+        Iata:
+          type: string
+          nullable: true
+        Telephone:
+          type: string
+          nullable: true
+        SourceId:
+          type: string
+          format: uuid
+          nullable: true
+        Classifications:
+          $ref: '#/components/schemas/CompanyAccountClassifications'
+        Options:
+          $ref: '#/components/schemas/CompanyAccountOptions'
+      additionalProperties: false
+      x-schema-id: CompanyAccount
+    CompanyAccountClassifications:
+      title: CompanyAccountClassifications
+      type: object
+      properties:
+        Corporate:
+          type: boolean
+        Internal:
+          type: boolean
+        Private:
+          type: boolean
+        OnlineTravelAgency:
+          type: boolean
+        GlobalDistributionSystem:
+          type: boolean
+        Marketing:
+          type: boolean
+        Inactive:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: CompanyAccountClassifications
+    CompanyAccountOptions:
+      title: CompanyAccountOptions
+      type: object
+      properties:
+        Invoiceable:
+          type: boolean
+        AddFeesToInvoices:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: CompanyAccountOptions
     CompanyAddParameters:
       title: CompanyAddParameters
       required:
@@ -27231,6 +27618,146 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: Customer
+    CustomerAccount:
+      title: CustomerAccount
+      type: object
+      properties:
+        ChainId:
+          type: string
+          format: uuid
+        CreatedUtc:
+          type: string
+          nullable: true
+        UpdatedUtc:
+          type: string
+          nullable: true
+        UpdaterProfileId:
+          type: string
+          format: uuid
+        Email:
+          type: string
+          nullable: true
+        TaxIdentifier:
+          type: string
+          nullable: true
+        BillingCode:
+          type: string
+          nullable: true
+        AccountingCode:
+          type: string
+          nullable: true
+        Notes:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        SecondLastName:
+          type: string
+          nullable: true
+        BirthPlace:
+          type: string
+          nullable: true
+        Telephone:
+          type: string
+          nullable: true
+        Occupation:
+          type: string
+          nullable: true
+        CarRegistrationNumber:
+          type: string
+          nullable: true
+        LoyaltyCode:
+          type: string
+          nullable: true
+        NationalityCode:
+          type: string
+          nullable: true
+        CompanyId:
+          type: string
+          format: uuid
+          nullable: true
+        BirthDate:
+          type: string
+          nullable: true
+        Sex:
+          type: string
+          nullable: true
+        Title:
+          type: string
+          nullable: true
+        PreferredLanguageCode:
+          type: string
+          nullable: true
+        Options:
+          $ref: '#/components/schemas/CustomerAccountOptions'
+        Classifications:
+          $ref: '#/components/schemas/CustomerAccountClassifications'
+        LegalEntityIdentifiers:
+          $ref: '#/components/schemas/LegalEntityIdentifiers'
+      additionalProperties: false
+      x-schema-id: CustomerAccount
+    CustomerAccountClassifications:
+      title: CustomerAccountClassifications
+      type: object
+      properties:
+        PaymasterAccount:
+          type: boolean
+        Blacklist:
+          type: boolean
+        Media:
+          type: boolean
+        LoyaltyProgram:
+          type: boolean
+        PreviousComplaint:
+          type: boolean
+        Returning:
+          type: boolean
+        Staff:
+          type: boolean
+        FriendOrFamily:
+          type: boolean
+        TopManagement:
+          type: boolean
+        Important:
+          type: boolean
+        VeryImportant:
+          type: boolean
+        Problematic:
+          type: boolean
+        Cashlist:
+          type: boolean
+        DisabledPerson:
+          type: boolean
+        Military:
+          type: boolean
+        Airline:
+          type: boolean
+        HealthCompliant:
+          type: boolean
+        InRoom:
+          type: boolean
+        WaitingForRoom:
+          type: boolean
+        Student:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: CustomerAccountClassifications
+    CustomerAccountOptions:
+      title: CustomerAccountOptions
+      type: object
+      properties:
+        SendMarketingEmails:
+          type: boolean
+        Invoiceable:
+          type: boolean
+        BillAddressObjection:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: CustomerAccountOptions
     CustomerAddParameters:
       title: CustomerAddParameters
       required:
@@ -27357,6 +27884,52 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerAddParameters
+    CustomerClassificationUpdateParameters:
+      title: CustomerClassificationUpdateParameters
+      type: object
+      properties:
+        PaymasterAccount:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Blacklist:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Media:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        LoyaltyProgram:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        PreviousComplaint:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Returning:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Staff:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        FriendOrFamily:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        TopManagement:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Important:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        VeryImportant:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Problematic:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Cashlist:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        DisabledPerson:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Military:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Airline:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        HealthCompliant:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        InRoom:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        WaitingForRoom:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Student:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+      additionalProperties: false
+      x-schema-id: CustomerClassificationUpdateParameters
     CustomerEmailParameters:
       title: CustomerEmailParameters
       required:
@@ -27717,6 +28290,18 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerNameParameters
+    CustomerOptionUpdateParameters:
+      title: CustomerOptionUpdateParameters
+      type: object
+      properties:
+        SendMarketingEmails:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        Invoiceable:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+        BillAddressObjection:
+          $ref: '#/components/schemas/BooleanUpdateValue'
+      additionalProperties: false
+      x-schema-id: CustomerOptionUpdateParameters
     CustomerResult:
       title: CustomerResult
       type: object
@@ -30918,6 +31503,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: LanguageTexts
+    LegalEntityIdentifierUpdateParameters:
+      title: LegalEntityIdentifierUpdateParameters
+      type: object
+      properties:
+        ItDestinationCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+        ItFiscalCode:
+          $ref: '#/components/schemas/StringUpdateValue'
+      additionalProperties: false
+      x-schema-id: LegalEntityIdentifierUpdateParameters
+    LegalEntityIdentifiers:
+      title: LegalEntityIdentifiers
+      type: object
+      properties:
+        ItDestinationCode:
+          type: string
+          nullable: true
+        ItFiscalCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: LegalEntityIdentifiers
     LengthRestriction:
       title: LengthRestriction
       type: object
@@ -32108,6 +32715,50 @@ components:
             $ref: '#/components/schemas/AccountNoteUpdateParameters'
       additionalProperties: false
       x-schema-id: MultipleAccountNoteUpdateParameters
+    MultipleAccountUpdateParameters:
+      title: MultipleAccountUpdateParameters
+      required:
+        - AccessToken
+        - AccountUpdates
+        - Client
+        - ClientToken
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        AccessToken:
+          minLength: 1
+          type: string
+        MaskedAccessToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ClientToken:
+          minLength: 1
+          type: string
+        MaskedClientToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ChainId:
+          type: string
+          format: uuid
+          nullable: true
+        AccountUpdates:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountUpdateParameters'
+      additionalProperties: false
+      x-schema-id: MultipleAccountUpdateParameters
     MultipleAccountingItemsUpdateParameters:
       title: MultipleAccountingItemsUpdateParameters
       required:
@@ -41450,10 +42101,14 @@ components:
       required:
         - CreatedUtc
         - Id
+        - ServiceId
         - UpdatedUtc
       type: object
       properties:
         Id:
+          type: string
+          format: uuid
+        ServiceId:
           type: string
           format: uuid
         Conditions:
