@@ -37878,8 +37878,8 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateFilterParameters
-    RateGroup:
-      title: RateGroup
+    RateGroupOld:
+      title: RateGroupOld
       type: object
       properties:
         Id:
@@ -37898,7 +37898,7 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-      x-schema-id: RateGroup
+      x-schema-id: RateGroupOld
     RateOptions:
       title: RateOptions
       required:
@@ -38202,7 +38202,7 @@ components:
         RateGroups:
           type: array
           items:
-            $ref: '#/components/schemas/RateGroup'
+            $ref: '#/components/schemas/RateGroupOld'
           nullable: true
         RateRestrictions:
           $ref: '#/components/schemas/RateRestrictionResult'
@@ -39606,7 +39606,7 @@ components:
         RateGroups:
           type: array
           items:
-            $ref: '#/components/schemas/RateGroup'
+            $ref: '#/components/schemas/RateGroupOld'
           nullable: true
         Items:
           type: array
@@ -42313,7 +42313,7 @@ components:
         RateGroups:
           type: array
           items:
-            $ref: '#/components/schemas/RateGroup'
+            $ref: '#/components/schemas/RateGroupOld'
           nullable: true
         ResourceCategories:
           type: array
