@@ -24024,6 +24024,10 @@ components:
           minLength: 1
           type: string
           format: uri
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: AlternativePaymentParameters
     AlternativePaymentResult:
@@ -25792,6 +25796,10 @@ components:
           type: string
           format: uuid
           nullable: true
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
         Amount:
           $ref: '#/components/schemas/ExtendedAmountParameters'
         Category:
@@ -27346,6 +27354,10 @@ components:
           format: uuid
           nullable: true
         AccountingCategoryId:
+          type: string
+          format: uuid
+          nullable: true
+        ServiceOrderId:
           type: string
           format: uuid
           nullable: true
@@ -30785,21 +30797,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        BillId:
-          type: string
-          format: uuid
-          nullable: true
-        AccountingCategoryId:
-          type: string
-          format: uuid
-          nullable: true
-        Amount:
-          $ref: '#/components/schemas/ExtendedAmountParameters'
-        Category:
-          $ref: '#/components/schemas/AccountingCategoryParameters'
-        Notes:
-          type: string
-          nullable: true
         AccountId:
           type: string
           format: uuid
@@ -30809,11 +30806,30 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+        BillId:
+          type: string
+          format: uuid
+          nullable: true
+        AccountingCategoryId:
+          type: string
+          format: uuid
+          nullable: true
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
+        Amount:
+          $ref: '#/components/schemas/ExtendedAmountParameters'
+        Category:
+          $ref: '#/components/schemas/AccountingCategoryParameters'
         Type:
           anyOf:
             - $ref: '#/components/schemas/ExternalPaymentTypeOld'
           nullable: true
         ExternalIdentifier:
+          type: string
+          nullable: true
+        Notes:
           type: string
           nullable: true
       additionalProperties: false
@@ -35590,6 +35606,10 @@ components:
           type: string
           format: uuid
           nullable: true
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
         AccountingCategoryId:
           type: string
           format: uuid
@@ -35773,6 +35793,14 @@ components:
             format: uuid
           nullable: true
         BillIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        ServiceOrderIds:
           maxItems: 1000
           minItems: 1
           type: array
@@ -35994,6 +36022,10 @@ components:
           type: string
           format: uuid
           nullable: true
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
         State:
           $ref: '#/components/schemas/PaymentRequestState'
         Amount:
@@ -36054,6 +36086,10 @@ components:
           maxLength: 1000
           type: string
           nullable: true
+        ServiceOrderId:
+          type: string
+          format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: PaymentRequestAddParameters
     PaymentRequestFilterParameters:
@@ -36106,6 +36142,14 @@ components:
             format: uuid
           nullable: true
         AccountIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        ServiceOrderIds:
           maxItems: 1000
           minItems: 1
           type: array
