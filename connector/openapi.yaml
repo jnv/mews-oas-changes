@@ -34816,6 +34816,8 @@ components:
         Type:
           type: string
           nullable: true
+        Options:
+          $ref: '#/components/schemas/OrderItemOptions'
         Data:
           $ref: '#/components/schemas/OrderItemData'
       additionalProperties: false
@@ -35045,6 +35047,14 @@ components:
                 - $ref: '#/components/schemas/ProductOrderItemData'
       additionalProperties: false
       x-schema-id: OrderItemOld
+    OrderItemOptions:
+      title: OrderItemOptions
+      type: object
+      properties:
+        CanceledWithReservation:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: OrderItemOptions
     OrderItemProductData:
       title: OrderItemProductData
       type: object
