@@ -41073,6 +41073,11 @@ components:
             format: uuid
         UpdatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryFilterParameters
     ResourceCategoryImageAssignment:
