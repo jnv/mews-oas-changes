@@ -34857,6 +34857,7 @@ components:
         - ProductOrder
         - Surcharge
         - TaxCorrection
+        - ResourceUpgradeFee
       type: string
     OrderItemTypeOld:
       enum:
@@ -34871,6 +34872,7 @@ components:
         - ProductOrder
         - Other
         - TaxCorrection
+        - ResourceUpgradeFee
       type: string
     OrderNote:
       title: OrderNote
