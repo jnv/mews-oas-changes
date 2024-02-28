@@ -39776,6 +39776,8 @@ components:
           $ref: '#/components/schemas/TimeFilterInterval'
         CollidingUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
+        ScheduledStartUtc:
+          $ref: '#/components/schemas/TimeFilterInterval'
         States:
           type: array
           items:
