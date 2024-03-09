@@ -3,6 +3,131 @@ info:
   title: ConnectorApi
   version: v1
 paths:
+  /api/connector/v1/accountingCategories/getAll:
+    post:
+      tags:
+        - AccountingCategoriesConnectorApi
+      operationId: accountingCategories_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingCategoryFilterParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountingCategoryResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/accountNotes/getAll:
     post:
       tags:
@@ -2378,6 +2503,131 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/companyContracts/getAll:
+    post:
+      tags:
+        - CompanyContractsConnectorApi
+      operationId: companyContracts_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyContractFilterParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/configuration/get:
     post:
       tags:
@@ -2629,131 +2879,6 @@ paths:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
       deprecated: true
-  /api/connector/v1/companyContracts/getAll:
-    post:
-      tags:
-        - ConnectorApi
-      operationId: companyContracts_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CompanyContractFilterParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ContractResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/companyContracts/add:
     post:
       tags:
@@ -3021,131 +3146,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Unit'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-  /api/connector/v1/accountingCategories/getAll:
-    post:
-      tags:
-        - ConnectorApi
-      operationId: accountingCategories_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingCategoryFilterParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountingCategoryResult'
         '400':
           description: Bad Request
           content:
