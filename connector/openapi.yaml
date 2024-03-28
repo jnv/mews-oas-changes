@@ -28909,6 +28909,9 @@ components:
         Name:
           type: string
           nullable: true
+        Identifier:
+          type: string
+          nullable: true
       additionalProperties: false
       x-schema-id: Device
     DeviceCommand:
