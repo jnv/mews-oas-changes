@@ -4383,6 +4383,131 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/commands/addPaymentTerminal:
+    post:
+      tags:
+        - CommandsConnectorApi
+      operationId: commands_addPaymentTerminal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentTerminalCommandParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceCommandAddResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/commands/update:
     post:
       tags:
@@ -8910,6 +9035,131 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/images/getUrls:
+    post:
+      tags:
+        - InternalsConnectorApi
+      operationId: images_getUrls
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageUrlParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageUrlResult'
         '400':
           description: Bad Request
           content:
@@ -25202,22 +25452,22 @@ components:
       additionalProperties: false
       x-schema-id: BookableServiceData
     BooleanNullableUpdateValue:
-      title: UpdateValue`1
+      title: BooleanNullableUpdateValue
       type: object
       properties:
         Value:
           type: boolean
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: BooleanNullableUpdateValue
     BooleanUpdateValue:
-      title: UpdateValue`1
+      title: BooleanUpdateValue
       type: object
       properties:
         Value:
           type: boolean
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: BooleanUpdateValue
     BusinessSegment:
       title: BusinessSegment
       required:
@@ -27596,13 +27846,13 @@ components:
       additionalProperties: false
       x-schema-id: CurrencyValueOld
     CurrencyValueOldUpdateValue:
-      title: UpdateValue`1
+      title: CurrencyValueOldUpdateValue
       type: object
       properties:
         Value:
           $ref: '#/components/schemas/CurrencyValueOld'
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: CurrencyValueOldUpdateValue
     Customer:
       title: Customer
       required:
@@ -28719,7 +28969,7 @@ components:
       additionalProperties: false
       x-schema-id: DaysParameters
     DecimalNullableUpdateValue:
-      title: UpdateValue`1
+      title: DecimalNullableUpdateValue
       type: object
       properties:
         Value:
@@ -28727,7 +28977,7 @@ components:
           format: double
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: DecimalNullableUpdateValue
     DeleteRestrictionParameters:
       title: DeleteRestrictionParameters
       required:
@@ -31009,7 +31259,7 @@ components:
       additionalProperties: false
       x-schema-id: GetAllActiveCommandsParameters
     GuidIEnumerableUpdateValue:
-      title: UpdateValue`1
+      title: GuidIEnumerableUpdateValue
       type: object
       properties:
         Value:
@@ -31019,9 +31269,9 @@ components:
             format: uuid
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: GuidIEnumerableUpdateValue
     GuidNullableUpdateValue:
-      title: UpdateValue`1
+      title: GuidNullableUpdateValue
       type: object
       properties:
         Value:
@@ -31029,16 +31279,16 @@ components:
           format: uuid
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: GuidNullableUpdateValue
     GuidUpdateValue:
-      title: UpdateValue`1
+      title: GuidUpdateValue
       type: object
       properties:
         Value:
           type: string
           format: uuid
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: GuidUpdateValue
     Hours:
       title: Hours
       required:
@@ -31197,8 +31447,99 @@ components:
           type: boolean
       additionalProperties: false
       x-schema-id: HoursParameters
+    ImageResizeMode:
+      enum:
+        - Cover
+        - CoverExact
+        - Fit
+        - FitExact
+      type: string
+    ImageSizeParameters:
+      title: ImageSizeParameters
+      required:
+        - ImageId
+      type: object
+      properties:
+        ImageId:
+          type: string
+          format: uuid
+        Width:
+          type: integer
+          format: int32
+          nullable: true
+        Height:
+          type: integer
+          format: int32
+          nullable: true
+        ResizeMode:
+          anyOf:
+            - $ref: '#/components/schemas/ImageResizeMode'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ImageSizeParameters
+    ImageUrl:
+      title: ImageUrl
+      type: object
+      properties:
+        ImageId:
+          type: string
+          format: uuid
+        Url:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ImageUrl
+    ImageUrlParameters:
+      title: ImageUrlParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Images
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        AccessToken:
+          minLength: 1
+          type: string
+        MaskedAccessToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ClientToken:
+          minLength: 1
+          type: string
+        MaskedClientToken:
+          type: string
+          nullable: true
+          readOnly: true
+        Images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageSizeParameters'
+      additionalProperties: false
+      x-schema-id: ImageUrlParameters
+    ImageUrlResult:
+      title: ImageUrlResult
+      type: object
+      properties:
+        ImageUrls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageUrl'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ImageUrlResult
     Int32NullableUpdateValue:
-      title: UpdateValue`1
+      title: Int32NullableUpdateValue
       type: object
       properties:
         Value:
@@ -31206,16 +31547,16 @@ components:
           format: int32
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: Int32NullableUpdateValue
     Int32UpdateValue:
-      title: UpdateValue`1
+      title: Int32UpdateValue
       type: object
       properties:
         Value:
           type: integer
           format: int32
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: Int32UpdateValue
     InvoicePaymentData:
       title: InvoicePaymentData
       type: object
@@ -36649,6 +36990,65 @@ components:
           $ref: '#/components/schemas/PayworksData'
       additionalProperties: false
       x-schema-id: PaymentTerminalCommandData
+    PaymentTerminalCommandParameters:
+      title: PaymentTerminalCommandParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerId
+        - TerminalId
+        - Type
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        AccessToken:
+          minLength: 1
+          type: string
+        MaskedAccessToken:
+          type: string
+          nullable: true
+          readOnly: true
+        ClientToken:
+          minLength: 1
+          type: string
+        MaskedClientToken:
+          type: string
+          nullable: true
+          readOnly: true
+        TerminalId:
+          type: string
+          format: uuid
+        CustomerId:
+          type: string
+          format: uuid
+        Type:
+          $ref: '#/components/schemas/PaymentTerminalCommandType'
+        Amount:
+          $ref: '#/components/schemas/CurrencyValueOld'
+        BillId:
+          type: string
+          format: uuid
+          nullable: true
+        PaymentRequestId:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PaymentTerminalCommandParameters
+    PaymentTerminalCommandType:
+      enum:
+        - Payment
+        - Preauthorization
+      type: string
     PaymentType:
       enum:
         - CreditCard
@@ -36698,7 +37098,7 @@ components:
       additionalProperties: false
       x-schema-id: PerUnitPriceParameters
     PerUnitPriceParametersIEnumerableUpdateValue:
-      title: UpdateValue`1
+      title: PerUnitPriceParametersIEnumerableUpdateValue
       type: object
       properties:
         Value:
@@ -36707,7 +37107,7 @@ components:
             $ref: '#/components/schemas/PerUnitPriceParameters'
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: PerUnitPriceParametersIEnumerableUpdateValue
     PersonCount:
       title: PersonCount
       type: object
@@ -36733,7 +37133,7 @@ components:
       additionalProperties: false
       x-schema-id: PersonCountParameters
     PersonCountParametersIEnumerableUpdateValue:
-      title: UpdateValue`1
+      title: PersonCountParametersIEnumerableUpdateValue
       type: object
       properties:
         Value:
@@ -36742,7 +37142,7 @@ components:
             $ref: '#/components/schemas/PersonCountParameters'
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: PersonCountParametersIEnumerableUpdateValue
     PersonData:
       type: object
       additionalProperties: false
@@ -43586,14 +43986,14 @@ components:
       additionalProperties: false
       x-schema-id: SpaceData
     StringUpdateValue:
-      title: UpdateValue`1
+      title: StringUpdateValue
       type: object
       properties:
         Value:
           type: string
           nullable: true
       additionalProperties: false
-      x-schema-id: UpdateValue`1
+      x-schema-id: StringUpdateValue
     SurchargeConfiguration:
       title: SurchargeConfiguration
       required:
