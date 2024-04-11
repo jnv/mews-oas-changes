@@ -3,389 +3,10 @@ info:
   title: ConnectorApi
   version: v1
 paths:
-  /api/connector/v1/accountingCategories/getAll:
-    post:
-      tags:
-        - AccountingCategoriesConnectorApi
-      description: "Returns all accounting categories of the enterprise associated with the connector integration. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
-      operationId: accountingCategories_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingCategoryFilterParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountingCategoryResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-  /api/connector/v1/accountingItems/update:
-    post:
-      tags:
-        - AccountingItemsConnectorApi
-      description: 'Updates specified accounting items. You can use this operation to assign an accounting item to a different account or bill. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
-      operationId: accountingItems_update
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MultipleAccountingItemsUpdateParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountingItemResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-  /api/connector/v1/accountingItems/getAll:
-    post:
-      tags:
-        - AccountingItemsConnectorApi
-      description: Use payments/getall or orderItems/getall.
-      operationId: accountingItems_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingItemParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountingItemResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-      deprecated: true
   /api/connector/v1/accountNotes/getAll:
     post:
       tags:
-        - AccountNotesConnectorApi
+        - Account notes
       description: "Returns all account notes of an account, optionally filtered by activity state, account identifiers, specific account note identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: accountNotes_getAll
       requestBody:
@@ -511,7 +132,7 @@ paths:
   /api/connector/v1/accountNotes/add:
     post:
       tags:
-        - AccountNotesConnectorApi
+        - Account notes
       description: 'Adds account notes to an account of the enterprise chain. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: accountNotes_add
       requestBody:
@@ -637,7 +258,7 @@ paths:
   /api/connector/v1/accountNotes/update:
     post:
       tags:
-        - AccountNotesConnectorApi
+        - Account notes
       description: Updates information about the specified account notes.
       operationId: accountNotes_update
       requestBody:
@@ -763,7 +384,7 @@ paths:
   /api/connector/v1/accountNotes/delete:
     post:
       tags:
-        - AccountNotesConnectorApi
+        - Account notes
       description: Deletes specified account notes.
       operationId: accountNotes_delete
       requestBody:
@@ -886,10 +507,389 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/accountingCategories/getAll:
+    post:
+      tags:
+        - Accounting categories
+      description: "Returns all accounting categories of the enterprise associated with the connector integration. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      operationId: accountingCategories_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingCategoryFilterParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountingCategoryResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/accountingItems/update:
+    post:
+      tags:
+        - Accounting items
+      description: 'Updates specified accounting items. You can use this operation to assign an accounting item to a different account or bill. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      operationId: accountingItems_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleAccountingItemsUpdateParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountingItemResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/accountingItems/getAll:
+    post:
+      tags:
+        - Accounting items
+      description: Use payments/getall or orderItems/getall.
+      operationId: accountingItems_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountingItemParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountingItemResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+      deprecated: true
   /api/connector/v1/accounts/update:
     post:
       tags:
-        - AccountsConnectorApi
+        - Accounts
       description: 'Updates one or more existing accounts in the system. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: accounts_update
       requestBody:
@@ -1015,7 +1015,7 @@ paths:
   /api/connector/v1/accounts/merge:
     post:
       tags:
-        - AccountsConnectorApi
+        - Accounts
       description: Merges two or more accounts of the same account type together. The given source accounts will be merged into the given target account and the merged account will keep the target account ID.
       operationId: accounts_merge
       requestBody:
@@ -1141,7 +1141,7 @@ paths:
   /api/connector/v1/addresses/getAll:
     post:
       tags:
-        - AddressesConnectorApi
+        - Addresses
       description: "Returns all addresses associated with the specified accounts within the enterprise. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: addresses_getAll
       requestBody:
@@ -1267,7 +1267,7 @@ paths:
   /api/connector/v1/addresses/add:
     post:
       tags:
-        - AddressesConnectorApi
+        - Addresses
       description: 'Adds one or more new addresses to the system and assigns them to specified accounts. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: addresses_add
       requestBody:
@@ -1393,7 +1393,7 @@ paths:
   /api/connector/v1/addresses/update:
     post:
       tags:
-        - AddressesConnectorApi
+        - Addresses
       description: 'Updates one or more existing addresses in the system, assigned to specified accounts. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: addresses_update
       requestBody:
@@ -1519,7 +1519,7 @@ paths:
   /api/connector/v1/addresses/delete:
     post:
       tags:
-        - AddressesConnectorApi
+        - Addresses
       description: 'Deletes one or more addresses in the system. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: addresses_delete
       requestBody:
@@ -1645,7 +1645,7 @@ paths:
   /api/connector/v1/ageCategories/getAll:
     post:
       tags:
-        - AgeCategoriesConnectorApi
+        - Age categories
       description: "Returns all age categories filtered by [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service). \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: ageCategories_getAll
       requestBody:
@@ -1771,7 +1771,7 @@ paths:
   /api/connector/v1/availabilityAdjustments/getAll:
     post:
       tags:
-        - AvailabilityAdjustmentsConnectorApi
+        - Availability adjuments
       description: "Returns all availability adjustments.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: availabilityAdjustments_getAll
       requestBody:
@@ -1897,7 +1897,7 @@ paths:
   /api/connector/v1/availabilityBlocks/delete:
     post:
       tags:
-        - AvailabilityBlocksConnectorApi
+        - Availability blocks
       description: Delete availability blocks. Note that an availability block containing active reservations (reservations which are not `Canceled`) cannot be deleted.
       operationId: availabilityBlocks_delete
       requestBody:
@@ -2023,7 +2023,7 @@ paths:
   /api/connector/v1/availabilityBlocks/getAll:
     post:
       tags:
-        - AvailabilityBlocksConnectorApi
+        - Availability blocks
       description: "> This feature is being actively developed, features and behavior of this operation may change at short notice.\nReturns all availability blocks filtered by services, unique identifiers and other filters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: availabilityBlocks_getAll
       requestBody:
@@ -2149,7 +2149,7 @@ paths:
   /api/connector/v1/availabilityBlocks/add:
     post:
       tags:
-        - AvailabilityBlocksConnectorApi
+        - Availability blocks
       description: "> This feature is being actively developed, features and behavior of this operation might change on short notice.\nAdds availability blocks which are used to group related [Availability updates](https://mews-systems.gitbook.io/connector-api/operations/#availability-update). This makes limiting public availability easier and more organized. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: availabilityBlocks_add
       requestBody:
@@ -2275,7 +2275,7 @@ paths:
   /api/connector/v1/availabilityBlocks/update:
     post:
       tags:
-        - AvailabilityBlocksConnectorApi
+        - Availability blocks
       description: "> This feature is being actively developed, features and behavior of this operation might change on short notice.\nUpdates information about the specified [Availability block](https://mews-systems.gitbook.io/connector-api/operations/#availability-block)."
       operationId: availabilityBlocks_update
       requestBody:
@@ -2401,7 +2401,7 @@ paths:
   /api/connector/v1/bills/getAll:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       description: 'Returns all bills, optionally filtered by customers, identifiers and other filters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: bills_getAll
       requestBody:
@@ -2527,7 +2527,7 @@ paths:
   /api/connector/v1/bills/getAllByIds:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       operationId: bills_getAllByIds
       requestBody:
         content:
@@ -2653,7 +2653,7 @@ paths:
   /api/connector/v1/bills/getAllByCustomers:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       operationId: bills_getAllByCustomers
       requestBody:
         content:
@@ -2779,7 +2779,7 @@ paths:
   /api/connector/v1/bills/getAllClosed:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       operationId: bills_getAllClosed
       requestBody:
         content:
@@ -2905,7 +2905,7 @@ paths:
   /api/connector/v1/bills/getPdf:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       description: 'Creates a PDF version of the specified bill. In case it''s not possible to return PDF immediately, you must retry the call later while providing the unique event identifier that is returned from the first invocation.'
       operationId: bills_getPdf
       requestBody:
@@ -3031,7 +3031,7 @@ paths:
   /api/connector/v1/bills/add:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       description: 'Creates new empty bill assigned to specified account. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: bills_add
       requestBody:
@@ -3157,7 +3157,7 @@ paths:
   /api/connector/v1/bills/delete:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       description: 'Removes selected bills. Bill must be empty, otherwise it''s not possible to delete it. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: bills_delete
       requestBody:
@@ -3283,7 +3283,7 @@ paths:
   /api/connector/v1/bills/close:
     post:
       tags:
-        - BillsConnectorApi
+        - Bills
       description: 'Closes a bill so no further modification to it is possible. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: bills_close
       requestBody:
@@ -3409,7 +3409,7 @@ paths:
   /api/connector/v1/businessSegments/getAll:
     post:
       tags:
-        - BusinessSegmentsConnectorApi
+        - Business segments
       description: "Returns all business segments of the default service provided by the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: businessSegments_getAll
       requestBody:
@@ -3535,7 +3535,7 @@ paths:
   /api/connector/v1/cancellationPolicies/getAll:
     post:
       tags:
-        - CancellationPoliciesConnectorApi
+        - Cancellation policies
       description: "> ### Restricted!\n> This operation is currently in beta-test and as such it is subject to change.\nReturns all cancellation policies, filtered by services, rate groups and other filters. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: cancellationPolicies_getAll
       requestBody:
@@ -3658,136 +3658,10 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
-  /api/connector/v1/cashiers/getAll:
-    post:
-      tags:
-        - CashiersConnectorApi
-      description: "Returns all cashiers in the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
-      operationId: cashiers_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CashierParameters'
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CashierResult'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-        '408':
-          description: Request Timeout
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
-        '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                properties:
-                  Message:
-                    type: string
-                    example: Description of the error.
-                  DebugDetails:
-                    type: object
-                    example:
-                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
-                  Details:
-                    type: object
-                    example:
-                      Sample: Object with additional details about the error.
-                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/cashierTransactions/getAll:
     post:
       tags:
-        - CashierTransactionsConnectorApi
+        - Cashier transactions
       description: "Returns all cashier transactions created within the specified interval.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: cashierTransactions_getAll
       requestBody:
@@ -3910,10 +3784,136 @@ paths:
                     example:
                       Sample: Object with additional details about the error.
                 description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
+  /api/connector/v1/cashiers/getAll:
+    post:
+      tags:
+        - Cashiers
+      description: "Returns all cashiers in the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      operationId: cashiers_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CashierParameters'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashierResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+        '408':
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: Error caused by heavy requests that takes too long to process (in magnitude of tens of seconds). To get around this send/request data in smaller batches.
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Error caused by too many requests sent in a given amount of time, please see Request limits for more information.'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  Message:
+                    type: string
+                    example: Description of the error.
+                  DebugDetails:
+                    type: object
+                    example:
+                      Sample: 'Object with additional internal details about the error (request, headers, server stack trace, inner exceptions etc.). Only available on development environment.'
+                  Details:
+                    type: object
+                    example:
+                      Sample: Object with additional details about the error.
+                description: 'Unexpected error of the server. In most cases, such an error signifies a bug on our side. We are logging it and are immediately notified when such an error happens. If anything like this happens, feel free to directly contact us or raise an issue here on Github.'
   /api/connector/v1/commands/getAllByIds:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: Returns all commands by their identifiers.
       operationId: commands_getAllByIds
       requestBody:
@@ -4039,7 +4039,7 @@ paths:
   /api/connector/v1/commands/getAllActive:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: Returns all commands the are still active from the client application point of view. That means commands that are in either `Pending` or `Received` state.
       operationId: commands_getAllActive
       requestBody:
@@ -4165,7 +4165,7 @@ paths:
   /api/connector/v1/commands/addPrinter:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: 'Adds a new printer command representing printing of the specified document on a printer. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: commands_addPrinter
       requestBody:
@@ -4291,7 +4291,7 @@ paths:
   /api/connector/v1/commands/addKeyCutter:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: 'Adds a new key cutter command representing cutting of a key for the specified reservation. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: commands_addKeyCutter
       requestBody:
@@ -4417,7 +4417,7 @@ paths:
   /api/connector/v1/commands/addPaymentTerminal:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: "> ### Restricted!\n> This operation is part of a custom workflow for Mews partners such as POS systems to access Mews Payment Terminals.\n> See [Mews Payment Terminals](https://mews-systems.gitbook.io/connector-api/use-cases/mews-terminals/).\nAdds a new Mews Payment Terminal command for taking a customer payment.\nThe operation instructs a specified terminal device to take a payment from a specified customer for a specified amount."
       operationId: commands_addPaymentTerminal
       requestBody:
@@ -4543,7 +4543,7 @@ paths:
   /api/connector/v1/commands/update:
     post:
       tags:
-        - CommandsConnectorApi
+        - Commands
       description: Updates state of a command.
       operationId: commands_update
       requestBody:
@@ -4669,7 +4669,7 @@ paths:
   /api/connector/v1/companies/add:
     post:
       tags:
-        - CompaniesConnectorApi
+        - Companies
       description: 'Adds a new company. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: companies_add
       requestBody:
@@ -4795,7 +4795,7 @@ paths:
   /api/connector/v1/companies/update:
     post:
       tags:
-        - CompaniesConnectorApi
+        - Companies
       description: 'Updates information of the company. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: companies_update
       requestBody:
@@ -4921,7 +4921,7 @@ paths:
   /api/connector/v1/companies/getAll:
     post:
       tags:
-        - CompaniesConnectorApi
+        - Companies
       description: "Returns all company profiles of the enterprise, possibly filtered by identifiers, names or other filters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: companies_getAll
       requestBody:
@@ -5047,7 +5047,7 @@ paths:
   /api/connector/v1/companies/delete:
     post:
       tags:
-        - CompaniesConnectorApi
+        - Companies
       description: Deletes specified companies.
       operationId: companies_delete
       requestBody:
@@ -5173,7 +5173,7 @@ paths:
   /api/connector/v1/companies/getAllByName:
     post:
       tags:
-        - CompaniesConnectorApi
+        - Companies
       operationId: companies_getAllByName
       requestBody:
         content:
@@ -5299,7 +5299,7 @@ paths:
   /api/connector/v1/companionships/getAll:
     post:
       tags:
-        - CompanionshipsConnectorApi
+        - Companionships
       description: "Returns all companionships based on customers, reservations or reservation groups. One of them must be specified in the request.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: companionships_getAll
       requestBody:
@@ -5425,7 +5425,7 @@ paths:
   /api/connector/v1/companyContracts/getAll:
     post:
       tags:
-        - CompanyContractsConnectorApi
+        - Company contracts
       description: "Returns all contracts between the enterprise and other companies.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: companyContracts_getAll
       requestBody:
@@ -5551,7 +5551,7 @@ paths:
   /api/connector/v1/companyContracts/add:
     post:
       tags:
-        - CompanyContractsConnectorApi
+        - Company contracts
       description: Adds one or more company contracts.
       operationId: companyContracts_add
       requestBody:
@@ -5677,7 +5677,7 @@ paths:
   /api/connector/v1/companyContracts/update:
     post:
       tags:
-        - CompanyContractsConnectorApi
+        - Company contracts
       description: Updates one or more company contracts.
       operationId: companyContracts_update
       requestBody:
@@ -5803,7 +5803,7 @@ paths:
   /api/connector/v1/companyContracts/delete:
     post:
       tags:
-        - CompanyContractsConnectorApi
+        - Company contracts
       description: Deletes one or more company contracts.
       operationId: companyContracts_delete
       requestBody:
@@ -5929,7 +5929,7 @@ paths:
   /api/connector/v1/configuration/get:
     post:
       tags:
-        - ConfigurationsConnectorApi
+        - Configurations
       description: 'Returns the enterprise configuration. For single-enterprise Access Tokens, this is the enterprise associated with the token. For [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), use the `EnterpriseId` parameter to specify which enterprise you want the configuration for. In the case of service scoped integrations, the operation returns the configuration associated with both the enterprise and the bookable service linked to the token.'
       operationId: configuration_get
       requestBody:
@@ -6055,7 +6055,7 @@ paths:
   /api/connector/v1/counters/getAll:
     post:
       tags:
-        - CountersConnectorApi
+        - Counters
       description: "Returns all counters of an enterprise associated with the connector integration.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: counters_getAll
       requestBody:
@@ -6181,7 +6181,7 @@ paths:
   /api/connector/v1/countries/getAll:
     post:
       tags:
-        - CountriesConnectorApi
+        - Countries
       description: Returns all countries supported by the API.
       operationId: countries_getAll
       requestBody:
@@ -6307,7 +6307,7 @@ paths:
   /api/connector/v1/creditCards/getAll:
     post:
       tags:
-        - CreditCardsConnectorApi
+        - Credit cards
       description: "Returns all credit cards, possibly filtered by identifiers, [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or other filters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: creditCards_getAll
       requestBody:
@@ -6433,7 +6433,7 @@ paths:
   /api/connector/v1/creditCards/getAllByIds:
     post:
       tags:
-        - CreditCardsConnectorApi
+        - Credit cards
       operationId: creditCards_getAllByIds
       requestBody:
         content:
@@ -6559,7 +6559,7 @@ paths:
   /api/connector/v1/creditCards/getAllByCustomers:
     post:
       tags:
-        - CreditCardsConnectorApi
+        - Credit cards
       operationId: creditCards_getAllByCustomers
       requestBody:
         content:
@@ -6685,7 +6685,7 @@ paths:
   /api/connector/v1/creditCards/addTokenized:
     post:
       tags:
-        - CreditCardsConnectorApi
+        - Credit cards
       description: Adds a new tokenized credit card to the specified customer. To be able to use this operation special permission has to be granted during certification.
       operationId: creditCards_addTokenized
       requestBody:
@@ -6811,7 +6811,7 @@ paths:
   /api/connector/v1/creditCards/charge:
     post:
       tags:
-        - CreditCardsConnectorApi
+        - Credit cards
       description: Creates payment for specified customer credit card and charges the credit card via a gateway. Note that the kind of the card has to be `Gateway`.
       operationId: creditCards_charge
       requestBody:
@@ -6937,7 +6937,7 @@ paths:
   /api/connector/v1/cultures/getAll:
     post:
       tags:
-        - CulturesConnectorApi
+        - Cultures
       operationId: cultures_getAll
       requestBody:
         content:
@@ -7062,7 +7062,7 @@ paths:
   /api/connector/v1/currencies/getAll:
     post:
       tags:
-        - CurrenciesConnectorApi
+        - Currencies
       description: Returns all currencies supported by the API.
       operationId: currencies_getAll
       requestBody:
@@ -7188,7 +7188,7 @@ paths:
   /api/connector/v1/customers/getAll:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: "Returns all customers filtered by identifiers, emails, names and other filters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: customers_getAll
       requestBody:
@@ -7314,7 +7314,7 @@ paths:
   /api/connector/v1/customers/getAllByIds:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       operationId: customers_getAllByIds
       requestBody:
         content:
@@ -7440,7 +7440,7 @@ paths:
   /api/connector/v1/customers/getAllByEmails:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       operationId: customers_getAllByEmails
       requestBody:
         content:
@@ -7566,7 +7566,7 @@ paths:
   /api/connector/v1/customers/search:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: Searches for customers that are active at the moment in the enterprise (e.g. companions of checked-in reservations or paymasters).
       operationId: customers_search
       requestBody:
@@ -7692,7 +7692,7 @@ paths:
   /api/connector/v1/customers/getAllByName:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       operationId: customers_getAllByName
       requestBody:
         content:
@@ -7818,7 +7818,7 @@ paths:
   /api/connector/v1/customers/getOpenItems:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: Use payments/getAll and orderItems/getAll
       operationId: customers_getOpenItems
       requestBody:
@@ -7945,7 +7945,7 @@ paths:
   /api/connector/v1/customers/add:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: 'Adds a new customer to the system and returns details of the added customer. If a customer with the specified email already exists, and `OverwriteExisting` is set to `true`, then the existing customer profile information is overwritten and the existing customer data returned. If `OverwriteExisting` is set to `false`, an error response is returned. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: customers_add
       requestBody:
@@ -8071,7 +8071,7 @@ paths:
   /api/connector/v1/customers/update:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: 'Updates personal information of a customer. Note that if any of the fields is left blank, it won''t clear the field in Mews. The field will be left intact. In case of email update, the email will change in Mews only if there is no other customer profile in the hotel with such email. Otherwise an error response is returned. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: customers_update
       requestBody:
@@ -8197,7 +8197,7 @@ paths:
   /api/connector/v1/customers/merge:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: Use accounts/merge instead.
       operationId: customers_merge
       requestBody:
@@ -8324,7 +8324,7 @@ paths:
   /api/connector/v1/customers/addFile:
     post:
       tags:
-        - CustomersConnectorApi
+        - Customers
       description: 'Attaches the specified file to the customer profile. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: customers_addFile
       requestBody:
@@ -8450,7 +8450,7 @@ paths:
   /api/connector/v1/departments/getAll:
     post:
       tags:
-        - DepartmentsConnectorApi
+        - Departments
       description: "Returns all departments of an enterprise associated with the connector integration.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: departments_getAll
       requestBody:
@@ -8576,7 +8576,7 @@ paths:
   /api/connector/v1/devices/getAll:
     post:
       tags:
-        - DevicesConnectorApi
+        - Devices
       description: Returns all devices in the enterprise.
       operationId: devices_getAll
       requestBody:
@@ -8702,7 +8702,7 @@ paths:
   /api/connector/v1/enterprises/getAll:
     post:
       tags:
-        - EnterprisesConnectorApi
+        - Enterprises
       description: 'Returns all enterprises within scope of the `Access Token`, optionally filtered by enterprise identifiers and external identifiers. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: enterprises_getAll
       requestBody:
@@ -8828,7 +8828,7 @@ paths:
   /api/connector/v1/exchangeRates/getAll:
     post:
       tags:
-        - ExchangeRatesConnectorApi
+        - Exchange rates
       description: 'Returns all available exchange rates among currencies of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/configuration/#enterprise).'
       operationId: exchangeRates_getAll
       requestBody:
@@ -8954,7 +8954,7 @@ paths:
   /api/connector/v1/exports/add:
     post:
       tags:
-        - ExportsConnectorApi
+        - Exports
       description: "Create a pending export. Export all entities of the specified `EntityType` within the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/) but doesn't have filtering by `EnterpriseIds` or `ChainIds`, so will return entities from all enterprises within the scope of the portfolio.\nIf there is already an export with status `Pending` or `Processing` for the specified entity type, the request for a new export will be rejected. Successful exports remain available for download until the expiration date specified in `ExpiresUtc`."
       operationId: exports_add
       requestBody:
@@ -9080,7 +9080,7 @@ paths:
   /api/connector/v1/exports/getAll:
     post:
       tags:
-        - ExportsConnectorApi
+        - Exports
       description: 'Get exports for the given `ExportIds`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: exports_getAll
       requestBody:
@@ -9332,7 +9332,7 @@ paths:
   /api/connector/v1/languages/getAll:
     post:
       tags:
-        - LanguagesConnectorApi
+        - Languages
       description: Returns all languages supported by the API.
       operationId: languages_getAll
       requestBody:
@@ -9458,7 +9458,7 @@ paths:
   /api/connector/v1/languages/getTexts:
     post:
       tags:
-        - LanguagesConnectorApi
+        - Languages
       description: Returns translations of texts in the specified languages.
       operationId: languages_getTexts
       requestBody:
@@ -9584,7 +9584,7 @@ paths:
   /api/connector/v1/loyaltyMemberships/getAll:
     post:
       tags:
-        - LoyaltyMembershipsConnectorApi
+        - Loyalty memberships
       description: "Returns all loyalty memberships of the enterprise (in the given activity states), optionally filtered by specific loyalty membership identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: loyaltyMemberships_getAll
       requestBody:
@@ -9710,7 +9710,7 @@ paths:
   /api/connector/v1/loyaltyMemberships/add:
     post:
       tags:
-        - LoyaltyMembershipsConnectorApi
+        - Loyalty memberships
       description: 'Adds loyalty memberships to the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: loyaltyMemberships_add
       requestBody:
@@ -9836,7 +9836,7 @@ paths:
   /api/connector/v1/loyaltyMemberships/update:
     post:
       tags:
-        - LoyaltyMembershipsConnectorApi
+        - Loyalty memberships
       description: 'Updates information about the specified loyalty memberships. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: loyaltyMemberships_update
       requestBody:
@@ -9962,7 +9962,7 @@ paths:
   /api/connector/v1/loyaltyMemberships/delete:
     post:
       tags:
-        - LoyaltyMembershipsConnectorApi
+        - Loyalty memberships
       description: Deletes loyalty memberships.
       operationId: loyaltyMemberships_delete
       requestBody:
@@ -10088,7 +10088,7 @@ paths:
   /api/connector/v1/loyaltyPrograms/getAll:
     post:
       tags:
-        - LoyaltyProgramsConnectorApi
+        - Loyalty programs
       description: "Returns all loyalty programs of the enterprise (in the given activity state), optionally filtered by specific loyalty program identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: loyaltyPrograms_getAll
       requestBody:
@@ -10214,7 +10214,7 @@ paths:
   /api/connector/v1/loyaltyPrograms/add:
     post:
       tags:
-        - LoyaltyProgramsConnectorApi
+        - Loyalty programs
       description: 'Adds loyalty programs to the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: loyaltyPrograms_add
       requestBody:
@@ -10340,7 +10340,7 @@ paths:
   /api/connector/v1/loyaltyPrograms/update:
     post:
       tags:
-        - LoyaltyProgramsConnectorApi
+        - Loyalty programs
       description: 'Updates information about the specified loyalty programs. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: loyaltyPrograms_update
       requestBody:
@@ -10466,7 +10466,7 @@ paths:
   /api/connector/v1/loyaltyPrograms/delete:
     post:
       tags:
-        - LoyaltyProgramsConnectorApi
+        - Loyalty programs
       description: Deletes loyalty programs. Note that a loyalty program containing active memberships cannot be deleted.
       operationId: loyaltyPrograms_delete
       requestBody:
@@ -10592,7 +10592,7 @@ paths:
   /api/connector/v1/loyaltyTiers/getAll:
     post:
       tags:
-        - LoyaltyTiersConnectorApi
+        - Loyalty tiers
       description: "Returns all loyalty tiers of the chain (in the given activity state), filtered by loyalty program identifiers and optionally filtered by specific loyalty tier identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: loyaltyTiers_getAll
       requestBody:
@@ -10718,7 +10718,7 @@ paths:
   /api/connector/v1/loyaltyTiers/add:
     post:
       tags:
-        - LoyaltyTiersConnectorApi
+        - Loyalty tiers
       description: 'Adds loyalty tiers to a loyalty program of the enterprise chain. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: loyaltyTiers_add
       requestBody:
@@ -10844,7 +10844,7 @@ paths:
   /api/connector/v1/loyaltyTiers/update:
     post:
       tags:
-        - LoyaltyTiersConnectorApi
+        - Loyalty tiers
       description: Updates information about the specified loyalty tiers.
       operationId: loyaltyTiers_update
       requestBody:
@@ -10970,7 +10970,7 @@ paths:
   /api/connector/v1/loyaltyTiers/delete:
     post:
       tags:
-        - LoyaltyTiersConnectorApi
+        - Loyalty tiers
       description: Deletes loyalty tiers.
       operationId: loyaltyTiers_delete
       requestBody:
@@ -11096,7 +11096,7 @@ paths:
   /api/connector/v1/messageThreads/getAll:
     post:
       tags:
-        - MessagesConnectorApi
+        - Message threads
       description: 'Get all message threads that you have created, filtered by time interval and/or specific message thread IDs. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: messageThreads_getAll
       requestBody:
@@ -11222,7 +11222,7 @@ paths:
   /api/connector/v1/messageThreads/add:
     post:
       tags:
-        - MessagesConnectorApi
+        - Message threads
       description: 'Creates a new [Message thread](https://mews-systems.gitbook.io/connector-api/operations/#message-thread) on behalf of the specified customer, i.e. the sender of the original message in the message thread.'
       operationId: messageThreads_add
       requestBody:
@@ -11348,7 +11348,7 @@ paths:
   /api/connector/v1/messages/getAll:
     post:
       tags:
-        - MessagesConnectorApi
+        - Messages
       description: 'Get all messages belonging to the specified [Message threads](https://mews-systems.gitbook.io/connector-api/operations/messagethreads/#message-thread). Messages can only be returned for message threads you have created. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: messages_getAll
       requestBody:
@@ -11474,7 +11474,7 @@ paths:
   /api/connector/v1/messages/add:
     post:
       tags:
-        - MessagesConnectorApi
+        - Messages
       description: 'Add the specified messages to the specified [Message threads](https://mews-systems.gitbook.io/connector-api/operations/messagethreads/#message-thread). You can only add messages to message threads that you have created.'
       operationId: messages_add
       requestBody:
@@ -11600,7 +11600,7 @@ paths:
   /api/connector/v1/orderItems/getAll:
     post:
       tags:
-        - OrderItemsConnectorApi
+        - Order items
       description: 'Returns all order items. At least one of the `OrderItemIds`, `ServiceOrderIds`, `ServiceIds` `BillIds`, `CreatedUtc`, `UpdatedUtc`, `ChargedUtc`, `ClosedUtc` filters must be specified in the request. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: orderItems_getAll
       requestBody:
@@ -11726,7 +11726,7 @@ paths:
   /api/connector/v1/outletBills/add:
     post:
       tags:
-        - OutletBillsConnectorApi
+        - Outlet bills
       description: Adds new outlet bills with their items.
       operationId: outletBills_add
       requestBody:
@@ -11852,7 +11852,7 @@ paths:
   /api/connector/v1/outletItems/getAll:
     post:
       tags:
-        - OutletItemsConnectorApi
+        - Outlet items
       description: "Returns all outlet items of the enterprise that were consumed (posted) or will be consumed within the specified interval. If the `Currency` is specified, costs of the items are converted to that currency.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: outletItems_getAll
       requestBody:
@@ -11978,7 +11978,7 @@ paths:
   /api/connector/v1/outlets/getAll:
     post:
       tags:
-        - OutletsConnectorApi
+        - Outlets
       description: Returns all outlets of an enterprise associated with the connector integration.
       operationId: outlets_getAll
       requestBody:
@@ -12104,7 +12104,7 @@ paths:
   /api/connector/v1/paymentRequests/getAll:
     post:
       tags:
-        - PaymentRequestsConnectorApi
+        - Payment requests
       description: "Get all payment requests belonging to the specified customer accounts. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: paymentRequests_getAll
       requestBody:
@@ -12230,7 +12230,7 @@ paths:
   /api/connector/v1/paymentRequests/add:
     post:
       tags:
-        - PaymentRequestsConnectorApi
+        - Payment requests
       description: 'Creates a payment request to the specified [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: paymentRequests_add
       requestBody:
@@ -12356,7 +12356,7 @@ paths:
   /api/connector/v1/paymentRequests/cancel:
     post:
       tags:
-        - PaymentRequestsConnectorApi
+        - Payment requests
       description: Cancels specified payment requests. Only payment requests which are in `Pending` state can be canceled.
       operationId: paymentRequests_cancel
       requestBody:
@@ -12482,7 +12482,7 @@ paths:
   /api/connector/v1/payments/getAll:
     post:
       tags:
-        - PaymentsConnectorApi
+        - Payments
       description: 'Returns all payments in the system, filtered by various parameters. At least one filter parameter must be specified. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: payments_getAll
       requestBody:
@@ -12608,7 +12608,7 @@ paths:
   /api/connector/v1/payments/refund:
     post:
       tags:
-        - PaymentsConnectorApi
+        - Payments
       description: 'Refunds a specified payment. Note only credit card or alternative payments can be refunded. The refund is itself a payment, so to get more information about the refund, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/#get-all-payments) with the identifier from `RefundId`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: payments_refund
       requestBody:
@@ -12734,7 +12734,7 @@ paths:
   /api/connector/v1/payments/addCreditCard:
     post:
       tags:
-        - PaymentsConnectorApi
+        - Payments
       description: "Adds a new credit card payment to a bill of the specified customer. Note that the payment is added to open bill of the customer, either to the specified one or the default one. This operation only serves to record a credit card payment that has already been taken outside of Mews or Mews' payment terminal, and does not actually charge the customer's credit card. \nThe bill can then be closed manually by a Mews user, or automatically via API with the [Close bill](https://mews-systems.gitbook.io/connector-api/operations/bills/#close-bill) operation."
       operationId: payments_addCreditCard
       requestBody:
@@ -12860,7 +12860,7 @@ paths:
   /api/connector/v1/payments/addExternal:
     post:
       tags:
-        - PaymentsConnectorApi
+        - Payments
       description: 'Adds a new external payment to a bill of the specified customer. An external payment represents a payment that is tracked outside of the system. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: payments_addExternal
       requestBody:
@@ -12986,7 +12986,7 @@ paths:
   /api/connector/v1/payments/addAlternative:
     post:
       tags:
-        - PaymentsConnectorApi
+        - Payments
       description: "Adds a new alternative payment to a specified customer.\n**Pre-requisites:** The property must have the relevant type of alternative payment method enabled in their Mews subscriptions in order to accept such payments in their Mews environment. Please ask the property to confirm."
       operationId: payments_addAlternative
       requestBody:
@@ -13112,7 +13112,7 @@ paths:
   /api/connector/v1/preauthorizations/getAllByCustomers:
     post:
       tags:
-        - PreauthorizationsConnectorApi
+        - Preauthorizations
       description: Returns all preauthorizations of specified customers.
       operationId: preauthorizations_getAllByCustomers
       requestBody:
@@ -13238,7 +13238,7 @@ paths:
   /api/connector/v1/productCategories/getAll:
     post:
       tags:
-        - ProductCategoriesConnectorApi
+        - Product categories
       description: 'Returns all categories of products. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: productCategories_getAll
       requestBody:
@@ -13364,7 +13364,7 @@ paths:
   /api/connector/v1/products/getPricing:
     post:
       tags:
-        - ProductsConnectorApi
+        - Products
       operationId: products_getPricing
       requestBody:
         content:
@@ -13489,7 +13489,7 @@ paths:
   /api/connector/v1/products/getAll:
     post:
       tags:
-        - ProductsConnectorApi
+        - Products
       description: 'Returns all products offered together with the specified services. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: products_getAll
       requestBody:
@@ -13615,7 +13615,7 @@ paths:
   /api/connector/v1/products/delete:
     post:
       tags:
-        - ProductsConnectorApi
+        - Products
       description: 'Deletes specified products. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: products_delete
       requestBody:
@@ -13741,7 +13741,7 @@ paths:
   /api/connector/v1/rateGroups/getAll:
     post:
       tags:
-        - RateGroupsConnectorApi
+        - Rate groups
       description: 'Returns all rate groups, filtered by unique identifiers and other filters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: rateGroups_getAll
       requestBody:
@@ -13867,7 +13867,7 @@ paths:
   /api/connector/v1/rates/getAll:
     post:
       tags:
-        - RatesConnectorApi
+        - Rates
       description: "Returns all rates (pricing setups) and rate groups (condition settings) of the default service provided by the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: rates_getAll
       requestBody:
@@ -13993,7 +13993,7 @@ paths:
   /api/connector/v1/rates/add:
     post:
       tags:
-        - RatesConnectorApi
+        - Rates
       description: 'Adds rates to the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/). Rate type of `AvailabilityBlock` cannot be created via this operation.'
       operationId: rates_add
       requestBody:
@@ -14119,7 +14119,7 @@ paths:
   /api/connector/v1/rates/getPricing:
     post:
       tags:
-        - RatesConnectorApi
+        - Rates
       description: "Returns prices for a given rate for a specified time interval. Prices will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of \"Day\"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of \"Day\". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service's [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.\nThe price in the response is dependent on the enterprise's [pricing](https://mews-systems.gitbook.io/connector-api/operations/configuration/#pricing) setting. If the enterprise is set to a Gross pricing environment, then the price returned is the gross price (inclusive of tax). If the enterprise is set to a Net pricing environment, the price returned is the net price (excluding tax). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: rates_getPricing
       requestBody:
@@ -14245,7 +14245,7 @@ paths:
   /api/connector/v1/rates/updatePrice:
     post:
       tags:
-        - RatesConnectorApi
+        - Rates
       description: "Updates the prices for a given rate. You can make multiple price updates with one API call, and for each one specify the time interval for which the update applies, the price value and the applicable [resource category](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource-category). The price will be updated for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. The price is per time unit, e.g. per day or per month. If the resource category `CategoryId` is not specified, the updated price will apply to the base price for all resource categories.\nNote that prices are defined daily, so when the server receives the UTC interval, it first converts it to the enterprise timezone and updates the price on all dates that the interval intersects. Only root rates can be updated (the rates that have no base rate, that have `BaseRateId` set to `null`). It is not permitted to update historical prices older than specified by `EditableHistoryInterval`. Future prices may be updated up to 5 years in the future. The __maximum size of time interval__ is 100 time units or 2 years, whichever is the shorter amount of time."
       operationId: rates_updatePrice
       requestBody:
@@ -14371,7 +14371,7 @@ paths:
   /api/connector/v1/reservationGroups/getAll:
     post:
       tags:
-        - ReservationGroupsConnectorApi
+        - Reservation groups
       description: 'Returns all reservation groups, filtered by unique identifiers and other filters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservationGroups_getAll
       requestBody:
@@ -14497,7 +14497,7 @@ paths:
   /api/connector/v1/serviceOrders/reservations/getAll:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Use the equivalent endpoint reservations/getAll/2023-06-06
       operationId: serviceOrders_reservations_getAll
       requestBody:
@@ -14624,7 +14624,7 @@ paths:
   /api/connector/v1/reservations/getAll/2023-06-06:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: "Returns all reservations within scope of the Access Token, filtered according to the specified parameters. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property).\n"
       operationId: reservations_getAll_2023-06-06
       requestBody:
@@ -14750,7 +14750,7 @@ paths:
   /api/connector/v1/reservations/getAll:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Use reservations/getAll/2023-06-06.
       operationId: reservations_getAll
       requestBody:
@@ -14877,7 +14877,7 @@ paths:
   /api/connector/v1/reservations/getAllByIds:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       operationId: reservations_getAllByIds
       requestBody:
         content:
@@ -15003,7 +15003,7 @@ paths:
   /api/connector/v1/reservations/getAllByCustomers:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       operationId: reservations_getAllByCustomers
       requestBody:
         content:
@@ -15129,7 +15129,7 @@ paths:
   /api/connector/v1/reservations/getAllByNumbers:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       operationId: reservations_getAllByNumbers
       requestBody:
         content:
@@ -15255,7 +15255,7 @@ paths:
   /api/connector/v1/reservations/price:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Returns prices of reservations with the specified parameters. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_price
       requestBody:
@@ -15381,7 +15381,7 @@ paths:
   /api/connector/v1/reservations/add:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Adds the specified reservations as a single group. If `GroupId` is specified, adds the reservations to an already existing group. Note that all reservations linked to an availability block must belong to the same reservation group.'
       operationId: reservations_add
       requestBody:
@@ -15507,7 +15507,7 @@ paths:
   /api/connector/v1/reservations/update:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Updates information about the specified reservations. Note that if any of the fields are sent as `null`, it won''t clear the field in Mews. If the `Value` within the object is sent as `null`, the field will be cleared in Mews. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_update
       requestBody:
@@ -15633,7 +15633,7 @@ paths:
   /api/connector/v1/reservations/confirm:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Marks all specified reservations as `Confirmed`. Succeeds only if all confirmation conditions are met (the reservations have the `Optional` state).
       operationId: reservations_confirm
       requestBody:
@@ -15759,7 +15759,7 @@ paths:
   /api/connector/v1/reservations/start:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Marks a reservation as `Started` (= checked in). Succeeds only if all starting conditions are met (the reservation has the `Confirmed` state, does not have start set to future, has an inspected room assigned etc). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_start
       requestBody:
@@ -15885,7 +15885,7 @@ paths:
   /api/connector/v1/reservations/process:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: "Marks a reservation as `Processed` (= checked out). Succeeds only if all processing conditions are met (the reservation has the `Started` state, balance of all reservation members is zero etc). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).\n### Conditions\n- Reservation has already been checked in.\n- Reservation isn't alredy in `Processed` state.\n- Reservation can't be checked out sooner than last day of planned stay.\n- The companion profiles of reservation are complete (details can be found in error message).\n- If `AllowOpenBalance` set to `false`, all bills have to be closable (items on bills are either paid by current customer, or set to be paid by other customer). With `CloseBills` option set to `true` they can be automatically closed, when set to `false` they must be closed manually.\n- If `AllowOpenBalance` set to `true`, `Notes` must be filled in."
       operationId: reservations_process
       requestBody:
@@ -16011,7 +16011,7 @@ paths:
   /api/connector/v1/reservations/cancel:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Cancels all reservation with specified identifiers. Succeeds only if the reservations are cancellable. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_cancel
       requestBody:
@@ -16137,7 +16137,7 @@ paths:
   /api/connector/v1/reservations/updateCustomer:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Updates customer of a reservation. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_updateCustomer
       requestBody:
@@ -16263,7 +16263,7 @@ paths:
   /api/connector/v1/reservations/updateInterval:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Updates reservation interval (start, end or both). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_updateInterval
       requestBody:
@@ -16389,7 +16389,7 @@ paths:
   /api/connector/v1/reservations/addCompanion:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Adds a customer as a companion to the reservation. Succeeds only if there is space for the new companion (count of current companions is less than `AdultCount + ChildCount`).
       operationId: reservations_addCompanion
       requestBody:
@@ -16515,7 +16515,7 @@ paths:
   /api/connector/v1/reservations/deleteCompanion:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: 'Removes customer companionship from the reservation. Note that the customer profile stays untouched, only the relation between the customer and reservation is deleted.'
       operationId: reservations_deleteCompanion
       requestBody:
@@ -16641,7 +16641,7 @@ paths:
   /api/connector/v1/reservations/addProduct:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Adds a new product order of the specified product to the reservation.
       operationId: reservations_addProduct
       requestBody:
@@ -16767,7 +16767,7 @@ paths:
   /api/connector/v1/reservations/getAllItems:
     post:
       tags:
-        - ReservationsConnectorApi
+        - Reservations
       description: Use orderItems/getAll.
       operationId: reservations_getAllItems
       requestBody:
@@ -16894,7 +16894,7 @@ paths:
   /api/connector/v1/resourceAccessTokens/getAll:
     post:
       tags:
-        - ResourceAccessTokensConnectorApi
+        - Resource access tokens
       description: "Returns all resource access tokens based on resource access token identifiers, reservations or interval. One of them must be specified in the request. \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: resourceAccessTokens_getAll
       requestBody:
@@ -17020,7 +17020,7 @@ paths:
   /api/connector/v1/resourceAccessTokens/add:
     post:
       tags:
-        - ResourceAccessTokensConnectorApi
+        - Resource access tokens
       description: Adds new resource access tokens with the specified data.
       operationId: resourceAccessTokens_add
       requestBody:
@@ -17146,7 +17146,7 @@ paths:
   /api/connector/v1/resourceAccessTokens/update:
     post:
       tags:
-        - ResourceAccessTokensConnectorApi
+        - Resource access tokens
       description: 'Updates the [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token) validity interval and [permissions](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token-permission-parameter) that it grants.'
       operationId: resourceAccessTokens_update
       requestBody:
@@ -17272,7 +17272,7 @@ paths:
   /api/connector/v1/resourceAccessTokens/delete:
     post:
       tags:
-        - ResourceAccessTokensConnectorApi
+        - Resource access tokens
       description: Delete specified resource access tokens.
       operationId: resourceAccessTokens_delete
       requestBody:
@@ -17398,7 +17398,7 @@ paths:
   /api/connector/v1/resourceBlocks/getAll:
     post:
       tags:
-        - ResourceBlocksConnectorApi
+        - Resource blocks
       description: "Returns all resource blocks (out of order blocks or internal use blocks). \nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: resourceBlocks_getAll
       requestBody:
@@ -17524,7 +17524,7 @@ paths:
   /api/connector/v1/resourceBlocks/add:
     post:
       tags:
-        - ResourceBlocksConnectorApi
+        - Resource blocks
       description: Adds a new resource block to the specified resource for a defined period of time.
       operationId: resourceBlocks_add
       requestBody:
@@ -17650,7 +17650,7 @@ paths:
   /api/connector/v1/resourceBlocks/delete:
     post:
       tags:
-        - ResourceBlocksConnectorApi
+        - Resource blocks
       description: Removes specified resource blocks from the resources.
       operationId: resourceBlocks_delete
       requestBody:
@@ -17776,7 +17776,7 @@ paths:
   /api/connector/v1/resourceCategories/getAll:
     post:
       tags:
-        - ResourceCategoriesConnectorApi
+        - Resource categories
       description: 'Returns all categories of resources. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceCategories_getAll
       requestBody:
@@ -17902,7 +17902,7 @@ paths:
   /api/connector/v1/resourceCategoryAssignments/getAll:
     post:
       tags:
-        - ResourceCategoriesConnectorApi
+        - Resource categories
       description: 'Returns all resource category assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceCategoryAssignments_getAll
       requestBody:
@@ -18028,7 +18028,7 @@ paths:
   /api/connector/v1/resourceCategoryImageAssignments/getAll:
     post:
       tags:
-        - ResourceCategoriesConnectorApi
+        - Resource categories
       description: 'Returns all resource category image assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceCategoryImageAssignments_getAll
       requestBody:
@@ -18154,7 +18154,7 @@ paths:
   /api/connector/v1/resourceFeatureAssignments/getAll:
     post:
       tags:
-        - ResourceFeatureAssignmentsConnectorApi
+        - Resource feature assignments
       description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceFeatureAssignments_getAll
       requestBody:
@@ -18280,7 +18280,7 @@ paths:
   /api/connector/v1/resourceFeatures/getAll:
     post:
       tags:
-        - ResourceFeaturesConnectorApi
+        - Resource features
       description: 'Returns all resource features. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceFeatures_getAll
       requestBody:
@@ -18406,7 +18406,7 @@ paths:
   /api/connector/v1/resources/getAll:
     post:
       tags:
-        - ResourcesConnectorApi
+        - Resources
       description: "Returns all resources of an enterprise associated with the connector integration. Note that when any of the extents is set to `true`, the response contains the entities that are associated to a resource. If the extent is not associated to a resource (e.g. resource category not assigned to any resource), this information is not returned.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: resources_getAll
       requestBody:
@@ -18532,7 +18532,7 @@ paths:
   /api/connector/v1/resources/update:
     post:
       tags:
-        - ResourcesConnectorApi
+        - Resources
       description: Updates details of the resources.
       operationId: resources_update
       requestBody:
@@ -18658,7 +18658,7 @@ paths:
   /api/connector/v1/restrictions/add:
     post:
       tags:
-        - RestrictionsConnectorApi
+        - Restrictions
       description: "Adds new restrictions with the specified conditions. Note care is needed to specify `StartUtc` and `EndUtc` in the correct format - see [Datetimes](https://mews-systems.gitbook.io/connector-api/guidelines/serialization/#datetimes).\n> **Important:** If consecutive restrictions are sent with the exact same conditions and exceptions, no attempt at merging them into a single restriction is made. This means that there can be a large number of restrictions per service, leading to sub-optimal performance. A quota limit of 150000 has been introduced for this reason. To mitigate the issue, the preferred way to add restrictions is new operation [Set restrictions](https://mews-systems.gitbook.io/connector-api/operations/#set-restrictions). The new operation is currently marked as 'Restricted' and subject to change as part of beta testing, but in time we expect that to replace [Add restrictions](https://mews-systems.gitbook.io/connector-api/operations/#add-restrictions)."
       operationId: restrictions_add
       requestBody:
@@ -18784,7 +18784,7 @@ paths:
   /api/connector/v1/restrictions/delete:
     post:
       tags:
-        - RestrictionsConnectorApi
+        - Restrictions
       description: Removes restrictions from the service.
       operationId: restrictions_delete
       requestBody:
@@ -18910,7 +18910,7 @@ paths:
   /api/connector/v1/restrictions/set:
     post:
       tags:
-        - RestrictionsConnectorApi
+        - Restrictions
       description: "> ### Restricted!\n> This operation is currently in beta-test and as such it is subject to change. Use of this operation must be enabled per enterprise. Please contact the Technical Partner Support team in order to enable it.\nAdds new restrictions with the specified conditions. For improved efficiency, multiple similar restrictions will be merged into a single restriction - see [Merging algorithm](https://mews-systems.gitbook.io/connector-api/operations/#merging-algorithm). A quota of 150000 restrictions per service applies, although it is unlikely to be exceeded because of the [Merging algorithm](https://mews-systems.gitbook.io/connector-api/operations/#merging-algorithm).\nNote care is needed to specify `StartUtc` and `EndUtc` in the correct format - see [Datetimes](https://mews-systems.gitbook.io/connector-api/guidelines/serialization/#datetimes). The validation of these properties is stronger in this operation than for [Add restrictions](https://mews-systems.gitbook.io/connector-api/operations/#add-restrictions).\n### Merging algorithm\nIf a restriction already exists with the same conditions, or if multiple supplied restrictions match in all properties but differ in time interval and follow each other chronologically, a merging algorithm is applied to combine them.\nThis reduces the overall number of restrictions and improves system performance. The merging algorithm is as follows:\n- A. If the exceptions of the new restriction match the old restriction:\n   1) If the new interval is longer than the old one, a new restriction is created joining the two intervals.\n   2) If the new interval is shorter, no changes are made.\n- B. If the exceptions of the new restriction do _not_ match the old restriction:\n   1) If the new interval overlaps the old interval, the old restriction will be spliced before and after the new interval. Restrictions matching the old restriction are then added at the appropriate interval along with the new restriction.\n   2) If the new interval does _not_ overlap the old interval, the new restriction is added as usual.\n### Affected restrictions\nOnly restrictions created through the API are affected by this operation, _not_ restrictions created by the user within **Mews Operations**. Similarly, if a user creates a restriction in **Mews Operations**, this will _not_ affect restrictions created through the API."
       operationId: restrictions_set
       requestBody:
@@ -19036,7 +19036,7 @@ paths:
   /api/connector/v1/restrictions/clear:
     post:
       tags:
-        - RestrictionsConnectorApi
+        - Restrictions
       description: "> ### Restricted!\n> This operation is currently in beta-test and as such it is subject to change. Use of this operation must be enabled per enterprise. Please contact the Technical Partner Support team in order to enable it.\nDeletes restrictions that [match the conditions](https://mews-systems.gitbook.io/connector-api/operations/#matching-conditions) using the [splicing algorithm](https://mews-systems.gitbook.io/connector-api/operations/#splicing-algorithm). This operation is intended to be used alongside [Set restrictions](https://mews-systems.gitbook.io/connector-api/operations/#set-restrictions).\nThe specified conditions must be met exactly - see [Matching conditions](https://mews-systems.gitbook.io/connector-api/operations/#matching-conditions) below. The time interval, however, does not need to correspond with an existing restriction in the system, instead the API uses a splicing algorithm to work out how to divide up any existing restrictions to meet the specified time interval - see [Time interval splicing](https://mews-systems.gitbook.io/connector-api/operations/#time-interval-splicing).\n### Matching conditions\nThe specified conditions must be met exactly. For example:\nA bookable service has two restrictions A and B. Restriction A applies to resource category C1 and rate R1. Restriction B applies to resource category C1 and to all rates.\nIf the [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/#clear-restrictions) operation is called, specifying a restriction condition of resource category C1 but with no rate specified (this defaults to all rates), then only Restriction B is cleared, not Restriction A.\n### Time interval splicing\nThe time interval does not need to correspond to an existing restriction in the system, instead the API uses a splicing algorithm to work out how to divide up any existing restrictions to meet the specified time interval. For example:\nAn existing restriction in the system applies from 5th January to 25th January. As usual, time intervals are inclusive, meaning that the time interval includes both the 5th January and the 25th January.\nIf the [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/#clear-restrictions) operation is called, specifying a restriction time interval of 10th January to 20th January, i.e. within the original restriction A, then the time interval of restriction A is split into three separate intervals.\nThe original restriction A is deleted, and in its place new restriction B is created for the period of time from 5th January to 9th January inclusive, and new restriction C is created for the period of time from 21st January to 25th January. Thus the period 10th January to 20th January has been cleared, but without affecting other time periods.\n### Affected restrictions\nTo avoid deleting user defined restrictions, the [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/#clear-restrictions) operation only affects restrictions created through the [Set restrictions](https://mews-systems.gitbook.io/connector-api/operations/#clear-restrictions) operation or the [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/#clear-restrictions) operation."
       operationId: restrictions_clear
       requestBody:
@@ -19162,7 +19162,7 @@ paths:
   /api/connector/v1/restrictions/getAll:
     post:
       tags:
-        - RestrictionsConnectorApi
+        - Restrictions
       description: "Returns all restrictions of the default service provided by the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: restrictions_getAll
       requestBody:
@@ -19288,7 +19288,7 @@ paths:
   /api/connector/v1/routingRules/getAll:
     post:
       tags:
-        - RoutingRulesConnectorApi
+        - Routing rules
       description: "Returns all routing rules.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: routingRules_getAll
       requestBody:
@@ -19414,7 +19414,7 @@ paths:
   /api/connector/v1/routingRules/add:
     post:
       tags:
-        - RoutingRulesConnectorApi
+        - Routing rules
       description: Adds a new routing rules.
       operationId: routingRules_add
       requestBody:
@@ -19540,7 +19540,7 @@ paths:
   /api/connector/v1/routingRules/update:
     post:
       tags:
-        - RoutingRulesConnectorApi
+        - Routing rules
       description: Updates routing rules.
       operationId: routingRules_update
       requestBody:
@@ -19666,7 +19666,7 @@ paths:
   /api/connector/v1/routingRules/delete:
     post:
       tags:
-        - RoutingRulesConnectorApi
+        - Routing rules
       description: Deletes routing rules.
       operationId: routingRules_delete
       requestBody:
@@ -19792,7 +19792,7 @@ paths:
   /api/connector/v1/rules/getAll:
     post:
       tags:
-        - RulesConnectorApi
+        - Rules
       description: "Returns all rules applied with the reservations.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: rules_getAll
       requestBody:
@@ -19918,7 +19918,7 @@ paths:
   /api/connector/v1/serviceOrderNotes/add:
     post:
       tags:
-        - ServiceOrderNotesConnectorApi
+        - Service order notes
       description: Adds one or more notes with a provided text to a specific service order. Service orders can be reservations or product orders.
       operationId: serviceOrderNotes_add
       requestBody:
@@ -20044,7 +20044,7 @@ paths:
   /api/connector/v1/serviceOrderNotes/update:
     post:
       tags:
-        - ServiceOrderNotesConnectorApi
+        - Service order notes
       description: Updates one or more given service order notes with new text.
       operationId: serviceOrderNotes_update
       requestBody:
@@ -20170,7 +20170,7 @@ paths:
   /api/connector/v1/serviceOrderNotes/getAll:
     post:
       tags:
-        - ServiceOrderNotesConnectorApi
+        - Service order notes
       description: 'Returns all notes associated with the given service orders. Service orders can be reservations or product orders. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: serviceOrderNotes_getAll
       requestBody:
@@ -20296,7 +20296,7 @@ paths:
   /api/connector/v1/serviceOrderNotes/delete:
     post:
       tags:
-        - ServiceOrderNotesConnectorApi
+        - Service order notes
       description: Deletes service order notes.
       operationId: serviceOrderNotes_delete
       requestBody:
@@ -20422,7 +20422,7 @@ paths:
   /api/connector/v1/productServiceOrders/getAll:
     post:
       tags:
-        - ServiceOrdersConnectorApi
+        - Service orders
       description: 'Returns all product service orders orders associated with the given enterprise. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)..'
       operationId: productServiceOrders_getAll
       requestBody:
@@ -20548,7 +20548,7 @@ paths:
   /api/connector/v1/customers/charge:
     post:
       tags:
-        - ServiceOrdersConnectorApi
+        - Service orders
       operationId: customers_charge
       requestBody:
         content:
@@ -20674,7 +20674,7 @@ paths:
   /api/connector/v1/orders/add:
     post:
       tags:
-        - ServiceOrdersConnectorApi
+        - Service orders
       description: 'Creates a new order, with the specified products and items. If the time of consumption is specified, it must be either in the future or within the Editable History Interval for the enterprise. Compared to a stay service order (i.e. a reservation), which is consumed over certain span of time, a product service order is consumed at a single point in time. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: orders_add
       requestBody:
@@ -20800,7 +20800,7 @@ paths:
   /api/connector/v1/services/getAll:
     post:
       tags:
-        - ServicesConnectorApi
+        - Services
       description: "Returns all services offered by the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: services_getAll
       requestBody:
@@ -20926,7 +20926,7 @@ paths:
   /api/connector/v1/services/updateAvailability:
     post:
       tags:
-        - ServicesConnectorApi
+        - Services
       description: 'Updates the number of available resources in [Resource category](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource-category) by a certain amount (relative adjustment). Note that availabilities are defined per time unit, so when the server receives the UTC interval, it first converts it to enterprise timezone and updates the availability on all time units that the interval intersects. It''s not allowed to update past availabilities outside of `EditableHistoryInterval`, future updates are allowed for up to 5 years.'
       operationId: services_updateAvailability
       requestBody:
@@ -21052,7 +21052,7 @@ paths:
   /api/connector/v1/services/getAvailability:
     post:
       tags:
-        - ServicesConnectorApi
+        - Services
       description: 'Returns availability of a bookable service for a specified time interval including applied availability adjustments. Availability will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/operations/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.'
       operationId: services_getAvailability
       requestBody:
@@ -21178,7 +21178,7 @@ paths:
   /api/connector/v1/services/getAvailability/2024-01-22:
     post:
       tags:
-        - ServicesConnectorApi
+        - Services
       description: "> ### Restricted!\n> This operation is currently in beta-test and as such it is subject to change.\nReturns selected availability and occupancy metrics of a bookable service for a specified time interval, similar to [the availability & occupancy report](https://help.mews.com/s/article/Availability-Occupancy-report). Availability will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one time unit for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two time units for `2nd Jan` and `3rd Jan` (assuming a time unit period of \"Day\"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of \"Day\". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service's [time unit](https://mews-systems.gitbook.io/connector-api/operations/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months."
       operationId: services_getAvailability_2024-01-22
       requestBody:
@@ -21304,7 +21304,7 @@ paths:
   /api/connector/v1/sourceAssignments/getAll:
     post:
       tags:
-        - SourceAssignmentsConnectorApi
+        - Source assignments
       description: 'Returns all [Sources](https://mews-systems.gitbook.io/connector-api/operations/sources/#source) assigned to a [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group). Each reservation group can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: sourceAssignments_getAll
       requestBody:
@@ -21430,7 +21430,7 @@ paths:
   /api/connector/v1/sources/getAll:
     post:
       tags:
-        - SourcesConnectorApi
+        - Sources
       description: 'Returns all sources from which reservations can originate. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: sources_getAll
       requestBody:
@@ -21556,7 +21556,7 @@ paths:
   /api/connector/v1/tasks/getAll:
     post:
       tags:
-        - TasksConnectorApi
+        - Tasks
       description: 'Returns all tasks of the enterprise, filtered by identifiers or other filters.'
       operationId: tasks_getAll
       requestBody:
@@ -21682,7 +21682,7 @@ paths:
   /api/connector/v1/tasks/add:
     post:
       tags:
-        - TasksConnectorApi
+        - Tasks
       description: 'Adds a new task to the enterprise, optionally to a specified department.'
       operationId: tasks_add
       requestBody:
@@ -21808,7 +21808,7 @@ paths:
   /api/connector/v1/taxEnvironments/getAll:
     post:
       tags:
-        - TaxesConnectorApi
+        - Taxes
       description: Returns all tax environments supported by the API.
       operationId: taxEnvironments_getAll
       requestBody:
@@ -21934,7 +21934,7 @@ paths:
   /api/connector/v1/taxations/getAll:
     post:
       tags:
-        - TaxesConnectorApi
+        - Taxes
       description: Returns all taxations supported in tax environments.
       operationId: taxations_getAll
       requestBody:
@@ -22060,7 +22060,7 @@ paths:
   /api/connector/v1/voucherCodes/add:
     post:
       tags:
-        - VoucherCodesConnectorApi
+        - Voucher codes
       description: 'Adds voucher codes to the specified [Vouchers](https://mews-systems.gitbook.io/connector-api/operations/vouchers/#voucher). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: voucherCodes_add
       requestBody:
@@ -22186,7 +22186,7 @@ paths:
   /api/connector/v1/voucherCodes/delete:
     post:
       tags:
-        - VoucherCodesConnectorApi
+        - Voucher codes
       description: 'Delete specified voucher codes. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: voucherCodes_delete
       requestBody:
@@ -22312,7 +22312,7 @@ paths:
   /api/connector/v1/voucherCodes/getAll:
     post:
       tags:
-        - VoucherCodesConnectorApi
+        - Voucher codes
       description: 'Returns all voucher codes filtered by [Voucher](https://mews-systems.gitbook.io/connector-api/operations/vouchers/#voucher) or other filter parameters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: voucherCodes_getAll
       requestBody:
@@ -22438,7 +22438,7 @@ paths:
   /api/connector/v1/vouchers/getAll:
     post:
       tags:
-        - VouchersConnectorApi
+        - Vouchers
       description: 'Returns all rate vouchers filtered by [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service), voucher code or voucher identifier. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: vouchers_getAll
       requestBody:
@@ -22564,7 +22564,7 @@ paths:
   /api/connector/v1/vouchers/add:
     post:
       tags:
-        - VouchersConnectorApi
+        - Vouchers
       description: 'Adds the specified vouchers to the specified [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: vouchers_add
       requestBody:
@@ -22690,7 +22690,7 @@ paths:
   /api/connector/v1/vouchers/update:
     post:
       tags:
-        - VouchersConnectorApi
+        - Vouchers
       description: 'Updates information about the specified vouchers. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: vouchers_update
       requestBody:
@@ -22816,7 +22816,7 @@ paths:
   /api/connector/v1/vouchers/delete:
     post:
       tags:
-        - VouchersConnectorApi
+        - Vouchers
       description: 'Delete specified vouchers. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: vouchers_delete
       requestBody:
