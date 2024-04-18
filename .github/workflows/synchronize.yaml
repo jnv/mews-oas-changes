@@ -4,7 +4,7 @@ name: Synchronize OAS
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '39 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -19,6 +19,7 @@ jobs:
       - name: Download OAS
         run: |
           curl --create-dirs --output connector/openapi.yaml https://api.mews.com/swagger/connector/swagger.yaml
+          curl --create-dirs --output distributor/openapi.yaml https://api.mews.com/swagger/distributor/swagger.yaml
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
