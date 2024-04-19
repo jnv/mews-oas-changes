@@ -3590,6 +3590,12 @@ components:
         VoucherCode:
           minLength: 1
           type: string
+        ServiceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: VoucherParameters
     VoucherValidity:
