@@ -5,7 +5,7 @@ info:
   termsOfService: https://www.mews.com/en/terms-conditions/partners
   contact:
     name: Partner success
-    email: partnersuccess@mews.com.
+    email: partnersuccess@mews.com
   version: v1
 servers:
   - url: https://api.mews.com
