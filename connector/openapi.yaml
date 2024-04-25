@@ -31129,6 +31129,7 @@ components:
         - CashPayment
         - InvoicePayment
         - ExternalPayment
+        - TaxDeductedPayment
       type: string
     PaymentExternalData:
       title: PaymentExternalData
