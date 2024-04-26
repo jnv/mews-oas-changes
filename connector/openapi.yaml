@@ -18442,8 +18442,6 @@ components:
         - Client
         - ClientToken
         - CustomerId
-        - Method
-        - RedirectUrl
       type: object
       properties:
         Client:
@@ -18479,16 +18477,23 @@ components:
         Amount:
           $ref: '#/components/schemas/AmountParameters'
         Method:
-          $ref: '#/components/schemas/AlternativePaymentMethods'
+          anyOf:
+            - $ref: '#/components/schemas/AlternativePaymentMethods'
+          description: Payment method to use for the alternative payment.
+          nullable: true
+          deprecated: true
         RedirectUrl:
-          minLength: 1
           type: string
           description: URL where the customer will be redirected after completing their payment.
           format: uri
+          nullable: true
+          deprecated: true
         ReservationId:
           type: string
           format: uuid
           nullable: true
+        Data:
+          $ref: '#/components/schemas/AlternativePaymentsData'
       additionalProperties: false
       x-schema-id: AlternativePaymentParameters
     AlternativePaymentResult:
@@ -18510,6 +18515,19 @@ components:
           description: Next action to take in order to complete the payment.
       additionalProperties: false
       x-schema-id: AlternativePaymentResult
+    AlternativePaymentsData:
+      title: AlternativePaymentsData
+      type: object
+      properties:
+        Discriminator:
+          type: string
+          nullable: true
+        SepaDirectDebit:
+          $ref: '#/components/schemas/SepaDirectDebitData'
+        Ideal:
+          $ref: '#/components/schemas/IdealData'
+      additionalProperties: false
+      x-schema-id: AlternativePaymentsData
     Amount:
       title: Amount
       type: object
@@ -26206,6 +26224,15 @@ components:
           type: boolean
       additionalProperties: false
       x-schema-id: HoursParameters
+    IdealData:
+      title: IdealData
+      type: object
+      properties:
+        RedirectUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: IdealData
     ImageResizeMode:
       enum:
         - Cover
@@ -38743,6 +38770,27 @@ components:
         - Application
         - Enterprise
       type: string
+    SepaDirectDebitData:
+      title: SepaDirectDebitData
+      type: object
+      properties:
+        Iban:
+          type: string
+          nullable: true
+        Name:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        UserAgent:
+          type: string
+          nullable: true
+        RemoteIpAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: SepaDirectDebitData
     Service:
       title: Service
       required:
