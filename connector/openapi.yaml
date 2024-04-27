@@ -19117,8 +19117,6 @@ components:
       x-schema-id: BaseRatePricingParameters
     Bill:
       title: Bill
-      required:
-        - EnterpriseId
       type: object
       properties:
         Id:
@@ -19269,6 +19267,16 @@ components:
           nullable: true
         EnterpriseData:
           $ref: '#/components/schemas/BillEnterpriseData'
+        CorrectionState:
+          $ref: '#/components/schemas/BillCorrectionStateEnum'
+        CorrectionType:
+          anyOf:
+            - $ref: '#/components/schemas/CorrectionType'
+          nullable: true
+        CorrectedBillId:
+          type: string
+          format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: Bill
     BillAccountData:
@@ -19447,6 +19455,15 @@ components:
       additionalProperties: false
       description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
       x-schema-id: BillCompanyData
+    BillCorrectionStateEnum:
+      enum:
+        - Bill
+        - CorrectiveBill
+      type: string
+      description: "\n\nBill\n\nCorrectiveBill"
+      x-enumNames:
+        - Bill
+        - CorrectiveBill
     BillCustomerData:
       title: BillCustomerData
       type: object
@@ -19650,6 +19667,12 @@ components:
           anyOf:
             - $ref: '#/components/schemas/BillState'
           description: '[Bill state](https://mews-systems.gitbook.io/connector-api/operations/#bill-state) the bills should be in. If not specified Open and Closed bills are returned.'
+          nullable: true
+        CorrectionState:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/BillCorrectionStateEnum'
           nullable: true
       additionalProperties: false
       x-schema-id: BillFilterParameters
@@ -21677,6 +21700,14 @@ components:
           $ref: '#/components/schemas/JToken'
       additionalProperties: false
       x-schema-id: CoproductParameters
+    CorrectionType:
+      enum:
+        - Cancellation
+        - Edit
+        - CreditNote
+        - Reinstatement
+        - ReceivablePaymentsBalance
+      type: string
     CostParameters:
       title: CostParameters
       required:
