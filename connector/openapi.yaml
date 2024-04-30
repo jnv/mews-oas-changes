@@ -20989,6 +20989,8 @@ components:
           type: boolean
         AddFeesToInvoices:
           type: boolean
+        AddTaxDeductedPaymentToInvoices:
+          type: boolean
       additionalProperties: false
       x-schema-id: CompanyAccountOptions
     CompanyAddParameters:
@@ -21400,6 +21402,8 @@ components:
           $ref: '#/components/schemas/BooleanUpdateValue'
         AddFeesToInvoices:
           $ref: '#/components/schemas/BooleanUpdateValue'
+        AddTaxDeductedPaymentToInvoices:
+          $ref: '#/components/schemas/BooleanUpdateValue'
       additionalProperties: false
       description: Options of the company.
       x-schema-id: CompanyOptionUpdateParameters
@@ -21411,6 +21415,8 @@ components:
           type: boolean
         AddFeesToInvoices:
           type: boolean
+        AddTaxDeductedPaymentToInvoices:
+          type: boolean
       additionalProperties: false
       description: Options of the company.
       x-schema-id: CompanyOptions
@@ -21421,6 +21427,8 @@ components:
         Invoiceable:
           type: boolean
         AddFeesToInvoices:
+          type: boolean
+        AddTaxDeductedPaymentToInvoices:
           type: boolean
       additionalProperties: false
       description: Options of the company.
