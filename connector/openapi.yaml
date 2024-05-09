@@ -1463,7 +1463,7 @@ paths:
   /api/connector/v1/availabilityAdjustments/getAll:
     post:
       tags:
-        - Availability adjuments
+        - Availability adjustments
       summary: Get all availability adjustments
       description: "Returns all availability adjustments.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: availabilityAdjustments_getAll
@@ -4451,7 +4451,7 @@ paths:
   /api/connector/v1/configuration/get:
     post:
       tags:
-        - Configurations
+        - Configuration
       summary: Get configuration
       description: 'Returns the enterprise configuration. For single-enterprise Access Tokens, this is the enterprise associated with the token. For [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), use the `EnterpriseId` parameter to specify which enterprise you want the configuration for. In the case of service scoped integrations, the operation returns the configuration associated with both the enterprise and the bookable service linked to the token.'
       operationId: configuration_get
@@ -5100,67 +5100,6 @@ paths:
                 $ref: '#/components/schemas/ChargeCreditCardResult'
               example:
                 PaymentId: 98753f51-5b8b-4e8f-a3af-5b8476865983
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/cultures/getAll:
-    post:
-      tags:
-        - Cultures
-      operationId: cultures_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Parameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CultureResult'
-              example:
-                Cultures:
-                  - Code: string
-                    EnglishName: string
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -8487,6 +8426,84 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/orders/add:
+    post:
+      tags:
+        - Orders
+      summary: Add order
+      description: 'Creates a new order, with the specified products and items. If the time of consumption is specified, it must be either in the future or within the Editable History Interval for the enterprise. Compared to a stay service order (i.e. a reservation), which is consumed over certain span of time, a product service order is consumed at a single point in time. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      operationId: orders_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderAdditionParameters'
+            example:
+              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
+              AccessToken: 7059D2C25BF64EA681ACAB3A00B859CC-D91BFF2B1E3047A3E0DEC1D57BE1382
+              Client: Sample Client 1.0.0
+              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              AccountId: 407a26f8-dcfc-4e29-b978-ab440117a153
+              ServiceId: d2129910-1da9-4d39-be14-ab3a00c9e70c
+              BillId: 22b68915-05fe-4a31-b1cb-bd5efa35d305
+              ConsumptionUtc: '2020-02-04T00:00:00Z'
+              ProductOrders:
+                - ProductId: 2eb7ad8b-8dfb-4381-aba5-ab58009f2993
+                  Count: 2
+              Items:
+                - Name: Beer
+                  UnitCount: 3
+                  UnitAmount:
+                    Currency: USD
+                    NetValue: 7
+                    TaxCodes:
+                      - US-DC-G
+                  AccountingCategoryId: 90eff5aa-36b4-4689-80c0-ab3a00bb412e
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderAdditionResult'
+              example:
+                OrderId: cdfd5caa-2868-411b-ba95-322e70035f1a
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/outletBills/add:
     post:
       tags:
@@ -9682,6 +9699,101 @@ paths:
                     UpdatedUtc: '2023-06-09T13:32:32Z'
                     Ordering: 1
                 Cursor: f0709b02-f1a4-46b2-9c1e-744b5ecd6980
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/productServiceOrders/getAll:
+    post:
+      tags:
+        - Product service orders
+      summary: Get all product service orders
+      description: 'Returns all product service orders orders associated with the given enterprise. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)..'
+      operationId: productServiceOrders_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductServiceOrderFilterParameters'
+            example:
+              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
+              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
+              Client: Sample Client 1.0.0
+              ProductServiceOrderIds:
+                - 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
+              ServiceIds:
+                - ae8da28c-e8a4-4141-9df0-8c998976c691
+                - 6b02d015-47ac-4c41-8e9f-5b4db61d4284
+              UpdatedUtc:
+                StartUtc: '2023-04-01T00:00:00Z'
+                EndUtc: '2023-05-05T00:00:00Z'
+              Limitation:
+                Cursor: 819e3435-7d5e-441f-bc68-76d89c69b8f5
+                Count: 10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductServiceOrderResult'
+              example:
+                ProductServiceOrders:
+                  - Id: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
+                    ServiceId: ae8da28c-e8a4-4141-9df0-8c998976c691
+                    AccountId: 94843f6f-3be3-481b-a1c7-06458774c3df
+                    AccountType: Customer
+                    CreatorProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
+                    UpdaterProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
+                    BookerId: ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72
+                    Number: '52'
+                    State: Confirmed
+                    Origin: Connector
+                    CommanderOrigin: 
+                    OriginDetails: 
+                    CreatedUtc: '2023-04-23T14:58:02Z'
+                    UpdatedUtc: '2023-04-23T14:58:02Z'
+                    CancelledUtc: 
+                    VoucherId: 
+                    BusinessSegmentId: 
+                    Options:
+                      OwnerCheckedIn: true
+                      AllCompanionsCheckedIn: true
+                      AnyCompanionCheckedIn: true
+                      ConnectorCheckIn: true
+                Cursor: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13410,7 +13522,7 @@ paths:
   /api/connector/v1/resourceFeatureAssignments/getAll:
     post:
       tags:
-        - Resource feature assignments
+        - Resource features
       summary: Get all resource feature assignments
       description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
       operationId: resourceFeatureAssignments_getAll
@@ -15081,256 +15193,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/productServiceOrders/getAll:
-    post:
-      tags:
-        - Service orders
-      summary: Get all product service orders
-      description: 'Returns all product service orders orders associated with the given enterprise. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)..'
-      operationId: productServiceOrders_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProductServiceOrderFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ProductServiceOrderIds:
-                - 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-              ServiceIds:
-                - ae8da28c-e8a4-4141-9df0-8c998976c691
-                - 6b02d015-47ac-4c41-8e9f-5b4db61d4284
-              UpdatedUtc:
-                StartUtc: '2023-04-01T00:00:00Z'
-                EndUtc: '2023-05-05T00:00:00Z'
-              Limitation:
-                Cursor: 819e3435-7d5e-441f-bc68-76d89c69b8f5
-                Count: 10
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductServiceOrderResult'
-              example:
-                ProductServiceOrders:
-                  - Id: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-                    ServiceId: ae8da28c-e8a4-4141-9df0-8c998976c691
-                    AccountId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    AccountType: Customer
-                    CreatorProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    UpdaterProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    BookerId: ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72
-                    Number: '52'
-                    State: Confirmed
-                    Origin: Connector
-                    CommanderOrigin: 
-                    OriginDetails: 
-                    CreatedUtc: '2023-04-23T14:58:02Z'
-                    UpdatedUtc: '2023-04-23T14:58:02Z'
-                    CancelledUtc: 
-                    VoucherId: 
-                    BusinessSegmentId: 
-                    Options:
-                      OwnerCheckedIn: true
-                      AllCompanionsCheckedIn: true
-                      AnyCompanionCheckedIn: true
-                      ConnectorCheckIn: true
-                Cursor: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/customers/charge:
-    post:
-      tags:
-        - Service orders
-      operationId: customers_charge
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderAdditionParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: 7059D2C25BF64EA681ACAB3A00B859CC-D91BFF2B1E3047A3E0DEC1D57BE1382
-              Client: Sample Client 1.0.0
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              AccountId: 407a26f8-dcfc-4e29-b978-ab440117a153
-              ServiceId: d2129910-1da9-4d39-be14-ab3a00c9e70c
-              BillId: 22b68915-05fe-4a31-b1cb-bd5efa35d305
-              ConsumptionUtc: '2020-02-04T00:00:00Z'
-              ProductOrders:
-                - ProductId: 2eb7ad8b-8dfb-4381-aba5-ab58009f2993
-                  Count: 2
-              Items:
-                - Name: Beer
-                  UnitCount: 3
-                  UnitAmount:
-                    Currency: USD
-                    NetValue: 7
-                    TaxCodes:
-                      - US-DC-G
-                  AccountingCategoryId: 90eff5aa-36b4-4689-80c0-ab3a00bb412e
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderAdditionResult'
-              example:
-                OrderId: cdfd5caa-2868-411b-ba95-322e70035f1a
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
-  /api/connector/v1/orders/add:
-    post:
-      tags:
-        - Service orders
-      summary: Add order
-      description: 'Creates a new order, with the specified products and items. If the time of consumption is specified, it must be either in the future or within the Editable History Interval for the enterprise. Compared to a stay service order (i.e. a reservation), which is consumed over certain span of time, a product service order is consumed at a single point in time. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
-      operationId: orders_add
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderAdditionParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: 7059D2C25BF64EA681ACAB3A00B859CC-D91BFF2B1E3047A3E0DEC1D57BE1382
-              Client: Sample Client 1.0.0
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              AccountId: 407a26f8-dcfc-4e29-b978-ab440117a153
-              ServiceId: d2129910-1da9-4d39-be14-ab3a00c9e70c
-              BillId: 22b68915-05fe-4a31-b1cb-bd5efa35d305
-              ConsumptionUtc: '2020-02-04T00:00:00Z'
-              ProductOrders:
-                - ProductId: 2eb7ad8b-8dfb-4381-aba5-ab58009f2993
-                  Count: 2
-              Items:
-                - Name: Beer
-                  UnitCount: 3
-                  UnitAmount:
-                    Currency: USD
-                    NetValue: 7
-                    TaxCodes:
-                      - US-DC-G
-                  AccountingCategoryId: 90eff5aa-36b4-4689-80c0-ab3a00bb412e
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderAdditionResult'
-              example:
-                OrderId: cdfd5caa-2868-411b-ba95-322e70035f1a
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/services/getAll:
     post:
       tags:
@@ -16056,7 +15918,7 @@ paths:
   /api/connector/v1/taxEnvironments/getAll:
     post:
       tags:
-        - Taxes
+        - Tax environments
       summary: Get all tax environments
       description: Returns all tax environments supported by the API.
       operationId: taxEnvironments_getAll
@@ -16136,7 +15998,7 @@ paths:
   /api/connector/v1/taxations/getAll:
     post:
       tags:
-        - Taxes
+        - Taxations
       summary: Get all taxations
       description: Returns all taxations supported in tax environments.
       operationId: taxations_getAll
@@ -17198,28 +17060,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         ChainIds:
@@ -17439,28 +17287,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -17653,28 +17487,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         StartUtc:
           minLength: 1
           type: string
@@ -17838,28 +17658,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Bills:
           type: array
           items:
@@ -17906,28 +17712,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be added in.'
@@ -18089,28 +17881,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -18138,28 +17916,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         ChainIds:
@@ -18352,28 +18116,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -18448,28 +18198,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CustomerId:
           type: string
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
@@ -18583,6 +18319,7 @@ components:
         - ActivityState
         - FirstTimeUnitStartUtc
         - Id
+        - IsActive
         - LastTimeUnitStartUtc
         - ResourceCategoryId
         - UnitCount
@@ -18635,6 +18372,8 @@ components:
           type: string
           description: Last update date and time of the adjustment in UTC timezone in ISO 8601 format.
           format: date-time
+        IsActive:
+          type: boolean
       additionalProperties: false
       x-schema-id: AvailabilityAdjustment
     AvailabilityAdjustmentParameters:
@@ -18650,28 +18389,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -18779,6 +18504,7 @@ components:
         ActivityState:
           type: string
           nullable: true
+          deprecated: true
         StartUtc:
           type: string
           nullable: true
@@ -18816,6 +18542,8 @@ components:
           nullable: true
         PickupDistribution:
           $ref: '#/components/schemas/PickupDistribution'
+        IsActive:
+          type: boolean
       additionalProperties: false
       x-schema-id: AvailabilityBlock
     AvailabilityBlockAddParameters:
@@ -18940,28 +18668,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -19342,28 +19056,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -19509,28 +19209,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -19591,28 +19277,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -19729,28 +19401,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         BillId:
           type: string
           description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/#bill) to be printed.'
@@ -19878,28 +19536,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -20035,28 +19679,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -20164,28 +19794,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -20281,28 +19897,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -20436,28 +20038,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         BillId:
           type: string
           format: uuid
@@ -20539,28 +20127,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
@@ -20624,28 +20198,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -21007,28 +20567,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -21195,28 +20741,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -21275,28 +20807,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CreatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
         UpdatedUtc:
@@ -21353,6 +20871,11 @@ components:
           nullable: true
         Extent:
           $ref: '#/components/schemas/CompanyExtent'
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          nullable: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
       additionalProperties: false
@@ -21369,26 +20892,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Name:
           minLength: 1
           type: string
@@ -21469,28 +20978,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -21573,28 +21068,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/#enterprise), defaults to the enterprise associated with the given access token.'
@@ -21615,28 +21096,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ReservationIds:
           type: array
           items:
@@ -21799,28 +21266,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -22091,28 +21544,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -22185,28 +21624,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         BillId:
           type: string
           description: Unique identifier of an open bill of the customer where to assign the payment.
@@ -22313,29 +21738,6 @@ components:
       additionalProperties: false
       description: Credit rating to define creditworthiness of the company.
       x-schema-id: CreditRatingUpdateParameters
-    Culture:
-      title: Culture
-      type: object
-      properties:
-        Code:
-          type: string
-          nullable: true
-        EnglishName:
-          type: string
-          nullable: true
-      additionalProperties: false
-      x-schema-id: Culture
-    CultureResult:
-      title: CultureResult
-      type: object
-      properties:
-        Cultures:
-          type: array
-          items:
-            $ref: '#/components/schemas/Culture'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: CultureResult
     Currency:
       title: Currency
       type: object
@@ -22380,28 +21782,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Ids:
           type: array
           items:
@@ -22485,11 +21873,11 @@ components:
     Customer:
       title: Customer
       required:
-        - ActivityState
         - ChainId
         - Classifications
         - CreatedUtc
         - Id
+        - IsActive
         - LastName
         - Options
         - UpdatedUtc
@@ -22655,9 +22043,12 @@ components:
           format: uuid
           nullable: true
         ActivityState:
-          minLength: 1
           type: string
           description: '[Activity State](https://mews-systems.gitbook.io/connector-api/operations/#activity-state) of customer record, i.e. whether active or deleted.'
+          nullable: true
+          deprecated: true
+        IsActive:
+          type: boolean
         IsUpdatedByMe:
           type: boolean
           nullable: true
@@ -22817,28 +22208,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Title:
           type: string
           description: Title prefix of the customer.
@@ -23010,26 +22387,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Emails:
           type: array
           items:
@@ -23066,28 +22429,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -23124,28 +22473,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CreatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
         UpdatedUtc:
@@ -23231,28 +22566,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CustomerIds:
           maxItems: 1000
           type: array
@@ -23320,28 +22641,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         SourceCustomerId:
           type: string
           description: 'Unique identifier of the source [Customer](https://mews-systems.gitbook.io/connector-api/operations/#customer).'
@@ -23363,26 +22670,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         FirstName:
           type: string
           nullable: true
@@ -23438,28 +22731,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Operator:
           anyOf:
             - $ref: '#/components/schemas/SearchOperator'
@@ -23511,28 +22790,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Title:
           type: string
           description: New title.
@@ -23734,28 +22999,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         RestrictionIds:
           type: array
           items:
@@ -23815,28 +23066,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -24985,28 +24222,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CommandIds:
           maxItems: 1000
           minItems: 1
@@ -25061,28 +24284,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CommandId:
           type: string
           description: 'Identifier of the [Command](https://mews-systems.gitbook.io/connector-api/operations/#command) to be updated.'
@@ -25445,28 +24654,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -25531,6 +24726,7 @@ components:
         - RegistrationCardCounter
         - ServiceOrderCounter
         - CorrectionBillCounter
+        - PaymentConfirmationBillCounter
       type: string
     ExchangeRate:
       title: Exchange rate
@@ -25618,28 +24814,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EntityType:
           $ref: '#/components/schemas/ExportEntityType'
       additionalProperties: false
@@ -25689,28 +24871,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ExportIds:
           maxItems: 1000
           type: array
@@ -25829,28 +24997,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -26050,28 +25204,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
       additionalProperties: false
       x-schema-id: GetAllActiveCommandsParameters
     GuidIEnumerableUpdateValue:
@@ -26329,28 +25469,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Images:
           type: array
           items:
@@ -26598,28 +25724,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -26687,28 +25799,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         LanguageCodes:
           type: array
           items:
@@ -26937,28 +26035,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         LoyaltyMembershipIds:
           maxItems: 1000
           type: array
@@ -26981,28 +26065,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CreatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
         UpdatedUtc:
@@ -27198,28 +26268,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         LoyaltyProgramIds:
           maxItems: 1000
           type: array
@@ -27242,28 +26298,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CreatedUtc:
           $ref: '#/components/schemas/TimeFilterInterval'
         UpdatedUtc:
@@ -27423,28 +26465,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         LoyaltyTierIds:
           maxItems: 1000
           type: array
@@ -27467,28 +26495,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -27611,26 +26625,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         MessageThreadId:
           type: string
           format: uuid
@@ -27656,28 +26656,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -27769,28 +26755,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         OriginalSender:
           minLength: 1
           type: string
@@ -27814,28 +26786,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -27891,28 +26849,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         AccountMergeParameters:
           maxItems: 10
           minItems: 1
@@ -27935,28 +26879,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -27983,28 +26913,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           format: uuid
@@ -28032,28 +26948,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           format: uuid
@@ -28079,28 +26981,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           format: uuid
@@ -28127,28 +27015,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28174,28 +27048,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28223,28 +27083,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28272,28 +27118,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28320,28 +27152,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28368,28 +27186,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28416,28 +27220,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28464,28 +27254,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         TravelAgencyContracts:
           maxItems: 1000
           type: array
@@ -28509,28 +27285,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceIds:
           maxItems: 1000
           minItems: 1
@@ -28566,28 +27328,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         TravelAgencyContractUpdates:
           maxItems: 1000
           type: array
@@ -28609,28 +27357,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           format: uuid
@@ -28655,26 +27389,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CreditCardIds:
           type: array
           items:
@@ -28696,28 +27416,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CustomerIds:
           maxItems: 1000
           type: array
@@ -28740,28 +27446,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28788,28 +27480,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28836,28 +27514,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28884,28 +27548,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28932,28 +27582,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -28980,28 +27616,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         LoyaltyTierUpdates:
           maxItems: 1000
           type: array
@@ -29023,28 +27645,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Messages:
           maxItems: 1000
           type: array
@@ -29066,28 +27674,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29114,28 +27708,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         PaymentRequestIds:
           maxItems: 1000
           type: array
@@ -29157,26 +27737,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ReservationIds:
           type: array
           items:
@@ -29216,28 +27782,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29334,28 +27886,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ResourceAccessTokenParameters:
           type: array
           items:
@@ -29376,28 +27914,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ResourceAccessTokenUpdates:
           type: array
           items:
@@ -29419,28 +27943,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ResourceBlocks:
           maxItems: 1000
           type: array
@@ -29462,28 +27972,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ResourceUpdates:
           maxItems: 1000
           type: array
@@ -29505,28 +28001,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         RoutingRules:
           maxItems: 1000
           type: array
@@ -29548,28 +28030,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         RoutingRuleUpdates:
           maxItems: 1000
           minItems: 1
@@ -29592,28 +28060,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceOrderNotes:
           maxItems: 1000
           minItems: 1
@@ -29636,28 +28090,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceOrderNoteUpdates:
           maxItems: 1000
           minItems: 1
@@ -29680,28 +28120,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29728,28 +28154,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29776,28 +28188,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29825,28 +28223,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -29874,28 +28258,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -30004,28 +28374,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -30261,28 +28617,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -30692,28 +29034,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -30888,28 +29216,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -30982,28 +29296,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
       additionalProperties: false
       x-schema-id: Parameters
     ParentProductCategory:
@@ -31225,28 +29525,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -31418,28 +29704,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -31612,28 +29884,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -32287,28 +30545,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Token authenticating access to the enterprise integration.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token authenticating the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         TerminalId:
           type: string
           description: Unique identifier of the payment terminal.
@@ -32763,28 +31007,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -33021,28 +31251,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -33120,28 +31336,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -33170,28 +31372,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -33293,26 +31481,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -33395,28 +31569,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -33675,28 +31835,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Rates:
           maxItems: 1000
           type: array
@@ -33752,28 +31898,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -33884,28 +32016,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -34011,26 +32129,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         FirstTimeUnitStartUtc:
           type: string
           format: date-time
@@ -34073,28 +32177,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         FirstTimeUnitStartUtc:
           type: string
           format: date-time
@@ -34225,28 +32315,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         FirstTimeUnitStartUtc:
           type: string
           description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
@@ -34591,28 +32667,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           format: uuid
@@ -34674,28 +32736,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -34731,26 +32779,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Numbers:
           type: array
           items:
@@ -34774,28 +32808,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ReservationId:
           type: string
           description: Unique identifier of the reservation.
@@ -34929,28 +32949,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to be priced.'
@@ -35042,28 +33048,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceIds:
           maxItems: 1000
           minItems: 1
@@ -35214,28 +33206,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -35302,28 +33280,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ReservationIds:
           maxItems: 1000
           type: array
@@ -35388,26 +33352,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CustomerIds:
           type: array
           items:
@@ -35633,28 +33583,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -35691,28 +33627,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ReservationId:
           type: string
           description: Unique identifier of the reservation.
@@ -35883,28 +33805,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -36002,28 +33910,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -36060,28 +33954,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -36126,26 +34006,12 @@ components:
         Client:
           minLength: 1
           type: string
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           format: uuid
@@ -36211,28 +34077,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -36389,28 +34241,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Ids:
           type: array
           items:
@@ -36433,28 +34271,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -36717,28 +34541,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ResourceBlockIds:
           maxItems: 1000
           type: array
@@ -36771,28 +34581,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -36972,28 +34768,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -37082,28 +34864,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -37191,28 +34959,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -37461,28 +35215,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -37573,28 +35313,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -37662,28 +35388,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -38059,28 +35771,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -38355,28 +36053,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         RoutingRuleIds:
           maxItems: 1000
           minItems: 1
@@ -38400,28 +36084,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -38701,28 +36371,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -38915,28 +36571,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) whose availability should be returned.'
@@ -38979,28 +36621,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) whose availability should be returned.'
@@ -39118,28 +36746,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) to update.'
@@ -39165,28 +36779,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -39367,28 +36967,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceOrderNoteIds:
           maxItems: 1000
           minItems: 1
@@ -39413,28 +36999,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -39589,28 +37161,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
@@ -39698,28 +37256,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -39773,28 +37317,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         SourceIds:
           maxItems: 1000
           minItems: 1
@@ -39936,28 +37466,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         DepartmentId:
           type: string
           description: 'Unique identifier of the [Department](https://mews-systems.gitbook.io/connector-api/operations/departments/#department) the task is addressed to.'
@@ -39996,28 +37512,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -40270,28 +37772,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         CustomerId:
           type: string
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
@@ -40533,9 +38021,9 @@ components:
     Voucher:
       title: Voucher
       required:
-        - ActivityState
         - CreatedUtc
         - Id
+        - IsActive
         - Name
         - ServiceId
         - Type
@@ -40568,7 +38056,11 @@ components:
         Type:
           $ref: '#/components/schemas/VoucherType'
         ActivityState:
-          $ref: '#/components/schemas/ActivityState'
+          anyOf:
+            - $ref: '#/components/schemas/ActivityState'
+          description: Whether voucher is active or deleted.
+          nullable: true
+          deprecated: true
         CompanyId:
           type: string
           description: 'Unique identifier of [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) the voucher is related to.'
@@ -40592,6 +38084,8 @@ components:
           type: string
           description: Identifier of the voucher from external system.
           nullable: true
+        IsActive:
+          type: boolean
       additionalProperties: false
       x-schema-id: Voucher
     VoucherAddParameters:
@@ -40686,6 +38180,9 @@ components:
           type: string
           description: Whether voucher code is active or deleted.
           nullable: true
+          deprecated: true
+        IsActive:
+          type: boolean
       additionalProperties: false
       x-schema-id: VoucherCode
     VoucherCodeAddParameters:
@@ -40725,28 +38222,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
@@ -40829,28 +38312,14 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        LanguageCode:
-          type: string
-          nullable: true
-        CultureCode:
-          type: string
-          nullable: true
         AccessToken:
           minLength: 1
           type: string
           description: Access token of the client application.
-        MaskedAccessToken:
-          type: string
-          nullable: true
-          readOnly: true
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        MaskedClientToken:
-          type: string
-          nullable: true
-          readOnly: true
         Limitation:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
