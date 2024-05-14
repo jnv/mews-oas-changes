@@ -31037,6 +31037,7 @@ components:
     Product:
       title: Product
       required:
+        - ConsumptionMoment
         - CreatedUtc
         - Id
         - IsActive
@@ -31168,6 +31169,8 @@ components:
           type: string
           description: Last update date and time of the product in UTC timezone in ISO 8601 format.
           format: date-time
+        ConsumptionMoment:
+          $ref: '#/components/schemas/ProductConsumptionMoment'
       additionalProperties: false
       x-schema-id: Product
     ProductAgeCategoryPrice:
@@ -31323,6 +31326,13 @@ components:
       additionalProperties: false
       description: Classifications of the service.
       x-schema-id: ProductClassifications
+    ProductConsumptionMoment:
+      enum:
+        - ServiceOrderEnd
+        - ServiceOrderStart
+        - PostingTimeUnit
+        - NextTimeUnit
+      type: string
     ProductDeleteParameters:
       title: ProductDeleteParameters
       required:
