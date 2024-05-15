@@ -2204,6 +2204,7 @@ components:
         Prices: { }
         Pricing:
           title: Pricing
+          type: object
           properties:
             discriminator:
               type: string
@@ -3159,6 +3160,7 @@ components:
           type: boolean
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               type: string

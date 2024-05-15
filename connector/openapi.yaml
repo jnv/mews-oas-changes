@@ -18242,6 +18242,7 @@ components:
           format: uuid
         NextAction:
           title: NextAction
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/NextActionType'
@@ -18953,6 +18954,7 @@ components:
           deprecated: true
         AssigneeData:
           title: AssigneeData
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
@@ -18963,6 +18965,7 @@ components:
           deprecated: true
         OwnerData:
           title: OwnerData
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
@@ -23256,6 +23259,7 @@ components:
                           nullable: true
                         BillFiscalMachineData:
                           title: BillFiscalMachineData
+                          type: object
                           properties:
                             discriminator:
                               $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23264,6 +23268,7 @@ components:
                                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
                         PayloadData:
                           title: PayloadData
+                          type: object
                           properties:
                             discriminator:
                               $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -23397,6 +23402,7 @@ components:
                       nullable: true
                     BillFiscalMachineData:
                       title: BillFiscalMachineData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23405,6 +23411,7 @@ components:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
                     PayloadData:
                       title: PayloadData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -23508,6 +23515,7 @@ components:
                       nullable: true
                     BillFiscalMachineData:
                       title: BillFiscalMachineData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23516,6 +23524,7 @@ components:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
                     PayloadData:
                       title: PayloadData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -23649,6 +23658,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23657,6 +23667,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -23777,6 +23788,7 @@ components:
                       nullable: true
                     BillFiscalMachineData:
                       title: BillFiscalMachineData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23785,6 +23797,7 @@ components:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
                     PayloadData:
                       title: PayloadData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -23918,6 +23931,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -23926,6 +23940,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -24029,6 +24044,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -24037,6 +24053,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -24170,6 +24187,7 @@ components:
               nullable: true
             BillFiscalMachineData:
               title: BillFiscalMachineData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -24178,6 +24196,7 @@ components:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
             PayloadData:
               title: PayloadData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -25160,6 +25179,7 @@ components:
           nullable: true
         BillFiscalMachineData:
           title: BillFiscalMachineData
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -25168,6 +25188,7 @@ components:
                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
         PayloadData:
           title: PayloadData
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -25614,6 +25635,7 @@ components:
               nullable: true
             BillFiscalMachineData:
               title: BillFiscalMachineData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -25622,6 +25644,7 @@ components:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
             PayloadData:
               title: PayloadData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -28782,6 +28805,7 @@ components:
           nullable: true
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/OrderItemTypeOld'
@@ -29672,6 +29696,7 @@ components:
           nullable: true
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/PaymentType'
@@ -30066,6 +30091,7 @@ components:
                       nullable: true
                     BillFiscalMachineData:
                       title: BillFiscalMachineData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30074,6 +30100,7 @@ components:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
                     PayloadData:
                       title: PayloadData
+                      type: object
                       properties:
                         discriminator:
                           $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -30207,6 +30234,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30215,6 +30243,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -30318,6 +30347,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30326,6 +30356,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -30459,6 +30490,7 @@ components:
               nullable: true
             BillFiscalMachineData:
               title: BillFiscalMachineData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30467,6 +30499,7 @@ components:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
             PayloadData:
               title: PayloadData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -30792,6 +30825,7 @@ components:
                   nullable: true
                 BillFiscalMachineData:
                   title: BillFiscalMachineData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30800,6 +30834,7 @@ components:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
                 PayloadData:
                   title: PayloadData
+                  type: object
                   properties:
                     discriminator:
                       $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -30933,6 +30968,7 @@ components:
               nullable: true
             BillFiscalMachineData:
               title: BillFiscalMachineData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/BillFiscalMachineDataDiscriminator'
@@ -30941,6 +30977,7 @@ components:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
             PayloadData:
               title: PayloadData
+              type: object
               properties:
                 discriminator:
                   $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminator'
@@ -31138,6 +31175,7 @@ components:
           $ref: '#/components/schemas/ExtendedAmount'
         Pricing:
           title: Pricing
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/ProductPricing'
@@ -34153,6 +34191,7 @@ components:
           nullable: true
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               type: string
@@ -35504,6 +35543,7 @@ components:
           $ref: '#/components/schemas/GuidNullableUpdateValue'
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/ResourceDataDiscriminator'
@@ -36277,6 +36317,7 @@ components:
           format: uuid
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/RuleActionDiscriminator'
@@ -36542,6 +36583,7 @@ components:
           format: int32
         Data:
           title: Data
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/ServiceType'
@@ -37689,6 +37731,7 @@ components:
           nullable: true
         Strategy:
           title: Strategy
+          type: object
           properties:
             discriminator:
               $ref: '#/components/schemas/TaxRateStrategyDiscriminator'
