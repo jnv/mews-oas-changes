@@ -18375,6 +18375,12 @@ components:
           format: date-time
         IsActive:
           type: boolean
+        PaxCounts:
+          maxItems: 5
+          type: array
+          items:
+            $ref: '#/components/schemas/PaxCount'
+          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityAdjustment
     AvailabilityAdjustmentParameters:
@@ -29370,6 +29376,21 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PassportScannerCommandData
+    PaxCount:
+      title: PaxCount
+      required:
+        - PersonCount
+        - UnitCount
+      type: object
+      properties:
+        PersonCount:
+          type: integer
+          format: int32
+        UnitCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+      x-schema-id: PaxCount
     Payment:
       title: Payment
       required:
@@ -36781,6 +36802,12 @@ components:
         AvailabilityBlockId:
           type: string
           format: uuid
+          nullable: true
+        PaxCounts:
+          maxItems: 5
+          type: array
+          items:
+            $ref: '#/components/schemas/PaxCount'
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceAvailabilityUpdateData
