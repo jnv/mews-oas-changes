@@ -19319,15 +19319,15 @@ components:
           nullable: true
           deprecated: true
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         PaidUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         DueUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         BillIds:
           maxItems: 1000
           type: array
@@ -37838,6 +37838,18 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: TimeFilterInterval
+    TimeFilterIntervalMax3:
+      title: TimeFilterInterval
+      type: object
+      properties:
+        StartUtc:
+          type: string
+          format: date-time
+        EndUtc:
+          type: string
+          format: date-time
+      x-schema-id: TimeFilterIntervalMax3
+      x-max-interval-in-months: 3
     TokenizedCreditCardParameters:
       title: TokenizedCreditCardParameters
       required:
