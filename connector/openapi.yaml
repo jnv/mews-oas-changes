@@ -17072,6 +17072,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         ChainIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17097,7 +17098,7 @@ components:
           description: 'Unique identifiers of the accounts ([Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company)).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -17299,6 +17300,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17307,6 +17309,7 @@ components:
           nullable: true
         AccountingCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17314,7 +17317,7 @@ components:
           description: 'Unique identifiers of the requested [Accounting categories](https://mews-systems.gitbook.io/connector-api/operations/#accounting-category).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -17507,6 +17510,7 @@ components:
           $ref: '#/components/schemas/AccountingItemExtent'
         ItemIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17515,6 +17519,7 @@ components:
           nullable: true
         RebatedItemIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17522,11 +17527,11 @@ components:
           description: Unique identifiers of the Accounting items we are finding rebates for. Required if no other filter is provided.
           nullable: true
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ConsumedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         TimeFilter:
           type: string
           nullable: true
@@ -17667,6 +17672,8 @@ components:
           type: string
           description: Token identifying the client application.
         Bills:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/OutletBillParameters'
@@ -17725,6 +17732,8 @@ components:
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be added in.'
           format: uuid
         Restrictions:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/RestrictionData'
@@ -17896,6 +17905,7 @@ components:
           nullable: true
         AddressIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17928,6 +17938,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         ChainIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17936,6 +17947,7 @@ components:
           nullable: true
         AccountIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17944,6 +17956,7 @@ components:
           nullable: true
         AddressIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -17951,7 +17964,7 @@ components:
           description: 'Unique identifiers of [Addresses](https://mews-systems.gitbook.io/connector-api/operations/#account-address) within the enterprise. Use this property if you want to fetch specific addresses. Required if no other filter is provided.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -18128,6 +18141,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18136,6 +18150,7 @@ components:
           nullable: true
         AgeCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18151,7 +18166,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) where the age category belong to.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -18408,6 +18423,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18416,6 +18432,7 @@ components:
           nullable: true
         AvailabilityAdjustmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18423,7 +18440,7 @@ components:
           description: 'Unique identifiers of the requested [Availability adjustments](https://mews-systems.gitbook.io/connector-api/operations/#availability-adjustment).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -18536,6 +18553,7 @@ components:
           type: string
           nullable: true
         ExternalIdentifier:
+          maxLength: 255
           type: string
           description: Identifier of the block from external system.
           nullable: true
@@ -18611,6 +18629,7 @@ components:
             - $ref: '#/components/schemas/ReservationPurpose'
           nullable: true
         ExternalIdentifier:
+          maxLength: 255
           type: string
           nullable: true
         Notes:
@@ -18687,6 +18706,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18697,6 +18717,7 @@ components:
           $ref: '#/components/schemas/AvailabilityBlockExtent'
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18705,6 +18726,7 @@ components:
           nullable: true
         AvailabilityBlockIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -18712,15 +18734,16 @@ components:
           description: 'Unique identifiers of the requested [Availability blocks](https://mews-systems.gitbook.io/connector-api/operations/#availability-block).'
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         CollidingUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ReleasedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ExternalIdentifiers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19232,6 +19255,8 @@ components:
           format: uuid
           nullable: true
         BillIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19298,6 +19323,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19330,6 +19356,7 @@ components:
           $ref: '#/components/schemas/TimeFilterIntervalMax3'
         BillIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19338,6 +19365,7 @@ components:
           nullable: true
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19557,6 +19585,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19581,7 +19610,7 @@ components:
             format: uuid
           description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) from which the business segments are requested.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -19700,6 +19729,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19708,6 +19738,7 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 100
+          minItems: 1
           type: array
           items:
             type: string
@@ -19715,6 +19746,7 @@ components:
           description: 'Unique identifiers of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
         CancellationPolicyIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19723,6 +19755,7 @@ components:
           nullable: true
         RateGroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19730,7 +19763,7 @@ components:
           description: 'Unique identifiers of the [Rate group](https://mews-systems.gitbook.io/connector-api/operations/rates/#rategroup). Required if no other filter is provided.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: CancellationPolicyFilterParameters
     CancellationPolicyResult:
@@ -19815,6 +19848,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19823,6 +19857,7 @@ components:
           nullable: true
         Ids:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19830,7 +19865,7 @@ components:
           description: 'Unique identifiers of the requested [Cashier](https://mews-systems.gitbook.io/connector-api/operations/#cashier).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -19918,6 +19953,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -19933,7 +19969,7 @@ components:
             format: uuid
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         StartUtc:
           type: string
           nullable: true
@@ -20219,6 +20255,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20227,6 +20264,7 @@ components:
           nullable: true
         CompanionshipIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20237,6 +20275,7 @@ components:
           $ref: '#/components/schemas/CompanionshipExtent'
         ReservationIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20245,6 +20284,7 @@ components:
           nullable: true
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20253,6 +20293,7 @@ components:
           nullable: true
         ReservationGroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20260,7 +20301,7 @@ components:
           description: 'Unique identifiers of [Reservation groups](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: CompanionshipFilterParameters
     CompanionshipResult:
@@ -20762,6 +20803,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20770,6 +20812,7 @@ components:
           nullable: true
         CompanyContractIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20778,6 +20821,7 @@ components:
           nullable: true
         CompanyIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -20793,7 +20837,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) where the Travel agency contract belong to.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: CompanyContractFilterParameters
     CompanyExtent:
@@ -20824,17 +20868,19 @@ components:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
         ChainIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
+        CreatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         TimeFilter:
           anyOf:
             - $ref: '#/components/schemas/CompanyTimeFilter'
@@ -21287,6 +21333,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -21295,6 +21342,7 @@ components:
           nullable: true
         CounterIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -21306,7 +21354,7 @@ components:
           description: 'Type of the counter. If not specified, the operation returns all types.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: CounterFilterParameters
     CounterResult:
@@ -21565,6 +21613,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -21573,6 +21622,7 @@ components:
           nullable: true
         CreditCardIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -21581,6 +21631,7 @@ components:
           nullable: true
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -21588,7 +21639,7 @@ components:
           description: 'Unique identifiers of the [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: CreditCardFilterParameters
     CreditCardParameters:
@@ -21749,12 +21800,15 @@ components:
       x-schema-id: CreditRatingUpdateParameters
     Currency:
       title: Currency
+      required:
+        - Code
+        - Precision
       type: object
       properties:
         Code:
+          minLength: 1
           type: string
           description: 'ISO-4217 three-letter code, e.g. USD or GBP.'
-          nullable: true
         Precision:
           type: integer
           description: Precision of the currency (count of decimal places).
@@ -21810,11 +21864,14 @@ components:
           items:
             type: string
             format: uuid
+          description: 'Unique identifiers of the [Enterprises](https://mews-systems.gitbook.io/connector-api/operations/configuration/#enterprise). If not specified, the operation returns the exchange rates for all enterprises within scope of the Access Token.'
           nullable: true
       additionalProperties: false
       x-schema-id: CurrencyAcceptanceFilterParameters
     CurrencyResult:
       title: CurrencyResult
+      required:
+        - Currencies
       type: object
       properties:
         Currencies:
@@ -21822,7 +21879,6 @@ components:
           items:
             $ref: '#/components/schemas/Currency'
           description: The supported currencies.
-          nullable: true
       additionalProperties: false
       x-schema-id: CurrencyResult
     CurrencyValue:
@@ -22490,16 +22546,18 @@ components:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
         ChainIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           nullable: true
+        CreatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Extent:
           $ref: '#/components/schemas/CustomerExtent'
         TimeFilter:
@@ -22515,7 +22573,7 @@ components:
           nullable: true
           deprecated: true
         DeletedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -22524,6 +22582,7 @@ components:
           nullable: true
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -22532,6 +22591,7 @@ components:
           nullable: true
         Emails:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -22539,6 +22599,7 @@ components:
           nullable: true
         FirstNames:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -22546,6 +22607,7 @@ components:
           nullable: true
         LastNames:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -22553,6 +22615,7 @@ components:
           nullable: true
         LoyaltyCodes:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -22585,6 +22648,7 @@ components:
           description: Token identifying the client application.
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -23087,6 +23151,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -23095,6 +23160,7 @@ components:
           nullable: true
         DepartmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -23102,7 +23168,7 @@ components:
           description: 'Unique identifiers of [Department](https://mews-systems.gitbook.io/connector-api/operations/#department).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: DepartmentFilterParameters
     DepartmentResult:
@@ -24705,9 +24771,9 @@ components:
           description: 'Identifiers of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/#enterprise) from external system.'
           nullable: true
         LinkedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Limitation:
           $ref: '#/components/schemas/Limitation'
       additionalProperties: false
@@ -24756,6 +24822,8 @@ components:
     ExchangeRate:
       title: Exchange rate
       required:
+        - EnterpriseId
+        - Id
         - SourceCurrency
         - TargetCurrency
         - Value
@@ -24763,9 +24831,11 @@ components:
       properties:
         Id:
           type: string
+          description: Unique identifier of the Exchange Rate.
           format: uuid
         EnterpriseId:
           type: string
+          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/configuration/#enterprise) to which the Exchange Rate belongs.'
           format: uuid
         SourceCurrency:
           minLength: 1
@@ -24794,10 +24864,6 @@ components:
           items:
             $ref: '#/components/schemas/ExchangeRate'
           description: The available exchange rates.
-        Cursor:
-          type: string
-          format: uuid
-          nullable: true
       additionalProperties: false
       x-schema-id: ExchangeRateResult
     Export:
@@ -24906,6 +24972,7 @@ components:
           description: Token identifying the client application.
         ExportIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26074,6 +26141,7 @@ components:
           description: Token identifying the client application.
         LoyaltyMembershipIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26102,10 +26170,6 @@ components:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
         ChainIds:
           maxItems: 100
           minItems: 1
@@ -26115,6 +26179,10 @@ components:
             format: uuid
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
+        CreatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         LoyaltyMembershipIds:
           maxItems: 1000
           minItems: 1
@@ -26307,6 +26375,7 @@ components:
           description: Token identifying the client application.
         LoyaltyProgramIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26335,18 +26404,19 @@ components:
           minLength: 1
           type: string
           description: Token identifying the client application.
-        CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
         ChainIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
+        CreatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
+        UpdatedUtc:
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         LoyaltyProgramIds:
           maxItems: 1000
           minItems: 1
@@ -26380,6 +26450,8 @@ components:
       type: object
       properties:
         LoyaltyPrograms:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyProgram'
@@ -26443,10 +26515,12 @@ components:
           description: Unique identifier of the loyalty program of that loyalty tier.
           format: uuid
         Name:
+          maxLength: 50
           minLength: 1
           type: string
           description: Name of the loyalty tier.
         Code:
+          maxLength: 50
           minLength: 1
           type: string
           description: Code of the loyalty tier.
@@ -26504,6 +26578,7 @@ components:
           description: Token identifying the client application.
         LoyaltyTierIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26565,7 +26640,7 @@ components:
           description: 'Whether to return only active, only deleted or both records.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Limitation:
           $ref: '#/components/schemas/Limitation'
       additionalProperties: false
@@ -26577,6 +26652,7 @@ components:
       type: object
       properties:
         LoyaltyTiers:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyTier'
@@ -26697,6 +26773,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26705,15 +26782,14 @@ components:
           nullable: true
         MessageThreadIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: 'Unique identifiers of [Message threads](https://mews-systems.gitbook.io/connector-api/operations/messagethreads/#message-thread) from where to return messages.'
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax1'
       additionalProperties: false
       x-schema-id: MessageFilterParameters
     MessageResult:
@@ -26827,6 +26903,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26835,6 +26912,7 @@ components:
           nullable: true
         MessageThreadIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -26842,9 +26920,9 @@ components:
           description: 'Unique identifiers of [Message threads](https://mews-systems.gitbook.io/connector-api/operations/#message-thread). Required if no other filter is provided.'
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: MessageThreadFilterParameters
     MessageThreadResult:
@@ -26923,6 +27001,7 @@ components:
           nullable: true
         AccountNotes:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/AccountNoteAddParameters'
@@ -26991,6 +27070,7 @@ components:
           nullable: true
         AccountNoteUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/AccountNoteUpdateParameters'
@@ -27162,6 +27242,7 @@ components:
           nullable: true
         AvailabilityBlocks:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/AvailabilityBlockAddParameters'
@@ -27196,6 +27277,7 @@ components:
           nullable: true
         AvailabilityBlockIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -27207,6 +27289,7 @@ components:
       title: MultipleAvailabilityBlockUpdateParameters
       required:
         - AccessToken
+        - AvailabilityBlocks
         - Client
         - ClientToken
       type: object
@@ -27229,11 +27312,12 @@ components:
           format: uuid
           nullable: true
         AvailabilityBlocks:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/AvailabilityBlockUpdateParameters'
           description: Availability blocks to be updated.
-          nullable: true
       additionalProperties: false
       x-schema-id: MultipleAvailabilityBlockUpdateParameters
     MultipleBillAddParameters:
@@ -27277,6 +27361,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
+        - TravelAgencyContracts
       type: object
       properties:
         Client:
@@ -27293,11 +27378,11 @@ components:
           description: Token identifying the client application.
         TravelAgencyContracts:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/TravelAgencyContractAddParameters'
           description: Information about travel agency contracts to be created.
-          nullable: true
       additionalProperties: false
       x-schema-id: MultipleCompanyContractAddParameters
     MultipleCompanyContractDeleteParameters:
@@ -27337,6 +27422,7 @@ components:
           deprecated: true
         TravelAgencyContractIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -27367,6 +27453,7 @@ components:
           description: Token identifying the client application.
         TravelAgencyContractUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/TravelAgencyContractUpdateParameters'
@@ -27400,6 +27487,7 @@ components:
           nullable: true
         CompanyIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -27455,6 +27543,7 @@ components:
           description: Token identifying the client application.
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -27490,6 +27579,7 @@ components:
           nullable: true
         LoyaltyMemberships:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyMembershipAddParameters'
@@ -27524,6 +27614,7 @@ components:
           nullable: true
         LoyaltyMembershipUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyMembershipUpdateParameters'
@@ -27558,6 +27649,7 @@ components:
           nullable: true
         LoyaltyPrograms:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyProgramAddParameters'
@@ -27592,6 +27684,7 @@ components:
           nullable: true
         LoyaltyProgramUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyProgramUpdateParameters'
@@ -27626,6 +27719,7 @@ components:
           nullable: true
         LoyaltyTiers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyTierAddParameters'
@@ -27655,6 +27749,7 @@ components:
           description: Token identifying the client application.
         LoyaltyTierUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyTierUpdateParameters'
@@ -27718,6 +27813,7 @@ components:
           nullable: true
         PaymentRequests:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/PaymentRequestAddParameters'
@@ -27747,6 +27843,7 @@ components:
           description: Token identifying the client application.
         PaymentRequestIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -27871,6 +27968,7 @@ components:
           $ref: '#/components/schemas/ReservationUpdateOptionsParameters'
         ReservationUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ReservationUpdateParameters'
@@ -27909,6 +28007,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
+        - ResourceAccessTokenParameters
       type: object
       properties:
         Client:
@@ -27924,11 +28023,12 @@ components:
           type: string
           description: Token identifying the client application.
         ResourceAccessTokenParameters:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ResourceAccessTokenParameters'
           description: 'Parameters of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
-          nullable: true
       additionalProperties: false
       x-schema-id: MultipleResourceAccessTokenParameters
     MultipleResourceAccessTokenUpdateParameters:
@@ -27982,6 +28082,7 @@ components:
           description: Token identifying the client application.
         ResourceBlocks:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ResourceBlockAddParameters'
@@ -28011,6 +28112,7 @@ components:
           description: Token identifying the client application.
         ResourceUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ResourceUpdateParameters'
@@ -28040,6 +28142,7 @@ components:
           description: Token identifying the client application.
         RoutingRules:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/RoutingRuleAddParameter'
@@ -28164,6 +28267,7 @@ components:
           nullable: true
         VoucherParameters:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/VoucherAddParameters'
@@ -28198,6 +28302,7 @@ components:
           nullable: true
         VoucherCodeParameters:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/VoucherCodeAddParameters'
@@ -28232,6 +28337,7 @@ components:
           nullable: true
         VoucherCodeIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -28267,6 +28373,7 @@ components:
           nullable: true
         VoucherIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -28302,6 +28409,7 @@ components:
           nullable: true
         VoucherUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/VoucherUpdateParameters'
@@ -28658,6 +28766,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -28701,15 +28810,15 @@ components:
           description: 'Unique identifiers of the [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill) to which order item is assigned. Required if no other filter is provided.'
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ConsumedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         CanceledUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Currency:
           type: string
           description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency) the item costs should be converted to.'
@@ -29076,6 +29185,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29084,6 +29194,7 @@ components:
           nullable: true
         OutletIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29091,7 +29202,7 @@ components:
           description: 'Unique identifiers of the requested [Outlets](https://mews-systems.gitbook.io/connector-api/operations/#outlet).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: OutletFilterParameters
     OutletItem:
@@ -29258,6 +29369,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29266,6 +29378,7 @@ components:
           nullable: true
         Ids:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29284,11 +29397,11 @@ components:
           nullable: true
           deprecated: true
         ConsumedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Currency:
           type: string
           description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency) the item costs should be converted to.'
@@ -29582,6 +29695,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29615,15 +29729,15 @@ components:
             format: uuid
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ChargedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         SettlementUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Currency:
           type: string
           description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency) the item costs should be converted to.'
@@ -29860,10 +29974,12 @@ components:
           description: Date and time of the payment request's expiration in ISO 8601 format.
           format: date-time
         Description:
+          maxLength: 1000
           minLength: 1
           type: string
           description: Description of the payment request.
         Notes:
+          maxLength: 1000
           type: string
           description: Payment request's notes.
           nullable: true
@@ -29942,6 +30058,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -29975,7 +30092,7 @@ components:
             format: uuid
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         States:
           type: array
           items:
@@ -30000,6 +30117,7 @@ components:
       type: object
       properties:
         PaymentRequests:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/PaymentRequest'
@@ -31325,6 +31443,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31333,6 +31452,7 @@ components:
           nullable: true
         ProductCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31341,6 +31461,7 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31348,7 +31469,7 @@ components:
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the resource categories belong.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ProductCategoryFilterParameters
     ProductCategoryResult:
@@ -31453,6 +31574,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31480,7 +31602,7 @@ components:
           nullable: true
           deprecated: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ProductFilterParameters
     ProductOptions:
@@ -31560,6 +31682,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31650,6 +31773,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31682,7 +31806,7 @@ components:
             format: uuid
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         States:
           type: array
           items:
@@ -31914,6 +32038,7 @@ components:
           description: Token identifying the client application.
         Rates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/RateAddData'
@@ -31930,6 +32055,7 @@ components:
       type: object
       properties:
         Rates:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/Rate'
@@ -31979,6 +32105,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -31997,7 +32124,7 @@ components:
           description: 'Unique identifiers of the requested [Rates](https://mews-systems.gitbook.io/connector-api/operations/rates/#rate).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ServiceIds:
           maxItems: 1000
           minItems: 1
@@ -32097,6 +32224,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -32105,6 +32233,7 @@ components:
           nullable: true
         RateGroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -32113,6 +32242,7 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -32121,13 +32251,14 @@ components:
           nullable: true
         ExternalIdentifiers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
           description: 'Identifiers of [Rate group](https://mews-systems.gitbook.io/connector-api/operations/#rate-group) from external systems.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -32282,6 +32413,7 @@ components:
           nullable: true
         PriceUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/RatePriceUpdate'
@@ -32448,12 +32580,14 @@ components:
       type: object
       properties:
         Rates:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/Rate'
           description: Rates of the default service.
           nullable: true
         RateGroups:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/RateGroupOld'
@@ -32762,6 +32896,8 @@ components:
           description: 'Name of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/#reservation-group) which the reservations are added to. If GroupId is specified, this field is ignored. If not specified, the group name is automatically created.'
           nullable: true
         Reservations:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ReservationData'
@@ -32819,6 +32955,8 @@ components:
           format: uuid
           nullable: true
         ReservationIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33150,6 +33288,7 @@ components:
           format: date-time
         GroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33158,6 +33297,7 @@ components:
           nullable: true
         ReservationIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33166,6 +33306,7 @@ components:
           nullable: true
         CustomerIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33174,6 +33315,7 @@ components:
           nullable: true
         AssignedResourceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33182,6 +33324,7 @@ components:
           nullable: true
         RateIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33190,6 +33333,7 @@ components:
           nullable: true
         BusinessSegmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33198,6 +33342,7 @@ components:
           nullable: true
         ChannelNumbers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33205,6 +33350,7 @@ components:
           nullable: true
         Numbers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33287,6 +33433,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33295,6 +33442,7 @@ components:
           nullable: true
         ReservationGroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33302,7 +33450,7 @@ components:
           description: 'Unique identifiers of the [Reservation Group](https://mews-systems.gitbook.io/connector-api/operations/#reservation-group). Required if no other filter is provided.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ReservationGroupFilterParameters
     ReservationGroupOld:
@@ -33359,6 +33507,7 @@ components:
           description: Token identifying the client application.
         ReservationIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33886,6 +34035,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33911,6 +34061,7 @@ components:
           description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service). If not provided, all bookable services are used.'
         ReservationGroupIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -33935,11 +34086,11 @@ components:
             format: uuid
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         CollidingUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ScheduledStartUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         States:
           type: array
           items:
@@ -34353,6 +34504,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34360,6 +34512,8 @@ components:
           description: 'Unique identifiers of the [Enterprises](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         ResourceAccessTokenIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34367,6 +34521,8 @@ components:
           description: 'Unique identifiers of [Resource access tokens](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token). Required if no other filter is provided.'
           nullable: true
         ServiceOrderIds:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34374,9 +34530,9 @@ components:
           description: Unique identifiers of reservations. Required if no other filter is provided.
           nullable: true
         CollidingUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -34621,6 +34777,7 @@ components:
           description: Token identifying the client application.
         ResourceBlockIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34663,6 +34820,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34673,6 +34831,7 @@ components:
           $ref: '#/components/schemas/ResourceBlockExtent'
         ResourceBlockIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34681,6 +34840,7 @@ components:
           nullable: true
         AssignedResourceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34688,11 +34848,11 @@ components:
           description: 'Unique identifiers of the requested Assigned [Resources](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource).'
           nullable: true
         CollidingUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ResourceBlockParameters
     ResourceBlockResult:
@@ -34850,6 +35010,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34946,6 +35107,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34954,6 +35116,7 @@ components:
           nullable: true
         ResourceCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -34962,13 +35125,14 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the resource categories belong.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -35041,6 +35205,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35297,6 +35462,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35305,6 +35471,7 @@ components:
           nullable: true
         ResourceFeatureAssignmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35312,13 +35479,14 @@ components:
           nullable: true
         ResourceFeatureIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: 'Unique identifiers of [Resource features](https://mews-systems.gitbook.io/connector-api/operations/#resource-feature) to which the resource feature assignments belong.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -35395,6 +35563,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35403,6 +35572,7 @@ components:
           nullable: true
         ResourceFeatureIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35417,7 +35587,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the resource features belong.'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ActivityStates:
           type: array
           items:
@@ -35470,6 +35640,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35478,6 +35649,7 @@ components:
           nullable: true
         ResourceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35485,6 +35657,8 @@ components:
           description: 'Unique identifiers of the requested [Resources](https://mews-systems.gitbook.io/connector-api/operations/#resource).'
           nullable: true
         Names:
+          maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -35492,9 +35666,9 @@ components:
         Extent:
           $ref: '#/components/schemas/ResourceExtent'
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ResourceFilterParameters
     ResourceResult:
@@ -35854,6 +36028,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -36167,6 +36342,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -36192,7 +36368,7 @@ components:
           description: 'Unique identifier of the [Routing rule](https://mews-systems.gitbook.io/connector-api/operations/routingrules/#routing-rule).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: RoutingRuleFilterParameters
     RoutingRuleResult:
@@ -36455,6 +36631,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -36477,7 +36654,7 @@ components:
             format: uuid
           description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Extent:
           $ref: '#/components/schemas/RuleExtent'
       additionalProperties: false
@@ -36839,6 +37016,7 @@ components:
           format: uuid
         AvailabilityUpdates:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ServiceAvailabilityUpdateData'
@@ -36870,6 +37048,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -36878,6 +37057,7 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -36885,7 +37065,7 @@ components:
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ServiceFilterParameters
     ServiceOptions:
@@ -37090,6 +37270,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37106,6 +37287,7 @@ components:
           description: 'Unique identifiers of [Service order](https://mews-systems.gitbook.io/connector-api/operations/#service-order). Reservation IDs or Order IDs can be used as service order identifiers.'
         ServiceOrderNoteIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37113,7 +37295,7 @@ components:
           description: 'Unique identifiers of [Service order notes](https://mews-systems.gitbook.io/connector-api/operations/#service-order-note). Use this property if you want to fetch specific service order notes.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: ServiceOrderNoteFilterParameters
     ServiceOrderNoteResult:
@@ -37347,6 +37529,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37362,7 +37545,7 @@ components:
           description: 'Unique identifiers of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: SourceAssignmentFilterParameters
     SourceAssignmentResult:
@@ -37414,7 +37597,7 @@ components:
           description: 'Unique identifiers of [Sources](https://mews-systems.gitbook.io/connector-api/operations/sources/#source).'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         Limitation:
           $ref: '#/components/schemas/Limitation'
       additionalProperties: false
@@ -37603,21 +37786,21 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           nullable: true
         CreatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
-        UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ClosedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         DeadlineUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         TaskIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37626,6 +37809,7 @@ components:
           nullable: true
         DepartmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37634,6 +37818,7 @@ components:
           nullable: true
         ServiceOrderIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -37838,6 +38023,18 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: TimeFilterInterval
+    TimeFilterIntervalMax1:
+      title: TimeFilterInterval
+      type: object
+      properties:
+        StartUtc:
+          type: string
+          format: date-time
+        EndUtc:
+          type: string
+          format: date-time
+      x-schema-id: TimeFilterIntervalMax1
+      x-max-interval-in-months: 1
     TimeFilterIntervalMax3:
       title: TimeFilterInterval
       type: object
@@ -38326,6 +38523,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -38334,6 +38532,7 @@ components:
           nullable: true
         VoucherCodeIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -38342,13 +38541,14 @@ components:
           nullable: true
         VoucherIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
             format: uuid
           description: Unique identifiers of vouchers.
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
       additionalProperties: false
       x-schema-id: VoucherCodeFilterParameters
     VoucherCodeResult:
@@ -38416,6 +38616,7 @@ components:
           $ref: '#/components/schemas/Limitation'
         EnterpriseIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -38443,6 +38644,7 @@ components:
           nullable: true
         VoucherCodeValues:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -38456,9 +38658,10 @@ components:
           description: 'Whether to return only active, only deleted or both records.'
           nullable: true
         UpdatedUtc:
-          $ref: '#/components/schemas/TimeFilterInterval'
+          $ref: '#/components/schemas/TimeFilterIntervalMax3'
         ExternalIdentifiers:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
