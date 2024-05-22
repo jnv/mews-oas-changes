@@ -14207,6 +14207,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '409':
+          description: 'The request cannot be completed because the data has changed, causing conflict between the state on the client and the server. To get around this error, try refreshing the data on the client and resubmitting the request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/restrictions/clear:
     post:
       tags:
@@ -14288,6 +14294,12 @@ paths:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
         '500':
           description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '409':
+          description: 'The request cannot be completed because the data has changed, causing conflict between the state on the client and the server. To get around this error, try refreshing the data on the client and resubmitting the request.'
           content:
             application/json:
               schema:
@@ -19049,6 +19061,11 @@ components:
         AccountId:
           type: string
           format: uuid
+        AssociatedAccountId:
+          type: string
+          description: Account that has a possible link with the owner of the bill.
+          format: uuid
+          nullable: true
         Name:
           type: string
           nullable: true
@@ -19196,6 +19213,9 @@ components:
       x-enumNames:
         - Bill
         - CorrectiveBill
+      x-enumDescriptions:
+        - ''
+        - ''
     BillCustomerData:
       title: BillCustomerData
       type: object
@@ -23220,19 +23240,25 @@ components:
       x-schema-id: DependentTaxRateStrategy
     Device:
       title: Device
+      required:
+        - Id
+        - Name
+        - Type
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the device.
           format: uuid
         Type:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/DeviceTypeEnum'
         Name:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the device.
         Identifier:
           type: string
+          description: Device identifier (for internal purposes).
           nullable: true
       additionalProperties: false
       x-schema-id: Device
@@ -24404,6 +24430,8 @@ components:
       x-schema-id: DeviceCommandUpdateParameters
     DeviceResult:
       title: DeviceResult
+      required:
+        - Devices
       type: object
       properties:
         Devices:
@@ -24411,9 +24439,30 @@ components:
           items:
             $ref: '#/components/schemas/Device'
           description: The devices.
-          nullable: true
       additionalProperties: false
       x-schema-id: DeviceResult
+    DeviceTypeEnum:
+      title: Device type
+      enum:
+        - Printer
+        - PaymentTerminal
+        - KeyCutter
+        - FiscalMachine
+        - PassportScanner
+      type: string
+      description: "Type of the device.\n\nPrinter ([Printer command data](https://mews-systems.gitbook.io/connector-api/operations/commands#printer-command-data))\n\nPaymentTerminal ([Payment terminal command data](https://mews-systems.gitbook.io/connector-api/operations/commands#payment-terminal-command-data))\n\nKeyCutter ([Key cutter command data](https://mews-systems.gitbook.io/connector-api/operations/commands#key-cutter-command-data))\n\nFiscalMachine ([Fiscal machine command data](https://mews-systems.gitbook.io/connector-api/operations/commands#fiscal-machine-command-data))\n\nPassportScanner ([Passport scanner command data](https://mews-systems.gitbook.io/connector-api/operations/commands#passport-scanner-command-data))"
+      x-enumNames:
+        - Printer
+        - PaymentTerminal
+        - KeyCutter
+        - FiscalMachine
+        - PassportScanner
+      x-enumDescriptions:
+        - '[Printer command data](https://mews-systems.gitbook.io/connector-api/operations/commands#printer-command-data)'
+        - '[Payment terminal command data](https://mews-systems.gitbook.io/connector-api/operations/commands#payment-terminal-command-data)'
+        - '[Key cutter command data](https://mews-systems.gitbook.io/connector-api/operations/commands#key-cutter-command-data)'
+        - '[Fiscal machine command data](https://mews-systems.gitbook.io/connector-api/operations/commands#fiscal-machine-command-data)'
+        - '[Passport scanner command data](https://mews-systems.gitbook.io/connector-api/operations/commands#passport-scanner-command-data)'
     Document:
       title: Document
       type: object
@@ -28633,6 +28682,9 @@ components:
           description: 'Unique identifier of the [Accounting category](https://mews-systems.gitbook.io/connector-api/operations/accountingcategories/#accounting-category) the order item belongs to.'
           format: uuid
           nullable: true
+        ExternalIdentifier:
+          type: string
+          nullable: true
         UnitCount:
           type: integer
           description: 'Unit count of item, i.e. the number of sub-items or units, if applicable.'
@@ -31805,6 +31857,14 @@ components:
             type: string
             format: uuid
           nullable: true
+        LinkedReservationIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
         UpdatedUtc:
           $ref: '#/components/schemas/TimeFilterIntervalMax3'
         States:
@@ -34666,6 +34726,17 @@ components:
         - AllocatedBlockAvailability
         - UsableResources
         - ActiveResources
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ResourceBlock:
       title: Resource block
       required:
