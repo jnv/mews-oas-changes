@@ -21878,6 +21878,7 @@ components:
           items:
             type: string
             format: uuid
+          description: 'Unique identifiers of the Exchange Rates. If not specified, the operation returns all exchange rates.'
           nullable: true
         EnterpriseIds:
           type: array
@@ -25555,38 +25556,54 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: IdealData
-    ImageResizeMode:
+    ImageResizeModeEnum:
+      title: Image resize mode
       enum:
         - Cover
         - CoverExact
         - Fit
         - FitExact
       type: string
+      description: "Mode how the image should be resized to the desired width and height.\n\nCover (Resize to fit within the specified size, so the result might be smaller than requested.)\n\nCoverExact (Resize and pad to exactly fit within the specified size.)\n\nFit (Resize to fit within the specified size, so the result might be smaller than requested.)\n\nFitExact (Resize and pad to exactly fit within the specified size.)"
+      x-enumNames:
+        - Cover
+        - CoverExact
+        - Fit
+        - FitExact
+      x-enumDescriptions:
+        - 'Resize to fit within the specified size, so the result might be smaller than requested.'
+        - Resize and pad to exactly fit within the specified size.
+        - 'Resize to fit within the specified size, so the result might be smaller than requested.'
+        - Resize and pad to exactly fit within the specified size.
     ImageSizeParameters:
-      title: ImageSizeParameters
+      title: Image size parameters
       required:
         - ImageId
       type: object
       properties:
         ImageId:
           type: string
+          description: Unique identifier of the image.
           format: uuid
         Width:
           type: integer
+          description: Desired width of the image.
           format: int32
           nullable: true
         Height:
           type: integer
+          description: Desired height of the image.
           format: int32
           nullable: true
         ResizeMode:
-          anyOf:
-            - $ref: '#/components/schemas/ImageResizeMode'
-          nullable: true
+          $ref: '#/components/schemas/ImageResizeModeEnum'
       additionalProperties: false
       x-schema-id: ImageSizeParameters
     ImageUrl:
       title: Image URL
+      required:
+        - ImageId
+        - Url
       type: object
       properties:
         ImageId:
@@ -25594,9 +25611,9 @@ components:
           description: Unique identifier of the image.
           format: uuid
         Url:
+          minLength: 1
           type: string
           description: URL of the image.
-          nullable: true
       additionalProperties: false
       x-schema-id: ImageUrl
     ImageUrlParameters:
@@ -25629,6 +25646,8 @@ components:
       x-schema-id: ImageUrlParameters
     ImageUrlResult:
       title: ImageUrlResult
+      required:
+        - ImageUrls
       type: object
       properties:
         ImageUrls:
@@ -25636,7 +25655,6 @@ components:
           items:
             $ref: '#/components/schemas/ImageUrl'
           description: URLs of the images.
-          nullable: true
       additionalProperties: false
       x-schema-id: ImageUrlResult
     Int32NullableUpdateValue:
