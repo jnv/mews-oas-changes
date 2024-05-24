@@ -722,7 +722,8 @@ components:
           items:
             $ref: '#/components/schemas/TaxValue'
         Breakdown:
-          $ref: '#/components/schemas/TaxBreakdown'
+          allOf:
+            - $ref: '#/components/schemas/TaxBreakdown'
       additionalProperties: false
       x-schema-id: Amount
     AmountPart:
@@ -762,7 +763,8 @@ components:
           type: string
           format: uuid
         BrowserInfo:
-          $ref: '#/components/schemas/BrowserInfo'
+          allOf:
+            - $ref: '#/components/schemas/BrowserInfo'
       additionalProperties: false
       x-schema-id: AuthorizePaymentCardParameters
     AuthorizePaymentCardResult:
@@ -782,7 +784,9 @@ components:
         State:
           $ref: '#/components/schemas/PaymentCardAuthorizationState'
         Action:
-          $ref: '#/components/schemas/PaymentCardAuthorizationAction'
+          allOf:
+            - $ref: '#/components/schemas/PaymentCardAuthorizationAction'
+          nullable: true
       additionalProperties: false
       x-schema-id: AuthorizePaymentCardResult
     Availability:
@@ -1082,7 +1086,8 @@ components:
           format: double
           nullable: true
         Enterprise:
-          $ref: '#/components/schemas/Enterprise'
+          allOf:
+            - $ref: '#/components/schemas/Enterprise'
       additionalProperties: false
       x-schema-id: BookingEngine
     BookingEngineBookerReservationCustomerEmailInput:
@@ -1447,16 +1452,21 @@ components:
           format: uuid
           nullable: true
         Customer:
-          $ref: '#/components/schemas/Customer'
+          allOf:
+            - $ref: '#/components/schemas/Customer'
         Booker:
-          $ref: '#/components/schemas/Customer'
+          allOf:
+            - $ref: '#/components/schemas/Customer'
+          nullable: true
         Reservations:
           minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/Reservation'
         CreditCardData:
-          $ref: '#/components/schemas/CreditCardData'
+          allOf:
+            - $ref: '#/components/schemas/CreditCardData'
+          nullable: true
       additionalProperties: false
       x-schema-id: CreateReservationGroupParameters
     CreditCardData:
@@ -1628,7 +1638,8 @@ components:
           additionalProperties:
             type: string
         Address:
-          $ref: '#/components/schemas/Address'
+          allOf:
+            - $ref: '#/components/schemas/Address'
         CityId:
           type: string
           format: uuid
@@ -1828,7 +1839,8 @@ components:
           minLength: 1
           type: string
         DefaultCulture:
-          $ref: '#/components/schemas/Culture'
+          allOf:
+            - $ref: '#/components/schemas/Culture'
       additionalProperties: false
       x-schema-id: Language
     LanguageResult:
@@ -1923,9 +1935,12 @@ components:
         State:
           $ref: '#/components/schemas/PaymentState'
         Amount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         ChargeAmount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          nullable: true
       additionalProperties: false
       x-schema-id: Payment
     PaymentCard:
@@ -2038,9 +2053,12 @@ components:
       type: object
       properties:
         PaymentGateway:
-          $ref: '#/components/schemas/PaymentGateway'
+          allOf:
+            - $ref: '#/components/schemas/PaymentGateway'
+          nullable: true
         SurchargeConfiguration:
-          $ref: '#/components/schemas/SurchargeConfiguration'
+          allOf:
+            - $ref: '#/components/schemas/SurchargeConfiguration'
       additionalProperties: false
       x-schema-id: PaymentConfiguration
     PaymentGateway:
@@ -2071,7 +2089,8 @@ components:
           items:
             $ref: '#/components/schemas/CreditCardTypes'
         SupportedPaymentMethods:
-          $ref: '#/components/schemas/PaymentMethods'
+          allOf:
+            - $ref: '#/components/schemas/PaymentMethods'
         PublicKey:
           minLength: 1
           type: string
@@ -2284,11 +2303,13 @@ components:
           additionalProperties:
             type: string
         ProductOptions:
-          $ref: '#/components/schemas/ProductOptions'
+          allOf:
+            - $ref: '#/components/schemas/ProductOptions'
         ChargingMode:
           $ref: '#/components/schemas/ProductChargingMode'
         TotalAmount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
       additionalProperties: false
       x-schema-id: ProductOrderPricingInfo
     ProductPostingMode:
@@ -2486,9 +2507,11 @@ components:
           type: string
           format: uuid
         MinPrice:
-          $ref: '#/components/schemas/RatePricing'
+          allOf:
+            - $ref: '#/components/schemas/RatePricing'
         MaxPrice:
-          $ref: '#/components/schemas/RatePricing'
+          allOf:
+            - $ref: '#/components/schemas/RatePricing'
       additionalProperties: false
       x-schema-id: RateGroupPricing
     RatePricing:
@@ -2499,9 +2522,11 @@ components:
       type: object
       properties:
         TotalAmount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         AverageAmountPerTimeUnit:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
       additionalProperties: false
       x-schema-id: RatePricing
     RelativeProductPrice:
@@ -2574,7 +2599,9 @@ components:
           type: string
           format: uuid
         Rate:
-          $ref: '#/components/schemas/Rate'
+          allOf:
+            - $ref: '#/components/schemas/Rate'
+          nullable: true
         ProductIds:
           type: array
           items:
@@ -2690,7 +2717,9 @@ components:
           type: string
           format: uuid
         Extent:
-          $ref: '#/components/schemas/ReservationGroupExtent'
+          allOf:
+            - $ref: '#/components/schemas/ReservationGroupExtent'
+          nullable: true
       additionalProperties: false
       x-schema-id: ReservationGroupParameters
     ReservationPriceParameters:
@@ -2766,9 +2795,12 @@ components:
           type: string
           nullable: true
         TotalAmount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         AmountToChargeOnConfirmation:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          nullable: true
         ProductOrderPrices:
           type: array
           items:
@@ -2857,7 +2889,8 @@ components:
       type: object
       properties:
         Amount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         Action:
           $ref: '#/components/schemas/SettlementRuleAction'
         Type:
@@ -3010,9 +3043,11 @@ components:
           type: string
           format: uuid
         Price:
-          $ref: '#/components/schemas/ResourcePrice'
+          allOf:
+            - $ref: '#/components/schemas/ResourcePrice'
         MaxPrice:
-          $ref: '#/components/schemas/ResourcePrice'
+          allOf:
+            - $ref: '#/components/schemas/ResourcePrice'
       additionalProperties: false
       x-schema-id: ResourcePricing
     Restriction:
@@ -3031,9 +3066,11 @@ components:
           type: string
           format: uuid
         Conditions:
-          $ref: '#/components/schemas/RestrictionConditions'
+          allOf:
+            - $ref: '#/components/schemas/RestrictionConditions'
         Exceptions:
-          $ref: '#/components/schemas/RestrictionExceptions'
+          allOf:
+            - $ref: '#/components/schemas/RestrictionExceptions'
         ExternalIdentifier:
           type: string
           nullable: true
@@ -3453,7 +3490,9 @@ components:
           items:
             $ref: '#/components/schemas/Product'
         PaymentGateway:
-          $ref: '#/components/schemas/PaymentGateway'
+          allOf:
+            - $ref: '#/components/schemas/PaymentGateway'
+          nullable: true
         TermsAndConditionsUrl:
           minLength: 1
           type: string
@@ -3476,7 +3515,8 @@ components:
           nullable: true
           deprecated: true
         Address:
-          $ref: '#/components/schemas/Address'
+          allOf:
+            - $ref: '#/components/schemas/Address'
         Languages:
           type: array
           items:
