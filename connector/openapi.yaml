@@ -45,7 +45,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -141,7 +141,7 @@ paths:
                     - FamilyRelations
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -225,7 +225,7 @@ paths:
                       Value: false
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -303,7 +303,7 @@ paths:
                 - da34b396-41f7-47f6-8847-aecf00a3f19e
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -375,7 +375,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -468,7 +468,7 @@ paths:
                     Value: 9e3791dc-95c7-439a-aa8a-ada8007de0ca
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -572,7 +572,7 @@ paths:
                 - Open
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -821,7 +821,7 @@ paths:
                         Value: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -988,7 +988,7 @@ paths:
                   TargetAccountId: 49b2abd4-df58-4f1d-bead-0fa6342f8a78
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1061,7 +1061,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1146,7 +1146,7 @@ paths:
                   Longitude: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1236,7 +1236,7 @@ paths:
                     Value: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1314,7 +1314,7 @@ paths:
                 - 44108366-8e9b-4007-844b-8ebcca4ac009
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1388,7 +1388,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1492,7 +1492,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1574,7 +1574,7 @@ paths:
                 - aaaa654a4a94-4f96-9efc-86da-bd26d8db
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1665,7 +1665,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1802,7 +1802,7 @@ paths:
                   BookerId: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1883,7 +1883,7 @@ paths:
                     Value: '123456798'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1975,7 +1975,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2062,7 +2062,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2150,7 +2150,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2238,7 +2238,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2306,7 +2306,7 @@ paths:
               BillPrintEventId: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2375,7 +2375,7 @@ paths:
                   Name: Bill of Joe Doe
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2443,7 +2443,7 @@ paths:
               EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2541,7 +2541,7 @@ paths:
                     CountrySubdivisionCode: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2621,7 +2621,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2709,7 +2709,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2795,7 +2795,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2879,7 +2879,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -2949,7 +2949,7 @@ paths:
                 - aa20961f-6d9e-4b35-ad25-071213530aec
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3028,7 +3028,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3111,7 +3111,7 @@ paths:
               Data: JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3176,7 +3176,7 @@ paths:
               KeyCount: 1
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3244,7 +3244,7 @@ paths:
                 Value: 230
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3307,7 +3307,7 @@ paths:
               State: Processed
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3391,7 +3391,7 @@ paths:
               WebsiteUrl: https://www.mews.com
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3556,7 +3556,7 @@ paths:
                 Value: https://www.mews.com
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3701,7 +3701,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3830,7 +3830,7 @@ paths:
                 - 63551515-1740-49b3-914e-309a8b1429f0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -3890,7 +3890,7 @@ paths:
               Name: string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4033,7 +4033,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4114,7 +4114,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4212,7 +4212,7 @@ paths:
                   Notes: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4320,7 +4320,7 @@ paths:
                   Notes: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4407,7 +4407,7 @@ paths:
                 - d5a2aac3-5194-479b-ba05-6c073398e0fd
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4467,7 +4467,7 @@ paths:
               EnterpriseId: 851df8c8-90f2-4c4a-8e01-a4fc46b25178
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4597,7 +4597,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4703,7 +4703,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4795,7 +4795,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4871,7 +4871,7 @@ paths:
                 - 3fa85f64-5717-4562-b3fc-2c963f66afa6
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -4946,7 +4946,7 @@ paths:
                 - e98995b0-140a-4208-bbeb-b77f2c43d6ee
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5025,7 +5025,7 @@ paths:
                 Expiration: '2025-10'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5093,7 +5093,7 @@ paths:
               ReceiptIdentifier: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5154,7 +5154,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5247,7 +5247,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5355,7 +5355,7 @@ paths:
                 - e98995b0-140a-4208-bbeb-b77f2c43d6ee
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5466,7 +5466,7 @@ paths:
                 - string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5581,7 +5581,7 @@ paths:
                 Addresses: false
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5671,7 +5671,7 @@ paths:
               LastName: string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5782,7 +5782,7 @@ paths:
                 - 2a1a4315-7e6f-4131-af21-402cec59b8b9
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -5903,7 +5903,7 @@ paths:
               ItalianDestinationCode: '1234567'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6072,7 +6072,7 @@ paths:
                 Value: '7654321'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6218,7 +6218,7 @@ paths:
               TargetCustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6283,7 +6283,7 @@ paths:
               Data: JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6353,7 +6353,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6427,7 +6427,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6503,7 +6503,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6588,7 +6588,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6656,7 +6656,7 @@ paths:
               EntityType: OrderItem
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6729,7 +6729,7 @@ paths:
                 - f776f20a-6f1a-4ddf-93f4-9dae95261415
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6819,7 +6819,7 @@ paths:
                   ResizeMode: Fit
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6882,7 +6882,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -6955,7 +6955,7 @@ paths:
               Scope: ''
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7049,7 +7049,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7128,7 +7128,7 @@ paths:
                   State: New
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7209,7 +7209,7 @@ paths:
                     Value: Canceled
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7279,7 +7279,7 @@ paths:
                 - f9e434a3-720c-4820-b82e-202cb2efa2fd
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7354,7 +7354,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7427,7 +7427,7 @@ paths:
                   Subscription: Free
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7502,7 +7502,7 @@ paths:
                     Value: Free
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7571,7 +7571,7 @@ paths:
                 - da34b396-41f7-47f6-8847-aecf00a3f19e
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7647,7 +7647,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7719,7 +7719,7 @@ paths:
                   Ordering: 1
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7793,7 +7793,7 @@ paths:
                     Value: 2
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7862,7 +7862,7 @@ paths:
                 - da34b396-41f7-47f6-8847-aecf00a3f19e
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7930,7 +7930,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -7999,7 +7999,7 @@ paths:
               Subject: Example subject
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8077,7 +8077,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8149,7 +8149,7 @@ paths:
                   Identifier: Message 1
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8257,7 +8257,7 @@ paths:
                 Cursor: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8461,7 +8461,7 @@ paths:
                   AccountingCategoryId: 90eff5aa-36b4-4689-80c0-ab3a00bb412e
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8547,7 +8547,7 @@ paths:
                       AccountingCategoryId: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8624,7 +8624,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8744,7 +8744,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8833,7 +8833,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -8928,7 +8928,7 @@ paths:
                   Notes: Internal notes.
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9014,7 +9014,7 @@ paths:
                 - 6282d17b-a068-4a9f-83d3-afae00c39bfb
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9133,7 +9133,7 @@ paths:
                 Cursor: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9284,7 +9284,7 @@ paths:
               ValueToRefund: 110.5
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9362,7 +9362,7 @@ paths:
               Notes: Terminal A
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9431,7 +9431,7 @@ paths:
               AccountingCategoryId: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9498,7 +9498,7 @@ paths:
                 GrossValue: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9564,7 +9564,7 @@ paths:
                 - e98995b0-140a-4208-bbeb-b77f2c43d6ee
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9663,7 +9663,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9764,7 +9764,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9856,7 +9856,7 @@ paths:
               LastTimeUnitStartUtc: '2024-04-11T08:54:47.193Z'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -9952,7 +9952,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10092,7 +10092,7 @@ paths:
                 - 1f60b9de-c042-4841-bcab-b07000d2201f
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10168,7 +10168,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10263,7 +10263,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10362,7 +10362,7 @@ paths:
                       AbsoluteAdjustment: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10440,7 +10440,7 @@ paths:
               LastTimeUnitStartUtc: '2022-01-03T23:00:00.000Z'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10571,7 +10571,7 @@ paths:
                   Value: 222
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10641,7 +10641,7 @@ paths:
                 Count: 100
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10722,7 +10722,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10846,7 +10846,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -10975,7 +10975,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11131,7 +11131,7 @@ paths:
                   - string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11287,7 +11287,7 @@ paths:
                   - string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11443,7 +11443,7 @@ paths:
                   - string
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11593,7 +11593,7 @@ paths:
                       Count: 2
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11704,7 +11704,7 @@ paths:
                   VoucherCode: SpringSale2021
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11850,7 +11850,7 @@ paths:
                       Value: true
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -11985,7 +11985,7 @@ paths:
                 - 9af9d8b0-43ae-414d-80a8-abc1012a2a59
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12049,7 +12049,7 @@ paths:
               ReservationId: e6ea708c-2a2a-412f-a152-b6c76ffad49b
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12113,7 +12113,7 @@ paths:
               Notes: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12177,7 +12177,7 @@ paths:
               Notes: Cancellation through Connector API
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12242,7 +12242,7 @@ paths:
               CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12306,7 +12306,7 @@ paths:
               ChargeCancellationFee: false
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12367,7 +12367,7 @@ paths:
               CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12428,7 +12428,7 @@ paths:
               CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12497,7 +12497,7 @@ paths:
                   - UK-S
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12564,7 +12564,7 @@ paths:
                 - Closed
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12671,7 +12671,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12768,7 +12768,7 @@ paths:
                       Value: false
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12862,7 +12862,7 @@ paths:
                       Value: false
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -12943,7 +12943,7 @@ paths:
                 - 35d4b117-4e60-44a3-9580-c582117eff98
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13022,7 +13022,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13112,7 +13112,7 @@ paths:
                   Notes: Note
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13192,7 +13192,7 @@ paths:
                 - e8fb6bfb-d64a-4e7c-acfe-ab0400d01183
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13267,7 +13267,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13373,7 +13373,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13463,7 +13463,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13551,7 +13551,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13633,7 +13633,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13726,7 +13726,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13877,7 +13877,7 @@ paths:
                     Value: Sample reason
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -13962,7 +13962,7 @@ paths:
                     MaxAdvance: P0Y0M3DT0H0M0S
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14077,7 +14077,7 @@ paths:
                 - e2f8aa29-0c09-4097-801c-7888c9fb57ae
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14166,7 +14166,7 @@ paths:
                   MaxAdvance: P0Y0M3DT0H0M0S
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14257,7 +14257,7 @@ paths:
                     Sunday: true
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14343,7 +14343,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14472,7 +14472,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14572,7 +14572,7 @@ paths:
                       - d4c1b435-0ed1-4d98-9833-af2c00b28518
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14685,7 +14685,7 @@ paths:
                         - 004fa262-7b08-4853-b544-af2a00d5cf1f
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14770,7 +14770,7 @@ paths:
                 - d98c9611-0006-4691-a835-af2e00b170c4
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14845,7 +14845,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -14950,7 +14950,7 @@ paths:
                   Text: Sample text
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15020,7 +15020,7 @@ paths:
                     Value: Sample text
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15095,7 +15095,7 @@ paths:
                 Count: 1
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15164,7 +15164,7 @@ paths:
                 - 3fa85f64-5717-4562-b3fc-2c963f66afa6
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15234,7 +15234,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15344,7 +15344,7 @@ paths:
                   UnitCountAdjustment: { }
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15406,7 +15406,7 @@ paths:
               LastTimeUnitStartUtc: '2017-01-03T23:00:00.000Z'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15503,7 +15503,7 @@ paths:
                 - ActiveResources
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15640,7 +15640,7 @@ paths:
                 Cursor: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15720,7 +15720,7 @@ paths:
                 Cursor: 
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15809,7 +15809,7 @@ paths:
                 EndUtc: '2020-01-02T00:00:00Z'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15884,7 +15884,7 @@ paths:
               DepartmentId: 8a0770a7-5178-4b87-8898-ab0400a346ec
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -15945,7 +15945,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16025,7 +16025,7 @@ paths:
               Client: Sample Client 1.0.0
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16130,7 +16130,7 @@ paths:
                   ValidityEndUtc: '2023-10-09T22:00:00Z'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16211,7 +16211,7 @@ paths:
                 - dc9d3488-7fc4-4fc9-a524-14e6504d8734
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16283,7 +16283,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16385,7 +16385,7 @@ paths:
                 Count: 10
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16502,7 +16502,7 @@ paths:
                   ExternalIdentifier: VCHR-278
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16619,7 +16619,7 @@ paths:
                     Value: VCHR-278
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -16708,7 +16708,7 @@ paths:
                 - f4a9942c-2616-4074-b1f4-4b959515e933
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -17138,29 +17138,38 @@ components:
           type: string
           description: The content of the account note.
         AccountType:
-          $ref: '#/components/schemas/AccountType'
+          title: Account type
+          allOf:
+            - $ref: '#/components/schemas/AccountTypeEnum'
+          description: "Specifying type of associated account.\n\nCompany\n\nCustomer"
+          x-enumNames:
+            - Company
+            - Customer
+          x-enumDescriptions:
+            - ''
+            - ''
         Classifications:
           type: array
           items:
-            $ref: '#/components/schemas/AccountNoteClassification'
-          description: 'Specifying the classifactions of the note based on account type ([Customer note classification](https://mews-systems.gitbook.io/connector-api/operations/#customer-note-classifications), [Company note classifications](https://mews-systems.gitbook.io/connector-api/operations/#company-note-classifications)).'
+            $ref: '#/components/schemas/AccountNoteClassificationEnum'
+          description: Specifying the classifications of the note based on account type.
         IsActive:
           type: boolean
           description: Whether the account note is still active.
         CreatorProfile:
-          title: ProfileData
+          title: Profile data
           allOf:
             - $ref: '#/components/schemas/ProfileData'
-          description: The profile data of the user who updated the loyalty membership.
+          description: The profile data of the user who created the account note.
         UpdaterProfile:
-          title: ProfileData
+          title: Profile data
           allOf:
             - $ref: '#/components/schemas/ProfileData'
-          description: The profile data of the user who updated the loyalty membership.
+          description: The profile data of the user who updated the account note.
       additionalProperties: false
       x-schema-id: AccountNote
     AccountNoteAddParameters:
-      title: AccountNoteAddParameters
+      title: Account note parameters
       required:
         - AccountId
         - Classifications
@@ -17174,16 +17183,21 @@ components:
           maxLength: 1000
           minLength: 1
           type: string
+          description: The content of the account note.
         Classifications:
           maxItems: 1
           minItems: 1
+          uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/AccountNoteClassification'
+            $ref: '#/components/schemas/AccountNoteClassificationEnum'
+          description: Specifying the classifications of the note based on account type.
       additionalProperties: false
       x-schema-id: AccountNoteAddParameters
     AccountNoteAdditionResult:
       title: AccountNoteAdditionResult
+      required:
+        - AccountNotes
       type: object
       properties:
         AccountNotes:
@@ -17191,10 +17205,10 @@ components:
           items:
             $ref: '#/components/schemas/AccountNote'
           description: Added account notes.
-          nullable: true
       additionalProperties: false
       x-schema-id: AccountNoteAdditionResult
-    AccountNoteClassification:
+    AccountNoteClassificationEnum:
+      title: Account note classification
       enum:
         - General
         - FoodAndBeverage
@@ -17209,6 +17223,33 @@ components:
         - Complaints
         - Other
       type: string
+      description: "\n\nGeneral (For Company and Customer)\n\nFoodAndBeverage (Only Customer)\n\nFrontOffice (Only Customer)\n\nReservations (Only Customer)\n\nHousekeeping (Only Customer)\n\nMaintenance (Only Customer)\n\nPreviousStay (Only Customer)\n\nFamilyRelations (Only Customer)\n\nGifts (Only Customer)\n\nAccounting (Only Customer)\n\nComplaints (Only Customer)\n\nOther (Only Customer)"
+      x-enumNames:
+        - General
+        - FoodAndBeverage
+        - FrontOffice
+        - Reservations
+        - Housekeeping
+        - Maintenance
+        - PreviousStay
+        - FamilyRelations
+        - Gifts
+        - Accounting
+        - Complaints
+        - Other
+      x-enumDescriptions:
+        - For Company and Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
+        - Only Customer
     AccountNoteFilterParameters:
       title: AccountNoteFilterParameters
       required:
@@ -17265,6 +17306,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of Account note's last update date and time.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -17277,6 +17319,8 @@ components:
       x-schema-id: AccountNoteFilterParameters
     AccountNoteResult:
       title: AccountNoteResult
+      required:
+        - AccountNotes
       type: object
       properties:
         AccountNotes:
@@ -17284,7 +17328,6 @@ components:
           items:
             $ref: '#/components/schemas/AccountNote'
           description: The set of requested account notes.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -17293,79 +17336,93 @@ components:
       additionalProperties: false
       x-schema-id: AccountNoteResult
     AccountNoteUpdateClassifications:
-      title: AccountNoteUpdateClassifications
+      title: Account note update classifications
       type: object
       properties:
         General:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Company and Customer: Boolean value defining the general classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FoodAndBeverage:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the food and beverage classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FrontOffice:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the front office classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Reservations:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the reservations classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Housekeeping:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the housekeeping classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Maintenance:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the maintenance classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         PreviousStay:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the previous stay classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FamilyRelations:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the family relations classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Gifts:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the gifts classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Accounting:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the accounting classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Complaints:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the complaints classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Other:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: 'Customer only: Boolean value defining the other classification for the account note (or `null` if the value should not be updated).'
           nullable: true
       additionalProperties: false
       x-schema-id: AccountNoteUpdateClassifications
     AccountNoteUpdateParameters:
-      title: AccountNoteUpdateParameters
+      title: Account note update parameters
       required:
         - AccountNoteId
+        - Classifications
       type: object
       properties:
         AccountNoteId:
           type: string
+          description: Unique identifier of the account note.
           format: uuid
         Content:
           title: StringUpdateValue
@@ -17373,16 +17430,19 @@ components:
           minLength: 1
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Content of the account note (or `null` if the content should not be updated).
           nullable: true
         Classifications:
-          title: AccountNoteUpdateClassifications
+          title: Account note update classifications
           allOf:
             - $ref: '#/components/schemas/AccountNoteUpdateClassifications'
-          nullable: true
+          description: Classification of the account note.
       additionalProperties: false
       x-schema-id: AccountNoteUpdateParameters
     AccountNoteUpdateResult:
       title: AccountNoteUpdateResult
+      required:
+        - AccountNotes
       type: object
       properties:
         AccountNotes:
@@ -17390,7 +17450,6 @@ components:
           items:
             $ref: '#/components/schemas/AccountNote'
           description: Updated account notes.
-          nullable: true
       additionalProperties: false
       x-schema-id: AccountNoteUpdateResult
     AccountResult:
@@ -17410,6 +17469,19 @@ components:
         - Company
         - Customer
       type: string
+    AccountTypeEnum:
+      title: Account type
+      enum:
+        - Company
+        - Customer
+      type: string
+      description: "\n\nCompany\n\nCustomer"
+      x-enumNames:
+        - Company
+        - Customer
+      x-enumDescriptions:
+        - ''
+        - ''
     AccountUpdateParameters:
       title: AccountUpdateParameters
       type: object
@@ -17682,10 +17754,10 @@ components:
           type: string
           nullable: true
         Amount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
       additionalProperties: false
       x-schema-id: AccountingItem
@@ -17851,6 +17923,25 @@ components:
         - Inactive
         - Canceled
       type: string
+    AccountingStateEnum:
+      title: Order item accounting state
+      enum:
+        - Open
+        - Closed
+        - Inactive
+        - Canceled
+      type: string
+      description: "\n\nOpen (Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.)\n\nClosed (Order items which carry a non-zero value and have been closed on a bill or invoice.)\n\nInactive (Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.)\n\nCanceled (Order items which have been canceled, regardless of whether the item is of zero value.)"
+      x-enumNames:
+        - Open
+        - Closed
+        - Inactive
+        - Canceled
+      x-enumDescriptions:
+        - 'Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.'
+        - Order items which carry a non-zero value and have been closed on a bill or invoice.
+        - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
+        - 'Order items which have been canceled, regardless of whether the item is of zero value.'
     ActivityState:
       enum:
         - Deleted
@@ -18161,7 +18252,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AddressIds:
@@ -18589,29 +18680,39 @@ components:
       x-schema-id: AlternativePaymentsData
     Amount:
       title: Amount
+      required:
+        - Breakdown
+        - Currency
+        - GrossValue
+        - NetValue
+        - TaxValues
       type: object
       properties:
         Currency:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency).'
+          format: currency
         NetValue:
           type: number
+          description: Net value without taxes.
           format: double
         GrossValue:
           type: number
+          description: Gross value including all taxes.
           format: double
         TaxValues:
           type: array
           items:
             $ref: '#/components/schemas/TaxValue'
-          nullable: true
+          description: The tax values applied.
         Breakdown:
-          title: TaxBreakdown
+          title: Tax breakdown
           allOf:
             - $ref: '#/components/schemas/TaxBreakdown'
-          nullable: true
+          description: Information about individual tax amounts.
       additionalProperties: false
-      description: Value of the preauthorization.
+      description: ''
       x-schema-id: Amount
     AmountParameters:
       title: AmountParameters
@@ -19261,6 +19362,20 @@ components:
       x-schema-id: BaseRatePricingParameters
     Bill:
       title: Bill
+      required:
+        - AccountId
+        - AssociatedAccountIds
+        - CorrectionState
+        - CreatedUtc
+        - EnterpriseId
+        - Id
+        - OrderItems
+        - PaymentItems
+        - Payments
+        - Revenue
+        - State
+        - Type
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -21227,7 +21342,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         Name:
@@ -21703,7 +21818,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         CompanyId:
@@ -21838,24 +21953,10 @@ components:
           description: 'The enterprise (e.g. hotel, hostel) associated with the access token.'
           nullable: true
         Service:
-          title: Service
           allOf:
             - $ref: '#/components/schemas/Service'
-          properties:
-            Data:
-              title: Data
-              type: object
-              properties:
-                discriminator:
-                  $ref: '#/components/schemas/ServiceType'
-                value:
-                  oneOf:
-                    - $ref: '#/components/schemas/BookableServiceData'
-                    - $ref: '#/components/schemas/AdditionalServiceData'
-              description: Additional information about the specific service.
           description: 'The reservable service (e.g. accommodation, parking) associated with the access token of the service scoped integration.'
           nullable: true
-          x-schema-id: Service
         PaymentCardStorage:
           allOf:
             - $ref: '#/components/schemas/PaymentCardStorage'
@@ -22567,28 +22668,28 @@ components:
           description: Settlement date and time in UTC timezone in ISO 8601 format.
           nullable: true
         Fee:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         AdjustedFee:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         ChargedAmount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         SettledAmount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
       additionalProperties: false
       x-schema-id: CreditCardTransaction
@@ -23444,7 +23545,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         CustomerId:
@@ -24341,34 +24442,9 @@ components:
                               type: string
                               nullable: true
                             Bill:
-                              title: Bill
                               allOf:
                                 - $ref: '#/components/schemas/Bill'
-                              properties:
-                                AssigneeData:
-                                  title: AssigneeData
-                                  type: object
-                                  properties:
-                                    discriminator:
-                                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                    value:
-                                      oneOf:
-                                        - $ref: '#/components/schemas/BillCompanyData'
-                                        - $ref: '#/components/schemas/BillCustomerData'
-                                  deprecated: true
-                                OwnerData:
-                                  title: OwnerData
-                                  type: object
-                                  properties:
-                                    discriminator:
-                                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                    value:
-                                      oneOf:
-                                        - $ref: '#/components/schemas/BillCompanyData'
-                                        - $ref: '#/components/schemas/BillCustomerData'
-                                  description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                               nullable: true
-                              x-schema-id: Bill
                             TaxIdentifier:
                               type: string
                               nullable: true
@@ -24511,34 +24587,9 @@ components:
                           type: string
                           nullable: true
                         Bill:
-                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
-                          properties:
-                            AssigneeData:
-                              title: AssigneeData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              deprecated: true
-                            OwnerData:
-                              title: OwnerData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                           nullable: true
-                          x-schema-id: Bill
                         TaxIdentifier:
                           type: string
                           nullable: true
@@ -24651,34 +24702,9 @@ components:
                           type: string
                           nullable: true
                         Bill:
-                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
-                          properties:
-                            AssigneeData:
-                              title: AssigneeData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              deprecated: true
-                            OwnerData:
-                              title: OwnerData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                           nullable: true
-                          x-schema-id: Bill
                         TaxIdentifier:
                           type: string
                           nullable: true
@@ -24821,34 +24847,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -24917,16 +24918,16 @@ components:
                   format: uuid
                   nullable: true
                 Amount:
-                  title: ExtendedAmount
+                  title: Amount
                   allOf:
                     - $ref: '#/components/schemas/ExtendedAmount'
-                  description: Price representing price of the product.
+                  description: ''
                   nullable: true
                 Fee:
-                  title: ExtendedAmount
+                  title: Amount
                   allOf:
                     - $ref: '#/components/schemas/ExtendedAmount'
-                  description: Price representing price of the product.
+                  description: ''
                   nullable: true
                 PaymentTerminalData:
                   type: string
@@ -24988,34 +24989,9 @@ components:
                           type: string
                           nullable: true
                         Bill:
-                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
-                          properties:
-                            AssigneeData:
-                              title: AssigneeData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              deprecated: true
-                            OwnerData:
-                              title: OwnerData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                           nullable: true
-                          x-schema-id: Bill
                         TaxIdentifier:
                           type: string
                           nullable: true
@@ -25158,34 +25134,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -25298,34 +25249,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -25468,34 +25394,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -25612,34 +25513,9 @@ components:
                           type: string
                           nullable: true
                         Bill:
-                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
-                          properties:
-                            AssigneeData:
-                              title: AssigneeData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              deprecated: true
-                            OwnerData:
-                              title: OwnerData
-                              type: object
-                              properties:
-                                discriminator:
-                                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                                value:
-                                  oneOf:
-                                    - $ref: '#/components/schemas/BillCompanyData'
-                                    - $ref: '#/components/schemas/BillCustomerData'
-                              description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                           nullable: true
-                          x-schema-id: Bill
                         TaxIdentifier:
                           type: string
                           nullable: true
@@ -25782,34 +25658,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -25922,34 +25773,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -26092,34 +25918,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -26188,16 +25989,16 @@ components:
               format: uuid
               nullable: true
             Amount:
-              title: ExtendedAmount
+              title: Amount
               allOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
-              description: Price representing price of the product.
+              description: ''
               nullable: true
             Fee:
-              title: ExtendedAmount
+              title: Amount
               allOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
-              description: Price representing price of the product.
+              description: ''
               nullable: true
             PaymentTerminalData:
               type: string
@@ -26259,34 +26060,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -26429,34 +26205,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -26569,34 +26320,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -26739,34 +26465,9 @@ components:
               type: string
               nullable: true
             Bill:
-              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
-              properties:
-                AssigneeData:
-                  title: AssigneeData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  deprecated: true
-                OwnerData:
-                  title: OwnerData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
               nullable: true
-              x-schema-id: Bill
             TaxIdentifier:
               type: string
               nullable: true
@@ -27338,11 +27039,14 @@ components:
       additionalProperties: false
       x-schema-id: EnterpriseFilterParameters
     EnterpriseProfileData:
-      title: EnterpriseProfileData
+      title: Enterprise profile data
+      required:
+        - ProfileId
       type: object
       properties:
         ProfileId:
           type: string
+          description: Unique identifier of the profile.
           format: uuid
       additionalProperties: false
       x-schema-id: EnterpriseProfileData
@@ -27553,28 +27257,38 @@ components:
         - Expired
       type: string
     ExtendedAmount:
-      title: ExtendedAmount
+      title: Amount
+      required:
+        - Breakdown
+        - Currency
+        - GrossValue
+        - NetValue
+        - TaxValues
       type: object
       properties:
         Currency:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency).'
+          format: currency
         NetValue:
           type: number
+          description: Net value without taxes.
           format: double
         GrossValue:
           type: number
+          description: Gross value including all taxes.
           format: double
         TaxValues:
           type: array
           items:
             $ref: '#/components/schemas/TaxValue'
-          nullable: true
+          description: The tax values applied.
         Breakdown:
-          title: TaxBreakdown
+          title: Tax breakdown
           allOf:
             - $ref: '#/components/schemas/TaxBreakdown'
-          nullable: true
+          description: Information about individual tax amounts.
         Value:
           type: number
           format: double
@@ -27592,7 +27306,7 @@ components:
           format: double
           nullable: true
       additionalProperties: false
-      description: Price representing price of the product.
+      description: ''
       x-schema-id: ExtendedAmount
     ExtendedAmountParameters:
       title: ExtendedAmountParameters
@@ -27817,34 +27531,9 @@ components:
           type: string
           nullable: true
         Bill:
-          title: Bill
           allOf:
             - $ref: '#/components/schemas/Bill'
-          properties:
-            AssigneeData:
-              title: AssigneeData
-              type: object
-              properties:
-                discriminator:
-                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                value:
-                  oneOf:
-                    - $ref: '#/components/schemas/BillCompanyData'
-                    - $ref: '#/components/schemas/BillCustomerData'
-              deprecated: true
-            OwnerData:
-              title: OwnerData
-              type: object
-              properties:
-                discriminator:
-                  $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                value:
-                  oneOf:
-                    - $ref: '#/components/schemas/BillCompanyData'
-                    - $ref: '#/components/schemas/BillCustomerData'
-              description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
           nullable: true
-          x-schema-id: Bill
         TaxIdentifier:
           type: string
           nullable: true
@@ -28320,34 +28009,9 @@ components:
               type: string
               nullable: true
             Bill:
-              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
-              properties:
-                AssigneeData:
-                  title: AssigneeData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  deprecated: true
-                OwnerData:
-                  title: OwnerData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
               nullable: true
-              x-schema-id: Bill
             TaxIdentifier:
               type: string
               nullable: true
@@ -28722,16 +28386,16 @@ components:
           format: uuid
           nullable: true
         CreatorProfile:
-          title: ProfileData
+          title: Profile data
           allOf:
             - $ref: '#/components/schemas/ProfileData'
-          description: The profile data of the user who updated the loyalty membership.
+          description: The profile data of the user who created or last updated the record.
           nullable: true
         UpdaterProfile:
-          title: ProfileData
+          title: Profile data
           allOf:
             - $ref: '#/components/schemas/ProfileData'
-          description: The profile data of the user who updated the loyalty membership.
+          description: The profile data of the user who created or last updated the record.
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyMembership
@@ -29741,7 +29405,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountNotes:
@@ -29776,6 +29440,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountNoteIds:
@@ -29811,6 +29476,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountNoteUpdates:
@@ -29845,6 +29511,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountUpdates:
@@ -29912,7 +29579,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         Addresses:
@@ -29947,7 +29614,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AddressUpdates:
@@ -30228,6 +29895,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         CompanyIds:
@@ -30319,7 +29987,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         LoyaltyMemberships:
@@ -30354,7 +30022,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         LoyaltyMembershipUpdates:
@@ -30389,7 +30057,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         LoyaltyPrograms:
@@ -30424,7 +30092,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         LoyaltyProgramUpdates:
@@ -30459,7 +30127,7 @@ components:
           description: Token identifying the client application.
         ChainId:
           type: string
-          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         LoyaltyTiers:
@@ -31410,6 +31078,24 @@ components:
       x-schema-id: OrderAdditionResult
     OrderItem:
       title: Order item
+      required:
+        - AccountingState
+        - Amount
+        - ConsumedUtc
+        - CreatedUtc
+        - CreatorProfileId
+        - EnterpriseId
+        - Id
+        - Options
+        - OriginalAmount
+        - RevenueType
+        - ServiceId
+        - ServiceOrderId
+        - Type
+        - UnitAmount
+        - UnitCount
+        - UpdatedUtc
+        - UpdaterProfileId
       type: object
       properties:
         Id:
@@ -31426,8 +31112,9 @@ components:
           format: uuid
           nullable: true
         AccountType:
-          type: string
-          description: 'A discriminator specifying the [type of account](https://mews-systems.gitbook.io/connector-api/operations/accounts/#account-type), e.g. customer or company.'
+          allOf:
+            - $ref: '#/components/schemas/AccountTypeEnum'
+          description: "A discriminator specifying the [type of account](https://mews-systems.gitbook.io/connector-api/operations/accounts/#account-type), e.g. customer or company.\n\nCompany\n\nCustomer"
           nullable: true
         ServiceId:
           type: string
@@ -31453,6 +31140,7 @@ components:
           nullable: true
         ExternalIdentifier:
           type: string
+          description: Identifier of the entity from external system.
           nullable: true
         UnitCount:
           type: integer
@@ -31462,23 +31150,30 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
-          nullable: true
+          description: 'Unit amount of item, i.e. the amount of each individual sub-item or unit, if applicable.'
         Amount:
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
-          nullable: true
+          description: Amount of item; note a negative amount represents a rebate or payment.
         OriginalAmount:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
-          nullable: true
+          description: Order item's original amount. Negative amount represents either rebate or a payment. Contains the earliest known value in conversion chain.
         RevenueType:
-          type: string
-          description: Revenue type of the item.
-          nullable: true
+          title: Revenue type
+          allOf:
+            - $ref: '#/components/schemas/RevenueTypeEnum'
+          description: "Revenue type of the item.\n\nService\n\nProduct\n\nAdditional"
+          x-enumNames:
+            - Service
+            - Product
+            - Additional
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
         CreatorProfileId:
           type: string
           description: Unique identifier of the user who created the order item.
@@ -31488,47 +31183,101 @@ components:
           description: Unique identifier of the user who updated the order item.
           format: uuid
         CreatedUtc:
+          minLength: 1
           type: string
           description: Creation date and time of the order item created in UTC timezone in ISO 8601 format.
-          nullable: true
+          format: date-time
         UpdatedUtc:
+          minLength: 1
           type: string
           description: Last update date and time of the order item in UTC timezone in ISO 8601 format.
-          nullable: true
+          format: date-time
         ConsumedUtc:
+          minLength: 1
           type: string
           description: Date and time of the item consumption in UTC timezone in ISO 8601 format.
-          nullable: true
+          format: date-time
         CanceledUtc:
           type: string
+          description: Cancellation date and time of the order item in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         ClosedUtc:
           type: string
           description: Date and time of the item bill closure in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         StartUtc:
           type: string
           description: Start of the order item in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         ClaimedUtc:
           type: string
+          description: Date and time when the order item was claimed in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         AccountingState:
-          type: string
-          description: Accounting state of the order item.
-          nullable: true
+          title: Order item accounting state
+          allOf:
+            - $ref: '#/components/schemas/AccountingStateEnum'
+          description: "Accounting state of the order item.\n\nOpen (Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.)\n\nClosed (Order items which carry a non-zero value and have been closed on a bill or invoice.)\n\nInactive (Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.)\n\nCanceled (Order items which have been canceled, regardless of whether the item is of zero value.)"
+          x-enumNames:
+            - Open
+            - Closed
+            - Inactive
+            - Canceled
+          x-enumDescriptions:
+            - 'Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.'
+            - Order items which carry a non-zero value and have been closed on a bill or invoice.
+            - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
+            - 'Order items which have been canceled, regardless of whether the item is of zero value.'
         Type:
-          type: string
-          description: 'Order item type, e.g. whether product order or space order.'
-          nullable: true
+          title: Order item type
+          allOf:
+            - $ref: '#/components/schemas/OrderItemTypeEnum'
+          description: "Order item type, e.g. whether product order or space order.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee"
+          x-enumNames:
+            - CancellationFee
+            - NightRebate
+            - ProductOrderRebate
+            - AdditionalExpenseRebate
+            - Deposit
+            - ExchangeRateDifference
+            - CustomItem
+            - ServiceCharge
+            - CityTax
+            - CityTaxDiscount
+            - SpaceOrder
+            - ProductOrder
+            - Surcharge
+            - TaxCorrection
+            - ResourceUpgradeFee
+            - InvoiceFee
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
         Options:
-          title: OrderItemOptions
+          title: Order item options
           allOf:
             - $ref: '#/components/schemas/OrderItemOptions'
           description: Options of the order item.
-          nullable: true
         Data:
-          title: OrderItemData
+          title: Order item data
           allOf:
             - $ref: '#/components/schemas/OrderItemData'
           description: Additional order item data.
@@ -31576,31 +31325,48 @@ components:
       additionalProperties: false
       x-schema-id: OrderItemAdditionData
     OrderItemData:
-      title: OrderItemData
+      title: Order item data
       type: object
       properties:
         Discriminator:
-          anyOf:
-            - $ref: '#/components/schemas/OrderItemDataDiscriminator'
-          nullable: true
+          title: Order item data discriminator
+          allOf:
+            - $ref: '#/components/schemas/OrderItemDataDiscriminatorEnum'
+          description: "Discriminator pointing to the fields within this object that contains additional data.\n\nRebate\n\nProduct"
+          x-enumNames:
+            - Rebate
+            - Product
+          x-enumDescriptions:
+            - ''
+            - ''
         Rebate:
-          title: OrderItemRebateData
+          title: Rebate data
           allOf:
             - $ref: '#/components/schemas/OrderItemRebateData'
+          description: Contains additional data in the case of rebate item.
           nullable: true
         Product:
-          title: OrderItemProductData
+          title: Product data
           allOf:
             - $ref: '#/components/schemas/OrderItemProductData'
+          description: Contains additional data in the case of product item.
           nullable: true
       additionalProperties: false
       description: Additional order item data.
       x-schema-id: OrderItemData
-    OrderItemDataDiscriminator:
+    OrderItemDataDiscriminatorEnum:
+      title: Order item data discriminator
       enum:
         - Rebate
         - Product
       type: string
+      description: "\n\nRebate\n\nProduct"
+      x-enumNames:
+        - Rebate
+        - Product
+      x-enumDescriptions:
+        - ''
+        - ''
     OrderItemFilterParameters:
       title: OrderItemFilterParameters
       required:
@@ -31675,30 +31441,35 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was created. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was updated. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         ConsumedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was consumed. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         CanceledUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was canceled. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was closed. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         Currency:
@@ -31711,7 +31482,7 @@ components:
           minItems: 1
           type: array
           items:
-            $ref: '#/components/schemas/AccountingState'
+            $ref: '#/components/schemas/AccountingStateEnum'
           description: Accounting state of the item.
           nullable: true
         Types:
@@ -31719,7 +31490,7 @@ components:
           minItems: 1
           type: array
           items:
-            $ref: '#/components/schemas/OrderItemType'
+            $ref: '#/components/schemas/OrderItemTypeEnum'
           description: 'Order item type, e.g. whether product order or space order.'
           nullable: true
       additionalProperties: false
@@ -31758,19 +31529,19 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         Amount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         OriginalAmount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         RevenueType:
           type: string
@@ -31826,36 +31597,44 @@ components:
       additionalProperties: false
       x-schema-id: OrderItemOld
     OrderItemOptions:
-      title: OrderItemOptions
+      title: Order item options
+      required:
+        - CanceledWithReservation
       type: object
       properties:
         CanceledWithReservation:
           type: boolean
+          description: Order item was canceled with reservation cancellation.
       additionalProperties: false
       description: Options of the order item.
       x-schema-id: OrderItemOptions
     OrderItemProductData:
-      title: OrderItemProductData
+      title: Product data
+      required:
+        - ProductId
       type: object
       properties:
         ProductId:
           type: string
+          description: 'Unique identifier of the [Product](https://mews-systems.gitbook.io/connector-api/operations/products/#product).'
           format: uuid
-          nullable: true
         AgeCategoryId:
           type: string
+          description: 'Unique identifier of the [Age Category](https://mews-systems.gitbook.io/connector-api/operations/agecategories/#age-category).'
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: OrderItemProductData
     OrderItemRebateData:
-      title: OrderItemRebateData
+      title: Rebate data
+      required:
+        - RebatedItemId
       type: object
       properties:
         RebatedItemId:
           type: string
+          description: 'Unique identifier of [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which has been rebated by current item.'
           format: uuid
-          nullable: true
       additionalProperties: false
       x-schema-id: OrderItemRebateData
     OrderItemResult:
@@ -31877,7 +31656,8 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: OrderItemResult
-    OrderItemType:
+    OrderItemTypeEnum:
+      title: Order item type
       enum:
         - CancellationFee
         - NightRebate
@@ -31896,6 +31676,41 @@ components:
         - ResourceUpgradeFee
         - InvoiceFee
       type: string
+      description: "\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee"
+      x-enumNames:
+        - CancellationFee
+        - NightRebate
+        - ProductOrderRebate
+        - AdditionalExpenseRebate
+        - Deposit
+        - ExchangeRateDifference
+        - CustomItem
+        - ServiceCharge
+        - CityTax
+        - CityTaxDiscount
+        - SpaceOrder
+        - ProductOrder
+        - Surcharge
+        - TaxCorrection
+        - ResourceUpgradeFee
+        - InvoiceFee
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     OrderItemTypeOld:
       enum:
         - CancellationFee
@@ -32151,7 +31966,7 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         CreatedUtc:
           minLength: 1
@@ -32473,15 +32288,16 @@ components:
           format: uuid
           nullable: true
         Amount:
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         OriginalAmount:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         Notes:
           type: string
@@ -32776,22 +32592,22 @@ components:
           format: uuid
           nullable: true
         Amount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         OriginalAmount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         AmountDefault:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         Notes:
           type: string
@@ -32958,9 +32774,10 @@ components:
         State:
           $ref: '#/components/schemas/PaymentRequestState'
         Amount:
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
         Type:
           $ref: '#/components/schemas/PaymentRequestType'
         Reason:
@@ -33230,34 +33047,9 @@ components:
                       type: string
                       nullable: true
                     Bill:
-                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
-                      properties:
-                        AssigneeData:
-                          title: AssigneeData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          deprecated: true
-                        OwnerData:
-                          title: OwnerData
-                          type: object
-                          properties:
-                            discriminator:
-                              $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                            value:
-                              oneOf:
-                                - $ref: '#/components/schemas/BillCompanyData'
-                                - $ref: '#/components/schemas/BillCustomerData'
-                          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                       nullable: true
-                      x-schema-id: Bill
                     TaxIdentifier:
                       type: string
                       nullable: true
@@ -33400,34 +33192,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -33540,34 +33307,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -33710,34 +33452,9 @@ components:
               type: string
               nullable: true
             Bill:
-              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
-              properties:
-                AssigneeData:
-                  title: AssigneeData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  deprecated: true
-                OwnerData:
-                  title: OwnerData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
               nullable: true
-              x-schema-id: Bill
             TaxIdentifier:
               type: string
               nullable: true
@@ -33806,16 +33523,16 @@ components:
           format: uuid
           nullable: true
         Amount:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         Fee:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         PaymentTerminalData:
           type: string
@@ -34008,9 +33725,10 @@ components:
           format: uuid
           nullable: true
         Amount:
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         State:
           type: string
@@ -34093,34 +33811,9 @@ components:
                   type: string
                   nullable: true
                 Bill:
-                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
-                  properties:
-                    AssigneeData:
-                      title: AssigneeData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      deprecated: true
-                    OwnerData:
-                      title: OwnerData
-                      type: object
-                      properties:
-                        discriminator:
-                          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                        value:
-                          oneOf:
-                            - $ref: '#/components/schemas/BillCompanyData'
-                            - $ref: '#/components/schemas/BillCustomerData'
-                      description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
                   nullable: true
-                  x-schema-id: Bill
                 TaxIdentifier:
                   type: string
                   nullable: true
@@ -34263,34 +33956,9 @@ components:
               type: string
               nullable: true
             Bill:
-              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
-              properties:
-                AssigneeData:
-                  title: AssigneeData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  deprecated: true
-                OwnerData:
-                  title: OwnerData
-                  type: object
-                  properties:
-                    discriminator:
-                      $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-                    value:
-                      oneOf:
-                        - $ref: '#/components/schemas/BillCompanyData'
-                        - $ref: '#/components/schemas/BillCustomerData'
-                  description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
               nullable: true
-              x-schema-id: Bill
             TaxIdentifier:
               type: string
               nullable: true
@@ -34511,10 +34179,10 @@ components:
           description: Classifications of the service.
           nullable: true
         Price:
-          title: ExtendedAmount
+          title: Amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: Price representing price of the product.
+          description: ''
           nullable: true
         Pricing:
           title: Pricing
@@ -35080,20 +34748,21 @@ components:
       additionalProperties: false
       x-schema-id: ProductServiceOrderResult
     ProfileData:
-      title: ProfileData
+      title: Profile data
+      required:
+        - Discriminator
       type: object
       properties:
         Discriminator:
-          anyOf:
-            - $ref: '#/components/schemas/ProfileDataDiscriminator'
-          nullable: true
+          $ref: '#/components/schemas/ProfileDataDiscriminator'
         EnterpriseProfile:
-          title: EnterpriseProfileData
+          title: Enterprise profile data
           allOf:
             - $ref: '#/components/schemas/EnterpriseProfileData'
+          description: Enterprise profile data.
           nullable: true
       additionalProperties: false
-      description: The profile data of the user who updated the loyalty membership.
+      description: The profile data of the user who created or last updated the record.
       x-schema-id: ProfileData
     ProfileDataDiscriminator:
       enum:
@@ -37083,7 +36752,7 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: Value of the preauthorization.
+          description: ''
           nullable: true
         Total:
           title: CurrencyValueOld
@@ -38552,13 +38221,62 @@ components:
           type: string
           format: uuid
         Metrics:
+          title: ResourceAvailabilityMetricTypeInt32IEnumerableIDictionary
           type: object
-          additionalProperties:
-            type: array
-            items:
-              type: integer
-              format: int32
+          properties:
+            OutOfOrderBlocks:
+              type: array
+              items:
+                type: integer
+                format: int32
+            PublicAvailabilityAdjustment:
+              type: array
+              items:
+                type: integer
+                format: int32
+            OtherServiceReservationCount:
+              type: array
+              items:
+                type: integer
+                format: int32
+            Occupied:
+              type: array
+              items:
+                type: integer
+                format: int32
+            ConfirmedReservations:
+              type: array
+              items:
+                type: integer
+                format: int32
+            OptionalReservations:
+              type: array
+              items:
+                type: integer
+                format: int32
+            BlockAvailability:
+              type: array
+              items:
+                type: integer
+                format: int32
+            AllocatedBlockAvailability:
+              type: array
+              items:
+                type: integer
+                format: int32
+            UsableResources:
+              type: array
+              items:
+                type: integer
+                format: int32
+            ActiveResources:
+              type: array
+              items:
+                type: integer
+                format: int32
+          additionalProperties: false
           description: 'Dictionary keys are names of [Service availability metrics](https://mews-systems.gitbook.io/connector-api/operations/#service-availability-metrics), values are arrays of integers with metric values for corresponding time unit in TimeUnitStartsUtc.'
+          x-schema-id: ResourceAvailabilityMetricTypeInt32IEnumerableIDictionary
       additionalProperties: false
       x-schema-id: ResourceCategoryAvailabilityV20240122
     ResourceCategoryFilterParameters:
@@ -39786,6 +39504,22 @@ components:
         - Start
         - End
       type: string
+    RevenueTypeEnum:
+      title: Revenue type
+      enum:
+        - Service
+        - Product
+        - Additional
+      type: string
+      description: "Revenue type.\n\nService\n\nProduct\n\nAdditional"
+      x-enumNames:
+        - Service
+        - Product
+        - Additional
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
     RoutingRule:
       title: Routing rule
       required:
@@ -41554,28 +41288,36 @@ components:
       additionalProperties: false
       x-schema-id: TaskResult
     TaxBreakdown:
-      title: TaxBreakdown
+      title: Tax breakdown
+      required:
+        - Items
       type: object
       properties:
         Items:
           type: array
           items:
             $ref: '#/components/schemas/TaxBreakdownItem'
-          nullable: true
+          description: Tax breakdown items per each tax rate applied.
       additionalProperties: false
       x-schema-id: TaxBreakdown
     TaxBreakdownItem:
-      title: TaxBreakdownItem
+      title: Tax breakdown item
+      required:
+        - NetValue
+        - TaxValue
       type: object
       properties:
         TaxRateCode:
           type: string
+          description: Tax rate code for the item. `null` for untaxed amounts.
           nullable: true
         NetValue:
           type: number
+          description: The net value that the tax is calculated from.
           format: double
         TaxValue:
           type: number
+          description: The value of the tax.
           format: double
       additionalProperties: false
       x-schema-id: TaxBreakdownItem
@@ -41672,14 +41414,18 @@ components:
         - Dependent
       type: string
     TaxValue:
-      title: TaxValue
+      title: Tax value
+      required:
+        - Value
       type: object
       properties:
         Code:
           type: string
+          description: Code corresponding to tax type.
           nullable: true
         Value:
           type: number
+          description: Amount of tax applied.
           format: double
       additionalProperties: false
       x-schema-id: TaxValue

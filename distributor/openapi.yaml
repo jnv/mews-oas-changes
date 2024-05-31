@@ -16,7 +16,7 @@ paths:
               $ref: '#/components/schemas/AvailabilityParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -31,7 +31,7 @@ paths:
               $ref: '#/components/schemas/AvailabilityParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -47,7 +47,7 @@ paths:
               $ref: '#/components/schemas/ServiceAvailabilityParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -62,7 +62,7 @@ paths:
               $ref: '#/components/schemas/ServiceAvailabilityParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -78,7 +78,7 @@ paths:
               $ref: '#/components/schemas/ReservationPricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -93,7 +93,7 @@ paths:
               $ref: '#/components/schemas/ReservationPricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -109,7 +109,7 @@ paths:
               $ref: '#/components/schemas/AvailabilityBlockFilterParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -124,7 +124,7 @@ paths:
               $ref: '#/components/schemas/AvailabilityBlockFilterParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -140,7 +140,7 @@ paths:
               $ref: '#/components/schemas/ConfigurationParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -155,7 +155,7 @@ paths:
               $ref: '#/components/schemas/ConfigurationParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -171,7 +171,7 @@ paths:
               $ref: '#/components/schemas/HotelParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -186,7 +186,7 @@ paths:
               $ref: '#/components/schemas/HotelParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -202,7 +202,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -217,7 +217,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -233,7 +233,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -248,7 +248,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -264,7 +264,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -279,7 +279,7 @@ paths:
               $ref: '#/components/schemas/BookingEngineParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -295,7 +295,7 @@ paths:
               $ref: '#/components/schemas/VoucherParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -310,7 +310,7 @@ paths:
               $ref: '#/components/schemas/VoucherParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -326,7 +326,7 @@ paths:
               $ref: '#/components/schemas/HotelParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -341,7 +341,7 @@ paths:
               $ref: '#/components/schemas/HotelParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -357,7 +357,7 @@ paths:
               $ref: '#/components/schemas/ExchangeRateParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -372,7 +372,7 @@ paths:
               $ref: '#/components/schemas/ExchangeRateParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -388,7 +388,7 @@ paths:
               $ref: '#/components/schemas/AuthorizePaymentCardParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -403,7 +403,7 @@ paths:
               $ref: '#/components/schemas/AuthorizePaymentCardParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -419,7 +419,7 @@ paths:
               $ref: '#/components/schemas/PaymentCardFilterParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -434,7 +434,7 @@ paths:
               $ref: '#/components/schemas/PaymentCardFilterParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -450,7 +450,7 @@ paths:
               $ref: '#/components/schemas/CreateReservationGroupParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -465,7 +465,7 @@ paths:
               $ref: '#/components/schemas/CreateReservationGroupParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -481,7 +481,7 @@ paths:
               $ref: '#/components/schemas/ReservationGroupParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -496,7 +496,7 @@ paths:
               $ref: '#/components/schemas/ReservationGroupParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -512,7 +512,7 @@ paths:
               $ref: '#/components/schemas/ReservationPriceParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -527,7 +527,7 @@ paths:
               $ref: '#/components/schemas/ReservationPriceParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -543,7 +543,7 @@ paths:
               $ref: '#/components/schemas/ProductPricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -558,7 +558,7 @@ paths:
               $ref: '#/components/schemas/ProductPricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -574,7 +574,7 @@ paths:
               $ref: '#/components/schemas/ServicePricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -589,7 +589,7 @@ paths:
               $ref: '#/components/schemas/ServicePricingParameters'
       responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
