@@ -29352,6 +29352,21 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: MessageThreadResult
+    MobileKeyData:
+      title: MobileKeyData
+      type: object
+      properties:
+        EndpointId:
+          type: string
+          nullable: true
+        Label:
+          type: string
+          nullable: true
+        Description:
+          type: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: MobileKeyData
     MultipleAccountMergeParameters:
       title: MultipleAccountMergeParameters
       required:
@@ -32932,6 +32947,7 @@ components:
         - Deposit
         - Prepayment
         - Fee
+        - RecurringPayment
       type: string
     PaymentRequestResult:
       title: PaymentRequestResult
