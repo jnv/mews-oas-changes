@@ -541,7 +541,7 @@ paths:
       tags:
         - Accounting items
       summary: Get all accounting items
-      description: Use payments/getall or orderItems/getall.
+      description: Use `payments/getAll` or `orderItems/getAll`.
       operationId: accountingItems_getAll
       requestBody:
         content:
@@ -31643,9 +31643,14 @@ components:
     OrderItemRebateData:
       title: Rebate data
       required:
+        - ProductId
         - RebatedItemId
       type: object
       properties:
+        ProductId:
+          type: string
+          description: 'Unique identifier of the [Product](https://mews-systems.gitbook.io/connector-api/operations/products/#product) of the original rebated [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item).'
+          format: uuid
         RebatedItemId:
           type: string
           description: 'Unique identifier of [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which has been rebated by current item.'
@@ -35933,6 +35938,8 @@ components:
         PostCancellationFee:
           type: boolean
           description: Whether cancellation fees should be charged according to rate conditions.
+        SendEmail:
+          type: boolean
         Notes:
           type: string
           description: Additional notes describing the reason for the cancellation.
