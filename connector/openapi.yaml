@@ -10690,129 +10690,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/serviceOrders/reservations/getAll:
-    post:
-      tags:
-        - Reservations
-      description: Use the equivalent endpoint reservations/getAll/2023-06-06
-      operationId: serviceOrders_reservations_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReservationServiceOrderFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ReservationIds:
-                - 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-              ServiceIds:
-                - ae8da28c-e8a4-4141-9df0-8c998976c691
-                - 6b02d015-47ac-4c41-8e9f-5b4db61d4284
-              AccountIds:
-                - 94843f6f-3be3-481b-a1c7-06458774c3df
-              ReservationGroupIds:
-                - 94843f6f-3be3-481b-a1c7-06458774c3df
-              UpdatedUtc:
-                StartUtc: '2023-04-01T00:00:00Z'
-                EndUtc: '2023-05-05T00:00:00Z'
-              Limitation:
-                Cursor: 819e3435-7d5e-441f-bc68-76d89c69b8f5
-                Count: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReservationServiceOrderResult'
-              example:
-                Reservations:
-                  - Id: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-                    ServiceId: ae8da28c-e8a4-4141-9df0-8c998976c691
-                    AccountId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    AccountType: Customer
-                    CreatorProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    UpdaterProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    BookerId: ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72
-                    StartUtc: '2023-04-23T14:00:00Z'
-                    ScheduledStartUtc: '2023-04-23T14:00:00Z'
-                    ActualStartUtc: 
-                    EndUtc: '2023-04-24T14:00:00Z'
-                    Number: '52'
-                    State: Confirmed
-                    Origin: Connector
-                    CommanderOrigin: 
-                    OriginDetails: 
-                    CreatedUtc: '2023-04-23T14:58:02Z'
-                    UpdatedUtc: '2023-04-23T14:58:02Z'
-                    ReleasedUtc: 
-                    CancelledUtc: 
-                    VoucherId: 
-                    BusinessSegmentId: 
-                    Options:
-                      OwnerCheckedIn: true
-                      AllCompanionsCheckedIn: true
-                      AnyCompanionCheckedIn: true
-                      ConnectorCheckIn: true
-                    QrCodeData: 
-                    RateId: ed4b660b-19d0-434b-9360-a4de2ea42eda
-                    CreditCardId: 
-                    GroupId: 
-                    RequestedResourceCategoryId: 773d5e42-de1e-43a0-9ce6-f940faf2303f
-                    AssignedResourceId: 20e00c32-d561-4008-8609-82d8aa525714
-                    AvailabilityBlockId: 
-                    PartnerCompanyId: 
-                    TravelAgencyId: 
-                    AssignedResourceLocked: false
-                    ChannelNumber: TW48ZP
-                    ChannelManagerNumber: ''
-                    CancellationReason: 
-                    Purpose: Leisure
-                    PersonCounts:
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                Cursor: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
   /api/connector/v1/reservations/getAll/2023-06-06:
     post:
       tags:
@@ -18124,10 +18001,10 @@ components:
           description: Identifier of the reservation within the transaction.
           nullable: true
         Reservation:
-          title: ReservationOld
+          title: Reservation (ver 2017-04-12)
           allOf:
             - $ref: '#/components/schemas/ReservationOld'
-          description: The added reservation.
+          description: ''
           nullable: true
       additionalProperties: false
       x-schema-id: AddedReservation
@@ -20444,6 +20321,24 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CancellationPolicyResult
+    CancellationReason:
+      enum:
+        - Other
+        - ConfirmationMissed
+        - BookedElsewhere
+        - ForceMajeure
+        - GuestComplaint
+        - NoShow
+        - PriceTooHigh
+        - ServiceNotAvailable
+        - InputError
+        - InvalidPayment
+        - TravelAgency
+        - RequestedByGuest
+        - Update
+        - BookingAbandoned
+        - RequestedByBooker
+      type: string
     Cashier:
       title: Cashier
       required:
@@ -20823,10 +20718,10 @@ components:
             - $ref: '#/components/schemas/Customer'
           nullable: true
         Reservation:
-          title: ReservationOld
+          title: Reservation (ver 2017-04-12)
           allOf:
             - $ref: '#/components/schemas/ReservationOld'
-          description: The added reservation.
+          description: ''
           nullable: true
         Id:
           type: string
@@ -22023,7 +21918,7 @@ components:
           format: uuid
           deprecated: true
         Extent:
-          title: ReservationExtent
+          title: Reservation extent
           allOf:
             - $ref: '#/components/schemas/ReservationExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -30307,7 +30202,7 @@ components:
           format: uuid
           deprecated: true
         Extent:
-          title: ReservationExtent
+          title: Reservation extent
           allOf:
             - $ref: '#/components/schemas/ReservationExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -30391,7 +30286,7 @@ components:
         PersonCounts:
           title: PersonCountParametersIEnumerableUpdateValue
           allOf:
-            - $ref: '#/components/schemas/PersonCountParametersIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationPersonCountIEnumerableUpdateValue'
           nullable: true
         AssignedResourceId:
           title: GuidNullableUpdateValue
@@ -33686,41 +33581,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PerUnitPriceParametersIEnumerableUpdateValue
-    PersonCount:
-      title: PersonCount
-      type: object
-      properties:
-        AgeCategoryId:
-          type: string
-          format: uuid
-        Count:
-          type: integer
-          format: int32
-      additionalProperties: false
-      x-schema-id: PersonCount
-    PersonCountParameters:
-      title: PersonCountParameters
-      type: object
-      properties:
-        AgeCategoryId:
-          type: string
-          format: uuid
-        Count:
-          type: integer
-          format: int32
-      additionalProperties: false
-      x-schema-id: PersonCountParameters
-    PersonCountParametersIEnumerableUpdateValue:
-      title: PersonCountParametersIEnumerableUpdateValue
-      type: object
-      properties:
-        Value:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonCountParameters'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: PersonCountParametersIEnumerableUpdateValue
     PersonData:
       type: object
       additionalProperties: false
@@ -35230,20 +35090,26 @@ components:
       properties:
         Id:
           type: string
+          description: Unique identifier of the rate group.
           format: uuid
         ServiceId:
           type: string
+          description: Unique identifier of the Service that the rate group belongs to.
           format: uuid
         IsActive:
           type: boolean
+          description: Whether the rate group is still active.
         Name:
           type: string
+          description: Name of the rate group.
           nullable: true
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: External identifier of the rate group.
           nullable: true
       additionalProperties: false
+      description: Rate group (ver 2017-04-12)
       x-schema-id: RateGroupOld
     RateGroupResult:
       title: RateGroupResult
@@ -35626,13 +35492,21 @@ components:
       title: Reservation (ver 2023-06-06)
       required:
         - AccountId
+        - AccountType
         - CreatedUtc
         - CreatorProfileId
+        - EndUtc
+        - GroupId
         - Id
+        - Number
         - Options
         - Origin
+        - PersonCounts
         - RateId
+        - ScheduledEndUtc
+        - ScheduledStartUtc
         - ServiceId
+        - StartUtc
         - State
         - UpdatedUtc
         - UpdaterProfileId
@@ -35644,24 +35518,21 @@ components:
           format: uuid
         ServiceId:
           type: string
-          description: Unique identifier of the Service that reservation is made againts.
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) that reservation is made against.'
           format: uuid
         AccountId:
           type: string
           description: Unique identifier of the Customer or a Company who owns the reservation.
           format: uuid
         AccountType:
-          anyOf:
-            - $ref: '#/components/schemas/AccountType'
-          description: 'A discriminator specifying the type of account, e.g. customer or company.'
-          nullable: true
+          $ref: '#/components/schemas/AccountType'
         CreatorProfileId:
           type: string
-          description: Unique identifier of the user who created the order item.
+          description: Unique identifier of the user who created the reservation.
           format: uuid
         UpdaterProfileId:
           type: string
-          description: Unique identifier of the user who updated the order item.
+          description: Unique identifier of the user who updated the reservation.
           format: uuid
         BookerId:
           type: string
@@ -35669,17 +35540,53 @@ components:
           format: uuid
           nullable: true
         Number:
+          minLength: 1
           type: string
           description: Confirmation number of the reservation in Mews.
-          nullable: true
         State:
-          $ref: '#/components/schemas/ServiceOrderState'
+          title: Service order state
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderStateEnum'
+          description: "State of the reservation.\n\nInquired (Confirmed neither by the customer nor enterprise.)\n\nConfirmed (Confirmed by both parties, before check-in.)\n\nStarted (Checked in.)\n\nProcessed (Checked out.)\n\nCanceled (Canceled.)\n\nOptional (Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).)\n\nRequested (Confirmed by the customer but not by the enterprise (waitlist).)"
+          x-enumNames:
+            - Inquired
+            - Confirmed
+            - Started
+            - Processed
+            - Canceled
+            - Optional
+            - Requested
+          x-enumDescriptions:
+            - Confirmed neither by the customer nor enterprise.
+            - 'Confirmed by both parties, before check-in.'
+            - Checked in.
+            - Checked out.
+            - Canceled.
+            - Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).
+            - Confirmed by the customer but not by the enterprise (waitlist).
         Origin:
-          $ref: '#/components/schemas/ServiceOrderOrigin'
+          title: Service order origin
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderOriginEnum'
+          description: "Origin of the reservation.\n\nDistributor (From the Mews Booking Engine or Booking Engine API.)\n\nChannelManager (From a channel manager.)\n\nCommander (From Mews Operations.)\n\nImport (From an import process.)\n\nConnector (From the Mews Connector API.)\n\nNavigator (From Mews Guest Services.)"
+          x-enumNames:
+            - Distributor
+            - ChannelManager
+            - Commander
+            - Import
+            - Connector
+            - Navigator
+          x-enumDescriptions:
+            - From the Mews Booking Engine or Booking Engine API.
+            - From a channel manager.
+            - From Mews Operations.
+            - From an import process.
+            - From the Mews Connector API.
+            - From Mews Guest Services.
         CommanderOrigin:
-          anyOf:
-            - $ref: '#/components/schemas/ServiceOrderCommanderOrigin'
-          description: Further detail about origin in case of Origin `Commander`.
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderCommanderOriginEnum'
+          description: "Further detail about origin in case of Origin `Commander`.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
           nullable: true
         OriginDetails:
           type: string
@@ -35707,17 +35614,14 @@ components:
           nullable: true
         BusinessSegmentId:
           type: string
-          description: Identifier of the reservation `Business segment`.
-          format: uuid
-          nullable: true
-        LinkedReservationId:
-          type: string
+          description: 'Identifier of the reservation [Business segment](https://mews-systems.gitbook.io/connector-api/operations/businesssegments#business-segment).'
           format: uuid
           nullable: true
         Options:
           title: Service Order Options
           allOf:
             - $ref: '#/components/schemas/ServiceOrderOptions'
+          description: Options of the reservation.
         RateId:
           type: string
           description: Identifier of the reservation `Rate`.
@@ -35731,7 +35635,6 @@ components:
           type: string
           description: Unique identifier of the Reservation group.
           format: uuid
-          nullable: true
         RequestedResourceCategoryId:
           type: string
           description: Unique identifier of the Resource category.
@@ -35749,12 +35652,12 @@ components:
           nullable: true
         PartnerCompanyId:
           type: string
-          description: Identifier of the Company that mediated the reservation.
+          description: 'Identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies#company) on behalf of which the reservation was made.'
           format: uuid
           nullable: true
         TravelAgencyId:
           type: string
-          description: Identifier of the Travel Agency that mediated the reservation.
+          description: 'Identifier of the [Travel Agency](https://mews-systems.gitbook.io/connector-api/operations/travel-agencies#travel-agency) that mediated the reservation.'
           format: uuid
           nullable: true
         AssignedResourceLocked:
@@ -35769,9 +35672,9 @@ components:
           description: Unique number of the reservation within the reservation group.
           nullable: true
         CancellationReason:
-          anyOf:
-            - $ref: '#/components/schemas/ServiceOrderCancellationReason'
-          description: Cancellation reason of the reservation.
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderCancellationReasonEnum'
+          description: "Cancellation reason of the reservation.\n\nOther\n\nConfirmationMissed\n\nBookedElsewhere\n\nForceMajeure\n\nGuestComplaint\n\nNoShow\n\nPriceTooHigh\n\nServiceNotAvailable\n\nInputError\n\nInvalidPayment\n\nTravelAgency\n\nRequestedByGuest\n\nUpdate\n\nBookingAbandoned\n\nRequestedByBooker"
           nullable: true
         ReleasedUtc:
           type: string
@@ -35779,39 +35682,41 @@ components:
           format: date-time
           nullable: true
         StartUtc:
+          minLength: 1
           type: string
-          description: "Reservation start or check-in time (if it's earlier than scheduled start) in UTC timezone.\r\n\r\n**Deprecated!** Use `ScheduledStartUtc` and `ActualStartUtc` instead."
+          description: Reservation start or check-in time (if it's earlier than scheduled start) in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
           deprecated: true
         EndUtc:
+          minLength: 1
           type: string
-          description: End of the reservation (departure) in UTC timezone.
+          description: Scheduled end time of reservation in UTC timezone in ISO 8601 format
           format: date-time
-          nullable: true
           deprecated: true
         ScheduledStartUtc:
+          minLength: 1
           type: string
           description: Scheduled start time of reservation in UTC timezone.
           format: date-time
-          nullable: true
         ActualStartUtc:
           type: string
           description: Actual customer check-in time of reservation in UTC timezone.
           format: date-time
           nullable: true
         ScheduledEndUtc:
+          minLength: 1
           type: string
+          description: Scheduled end time of reservation in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         ActualEndUtc:
           type: string
+          description: Actual end time of reservation in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         Purpose:
-          anyOf:
-            - $ref: '#/components/schemas/ReservationPurpose'
-          description: Purpose of the reservation.
+          allOf:
+            - $ref: '#/components/schemas/ReservationPurposeEnum'
+          description: "\n\nLeisure\n\nBusiness\n\nStudent"
           nullable: true
         QrCodeData:
           type: string
@@ -35821,8 +35726,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReservationPersonCount'
-          description: Number of people per age category the reservation was booked for.
-          nullable: true
+          description: Number of people per age category the reservation was booked for. At least one category with valid count must be provided.
       additionalProperties: false
       x-schema-id: Reservation
     ReservationAdditionParameters:
@@ -35969,7 +35873,7 @@ components:
             type: string
           nullable: true
         Extent:
-          title: ReservationExtent
+          title: Reservation extent
           allOf:
             - $ref: '#/components/schemas/ReservationExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -36052,7 +35956,7 @@ components:
         PersonCounts:
           type: array
           items:
-            $ref: '#/components/schemas/PersonCountParameters'
+            $ref: '#/components/schemas/ReservationPersonCount'
         CustomerId:
           type: string
           format: uuid
@@ -36175,49 +36079,67 @@ components:
       additionalProperties: false
       x-schema-id: ReservationDataParameters
     ReservationExtent:
-      title: ReservationExtent
+      title: Reservation extent
       type: object
       properties:
         Reservations:
           type: boolean
+          description: Whether the response should contain reservations.
         ReservationGroups:
           type: boolean
+          description: Whether the response should contain groups of the reservations.
         Customers:
           type: boolean
+          description: Whether the response should contain customers of the reservations.
         CustomerAdresses:
           type: boolean
+          description: Whether the response should contain addresses of the customers.
           nullable: true
         CustomerIdentityDocuments:
           type: boolean
+          description: Whether the response should contain identity documents of the customers.
           nullable: true
         Services:
           type: boolean
+          description: Whether the response should contain services reserved by the reservations.
         Products:
           type: boolean
+          description: Whether the response should contain products orderable with the reservations.
         BusinessSegments:
           type: boolean
+          description: Whether the response should contain business segmentation.
         Resources:
           type: boolean
+          description: Whether the response should contain resources.
         ResourceCategories:
           type: boolean
+          description: Whether the response should contain resource categories.
         ResourceCategoryAssignments:
           type: boolean
+          description: Whether the response should contain assignments of the resources to categories.
         Rates:
           type: boolean
+          description: Whether the response should contain rates and rate groups.
         Items:
           type: boolean
+          description: Whether the response should contain accounting items.
         OrderItems:
           type: boolean
+          description: Whether the response should contain reservation items.
         Notes:
           type: boolean
+          description: Whether the response should contain notes.
         QrCodeData:
           type: boolean
+          description: Whether the response should contain QR code data.
         Companies:
           type: boolean
+          description: Whether the response should contain companies.
         AccountingStates:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AccountingState'
+          description: 'States the items should be in. If not specified, items in `Open` or `Closed` states are returned.'
           nullable: true
       additionalProperties: false
       description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -36352,11 +36274,11 @@ components:
         States:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ServiceOrderStateOld'
           description: 'States the reservations should be in. If not specified, reservations in Confirmed, Started or Processed states or reservations specified by ReservationIds regardless of state are returned.'
           nullable: true
         Extent:
-          title: ReservationExtent
+          title: Reservation extent
           allOf:
             - $ref: '#/components/schemas/ReservationExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -36454,11 +36376,14 @@ components:
       properties:
         Id:
           type: string
+          description: Unique identifier of the reservation group.
           format: uuid
         Name:
           type: string
+          description: Name of the reservation group.
           nullable: true
       additionalProperties: false
+      description: Reservation groups (ver 2017-04-12)
       x-schema-id: ReservationGroupOld
     ReservationGroupResult:
       title: ReservationGroupResult
@@ -36578,7 +36503,7 @@ components:
             format: uuid
           nullable: true
         Extent:
-          title: ReservationExtent
+          title: Reservation extent
           allOf:
             - $ref: '#/components/schemas/ReservationExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
@@ -36586,111 +36511,159 @@ components:
       additionalProperties: false
       x-schema-id: ReservationMultipleCustomerParameters
     ReservationOld:
-      title: ReservationOld
+      title: Reservation (ver 2017-04-12)
       required:
+        - AssignedResourceLocked
+        - CreatedUtc
+        - CustomerId
+        - EndUtc
+        - GroupId
+        - Id
+        - Number
         - Options
+        - Origin
+        - OwnerId
+        - PersonCounts
+        - RateId
+        - RequestedCategoryId
+        - ServiceId
+        - StartUtc
+        - State
+        - UpdatedUtc
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the reservation.
           format: uuid
         ServiceId:
           type: string
+          description: Unique identifier of the Service that is reserved.
           format: uuid
         GroupId:
           type: string
+          description: Unique identifier of the Reservation group.
           format: uuid
         Number:
+          minLength: 1
           type: string
-          nullable: true
+          description: Confirmation number of the reservation in Mews.
         ChannelNumber:
           type: string
+          description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number).'
           nullable: true
         ChannelManagerNumber:
           type: string
+          description: Unique number of the reservation within the reservation group.
           nullable: true
         ChannelManagerGroupNumber:
           type: string
+          description: Number of the reservation group within a Channel manager that transferred the reservation from Channel to Mews.
           nullable: true
         ChannelManager:
           type: string
+          description: 'Name of the Channel manager (e.g. AvailPro, SiteMinder, TravelClick, etc).'
           nullable: true
         State:
+          minLength: 1
           type: string
-          nullable: true
+          description: State of the reservation.
         Origin:
+          minLength: 1
           type: string
-          nullable: true
+          description: Origin of the reservation.
         OriginDetails:
           type: string
+          description: Details about the reservation origin.
           nullable: true
         Purpose:
           type: string
+          description: Purpose of the reservation.
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Creation date and time of the reservation in UTC timezone in ISO 8601 format.
         UpdatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last update date and time of the reservation in UTC timezone in ISO 8601 format.
         CancelledUtc:
           type: string
+          description: Cancellation date and time in UTC timezone in ISO 8601 format.
           nullable: true
         StartUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'Start of the reservation in UTC timezone in ISO 8601 format. This is either the scheduled reservation start time, or the actual customer check-in time if this is earlier than the scheduled start time.'
         EndUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: End of the reservation (departure) in UTC timezone in ISO 8601 format.
         ReleasedUtc:
           type: string
+          description: Date when the optional reservation is released in UTC timezone in ISO 8601 format.
           nullable: true
         RequestedCategoryId:
           type: string
+          description: Identifier of the requested Resource category.
           format: uuid
         AssignedSpaceId:
           type: string
+          description: Identifier of the assigned Space.
           format: uuid
           nullable: true
+          deprecated: true
+        AssignedSpaceLocked:
+          type: boolean
+          description: Whether the reservation is locked to the assigned Space and cannot be moved.
           deprecated: true
         AssignedResourceId:
           type: string
+          description: Identifier of the assigned Resource.
           format: uuid
           nullable: true
-        AssignedSpaceLocked:
-          type: boolean
-          deprecated: true
         AssignedResourceLocked:
           type: boolean
+          description: Whether the reservation is locked to the assigned Resource and cannot be moved.
         BusinessSegmentId:
           type: string
+          description: Identifier of the reservation Business segment.
           format: uuid
           nullable: true
         CompanyId:
           type: string
+          description: Identifier of the Company on behalf of which the reservation was made.
           format: uuid
           nullable: true
         TravelAgencyId:
           type: string
+          description: Identifier of the Company that mediated the reservation.
           format: uuid
           nullable: true
         AvailabilityBlockId:
           type: string
+          description: Unique identifier of the Availability block the reservation is assigned to.
           format: uuid
           nullable: true
         RateId:
           type: string
+          description: Identifier of the reservation Rate.
           format: uuid
         VoucherId:
           type: string
+          description: Unique identifier of the Voucher that has been used to create reservation.
           format: uuid
           nullable: true
         CreditCardId:
           type: string
+          description: Unique identifier of the Credit card.
           format: uuid
           nullable: true
         CancellationReason:
-          type: string
+          anyOf:
+            - $ref: '#/components/schemas/CancellationReason'
+          description: Cancellation reason of the reservation.
           nullable: true
         AdultCount:
           type: integer
@@ -36703,18 +36676,20 @@ components:
         PersonCounts:
           type: array
           items:
-            $ref: '#/components/schemas/PersonCount'
-          nullable: true
+            $ref: '#/components/schemas/ReservationPersonCount'
+          description: Number of people per age category the reservation was booked for.
         OwnerId:
           type: string
+          description: Unique identifier of the Customer or Company who owns the reservation.
           format: uuid
         CustomerId:
           type: string
+          description: Unique identifier of the Customer who owns the reservation.
           format: uuid
-          nullable: true
           deprecated: true
         BookerId:
           type: string
+          description: Unique identifier of the Customer on whose behalf the reservation was made.
           format: uuid
           nullable: true
         CompanionIds:
@@ -36732,8 +36707,9 @@ components:
           title: ReservationOptions
           allOf:
             - $ref: '#/components/schemas/ReservationOptions'
+          description: Options of the reservation.
       additionalProperties: false
-      description: The added reservation.
+      description: ''
       x-schema-id: ReservationOld
     ReservationOptions:
       title: ReservationOptions
@@ -36752,17 +36728,33 @@ components:
       additionalProperties: false
       x-schema-id: ReservationOptions
     ReservationPersonCount:
-      title: ReservationPersonCount
+      title: Age category parameters
+      required:
+        - AgeCategoryId
+        - Count
       type: object
       properties:
         AgeCategoryId:
           type: string
+          description: 'Unique identifier of the [Age category](https://mews-systems.gitbook.io/connector-api/operations/agecategories#age-category).'
           format: uuid
         Count:
           type: integer
+          description: Number of people of a given age category. Only positive value is accepted.
           format: int32
       additionalProperties: false
       x-schema-id: ReservationPersonCount
+    ReservationPersonCountIEnumerableUpdateValue:
+      title: ReservationPersonCountIEnumerableUpdateValue
+      type: object
+      properties:
+        Value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationPersonCount'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ReservationPersonCountIEnumerableUpdateValue
     ReservationPrice:
       title: Reservation price
       type: object
@@ -36905,6 +36897,22 @@ components:
         - Business
         - Student
       type: string
+    ReservationPurposeEnum:
+      title: Reservation purpose
+      enum:
+        - Leisure
+        - Business
+        - Student
+      type: string
+      description: "\n\nLeisure\n\nBusiness\n\nStudent"
+      x-enumNames:
+        - Leisure
+        - Business
+        - Student
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
     ReservationQrCodeData:
       title: ReservationQrCodeData
       type: object
@@ -36991,6 +36999,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountingItem'
+          description: Accounting items that are part of the reservations.
           nullable: true
         OrderItems:
           type: array
@@ -37014,11 +37023,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Company'
+          description: Companies related to the reservations.
           nullable: true
         ResourceAccessTokens:
           type: array
           items:
             $ref: '#/components/schemas/ResourceAccessToken'
+          description: Resource access tokens for the reservations.
           nullable: true
         Cursor:
           type: string
@@ -37034,7 +37045,6 @@ components:
         - Client
         - ClientToken
         - Limitation
-        - ServiceIds
       type: object
       properties:
         Client:
@@ -37079,6 +37089,7 @@ components:
             type: string
             format: uuid
           description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service). If not provided, all bookable services are used.'
+          nullable: true
         ReservationGroupIds:
           maxItems: 1000
           minItems: 1
@@ -37104,29 +37115,40 @@ components:
           items:
             type: string
             format: uuid
+          description: 'Unique identifiers of the [Resources](https://mews-systems.gitbook.io/connector-api/operations/resources#resource) assigned to the reservations.'
           nullable: true
+        CreatedUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: 'Interval in which the [Reservation](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-ver-2023-06-06) was created.'
+          nullable: true
+          x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Reservations` were updated.
           nullable: true
           x-max-interval-in-months: 3
         CollidingUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the reservations are active. This is defined for a `Reservation` as the period between the reservation's scheduled start time `ScheduledStartUtc` and its scheduled end time `EndUtc`. Reservation is selected if any part of its interval intersects with the interval specified in `CollidingUtc
           nullable: true
           x-max-interval-in-months: 3
         ScheduledStartUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval filtering Reservations by their scheduled start time.
           nullable: true
           x-max-interval-in-months: 3
         States:
+          uniqueItems: true
           type: array
           items:
-            $ref: '#/components/schemas/ServiceOrderState'
+            $ref: '#/components/schemas/ServiceOrderStateEnum'
           description: A list of service order states to filter by.
           nullable: true
       additionalProperties: false
@@ -37309,7 +37331,7 @@ components:
         PersonCounts:
           title: PersonCountParametersIEnumerableUpdateValue
           allOf:
-            - $ref: '#/components/schemas/PersonCountParametersIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationPersonCountIEnumerableUpdateValue'
           nullable: true
         AssignedResourceId:
           title: GuidNullableUpdateValue
@@ -40527,6 +40549,7 @@ components:
           format: uuid
         ServiceId:
           type: string
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) that service order is made against.'
           format: uuid
         AccountId:
           type: string
@@ -40589,7 +40612,8 @@ components:
             - $ref: '#/components/schemas/ServiceOrderOptions'
       additionalProperties: false
       x-schema-id: ServiceOrder
-    ServiceOrderCancellationReason:
+    ServiceOrderCancellationReasonEnum:
+      title: Reservation cancellation reason
       enum:
         - Other
         - ConfirmationMissed
@@ -40607,6 +40631,39 @@ components:
         - BookingAbandoned
         - RequestedByBooker
       type: string
+      description: "\n\nOther\n\nConfirmationMissed\n\nBookedElsewhere\n\nForceMajeure\n\nGuestComplaint\n\nNoShow\n\nPriceTooHigh\n\nServiceNotAvailable\n\nInputError\n\nInvalidPayment\n\nTravelAgency\n\nRequestedByGuest\n\nUpdate\n\nBookingAbandoned\n\nRequestedByBooker"
+      x-enumNames:
+        - Other
+        - ConfirmationMissed
+        - BookedElsewhere
+        - ForceMajeure
+        - GuestComplaint
+        - NoShow
+        - PriceTooHigh
+        - ServiceNotAvailable
+        - InputError
+        - InvalidPayment
+        - TravelAgency
+        - RequestedByGuest
+        - Update
+        - BookingAbandoned
+        - RequestedByBooker
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ServiceOrderCommanderOrigin:
       enum:
         - InPerson
@@ -40617,6 +40674,34 @@ components:
         - Message
         - CallCenter
       type: string
+    ServiceOrderCommanderOriginEnum:
+      title: Commander origin
+      enum:
+        - InPerson
+        - Channel
+        - Phone
+        - Email
+        - Website
+        - Message
+        - CallCenter
+      type: string
+      description: "\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
+      x-enumNames:
+        - InPerson
+        - Channel
+        - Phone
+        - Email
+        - Website
+        - Message
+        - CallCenter
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ServiceOrderNoteAddParameters:
       title: ServiceOrderNoteAddParameters
       required:
@@ -40815,9 +40900,72 @@ components:
         - Connector
         - Navigator
       type: string
+    ServiceOrderOriginEnum:
+      title: Service order origin
+      enum:
+        - Distributor
+        - ChannelManager
+        - Commander
+        - Import
+        - Connector
+        - Navigator
+      type: string
+      description: "\n\nDistributor (From the Mews Booking Engine or Booking Engine API.)\n\nChannelManager (From a channel manager.)\n\nCommander (From Mews Operations.)\n\nImport (From an import process.)\n\nConnector (From the Mews Connector API.)\n\nNavigator (From Mews Guest Services.)"
+      x-enumNames:
+        - Distributor
+        - ChannelManager
+        - Commander
+        - Import
+        - Connector
+        - Navigator
+      x-enumDescriptions:
+        - From the Mews Booking Engine or Booking Engine API.
+        - From a channel manager.
+        - From Mews Operations.
+        - From an import process.
+        - From the Mews Connector API.
+        - From Mews Guest Services.
     ServiceOrderState:
       enum:
         - Inquired
+        - Confirmed
+        - Started
+        - Processed
+        - Canceled
+        - Optional
+        - Requested
+      type: string
+    ServiceOrderStateEnum:
+      title: Service order state
+      enum:
+        - Inquired
+        - Confirmed
+        - Started
+        - Processed
+        - Canceled
+        - Optional
+        - Requested
+      type: string
+      description: "\n\nInquired (Confirmed neither by the customer nor enterprise.)\n\nConfirmed (Confirmed by both parties, before check-in.)\n\nStarted (Checked in.)\n\nProcessed (Checked out.)\n\nCanceled (Canceled.)\n\nOptional (Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).)\n\nRequested (Confirmed by the customer but not by the enterprise (waitlist).)"
+      x-enumNames:
+        - Inquired
+        - Confirmed
+        - Started
+        - Processed
+        - Canceled
+        - Optional
+        - Requested
+      x-enumDescriptions:
+        - Confirmed neither by the customer nor enterprise.
+        - 'Confirmed by both parties, before check-in.'
+        - Checked in.
+        - Checked out.
+        - Canceled.
+        - Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).
+        - Confirmed by the customer but not by the enterprise (waitlist).
+    ServiceOrderStateOld:
+      enum:
+        - Enquired
         - Confirmed
         - Started
         - Processed
