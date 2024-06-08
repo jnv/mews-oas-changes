@@ -15267,7 +15267,7 @@ paths:
       tags:
         - Services
       summary: Get service availability
-      description: 'Returns availability of a bookable service for a specified time interval including applied availability adjustments. Availability will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/operations/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.'
+      description: 'Returns availability of a bookable service for a specified time interval including applied availability adjustments. Availability will be returned for all service time units that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 367 hours if hours, 367 days if days, or 60 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
       operationId: services_getAvailability
       requestBody:
         content:
@@ -15353,7 +15353,7 @@ paths:
       tags:
         - Services
       summary: Get service availability (ver 2024-01-22)
-      description: "> ### Restricted!\n> This operation is currently in beta-test and as such it is subject to change.\nReturns selected availability and occupancy metrics of a bookable service for a specified time interval, similar to [the availability & occupancy report](https://help.mews.com/s/article/Availability-Occupancy-report). Availability will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one time unit for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two time units for `2nd Jan` and `3rd Jan` (assuming a time unit period of \"Day\"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of \"Day\". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service's [time unit](https://mews-systems.gitbook.io/connector-api/operations/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months."
+      description: 'Returns selected availability and occupancy metrics of a bookable service for a specified time interval, similar to [the availability & occupancy report](https://help.mews.com/s/article/Availability-Occupancy-report). Availability will be returned for all service time units that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one time unit for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two time units for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 367 hours if hours, 367 days if days, or 60 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
       operationId: services_getAvailability_2024-01-22
       requestBody:
         content:
@@ -15491,6 +15491,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/sourceAssignments/getAll:
     post:
       tags:
@@ -17342,6 +17343,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountResult
     AccountType:
+      title: Account type
       enum:
         - Company
         - Customer
@@ -17794,6 +17796,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountingItemUpdateParameters
     AccountingState:
+      title: Order item accounting state
       enum:
         - Open
         - Closed
@@ -18024,14 +18027,15 @@ components:
       additionalProperties: false
       x-schema-id: AddedRestriction
     AdditionalServiceData:
-      title: AdditionalServiceData
+      title: Additional service data
+      required:
+        - Promotions
       type: object
       properties:
         Promotions:
           allOf:
             - $ref: '#/components/schemas/Promotions'
           description: Promotions of the service.
-          nullable: true
       additionalProperties: false
       x-schema-id: AdditionalServiceData
     Address:
@@ -18536,6 +18540,8 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/NextAction'
           description: Next action to take in order to complete the payment.
+          x-coproduct: true
+          x-schema-id: AlternativePaymentResultNextActionCoproductOfNextActionType
       additionalProperties: false
       x-schema-id: AlternativePaymentResult
     AlternativePaymentsData:
@@ -19388,6 +19394,8 @@ components:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
           deprecated: true
+          x-coproduct: true
+          x-schema-id: BillAssigneeDataCoproductOfBillAssigneeDataDiscriminator
         OwnerData:
           title: OwnerData
           type: object
@@ -19399,6 +19407,8 @@ components:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
           description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
+          x-coproduct: true
+          x-schema-id: BillOwnerDataCoproductOfBillAssigneeDataDiscriminator
         CompanyDetails:
           title: BillCompanyData
           allOf:
@@ -20001,28 +20011,59 @@ components:
         - Closed
       type: string
     BookableServiceData:
-      title: BookableServiceData
+      title: Bookable service data
+      required:
+        - EndOffset
+        - OccupancyEndOffset
+        - OccupancyStartOffset
+        - StartOffset
+        - TimeUnit
+        - TimeUnitPeriod
       type: object
       properties:
         StartOffset:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'Offset from the start of the [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/) which defines the default start of the service; expressed in ISO 8601 duration format.'
         EndOffset:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'Offset from the end of the [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/) which defines the default end of the service; expressed in ISO 8601 duration format.'
         OccupancyStartOffset:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'Offset from the start of the [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/) which defines the occupancy start of the service; expressed in ISO 8601 duration format. ''Occupancy start'' is used for availability and reporting purposes, it implies the time at which the booked resource is considered occupied.'
         OccupancyEndOffset:
+          minLength: 1
           type: string
-          nullable: true
+          description: 'Offset from the end of the [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/) which defines the occupancy end of the service; expressed in ISO 8601 duration format. ''Occupancy end'' is used for availability and reporting purposes, it implies the time at which the booked resource is no longer considered occupied.'
         TimeUnit:
-          type: string
-          nullable: true
+          title: Time unit period
+          allOf:
+            - $ref: '#/components/schemas/TimeUnitPeriodEnum'
+          description: "\n\nDay\n\nMonth\n\nHour"
           deprecated: true
+          x-enumNames:
+            - Day
+            - Month
+            - Hour
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
         TimeUnitPeriod:
-          type: string
-          nullable: true
+          title: Time unit period
+          allOf:
+            - $ref: '#/components/schemas/TimeUnitPeriodEnum'
+          description: "The length of time or period represented by a [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), for which the service can be booked.\n\nDay\n\nMonth\n\nHour"
+          x-enumNames:
+            - Day
+            - Month
+            - Hour
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: BookableServiceData
     BooleanNullableUpdateValue:
@@ -20587,24 +20628,29 @@ components:
       additionalProperties: false
       x-schema-id: CategoryAdjustment
     CategoryAvailability:
-      title: CategoryAvailability
+      title: Resource category availability
+      required:
+        - Adjustments
+        - Availabilities
+        - CategoryId
       type: object
       properties:
         CategoryId:
           type: string
+          description: 'Unique identifier of the [Resource category](https://mews-systems.gitbook.io/connector-api/operations/resources#resource-category).'
           format: uuid
         Availabilities:
           type: array
           items:
             type: integer
             format: int32
-          nullable: true
+          description: Absolute availabilities of the resource category in the covered dates.
         Adjustments:
           type: array
           items:
             type: integer
             format: int32
-          nullable: true
+          description: Relative availability adjustments set for resource category in the covered dates.
       additionalProperties: false
       x-schema-id: CategoryAvailability
     CategoryPricing:
@@ -21850,7 +21896,7 @@ components:
         Service:
           allOf:
             - $ref: '#/components/schemas/Service'
-          description: 'The reservable service (e.g. accommodation, parking) associated with the access token of the service scoped integration.'
+          description: ''
           nullable: true
         PaymentCardStorage:
           allOf:
@@ -24352,6 +24398,8 @@ components:
                                 value:
                                   oneOf:
                                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                              x-coproduct: true
+                              x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                             PayloadData:
                               title: PayloadData
                               type: object
@@ -24361,6 +24409,8 @@ components:
                                 value:
                                   oneOf:
                                     - type: string
+                              x-coproduct: true
+                              x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                           additionalProperties: false
                           x-schema-id: FiscalMachineCommandData
                         - title: PassportScannerCommandData
@@ -24497,6 +24547,8 @@ components:
                             value:
                               oneOf:
                                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                         PayloadData:
                           title: PayloadData
                           type: object
@@ -24506,6 +24558,8 @@ components:
                             value:
                               oneOf:
                                 - type: string
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                       additionalProperties: false
                       x-schema-id: FiscalMachineCommandData
                     - title: PassportScannerCommandData
@@ -24612,6 +24666,8 @@ components:
                             value:
                               oneOf:
                                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                         PayloadData:
                           title: PayloadData
                           type: object
@@ -24621,6 +24677,8 @@ components:
                             value:
                               oneOf:
                                 - type: string
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                       additionalProperties: false
                       x-schema-id: FiscalMachineCommandData
                     - title: PassportScannerCommandData
@@ -24757,6 +24815,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -24766,6 +24826,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -24899,6 +24961,8 @@ components:
                             value:
                               oneOf:
                                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                         PayloadData:
                           title: PayloadData
                           type: object
@@ -24908,6 +24972,8 @@ components:
                             value:
                               oneOf:
                                 - type: string
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                       additionalProperties: false
                       x-schema-id: FiscalMachineCommandData
                     - title: PassportScannerCommandData
@@ -25044,6 +25110,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -25053,6 +25121,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -25159,6 +25229,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -25168,6 +25240,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -25304,6 +25378,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -25313,6 +25389,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -25423,6 +25501,8 @@ components:
                             value:
                               oneOf:
                                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                         PayloadData:
                           title: PayloadData
                           type: object
@@ -25432,6 +25512,8 @@ components:
                             value:
                               oneOf:
                                 - type: string
+                          x-coproduct: true
+                          x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                       additionalProperties: false
                       x-schema-id: FiscalMachineCommandData
                     - title: PassportScannerCommandData
@@ -25568,6 +25650,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -25577,6 +25661,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -25683,6 +25769,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -25692,6 +25780,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -25828,6 +25918,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -25837,6 +25929,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -25970,6 +26064,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -25979,6 +26075,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -26115,6 +26213,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -26124,6 +26224,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -26230,6 +26332,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -26239,6 +26343,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -26375,6 +26481,8 @@ components:
                 value:
                   oneOf:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
             PayloadData:
               title: PayloadData
               type: object
@@ -26384,6 +26492,8 @@ components:
                 value:
                   oneOf:
                     - type: string
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
           additionalProperties: false
           x-schema-id: FiscalMachineCommandData
         - title: PassportScannerCommandData
@@ -27441,6 +27551,8 @@ components:
             value:
               oneOf:
                 - $ref: '#/components/schemas/ItalianFiscalMachineData'
+          x-coproduct: true
+          x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
         PayloadData:
           title: PayloadData
           type: object
@@ -27450,6 +27562,8 @@ components:
             value:
               oneOf:
                 - type: string
+          x-coproduct: true
+          x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
       additionalProperties: false
       x-schema-id: FiscalMachineCommandData
     FiscalMachinePayloadDataDiscriminator:
@@ -27919,6 +28033,8 @@ components:
                 value:
                   oneOf:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
             PayloadData:
               title: PayloadData
               type: object
@@ -27928,6 +28044,8 @@ components:
                 value:
                   oneOf:
                     - type: string
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
           additionalProperties: false
           x-schema-id: FiscalMachineCommandData
         - title: PassportScannerCommandData
@@ -31504,6 +31622,8 @@ components:
                 - $ref: '#/components/schemas/RebateOrderItemData'
                 - $ref: '#/components/schemas/ProductOrderItemData'
           description: Additional data specific to particular order item.
+          x-coproduct: true
+          x-schema-id: OrderItemOldDataCoproductOfOrderItemTypeOld
       additionalProperties: false
       x-schema-id: OrderItemOld
     OrderItemOptions:
@@ -32161,9 +32281,11 @@ components:
       properties:
         PersonCount:
           type: integer
+          description: Predicted guest count that will be assigned to the Resource. The guest count must fit within the Resource Category maximum capacity.
           format: int32
         UnitCount:
           type: integer
+          description: Positive number of adjustments that are assigned to `PersonCount`. The sum of all `UnitCount` in `PaxCounts` should match the adjustment value applied to the interval.
           format: int32
       additionalProperties: false
       x-schema-id: PaxCount
@@ -32562,6 +32684,8 @@ components:
                 - $ref: '#/components/schemas/PaymentCardPaymentData'
                 - $ref: '#/components/schemas/InvoicePaymentData'
           description: Additional data specific to particular payment item.
+          x-coproduct: true
+          x-schema-id: PaymentItemOldDataCoproductOfPaymentType
       additionalProperties: false
       x-schema-id: PaymentItemOld
     PaymentKind:
@@ -32978,6 +33102,8 @@ components:
                         value:
                           oneOf:
                             - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                     PayloadData:
                       title: PayloadData
                       type: object
@@ -32987,6 +33113,8 @@ components:
                         value:
                           oneOf:
                             - type: string
+                      x-coproduct: true
+                      x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
                   additionalProperties: false
                   x-schema-id: FiscalMachineCommandData
                 - title: PassportScannerCommandData
@@ -33123,6 +33251,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -33132,6 +33262,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -33238,6 +33370,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -33247,6 +33381,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -33383,6 +33519,8 @@ components:
                 value:
                   oneOf:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
             PayloadData:
               title: PayloadData
               type: object
@@ -33392,6 +33530,8 @@ components:
                 value:
                   oneOf:
                     - type: string
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
           additionalProperties: false
           x-schema-id: FiscalMachineCommandData
         - title: PassportScannerCommandData
@@ -33707,6 +33847,8 @@ components:
                     value:
                       oneOf:
                         - $ref: '#/components/schemas/ItalianFiscalMachineData'
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
                 PayloadData:
                   title: PayloadData
                   type: object
@@ -33716,6 +33858,8 @@ components:
                     value:
                       oneOf:
                         - type: string
+                  x-coproduct: true
+                  x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
               additionalProperties: false
               x-schema-id: FiscalMachineCommandData
             - title: PassportScannerCommandData
@@ -33852,6 +33996,8 @@ components:
                 value:
                   oneOf:
                     - $ref: '#/components/schemas/ItalianFiscalMachineData'
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataBillFiscalMachineDataCoproductOfBillFiscalMachineDataDiscriminator
             PayloadData:
               title: PayloadData
               type: object
@@ -33861,6 +34007,8 @@ components:
                 value:
                   oneOf:
                     - type: string
+              x-coproduct: true
+              x-schema-id: FiscalMachineCommandDataPayloadDataCoproductOfFiscalMachinePayloadDataDiscriminator
           additionalProperties: false
           x-schema-id: FiscalMachineCommandData
         - title: PassportScannerCommandData
@@ -34075,6 +34223,8 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
                 - $ref: '#/components/schemas/RelativeProductPrice'
+          x-coproduct: true
+          x-schema-id: ProductPricingCoproductOfProductPricing
         ImageIds:
           type: array
           items:
@@ -34646,6 +34796,7 @@ components:
       description: The profile data of the user who created or last updated the record.
       x-schema-id: ProfileData
     ProfileDataDiscriminator:
+      title: Profile data discriminator
       enum:
         - Personal
         - Enterprise
@@ -34655,20 +34806,33 @@ components:
       type: string
     Promotions:
       title: Promotions
+      required:
+        - AfterCheckIn
+        - AfterCheckOut
+        - BeforeCheckIn
+        - BeforeCheckOut
+        - DuringCheckOut
+        - DuringStay
       type: object
       properties:
         BeforeCheckIn:
           type: boolean
+          description: Whether it can be promoted before check-in.
         AfterCheckIn:
           type: boolean
+          description: Whether it can be promoted after check-in.
         DuringStay:
           type: boolean
+          description: Whether it can be promoted during stay.
         BeforeCheckOut:
           type: boolean
+          description: Whether it can be promoted before check-out.
         AfterCheckOut:
           type: boolean
+          description: Whether it can be promoted after check-out.
         DuringCheckOut:
           type: boolean
+          description: Whether it can be promoted during check-out.
       additionalProperties: false
       description: Promotions of the service.
       x-schema-id: Promotions
@@ -36892,6 +37056,7 @@ components:
       additionalProperties: false
       x-schema-id: ReservationProductParameters
     ReservationPurpose:
+      title: Reservation purpose
       enum:
         - Leisure
         - Business
@@ -37204,6 +37369,7 @@ components:
       additionalProperties: false
       x-schema-id: ReservationStartParameters
     ReservationTimeFilter:
+      title: Reservation time filter
       enum:
         - Colliding
         - Created
@@ -37498,6 +37664,8 @@ components:
                 - type: object
                   additionalProperties: false
           description: Additional data of the resource.
+          x-coproduct: true
+          x-schema-id: ResourceDataCoproductOfSpaceDataObjectDataPersonData
       additionalProperties: false
       x-schema-id: Resource
     ResourceAccessToken:
@@ -37803,6 +37971,7 @@ components:
       additionalProperties: false
       x-schema-id: ResourceAccessTokenUpdateParameters
     ResourceAvailabilityMetricTypeEnum:
+      title: Service availability metrics
       enum:
         - OutOfOrderBlocks
         - PublicAvailabilityAdjustment
@@ -37815,7 +37984,7 @@ components:
         - UsableResources
         - ActiveResources
       type: string
-      description: "\n\nOutOfOrderBlocks\n\nPublicAvailabilityAdjustment\n\nOtherServiceReservationCount\n\nOccupied\n\nConfirmedReservations\n\nOptionalReservations\n\nBlockAvailability\n\nAllocatedBlockAvailability\n\nUsableResources\n\nActiveResources"
+      description: "\n\nOutOfOrderBlocks (Number of resources that are out of order for the resource category (see `Resource Block`).)\n\nPublicAvailabilityAdjustment (Number of resources marked as manual availability adjustments.)\n\nOtherServiceReservationCount (Number of resources occupied by another service.)\n\nOccupied (Number of bookings that have been assigned to the resource category (i.e. reservations and blocks).)\n\nConfirmedReservations (Number of confirmed reservations that have been assigned to the resource category.)\n\nOptionalReservations (Number of optional reservations that have been assigned to the resource category.)\n\nBlockAvailability (Number of blocked resources (from an availability block / allotment).)\n\nAllocatedBlockAvailability (Number of blocked resources that are in a deducting state (from an availability block / allotment).)\n\nUsableResources (Number of usable resources (i.e. which are not out of order).)\n\nActiveResources (Number of active resources.)"
       x-enumNames:
         - OutOfOrderBlocks
         - PublicAvailabilityAdjustment
@@ -37828,16 +37997,16 @@ components:
         - UsableResources
         - ActiveResources
       x-enumDescriptions:
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
+        - Number of resources that are out of order for the resource category (see `Resource Block`).
+        - Number of resources marked as manual availability adjustments.
+        - Number of resources occupied by another service.
+        - Number of bookings that have been assigned to the resource category (i.e. reservations and blocks).
+        - Number of confirmed reservations that have been assigned to the resource category.
+        - Number of optional reservations that have been assigned to the resource category.
+        - Number of blocked resources (from an availability block / allotment).
+        - Number of blocked resources that are in a deducting state (from an availability block / allotment).
+        - Number of usable resources (i.e. which are not out of order).
+        - Number of active resources.
     ResourceBlock:
       title: Resource block
       required:
@@ -38264,6 +38433,7 @@ components:
       properties:
         ResourceCategoryId:
           type: string
+          description: 'Unique identifier of the [Resource category](https://mews-systems.gitbook.io/connector-api/operations/resources#resource-category).'
           format: uuid
         Metrics:
           title: ResourceAvailabilityMetricTypeInt32IEnumerableIDictionary
@@ -38320,7 +38490,7 @@ components:
                 type: integer
                 format: int32
           additionalProperties: false
-          description: 'Dictionary keys are names of [Service availability metrics](https://mews-systems.gitbook.io/connector-api/operations/#service-availability-metrics), values are arrays of integers with metric values for corresponding time unit in TimeUnitStartsUtc.'
+          description: 'Dictionary keys are names of [Service availability metrics](https://mews-systems.gitbook.io/connector-api/operations/services#service-availability-metrics), values are arrays of integers with metric values for corresponding time unit in `TimeUnitStartsUtc`.'
           x-schema-id: ResourceAvailabilityMetricTypeInt32IEnumerableIDictionary
       additionalProperties: false
       x-schema-id: ResourceCategoryAvailabilityV20240122
@@ -39035,6 +39205,8 @@ components:
                   additionalProperties: false
                 - type: object
                   additionalProperties: false
+          x-coproduct: true
+          x-schema-id: ResourceUpdateParametersDataCoproductOfResourceDataDiscriminator
         State:
           title: StringUpdateValue
           allOf:
@@ -39928,6 +40100,8 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/RuleActionProductData'
           description: Additional information about action.
+          x-coproduct: true
+          x-schema-id: RuleActionDataCoproductOfRuleActionDiscriminator
       additionalProperties: false
       x-schema-id: RuleAction
     RuleActionDiscriminator:
@@ -40177,7 +40351,13 @@ components:
       title: Service
       required:
         - CreatedUtc
+        - Data
         - EnterpriseId
+        - Id
+        - IsActive
+        - Name
+        - Options
+        - Ordering
         - UpdatedUtc
       type: object
       properties:
@@ -40193,9 +40373,9 @@ components:
           type: boolean
           description: Whether the service is still active.
         Name:
+          minLength: 1
           type: string
           description: Name of the service.
-          nullable: true
         StartTime:
           type: string
           nullable: true
@@ -40205,11 +40385,10 @@ components:
           nullable: true
           deprecated: true
         Options:
-          title: ServiceOptions
+          title: Service options
           allOf:
             - $ref: '#/components/schemas/ServiceOptions'
           description: Options of the service.
-          nullable: true
         Promotions:
           allOf:
             - $ref: '#/components/schemas/Promotions'
@@ -40222,18 +40401,21 @@ components:
           deprecated: true
         Ordering:
           type: integer
+          description: Order value for presentation purposes.
           format: int32
         Data:
-          title: Data
+          title: Service data
           type: object
           properties:
             discriminator:
-              $ref: '#/components/schemas/ServiceType'
+              $ref: '#/components/schemas/ServiceDataDiscriminator'
             value:
               oneOf:
                 - $ref: '#/components/schemas/BookableServiceData'
                 - $ref: '#/components/schemas/AdditionalServiceData'
           description: Additional information about the specific service.
+          x-coproduct: true
+          x-schema-id: ServiceDataCoproductOfServiceDataDiscriminator
         ExternalIdentifier:
           maxLength: 255
           type: string
@@ -40250,7 +40432,7 @@ components:
           description: Last update date and time of the service in UTC timezone in ISO 8601 format.
           format: date-time
       additionalProperties: false
-      description: 'The reservable service (e.g. accommodation, parking) associated with the access token of the service scoped integration.'
+      description: ''
       x-schema-id: Service
     ServiceAvailabilityFilterParameters:
       title: ServiceAvailabilityFilterParameters
@@ -40258,6 +40440,8 @@ components:
         - AccessToken
         - Client
         - ClientToken
+        - FirstTimeUnitStartUtc
+        - LastTimeUnitStartUtc
         - ServiceId
       type: object
       properties:
@@ -40278,15 +40462,15 @@ components:
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) whose availability should be returned.'
           format: uuid
         FirstTimeUnitStartUtc:
+          minLength: 1
           type: string
-          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format.'
           format: date-time
-          nullable: true
         LastTimeUnitStartUtc:
+          minLength: 1
           type: string
-          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.'
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/): 367 hours if hours, 367 days if days, or 60 months if months.'
           format: date-time
-          nullable: true
         StartUtc:
           type: string
           format: date-time
@@ -40325,17 +40509,17 @@ components:
           description: Token identifying the client application.
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) whose availability should be returned.'
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) whose availability should be returned.'
           format: uuid
         FirstTimeUnitStartUtc:
           minLength: 1
           type: string
-          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format.'
           format: date-time
         LastTimeUnitStartUtc:
           minLength: 1
           type: string
-          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.'
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/): 367 hours if hours, 367 days if days, or 60 months if months.'
           format: date-time
         Metrics:
           minItems: 1
@@ -40343,11 +40527,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceAvailabilityMetricTypeEnum'
-          description: 'Set of [Service availability metrics](https://mews-systems.gitbook.io/connector-api/operations/#service-availability-metrics) to be returned.'
+          description: 'Set of [Service availability metrics](https://mews-systems.gitbook.io/connector-api/operations/services/#service-availability-metrics) to be returned.'
       additionalProperties: false
       x-schema-id: ServiceAvailabilityFilterParametersV20240122
     ServiceAvailabilityResult:
       title: ServiceAvailabilityResult
+      required:
+        - CategoryAvailabilities
+        - TimeUnitStartsUtc
       type: object
       properties:
         DatesUtc:
@@ -40361,13 +40548,11 @@ components:
           items:
             type: string
           description: Set of all time units covered by the time interval; expressed in UTC timezone ISO 8601 format.
-          nullable: true
         CategoryAvailabilities:
           type: array
           items:
             $ref: '#/components/schemas/CategoryAvailability'
           description: Resource category availabilities.
-          nullable: true
       additionalProperties: false
       x-schema-id: ServiceAvailabilityResult
     ServiceAvailabilityResultV20240122:
@@ -40391,20 +40576,24 @@ components:
       additionalProperties: false
       x-schema-id: ServiceAvailabilityResultV20240122
     ServiceAvailabilityUpdateData:
-      title: ServiceAvailabilityUpdateData
+      title: Availability update
       required:
+        - FirstTimeUnitStartUtc
+        - LastTimeUnitStartUtc
         - ResourceCategoryId
         - UnitCountAdjustment
       type: object
       properties:
         FirstTimeUnitStartUtc:
+          minLength: 1
           type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
           format: date-time
-          nullable: true
         LastTimeUnitStartUtc:
+          minLength: 1
           type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units): 367 hours if hours, 367 days if days, or 60 months if months.'
           format: date-time
-          nullable: true
         StartUtc:
           type: string
           format: date-time
@@ -40417,13 +40606,16 @@ components:
           deprecated: true
         ResourceCategoryId:
           type: string
+          description: 'Unique identifier of the [Resource category](https://mews-systems.gitbook.io/connector-api/operations/resources#resource-category) whose availability to update.'
           format: uuid
         UnitCountAdjustment:
           title: Int32NullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/Int32NullableUpdateValue'
+          description: 'Adjustment value to be applied on the interval, can be both positive and negative (relative adjustment, not an absolute number). If specified without `Value` parameter, removes all adjustments within the interval.'
         AvailabilityBlockId:
           type: string
+          description: 'Unique identifier of the [Availability block](https://mews-systems.gitbook.io/connector-api/operations/availabilityblocks#availability-block) whose availability to update.'
           format: uuid
           nullable: true
         PaxCounts:
@@ -40431,6 +40623,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaxCount'
+          description: Collection of predicted occupancy of availability adjustments. Relates how many adjustments are assigned to each count of guests.
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceAvailabilityUpdateData
@@ -40469,6 +40662,12 @@ components:
           description: Availability updates.
       additionalProperties: false
       x-schema-id: ServiceAvailabilityUpdateParameters
+    ServiceDataDiscriminator:
+      title: Service data discriminator
+      enum:
+        - Bookable
+        - Additional
+      type: string
     ServiceFilterParameters:
       title: ServiceFilterParameters
       required:
@@ -40516,16 +40715,20 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Services` were updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
       x-schema-id: ServiceFilterParameters
     ServiceOptions:
-      title: ServiceOptions
+      title: Service options
+      required:
+        - BillAsPackage
       type: object
       properties:
         BillAsPackage:
           type: boolean
+          description: Products should be displayed as a single package instead of individual items.
       additionalProperties: false
       description: Options of the service.
       x-schema-id: ServiceOptions
@@ -40665,6 +40868,7 @@ components:
         - ''
         - ''
     ServiceOrderCommanderOrigin:
+      title: Commander origin
       enum:
         - InPerson
         - Channel
@@ -40892,6 +41096,7 @@ components:
       additionalProperties: false
       x-schema-id: ServiceOrderOptions
     ServiceOrderOrigin:
+      title: Service order origin
       enum:
         - Distributor
         - ChannelManager
@@ -40926,6 +41131,7 @@ components:
         - From the Mews Connector API.
         - From Mews Guest Services.
     ServiceOrderState:
+      title: Service order state
       enum:
         - Inquired
         - Confirmed
@@ -40964,6 +41170,7 @@ components:
         - Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).
         - Confirmed by the customer but not by the enterprise (waitlist).
     ServiceOrderStateOld:
+      title: Service order state (ver 2017-04-12)
       enum:
         - Enquired
         - Confirmed
@@ -40975,6 +41182,8 @@ components:
       type: string
     ServiceResult:
       title: ServiceResult
+      required:
+        - Services
       type: object
       properties:
         Services:
@@ -40982,7 +41191,6 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           description: Services offered by the enterprise.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -40990,13 +41198,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceResult
-    ServiceType:
-      enum:
-        - Reservable
-        - Orderable
-        - Bookable
-        - Additional
-      type: string
     SetRestrictionParameters:
       title: SetRestrictionParameters
       required:
@@ -41576,6 +41777,8 @@ components:
                 - $ref: '#/components/schemas/FlatTaxRateStrategy'
                 - $ref: '#/components/schemas/DependentTaxRateStrategy'
           description: 'Tax strategy type, e.g. relative, flat or dependent.'
+          x-coproduct: true
+          x-schema-id: TaxRateStrategyCoproductOfTaxRateStrategyDiscriminator
       additionalProperties: false
       x-schema-id: TaxRate
     TaxRateStrategyDiscriminator:
@@ -41650,6 +41853,22 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: TimeFilterInterval
+    TimeUnitPeriodEnum:
+      title: Time unit period
+      enum:
+        - Day
+        - Month
+        - Hour
+      type: string
+      description: "\n\nDay\n\nMonth\n\nHour"
+      x-enumNames:
+        - Day
+        - Month
+        - Hour
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
     TokenizedCreditCardParameters:
       title: TokenizedCreditCardParameters
       required:

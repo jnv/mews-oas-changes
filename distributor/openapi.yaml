@@ -2230,6 +2230,8 @@ components:
             value:
               oneOf:
                 - $ref: '#/components/schemas/RelativeProductPrice'
+          x-coproduct: true
+          x-schema-id: ProductPricingCoproductOfRelativeProductPrice
         Amounts: { }
         RelativePrice:
           type: number
@@ -3206,6 +3208,8 @@ components:
                 - $ref: '#/components/schemas/BookableService'
                 - type: object
                   additionalProperties: false
+          x-coproduct: true
+          x-schema-id: ServiceDataCoproductOfBookableServiceAdditionalService
       additionalProperties: false
       x-schema-id: Service
     ServiceAvailabilityParameters:
