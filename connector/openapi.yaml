@@ -10968,474 +10968,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-  /api/connector/v1/reservations/getAllByIds:
-    post:
-      tags:
-        - Reservations
-      operationId: reservations_getAllByIds
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MultipleReservationParameters'
-            example:
-              Client: string
-              LanguageCode: string
-              CultureCode: string
-              AccessToken: string
-              ClientToken: string
-              ReservationIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              Extent:
-                Reservations: true
-                ReservationGroups: true
-                Customers: true
-                CustomerAdresses: true
-                CustomerIdentityDocuments: true
-                Services: true
-                Products: true
-                BusinessSegments: true
-                Resources: true
-                ResourceCategories: true
-                ResourceCategoryAssignments: true
-                Rates: true
-                Items: true
-                OrderItems: true
-                Notes: true
-                QrCodeData: true
-                Companies: true
-                AccountingStates:
-                  - string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReservationResult'
-              example:
-                BusinessSegments: 
-                Customers:
-                  - Address: 
-                    BirthDate: 
-                    BirthPlace: 
-                    CategoryId: 
-                    Classifications: [ ]
-                    CreatedUtc: '2016-01-01T00:00:00Z'
-                    Email: 
-                    FirstName: John
-                    Sex: 
-                    Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                    IdentityCard: 
-                    LanguageCode: 
-                    LastName: Smith
-                    LoyaltyCode: 
-                    NationalityCode: US
-                    Notes: ''
-                    Number: '1'
-                    Passport: 
-                    Phone: '00420123456789'
-                    SecondLastName: 
-                    TaxIdentificationNumber: 
-                    Title: 
-                    UpdatedUtc: '2016-01-01T00:00:00Z'
-                    Visa: 
-                OrderItems: 
-                Products: 
-                RateGroups: 
-                Rates: 
-                ReservationGroups:
-                  - Id: c704dff3-7811-4af7-a3a0-7b2b0635ac59
-                    Name: 13-12-Smith-F712
-                Reservations:
-                  - Id: bfee2c44-1f84-4326-a862-5289598f6e2d
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    GroupId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    Number: '52'
-                    ChannelNumber: TW48ZP
-                    ChannelManager: ''
-                    ChannelManagerGroupNumber: 
-                    ChannelManagerNumber: 
-                    State: Processed
-                    Origin: Connector
-                    OriginDetail: 
-                    Purpose: Student
-                    CreatedUtc: '2016-02-20T14:58:02Z'
-                    UpdatedUtc: '2016-02-20T14:58:02Z'
-                    CancelledUtc: 
-                    StartUtc: '2016-02-20T13:00:00Z'
-                    EndUtc: '2016-02-22T11:00:00Z'
-                    ReleasedUtc: 
-                    RequestedCategoryId: 773d5e42-de1e-43a0-9ce6-f940faf2303f
-                    AssignedResourceId: 20e00c32-d561-4008-8609-82d8aa525714
-                    AssignedResourceLocked: false
-                    BusinessSegmentId: 
-                    CompanyId: 
-                    TravelAgencyId: 
-                    AvailabilityBlockId: 
-                    RateId: ed4b660b-19d0-434b-9360-a4de2ea42eda
-                    VoucherId: 
-                    CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-                    PersonCounts:
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                Services: 
-                Resources: 
-                ResourceCategories: 
-                ResourceCategoryAssignments: 
-                Notes: 
-                Cursor: 8d02142f-31cf-4115-90bf-ae5200c7a1ba
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
-  /api/connector/v1/reservations/getAllByCustomers:
-    post:
-      tags:
-        - Reservations
-      operationId: reservations_getAllByCustomers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReservationMultipleCustomerParameters'
-            example:
-              Client: string
-              LanguageCode: string
-              CultureCode: string
-              AccessToken: string
-              ClientToken: string
-              CustomerIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              Extent:
-                Reservations: true
-                ReservationGroups: true
-                Customers: true
-                CustomerAdresses: true
-                CustomerIdentityDocuments: true
-                Services: true
-                Products: true
-                BusinessSegments: true
-                Resources: true
-                ResourceCategories: true
-                ResourceCategoryAssignments: true
-                Rates: true
-                Items: true
-                OrderItems: true
-                Notes: true
-                QrCodeData: true
-                Companies: true
-                AccountingStates:
-                  - string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReservationResult'
-              example:
-                BusinessSegments: 
-                Customers:
-                  - Address: 
-                    BirthDate: 
-                    BirthPlace: 
-                    CategoryId: 
-                    Classifications: [ ]
-                    CreatedUtc: '2016-01-01T00:00:00Z'
-                    Email: 
-                    FirstName: John
-                    Sex: 
-                    Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                    IdentityCard: 
-                    LanguageCode: 
-                    LastName: Smith
-                    LoyaltyCode: 
-                    NationalityCode: US
-                    Notes: ''
-                    Number: '1'
-                    Passport: 
-                    Phone: '00420123456789'
-                    SecondLastName: 
-                    TaxIdentificationNumber: 
-                    Title: 
-                    UpdatedUtc: '2016-01-01T00:00:00Z'
-                    Visa: 
-                OrderItems: 
-                Products: 
-                RateGroups: 
-                Rates: 
-                ReservationGroups:
-                  - Id: c704dff3-7811-4af7-a3a0-7b2b0635ac59
-                    Name: 13-12-Smith-F712
-                Reservations:
-                  - Id: bfee2c44-1f84-4326-a862-5289598f6e2d
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    GroupId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    Number: '52'
-                    ChannelNumber: TW48ZP
-                    ChannelManager: ''
-                    ChannelManagerGroupNumber: 
-                    ChannelManagerNumber: 
-                    State: Processed
-                    Origin: Connector
-                    OriginDetail: 
-                    Purpose: Student
-                    CreatedUtc: '2016-02-20T14:58:02Z'
-                    UpdatedUtc: '2016-02-20T14:58:02Z'
-                    CancelledUtc: 
-                    StartUtc: '2016-02-20T13:00:00Z'
-                    EndUtc: '2016-02-22T11:00:00Z'
-                    ReleasedUtc: 
-                    RequestedCategoryId: 773d5e42-de1e-43a0-9ce6-f940faf2303f
-                    AssignedResourceId: 20e00c32-d561-4008-8609-82d8aa525714
-                    AssignedResourceLocked: false
-                    BusinessSegmentId: 
-                    CompanyId: 
-                    TravelAgencyId: 
-                    AvailabilityBlockId: 
-                    RateId: ed4b660b-19d0-434b-9360-a4de2ea42eda
-                    VoucherId: 
-                    CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-                    PersonCounts:
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                Services: 
-                Resources: 
-                ResourceCategories: 
-                ResourceCategoryAssignments: 
-                Notes: 
-                Cursor: 8d02142f-31cf-4115-90bf-ae5200c7a1ba
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
-  /api/connector/v1/reservations/getAllByNumbers:
-    post:
-      tags:
-        - Reservations
-      operationId: reservations_getAllByNumbers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReservationConfirmationNumberParameters'
-            example:
-              Client: string
-              LanguageCode: string
-              CultureCode: string
-              AccessToken: string
-              ClientToken: string
-              Numbers:
-                - string
-              Extent:
-                Reservations: true
-                ReservationGroups: true
-                Customers: true
-                CustomerAdresses: true
-                CustomerIdentityDocuments: true
-                Services: true
-                Products: true
-                BusinessSegments: true
-                Resources: true
-                ResourceCategories: true
-                ResourceCategoryAssignments: true
-                Rates: true
-                Items: true
-                OrderItems: true
-                Notes: true
-                QrCodeData: true
-                Companies: true
-                AccountingStates:
-                  - string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReservationResult'
-              example:
-                BusinessSegments: 
-                Customers:
-                  - Address: 
-                    BirthDate: 
-                    BirthPlace: 
-                    CategoryId: 
-                    Classifications: [ ]
-                    CreatedUtc: '2016-01-01T00:00:00Z'
-                    Email: 
-                    FirstName: John
-                    Sex: 
-                    Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                    IdentityCard: 
-                    LanguageCode: 
-                    LastName: Smith
-                    LoyaltyCode: 
-                    NationalityCode: US
-                    Notes: ''
-                    Number: '1'
-                    Passport: 
-                    Phone: '00420123456789'
-                    SecondLastName: 
-                    TaxIdentificationNumber: 
-                    Title: 
-                    UpdatedUtc: '2016-01-01T00:00:00Z'
-                    Visa: 
-                OrderItems: 
-                Products: 
-                RateGroups: 
-                Rates: 
-                ReservationGroups:
-                  - Id: c704dff3-7811-4af7-a3a0-7b2b0635ac59
-                    Name: 13-12-Smith-F712
-                Reservations:
-                  - Id: bfee2c44-1f84-4326-a862-5289598f6e2d
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    GroupId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    Number: '52'
-                    ChannelNumber: TW48ZP
-                    ChannelManager: ''
-                    ChannelManagerGroupNumber: 
-                    ChannelManagerNumber: 
-                    State: Processed
-                    Origin: Connector
-                    OriginDetail: 
-                    Purpose: Student
-                    CreatedUtc: '2016-02-20T14:58:02Z'
-                    UpdatedUtc: '2016-02-20T14:58:02Z'
-                    CancelledUtc: 
-                    StartUtc: '2016-02-20T13:00:00Z'
-                    EndUtc: '2016-02-22T11:00:00Z'
-                    ReleasedUtc: 
-                    RequestedCategoryId: 773d5e42-de1e-43a0-9ce6-f940faf2303f
-                    AssignedResourceId: 20e00c32-d561-4008-8609-82d8aa525714
-                    AssignedResourceLocked: false
-                    BusinessSegmentId: 
-                    CompanyId: 
-                    TravelAgencyId: 
-                    AvailabilityBlockId: 
-                    RateId: ed4b660b-19d0-434b-9360-a4de2ea42eda
-                    VoucherId: 
-                    CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-                    PersonCounts:
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                Services: 
-                Resources: 
-                ResourceCategories: 
-                ResourceCategoryAssignments: 
-                Notes: 
-                Cursor: 8d02142f-31cf-4115-90bf-ae5200c7a1ba
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
   /api/connector/v1/reservations/price:
     post:
       tags:
@@ -17566,7 +17098,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountingConfiguration
     AccountingItem:
-      title: AccountingItem
+      title: Accounting item
       type: object
       properties:
         Id:
@@ -17843,10 +17375,13 @@ components:
       x-schema-id: AddAccountFileResult
     AddCompanionshipResult:
       title: AddCompanionshipResult
+      required:
+        - CompanionshipId
       type: object
       properties:
         CompanionshipId:
           type: string
+          description: Identifier of the created `Companionship` entity.
           format: uuid
       additionalProperties: false
       x-schema-id: AddCompanionshipResult
@@ -17997,6 +17532,8 @@ components:
       x-schema-id: AddedMessageResult
     AddedReservation:
       title: Added reservation
+      required:
+        - Reservation
       type: object
       properties:
         Identifier:
@@ -18007,8 +17544,7 @@ components:
           title: Reservation (ver 2017-04-12)
           allOf:
             - $ref: '#/components/schemas/ReservationOld'
-          description: ''
-          nullable: true
+          description: The added reservation.
       additionalProperties: false
       x-schema-id: AddedReservation
     AddedRestriction:
@@ -18496,7 +18032,7 @@ components:
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
           format: uuid
         Amount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -18598,7 +18134,7 @@ components:
       description: ''
       x-schema-id: Amount
     AmountParameters:
-      title: AmountParameters
+      title: Amount parameters
       required:
         - Currency
         - TaxCodes
@@ -19230,7 +18766,7 @@ components:
       type: object
       properties:
         Amount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -19539,7 +19075,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         BillId:
@@ -19743,7 +19279,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         BillIds:
@@ -21959,16 +21495,6 @@ components:
             type: string
             format: uuid
           description: Unique identifier of the reservations to confirm.
-        ReservationId:
-          type: string
-          format: uuid
-          deprecated: true
-        Extent:
-          title: Reservation extent
-          allOf:
-            - $ref: '#/components/schemas/ReservationExtent'
-          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
-          nullable: true
         SendConfirmationEmail:
           type: boolean
           description: Wheter the confirmation email is sent. Default value is true.
@@ -27382,7 +26908,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountId:
@@ -28152,7 +27678,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         KeyCutterId:
@@ -29577,7 +29103,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AccountingItemUpdates:
@@ -29680,7 +29206,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AvailabilityBlocks:
@@ -29715,7 +29241,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AvailabilityBlockIds:
@@ -29751,7 +29277,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         AvailabilityBlocks:
@@ -29786,7 +29312,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         Bills:
@@ -30252,7 +29778,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         PaymentRequests:
@@ -30295,55 +29821,22 @@ components:
           description: Identifiers of payment requests to be canceled.
       additionalProperties: false
       x-schema-id: MultiplePaymentRequestCancelParameters
-    MultipleReservationParameters:
-      title: MultipleReservationParameters
+    MultipleReservationResult:
+      title: MultipleReservationResult
       required:
-        - AccessToken
-        - Client
-        - ClientToken
         - ReservationIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
-        ClientToken:
-          minLength: 1
-          type: string
         ReservationIds:
           type: array
           items:
             type: string
             format: uuid
-        ReservationId:
-          type: string
-          format: uuid
-          deprecated: true
-        Extent:
-          title: Reservation extent
-          allOf:
-            - $ref: '#/components/schemas/ReservationExtent'
-          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: MultipleReservationParameters
-    MultipleReservationResult:
-      title: MultipleReservationResult
-      type: object
-      properties:
-        ReservationIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-          nullable: true
+          description: Identifiers of the affected `Reservation` entities.
       additionalProperties: false
       x-schema-id: MultipleReservationResult
     MultipleReservationUpdateParameters:
-      title: MultipleReservationUpdateParameters
+      title: Reservation updates
       required:
         - AccessToken
         - Client
@@ -30366,119 +29859,120 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation.
           format: uuid
         ChannelNumber:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number) (or `null` if the channel number should not be updated).'
           nullable: true
         StartUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Reservation start in UTC timezone in ISO 8601 format. (or `null` if the start time should not be updated).
           nullable: true
         EndUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Reservation end in UTC timezone in ISO 8601 format. (or `null` if the end time should not be updated).
           nullable: true
         ReleasedUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Date when the optional reservation is released in UTC timezone in ISO 8601 format. (or `null` if the release time should not be updated).
           nullable: true
-        AdultCount:
-          title: Int32UpdateValue
-          allOf:
-            - $ref: '#/components/schemas/Int32UpdateValue'
-          nullable: true
-          deprecated: true
-        ChildCount:
-          title: Int32UpdateValue
-          allOf:
-            - $ref: '#/components/schemas/Int32UpdateValue'
-          nullable: true
-          deprecated: true
         PersonCounts:
-          title: PersonCountParametersIEnumerableUpdateValue
+          title: Person counts update value
           allOf:
-            - $ref: '#/components/schemas/ReservationPersonCountIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationUpdatePersonCountParameters'
+          description: 'Number of people per age category the reservation is for. If supplied, the person counts will be replaced. (or `null` if the person counts should not be updated).'
           nullable: true
         AssignedResourceId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the assigned `Resource`.
           nullable: true
         RequestedCategoryId:
           title: GuidUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Identifier of the requested `ResourceCategory` (or `null` if resource category should not be updated).
           nullable: true
-        TraveAgencyId:
-          title: GuidNullableUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/GuidNullableUpdateValue'
-          nullable: true
-          deprecated: true
         TravelAgencyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Company` that mediated the reservation (or `null` if travel agency should not be updated).
           nullable: true
         CompanyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Company` on behalf of which the reservation was made (or `null` if company should not be updated).
           nullable: true
         BusinessSegmentId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the reservation `BusinessSegment` (or `null` if the business segment should not be updated).
           nullable: true
         Purpose:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: '`Purpose` of the reservation (or `null` if the purpose should not be updated).'
           nullable: true
         RateId:
           title: GuidUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Identifier of the reservation `Rate` (or `null` if the rate should not be updated).
           nullable: true
         CreditCardId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.  (or `null` if the credit card should not be updated).
           nullable: true
         TimeUnitPrices:
-          title: PerUnitPriceParametersIEnumerableUpdateValue
+          title: Time unit amount update value
           allOf:
-            - $ref: '#/components/schemas/PerUnitPriceParametersIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationUpdatePerUnitPriceParameters'
+          description: Prices for time units of the reservation. E.g. prices for the first or second night. (or `null` if the unit amounts should not be updated).
           nullable: true
         BookerId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Customer` on whose behalf the reservation was made. (or `null` if the booker should not be updated).
           nullable: true
         AssignedResourceLocked:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
           nullable: true
         AvailabilityBlockId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the `AvailabilityBlock` the reservation is assigned to.
           nullable: true
         Options:
-          title: ReservationUpdateOptionsParameters
+          title: Reservations options parameters update values
           allOf:
             - $ref: '#/components/schemas/ReservationUpdateOptionsParameters'
+          description: Options of the reservations.
           nullable: true
         ReservationUpdates:
           maxItems: 1000
@@ -30489,7 +29983,7 @@ components:
           description: Array of properties to be updated in each reservation specified.
         CheckOverbooking:
           type: boolean
-          description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request<sup>\*1</sup>. The default is true, i.e. the system will normally check for this unless the property is set to false.'
+          description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request.'
           nullable: true
           deprecated: true
         CheckRateApplicability:
@@ -30501,10 +29995,6 @@ components:
           type: boolean
           description: 'Whether the price should be updated to latest value for date/rate/category combination set in Mews. If not specified, the reservation price is updated.'
           nullable: true
-        ApplyCancelationFee:
-          type: boolean
-          nullable: true
-          deprecated: true
         ApplyCancellationFee:
           type: boolean
           description: 'Whether the cancellation fees should be applied according to rate cancellation policies. If not specified, the cancellation fees are applied.'
@@ -30776,7 +30266,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         VoucherParameters:
@@ -30811,7 +30301,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         VoucherCodeParameters:
@@ -30846,7 +30336,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         VoucherCodeIds:
@@ -30882,7 +30372,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         VoucherIds:
@@ -30918,7 +30408,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         VoucherUpdates:
@@ -31330,7 +30820,7 @@ components:
           type: integer
           format: int32
         UnitAmount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -31342,12 +30832,6 @@ components:
           title: AccountingCategoryParameters
           allOf:
             - $ref: '#/components/schemas/AccountingCategoryParameters'
-          nullable: true
-          deprecated: true
-        UnitCost:
-          title: CostParameters
-          allOf:
-            - $ref: '#/components/schemas/CostParameters'
           nullable: true
           deprecated: true
         ExternalIdentifier:
@@ -31766,7 +31250,7 @@ components:
         - InvoiceFee
       type: string
     OrderNote:
-      title: OrderNote
+      title: Service order note
       type: object
       properties:
         Id:
@@ -32058,7 +31542,7 @@ components:
           type: integer
           format: int32
         UnitAmount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -32723,7 +32207,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         PaymentId:
@@ -33699,31 +33183,21 @@ components:
       additionalProperties: false
       x-schema-id: PayworksData
     PerUnitPriceParameters:
-      title: PerUnitPriceParameters
+      title: Time unit amount parameters
       type: object
       properties:
         Index:
           type: integer
+          description: Index of the unit. Indexing starts with `0`. E.g. the first night of the reservation has index `0`.
           format: int32
         Amount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
-          description: Price of the product that overrides the price defined in Mews.
+          description: Amount of the unit.
           nullable: true
       additionalProperties: false
       x-schema-id: PerUnitPriceParameters
-    PerUnitPriceParametersIEnumerableUpdateValue:
-      title: PerUnitPriceParametersIEnumerableUpdateValue
-      type: object
-      properties:
-        Value:
-          type: array
-          items:
-            $ref: '#/components/schemas/PerUnitPriceParameters'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: PerUnitPriceParametersIEnumerableUpdateValue
     PersonData:
       type: object
       additionalProperties: false
@@ -34082,7 +33556,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         PrinterId:
@@ -34451,7 +33925,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ProductIds:
@@ -34536,7 +34010,7 @@ components:
       description: Options of the product.
       x-schema-id: ProductOptions
     ProductOrderAdditionData:
-      title: ProductOrderAdditionData
+      title: Product order parameters
       required:
         - ProductId
       type: object
@@ -34549,7 +34023,7 @@ components:
           format: int32
           nullable: true
         UnitAmount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -34562,12 +34036,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        UnitCost:
-          title: CostParameters
-          allOf:
-            - $ref: '#/components/schemas/CostParameters'
-          nullable: true
-          deprecated: true
         ExternalIdentifier:
           type: string
           nullable: true
@@ -35252,7 +34720,7 @@ components:
       additionalProperties: false
       x-schema-id: RateGroupFilterParameters
     RateGroupOld:
-      title: RateGroupOld
+      title: Rate group (ver 2017-04-12)
       type: object
       properties:
         Id:
@@ -35276,7 +34744,6 @@ components:
           description: External identifier of the rate group.
           nullable: true
       additionalProperties: false
-      description: Rate group (ver 2017-04-12)
       x-schema-id: RateGroupOld
     RateGroupResult:
       title: RateGroupResult
@@ -35670,6 +35137,7 @@ components:
         - Origin
         - PersonCounts
         - RateId
+        - RequestedResourceCategoryId
         - ScheduledEndUtc
         - ScheduledStartUtc
         - ServiceId
@@ -35806,7 +35274,6 @@ components:
           type: string
           description: Unique identifier of the Resource category.
           format: uuid
-          nullable: true
         AssignedResourceId:
           type: string
           description: Identifier of the assigned Resource.
@@ -35819,12 +35286,12 @@ components:
           nullable: true
         PartnerCompanyId:
           type: string
-          description: 'Identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies#company) on behalf of which the reservation was made.'
+          description: Identifier of the `Company` on behalf of which the reservation was made.
           format: uuid
           nullable: true
         TravelAgencyId:
           type: string
-          description: 'Identifier of the [Travel Agency](https://mews-systems.gitbook.io/connector-api/operations/travel-agencies#travel-agency) that mediated the reservation.'
+          description: Identifier of the Travel Agency (`Company`) that mediated the reservation.
           format: uuid
           nullable: true
         AssignedResourceLocked:
@@ -35920,20 +35387,21 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to be reserved.'
+          description: Unique identifier of the `Service` to be reserved.
           format: uuid
         GroupId:
           type: string
-          description: 'Unique identifier of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/#reservation-group) where the reservations are added. If not specified, a new group is created.'
+          description: 'Unique identifier of the `ReservationGroup` where the reservations are added. If not specified, a new group is created.'
           format: uuid
           nullable: true
         GroupName:
           type: string
-          description: 'Name of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/#reservation-group) which the reservations are added to. If GroupId is specified, this field is ignored. If not specified, the group name is automatically created.'
+          description: 'Name of the `ReservationGroup` where the reservations are added to. If `GroupId` is specified, this field is ignored. If not specified, the group name is automatically created.'
           nullable: true
         Reservations:
           maxItems: 1000
@@ -35944,20 +35412,22 @@ components:
           description: Parameters of the new reservations.
         CheckRateApplicability:
           type: boolean
-          description: 'Indicates whether the system will check and prevent a booking being made using a restricted rate, e.g. a private rate. The default is true, i.e. the system will normally check for this unless the property is set to false.'
+          description: 'Indicates whether the system will check and prevent a booking being made using a restricted rate, e.g. a private rate. The default is `true`, i.e. the system will normally check for this unless the property is set to `false`.'
           nullable: true
         CheckOverbooking:
           type: boolean
-          description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request<sup>\*1</sup>. The default is true, i.e. the system will normally check for this unless the property is set to false.'
+          description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request. The default is `true`, i.e. the system will normally check for this unless the property is set to `false`.'
           nullable: true
         SendConfirmationEmail:
           type: boolean
-          description: Whether the confirmation email is sent. Default value is true.
+          description: Whether the confirmation email is sent. Default value is `true`.
           nullable: true
       additionalProperties: false
       x-schema-id: ReservationAdditionParameters
     ReservationAdditionResult:
       title: ReservationAdditionResult
+      required:
+        - Reservations
       type: object
       properties:
         Reservations:
@@ -35965,7 +35435,6 @@ components:
           items:
             $ref: '#/components/schemas/AddedReservation'
           description: The added reservations.
-          nullable: true
       additionalProperties: false
       x-schema-id: ReservationAdditionResult
     ReservationCancellationParameters:
@@ -35991,7 +35460,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationIds:
@@ -36011,42 +35480,13 @@ components:
           description: Whether cancellation fees should be charged according to rate conditions.
         SendEmail:
           type: boolean
+          description: Whether cancellation email should be sent. The default is `true`.
+          nullable: true
         Notes:
           type: string
           description: Additional notes describing the reason for the cancellation.
-          nullable: true
       additionalProperties: false
       x-schema-id: ReservationCancellationParameters
-    ReservationConfirmationNumberParameters:
-      title: ReservationConfirmationNumberParameters
-      required:
-        - AccessToken
-        - Client
-        - ClientToken
-      type: object
-      properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
-        ClientToken:
-          minLength: 1
-          type: string
-        Numbers:
-          type: array
-          items:
-            type: string
-          nullable: true
-        Extent:
-          title: Reservation extent
-          allOf:
-            - $ref: '#/components/schemas/ReservationExtent'
-          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: ReservationConfirmationNumberParameters
     ReservationCustomerParameters:
       title: ReservationCustomerParameters
       required:
@@ -36080,7 +35520,7 @@ components:
       additionalProperties: false
       x-schema-id: ReservationCustomerParameters
     ReservationData:
-      title: ReservationData
+      title: Reservation parameters
       required:
         - CustomerId
         - EndUtc
@@ -36092,6 +35532,7 @@ components:
       properties:
         Identifier:
           type: string
+          description: Identifier of the reservation within the transaction.
           nullable: true
         ChannelNumber:
           type: string
@@ -36099,17 +35540,21 @@ components:
         State:
           anyOf:
             - $ref: '#/components/schemas/ServiceOrderState'
+          description: 'State of the newly created reservation (either `Optional`, `Enquired` or `Confirmed`). If not specified, `Confirmed` is used.'
           nullable: true
         StartUtc:
           minLength: 1
           type: string
+          description: Reservation start in UTC timezone in ISO 8601 format.
           format: date-time
         EndUtc:
           minLength: 1
           type: string
+          description: Reservation end in UTC timezone in ISO 8601 format.
           format: date-time
         ReleasedUtc:
           type: string
+          description: Release date and time of an unconfirmed reservation in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         AdultCount:
@@ -36121,79 +35566,79 @@ components:
           format: int32
           deprecated: true
         PersonCounts:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ReservationPersonCount'
+          description: Number of people per age category the reservation was booked for. At least one category with valid count must be provided.
         CustomerId:
           type: string
+          description: Unique identifier of the `Customer` who owns the reservation.
           format: uuid
         BookerId:
           type: string
+          description: Unique identifier of the `Customer` on whose behalf the reservation was made.
           format: uuid
           nullable: true
         RequestedCategoryId:
           type: string
+          description: Identifier of the requested `ResourceCategory`.
           format: uuid
         RateId:
           type: string
+          description: Identifier of the reservation `Rate`.
           format: uuid
         VoucherCode:
           type: string
+          description: Voucher code value providing access to specified private `Rate` applied to this reservation.
           nullable: true
         CreditCardId:
           type: string
+          description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.
           format: uuid
           nullable: true
         TravelAgencyId:
           type: string
+          description: Identifier of the `Company` that mediated the reservation.
           format: uuid
           nullable: true
         CompanyId:
           type: string
+          description: Identifier of the `Company` on behalf of which the reservation was made.
           format: uuid
           nullable: true
         BusinessSegmentId:
           type: string
+          description: Identifier of the reservation `BusinessSegment`.
           format: uuid
           nullable: true
         Notes:
           type: string
+          description: Additional notes.
           nullable: true
         TimeUnitAmount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
-          description: Price of the product that overrides the price defined in Mews.
+          description: Amount of each night of the reservation.
           nullable: true
         TimeUnitPrices:
           type: array
           items:
             $ref: '#/components/schemas/PerUnitPriceParameters'
+          description: Prices for time units of the reservation. E.g. prices for the first or second night.
           nullable: true
         ProductOrders:
           type: array
           items:
             $ref: '#/components/schemas/ProductOrderAdditionData'
-          nullable: true
-        ResourceAccessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceAccessTokenParameters'
+          description: Parameters of the products ordered together with the reservation.
           nullable: true
         AvailabilityBlockId:
           type: string
+          description: Unique identifier of the `AvailabilityBlock` the reservation is assigned to.
           format: uuid
           nullable: true
-        ReservationPurpose:
-          anyOf:
-            - $ref: '#/components/schemas/ReservationPurpose'
-          nullable: true
-        TimeUnitCost:
-          title: CostParameters
-          allOf:
-            - $ref: '#/components/schemas/CostParameters'
-          nullable: true
-          deprecated: true
       additionalProperties: false
       x-schema-id: ReservationData
     ReservationDataParameters:
@@ -36220,29 +35665,13 @@ components:
           description: Token identifying the client application.
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to be priced.'
+          description: Unique identifier of the `Service` to be priced.
           format: uuid
-        GroupId:
-          type: string
-          format: uuid
-          nullable: true
-        GroupName:
-          type: string
-          nullable: true
         Reservations:
           type: array
           items:
             $ref: '#/components/schemas/ReservationData'
-          description: Parameters of the reservations to price. Note that CustomerId is not required when pricing reservations.
-        CheckRateApplicability:
-          type: boolean
-          nullable: true
-        CheckOverbooking:
-          type: boolean
-          nullable: true
-        SendConfirmationEmail:
-          type: boolean
-          nullable: true
+          description: Parameters of the reservations to price. Note that `CustomerId` is not required when pricing reservations.
       additionalProperties: false
       x-schema-id: ReservationDataParameters
     ReservationExtent:
@@ -36252,12 +35681,15 @@ components:
         Reservations:
           type: boolean
           description: Whether the response should contain reservations.
+          nullable: true
         ReservationGroups:
           type: boolean
           description: Whether the response should contain groups of the reservations.
+          nullable: true
         Customers:
           type: boolean
           description: Whether the response should contain customers of the reservations.
+          nullable: true
         CustomerAdresses:
           type: boolean
           description: Whether the response should contain addresses of the customers.
@@ -36269,39 +35701,51 @@ components:
         Services:
           type: boolean
           description: Whether the response should contain services reserved by the reservations.
+          nullable: true
         Products:
           type: boolean
           description: Whether the response should contain products orderable with the reservations.
+          nullable: true
         BusinessSegments:
           type: boolean
           description: Whether the response should contain business segmentation.
+          nullable: true
         Resources:
           type: boolean
           description: Whether the response should contain resources.
+          nullable: true
         ResourceCategories:
           type: boolean
           description: Whether the response should contain resource categories.
+          nullable: true
         ResourceCategoryAssignments:
           type: boolean
           description: Whether the response should contain assignments of the resources to categories.
+          nullable: true
         Rates:
           type: boolean
           description: Whether the response should contain rates and rate groups.
+          nullable: true
         Items:
           type: boolean
           description: Whether the response should contain accounting items.
+          nullable: true
         OrderItems:
           type: boolean
           description: Whether the response should contain reservation items.
+          nullable: true
         Notes:
           type: boolean
           description: Whether the response should contain notes.
+          nullable: true
         QrCodeData:
           type: boolean
           description: Whether the response should contain QR code data.
+          nullable: true
         Companies:
           type: boolean
           description: Whether the response should contain companies.
+          nullable: true
         AccountingStates:
           type: array
           items:
@@ -36317,10 +35761,9 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - EndUtc
         - Extent
+        - Limitation
         - ServiceIds
-        - StartUtc
       type: object
       properties:
         Client:
@@ -36348,16 +35791,6 @@ components:
           format: uuid
           nullable: true
           deprecated: true
-        StartUtc:
-          minLength: 1
-          type: string
-          description: Start of the interval in UTC timezone in ISO 8601 format. Required when used in conjunction with the TimeFilter or States search parameter.
-          format: date-time
-        EndUtc:
-          minLength: 1
-          type: string
-          description: End of the interval in UTC timezone in ISO 8601 format. Required when used in conjunction with the TimeFilter or States search parameter.
-          format: date-time
         GroupIds:
           maxItems: 1000
           minItems: 1
@@ -36428,6 +35861,16 @@ components:
             type: string
           description: 'Confirmation numbers of [Reservations](https://mews-systems.gitbook.io/connector-api/operations/#reservation-ver-2017-04-12).'
           nullable: true
+        StartUtc:
+          type: string
+          description: Start of the interval in UTC timezone in ISO 8601 format. Required when used in conjunction with the TimeFilter or States search parameter.
+          format: date-time
+          nullable: true
+        EndUtc:
+          type: string
+          description: End of the interval in UTC timezone in ISO 8601 format. Required when used in conjunction with the TimeFilter or States search parameter.
+          format: date-time
+          nullable: true
         TimeFilter:
           anyOf:
             - $ref: '#/components/schemas/ReservationTimeFilter'
@@ -36453,7 +35896,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/Limitation'
           description: Limitation on the quantity of data returned.
-          nullable: true
       additionalProperties: false
       x-schema-id: ReservationFilterParameters
     ReservationGroup:
@@ -36538,7 +35980,7 @@ components:
       additionalProperties: false
       x-schema-id: ReservationGroupFilterParameters
     ReservationGroupOld:
-      title: ReservationGroupOld
+      title: Reservation groups (ver 2017-04-12)
       type: object
       properties:
         Id:
@@ -36550,7 +35992,6 @@ components:
           description: Name of the reservation group.
           nullable: true
       additionalProperties: false
-      description: Reservation groups (ver 2017-04-12)
       x-schema-id: ReservationGroupOld
     ReservationGroupResult:
       title: ReservationGroupResult
@@ -36615,6 +36056,8 @@ components:
       x-schema-id: ReservationItemParameters
     ReservationItemResult:
       title: ReservationItemResult
+      required:
+        - Reservations
       type: object
       properties:
         Reservations:
@@ -36622,11 +36065,13 @@ components:
           items:
             $ref: '#/components/schemas/ReservationItems'
           description: The reservations with their items.
-          nullable: true
       additionalProperties: false
       x-schema-id: ReservationItemResult
     ReservationItems:
       title: Reservation items
+      required:
+        - Items
+        - OrderItems
       type: object
       properties:
         ReservationId:
@@ -36637,50 +36082,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountingItem'
-          nullable: true
+          description: Accounting items associated with the reservation.
         OrderItems:
           type: array
           items:
             $ref: '#/components/schemas/OrderItemOld'
-          description: The items associated with the reservation.
-          nullable: true
+          description: Order items associated with the reservation.
       additionalProperties: false
       x-schema-id: ReservationItems
-    ReservationMultipleCustomerParameters:
-      title: ReservationMultipleCustomerParameters
-      required:
-        - AccessToken
-        - Client
-        - ClientToken
-      type: object
-      properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
-        ClientToken:
-          minLength: 1
-          type: string
-        CustomerIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-          nullable: true
-        Extent:
-          title: Reservation extent
-          allOf:
-            - $ref: '#/components/schemas/ReservationExtent'
-          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the reservations, customers, groups and rates should be also returned.'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: ReservationMultipleCustomerParameters
     ReservationOld:
       title: Reservation (ver 2017-04-12)
       required:
         - AssignedResourceLocked
+        - CompanionIds
         - CreatedUtc
         - CustomerId
         - EndUtc
@@ -36834,10 +36248,12 @@ components:
           nullable: true
         AdultCount:
           type: integer
+          description: Count of adults the reservation was booked for.
           format: int32
           deprecated: true
         ChildCount:
           type: integer
+          description: Count of children the reservation was booked for.
           format: int32
           deprecated: true
         PersonCounts:
@@ -36864,14 +36280,15 @@ components:
           items:
             type: string
             format: uuid
-          nullable: true
+          description: Unique identifiers of the `Customer`s that will use the resource.
           deprecated: true
         ChannelManagerId:
           type: string
+          description: Channel Manager number.
           nullable: true
           deprecated: true
         Options:
-          title: ReservationOptions
+          title: Reservation options
           allOf:
             - $ref: '#/components/schemas/ReservationOptions'
           description: Options of the reservation.
@@ -36879,7 +36296,7 @@ components:
       description: ''
       x-schema-id: ReservationOld
     ReservationOptions:
-      title: ReservationOptions
+      title: Reservation options
       required:
         - AllCompanionsCheckedIn
         - AnyCompanionCheckedIn
@@ -36888,10 +36305,13 @@ components:
       properties:
         OwnerCheckedIn:
           type: boolean
+          description: Owner of the reservation checked in.
         AllCompanionsCheckedIn:
           type: boolean
+          description: All companions of the reservation checked in.
         AnyCompanionCheckedIn:
           type: boolean
+          description: Any companion of the reservation checked in.
       additionalProperties: false
       x-schema-id: ReservationOptions
     ReservationPersonCount:
@@ -36911,19 +36331,10 @@ components:
           format: int32
       additionalProperties: false
       x-schema-id: ReservationPersonCount
-    ReservationPersonCountIEnumerableUpdateValue:
-      title: ReservationPersonCountIEnumerableUpdateValue
-      type: object
-      properties:
-        Value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationPersonCount'
-          nullable: true
-      additionalProperties: false
-      x-schema-id: ReservationPersonCountIEnumerableUpdateValue
     ReservationPrice:
       title: Reservation price
+      required:
+        - TotalAmount
       type: object
       properties:
         Identifier:
@@ -36934,8 +36345,7 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: ''
-          nullable: true
+          description: Total price of the reservation.
         Total:
           title: CurrencyValueOld
           allOf:
@@ -36947,6 +36357,8 @@ components:
       x-schema-id: ReservationPrice
     ReservationPricingResult:
       title: ReservationPricingResult
+      required:
+        - ReservationPrices
       type: object
       properties:
         ReservationPrices:
@@ -36954,7 +36366,6 @@ components:
           items:
             $ref: '#/components/schemas/ReservationPrice'
           description: The reservation prices.
-          nullable: true
       additionalProperties: false
       x-schema-id: ReservationPricingResult
     ReservationProcessingParameters:
@@ -36980,7 +36391,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
@@ -36990,9 +36401,11 @@ components:
         CloseBills:
           type: boolean
           description: Whether closable bills of the reservation members should be automatically closed.
+          nullable: true
         AllowOpenBalance:
           type: boolean
           description: Whether non-zero consumed balance of all reservation members is allowed.
+          nullable: true
         Notes:
           type: string
           description: Required if AllowOpenBalance set to true. Used to provide reason for closing with unbalanced bill.
@@ -37035,7 +36448,7 @@ components:
           description: 'The amount of the products to be added. Note that if the product is charged e.g. per night, count 1 means a single product every night. Count 2 means two products every night.'
           format: int32
         UnitAmount:
-          title: AmountParameters
+          title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
           description: Price of the product that overrides the price defined in Mews.
@@ -37050,12 +36463,6 @@ components:
           description: Product end in UTC timezone in ISO 8601 format. For products with charging Once and PerPerson must be set to same value as StartUtc.
           format: date-time
           nullable: true
-        UnitCost:
-          title: CostParameters
-          allOf:
-            - $ref: '#/components/schemas/CostParameters'
-          nullable: true
-          deprecated: true
       additionalProperties: false
       x-schema-id: ReservationProductParameters
     ReservationPurpose:
@@ -37082,14 +36489,16 @@ components:
         - ''
         - ''
     ReservationQrCodeData:
-      title: ReservationQrCodeData
+      title: Reservation QR code data
       type: object
       properties:
         ReservationId:
           type: string
+          description: Unique identifier of the reservation.
           format: uuid
         Data:
           type: string
+          description: Reservation data for QR code generation.
           nullable: true
       additionalProperties: false
       x-schema-id: ReservationQrCodeData
@@ -37362,7 +36771,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
@@ -37407,7 +36816,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
@@ -37430,18 +36839,19 @@ components:
       additionalProperties: false
       x-schema-id: ReservationUpdateIntervalParameters
     ReservationUpdateOptionsParameters:
-      title: ReservationUpdateOptionsParameters
+      title: Reservations options parameters update values
       type: object
       properties:
         OwnerCheckedIn:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: True if the owner of the reservation is checked in. (or `null` if the value should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: ReservationUpdateOptionsParameters
     ReservationUpdateParameters:
-      title: ReservationUpdateParameters
+      title: Reservation updates
       required:
         - AccessToken
         - Client
@@ -37460,121 +36870,145 @@ components:
           type: string
         EnterpriseId:
           type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation.
           format: uuid
         ChannelNumber:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number) (or `null` if the channel number should not be updated).'
           nullable: true
         StartUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Reservation start in UTC timezone in ISO 8601 format. (or `null` if the start time should not be updated).
           nullable: true
         EndUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Reservation end in UTC timezone in ISO 8601 format. (or `null` if the end time should not be updated).
           nullable: true
         ReleasedUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Date when the optional reservation is released in UTC timezone in ISO 8601 format. (or `null` if the release time should not be updated).
           nullable: true
-        AdultCount:
-          title: Int32UpdateValue
-          allOf:
-            - $ref: '#/components/schemas/Int32UpdateValue'
-          nullable: true
-          deprecated: true
-        ChildCount:
-          title: Int32UpdateValue
-          allOf:
-            - $ref: '#/components/schemas/Int32UpdateValue'
-          nullable: true
-          deprecated: true
         PersonCounts:
-          title: PersonCountParametersIEnumerableUpdateValue
+          title: Person counts update value
           allOf:
-            - $ref: '#/components/schemas/ReservationPersonCountIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationUpdatePersonCountParameters'
+          description: 'Number of people per age category the reservation is for. If supplied, the person counts will be replaced. (or `null` if the person counts should not be updated).'
           nullable: true
         AssignedResourceId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the assigned `Resource`.
           nullable: true
         RequestedCategoryId:
           title: GuidUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Identifier of the requested `ResourceCategory` (or `null` if resource category should not be updated).
           nullable: true
-        TraveAgencyId:
-          title: GuidNullableUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/GuidNullableUpdateValue'
-          nullable: true
-          deprecated: true
         TravelAgencyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Company` that mediated the reservation (or `null` if travel agency should not be updated).
           nullable: true
         CompanyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Company` on behalf of which the reservation was made (or `null` if company should not be updated).
           nullable: true
         BusinessSegmentId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the reservation `BusinessSegment` (or `null` if the business segment should not be updated).
           nullable: true
         Purpose:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: '`Purpose` of the reservation (or `null` if the purpose should not be updated).'
           nullable: true
         RateId:
           title: GuidUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Identifier of the reservation `Rate` (or `null` if the rate should not be updated).
           nullable: true
         CreditCardId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.  (or `null` if the credit card should not be updated).
           nullable: true
         TimeUnitPrices:
-          title: PerUnitPriceParametersIEnumerableUpdateValue
+          title: Time unit amount update value
           allOf:
-            - $ref: '#/components/schemas/PerUnitPriceParametersIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/ReservationUpdatePerUnitPriceParameters'
+          description: Prices for time units of the reservation. E.g. prices for the first or second night. (or `null` if the unit amounts should not be updated).
           nullable: true
         BookerId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Identifier of the `Customer` on whose behalf the reservation was made. (or `null` if the booker should not be updated).
           nullable: true
         AssignedResourceLocked:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
           nullable: true
         AvailabilityBlockId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the `AvailabilityBlock` the reservation is assigned to.
           nullable: true
         Options:
-          title: ReservationUpdateOptionsParameters
+          title: Reservations options parameters update values
           allOf:
             - $ref: '#/components/schemas/ReservationUpdateOptionsParameters'
+          description: Options of the reservations.
           nullable: true
       additionalProperties: false
       x-schema-id: ReservationUpdateParameters
+    ReservationUpdatePerUnitPriceParameters:
+      title: Time unit amount update value
+      type: object
+      properties:
+        Value:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerUnitPriceParameters'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ReservationUpdatePerUnitPriceParameters
+    ReservationUpdatePersonCountParameters:
+      title: Person counts update value
+      type: object
+      properties:
+        Value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationPersonCount'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ReservationUpdatePersonCountParameters
     ReservationsUpdateCustomerParameters:
       title: ReservationsUpdateCustomerParameters
       required:
@@ -37599,7 +37033,7 @@ components:
           description: Token identifying the client application.
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
         ReservationId:
