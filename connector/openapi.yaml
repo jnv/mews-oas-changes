@@ -641,6 +641,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: Use `payments/getAll` or `orderItems/getAll`.
   /api/connector/v1/accounts/update:
     post:
       tags:
@@ -5854,6 +5855,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: Use payments/getAll and orderItems/getAll
   /api/connector/v1/customers/add:
     post:
       tags:
@@ -6260,6 +6262,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: Use accounts/merge instead.
   /api/connector/v1/customers/addFile:
     post:
       tags:
@@ -10968,6 +10971,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: Use reservations/getAll/2023-06-06.
   /api/connector/v1/reservations/price:
     post:
       tags:
@@ -12044,6 +12048,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: Use orderItems/getAll.
   /api/connector/v1/resourceAccessTokens/getAll:
     post:
       tags:
@@ -17112,6 +17117,7 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountId` instead.
         OrderId:
           type: string
           format: uuid
@@ -18369,6 +18375,7 @@ components:
           type: string
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `IsActive` instead.
         StartUtc:
           type: string
           nullable: true
@@ -18815,12 +18822,14 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountId` instead.
         CompanyId:
           type: string
           description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) specified in CompanyDetails or the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) the bill is issued to. **Deprecated!**'
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AssociatedAccountIds` instead.
         AssociatedAccountIds:
           type: array
           items:
@@ -18952,6 +18961,7 @@ components:
           description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AssociatedAccountData` instead.
         AssociatedAccountData:
           type: array
           items:
@@ -19128,6 +19138,7 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
         AccountTaxIdentifier:
           title: StringUpdateValue
           allOf:
@@ -19139,6 +19150,7 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
         PurchaseOrderNumber:
           title: StringUpdateValue
           allOf:
@@ -19156,6 +19168,7 @@ components:
           description: New address details.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountAddress` or `AssociatedAccountData` instead.
         AccountAddress:
           title: AddressParameters
           allOf:
@@ -19169,6 +19182,7 @@ components:
           description: New address details.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AssociatedAccountData` instead.
         AssociatedAccountData:
           maxItems: 1
           type: array
@@ -19456,9 +19470,6 @@ components:
           type: boolean
         DisplayCid:
           type: boolean
-        Rebated:
-          type: boolean
-          deprecated: true
       additionalProperties: false
       description: Options of the bill.
       x-schema-id: BillOptions
@@ -19587,6 +19598,7 @@ components:
             - ''
             - ''
             - ''
+          x-deprecatedMessage: Use `TimeUnitPeriod` instead.
         TimeUnitPeriod:
           title: Time unit period
           allOf:
@@ -20203,6 +20215,7 @@ components:
             format: double
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AmountPrices` instead.
         AmountPrices:
           type: array
           items:
@@ -22371,6 +22384,7 @@ components:
           type: string
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Replaced by `Sex`.
         FirstName:
           type: string
           description: First name of the customer.
@@ -22532,6 +22546,7 @@ components:
           description: '[Activity State](https://mews-systems.gitbook.io/connector-api/operations/#activity-state) of customer record, i.e. whether active or deleted.'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `IsActive` instead.
         IsActive:
           type: boolean
         IsUpdatedByMe:
@@ -22738,6 +22753,7 @@ components:
           type: string
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Replaced by `Sex`.
         BirthDate:
           type: string
           description: Date of birth in ISO 8601 format.
@@ -23439,6 +23455,7 @@ components:
           type: string
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Replaced by `Sex`.
         BirthDate:
           type: string
           description: New birth date in ISO 8601 format.
@@ -26360,6 +26377,7 @@ components:
           minLength: 1
           type: string
           deprecated: true
+          x-deprecatedMessage: Use `AccountingEditableHistoryInterval` and `OperationalEditableHistoryInterval` instead.
         AccountingEditableHistoryInterval:
           minLength: 1
           type: string
@@ -26402,6 +26420,7 @@ components:
           description: Address of the customer.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AddressId` instead.
         Currencies:
           type: array
           items:
@@ -26476,6 +26495,7 @@ components:
           minLength: 1
           type: string
           deprecated: true
+          x-deprecatedMessage: Use `AccountingEditableHistoryInterval` and `OperationalEditableHistoryInterval` instead.
         AccountingEditableHistoryInterval:
           minLength: 1
           type: string
@@ -26922,6 +26942,7 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountId`.
         BillId:
           type: string
           description: Unique identifier of an open bill of the customer where to assign the payment.
@@ -29986,11 +30007,13 @@ components:
           description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request.'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: The value will be ignored.
         CheckRateApplicability:
           type: boolean
           description: 'Indicates whether the system will check and prevent a booking being made using a restricted rate, e.g. a private rate. The default is true, i.e. the system will normally check for this unless the property is set to false.'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: The value will be ignored.
         Reprice:
           type: boolean
           description: 'Whether the price should be updated to latest value for date/rate/category combination set in Mews. If not specified, the reservation price is updated.'
@@ -30543,6 +30566,7 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountId`.
         Options:
           title: OrderAdditionOptions
           allOf:
@@ -30834,6 +30858,7 @@ components:
             - $ref: '#/components/schemas/AccountingCategoryParameters'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountingCategoryId`.
         ExternalIdentifier:
           type: string
           nullable: true
@@ -32288,6 +32313,7 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AccountId`
         ReservationGroupId:
           type: string
           description: 'Unique identifier of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations#reservation-group).'
@@ -33612,6 +33638,7 @@ components:
           description: Name of the product. **Deprecated!** Please use Names
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `Names` instead
         Names:
           type: object
           additionalProperties:
@@ -33623,6 +33650,7 @@ components:
           description: Name of the product meant to be displayed to customer. **Deprecated!** Please use ExternalNames
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `ExternalNames` instead
         ExternalNames:
           type: object
           additionalProperties:
@@ -33634,6 +33662,7 @@ components:
           description: Short name of the product. **Deprecated!** Please use ShortNames
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `ShortNames` instead
         ShortNames:
           type: object
           additionalProperties:
@@ -33645,6 +33674,7 @@ components:
           description: Description of the product. **Deprecated!** Please use Descriptions
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `Descriptions` instead
         Descriptions:
           type: object
           additionalProperties:
@@ -34509,9 +34539,11 @@ components:
         RateGroups:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `rateGroups/getAll`
         RateRestrictions:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `restrictions/getAll`
       additionalProperties: false
       description: Extent of data to be returned.
       x-schema-id: RateExtent
@@ -34891,6 +34923,7 @@ components:
             type: string
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `TimeUnitStartsUtc` instead.
         TimeUnitStartsUtc:
           type: array
           items:
@@ -34904,6 +34937,7 @@ components:
             format: double
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `BaseAmountPrices` instead.
         BaseAmountPrices:
           type: array
           items:
@@ -35062,6 +35096,7 @@ components:
             - $ref: '#/components/schemas/RateRestrictionResult'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `restrictions/getAll`
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -35321,12 +35356,14 @@ components:
           description: Reservation start or check-in time (if it's earlier than scheduled start) in UTC timezone in ISO 8601 format.
           format: date-time
           deprecated: true
+          x-deprecatedMessage: Use `ScheduledStartUtc` and `ActualStartUtc` instead.
         EndUtc:
           minLength: 1
           type: string
           description: Scheduled end time of reservation in UTC timezone in ISO 8601 format
           format: date-time
           deprecated: true
+          x-deprecatedMessage: Use `ScheduledEndUtc` and `ActualEndUtc` instead.
         ScheduledStartUtc:
           minLength: 1
           type: string
@@ -35561,10 +35598,12 @@ components:
           type: integer
           format: int32
           deprecated: true
+          x-deprecatedMessage: Use `PersonCounts` instead.
         ChildCount:
           type: integer
           format: int32
           deprecated: true
+          x-deprecatedMessage: Use `PersonCounts` instead.
         PersonCounts:
           minItems: 1
           type: array
@@ -36195,10 +36234,12 @@ components:
           format: uuid
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `AssignedResourceId` instead.
         AssignedSpaceLocked:
           type: boolean
           description: Whether the reservation is locked to the assigned Space and cannot be moved.
           deprecated: true
+          x-deprecatedMessage: Use `AssignedResourceLocked` instead.
         AssignedResourceId:
           type: string
           description: Identifier of the assigned Resource.
@@ -36251,11 +36292,13 @@ components:
           description: Count of adults the reservation was booked for.
           format: int32
           deprecated: true
+          x-deprecatedMessage: Use `PersonCounts` instead.
         ChildCount:
           type: integer
           description: Count of children the reservation was booked for.
           format: int32
           deprecated: true
+          x-deprecatedMessage: Use `PersonCounts` instead.
         PersonCounts:
           type: array
           items:
@@ -36270,6 +36313,7 @@ components:
           description: Unique identifier of the Customer who owns the reservation.
           format: uuid
           deprecated: true
+          x-deprecatedMessage: Use `OwnerId` instead.
         BookerId:
           type: string
           description: Unique identifier of the Customer on whose behalf the reservation was made.
@@ -36282,11 +36326,13 @@ components:
             format: uuid
           description: Unique identifiers of the `Customer`s that will use the resource.
           deprecated: true
+          x-deprecatedMessage: Use `companionships/getAll` instead.
         ChannelManagerId:
           type: string
           description: Channel Manager number.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `ChannelManagerNumber` instead.
         Options:
           title: Reservation options
           allOf:
@@ -36353,6 +36399,7 @@ components:
           description: Total price of the reservation.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `TotalAmount` instead.
       additionalProperties: false
       x-schema-id: ReservationPrice
     ReservationPricingResult:
@@ -38190,18 +38237,23 @@ components:
         ResourceCategories:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `resourceCategories/getAll`
         ResourceCategoryAssignments:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `resourceCategoryAssignments/getAll`
         ResourceCategoryImageAssignments:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `resourceCategoryImageAssignments/getAll`
         ResourceFeatures:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `resourceFeatures/getAll`
         ResourceFeatureAssignments:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `resourceFeatureAssignments/getAll`
         Inactive:
           type: boolean
       additionalProperties: false
@@ -41662,6 +41714,7 @@ components:
           description: Whether voucher is active or deleted.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `IsActive` instead.
         CompanyId:
           type: string
           description: 'Unique identifier of [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) the voucher is related to.'
@@ -41782,6 +41835,7 @@ components:
           description: Whether voucher code is active or deleted.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `IsActive` instead.
         IsActive:
           type: boolean
       additionalProperties: false
@@ -41897,11 +41951,13 @@ components:
         VoucherCodes:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `voucherCodes/getAll`
         VoucherAssignments:
           type: boolean
         Companies:
           type: boolean
           deprecated: true
+          x-deprecatedMessage: Use `companies/getAll`
         Rates:
           type: boolean
       additionalProperties: false
