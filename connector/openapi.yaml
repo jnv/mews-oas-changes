@@ -33017,6 +33017,11 @@ components:
             - $ref: '#/components/schemas/PaymentExternalData'
           nullable: true
           readOnly: true
+        Ghost:
+          allOf:
+            - $ref: '#/components/schemas/PaymentGhostData'
+          nullable: true
+          readOnly: true
       additionalProperties: false
       x-schema-id: PaymentData
     PaymentDataDiscriminator:
@@ -33024,6 +33029,7 @@ components:
         - CreditCard
         - Invoice
         - External
+        - Ghost
       type: string
     PaymentDiscriminator:
       enum:
@@ -33033,6 +33039,7 @@ components:
         - CashPayment
         - InvoicePayment
         - ExternalPayment
+        - GhostPayment
         - TaxDeductedPayment
       type: string
     PaymentExternalData:
@@ -33164,6 +33171,15 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentFilterParameters
+    PaymentGhostData:
+      title: PaymentGhostData
+      type: object
+      properties:
+        OriginalPaymentId:
+          type: string
+          format: uuid
+      additionalProperties: false
+      x-schema-id: PaymentGhostData
     PaymentInvoiceData:
       title: PaymentInvoiceData
       type: object
@@ -41139,7 +41155,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceCategoryAvailabilityV20240122'
-          description: Resource category availabilities.
+          description: Resource category availabilities. Can be empty if no resource categories are assigned to the service.
       additionalProperties: false
       x-schema-id: ServiceAvailabilityResultV20240122
     ServiceAvailabilityUpdateData:
