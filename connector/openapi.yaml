@@ -18227,7 +18227,7 @@ components:
           type: string
           nullable: true
         Amount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -19406,7 +19406,7 @@ components:
           format: uuid
           nullable: true
         Budget:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -19526,7 +19526,7 @@ components:
           format: uuid
           nullable: true
         Budget:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -20862,7 +20862,7 @@ components:
           format: int32
           nullable: true
         AbsoluteFee:
-          title: CurrencyValue
+          title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
@@ -21130,7 +21130,7 @@ components:
           description: Additional notes of the transaction.
           nullable: true
         Amount:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -23204,25 +23204,25 @@ components:
           description: Settlement date and time in UTC timezone in ISO 8601 format.
           nullable: true
         Fee:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         AdjustedFee:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         ChargedAmount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         SettledAmount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -23346,7 +23346,7 @@ components:
       additionalProperties: false
       x-schema-id: CurrencyResult
     CurrencyValue:
-      title: CurrencyValue
+      title: Currency value (ver 2023-02-02)
       required:
         - Currency
         - Value
@@ -23363,7 +23363,7 @@ components:
       description: Absolute value of the fee.
       x-schema-id: CurrencyValue
     CurrencyValueOld:
-      title: CurrencyValueOld
+      title: Currency value (ver 2018-06-07)
       required:
         - Currency
       type: object
@@ -23380,14 +23380,17 @@ components:
           type: number
           format: double
           nullable: true
+          deprecated: true
         Tax:
           type: number
           format: double
           nullable: true
+          deprecated: true
         TaxRate:
           type: number
           format: double
           nullable: true
+          deprecated: true
       additionalProperties: false
       description: Total price of the reservation.
       x-schema-id: CurrencyValueOld
@@ -23396,7 +23399,7 @@ components:
       type: object
       properties:
         Value:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -25474,13 +25477,13 @@ components:
                   format: uuid
                   nullable: true
                 Amount:
-                  title: Amount
+                  title: Extended amount
                   allOf:
                     - $ref: '#/components/schemas/ExtendedAmount'
                   description: ''
                   nullable: true
                 Fee:
-                  title: Amount
+                  title: Extended amount
                   allOf:
                     - $ref: '#/components/schemas/ExtendedAmount'
                   description: ''
@@ -26577,13 +26580,13 @@ components:
               format: uuid
               nullable: true
             Amount:
-              title: Amount
+              title: Extended amount
               allOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
               description: ''
               nullable: true
             Fee:
-              title: Amount
+              title: Extended amount
               allOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
               description: ''
@@ -27864,7 +27867,7 @@ components:
         - Expired
       type: string
     ExtendedAmount:
-      title: Amount
+      title: Extended amount
       required:
         - Breakdown
         - Currency
@@ -32128,13 +32131,13 @@ components:
           description: ''
           nullable: true
         Amount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         OriginalAmount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -32599,7 +32602,7 @@ components:
           format: uuid
           nullable: true
         UnitCost:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -33213,19 +33216,19 @@ components:
           format: uuid
           nullable: true
         Amount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         OriginalAmount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         AmountDefault:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -33345,7 +33348,7 @@ components:
         Type:
           $ref: '#/components/schemas/RefundType'
         Amount:
-          title: CurrencyValue
+          title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
@@ -33448,7 +33451,7 @@ components:
           type: string
           format: uuid
         Amount:
-          title: CurrencyValue
+          title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
@@ -34164,13 +34167,13 @@ components:
           format: uuid
           nullable: true
         Amount:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
           nullable: true
         Fee:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -34218,7 +34221,7 @@ components:
         Type:
           $ref: '#/components/schemas/PaymentTerminalCommandType'
         Amount:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -34787,7 +34790,7 @@ components:
           description: Classifications of the service.
           nullable: true
         Price:
-          title: Amount
+          title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
@@ -37465,7 +37468,7 @@ components:
             - $ref: '#/components/schemas/Amount'
           description: Total price of the reservation.
         Total:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -40025,13 +40028,13 @@ components:
           type: string
           nullable: true
         MinPrice:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
           nullable: true
         MaxPrice:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -40068,13 +40071,13 @@ components:
           format: date-time
           nullable: true
         MinPrice:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
           nullable: true
         MaxPrice:
-          title: CurrencyValueOld
+          title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the reservation.
@@ -40281,13 +40284,13 @@ components:
           format: date-time
           nullable: true
         MinPrice:
-          title: CurrencyValue
+          title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
           nullable: true
         MaxPrice:
-          title: CurrencyValue
+          title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
