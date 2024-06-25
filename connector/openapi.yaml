@@ -18397,6 +18397,11 @@ components:
         - Inactive
         - Canceled
       type: string
+      x-enumDescriptions:
+        - 'Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.'
+        - Order items which carry a non-zero value and have been closed on a bill or invoice.
+        - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
+        - 'Order items which have been canceled, regardless of whether the item is of zero value.'
     AccountingStateEnum:
       title: Order item accounting state
       enum:
@@ -18856,7 +18861,6 @@ components:
     AddressUpdateParameters:
       title: AddressUpdateParameters
       required:
-        - AccountId
         - AddressId
       type: object
       properties:
@@ -18866,6 +18870,8 @@ components:
         AccountId:
           type: string
           format: uuid
+          deprecated: true
+          x-deprecatedMessage: The value is ignored.
         Line1:
           title: StringUpdateValue
           maxLength: 255
@@ -32106,6 +32112,7 @@ components:
           type: string
           description: 'Unique identifier of the account (for example [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer)) the item belongs to.'
           format: uuid
+          nullable: true
         OrderId:
           type: string
           description: 'Unique identifier of the order (or [Reservation](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-ver-2023-06-06) which is a special type of order) the item belongs to.'
@@ -36263,7 +36270,7 @@ components:
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) that reservation is made against.'
+          description: Unique identifier of the `Service` that reservation is made against.
           format: uuid
         AccountId:
           type: string
@@ -36359,7 +36366,7 @@ components:
           nullable: true
         BusinessSegmentId:
           type: string
-          description: 'Identifier of the reservation [Business segment](https://mews-systems.gitbook.io/connector-api/operations/businesssegments#business-segment).'
+          description: Identifier of the reservation `BusinessSegment`.
           format: uuid
           nullable: true
         Options:
@@ -36462,17 +36469,18 @@ components:
         Purpose:
           allOf:
             - $ref: '#/components/schemas/ReservationPurposeEnum'
-          description: "\n\nLeisure\n\nBusiness\n\nStudent"
+          description: "Purpose of the reservation.\n\nLeisure\n\nBusiness\n\nStudent"
           nullable: true
         QrCodeData:
           type: string
           description: QR code data of the reservation.
           nullable: true
         PersonCounts:
+          minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/ReservationPersonCount'
-          description: Number of people per age category the reservation was booked for. At least one category with valid count must be provided.
+          description: Number of people per age category the reservation was booked for.
       additionalProperties: false
       x-schema-id: Reservation
     ReservationAdditionParameters:
@@ -37260,19 +37268,16 @@ components:
           description: 'Name of the Channel manager (e.g. AvailPro, SiteMinder, TravelClick, etc).'
           nullable: true
         State:
-          minLength: 1
-          type: string
-          description: State of the reservation.
+          $ref: '#/components/schemas/ServiceOrderStateOld'
         Origin:
-          minLength: 1
-          type: string
-          description: Origin of the reservation.
+          $ref: '#/components/schemas/ReservationOldOrigin'
         OriginDetails:
           type: string
           description: Details about the reservation origin.
           nullable: true
         Purpose:
-          type: string
+          anyOf:
+            - $ref: '#/components/schemas/ReservationPurpose'
           description: Purpose of the reservation.
           nullable: true
         CreatedUtc:
@@ -37416,6 +37421,35 @@ components:
       additionalProperties: false
       description: ''
       x-schema-id: ReservationOld
+    ReservationOldOrigin:
+      title: Reservation origin (ver 2017-04-12)
+      enum:
+        - Distributor
+        - ChannelManager
+        - Import
+        - Connector
+        - Navigator
+        - CommanderInPerson
+        - CommanderChannel
+        - CommanderPhone
+        - CommanderEmail
+        - CommanderWebsite
+        - CommanderMessage
+        - CommanderCallCenter
+      type: string
+      x-enumDescriptions:
+        - From the Mews Booking Engine or Booking Engine API.
+        - From a channel manager.
+        - From an import process.
+        - From the Mews Connector API.
+        - From Mews Guest Services.
+        - 'From Mews Operations, in person.'
+        - 'From Mews Operations, via channel.'
+        - 'From Mews Operations, via telephone.'
+        - 'From Mews Operations, via email.'
+        - 'From Mews Operations, via website.'
+        - 'From Mews Operations, via message person.'
+        - 'From Mews Operations, via call center.'
     ReservationOptions:
       title: Reservation options
       required:
@@ -37912,8 +37946,15 @@ components:
         - End
         - Overlapping
         - Canceled
-        - Cancelled
       type: string
+      x-enumDescriptions:
+        - Reservations whose intervals collide with the specified interval.
+        - Reservations created within the specified interval.
+        - Reservations updated within the specified interval.
+        - Reservations starting (arriving) within the specified interval.
+        - Reservations ending (departing) within the specified interval.
+        - Reservations whose intervals contain the specified interval.
+        - Reservations canceled within the specified interval.
     ReservationUpdateIntervalParameters:
       title: ReservationUpdateIntervalParameters
       required:
@@ -41691,6 +41732,13 @@ components:
         - Connector
         - Navigator
       type: string
+      x-enumDescriptions:
+        - From the Mews Booking Engine or Booking Engine API.
+        - From a channel manager.
+        - From Mews Operations.
+        - From an import process.
+        - From the Mews Connector API.
+        - From Mews Guest Services.
     ServiceOrderOriginEnum:
       title: Service order origin
       enum:
@@ -41727,6 +41775,14 @@ components:
         - Optional
         - Requested
       type: string
+      x-enumDescriptions:
+        - Confirmed neither by the customer nor enterprise.
+        - 'Confirmed by both parties, before check-in.'
+        - Checked in.
+        - Checked out.
+        - Canceled.
+        - Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).
+        - Confirmed by the customer but not by the enterprise (waitlist).
     ServiceOrderStateEnum:
       title: Service order state
       enum:
