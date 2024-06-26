@@ -43174,6 +43174,14 @@ components:
             format: uuid
           description: Unique identifiers of vouchers.
           nullable: true
+        CompanyIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
         VoucherCodeValues:
           maxItems: 1000
           minItems: 1
