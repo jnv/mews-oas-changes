@@ -8753,7 +8753,7 @@ paths:
       tags:
         - Order items
       summary: Get all order items
-      description: 'Returns all order items. At least one of the `OrderItemIds`, `ServiceOrderIds`, `ServiceIds` `BillIds`, `CreatedUtc`, `UpdatedUtc`, `ChargedUtc`, `ClosedUtc` filters must be specified in the request. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all order items. At least one of the `OrderItemIds`, `ServiceOrderIds`, `ServiceIds BillIds`, `CreatedUtc`, `UpdatedUtc`, `ClosedUtc` filters must be specified in the request. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: orderItems_getAll
       requestBody:
         content:
@@ -15770,7 +15770,7 @@ paths:
       tags:
         - Services
       summary: Get service availability
-      description: 'Returns availability of a bookable service for a specified time interval including applied availability adjustments. Availability will be returned for all service time units that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 367 hours if hours, 367 days if days, or 60 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
+      description: 'Returns availability of a bookable service for a specified time interval including applied availability adjustments. Availability will be returned for all service time @units that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 367 hours if hours, 367 days if days, or 60 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
       operationId: services_getAvailability
       requestBody:
         content:
@@ -22181,6 +22181,15 @@ components:
             type: string
             format: uuid
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          nullable: true
+        MotherCompanyIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of mother `Company`.
           nullable: true
         CreatedUtc:
           title: TimeFilterInterval
