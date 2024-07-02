@@ -7459,6 +7459,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/ledgerBalances/getAll:
+    post:
+      tags:
+        - Ledger balances
+      description: Returns opening & closing balances of all specified ledgers for each day in the specified interval.
+      operationId: ledgerBalances_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerBalanceParameters'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerBalanceResult'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/loyaltyMemberships/getAll:
     post:
       tags:
@@ -18389,6 +18449,31 @@ components:
             - $ref: '#/components/schemas/GuidUpdateValue'
       additionalProperties: false
       x-schema-id: AccountingItemUpdateParameters
+    AccountingLedgerTypeEnum:
+      title: Accounting ledger type
+      enum:
+        - Revenue
+        - Tax
+        - Payment
+        - Deposit
+        - Guest
+        - City
+      type: string
+      description: "\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity"
+      x-enumNames:
+        - Revenue
+        - Tax
+        - Payment
+        - Deposit
+        - Guest
+        - City
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     AccountingState:
       title: Order item accounting state
       enum:
@@ -24637,6 +24722,23 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerUpdateParameters
+    DateFilterInterval:
+      title: DateFilterInterval
+      required:
+        - End
+        - Start
+      type: object
+      properties:
+        Start:
+          minLength: 1
+          type: string
+          format: date
+        End:
+          minLength: 1
+          type: string
+          format: date
+      additionalProperties: false
+      x-schema-id: DateFilterInterval
     DateRestriction:
       title: DateRestriction
       type: object
@@ -28886,6 +28988,121 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: LanguageTexts
+    LedgerBalance:
+      title: LedgerBalance
+      required:
+        - ClosingBalance
+        - Date
+        - EnterpriseId
+        - LedgerType
+        - OpeningBalance
+      type: object
+      properties:
+        EnterpriseId:
+          type: string
+          description: Unique identifier of the Enterprise.
+          format: uuid
+        Date:
+          minLength: 1
+          type: string
+          description: Day for which ledger balance applies in ISO 8601 format.
+          format: date
+        LedgerType:
+          title: Accounting ledger type
+          allOf:
+            - $ref: '#/components/schemas/AccountingLedgerTypeEnum'
+          description: "Type of accounting ledger.\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity"
+          x-enumNames:
+            - Revenue
+            - Tax
+            - Payment
+            - Deposit
+            - Guest
+            - City
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+        OpeningBalance:
+          title: Amount
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          description: Ledger opening balance at the start of the day.
+        ClosingBalance:
+          title: Amount
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          description: Ledger closing balance at the end of the day.
+      additionalProperties: false
+      description: Ledger balance
+      x-schema-id: LedgerBalance
+    LedgerBalanceParameters:
+      title: LedgerBalanceParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Date
+        - LedgerTypes
+        - Limitation
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        AccessToken:
+          minLength: 1
+          type: string
+        ClientToken:
+          minLength: 1
+          type: string
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+        Date:
+          allOf:
+            - $ref: '#/components/schemas/DateFilterInterval'
+          description: Date interval over which the ledger balances are created.
+          x-max-interval-in-months: 1
+        LedgerTypes:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountingLedgerTypeEnum'
+          description: Accounting ledger types to which ledger balances belong.
+      additionalProperties: false
+      x-schema-id: LedgerBalanceParameters
+    LedgerBalanceResult:
+      title: LedgerBalanceResult
+      required:
+        - LedgerBalances
+      type: object
+      properties:
+        LedgerBalances:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerBalance'
+          description: The list of filtered ledger balances.
+          nullable: true
+        Cursor:
+          type: string
+          description: Unique identifier of the last and hence oldest ledger balance returned. This can be used in Limitation in a subsequent request to fetch the next batch of ledger balances.
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: LedgerBalanceResult
     LegalEntityIdentifierUpdateParameters:
       title: LegalEntityIdentifierUpdateParameters
       type: object
