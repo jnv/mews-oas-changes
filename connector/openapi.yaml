@@ -31974,6 +31974,10 @@ components:
           description: 'Unique identifier of the [Accounting category](https://mews-systems.gitbook.io/connector-api/operations/accountingcategories/#accounting-category) the order item belongs to.'
           format: uuid
           nullable: true
+        BillingName:
+          type: string
+          description: Name of the order item for billing purposes.
+          nullable: true
         ExternalIdentifier:
           type: string
           description: Identifier of the entity from external system.
