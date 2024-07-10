@@ -28658,6 +28658,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: InvoicePaymentData
+    InvoicePaymentTypeEnum:
+      title: Invoice payment type
+      enum:
+        - Receivable
+        - Balancing
+        - UnderpaymentBalancingReceivable
+        - OverpaymentBalancingReceivable
+        - Overpayment
+      type: string
+      description: "\n\nReceivable\n\nBalancing\n\nUnderpaymentBalancingReceivable\n\nOverpaymentBalancingReceivable\n\nOverpayment"
+      x-enumNames:
+        - Receivable
+        - Balancing
+        - UnderpaymentBalancingReceivable
+        - OverpaymentBalancingReceivable
+        - Overpayment
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ItalianFiscalMachineData:
       title: ItalianFiscalMachineData
       type: object
@@ -33422,12 +33444,31 @@ components:
       x-schema-id: PaymentGhostData
     PaymentInvoiceData:
       title: PaymentInvoiceData
+      required:
+        - Type
       type: object
       properties:
         InvoiceId:
           type: string
           format: uuid
           nullable: true
+        Type:
+          title: Invoice payment type
+          allOf:
+            - $ref: '#/components/schemas/InvoicePaymentTypeEnum'
+          description: "\n\nReceivable\n\nBalancing\n\nUnderpaymentBalancingReceivable\n\nOverpaymentBalancingReceivable\n\nOverpayment"
+          x-enumNames:
+            - Receivable
+            - Balancing
+            - UnderpaymentBalancingReceivable
+            - OverpaymentBalancingReceivable
+            - Overpayment
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: PaymentInvoiceData
     PaymentItemOld:
