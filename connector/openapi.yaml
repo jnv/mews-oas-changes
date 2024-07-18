@@ -20913,6 +20913,7 @@ components:
         - CreatedUtc
         - FeeExtent
         - Id
+        - IsActive
         - RateGroupId
         - RelativeFee
         - UpdatedUtc
@@ -20961,6 +20962,9 @@ components:
           type: number
           description: 'Relative value of the fee, as a percentage of the reservation price.'
           format: double
+        IsActive:
+          type: boolean
+          description: Whether the cancellation policy is still active.
       additionalProperties: false
       x-schema-id: CancellationPolicy
     CancellationPolicyApplicability:
@@ -21036,6 +21040,12 @@ components:
             - $ref: '#/components/schemas/TimeFilterInterval'
           nullable: true
           x-max-interval-in-months: 3
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted or both records.'
+          nullable: true
       additionalProperties: false
       x-schema-id: CancellationPolicyFilterParameters
     CancellationPolicyResult:
@@ -36163,21 +36173,16 @@ components:
       x-schema-id: RateOptions
     RatePriceUpdate:
       title: RatePriceUpdate
-      required:
-        - AccessToken
-        - Client
-        - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
+        CategoryId:
           type: string
-        AccessToken:
-          minLength: 1
-          type: string
-        ClientToken:
-          minLength: 1
-          type: string
+          format: uuid
+          nullable: true
+        Value:
+          type: number
+          format: double
+          nullable: true
         FirstTimeUnitStartUtc:
           type: string
           format: date-time
@@ -36191,19 +36196,13 @@ components:
           format: date-time
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `FirstTimeUnitStartUtc` instead.
         EndUtc:
           type: string
           format: date-time
           nullable: true
           deprecated: true
-        CategoryId:
-          type: string
-          format: uuid
-          nullable: true
-        Value:
-          type: number
-          format: double
-          nullable: true
+          x-deprecatedMessage: Use `LastTimeUnitStartUtc` instead.
       additionalProperties: false
       x-schema-id: RatePriceUpdate
     RatePriceUpdateParameters:
