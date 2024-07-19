@@ -23526,6 +23526,7 @@ components:
         - IsActive
         - LastName
         - Options
+        - PreferredSpaceFeatures
         - UpdatedUtc
       type: object
       properties:
@@ -23721,6 +23722,11 @@ components:
         IsUpdatedByMe:
           type: boolean
           nullable: true
+        PreferredSpaceFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceFeatureClassification'
+          description: 'A list of room preferences, such as view type, bed type, and amenities.'
       additionalProperties: false
       x-schema-id: Customer
     CustomerAccount:
@@ -39843,6 +39849,7 @@ components:
       additionalProperties: false
       x-schema-id: ResourceFeatureAssignmentResult
     ResourceFeatureClassification:
+      title: Resource Feature Classification
       enum:
         - SeaView
         - RiverView
@@ -39865,6 +39872,73 @@ components:
         - PrivateBathroom
         - SharedBathroom
       type: string
+    ResourceFeatureClassificationEnum:
+      title: Resource Feature Classification
+      enum:
+        - SeaView
+        - RiverView
+        - OceanView
+        - TwinBeds
+        - DoubleBed
+        - RollawayBed
+        - UpperBed
+        - LowerBed
+        - Balcony
+        - AccessibleBathroom
+        - AccessibleRoom
+        - ElevatorAccess
+        - HighFloor
+        - Kitchenette
+        - AirConditioning
+        - PrivateJacuzzi
+        - PrivateSauna
+        - EnsuiteRoom
+        - PrivateBathroom
+        - SharedBathroom
+      type: string
+      description: "\n\nSeaView\n\nRiverView\n\nOceanView\n\nTwinBeds\n\nDoubleBed\n\nRollawayBed\n\nUpperBed\n\nLowerBed\n\nBalcony\n\nAccessibleBathroom\n\nAccessibleRoom\n\nElevatorAccess\n\nHighFloor\n\nKitchenette\n\nAirConditioning\n\nPrivateJacuzzi\n\nPrivateSauna\n\nEnsuiteRoom\n\nPrivateBathroom\n\nSharedBathroom"
+      x-enumNames:
+        - SeaView
+        - RiverView
+        - OceanView
+        - TwinBeds
+        - DoubleBed
+        - RollawayBed
+        - UpperBed
+        - LowerBed
+        - Balcony
+        - AccessibleBathroom
+        - AccessibleRoom
+        - ElevatorAccess
+        - HighFloor
+        - Kitchenette
+        - AirConditioning
+        - PrivateJacuzzi
+        - PrivateSauna
+        - EnsuiteRoom
+        - PrivateBathroom
+        - SharedBathroom
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ResourceFeatureFilterParameters:
       title: ResourceFeatureFilterParameters
       required:
