@@ -20900,10 +20900,12 @@ components:
       additionalProperties: false
       x-schema-id: BusinessSegmentResult
     CancellationFeeExtent:
+      title: Cancellation Fee Extent
       enum:
         - TimeUnits
         - Products
       type: string
+      description: 'Extent for the cancellation fee, i.e. what should be in scope for the automatic payment.'
     CancellationPolicy:
       title: Cancellation Policy
       required:
@@ -20968,11 +20970,13 @@ components:
       additionalProperties: false
       x-schema-id: CancellationPolicy
     CancellationPolicyApplicability:
+      title: Cancellation Policy Applicability
       enum:
         - Creation
         - Start
         - StartDate
       type: string
+      description: Applicability mode of the cancellation policy.
     CancellationPolicyFilterParameters:
       title: CancellationPolicyFilterParameters
       required:
@@ -21038,13 +21042,14 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the Cancellation Policy was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
           type: array
           items:
             $ref: '#/components/schemas/ActivityStates'
-          description: 'Whether to return only active, only deleted or both records.'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, only active records will be returned.'
           nullable: true
       additionalProperties: false
       x-schema-id: CancellationPolicyFilterParameters
