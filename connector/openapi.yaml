@@ -27946,6 +27946,7 @@ components:
         - Reservation
         - Customer
         - Company
+        - Bill
       type: string
     ExportFileEntry:
       title: ExportFileEntry
