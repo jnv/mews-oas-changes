@@ -18507,10 +18507,24 @@ components:
         - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
         - 'Order items which have been canceled, regardless of whether the item is of zero value.'
     ActivityState:
+      title: Activity State
       enum:
         - Deleted
         - Active
       type: string
+    ActivityStateEnum:
+      title: Activity State
+      enum:
+        - Deleted
+        - Active
+      type: string
+      description: "\n\nDeleted\n\nActive"
+      x-enumNames:
+        - Deleted
+        - Active
+      x-enumDescriptions:
+        - ''
+        - ''
     ActivityStates:
       enum:
         - Deleted
@@ -19340,10 +19354,12 @@ components:
           format: uuid
         StartUtc:
           type: string
+          description: Start of the interval in UTC timezone in ISO 8601 format.
           nullable: true
           deprecated: true
         EndUtc:
           type: string
+          description: End of the interval in UTC timezone in ISO 8601 format.
           nullable: true
           deprecated: true
         FirstTimeUnitStartUtc:
@@ -19361,9 +19377,21 @@ components:
           description: Adjustment value applied on the interval.
           format: int32
         ActivityState:
-          $ref: '#/components/schemas/ActivityState'
+          title: Activity State
+          allOf:
+            - $ref: '#/components/schemas/ActivityStateEnum'
+          description: "Shows whether the availability adjustment is active or deleted.\n\nDeleted\n\nActive"
+          deprecated: true
+          x-enumNames:
+            - Deleted
+            - Active
+          x-enumDescriptions:
+            - ''
+            - ''
+          x-deprecatedMessage: Use `IsActive` instead.
         ReleaseOverrideUtc:
           type: string
+          description: Exact moment the availability adjustment is released; overrides the release strategy of the associated availability block.
           format: date-time
           nullable: true
         UpdatedUtc:
@@ -19373,11 +19401,13 @@ components:
           format: date-time
         IsActive:
           type: boolean
+          description: Whether the availability adjustment is still active.
         PaxCounts:
           maxItems: 5
           type: array
           items:
             $ref: '#/components/schemas/PaxCount'
+          description: Collection of predicted occupancy of availability adjustments. Relates to how many adjustments are assigned to each count of guests.
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityAdjustment
@@ -19428,13 +19458,14 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the availability adjustments were updated.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
           type: array
           items:
             $ref: '#/components/schemas/ActivityState'
-          description: 'Whether to return only active, only deleted or both records.'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, only active records will be returned.'
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityAdjustmentParameters
