@@ -20153,21 +20153,24 @@ components:
           description: 'Additional information about the enterprise issuing the bill, including bank account details. Persisted at the time of closing of the bill.'
           nullable: true
         CorrectionState:
+          title: Bill correction state
           allOf:
             - $ref: '#/components/schemas/BillCorrectionStateEnum'
-          description: "\n\nBill\n\nCorrectiveBill"
+          description: "Whether the bill is a regular bill or a corrective bill.\n\nBill (Regular bill.)\n\nCorrectiveBill (Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.)"
           x-enumNames:
             - Bill
             - CorrectiveBill
           x-enumDescriptions:
-            - ''
-            - ''
+            - Regular bill.
+            - 'Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.'
         CorrectionType:
           anyOf:
             - $ref: '#/components/schemas/CorrectionType'
+          description: Type of correction.
           nullable: true
         CorrectedBillId:
           type: string
+          description: 'The ID of the bill that the corrective bill corrects. If the corrected bill was deleted, this field is `null`.'
           format: uuid
           nullable: true
       additionalProperties: false
@@ -20403,17 +20406,18 @@ components:
       description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
       x-schema-id: BillCompanyData
     BillCorrectionStateEnum:
+      title: Bill correction state
       enum:
         - Bill
         - CorrectiveBill
       type: string
-      description: "\n\nBill\n\nCorrectiveBill"
+      description: "\n\nBill (Regular bill.)\n\nCorrectiveBill (Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.)"
       x-enumNames:
         - Bill
         - CorrectiveBill
       x-enumDescriptions:
-        - ''
-        - ''
+        - Regular bill.
+        - 'Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.'
     BillCustomerData:
       title: BillCustomerData
       type: object
@@ -20629,6 +20633,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BillCorrectionStateEnum'
+          description: 'Whether to return regular bills, corrective bills, or both. If `BillIds` are specified, defaults to both, otherwise defaults to `Bill`.'
           nullable: true
       additionalProperties: false
       x-schema-id: BillFilterParameters
@@ -25242,6 +25247,14 @@ components:
                         LastName:
                           type: string
                           nullable: true
+                        NormalizedFirstName:
+                          type: string
+                          description: Normalized first name of the customer without special characters.
+                          nullable: true
+                        NormalizedLastName:
+                          type: string
+                          description: Normalized last name of the customer without special characters.
+                          nullable: true
                         Telephone:
                           type: string
                           nullable: true
@@ -25509,6 +25522,14 @@ components:
                       nullable: true
                     LastName:
                       type: string
+                      nullable: true
+                    NormalizedFirstName:
+                      type: string
+                      description: Normalized first name of the customer without special characters.
+                      nullable: true
+                    NormalizedLastName:
+                      type: string
+                      description: Normalized last name of the customer without special characters.
                       nullable: true
                     Telephone:
                       type: string
@@ -25805,6 +25826,14 @@ components:
                     LastName:
                       type: string
                       nullable: true
+                    NormalizedFirstName:
+                      type: string
+                      description: Normalized first name of the customer without special characters.
+                      nullable: true
+                    NormalizedLastName:
+                      type: string
+                      description: Normalized last name of the customer without special characters.
+                      nullable: true
                     Telephone:
                       type: string
                       nullable: true
@@ -26072,6 +26101,14 @@ components:
                   nullable: true
                 LastName:
                   type: string
+                  nullable: true
+                NormalizedFirstName:
+                  type: string
+                  description: Normalized first name of the customer without special characters.
+                  nullable: true
+                NormalizedLastName:
+                  type: string
+                  description: Normalized last name of the customer without special characters.
                   nullable: true
                 Telephone:
                   type: string
@@ -26345,6 +26382,14 @@ components:
                     LastName:
                       type: string
                       nullable: true
+                    NormalizedFirstName:
+                      type: string
+                      description: Normalized first name of the customer without special characters.
+                      nullable: true
+                    NormalizedLastName:
+                      type: string
+                      description: Normalized last name of the customer without special characters.
+                      nullable: true
                     Telephone:
                       type: string
                       nullable: true
@@ -26612,6 +26657,14 @@ components:
                   nullable: true
                 LastName:
                   type: string
+                  nullable: true
+                NormalizedFirstName:
+                  type: string
+                  description: Normalized first name of the customer without special characters.
+                  nullable: true
+                NormalizedLastName:
+                  type: string
+                  description: Normalized last name of the customer without special characters.
                   nullable: true
                 Telephone:
                   type: string
@@ -26908,6 +26961,14 @@ components:
                 LastName:
                   type: string
                   nullable: true
+                NormalizedFirstName:
+                  type: string
+                  description: Normalized first name of the customer without special characters.
+                  nullable: true
+                NormalizedLastName:
+                  type: string
+                  description: Normalized last name of the customer without special characters.
+                  nullable: true
                 Telephone:
                   type: string
                   nullable: true
@@ -27175,6 +27236,14 @@ components:
               nullable: true
             LastName:
               type: string
+              nullable: true
+            NormalizedFirstName:
+              type: string
+              description: Normalized first name of the customer without special characters.
+              nullable: true
+            NormalizedLastName:
+              type: string
+              description: Normalized last name of the customer without special characters.
               nullable: true
             Telephone:
               type: string
@@ -28904,6 +28973,14 @@ components:
           nullable: true
         LastName:
           type: string
+          nullable: true
+        NormalizedFirstName:
+          type: string
+          description: Normalized first name of the customer without special characters.
+          nullable: true
+        NormalizedLastName:
+          type: string
+          description: Normalized last name of the customer without special characters.
           nullable: true
         Telephone:
           type: string
@@ -34095,6 +34172,14 @@ components:
                 LastName:
                   type: string
                   nullable: true
+                NormalizedFirstName:
+                  type: string
+                  description: Normalized first name of the customer without special characters.
+                  nullable: true
+                NormalizedLastName:
+                  type: string
+                  description: Normalized last name of the customer without special characters.
+                  nullable: true
                 Telephone:
                   type: string
                   nullable: true
@@ -34362,6 +34447,14 @@ components:
               nullable: true
             LastName:
               type: string
+              nullable: true
+            NormalizedFirstName:
+              type: string
+              description: Normalized first name of the customer without special characters.
+              nullable: true
+            NormalizedLastName:
+              type: string
+              description: Normalized last name of the customer without special characters.
               nullable: true
             Telephone:
               type: string
@@ -34829,6 +34922,14 @@ components:
               nullable: true
             LastName:
               type: string
+              nullable: true
+            NormalizedFirstName:
+              type: string
+              description: Normalized first name of the customer without special characters.
+              nullable: true
+            NormalizedLastName:
+              type: string
+              description: Normalized last name of the customer without special characters.
               nullable: true
             Telephone:
               type: string
@@ -35435,6 +35536,10 @@ components:
             - $ref: '#/components/schemas/TimeFilterInterval'
           nullable: true
           x-max-interval-in-months: 3
+        IncludeDefault:
+          type: boolean
+          description: 'Whether or not to include default products for the service, i.e. products which are standard includes and not true extras. For example, the night''s stay would be the default product for a room reservation. These may be useful for accounting purposes but should not be displayed to customers for selection. If `ProductIds` are provided, `IncludeDefault` defaults to true, otherwise it defaults to false.'
+          nullable: true
       additionalProperties: false
       x-schema-id: ProductFilterParameters
     ProductOptions:
@@ -43242,7 +43347,18 @@ components:
           description: Last update date and time of the voucher in UTC timezone in ISO 8601 format.
           format: date-time
         Type:
-          $ref: '#/components/schemas/VoucherType'
+          title: Voucher Type
+          allOf:
+            - $ref: '#/components/schemas/VoucherTypeEnum'
+          description: "Type of the voucher.\n\nPublic\n\nPartnerCompany\n\nTravelAgency"
+          x-enumNames:
+            - Public
+            - PartnerCompany
+            - TravelAgency
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
         ActivityState:
           anyOf:
             - $ref: '#/components/schemas/ActivityState'
@@ -43262,10 +43378,12 @@ components:
           nullable: true
         OccupiableIntervalStartUtc:
           type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format (or null if the start time should not be updated).'
           format: date-time
           nullable: true
         OccupiableIntervalEndUtc:
           type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last time unit, in UTC timezone ISO 8601 format (or null if the end time should not be updated).'
           format: date-time
           nullable: true
         ExternalIdentifier:
@@ -43275,10 +43393,11 @@ components:
           nullable: true
         IsActive:
           type: boolean
+          description: Whether the voucher is still active.
       additionalProperties: false
       x-schema-id: Voucher
     VoucherAddParameters:
-      title: VoucherAddParameters
+      title: Voucher Parameters
       required:
         - Name
         - ServiceId
@@ -43287,15 +43406,29 @@ components:
       properties:
         ServiceId:
           type: string
+          description: Unique identifier of Service.
           format: uuid
         Name:
           maxLength: 128
           minLength: 1
           type: string
+          description: Internal name of the voucher.
         Type:
-          $ref: '#/components/schemas/VoucherType'
+          title: Voucher Type
+          allOf:
+            - $ref: '#/components/schemas/VoucherTypeEnum'
+          description: "Type of the voucher.\n\nPublic\n\nPartnerCompany\n\nTravelAgency"
+          x-enumNames:
+            - Public
+            - PartnerCompany
+            - TravelAgency
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
         CompanyId:
           type: string
+          description: Unique identifier of Company.
           format: uuid
           nullable: true
         AssignedRateIds:
@@ -43304,18 +43437,22 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of Rates.
           nullable: true
         OccupiableIntervalStartUtc:
           type: string
+          description: Start of the interval in which the voucher can be applied.
           format: date-time
           nullable: true
         OccupiableIntervalEndUtc:
           type: string
+          description: End of the interval in which the voucher can be applied.
           format: date-time
           nullable: true
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: Identifier of the voucher from external system.
           nullable: true
       additionalProperties: false
       x-schema-id: VoucherAddParameters
@@ -43373,6 +43510,7 @@ components:
           x-deprecatedMessage: Use `IsActive` instead.
         IsActive:
           type: boolean
+          description: Whether the voucher code is still active.
       additionalProperties: false
       x-schema-id: VoucherCode
     VoucherCodeAddParameters:
@@ -43478,23 +43616,33 @@ components:
       additionalProperties: false
       x-schema-id: VoucherCodeResult
     VoucherExtent:
-      title: VoucherExtent
+      title: Voucher Extent
       type: object
       properties:
         Vouchers:
           type: boolean
+          description: Whether the response should contain main information about vouchers.
+          nullable: true
         VoucherCodes:
           type: boolean
+          description: Whether the response should contain voucher codes used by customers.
+          nullable: true
           deprecated: true
           x-deprecatedMessage: Use `voucherCodes/getAll`
         VoucherAssignments:
           type: boolean
+          description: Whether the response should contain assignments between vouchers and Rates.
+          nullable: true
         Companies:
           type: boolean
+          description: Whether the response should contain detail of related companies.
+          nullable: true
           deprecated: true
           x-deprecatedMessage: Use `companies/getAll`
         Rates:
           type: boolean
+          description: Whether the response should contain detail of assigned rates.
+          nullable: true
       additionalProperties: false
       description: Extent of data to be returned. Whether only specific voucher info should be returned or related items as well.
       x-schema-id: VoucherExtent
@@ -43535,7 +43683,7 @@ components:
           description: 'Unique identifiers of the [Enterprises](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         Extent:
-          title: VoucherExtent
+          title: Voucher Extent
           allOf:
             - $ref: '#/components/schemas/VoucherExtent'
           description: Extent of data to be returned. Whether only specific voucher info should be returned or related items as well.
@@ -43563,6 +43711,7 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of the companies.
           nullable: true
         VoucherCodeValues:
           maxItems: 1000
@@ -43573,11 +43722,10 @@ components:
           description: Value of voucher codes used by customers.
           nullable: true
         ActivityStates:
-          maxItems: 1000
           type: array
           items:
-            type: string
-          description: 'Whether to return only active, only deleted or both records.'
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, both active and deleted records will be returned.'
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
@@ -43636,54 +43784,88 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: VoucherResult
-    VoucherType:
+    VoucherTypeEnum:
+      title: Voucher Type
       enum:
         - Public
         - PartnerCompany
         - TravelAgency
       type: string
+      description: "\n\nPublic\n\nPartnerCompany\n\nTravelAgency"
+      x-enumNames:
+        - Public
+        - PartnerCompany
+        - TravelAgency
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+    VoucherTypeUpdateValue:
+      title: VoucherTypeUpdateValue
+      type: object
+      properties:
+        Value:
+          title: Voucher Type
+          allOf:
+            - $ref: '#/components/schemas/VoucherTypeEnum'
+          description: "\n\nPublic\n\nPartnerCompany\n\nTravelAgency"
+          x-enumNames:
+            - Public
+            - PartnerCompany
+            - TravelAgency
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+      additionalProperties: false
+      x-schema-id: VoucherTypeUpdateValue
     VoucherUpdateParameters:
-      title: VoucherUpdateParameters
+      title: Vouchers update parameters
       required:
         - VoucherId
       type: object
       properties:
         VoucherId:
           type: string
+          description: Unique identifier of the Voucher.
           format: uuid
         Name:
           title: StringUpdateValue
           maxLength: 128
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Internal name of the voucher (or `null` if the name should not be updated).
           nullable: true
         Type:
           allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          anyOf:
-            - $ref: '#/components/schemas/VoucherType'
+            - $ref: '#/components/schemas/VoucherTypeUpdateValue'
+          description: 'Type of the voucher e.g. ''Public'', ''PartnerCompany'' or ''TravelAgency'' (or `null` if the type should not be updated).'
           nullable: true
         CompanyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of Company (Company or Travel Agency) the voucher is related to. This is required for Type of `PartnerCompany` or `TravelAgency`. Use `null` if Company should not be updated.
           nullable: true
         AssignedRateIds:
           title: GuidIEnumerableUpdateValue
           maxLength: 5
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
+          description: Unique identifiers of Rates (or `null` should it not be updated).
           nullable: true
         OccupiableIntervalStartUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Start of the interval in which the voucher can be applied (or `null` if the start time should not be updated).
           format: date-time
           nullable: true
         OccupiableIntervalEndUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: End of the interval in which the voucher can be applied (or `null` if the end time should not be updated).
           format: date-time
           nullable: true
         ExternalIdentifier:
@@ -43691,6 +43873,7 @@ components:
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Identifier of the voucher from external system (or `null` if the identifier should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: VoucherUpdateParameters
