@@ -23566,6 +23566,7 @@ components:
         - Id
         - IsActive
         - LastName
+        - Number
         - Options
         - PreferredSpaceFeatures
         - UpdatedUtc
@@ -23580,9 +23581,9 @@ components:
           description: Unique identifier of the chain.
           format: uuid
         Number:
+          minLength: 1
           type: string
           description: Number of the customer.
-          nullable: true
         Title:
           type: string
           description: Title prefix of the customer.
@@ -23612,9 +23613,13 @@ components:
           type: string
           description: 'ISO 3166-1 code of the [Country](https://mews-systems.gitbook.io/connector-api/operations/countries/#country).'
           nullable: true
+        PreferredLanguageCode:
+          type: string
+          description: 'Language and culture code of customer''s preferred language as set via Operations or API (i.e. without customer''s choice). For example: `en-GB`, `fr-CA`.'
+          nullable: true
         LanguageCode:
           type: string
-          description: Language and culture code of the customers preferred language. E.g. en-US or fr-FR.
+          description: 'Language and culture code of the customers specified in the booking process, otherwise customers preferred language or native language. E.g. `en-US` or `fr-FR`. '
           nullable: true
         BirthDate:
           type: string
