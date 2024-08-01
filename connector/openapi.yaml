@@ -19597,27 +19597,30 @@ components:
       additionalProperties: false
       x-schema-id: AvailabilityBlock
     AvailabilityBlockAddParameters:
-      title: AvailabilityBlockAddParameters
+      title: Availability block parameters
       required:
         - FirstTimeUnitStartUtc
         - LastTimeUnitStartUtc
         - RateId
-        - ReleasedUtc
         - ServiceId
       type: object
       properties:
         ServiceId:
           type: string
+          description: Unique identifier of the Service to assign block to.
           format: uuid
         RateId:
           type: string
+          description: Unique identifier of the Rate to assign block to.
           format: uuid
         FirstTimeUnitStartUtc:
           minLength: 1
           type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format.'
         LastTimeUnitStartUtc:
           minLength: 1
           type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format.'
         StartUtc:
           type: string
           nullable: true
@@ -19627,16 +19630,25 @@ components:
           nullable: true
           deprecated: true
         ReleasedUtc:
-          minLength: 1
           type: string
+          description: 'The moment when the block and its availability is released, in UTC timezone ISO 8601 format.'
+          format: date-time
+          nullable: true
+        RollingReleaseOffset:
+          type: string
+          description: 'Exact offset from the start of availability adjustments to the moment the availability adjustment should be released, in ISO 8601 duration format. Ignored if `ReleasedUtc` is specified.'
+          nullable: true
         Name:
           type: string
+          description: The name of the block.
           nullable: true
         VoucherCode:
           type: string
+          description: Voucher code providing access to specified private Rate.
           nullable: true
         BookerId:
           type: string
+          description: Unique identifier of the Booker as a creator of an availability block.
           format: uuid
           nullable: true
         CompanyId:
@@ -19651,22 +19663,26 @@ components:
           title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
-          description: Total price of the reservation.
+          description: The tentative budget for the total price of reservations.
           nullable: true
         ReservationPurpose:
           anyOf:
             - $ref: '#/components/schemas/ReservationPurpose'
+          description: The purpose of the block.
           nullable: true
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: Identifier of the block from external system.
           nullable: true
         Notes:
           type: string
+          description: Additional notes of the block.
           nullable: true
         State:
           anyOf:
             - $ref: '#/components/schemas/AvailabilityBlockState'
+          description: State of the availability block.
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddParameters
@@ -19855,26 +19871,30 @@ components:
         - Canceled
       type: string
     AvailabilityBlockUpdateParameters:
-      title: AvailabilityBlockUpdateParameters
+      title: Availability block update parameters
       type: object
       properties:
         AvailabilityBlockId:
           type: string
+          description: Unique identifier of the Availability block.
           format: uuid
         Name:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: The name of the block (or `null` if the name should not be updated).
           nullable: true
         FirstTimeUnitStartUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format (or `null` if the start time should not be updated).'
           nullable: true
         LastTimeUnitStartUtc:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'End of the time interval, expressed as the timestamp for the start of the last time unit, in UTC timezone ISO 8601 format (or `null` if the end time should not be updated).'
           nullable: true
         StartUtc:
           title: StringUpdateValue
@@ -19888,26 +19908,24 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
           deprecated: true
-        ReleasedUtc:
-          title: StringUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          nullable: true
         ExternalIdentifier:
           title: StringUpdateValue
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Identifier of the block from external system (or `null` if the identifier should not be updated).
           nullable: true
         State:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: State of the availability block (or `null` if not updated).
           nullable: true
         ReservationPurpose:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: The purpose of the block (or `null` if not updated).
           nullable: true
         CompanyId:
           title: GuidNullableUpdateValue
@@ -19923,16 +19941,19 @@ components:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the Booker as a creator of an availability block (or `null` if not updated).
           nullable: true
         Notes:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Additional notes of the block (or `null` if not updated).
           nullable: true
         Budget:
           title: CurrencyValueOldUpdateValue
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOldUpdateValue'
+          description: Additional notes of the block (or `null` if not updated).
           nullable: true
         CancellationReason:
           title: StringUpdateValue
@@ -19943,6 +19964,23 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          nullable: true
+        RollingReleaseOffset:
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Exact offset from the start of availability adjustments to the moment the availability adjustment should be released, in ISO 8601 duration format. Required if `ReleaseStrategy` is set to `RollingRelease`, ignored otherwise.'
+          nullable: true
+        ReleasedUtc:
+          title: StringUpdateValue
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'The moment when the block and its availability is released, in UTC timezone ISO 8601 format. Required if `ReleaseStrategy` is set to `FixedRelease`, or used when `ReleaseStrategy` update is unspecified.'
+          format: date-time
+          nullable: true
+        ReleaseStrategy:
+          title: The strategy for automatic release of the availability block (or `null` if not updated).
+          allOf:
+            - $ref: '#/components/schemas/ReleaseStrategyUpdateValue'
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
@@ -36663,6 +36701,41 @@ components:
           format: double
       additionalProperties: false
       x-schema-id: RelativeTaxRateStrategy
+    ReleaseStrategyEnum:
+      title: The strategy for automatic release of the availability block.
+      enum:
+        - FixedRelease
+        - RollingRelease
+        - None
+      type: string
+      description: "\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability ajdustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
+      x-enumNames:
+        - FixedRelease
+        - RollingRelease
+        - None
+      x-enumDescriptions:
+        - The availability block is released at a fixed time.
+        - Each availability ajdustment is released at a fixed offset from its start.
+        - The availability block is not automatically released.
+    ReleaseStrategyUpdateValue:
+      title: ReleaseStrategyUpdateValue
+      type: object
+      properties:
+        Value:
+          title: The strategy for automatic release of the availability block.
+          allOf:
+            - $ref: '#/components/schemas/ReleaseStrategyEnum'
+          description: "\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability ajdustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
+          x-enumNames:
+            - FixedRelease
+            - RollingRelease
+            - None
+          x-enumDescriptions:
+            - The availability block is released at a fixed time.
+            - Each availability ajdustment is released at a fixed offset from its start.
+            - The availability block is not automatically released.
+      additionalProperties: false
+      x-schema-id: ReleaseStrategyUpdateValue
     Reservation:
       title: Reservation (ver 2023-06-06)
       required:
