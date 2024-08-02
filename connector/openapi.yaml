@@ -12582,6 +12582,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/reservations/updatePurchaseOrderNumber:
+    post:
+      tags:
+        - Reservations
+      description: 'Updates a collection of reservations with a purchase order number. If the reservation already has a P.O. number, it will be updated. If the reservation does not have a P.O. number, one will be added. If the P.O. number is null or consists of only white spaces, and the reservation already has a P.O. number, it will be deleted.'
+      operationId: reservations_updatePurchaseOrderNumber
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleReservationPurchaseOrderNumberParameters'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/reservations/addCompanion:
     post:
       tags:
@@ -31329,6 +31389,44 @@ components:
           description: Identifiers of payment requests to be canceled.
       additionalProperties: false
       x-schema-id: MultiplePaymentRequestCancelParameters
+    MultipleReservationPurchaseOrderNumberParameters:
+      title: MultipleReservationPurchaseOrderNumberParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ReservationIds
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        AccessToken:
+          minLength: 1
+          type: string
+        ClientToken:
+          minLength: 1
+          type: string
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ReservationIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Reservation Ids to update the purchase order number.
+        PurchaseOrderNumber:
+          maxLength: 255
+          type: string
+          description: Purchase order number to be added or updated to a collection of reservations. If it is null or white space the Reservation(s) purchase order number will be deleted.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: MultipleReservationPurchaseOrderNumberParameters
     MultipleReservationResult:
       title: MultipleReservationResult
       required:
@@ -37213,7 +37311,7 @@ components:
           nullable: true
         CreditCardId:
           type: string
-          description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.
+          description: Identifier of `CreditCard` belonging either to the `Customer` who owns the reservation or to the `Booker`.
           format: uuid
           nullable: true
         TravelAgencyId:
