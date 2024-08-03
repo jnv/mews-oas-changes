@@ -2094,7 +2094,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BillResult'
+                $ref: '#/components/schemas/BillsResult'
               example:
                 BillId: 44eba542-193e-47c7-8077-abd7008eb206
                 Result:
@@ -2143,288 +2143,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/bills/getAllByIds:
-    post:
-      tags:
-        - Bills
-      operationId: bills_getAllByIds
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BillFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              BillIds:
-                - e654f217-d1b5-46be-a820-e93ba568dfac
-              CustomerIds:
-                - fe795f96-0b64-445b-89ed-c032563f2bac
-              State: Closed
-              ClosedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              CreatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              DueUtc: 
-              PaidUtc: 
-              Extent:
-                Items: false
-              Limitation:
-                Cursor: e7f26210-10e7-462e-9da8-ae8300be8ab7
-                Count: 100
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BillResult'
-              example:
-                BillId: 44eba542-193e-47c7-8077-abd7008eb206
-                Result:
-                  Discriminator: BillPdfFile
-                  Value:
-                    Base64Data: JVBER.....
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
-  /api/connector/v1/bills/getAllByCustomers:
-    post:
-      tags:
-        - Bills
-      operationId: bills_getAllByCustomers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BillFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              BillIds:
-                - e654f217-d1b5-46be-a820-e93ba568dfac
-              CustomerIds:
-                - fe795f96-0b64-445b-89ed-c032563f2bac
-              State: Closed
-              ClosedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              CreatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              DueUtc: 
-              PaidUtc: 
-              Extent:
-                Items: false
-              Limitation:
-                Cursor: e7f26210-10e7-462e-9da8-ae8300be8ab7
-                Count: 100
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BillResult'
-              example:
-                BillId: 44eba542-193e-47c7-8077-abd7008eb206
-                Result:
-                  Discriminator: BillPdfFile
-                  Value:
-                    Base64Data: JVBER.....
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
-  /api/connector/v1/bills/getAllClosed:
-    post:
-      tags:
-        - Bills
-      operationId: bills_getAllClosed
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BillFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              BillIds:
-                - e654f217-d1b5-46be-a820-e93ba568dfac
-              CustomerIds:
-                - fe795f96-0b64-445b-89ed-c032563f2bac
-              State: Closed
-              ClosedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              CreatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              DueUtc: 
-              PaidUtc: 
-              Extent:
-                Items: false
-              Limitation:
-                Cursor: e7f26210-10e7-462e-9da8-ae8300be8ab7
-                Count: 100
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BillResult'
-              example:
-                BillId: 44eba542-193e-47c7-8077-abd7008eb206
-                Result:
-                  Discriminator: BillPdfFile
-                  Value:
-                    Base64Data: JVBER.....
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      deprecated: true
   /api/connector/v1/bills/getPdf:
     post:
       tags:
@@ -2449,7 +2167,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BillResult'
+                $ref: '#/components/schemas/BillPdfResult'
               example:
                 BillId: 44eba542-193e-47c7-8077-abd7008eb206
                 Result:
@@ -2524,7 +2242,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BillResult'
+                $ref: '#/components/schemas/BillsAddResult'
               example:
                 BillId: 44eba542-193e-47c7-8077-abd7008eb206
                 Result:
@@ -2702,7 +2420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BillResult'
+                $ref: '#/components/schemas/BillsCloseResult'
               example:
                 BillId: 44eba542-193e-47c7-8077-abd7008eb206
                 Result:
@@ -18975,7 +18693,7 @@ components:
       additionalProperties: false
       x-schema-id: AddressFilterParameters
     AddressParameters:
-      title: AddressParameters
+      title: Address parameters
       type: object
       properties:
         Line1:
@@ -20086,22 +19804,22 @@ components:
           format: uuid
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise).'
+          description: Unique identifier of the `Enterprise`.
           format: uuid
         AccountId:
           type: string
-          description: 'Unique identifier of the account ([Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company)) the bill is issued to.'
+          description: Unique identifier of the account (`Customer` or `Company`) the bill is issued to.
           format: uuid
         CustomerId:
           type: string
-          description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) the bill is issued to. **Deprecated!**'
+          description: Unique identifier of the `Customer` the bill is issued to.
           format: uuid
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AccountId` instead.
         CompanyId:
           type: string
-          description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) specified in CompanyDetails or the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) the bill is issued to. **Deprecated!**'
+          description: Unique identifier of the `Company` specified in `CompanyDetails` or the `Company` the bill is issued to.
           format: uuid
           nullable: true
           deprecated: true
@@ -20111,21 +19829,17 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Companies](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) that are associated to the bill.'
+          description: Unique identifiers of the `Customers` or `Companies` that are associated to the bill.
           nullable: true
         CounterId:
           type: string
-          description: Unique identifier of the bill Counter.
+          description: Unique identifier of the bill `Counter`.
           format: uuid
           nullable: true
         State:
-          type: string
-          description: State of the bill.
-          nullable: true
+          $ref: '#/components/schemas/BillState'
         Type:
-          type: string
-          description: Type of the bill.
-          nullable: true
+          $ref: '#/components/schemas/BillType'
         Number:
           type: string
           description: Number of the bill.
@@ -20135,10 +19849,10 @@ components:
           description: Variable symbol of the bill.
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
           description: Date and time of the bill creation in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         IssuedUtc:
           type: string
           description: Date and time of the bill issuance in UTC timezone in ISO 8601 format.
@@ -20160,10 +19874,10 @@ components:
           format: date-time
           nullable: true
         UpdatedUtc:
+          minLength: 1
           type: string
           description: 'Date and time when the bill was last updated, in UTC timezone in ISO 8601 format.'
           format: date-time
-          nullable: true
         PurchaseOrderNumber:
           type: string
           description: Unique number of the purchase order from the buyer.
@@ -20173,7 +19887,7 @@ components:
           description: Additional notes.
           nullable: true
         Options:
-          title: BillOptions
+          title: Bill options
           allOf:
             - $ref: '#/components/schemas/BillOptions'
           description: Options of the bill.
@@ -20184,12 +19898,14 @@ components:
             $ref: '#/components/schemas/AccountingItem'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `orderItems/getAll` with `BillId` instead.
         Payments:
           type: array
           items:
             $ref: '#/components/schemas/AccountingItem'
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `payments/getAll` with `BillId` instead.
         OrderItems:
           type: array
           items:
@@ -20197,6 +19913,7 @@ components:
           description: The order items (consumed items such as nights or products) on the bill.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `orderItems/getAll` with `BillId` instead.
         PaymentItems:
           type: array
           items:
@@ -20205,7 +19922,7 @@ components:
           nullable: true
           deprecated: true
         AssigneeData:
-          title: AssigneeData
+          title: Bill assignee data
           type: object
           properties:
             discriminator:
@@ -20217,8 +19934,9 @@ components:
           deprecated: true
           x-coproduct: true
           x-schema-id: BillAssigneeDataCoproductOfBillAssigneeDataDiscriminator
+          x-deprecatedMessage: Use `OwnerData` instead.
         OwnerData:
-          title: OwnerData
+          title: Bill owner data
           type: object
           properties:
             discriminator:
@@ -20231,10 +19949,10 @@ components:
           x-coproduct: true
           x-schema-id: BillOwnerDataCoproductOfBillAssigneeDataDiscriminator
         CompanyDetails:
-          title: BillCompanyData
+          title: Bill company data
           allOf:
             - $ref: '#/components/schemas/BillCompanyData'
-          description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
+          description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill.
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AssociatedAccountData` instead.
@@ -20242,10 +19960,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BillAccountData'
-          description: 'Additional information about the associated account of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill. Currently only one account can be associated with a bill, but this may be extended in future.'
+          description: 'Additional information about the associated account of the bill. Can be a `Customer` or `Company`. Persisted at the time of closing of the bill. Currently only one account can be associated with a bill, but this may be extended in future.'
           nullable: true
         EnterpriseData:
-          title: BillEnterpriseData
+          title: Bill enterprise data
           allOf:
             - $ref: '#/components/schemas/BillEnterpriseData'
           description: 'Additional information about the enterprise issuing the bill, including bank account details. Persisted at the time of closing of the bill.'
@@ -20262,9 +19980,9 @@ components:
             - Regular bill.
             - 'Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.'
         CorrectionType:
-          anyOf:
-            - $ref: '#/components/schemas/CorrectionType'
-          description: Type of correction.
+          allOf:
+            - $ref: '#/components/schemas/BillCorrectionTypeEnum'
+          description: "Type of correction.\n\nCancellation\n\nEdit\n\nCreditNote\n\nReinstatement\n\nReceivablePaymentsBalance"
           nullable: true
         CorrectedBillId:
           type: string
@@ -20274,34 +19992,39 @@ components:
       additionalProperties: false
       x-schema-id: Bill
     BillAccountData:
-      title: BillAccountData
+      title: Associated account bill data
       type: object
       properties:
         Discriminator:
           anyOf:
             - $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
+          description: Determines type of value.
           nullable: true
           readOnly: true
         BillCustomerData:
+          title: Bill customer data
           allOf:
             - $ref: '#/components/schemas/BillCustomerData'
+          description: Associated account bill data for customer.
           nullable: true
         BillCompanyData:
+          title: Bill company data
           allOf:
             - $ref: '#/components/schemas/BillCompanyData'
-          description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
+          description: Associated account bill data for company.
           nullable: true
           readOnly: true
       additionalProperties: false
       x-schema-id: BillAccountData
     BillAddParameters:
-      title: BillAddParameters
+      title: Bill parameters
       required:
         - AccountId
       type: object
       properties:
         AccountId:
           type: string
+          description: Unique identifier of the account (`Customer` or `Company`) the bill is issued to. Company billing may not be enabled for your integration.
           format: uuid
         AssociatedAccountId:
           type: string
@@ -20310,16 +20033,19 @@ components:
           nullable: true
         Name:
           type: string
+          description: Name of the newly created bill.
           nullable: true
       additionalProperties: false
       x-schema-id: BillAddParameters
     BillAssigneeDataDiscriminator:
+      title: Bill associated account data discriminator
       enum:
         - BillCustomerData
         - BillCompanyData
       type: string
+      description: ''
     BillCloseAccountParameters:
-      title: BillCloseAccountParameters
+      title: Bill close account parameters
       required:
         - Id
       type: object
@@ -20331,12 +20057,13 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identifier of the assosicated account to be put on a bill.
           nullable: true
         Address:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
-          description: New address details.
+          description: Address of the associated account to be displayed on bill. Overrides the default one taken from account profile.
           nullable: true
       additionalProperties: false
       x-schema-id: BillCloseAccountParameters
@@ -20372,9 +20099,7 @@ components:
           description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/#bill) to be closed.'
           format: uuid
         Type:
-          minLength: 1
-          type: string
-          description: Specifies the mode bill should be closed in.
+          $ref: '#/components/schemas/BillType'
         BillCounterId:
           type: string
           description: 'Unique identifier of the [Counter](https://mews-systems.gitbook.io/connector-api/operations/counters/#counter) to be used for closing. Default one is used when no value is provided.'
@@ -20386,35 +20111,34 @@ components:
           format: uuid
           nullable: true
         Options:
-          title: BillOptionsParameters
+          title: Bill options parameters
           allOf:
             - $ref: '#/components/schemas/BillOptionsParameters'
-          description: Options of the bill. If not provided both DisplayCustomer and DisplayTaxation are set by default.
-          nullable: true
-        SendEmail:
-          type: boolean
-        EmailAddress:
-          type: string
+          description: 'Options of the bill. If not provided, both DisplayCustomer and DisplayTaxation are set by default.'
           nullable: true
         TaxedDate:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Date of consumption for tax purposes. Can be used only with `Type` of `Invoice`.
           nullable: true
         DueDate:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Deadline when bill is due to be paid. Can be used only with `Type` of `Invoice`.
           nullable: true
         VariableSymbol:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Optional unique identifier of requested payment. Can be used only with `Type` of `Invoice`.
           nullable: true
         TaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identifier of account to be put on a bill.
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
@@ -20422,11 +20146,13 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identifier of account to be put on a bill.
           nullable: true
         CompanyTaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identifier of company to be put on a bill.
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
@@ -20434,34 +20160,28 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Unique number of the purchase order from the buyer.
           nullable: true
         Notes:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Notes to be attached to bill.
           nullable: true
         Address:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
-          description: New address details.
+          description: Address of the account to be displayed on bill. Overrides the default one taken from account profile.
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AccountAddress` or `AssociatedAccountData` instead.
         AccountAddress:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
-          description: New address details.
+          description: Address of the account to be displayed on bill. Overrides the default one taken from account profile.
           nullable: true
-        CompanyAddress:
-          title: AddressParameters
-          allOf:
-            - $ref: '#/components/schemas/AddressParameters'
-          description: New address details.
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `AssociatedAccountData` instead.
         AssociatedAccountData:
           maxItems: 1
           type: array
@@ -20472,36 +20192,45 @@ components:
       additionalProperties: false
       x-schema-id: BillCloseParameters
     BillCompanyData:
-      title: BillCompanyData
+      title: Bill company data
+      required:
+        - Id
+        - Name
       type: object
       properties:
         Id:
           type: string
+          description: ID of the `Company`.
           nullable: true
         Address:
           allOf:
             - $ref: '#/components/schemas/Address'
+          description: Address of the company.
           nullable: true
         LegalIdentifiers:
           type: object
           additionalProperties:
             type: string
-            nullable: true
+          description: The set of `LegalIdentifiers` for the company.
           nullable: true
         BillingCode:
           type: string
+          description: A unique code for Mews to list on invoices it sends to the company.
           nullable: true
         Name:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the company.
         FiscalIdentifier:
           type: string
+          description: Fiscal identifier of the company.
           nullable: true
         AdditionalTaxIdentifier:
           type: string
+          description: Additional tax identifier of the company.
           nullable: true
       additionalProperties: false
-      description: Additional information about the company assigned to the bill. Not the same as the owner. Persisted at the time of closing of the bill. **Deprecated!**
+      description: ''
       x-schema-id: BillCompanyData
     BillCorrectionStateEnum:
       title: Bill correction state
@@ -20516,37 +20245,70 @@ components:
       x-enumDescriptions:
         - Regular bill.
         - 'Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.'
+    BillCorrectionTypeEnum:
+      title: Bill correction type
+      enum:
+        - Cancellation
+        - Edit
+        - CreditNote
+        - Reinstatement
+        - ReceivablePaymentsBalance
+      type: string
+      description: "\n\nCancellation\n\nEdit\n\nCreditNote\n\nReinstatement\n\nReceivablePaymentsBalance"
+      x-enumNames:
+        - Cancellation
+        - Edit
+        - CreditNote
+        - Reinstatement
+        - ReceivablePaymentsBalance
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     BillCustomerData:
-      title: BillCustomerData
+      title: Bill customer data
+      required:
+        - Id
+        - LastName
       type: object
       properties:
         Id:
+          minLength: 1
           type: string
-          nullable: true
+          description: ID of the `Customer` to whom the bill was assigned.
         Address:
           allOf:
             - $ref: '#/components/schemas/Address'
+          description: Address of the customer.
           nullable: true
         LegalIdentifiers:
           type: object
           additionalProperties:
             type: string
-            nullable: true
+          description: The set of `LegalIdentifiers` for the customer.
           nullable: true
         BillingCode:
           type: string
+          description: A unique code for Mews to list on invoices it sends to the customer.
           nullable: true
         LastName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last name of the customer.
         FirstName:
           type: string
+          description: First name of the customer.
           nullable: true
         SecondLastName:
           type: string
+          description: Second last name of the customer.
           nullable: true
         TitlePrefix:
-          type: string
+          anyOf:
+            - $ref: '#/components/schemas/Title'
+          description: Title prefix of the customer.
           nullable: true
       additionalProperties: false
       x-schema-id: BillCustomerData
@@ -20587,36 +20349,45 @@ components:
       additionalProperties: false
       x-schema-id: BillDeleteParameters
     BillEnterpriseData:
-      title: BillEnterpriseData
+      title: Bill enterprise data
       type: object
       properties:
         AdditionalTaxIdentifier:
           type: string
+          description: Enterprise additional tax identifier.
           nullable: true
         CompanyName:
           type: string
+          description: Enterprise company name.
           nullable: true
         BankAccount:
           type: string
+          description: Enterprise bank account.
           nullable: true
         BankName:
           type: string
+          description: Enterprise bank name.
           nullable: true
         Iban:
           type: string
+          description: Enterprise IBAN (International Bank Account Number).
           nullable: true
         Bic:
           type: string
+          description: Enterprise BIC (Bank Identifier Code).
           nullable: true
       additionalProperties: false
       description: 'Additional information about the enterprise issuing the bill, including bank account details. Persisted at the time of closing of the bill.'
       x-schema-id: BillEnterpriseData
     BillExtent:
-      title: BillExtent
+      title: Bill extent
       type: object
       properties:
         Items:
           type: boolean
+          description: Whether the response should contain payments and revenue items.
+          deprecated: true
+          x-deprecatedMessage: Use `orderItems/getAll` and `payments/getAll` with `BillIds` filter instead.
       additionalProperties: false
       description: 'Extent of data to be returned. E.g. it is possible to specify that together with the bills, payments and revenue items should be also returned. **Deprecated!**'
       x-schema-id: BillExtent
@@ -20655,52 +20426,46 @@ components:
           description: 'Unique identifiers of the [Enterprises](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         Extent:
-          title: BillExtent
+          title: Bill extent
           allOf:
             - $ref: '#/components/schemas/BillExtent'
-          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the bills, payments and revenue items should be also returned. **Deprecated!**'
+          description: 'Extent of data to be returned. E.g. it is possible to specify that together with the bills, payments and revenue items should be also returned.'
           nullable: true
           deprecated: true
-        TimeFilter:
-          type: string
-          nullable: true
-          deprecated: true
-        StartUtc:
-          type: string
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          nullable: true
-          deprecated: true
+          x-deprecatedMessage: Use `orderItems/getAll` and `payments/getAll` with `BillIds` filter instead.
         ClosedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` was closed.
           nullable: true
           x-max-interval-in-months: 3
         PaidUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` was paid.
           nullable: true
           x-max-interval-in-months: 3
         DueUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` is due to be paid.
           nullable: true
           x-max-interval-in-months: 3
         CreatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` was updated.
           nullable: true
           x-max-interval-in-months: 3
         BillIds:
@@ -20710,7 +20475,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Bills](https://mews-systems.gitbook.io/connector-api/operations/#bill). Required if no other filter is provided.'
+          description: Unique identifiers of the `Bills`. Required if no other filter is provided.
           nullable: true
         CustomerIds:
           maxItems: 1000
@@ -20719,12 +20484,12 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
+          description: Unique identifiers of the `Customers`.
           nullable: true
         State:
           anyOf:
             - $ref: '#/components/schemas/BillState'
-          description: '[Bill state](https://mews-systems.gitbook.io/connector-api/operations/#bill-state) the bills should be in. If not specified Open and Closed bills are returned.'
+          description: 'State the bills should be in. If not specified, `Open` and `Closed` bills are returned.'
           nullable: true
         CorrectionState:
           uniqueItems: true
@@ -20740,22 +20505,29 @@ components:
         - ItalianFiscalMachineData
       type: string
     BillOptions:
-      title: BillOptions
+      title: Bill options
       type: object
       properties:
         DisplayCustomer:
           type: boolean
+          description: Display customer information on a bill.
         DisplayTaxation:
           type: boolean
+          description: Display taxation detail on a bill.
         TrackReceivable:
           type: boolean
+          description: 'Tracking of payments is enabled for bill, only applicable for `BillType` of `Invoice`.'
         DisplayCid:
           type: boolean
+          description: 'Display CID number on bill, only applicable for `BillType` of `Invoice`.'
+        Rebated:
+          type: boolean
+          description: Whether the bill is rebated (both fully or partially).
       additionalProperties: false
       description: Options of the bill.
       x-schema-id: BillOptions
     BillOptionsParameters:
-      title: BillOptionsParameters
+      title: Bill options parameters
       required:
         - DisplayCustomer
         - DisplayTaxation
@@ -20765,25 +20537,27 @@ components:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Display customer information on a bill.
         DisplayTaxation:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-        TrackReceivable:
-          title: BooleanUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/BooleanUpdateValue'
-          nullable: true
-          deprecated: true
-        DisplayCid:
-          title: BooleanUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/BooleanUpdateValue'
-          nullable: true
-          deprecated: true
+          description: Display taxation detail on a bill.
       additionalProperties: false
-      description: Options of the bill. If not provided both DisplayCustomer and DisplayTaxation are set by default.
+      description: ''
       x-schema-id: BillOptionsParameters
+    BillPdfFile:
+      title: Bill PDF file
+      required:
+        - Base64Data
+      type: object
+      properties:
+        Base64Data:
+          minLength: 1
+          type: string
+          description: Base64 encoded PDF file.
+      additionalProperties: false
+      x-schema-id: BillPdfFile
     BillPdfParameters:
       title: BillPdfParameters
       required:
@@ -20816,28 +20590,106 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: BillPdfParameters
-    BillResult:
-      title: BillResult
+    BillPdfResult:
+      title: BillPdfResult
+      type: object
+      properties:
+        BillId:
+          type: string
+          description: Unique identifier of the printed bill.
+          format: uuid
+        Result:
+          title: Bill PDF result discriminator
+          type: object
+          properties:
+            discriminator:
+              $ref: '#/components/schemas/BillPdfResultDiscriminator'
+            value:
+              oneOf:
+                - $ref: '#/components/schemas/BillPdfFile'
+                - $ref: '#/components/schemas/BillPrintEvent'
+          x-coproduct: true
+          x-schema-id: BillPdfResultResultCoproductOfBillPdfResultDiscriminator
+      additionalProperties: false
+      x-schema-id: BillPdfResult
+    BillPdfResultDiscriminator:
+      title: Bill PDF result discriminator
+      enum:
+        - BillPdfFile
+        - BillPrintEvent
+      type: string
+      x-enumDescriptions:
+        - 'PDF version of a `Bill` was successfully created, `Value` is `BillPdfFile`.'
+        - 'PDF version of a `Bill` couldn''t be created at this moment (for example bill haven''t been reported to authorities yet), `Value` is `BillPrintEvent`'
+    BillPrintEvent:
+      title: Bill print event
+      type: object
+      properties:
+        BillPrintEventId:
+          type: string
+          description: Unique identifier of print event. Must be used in retry calls to retrieve the PDF.
+          format: uuid
+      additionalProperties: false
+      x-schema-id: BillPrintEvent
+    BillState:
+      title: Bill state
+      enum:
+        - Open
+        - Closed
+      type: string
+    BillType:
+      title: Bill type
+      enum:
+        - Receipt
+        - Invoice
+      type: string
+      description: 'After a bill is closed, the Bill Type is set to `Receipt` or `Invoice`. `Receipt` indicates that the bill has been fully paid and the balance is zero. `Invoice` indicates that the bill has not yet been fully paid but an invoice has been issued. Prior to closing, Bill Type should not be used.'
+      x-enumDescriptions:
+        - Default; the bill has been paid in full; only applicable after the bill is closed.
+        - Bill has not been paid in full but an invoice has been issued to request payment.
+    BillsAddResult:
+      title: BillsAddResult
+      required:
+        - Bills
       type: object
       properties:
         Bills:
           type: array
           items:
             $ref: '#/components/schemas/Bill'
-          description: The closed bill.
-          nullable: true
+          description: The created bills.
+      additionalProperties: false
+      x-schema-id: BillsAddResult
+    BillsCloseResult:
+      title: BillsCloseResult
+      required:
+        - Bills
+      type: object
+      properties:
+        Bills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bill'
+          description: The closed bills.
+      additionalProperties: false
+      x-schema-id: BillsCloseResult
+    BillsResult:
+      title: BillsResult
+      required:
+        - Bills
+      type: object
+      properties:
+        Bills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bill'
+          description: The filtered bills.
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest bill returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older bills.'
           format: uuid
           nullable: true
       additionalProperties: false
-      x-schema-id: BillResult
-    BillState:
-      enum:
-        - Open
-        - Closed
-      type: string
+      x-schema-id: BillsResult
     BookableServiceData:
       title: Bookable service data
       required:
@@ -22217,7 +22069,7 @@ components:
           format: tel
           nullable: true
         Address:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
           description: New address details.
@@ -22874,14 +22726,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CoproductParameters
-    CorrectionType:
-      enum:
-        - Cancellation
-        - Edit
-        - CreditNote
-        - Reinstatement
-        - ReceivablePaymentsBalance
-      type: string
     CostParameters:
       title: CostParameters
       required:
@@ -24115,7 +23959,7 @@ components:
           format: uuid
           nullable: true
         Address:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
           description: New address details.
@@ -24816,7 +24660,7 @@ components:
           format: uuid
           nullable: true
         Address:
-          title: AddressParameters
+          title: Address parameters
           allOf:
             - $ref: '#/components/schemas/AddressParameters'
           description: New address details.
@@ -25262,6 +25106,7 @@ components:
                               type: string
                               nullable: true
                             Bill:
+                              title: Bill
                               allOf:
                                 - $ref: '#/components/schemas/Bill'
                               nullable: true
@@ -25419,6 +25264,7 @@ components:
                           type: string
                           nullable: true
                         Bill:
+                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
                           nullable: true
@@ -25538,6 +25384,7 @@ components:
                           type: string
                           nullable: true
                         Bill:
+                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
                           nullable: true
@@ -25695,6 +25542,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -25841,6 +25689,7 @@ components:
                           type: string
                           nullable: true
                         Bill:
+                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
                           nullable: true
@@ -25998,6 +25847,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -26117,6 +25967,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -26274,6 +26125,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -26397,6 +26249,7 @@ components:
                           type: string
                           nullable: true
                         Bill:
+                          title: Bill
                           allOf:
                             - $ref: '#/components/schemas/Bill'
                           nullable: true
@@ -26554,6 +26407,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -26673,6 +26527,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -26830,6 +26685,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -26976,6 +26832,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -27133,6 +26990,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -27252,6 +27110,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -27409,6 +27268,7 @@ components:
               type: string
               nullable: true
             Bill:
+              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
               nullable: true
@@ -28485,6 +28345,7 @@ components:
           type: string
           nullable: true
         Bill:
+          title: Bill
           allOf:
             - $ref: '#/components/schemas/Bill'
           nullable: true
@@ -28989,6 +28850,7 @@ components:
               type: string
               nullable: true
             Bill:
+              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
               nullable: true
@@ -33824,6 +33686,7 @@ components:
           x-coproduct: true
           x-schema-id: PaymentItemOldDataCoproductOfPaymentType
       additionalProperties: false
+      description: Payment item
       x-schema-id: PaymentItemOld
     PaymentKind:
       enum:
@@ -34225,6 +34088,7 @@ components:
                       type: string
                       nullable: true
                     Bill:
+                      title: Bill
                       allOf:
                         - $ref: '#/components/schemas/Bill'
                       nullable: true
@@ -34382,6 +34246,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -34501,6 +34366,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -34658,6 +34524,7 @@ components:
               type: string
               nullable: true
             Bill:
+              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
               nullable: true
@@ -34976,6 +34843,7 @@ components:
                   type: string
                   nullable: true
                 Bill:
+                  title: Bill
                   allOf:
                     - $ref: '#/components/schemas/Bill'
                   nullable: true
@@ -35133,6 +35001,7 @@ components:
               type: string
               nullable: true
             Bill:
+              title: Bill
               allOf:
                 - $ref: '#/components/schemas/Bill'
               nullable: true
@@ -43174,6 +43043,13 @@ components:
         - ''
         - ''
         - ''
+    Title:
+      title: Title
+      enum:
+        - Mister
+        - Miss
+        - Misses
+      type: string
     TokenizedCreditCardParameters:
       title: TokenizedCreditCardParameters
       required:
@@ -43690,7 +43566,7 @@ components:
       additionalProperties: false
       x-schema-id: VoucherCode
     VoucherCodeAddParameters:
-      title: VoucherCodeAddParameters
+      title: Voucher code parameters
       required:
         - Value
         - VoucherId
@@ -43698,16 +43574,21 @@ components:
       properties:
         VoucherId:
           type: string
+          description: 'Unique identifier of [Voucher](#voucher) the code belongs to.'
           format: uuid
         Value:
+          maxLength: 128
           minLength: 1
           type: string
+          description: Value of voucher code used by customers.
         ValidityStartUtc:
           type: string
+          description: 'If specified, marks the beginning of interval in which the code can be used.'
           format: date-time
           nullable: true
         ValidityEndUtc:
           type: string
+          description: 'If specified, marks the end of interval in which the code can be used.'
           format: date-time
           nullable: true
       additionalProperties: false
@@ -43719,7 +43600,6 @@ components:
         - Client
         - ClientToken
         - Limitation
-        - VoucherIds
       type: object
       properties:
         Client:
@@ -43764,10 +43644,12 @@ components:
             type: string
             format: uuid
           description: Unique identifiers of vouchers.
+          nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of voucher code's last update date and time.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
