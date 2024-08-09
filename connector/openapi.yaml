@@ -2155,12 +2155,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BillPdfParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              BillId: 44eba542-193e-47c7-8077-abd7008eb206
-              BillPrintEventId: 
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillId":"44eba542-193e-47c7-8077-abd7008eb206","BillPrintEventId":null}
       responses:
         '200':
           description: OK
@@ -2168,12 +2163,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillPdfResult'
-              example:
-                BillId: 44eba542-193e-47c7-8077-abd7008eb206
-                Result:
-                  Discriminator: BillPdfFile
-                  Value:
-                    Base64Data: JVBER.....
+              example: {"BillId":"44eba542-193e-47c7-8077-abd7008eb206","Result":{"Discriminator":"BillPdfFile","Value":{"Base64Data":"JVBERi0xLj..."}}}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -17875,6 +17865,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
           description: ''
+          nullable: true
+        TaxExemptionReasonCode:
+          type: string
+          description: Code of tax exemption reason. **Restricted!** This property is currently intended for Mews' internal usage and may be subject to change.
           nullable: true
       additionalProperties: false
       x-schema-id: AccountingItem
