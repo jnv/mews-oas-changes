@@ -2060,34 +2060,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BillFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              BillIds:
-                - e654f217-d1b5-46be-a820-e93ba568dfac
-              CustomerIds:
-                - fe795f96-0b64-445b-89ed-c032563f2bac
-              State: Closed
-              ClosedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              CreatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2020-02-05T00:00:00Z'
-                EndUtc: '2020-02-10T00:00:00Z'
-              DueUtc: 
-              PaidUtc: 
-              Extent:
-                Items: false
-              Limitation:
-                Cursor: e7f26210-10e7-462e-9da8-ae8300be8ab7
-                Count: 100
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Extent":{"Items":false},"TimeFilter":null,"StartUtc":null,"EndUtc":null,"ClosedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"PaidUtc":null,"DueUtc":null,"CreatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"BillIds":["e654f217-d1b5-46be-a820-e93ba568dfac"],"CustomerIds":["fe795f96-0b64-445b-89ed-c032563f2bac"],"State":"Closed","CorrectionState":null,"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100,"Cursor":"e7f26210-10e7-462e-9da8-ae8300be8ab7"}}
       responses:
         '200':
           description: OK
@@ -2095,12 +2068,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsResult'
-              example:
-                BillId: 44eba542-193e-47c7-8077-abd7008eb206
-                Result:
-                  Discriminator: BillPdfFile
-                  Value:
-                    Base64Data: JVBER.....
+              example: {"Bills":[{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fe795f96-0b64-445b-89ed-c032563f2bac","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["26afba60-06c3-455b-92db-0e3983be0b1d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"26afba60-06c3-455b-92db-0e3983be0b1d"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -19858,12 +19826,13 @@ components:
       properties:
         Id:
           type: string
+          description: Unique identifier of the associated account (`Customer` or `Company`) the bill is associated to.
           format: uuid
         TaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
-          description: Tax identifier of the assosicated account to be put on a bill.
+          description: Tax identifier of the associated account to be put on a bill.
           nullable: true
         Address:
           title: Address parameters
@@ -20424,6 +20393,7 @@ components:
         - BillPdfFile
         - BillPrintEvent
       type: string
+      description: The result of operation.
       x-enumDescriptions:
         - 'PDF version of a `Bill` was successfully created, `Value` is `BillPdfFile`.'
         - 'PDF version of a `Bill` couldn''t be created at this moment (for example bill haven''t been reported to authorities yet), `Value` is `BillPrintEvent`'
@@ -20443,6 +20413,7 @@ components:
         - Open
         - Closed
       type: string
+      description: Whether the bill is `Open` or `Closed`.
     BillType:
       title: Bill type
       enum:
@@ -20492,6 +20463,7 @@ components:
           description: The filtered bills.
         Cursor:
           type: string
+          description: Unique identifier of the last and hence oldest bill returned. This can be used in `Limitation` in a subsequent request to fetch the next batch of older bills.
           format: uuid
           nullable: true
       additionalProperties: false
