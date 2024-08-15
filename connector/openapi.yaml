@@ -27839,6 +27839,7 @@ components:
         - Company
         - Bill
         - AvailabilityAdjustment
+        - AvailabilityBlock
       type: string
       description: Type of exported entities
     ExportFileEntry:
