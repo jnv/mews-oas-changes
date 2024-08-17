@@ -12137,7 +12137,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReservationCustomerParameters'
+              $ref: '#/components/schemas/CompanionshipAddParameters'
             example:
               ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
               AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
@@ -12150,7 +12150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddCompanionshipResult'
+                $ref: '#/components/schemas/CompanionshipAddResult'
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -12204,7 +12204,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReservationCustomerParameters'
+              $ref: '#/components/schemas/CompanionshipDeleteParameters'
             example:
               ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
               AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
@@ -18087,18 +18087,6 @@ components:
           format: uuid
       additionalProperties: false
       x-schema-id: AddAccountFileResult
-    AddCompanionshipResult:
-      title: AddCompanionshipResult
-      required:
-        - CompanionshipId
-      type: object
-      properties:
-        CompanionshipId:
-          type: string
-          description: Identifier of the created `Companionship` entity.
-          format: uuid
-      additionalProperties: false
-      x-schema-id: AddCompanionshipResult
     AddCreditCardResult:
       title: AddCreditCardResult
       type: object
@@ -21322,6 +21310,82 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: Companionship
+    CompanionshipAddParameters:
+      title: CompanionshipAddParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerId
+        - ReservationId
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        AccessToken:
+          minLength: 1
+          type: string
+        ClientToken:
+          minLength: 1
+          type: string
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ReservationId:
+          type: string
+          format: uuid
+        CustomerId:
+          type: string
+          format: uuid
+      additionalProperties: false
+      x-schema-id: CompanionshipAddParameters
+    CompanionshipAddResult:
+      title: CompanionshipAddResult
+      required:
+        - CompanionshipId
+      type: object
+      properties:
+        CompanionshipId:
+          type: string
+          description: Identifier of the created `Companionship` entity.
+          format: uuid
+      additionalProperties: false
+      x-schema-id: CompanionshipAddResult
+    CompanionshipDeleteParameters:
+      title: CompanionshipDeleteParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerId
+        - ReservationId
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        AccessToken:
+          minLength: 1
+          type: string
+        ClientToken:
+          minLength: 1
+          type: string
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ReservationId:
+          type: string
+          format: uuid
+        CustomerId:
+          type: string
+          format: uuid
+      additionalProperties: false
+      x-schema-id: CompanionshipDeleteParameters
     CompanionshipExtent:
       title: CompanionshipExtent
       type: object
@@ -22441,6 +22505,11 @@ components:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
         ReservationIds:
           type: array
           items:
@@ -36883,38 +36952,6 @@ components:
           description: Additional notes describing the reason for the cancellation.
       additionalProperties: false
       x-schema-id: ReservationCancellationParameters
-    ReservationCustomerParameters:
-      title: ReservationCustomerParameters
-      required:
-        - AccessToken
-        - Client
-        - ClientToken
-        - CustomerId
-        - ReservationId
-      type: object
-      properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
-        ClientToken:
-          minLength: 1
-          type: string
-          description: Token identifying the client application.
-        ReservationId:
-          type: string
-          description: Unique identifier of the reservation.
-          format: uuid
-        CustomerId:
-          type: string
-          description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
-          format: uuid
-      additionalProperties: false
-      x-schema-id: ReservationCustomerParameters
     ReservationData:
       title: Reservation parameters
       required:
@@ -39199,6 +39236,10 @@ components:
           maxLength: 255
           type: string
           description: Identifier of the resource category from external system.
+          nullable: true
+        AccountingCategoryId:
+          type: string
+          format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategory
