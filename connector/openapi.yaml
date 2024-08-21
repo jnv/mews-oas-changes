@@ -27909,6 +27909,7 @@ components:
         - Bill
         - AvailabilityAdjustment
         - AvailabilityBlock
+        - ResourceBlock
       type: string
       description: Type of exported entities
     ExportFileEntry:
@@ -39335,12 +39336,22 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource category assignments were updated.
           nullable: true
         ActivityStates:
           type: array
           items:
             $ref: '#/components/schemas/ActivityStates'
           description: 'Whether to return only active, only deleted or both records.'
+          nullable: true
+        ResourceIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of resources to which the resource category assignments belong.
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryAssignmentFilterParameters
