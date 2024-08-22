@@ -29573,10 +29573,6 @@ components:
         - Name
       type: object
       properties:
-        DataClusterId:
-          type: string
-          format: uuid
-          deprecated: true
         Name:
           maxLength: 100
           minLength: 1
@@ -35744,6 +35740,7 @@ components:
     Rate:
       title: Rate
       required:
+        - Names
         - UpdatedUtc
       type: object
       properties:
@@ -35787,6 +35784,13 @@ components:
           type: string
           description: Name of the rate (in the default language).
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `Names` instead
+        Names:
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the name.
         ShortName:
           type: string
           description: Short name of the rate (in the default language).
@@ -41380,6 +41384,7 @@ components:
         - Id
         - IsActive
         - Name
+        - Names
         - Options
         - Ordering
         - UpdatedUtc
@@ -41400,6 +41405,13 @@ components:
           minLength: 1
           type: string
           description: Name of the service.
+          deprecated: true
+          x-deprecatedMessage: Use `Names` instead
+        Names:
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the name.
         StartTime:
           type: string
           nullable: true
