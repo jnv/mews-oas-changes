@@ -11713,7 +11713,7 @@ paths:
       tags:
         - Reservations
       summary: Confirm reservation
-      description: Marks all specified reservations as `Confirmed`. Succeeds only if all confirmation conditions are met (the reservations have the `Optional` state).
+      description: 'Marks all specified reservations as `Confirmed`. Succeeds only if all confirmation conditions are met (the reservations have the `Optional` state). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_confirm
       requestBody:
         content:
@@ -12131,7 +12131,7 @@ paths:
       tags:
         - Reservations
       summary: Add reservation companion
-      description: Adds a customer as a companion to the reservation. Succeeds only if there is space for the new companion (count of current companions is less than `AdultCount + ChildCount`).
+      description: 'Adds a customer as a companion to the reservation. Succeeds only if there is space for the new companion (count of current companions is less than `AdultCount + ChildCount`). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_addCompanion
       requestBody:
         content:
@@ -12198,7 +12198,7 @@ paths:
       tags:
         - Reservations
       summary: Delete reservation companion
-      description: 'Removes customer companionship from the reservation. Note that the customer profile stays untouched, only the relation between the customer and reservation is deleted.'
+      description: 'Removes customer companionship from the reservation. Note that the customer profile stays untouched, only the relation between the customer and reservation is deleted. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: reservations_deleteCompanion
       requestBody:
         content:
@@ -13203,26 +13203,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ResourceCategoryAssignmentFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              ResourceCategoryIds:
-                - 5c0804f9-d03a-4b13-a57d-b00300781a41
-                - 47d6b462-35ec-467e-a565-b00300781a41
-              ResourceCategoryAssignmentIds:
-                - fb69fc51-c4e9-4ef6-874a-24bcfe74a894
-                - 28704948-77df-4bb4-8f39-f8380dc8a914
-              UpdatedUtc:
-                StartUtc: '2023-11-01T00:00:00Z'
-                EndUtc: '2023-11-30T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceCategoryAssignmentIds":["fb69fc51-c4e9-4ef6-874a-24bcfe74a894","28704948-77df-4bb4-8f39-f8380dc8a914"],"ResourceCategoryIds":["5c0804f9-d03a-4b13-a57d-b00300781a41","47d6b462-35ec-467e-a565-b00300781a41"],"UpdatedUtc":{"StartUtc":"2023-11-01T00:00:00Z","EndUtc":"2023-11-30T00:00:00Z"},"ActivityStates":["Active"],"ResourceIds":["5ee074b1-6c86-48e8-915f-c7aa4702086f","c32386aa-1cd2-414a-a823-489325842fbe"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":10,"Cursor":"e7f26210-10e7-462e-9da8-ae8300be8ab7"}}
       responses:
         '200':
           description: OK
@@ -17334,18 +17315,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -17650,18 +17631,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -17868,18 +17849,18 @@ components:
         - StartUtc
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         StartUtc:
           minLength: 1
           type: string
@@ -18116,18 +18097,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Bills:
           maxItems: 1000
           minItems: 1
@@ -18172,18 +18153,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be added in.'
@@ -18357,18 +18338,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -18393,18 +18374,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -18634,18 +18615,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -18724,18 +18705,18 @@ components:
         - CustomerId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CustomerId:
           type: string
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
@@ -18962,18 +18943,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -19277,18 +19258,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -19842,18 +19823,18 @@ components:
         - Type
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -20086,18 +20067,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -20165,18 +20146,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -20332,18 +20313,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         BillId:
           type: string
           description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/#bill) to be printed.'
@@ -20580,18 +20561,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -20741,18 +20722,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -20891,18 +20872,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -21006,18 +20987,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -21160,18 +21141,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         BillId:
           type: string
           format: uuid
@@ -21262,18 +21243,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
@@ -21320,15 +21301,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -21336,9 +21320,11 @@ components:
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation`.
           format: uuid
         CustomerId:
           type: string
+          description: Unique identifier of the `Customer`.
           format: uuid
       additionalProperties: false
       x-schema-id: CompanionshipAddParameters
@@ -21364,15 +21350,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -21380,9 +21369,11 @@ components:
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation`.
           format: uuid
         CustomerId:
           type: string
+          description: Unique identifier of the `Customer`.
           format: uuid
       additionalProperties: false
       x-schema-id: CompanionshipDeleteParameters
@@ -21409,18 +21400,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -21811,18 +21802,18 @@ components:
         - Options
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -22019,18 +22010,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -22094,18 +22085,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -22278,18 +22269,18 @@ components:
         - CompanyId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -22465,18 +22456,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/#enterprise), defaults to the enterprise associated with the given access token.'
@@ -22493,18 +22484,18 @@ components:
         - ReservationIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -22656,18 +22647,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -22969,18 +22960,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -23058,18 +23049,18 @@ components:
         - CustomerId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         BillId:
           type: string
           description: Unique identifier of an open bill of the customer where to assign the payment.
@@ -23288,18 +23279,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Ids:
           type: array
           items:
@@ -23766,18 +23757,18 @@ components:
         - OverwriteExisting
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Title:
           type: string
           description: Title prefix of the customer.
@@ -24027,15 +24018,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Emails:
           type: array
           items:
@@ -24068,18 +24062,18 @@ components:
         - Type
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -24112,18 +24106,18 @@ components:
         - Extent
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -24182,6 +24176,14 @@ components:
             format: uuid
           description: 'Unique identifiers of [Customers](https://mews-systems.gitbook.io/connector-api/operations/#customer). Required if no other filter is provided.'
           nullable: true
+        CompanyIds:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
         Emails:
           maxItems: 1000
           minItems: 1
@@ -24230,18 +24232,18 @@ components:
         - CustomerIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CustomerIds:
           maxItems: 1000
           minItems: 1
@@ -24306,18 +24308,18 @@ components:
         - TargetCustomerId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         SourceCustomerId:
           type: string
           description: 'Unique identifier of the source [Customer](https://mews-systems.gitbook.io/connector-api/operations/#customer).'
@@ -24336,15 +24338,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         FirstName:
           type: string
           nullable: true
@@ -24405,18 +24410,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Operator:
           anyOf:
             - $ref: '#/components/schemas/SearchOperator'
@@ -24468,18 +24473,18 @@ components:
         - CustomerId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Title:
           type: string
           description: New title.
@@ -24721,18 +24726,18 @@ components:
         - RestrictionIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         RestrictionIds:
           type: array
           items:
@@ -24788,18 +24793,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -27222,18 +27227,18 @@ components:
         - CommandIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CommandIds:
           maxItems: 1000
           minItems: 1
@@ -27287,18 +27292,18 @@ components:
         - State
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CommandId:
           type: string
           description: 'Identifier of the [Command](https://mews-systems.gitbook.io/connector-api/operations/#command) to be updated.'
@@ -27693,18 +27698,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -27870,18 +27875,18 @@ components:
         - EntityType
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EntityType:
           $ref: '#/components/schemas/ExportEntityType'
       additionalProperties: false
@@ -27939,18 +27944,18 @@ components:
         - ExportIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ExportIds:
           maxItems: 1000
           minItems: 1
@@ -28091,18 +28096,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -28315,18 +28320,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
       additionalProperties: false
       x-schema-id: GetAllActiveCommandsParameters
     GuidIEnumerableUpdateValue:
@@ -28599,18 +28604,18 @@ components:
         - Images
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Images:
           type: array
           items:
@@ -28894,18 +28899,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -28969,18 +28974,18 @@ components:
         - Scope
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         LanguageCodes:
           type: array
           items:
@@ -29083,15 +29088,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -29335,18 +29343,18 @@ components:
         - LoyaltyMembershipIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         LoyaltyMembershipIds:
           maxItems: 1000
           minItems: 1
@@ -29366,18 +29374,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainIds:
           maxItems: 100
           minItems: 1
@@ -29600,18 +29608,18 @@ components:
         - LoyaltyProgramIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         LoyaltyProgramIds:
           maxItems: 1000
           minItems: 1
@@ -29631,18 +29639,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -29820,18 +29828,18 @@ components:
         - LoyaltyTierIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         LoyaltyTierIds:
           maxItems: 1000
           minItems: 1
@@ -29851,18 +29859,18 @@ components:
         - LoyaltyProgramIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -30001,15 +30009,18 @@ components:
         - Text
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         MessageThreadId:
           type: string
           format: uuid
@@ -30031,18 +30042,18 @@ components:
         - MessageThreadIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -30136,18 +30147,18 @@ components:
         - Subject
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         OriginalSender:
           minLength: 1
           type: string
@@ -30167,18 +30178,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -30260,18 +30271,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         AccountMergeParameters:
           maxItems: 10
           minItems: 1
@@ -30290,18 +30301,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30325,18 +30336,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30361,18 +30372,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30396,18 +30407,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30431,18 +30442,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30464,18 +30475,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30499,18 +30510,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30534,18 +30545,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30569,18 +30580,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30605,18 +30616,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30640,18 +30651,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30675,18 +30686,18 @@ components:
         - TravelAgencyContracts
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         TravelAgencyContracts:
           maxItems: 1000
           minItems: 1
@@ -30706,18 +30717,18 @@ components:
         - TravelAgencyContractIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceIds:
           maxItems: 1000
           minItems: 1
@@ -30750,18 +30761,18 @@ components:
         - TravelAgencyContractUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         TravelAgencyContractUpdates:
           maxItems: 1000
           minItems: 1
@@ -30780,18 +30791,18 @@ components:
         - CompanyIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30815,15 +30826,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CreditCardIds:
           type: array
           items:
@@ -30841,18 +30855,18 @@ components:
         - CustomerIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CustomerIds:
           maxItems: 1000
           minItems: 1
@@ -30872,18 +30886,18 @@ components:
         - LoyaltyMemberships
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30907,18 +30921,18 @@ components:
         - LoyaltyMembershipUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30942,18 +30956,18 @@ components:
         - LoyaltyPrograms
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -30977,18 +30991,18 @@ components:
         - LoyaltyProgramUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31012,18 +31026,18 @@ components:
         - LoyaltyTiers
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ChainId:
           type: string
           description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31047,18 +31061,18 @@ components:
         - LoyaltyTierUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         LoyaltyTierUpdates:
           maxItems: 1000
           minItems: 1
@@ -31077,18 +31091,18 @@ components:
         - Messages
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Messages:
           maxItems: 1000
           type: array
@@ -31106,18 +31120,18 @@ components:
         - PaymentRequests
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31141,18 +31155,18 @@ components:
         - PaymentRequestIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         PaymentRequestIds:
           maxItems: 1000
           minItems: 1
@@ -31187,18 +31201,18 @@ components:
         - ReservationUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31358,18 +31372,18 @@ components:
         - ResourceAccessTokenParameters
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ResourceAccessTokenParameters:
           maxItems: 1000
           minItems: 1
@@ -31387,18 +31401,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ResourceAccessTokenUpdates:
           type: array
           items:
@@ -31416,18 +31430,18 @@ components:
         - ResourceBlocks
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ResourceBlocks:
           maxItems: 1000
           minItems: 1
@@ -31446,18 +31460,18 @@ components:
         - ResourceUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ResourceUpdates:
           maxItems: 1000
           minItems: 1
@@ -31476,18 +31490,18 @@ components:
         - RoutingRules
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         RoutingRules:
           maxItems: 1000
           minItems: 1
@@ -31506,18 +31520,18 @@ components:
         - RoutingRuleUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         RoutingRuleUpdates:
           maxItems: 1000
           minItems: 1
@@ -31536,18 +31550,18 @@ components:
         - ServiceOrderNotes
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceOrderNotes:
           maxItems: 1000
           minItems: 1
@@ -31566,18 +31580,18 @@ components:
         - ServiceOrderNoteUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceOrderNoteUpdates:
           maxItems: 1000
           minItems: 1
@@ -31596,18 +31610,18 @@ components:
         - VoucherParameters
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31631,18 +31645,18 @@ components:
         - VoucherCodeParameters
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31666,18 +31680,18 @@ components:
         - VoucherCodeIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31702,18 +31716,18 @@ components:
         - VoucherIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31738,18 +31752,18 @@ components:
         - VoucherUpdates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -31855,18 +31869,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/), ignored otherwise.'
@@ -32241,18 +32255,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -32752,18 +32766,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -32970,18 +32984,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -33058,18 +33072,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
       additionalProperties: false
       x-schema-id: Parameters
     ParentProductCategory:
@@ -33336,18 +33350,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -33582,18 +33596,18 @@ components:
         - Reason
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -33775,18 +33789,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -34507,18 +34521,18 @@ components:
         - Type
       type: object
       properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
         Client:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Token authenticating access to the enterprise integration.
-        ClientToken:
-          minLength: 1
-          type: string
-          description: Token authenticating the client application.
         TerminalId:
           type: string
           description: Unique identifier of the payment terminal.
@@ -34962,18 +34976,18 @@ components:
         - PrinterId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -35234,18 +35248,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -35335,18 +35349,18 @@ components:
         - ProductIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -35371,18 +35385,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -35498,15 +35512,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -35589,18 +35606,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -35899,18 +35916,18 @@ components:
         - Rates
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Rates:
           maxItems: 1000
           minItems: 1
@@ -35966,18 +35983,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -36094,18 +36111,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -36259,18 +36276,18 @@ components:
         - RateId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         FirstTimeUnitStartUtc:
           type: string
           format: date-time
@@ -36406,18 +36423,18 @@ components:
         - RateId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         FirstTimeUnitStartUtc:
           type: string
           description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
@@ -36843,18 +36860,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -36916,18 +36933,18 @@ components:
         - ReservationIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -37091,18 +37108,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: Unique identifier of the `Service` to be priced.
@@ -37206,18 +37223,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceIds:
           maxItems: 1000
           minItems: 1
@@ -37377,18 +37394,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -37461,18 +37478,18 @@ components:
         - ReservationIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ReservationIds:
           maxItems: 1000
           minItems: 1
@@ -37851,18 +37868,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -37897,18 +37914,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ReservationId:
           type: string
           description: Unique identifier of the reservation.
@@ -38098,18 +38115,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -38231,18 +38248,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -38283,18 +38300,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -38340,15 +38357,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-        AccessToken:
-          minLength: 1
-          type: string
         ClientToken:
           minLength: 1
           type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -38500,18 +38520,18 @@ components:
         - ReservationId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         EnterpriseId:
           type: string
           description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
@@ -38693,18 +38713,18 @@ components:
         - ClientToken
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Ids:
           type: array
           items:
@@ -38723,18 +38743,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -39044,18 +39064,18 @@ components:
         - ResourceBlockIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ResourceBlockIds:
           maxItems: 1000
           minItems: 1
@@ -39085,18 +39105,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -39296,18 +39316,18 @@ components:
         - ResourceCategoryIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -39458,18 +39478,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -39504,6 +39524,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource categories were updated.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -39562,18 +39583,18 @@ components:
         - ResourceCategoryIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -39606,6 +39627,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource category image assignments were updated.
           nullable: true
         ActivityStates:
           type: array
@@ -39829,18 +39851,18 @@ components:
         - ResourceFeatureIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -40004,18 +40026,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -40087,18 +40109,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -40539,18 +40561,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -40866,18 +40888,18 @@ components:
         - RoutingRuleIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         RoutingRuleIds:
           maxItems: 1000
           minItems: 1
@@ -40897,18 +40919,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -41243,18 +41265,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -41481,18 +41503,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) whose availability should be returned.'
@@ -41531,18 +41553,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) whose availability should be returned.'
@@ -41673,18 +41695,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/#service) to update.'
@@ -41713,18 +41735,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -41979,18 +42001,18 @@ components:
         - ServiceOrderNoteIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceOrderNoteIds:
           maxItems: 1000
           minItems: 1
@@ -42011,18 +42033,18 @@ components:
         - ServiceOrderIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -42259,18 +42281,18 @@ components:
         - ServiceId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         ServiceId:
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
@@ -42355,18 +42377,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -42424,18 +42446,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         SourceIds:
           maxItems: 1000
           minItems: 1
@@ -42598,18 +42620,18 @@ components:
         - Name
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         DepartmentId:
           type: string
           description: 'Unique identifier of the [Department](https://mews-systems.gitbook.io/connector-api/operations/departments/#department) the task is addressed to.'
@@ -42644,18 +42666,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -42964,18 +42986,18 @@ components:
         - CustomerId
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         CustomerId:
           type: string
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
@@ -43506,18 +43528,18 @@ components:
         - Limitation
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
@@ -43619,18 +43641,18 @@ components:
         - ServiceIds
       type: object
       properties:
-        Client:
-          minLength: 1
-          type: string
-          description: Name and version of the client application.
-        AccessToken:
-          minLength: 1
-          type: string
-          description: Access token of the client application.
         ClientToken:
           minLength: 1
           type: string
           description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
