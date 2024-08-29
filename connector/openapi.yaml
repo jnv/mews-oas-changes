@@ -11289,7 +11289,7 @@ paths:
       tags:
         - Reservations
       summary: Price reservations
-      description: 'Returns prices of reservations with the specified parameters. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
       operationId: reservations_price
       requestBody:
         content:
@@ -18536,6 +18536,7 @@ components:
     AgeCategory:
       title: Age category
       required:
+        - Classification
         - CreatedUtc
         - Id
         - Names
@@ -18581,6 +18582,17 @@ components:
           type: string
           description: Last update date and time of the age category in UTC timezone in ISO 8601 format.
           format: date-time
+        Classification:
+          title: Age category classification
+          allOf:
+            - $ref: '#/components/schemas/AgeCategoryClassificationEnum'
+          description: "The classification of the age category.\n\nAdult\n\nChild"
+          x-enumNames:
+            - Adult
+            - Child
+          x-enumDescriptions:
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: AgeCategory
     AgeCategoryAdjustment:
@@ -18605,6 +18617,19 @@ components:
         - NegativeOccupancyAdjustment
         - StandardOccupancyAdjustment
       type: string
+    AgeCategoryClassificationEnum:
+      title: Age category classification
+      enum:
+        - Adult
+        - Child
+      type: string
+      description: "\n\nAdult\n\nChild"
+      x-enumNames:
+        - Adult
+        - Child
+      x-enumDescriptions:
+        - ''
+        - ''
     AgeCategoryParameters:
       title: AgeCategoryParameters
       required:
