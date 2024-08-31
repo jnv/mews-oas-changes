@@ -21623,6 +21623,8 @@ components:
           type: string
           description: Electronic invoice identifier of the company.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `AdditionalTaxIdentifier` instead.
         Identifier:
           type: string
           description: 'Other identifier of the company, e.g. legal identifier.'
