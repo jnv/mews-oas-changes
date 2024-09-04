@@ -18563,15 +18563,19 @@ components:
           format: int32
           nullable: true
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name of the age category.
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           nullable: true
+          x-schema-id: LocalizedStrings
         CreatedUtc:
           minLength: 1
           type: string
@@ -19501,7 +19505,7 @@ components:
           title: CurrencyValueOldUpdateValue
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOldUpdateValue'
-          description: Additional notes of the block (or `null` if not updated).
+          description: The tentative budget for the total price of reservations (or `null` if not updated).
           nullable: true
         CancellationReason:
           title: StringUpdateValue
@@ -33124,9 +33128,11 @@ components:
           type: string
           format: uuid
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
+          x-schema-id: LocalizedStrings
       additionalProperties: false
       description: '[Parent product category](https://mews-systems.gitbook.io/connector-api/operations/#parent-product-category).'
       x-schema-id: ParentProductCategory
@@ -35075,11 +35081,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `Names` instead
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the product name.
           nullable: true
+          x-schema-id: LocalizedStrings
         ExternalName:
           type: string
           description: Name of the product meant to be displayed to customer. **Deprecated!** Please use ExternalNames
@@ -35087,11 +35095,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `ExternalNames` instead
         ExternalNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the product name meant to be displayed to customer.
           nullable: true
+          x-schema-id: LocalizedStrings
         ShortName:
           type: string
           description: Short name of the product. **Deprecated!** Please use ShortNames
@@ -35099,11 +35109,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `ShortNames` instead
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the product short name.
           nullable: true
+          x-schema-id: LocalizedStrings
         Description:
           type: string
           description: Description of the product. **Deprecated!** Please use Descriptions
@@ -35111,11 +35123,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `Descriptions` instead
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the product description.
           nullable: true
+          x-schema-id: LocalizedStrings
         Charging:
           type: string
           nullable: true
@@ -35229,22 +35243,28 @@ components:
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) of the resource category.'
           format: uuid
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the short name.
           nullable: true
+          x-schema-id: LocalizedStrings
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description.
           nullable: true
+          x-schema-id: LocalizedStrings
         ParentProductCategory:
           allOf:
             - $ref: '#/components/schemas/ParentProductCategory'
@@ -35831,10 +35851,12 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `Names` instead
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
+          x-schema-id: LocalizedStrings
         ShortName:
           type: string
           description: Short name of the rate (in the default language).
@@ -35844,17 +35866,21 @@ components:
           type: string
           format: date-time
         ExternalNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the external name of the rate.
           nullable: true
+          x-schema-id: LocalizedStrings
         Description:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description of the rate.
           nullable: true
+          x-schema-id: LocalizedStrings
         ExternalIdentifier:
           maxLength: 255
           type: string
@@ -35890,25 +35916,33 @@ components:
           format: uuid
           nullable: true
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           nullable: true
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           nullable: true
+          x-schema-id: LocalizedStrings
         ExternalNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           nullable: true
+          x-schema-id: LocalizedStrings
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           nullable: true
+          x-schema-id: LocalizedStrings
         PricingType:
           anyOf:
             - $ref: '#/components/schemas/RatePricingDiscriminator'
@@ -36106,23 +36140,29 @@ components:
           description: Ordering of the rate group.
           format: int32
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
           nullable: true
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the short name.
           nullable: true
+          x-schema-id: LocalizedStrings
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description.
           nullable: true
+          x-schema-id: LocalizedStrings
         ExternalIdentifier:
           type: string
           description: Identifier of the rate group from external system.
@@ -38615,10 +38655,12 @@ components:
           type: string
           description: State of the resource.
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description.
+          x-schema-id: LocalizedStrings
         CreatedUtc:
           minLength: 1
           type: string
@@ -38644,15 +38686,19 @@ components:
           x-coproduct: true
           x-schema-id: ResourceDataCoproductOfSpaceDataObjectDataPersonData
         ExternalNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of external name.
+          x-schema-id: LocalizedStrings
         Directions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of direction.
+          x-schema-id: LocalizedStrings
       additionalProperties: false
       x-schema-id: Resource
     ResourceAccessToken:
@@ -39260,20 +39306,26 @@ components:
         Classification:
           $ref: '#/components/schemas/ResourceClassification'
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the short name.
+          x-schema-id: LocalizedStrings
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description.
+          x-schema-id: LocalizedStrings
         Ordering:
           type: integer
           format: int32
@@ -39806,20 +39858,26 @@ components:
         Classification:
           $ref: '#/components/schemas/ResourceFeatureClassification'
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
+          x-schema-id: LocalizedStrings
         ShortNames:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the short name.
+          x-schema-id: LocalizedStrings
         Descriptions:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the description.
+          x-schema-id: LocalizedStrings
         CreatedUtc:
           minLength: 1
           type: string
@@ -41457,10 +41515,12 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `Names` instead
         Names:
+          title: Localized text
           type: object
           additionalProperties:
             type: string
           description: All translations of the name.
+          x-schema-id: LocalizedStrings
         StartTime:
           type: string
           nullable: true
