@@ -18539,6 +18539,7 @@ components:
         - Classification
         - CreatedUtc
         - Id
+        - IsActive
         - Names
         - ServiceId
         - UpdatedUtc
@@ -18597,6 +18598,9 @@ components:
           x-enumDescriptions:
             - ''
             - ''
+        IsActive:
+          type: boolean
+          description: The activity state of the age category.
       additionalProperties: false
       x-schema-id: AgeCategory
     AgeCategoryAdjustment:
