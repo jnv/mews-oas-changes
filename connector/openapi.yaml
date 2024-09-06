@@ -17568,6 +17568,7 @@ components:
         - EnterpriseId
         - Id
         - IsActive
+        - Name
         - UpdatedUtc
       type: object
       properties:
@@ -17583,9 +17584,9 @@ components:
           type: boolean
           description: Whether the accounting category is still active.
         Name:
+          minLength: 1
           type: string
           description: Name of the category.
-          nullable: true
         Code:
           type: string
           description: Code of the category within Mews.
@@ -17607,8 +17608,9 @@ components:
           description: Code of cost center.
           nullable: true
         Classification:
-          type: string
-          description: Classification of the accounting category allowing cross-enterprise reporting.
+          allOf:
+            - $ref: '#/components/schemas/AccountingCategoryClassificationEnum'
+          description: "Classification of the accounting category allowing cross-enterprise reporting.\n\nAccommodation\n\nFoodAndBeverage\n\nTaxes\n\nPayments\n\nExternalRevenue\n\nSundryIncome\n\nWellness\n\nSport\n\nTechnology\n\nFacilities\n\nEvents\n\nTourism"
           nullable: true
         CreatedUtc:
           minLength: 1
@@ -17622,6 +17624,49 @@ components:
           format: date-time
       additionalProperties: false
       x-schema-id: AccountingCategory
+    AccountingCategoryClassificationEnum:
+      title: Accounting category classification
+      enum:
+        - Accommodation
+        - FoodAndBeverage
+        - Taxes
+        - Payments
+        - ExternalRevenue
+        - SundryIncome
+        - Wellness
+        - Sport
+        - Technology
+        - Facilities
+        - Events
+        - Tourism
+      type: string
+      description: "\n\nAccommodation\n\nFoodAndBeverage\n\nTaxes\n\nPayments\n\nExternalRevenue\n\nSundryIncome\n\nWellness\n\nSport\n\nTechnology\n\nFacilities\n\nEvents\n\nTourism"
+      x-enumNames:
+        - Accommodation
+        - FoodAndBeverage
+        - Taxes
+        - Payments
+        - ExternalRevenue
+        - SundryIncome
+        - Wellness
+        - Sport
+        - Technology
+        - Facilities
+        - Events
+        - Tourism
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     AccountingCategoryFilterParameters:
       title: AccountingCategoryFilterParameters
       required:
@@ -17669,6 +17714,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Last update date and time of the accounting category in UTC timezone in ISO 8601 format.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -17693,6 +17739,8 @@ components:
       x-schema-id: AccountingCategoryParameters
     AccountingCategoryResult:
       title: AccountingCategoryResult
+      required:
+        - AccountingCategories
       type: object
       properties:
         AccountingCategories:
@@ -17700,7 +17748,6 @@ components:
           items:
             $ref: '#/components/schemas/AccountingCategory'
           description: Accounting categories of the enterprise.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
