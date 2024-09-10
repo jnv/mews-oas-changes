@@ -1472,37 +1472,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AgeCategoryResult'
-              example:
-                AgeCategories:
-                  - Id: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                    EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    MinimalAge: 
-                    MaximalAge: 
-                    Names:
-                      cs-CZ: Dospělí
-                      da-DK: Voksne
-                      de-CH: Erwachsene
-                      de-DE: Erwachsene
-                      el-GR: Ενήλικοι
-                      en-GB: Adults
-                  - Id: fe568bbd-1ecb-4bb2-bf77-96c3698de20d
-                    EnterpriseId: 4d0201db-36f5-428b-8d11-4f0a65e960cc
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    MinimalAge: 0
-                    MaximalAge: 18
-                    Names:
-                      cs-CZ: Děti
-                      da-DK: Børn
-                      de-CH: Kinder
-                      de-DE: Kinder
-                      el-GR: Παιδιά
-                      en-GB: Children
-                Cursor: 0b9560fb-055d-47d3-a6d4-e579c44ca558
+              example: {"AgeCategories":[{"Id":"ab58c939-be30-4a60-8f75-ae1600c60c9f","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","MinimalAge":null,"MaximalAge":null,"Names":{"cs-CZ":"Dospělí","da-DK":"Voksne","de-CH":"Erwachsene","de-DE":"Erwachsene","el-GR":"Ενήλικοι","en-GB":"Adults"},"ShortNames":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z","Classification":"Adult","IsActive":false},{"Id":"fe568bbd-1ecb-4bb2-bf77-96c3698de20d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","MinimalAge":0,"MaximalAge":18,"Names":{"cs-CZ":"Děti","da-DK":"Børn","de-CH":"Kinder","de-DE":"Kinder","el-GR":"Παιδιά","en-GB":"Children"},"ShortNames":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z","Classification":"Child","IsActive":false}],"Cursor":"0b9560fb-055d-47d3-a6d4-e579c44ca558"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -17094,6 +17064,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
+        DietaryRequirements:
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          nullable: true
         LoyaltyCode:
           title: StringUpdateValue
           allOf:
@@ -18622,6 +18596,7 @@ components:
           type: object
           additionalProperties:
             type: string
+          description: All translations of the short name of the age category.
           nullable: true
           x-schema-id: LocalizedStrings
         CreatedUtc:
@@ -18741,6 +18716,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the age category was updated.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -18753,6 +18729,8 @@ components:
       x-schema-id: AgeCategoryParameters
     AgeCategoryResult:
       title: AgeCategoryResult
+      required:
+        - AgeCategories
       type: object
       properties:
         AgeCategories:
@@ -18760,7 +18738,6 @@ components:
           items:
             $ref: '#/components/schemas/AgeCategory'
           description: Age category of the enterprise.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -23581,6 +23558,13 @@ components:
           type: string
           description: Registration number of the customer's car.
           nullable: true
+        DietaryRequirements:
+          title: Dietary Requirements
+          maxLength: 255
+          type: string
+          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          format: string
+          nullable: true
         CreatedUtc:
           minLength: 1
           type: string
@@ -23731,6 +23715,9 @@ components:
           type: string
           nullable: true
         CarRegistrationNumber:
+          type: string
+          nullable: true
+        DietaryRequirements:
           type: string
           nullable: true
         LoyaltyCode:
@@ -23913,6 +23900,13 @@ components:
         CarRegistrationNumber:
           type: string
           description: Registration number of the customer's car.
+          nullable: true
+        DietaryRequirements:
+          title: Dietary Requirements
+          maxLength: 255
+          type: string
+          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          format: string
           nullable: true
         TaxIdentificationNumber:
           type: string
@@ -24628,6 +24622,13 @@ components:
         CarRegistrationNumber:
           type: string
           description: New registration number of the customer's car.
+          nullable: true
+        DietaryRequirements:
+          title: Dietary Requirements
+          maxLength: 255
+          type: string
+          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          format: string
           nullable: true
         TaxIdentificationNumber:
           type: string
