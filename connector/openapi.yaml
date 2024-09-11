@@ -10472,7 +10472,7 @@ paths:
       tags:
         - Rates
       summary: Get all rates
-      description: "Returns all rates (pricing setups) and rate groups (condition settings) of the default service provided by the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      description: 'Returns all rates (pricing setups) of the default service provided by the enterprise. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: rates_getAll
       requestBody:
         content:
@@ -10679,7 +10679,7 @@ paths:
       tags:
         - Rates
       summary: Get rate pricing
-      description: "Returns prices for a given rate for a specified time interval. Prices will be returned for all service [time units](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit) that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of \"Day\"). UTC timestamps must correspond to the start boundary of a [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), e.g. 00:00 converted to UTC for a time unit of \"Day\". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service's [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.\nThe price in the response is dependent on the enterprise's [pricing](https://mews-systems.gitbook.io/connector-api/operations/configuration/#pricing) setting. If the enterprise is set to a Gross pricing environment, then the price returned is the gross price (inclusive of tax). If the enterprise is set to a Net pricing environment, the price returned is the net price (excluding tax). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      description: 'Returns prices for a given rate for a specified time interval. Prices will be returned for all service time units that the specified time interval intersects. So, for example, an interval `1st Jan 23:00 UTC - 1st Jan 23:00 UTC` will result in one price for `2nd Jan`, while Interval `1st Jan 23:00 UTC - 2nd Jan 23:00 UTC` will result in two prices for `2nd Jan` and `3rd Jan` (assuming a time unit period of "Day"). UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 367 hours if hours, 367 days if days, or 60 months if months. For more information about time units, see [Time units](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
       operationId: rates_getPricing
       requestBody:
         content:
@@ -18626,27 +18626,52 @@ components:
       additionalProperties: false
       x-schema-id: AgeCategory
     AgeCategoryAdjustment:
-      title: AgeCategoryAdjustment
+      title: Age category adjustment
+      required:
+        - AbsoluteValue
+        - AgeCategoryId
+        - Type
       type: object
       properties:
         AgeCategoryId:
           type: string
+          description: Unique identifier of the age category.
           format: uuid
         AbsoluteValue:
           type: number
+          description: Absolute value of the adjustment (e.g. `50` represents 50 EUR in case the rate currency is `EUR`).
           format: double
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/AgeCategoryAdjustmentType'
-          nullable: true
+          title: Age category adjustment type
+          allOf:
+            - $ref: '#/components/schemas/AgeCategoryAdjustmentTypeEnum'
+          description: "Age category adjustment type\n\nExtraOccupancyAdjustment\n\nNegativeOccupancyAdjustment\n\nStandardOccupancyAdjustment"
+          x-enumNames:
+            - ExtraOccupancyAdjustment
+            - NegativeOccupancyAdjustment
+            - StandardOccupancyAdjustment
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: AgeCategoryAdjustment
-    AgeCategoryAdjustmentType:
+    AgeCategoryAdjustmentTypeEnum:
+      title: Age category adjustment type
       enum:
         - ExtraOccupancyAdjustment
         - NegativeOccupancyAdjustment
         - StandardOccupancyAdjustment
       type: string
+      description: "\n\nExtraOccupancyAdjustment\n\nNegativeOccupancyAdjustment\n\nStandardOccupancyAdjustment"
+      x-enumNames:
+        - ExtraOccupancyAdjustment
+        - NegativeOccupancyAdjustment
+        - StandardOccupancyAdjustment
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
     AgeCategoryClassificationEnum:
       title: Age category classification
       enum:
@@ -19565,7 +19590,7 @@ components:
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
     BaseRatePricingParameters:
-      title: BaseRatePricingParameters
+      title: Base rate pricing parameters
       type: object
       properties:
         Amount:
@@ -19576,9 +19601,11 @@ components:
           nullable: true
         NegativeOccupancyAdjustment:
           type: number
+          description: 'This is the amount added to the price when occupancy of the space is less than the Space Category Capacity. To provide a discount price for under-occupancy, simply use a negative value.'
           format: double
         ExtraOccupancyAdjustment:
           type: number
+          description: This is the amount added to the price when the Space Category Capacity is exceeded.
           format: double
       additionalProperties: false
       x-schema-id: BaseRatePricingParameters
@@ -21111,21 +21138,29 @@ components:
       additionalProperties: false
       x-schema-id: CashierTransactionResult
     CategoryAdjustment:
-      title: CategoryAdjustment
+      title: Resource category adjustment
+      required:
+        - AbsoluteValue
+        - CategoryId
+        - RelativeValue
       type: object
       properties:
         CategoryId:
           type: string
+          description: Unique identifier of the adjustment category.
           format: uuid
         ParentCategoryId:
           type: string
+          description: Unique identifier of the parent category that serves as a base price for the current category.
           format: uuid
           nullable: true
         AbsoluteValue:
           type: number
+          description: Absolute value of the adjustment (e.g. `50` represents 50 EUR in case the rate currency is `EUR`).
           format: double
         RelativeValue:
           type: number
+          description: Relative value of the adjustment (e.g. `0.5` represents 50% increase).
           format: double
       additionalProperties: false
       x-schema-id: CategoryAdjustment
@@ -21156,25 +21191,30 @@ components:
       additionalProperties: false
       x-schema-id: CategoryAvailability
     CategoryPricing:
-      title: CategoryPricing
+      title: Resource category pricing
+      required:
+        - AmountPrices
+        - CategoryId
+        - Prices
       type: object
       properties:
         CategoryId:
           type: string
+          description: Unique identifier of the category.
           format: uuid
         Prices:
           type: array
           items:
             type: number
             format: double
-          nullable: true
+          description: Prices of the rate for the resource category in the covered dates.
           deprecated: true
           x-deprecatedMessage: Use `AmountPrices` instead.
         AmountPrices:
           type: array
           items:
             $ref: '#/components/schemas/Amount'
-          nullable: true
+          description: Prices of the rate for the resource category in the covered dates.
       additionalProperties: false
       x-schema-id: CategoryPricing
     ChannelManagerReservation:
@@ -24723,30 +24763,37 @@ components:
       additionalProperties: false
       x-schema-id: DateFilterInterval
     DateRestriction:
-      title: DateRestriction
+      title: Date restriction
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the rate restriction.
           format: uuid
         RateId:
           type: string
+          description: Unique identifier of the rate.
           format: uuid
         IsInherited:
           type: boolean
+          description: Whether the rate restriction is inherited from the parent rate.
         StartUtc:
           type: string
+          description: Start of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         EndUtc:
           type: string
+          description: End of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         Days:
           type: array
           items:
             type: string
+          description: The restricted days of week.
           nullable: true
         ExternalIdentifier:
           type: string
+          description: Identifiers of from external systems.
           nullable: true
       additionalProperties: false
       x-schema-id: DateRestriction
@@ -24937,17 +24984,20 @@ components:
       additionalProperties: false
       x-schema-id: DepartmentResult
     DependentRatePricingParameters:
-      title: DependentRatePricingParameters
+      title: Dependent rate pricing parameters
       type: object
       properties:
         BaseRateId:
           type: string
+          description: Unique identifier of the base rate.
           format: uuid
         RelativeAdjustment:
           type: number
+          description: Specific amount which shows the difference between this rate and the base rate.
           format: double
         AbsoluteAdjustment:
           type: number
+          description: Relative amount which shows the difference between this rate and the base rate.
           format: double
       additionalProperties: false
       x-schema-id: DependentRatePricingParameters
@@ -27521,36 +27571,45 @@ components:
       description: New drivers license details.
       x-schema-id: DocumentParameters
     EarlinessRestriction:
-      title: EarlinessRestriction
+      title: Earliness restriction
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the rate restriction.
           format: uuid
         RateId:
           type: string
+          description: Unique identifier of the rate.
           format: uuid
         IsInherited:
           type: boolean
+          description: Whether the rate restriction is inherited from the parent rate.
         StartUtc:
           type: string
+          description: Start of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         EndUtc:
           type: string
+          description: End of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         Days:
           type: array
           items:
             type: string
+          description: The restricted days of week.
           nullable: true
         ExternalIdentifier:
           type: string
+          description: Identifiers of from external systems.
           nullable: true
         MinAdvance:
           type: string
+          description: 'The minimum time before the reservation starts, you can reserve in ISO 8601 duration format.'
           nullable: true
         MaxAdvance:
           type: string
+          description: 'The maximum time before the reservation starts, you can reserve in ISO 8601 duration format.'
           nullable: true
       additionalProperties: false
       x-schema-id: EarlinessRestriction
@@ -29257,36 +29316,45 @@ components:
       additionalProperties: false
       x-schema-id: LegalEntityIdentifiers
     LengthRestriction:
-      title: LengthRestriction
+      title: Length restriction
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the rate restriction.
           format: uuid
         RateId:
           type: string
+          description: Unique identifier of the rate.
           format: uuid
         IsInherited:
           type: boolean
+          description: Whether the rate restriction is inherited from the parent rate.
         StartUtc:
           type: string
+          description: Start of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         EndUtc:
           type: string
+          description: End of the rate restriction in UTC timezone in ISO 8601 format.
           nullable: true
         Days:
           type: array
           items:
             type: string
+          description: The restricted days of week.
           nullable: true
         ExternalIdentifier:
           type: string
+          description: Identifiers of from external systems.
           nullable: true
         MinLength:
           type: string
+          description: Minimal reservation length in ISO 8601 duration format.
           nullable: true
         MaxLength:
           type: string
+          description: Maximal reservation length in ISO 8601 duration format.
           nullable: true
       additionalProperties: false
       x-schema-id: LengthRestriction
@@ -35916,6 +35984,7 @@ components:
         UpdatedUtc:
           minLength: 1
           type: string
+          description: Interval in which the rates were updated.
           format: date-time
         ExternalNames:
           title: Localized text
@@ -35941,30 +36010,44 @@ components:
       additionalProperties: false
       x-schema-id: Rate
     RateAddData:
-      title: RateAddData
+      title: Rate parameters
       required:
+        - Names
         - RateGroupId
         - ServiceId
       type: object
       properties:
         ServiceId:
           type: string
+          description: Unique identifier of the service.
           format: uuid
         RateGroupId:
           type: string
+          description: Unique identifier of the rate group under which rate is assigned.
           format: uuid
         IsEnabled:
           type: boolean
-        Type:
-          anyOf:
-            - $ref: '#/components/schemas/RateType'
+          description: Whether the rate is available to customers. `false` will be used as a default when not provided.
           nullable: true
+        Type:
+          title: Rate Add Type
+          allOf:
+            - $ref: '#/components/schemas/RateAddTypeEnum'
+          description: "Type of the rate.\n\nPublic\n\nPrivate"
+          x-enumNames:
+            - Public
+            - Private
+          x-enumDescriptions:
+            - ''
+            - ''
         AccountingCategoryId:
           type: string
+          description: Unique identifier of the accounting category the rate belongs to.
           format: uuid
           nullable: true
         BusinessSegmentId:
           type: string
+          description: Unique identifier of the business segment.
           format: uuid
           nullable: true
         Names:
@@ -35972,13 +36055,14 @@ components:
           type: object
           additionalProperties:
             type: string
-          nullable: true
+          description: All translations of the name of the rate.
           x-schema-id: LocalizedStrings
         ShortNames:
           title: Localized text
           type: object
           additionalProperties:
             type: string
+          description: All translations of the short name of the rate.
           nullable: true
           x-schema-id: LocalizedStrings
         ExternalNames:
@@ -35986,6 +36070,7 @@ components:
           type: object
           additionalProperties:
             type: string
+          description: All translations of the external name of the rate.
           nullable: true
           x-schema-id: LocalizedStrings
         Descriptions:
@@ -35993,20 +36078,24 @@ components:
           type: object
           additionalProperties:
             type: string
+          description: All translations of the description.
           nullable: true
           x-schema-id: LocalizedStrings
         PricingType:
           anyOf:
             - $ref: '#/components/schemas/RatePricingDiscriminator'
+          description: Discriminator in which field inside `Pricing` contains additional data.
           nullable: true
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: Identifier of the rate from external system.
           nullable: true
         Pricing:
-          title: RatePricingDataParameters
+          title: Rate pricing data parameters
           allOf:
             - $ref: '#/components/schemas/RatePricingDataParameters'
+          description: Contains additional data about pricing of the rate.
           nullable: true
       additionalProperties: false
       x-schema-id: RateAddData
@@ -36021,7 +36110,7 @@ components:
       additionalProperties: false
       x-schema-id: RateAddOptions
     RateAddParameters:
-      title: RateAddParameters
+      title: Rate add parameters
       required:
         - AccessToken
         - Client
@@ -36056,7 +36145,7 @@ components:
       additionalProperties: false
       x-schema-id: RateAddParameters
     RateAddResult:
-      title: RateAddResult
+      title: Rate add result
       type: object
       properties:
         Rates:
@@ -36068,30 +36157,45 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateAddResult
+    RateAddTypeEnum:
+      title: Rate Add Type
+      enum:
+        - Public
+        - Private
+      type: string
+      description: "\n\nPublic\n\nPrivate"
+      x-enumNames:
+        - Public
+        - Private
+      x-enumDescriptions:
+        - ''
+        - ''
     RateExtent:
-      title: RateExtent
+      title: Rate extent
       type: object
       properties:
         Rates:
           type: boolean
+          description: Whether the response should contain rates.
+          nullable: true
         RateGroups:
           type: boolean
+          description: Whether the response should contain rate groups.
+          nullable: true
           deprecated: true
           x-deprecatedMessage: Use `rateGroups/getAll`
-        RateRestrictions:
+        AvailabilityBlockAssignments:
           type: boolean
-          deprecated: true
-          x-deprecatedMessage: Use `restrictions/getAll`
+          description: Whether the response should contain availability block assignments.
       additionalProperties: false
       description: Extent of data to be returned.
       x-schema-id: RateExtent
     RateFilterParameters:
-      title: RateFilterParameters
+      title: Rate filter parameters
       required:
         - AccessToken
         - Client
         - ClientToken
-        - Extent
         - Limitation
         - ServiceIds
       type: object
@@ -36122,10 +36226,11 @@ components:
           description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         Extent:
-          title: RateExtent
+          title: Rate extent
           allOf:
             - $ref: '#/components/schemas/RateExtent'
-          description: Extent of data to be returned.
+          description: 'Extent of data to be returned. If not specified, both `Rates` and `RateGroups` will be included.'
+          nullable: true
         RateIds:
           maxItems: 1000
           minItems: 1
@@ -36139,6 +36244,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Rate` was updated.
           nullable: true
           x-max-interval-in-months: 3
         ServiceIds:
@@ -36352,45 +36458,39 @@ components:
       additionalProperties: false
       x-schema-id: RateOptions
     RatePriceUpdate:
-      title: RatePriceUpdate
+      title: Rate price update
       type: object
       properties:
         CategoryId:
           type: string
+          description: 'Unique identifier of the Resource category whose prices to update. If not specified, base price is updated.'
           format: uuid
           nullable: true
         Value:
           type: number
+          description: 'New value of the rate on the interval. If not specified, removes all adjustments within the interval.'
           format: double
           nullable: true
         FirstTimeUnitStartUtc:
           type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
           format: date-time
           nullable: true
         LastTimeUnitStartUtc:
           type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
           format: date-time
           nullable: true
-        StartUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `FirstTimeUnitStartUtc` instead.
-        EndUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `LastTimeUnitStartUtc` instead.
       additionalProperties: false
       x-schema-id: RatePriceUpdate
     RatePriceUpdateParameters:
-      title: RatePriceUpdateParameters
+      title: Rate price update parameters
       required:
         - AccessToken
         - Client
         - ClientToken
+        - FirstTimeUnitStartUtc
+        - LastTimeUnitStartUtc
         - PriceUpdates
         - RateId
       type: object
@@ -36408,29 +36508,22 @@ components:
           type: string
           description: Name and version of the client application.
         FirstTimeUnitStartUtc:
+          minLength: 1
           type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
           format: date-time
-          nullable: true
         LastTimeUnitStartUtc:
+          minLength: 1
           type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
           format: date-time
-          nullable: true
-        StartUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
         RateId:
           type: string
           description: 'Unique identifier of the base [Rate](https://mews-systems.gitbook.io/connector-api/operations/#rate) to update.'
           format: uuid
         ProductId:
           type: string
+          description: Unique identifier of the `Product`.
           format: uuid
           nullable: true
         PriceUpdates:
@@ -36443,13 +36536,21 @@ components:
       additionalProperties: false
       x-schema-id: RatePriceUpdateParameters
     RatePricing:
-      title: RatePricing
+      title: Rate pricing
+      required:
+        - AgeCategoryAdjustments
+        - BaseAmountPrices
+        - BasePrices
+        - CategoryAdjustments
+        - CategoryPrices
+        - Currency
+        - TimeUnitStartsUtc
       type: object
       properties:
         Currency:
+          minLength: 1
           type: string
           description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency).'
-          nullable: true
         DatesUtc:
           type: array
           items:
@@ -36462,13 +36563,11 @@ components:
           items:
             type: string
           description: Set of all time units covered by the time interval; expressed in UTC timezone ISO 8601 format.
-          nullable: true
         BasePrices:
           type: array
           items:
             type: number
             format: double
-          nullable: true
           deprecated: true
           x-deprecatedMessage: Use `BaseAmountPrices` instead.
         BaseAmountPrices:
@@ -36476,24 +36575,21 @@ components:
           items:
             $ref: '#/components/schemas/Amount'
           description: Base prices of the rates for each time unit covered by the time interval.
-          nullable: true
         CategoryPrices:
           type: array
           items:
             $ref: '#/components/schemas/CategoryPricing'
           description: Resource category prices.
-          nullable: true
         CategoryAdjustments:
           type: array
           items:
             $ref: '#/components/schemas/CategoryAdjustment'
           description: Resource category adjustments.
-          nullable: true
         AgeCategoryAdjustments:
           type: array
           items:
             $ref: '#/components/schemas/AgeCategoryAdjustment'
-          nullable: true
+          description: Assigns different pricing or occupancy based on the guest's age.
         RelativeAdjustment:
           type: number
           description: Specific amount which shows the difference between this rate and the base rate.
@@ -36513,32 +36609,37 @@ components:
       additionalProperties: false
       x-schema-id: RatePricing
     RatePricingDataParameters:
-      title: RatePricingDataParameters
+      title: Rate pricing data parameters
       type: object
       properties:
         BaseRatePricing:
-          title: BaseRatePricingParameters
+          title: Base rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/BaseRatePricingParameters'
+          description: Additional data for rate with base rate pricing.
           nullable: true
         DependentRatePricing:
-          title: DependentRatePricingParameters
+          title: Dependent rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/DependentRatePricingParameters'
+          description: Additional data for rate with dependent rate pricing.
           nullable: true
       additionalProperties: false
       x-schema-id: RatePricingDataParameters
     RatePricingDiscriminator:
+      title: Rate pricing discriminator
       enum:
         - BaseRatePricing
         - DependentRatePricing
       type: string
     RatePricingParameters:
-      title: RatePricingParameters
+      title: Rate pricing parameters
       required:
         - AccessToken
         - Client
         - ClientToken
+        - FirstTimeUnitStartUtc
+        - LastTimeUnitStartUtc
         - RateId
       type: object
       properties:
@@ -36555,58 +36656,57 @@ components:
           type: string
           description: Name and version of the client application.
         FirstTimeUnitStartUtc:
+          minLength: 1
           type: string
-          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
           format: date-time
-          nullable: true
         LastTimeUnitStartUtc:
+          minLength: 1
           type: string
-          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit): 367 hours if hours, 367 days if days, or 24 months if months.'
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
           format: date-time
-          nullable: true
-        StartUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          format: date-time
-          nullable: true
-          deprecated: true
         RateId:
           type: string
           description: 'Unique identifier of the [Rate](https://mews-systems.gitbook.io/connector-api/operations/#rate) whose prices should be returned.'
           format: uuid
         ProductId:
           type: string
+          description: Unique identifier of the `Product`.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: RatePricingParameters
     RateRestrictionResult:
-      title: RateRestrictionResult
+      title: Rate restriction result
+      required:
+        - DateRestrictions
+        - EarlinessRestrictions
+        - LengthRestrictions
       type: object
       properties:
         DateRestrictions:
           type: array
           items:
             $ref: '#/components/schemas/DateRestriction'
-          nullable: true
+          description: Date restrictions for the rate.
         EarlinessRestrictions:
           type: array
           items:
             $ref: '#/components/schemas/EarlinessRestriction'
-          nullable: true
+          description: Earliness restrictions for the rates that are only available up to before arrival.
         LengthRestrictions:
           type: array
           items:
             $ref: '#/components/schemas/LengthRestriction'
-          nullable: true
+          description: Length restrictions for the rate.
       additionalProperties: false
       x-schema-id: RateRestrictionResult
     RateResult:
-      title: RateResult
+      title: Rate result
+      required:
+        - RateGroups
+        - RateRestrictions
+        - Rates
       type: object
       properties:
         Rates:
@@ -36615,21 +36715,20 @@ components:
           items:
             $ref: '#/components/schemas/Rate'
           description: Rates of the default service.
-          nullable: true
         RateGroups:
           maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/RateGroupOld'
-          description: Rate groups of the default service. **Deprecated!**
-          nullable: true
+          description: Rate groups of the default service.
+          deprecated: true
+          x-deprecatedMessage: 'Use [rateGroups/getAll](https://mews-systems.gitbook.io/connector-api/operations/rategroups#request).'
         RateRestrictions:
-          title: RateRestrictionResult
+          title: Rate restriction result
           allOf:
             - $ref: '#/components/schemas/RateRestrictionResult'
-          nullable: true
           deprecated: true
-          x-deprecatedMessage: Use `restrictions/getAll`
+          x-deprecatedMessage: 'Use [restrictions/getAll](https://mews-systems.gitbook.io/connector-api/operations/restrictions#request).'
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -36638,6 +36737,7 @@ components:
       additionalProperties: false
       x-schema-id: RateResult
     RateType:
+      title: Rate type
       enum:
         - Public
         - Private
