@@ -2988,6 +2988,9 @@ components:
         - CaravanOrRV
         - UnequippedCampsite
         - Bike
+        - ExtraBed
+        - Cot
+        - Crib
       type: string
     ResourceOccupancyPricing:
       title: ResourceOccupancyPricing

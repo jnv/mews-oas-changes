@@ -23561,15 +23561,14 @@ components:
           description: Internal notes about the customer.
           nullable: true
         CarRegistrationNumber:
+          maxLength: 255
           type: string
           description: Registration number of the customer's car.
           nullable: true
         DietaryRequirements:
-          title: Dietary Requirements
           maxLength: 255
           type: string
           description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
-          format: string
           nullable: true
         CreatedUtc:
           minLength: 1
@@ -23904,15 +23903,14 @@ components:
           description: Internal notes about the customer.
           nullable: true
         CarRegistrationNumber:
+          maxLength: 255
           type: string
           description: Registration number of the customer's car.
           nullable: true
         DietaryRequirements:
-          title: Dietary Requirements
           maxLength: 255
           type: string
           description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
-          format: string
           nullable: true
         TaxIdentificationNumber:
           type: string
@@ -24626,15 +24624,14 @@ components:
           description: Internal notes about the customer. Old value will be overwritten.
           nullable: true
         CarRegistrationNumber:
+          maxLength: 255
           type: string
           description: New registration number of the customer's car.
           nullable: true
         DietaryRequirements:
-          title: Dietary Requirements
           maxLength: 255
           type: string
           description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
-          format: string
           nullable: true
         TaxIdentificationNumber:
           type: string
@@ -40032,6 +40029,9 @@ components:
         - CaravanOrRV
         - UnequippedCampsite
         - Bike
+        - ExtraBed
+        - Cot
+        - Crib
       type: string
     ResourceClassification:
       enum:
