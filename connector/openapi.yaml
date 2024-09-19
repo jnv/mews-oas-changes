@@ -38499,6 +38499,14 @@ components:
             format: uuid
           description: 'Unique identifiers of accounts (currently only [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer), in the future also [Companies](https://mews-systems.gitbook.io/connector-api/operations/companies/#company)) the reservation is associated with.'
           nullable: true
+        Numbers:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: A list of reservation numbers. Each number uniquely identifies a reservation within the system
+          nullable: true
         AssignedResourceIds:
           maxItems: 1000
           minItems: 1
