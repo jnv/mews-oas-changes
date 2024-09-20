@@ -43329,8 +43329,6 @@ components:
         - Mister
         - Miss
         - Misses
-        - Doctor
-        - Professor
       type: string
     TokenizedCreditCardParameters:
       title: TokenizedCreditCardParameters
