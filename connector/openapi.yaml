@@ -10343,27 +10343,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RateGroupFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              RateGroupIds:
-                - 6b3f718a-b537-45b0-a8ee-d30897723834
-              ServiceIds:
-                - bd26d8db-86da-4f96-9efc-e5a4654a4a94
-              ExternalIdentifiers:
-                - RG-001
-              UpdatedUtc:
-                StartUtc: '2024-01-27T11:48:57Z'
-                EndUtc: '2024-02-27T11:48:57Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Cursor: e7f26210-10e7-462e-9da8-ae8300be8ab7
-                Count: 100
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RateGroupIds":["6b3f718a-b537-45b0-a8ee-d30897723834"],"ServiceIds":["bd26d8db-86da-4f96-9efc-e5a4654a4a94"],"ExternalIdentifiers":["RG-001"],"UpdatedUtc":{"StartUtc":"2024-01-27T11:48:57Z","EndUtc":"2024-02-27T11:48:57Z"},"ActivityStates":["Active"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":1000,"Cursor":"e7f26210-10e7-462e-9da8-ae8300be8ab7"}}
       responses:
         '200':
           description: OK
@@ -10371,21 +10351,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RateGroupResult'
-              example:
-                RateGroups:
-                  - Id: 6b3f718a-b537-45b0-a8ee-d30897723834
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    IsActive: true
-                    CreatedUtc: '2023-01-11T13:32:32Z'
-                    UpdatedUtc: '2023-01-13T15:27:28Z'
-                    Ordering: 0
-                    Names:
-                      en-US: Default group
-                    ShortNames:
-                      en-US: Default group
-                    Descriptions: { }
-                    ExternalIdetnfier: RG-001
-                Cursor: 6b3f718a-b537-45b0-a8ee-d30897723834
+              example: {"RateGroups":[{"Id":"6b3f718a-b537-45b0-a8ee-d30897723834","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","IsActive":true,"CreatedUtc":"2023-01-11T13:32:32Z","UpdatedUtc":"2023-01-13T15:27:28Z","Ordering":0,"Names":{"en-US":"Default group"},"ShortNames":{"en-US":"Default group"},"Descriptions":{"en-US":"Default group"},"ExternalIdentifier":"RG-001"}],"Cursor":"6b3f718a-b537-45b0-a8ee-d30897723834"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -16740,6 +16706,9 @@ components:
   schemas:
     Account:
       title: Account
+      required:
+        - Discriminator
+        - Id
       type: object
       properties:
         Id:
@@ -16747,17 +16716,24 @@ components:
           description: Unique identifier of the account.
           format: uuid
         Discriminator:
-          type: string
-          description: Type of the account.
-          nullable: true
+          title: Account type
+          allOf:
+            - $ref: '#/components/schemas/AccountTypeEnum'
+          description: "Type of the account.\n\nCompany\n\nCustomer"
+          x-enumNames:
+            - Company
+            - Customer
+          x-enumDescriptions:
+            - ''
+            - ''
         Customer:
-          title: CustomerAccount
+          title: Customer
           allOf:
             - $ref: '#/components/schemas/CustomerAccount'
           description: Updated customer data.
           nullable: true
         Company:
-          title: CompanyAccount
+          title: Company
           allOf:
             - $ref: '#/components/schemas/CompanyAccount'
           description: Updated company data.
@@ -16840,61 +16816,73 @@ components:
       additionalProperties: false
       x-schema-id: AccountAddress
     AccountCompanyUpdateParameters:
-      title: AccountCompanyUpdateParameters
+      title: Company update parameters
       type: object
       properties:
         Email:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Email address (or `null` if the email should not be updated).
+          format: email
           nullable: true
         TaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identification number (or `null` if the tax identification number should not be updated).
           nullable: true
         BillingCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Billing code (or `null` if the billing code should not be updated).
           nullable: true
         AccountingCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Accounting code (or `null` if the accounting code should not be updated).
           nullable: true
         Notes:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Notes (or `null` if the notes should not be updated).
           nullable: true
         Name:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Name (or `null` if the name should not be updated).
           nullable: true
         MotherCompanyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Mother company identifier (or `null` if the mother company identifier should not be updated).
           nullable: true
         WebsiteUrl:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Website url (or `null` if the website url should not be updated).
+          format: uri
           nullable: true
         InvoiceDueInterval:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Invoice due interval (or `null` if the invoice due interval should not be updated).
           nullable: true
         Classifications:
-          title: CompanyClassificationUpdateParameters
+          title: Company update classifications
           allOf:
             - $ref: '#/components/schemas/CompanyClassificationUpdateParameters'
+          description: Classifications of the company.
           nullable: true
         Options:
-          title: Company Option Update Parameters
+          title: Company update options
           allOf:
             - $ref: '#/components/schemas/CompanyOptionUpdateParameters'
           description: Options of the company.
@@ -16903,186 +16891,226 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          anyOf:
+            - $ref: '#/components/schemas/CreditRatingBasic'
+          description: Basic credit rating (or `null` if the basic credit rating should not be updated).
           nullable: true
         Department:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Department (or `null` if the department should not be updated).
           nullable: true
         DunsNumber:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Duns number (or `null` if the duns number should not be updated).
           nullable: true
         ReferenceId:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Reference identifier (or `null` if the reference identifier should not be updated).
           nullable: true
         ExternalIdentifier:
           title: StringUpdateValue
+          maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: External identifier (or `null` if the external identifier should not be updated).
           nullable: true
         AdditionalTaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Additional tax identifier (or `null` if the additional tax identifier should not be updated).
           nullable: true
         Contact:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Contact (or `null` if the contact should not be updated).
           nullable: true
         ContactPerson:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Contact person (or `null` if the contact person should not be updated).
           nullable: true
         FiscalIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Fiscal identifier (or `null` if the fiscal identifier should not be updated).
           nullable: true
         Iata:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: IATA of the company (or `null` if the iata should not be updated).
           nullable: true
         Telephone:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Telephone number (or `null` if the telephone number should not be updated).
           nullable: true
         SourceId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Source identifier (or `null` if the source identifier should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: AccountCompanyUpdateParameters
     AccountCustomerUpdateParameters:
-      title: AccountCustomerUpdateParameters
+      title: Customer update parameters
       type: object
       properties:
         Email:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Email address (or `null` if the email should not be updated).
           nullable: true
         TaxIdentifier:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Tax identification number (or `null` if the tax identification number should not be updated).
           nullable: true
         BillingCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Billing code (or `null` if the billing code should not be updated).
           nullable: true
         AccountingCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Accounting code (or `null` if the accounting code should not be updated).
           nullable: true
         Notes:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Notes (or `null` if the notes should not be updated).
           nullable: true
         LastName:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Last name (or `null` if the last name should not be updated).
           nullable: true
         FirstName:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: First name (or `null` if the first name should not be updated).
           nullable: true
         SecondLastName:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Second last name (or `null` if the second last name should not be updated).
           nullable: true
         BirthPlace:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Birth place (or `null` if the birth place should not be updated).
           nullable: true
         Telephone:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Telephone number (or `null` if the telephone should not be updated).
           nullable: true
         Occupation:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Occupation (or `null` if the occupation should not be updated).
           nullable: true
         CarRegistrationNumber:
           title: StringUpdateValue
+          maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Car registration number (or `null` if the car registration number should not be updated).
           nullable: true
         DietaryRequirements:
+          maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Dietary requirements (or `null` if the dietary requirements should not be updated).
           nullable: true
         LoyaltyCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Loyalty code (or `null` if the loyalty code should not be updated).
           nullable: true
         NationalityCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Nationality code (or `null` if the nationality code should not be updated).
           nullable: true
         CompanyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the company (or `null` if the company should not be updated).
           nullable: true
         BirthDate:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Birth date (or `null` if the birth date should not be updated).
           nullable: true
         Sex:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Sex (or `null` if the sex should not be updated).
           nullable: true
         Title:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Title (or `null` if the title should not be updated).
           nullable: true
         PreferredLanguageCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Preferred language code (or `null` if the preferred language code should not be updated).
           nullable: true
         Options:
-          title: CustomerOptionUpdateParameters
+          title: Customer update options
           allOf:
             - $ref: '#/components/schemas/CustomerOptionUpdateParameters'
+          description: Options of the customer.
           nullable: true
         Classifications:
-          title: CustomerClassificationUpdateParameters
+          title: Customer update classifications
           allOf:
             - $ref: '#/components/schemas/CustomerClassificationUpdateParameters'
+          description: Classifications of the customer.
           nullable: true
         LegalEntityIdentifiers:
-          title: LegalEntityIdentifierUpdateParameters
+          title: Customer update legal entity identifiers
           allOf:
             - $ref: '#/components/schemas/LegalEntityIdentifierUpdateParameters'
+          description: Legal entity identifiers of the customer.
           nullable: true
       additionalProperties: false
       x-schema-id: AccountCustomerUpdateParameters
     AccountMergeParameter:
-      title: AccountMergeParameter
+      title: Account merge parameters
       required:
         - AccountType
         - SourceAccountIds
@@ -17096,8 +17124,10 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of the source accounts (`Customer` or `Company`).
         TargetAccountId:
           type: string
+          description: Unique identifier of the target account (`Customer` or `Company`).
           format: uuid
         AccountType:
           $ref: '#/components/schemas/MergeAccountType'
@@ -17443,16 +17473,24 @@ components:
           description: Updated account notes.
       additionalProperties: false
       x-schema-id: AccountNoteUpdateResult
+    AccountParameterDiscriminator:
+      title: Account type discriminator
+      enum:
+        - Customer
+        - Company
+      type: string
     AccountResult:
       title: AccountResult
+      required:
+        - Accounts
       type: object
       properties:
         Accounts:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/Account'
           description: Updated accounts.
-          nullable: true
       additionalProperties: false
       x-schema-id: AccountResult
     AccountType:
@@ -17475,24 +17513,29 @@ components:
         - ''
         - ''
     AccountUpdateParameters:
-      title: AccountUpdateParameters
+      title: Account update parameters
+      required:
+        - Discriminator
+        - Id
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the account.
           format: uuid
         Discriminator:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/AccountParameterDiscriminator'
         Customer:
-          title: AccountCustomerUpdateParameters
+          title: Customer update parameters
           allOf:
             - $ref: '#/components/schemas/AccountCustomerUpdateParameters'
+          description: Customer data to be updated. Required when `Discriminator` is `Customer`.
           nullable: true
         Company:
-          title: AccountCompanyUpdateParameters
+          title: Company update parameters
           allOf:
             - $ref: '#/components/schemas/AccountCompanyUpdateParameters'
+          description: Company data to be updated. Required when `Discriminator` is `Company`.
           nullable: true
       additionalProperties: false
       x-schema-id: AccountUpdateParameters
@@ -21732,129 +21775,175 @@ components:
       additionalProperties: false
       x-schema-id: Company
     CompanyAccount:
-      title: CompanyAccount
+      title: Company
+      required:
+        - ChainId
+        - Classifications
+        - CreatedUtc
+        - CreditRatingBasic
+        - Name
+        - Options
+        - UpdatedUtc
+        - UpdaterProfileId
       type: object
       properties:
         ChainId:
           type: string
+          description: Unique identifier of the chain.
           format: uuid
         CreatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Creation date and time of the `Company` in UTC timezone in ISO 8601 format.
+          format: date-time
         UpdatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last update date and time of the `Company` in UTC timezone in ISO 8601 format.
+          format: date-time
         UpdaterProfileId:
           type: string
+          description: Unique identifier of the user who updated the company.
           format: uuid
         Email:
           type: string
+          description: Email address of the company.
+          format: email
           nullable: true
         TaxIdentifier:
           type: string
+          description: Tax identification number of the company.
           nullable: true
         BillingCode:
           type: string
+          description: Billing code of the company.
           nullable: true
         AccountingCode:
           type: string
+          description: Accounting code of the company.
           nullable: true
         Notes:
           type: string
+          description: Additional notes.
           nullable: true
         Name:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the company.
         MotherCompanyId:
           type: string
+          description: Unique identifier of mother company.
           format: uuid
           nullable: true
         WebsiteUrl:
           type: string
+          description: The website url of the company.
+          format: uri
           nullable: true
         InvoiceDueInterval:
           type: string
+          description: 'The maximum time ( in ISO 8601 duration format), when the invoice has to be be paid .'
           nullable: true
         CreditRatingBasic:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/CreditRatingBasic'
         Department:
           type: string
+          description: 'The internal segmentation of a company, e.g. sales department.'
           nullable: true
         DunsNumber:
           type: string
+          description: The Dun & Bradstreet unique 9-digit DUNS number.
           nullable: true
         ReferenceId:
           type: string
+          description: External system identifier - custom identifier used by an external system such as an external database.
           nullable: true
         ExternalIdentifier:
           type: string
+          description: Identifier of company from external system.
           nullable: true
         AdditionalTaxIdentifier:
           type: string
+          description: Additional tax identifier of the company.
           nullable: true
         Contact:
           type: string
+          description: 'Other contact details, such as telephone, email or similar.'
           nullable: true
         ContactPerson:
           type: string
+          description: Contact person of the company.
           nullable: true
         FiscalIdentifier:
           type: string
+          description: Fiscal identifier of the company.
           nullable: true
         Iata:
           type: string
+          description: Iata of the company.
           nullable: true
         Telephone:
           type: string
+          description: Contact telephone number.
           nullable: true
         SourceId:
           type: string
+          description: Unique identifier of the `Source`.
           format: uuid
           nullable: true
         Classifications:
-          title: CompanyAccountClassifications
+          title: Company classifications
           allOf:
             - $ref: '#/components/schemas/CompanyAccountClassifications'
-          nullable: true
+          description: Classifications of the company.
         Options:
-          title: CompanyAccountOptions
+          title: Company options
           allOf:
             - $ref: '#/components/schemas/CompanyAccountOptions'
-          nullable: true
+          description: Options of the company.
       additionalProperties: false
       description: Updated company data.
       x-schema-id: CompanyAccount
     CompanyAccountClassifications:
-      title: CompanyAccountClassifications
+      title: Company classifications
       type: object
       properties:
         Corporate:
           type: boolean
+          description: Corporate.
         Internal:
           type: boolean
+          description: Internal.
         Private:
           type: boolean
+          description: Private.
         OnlineTravelAgency:
           type: boolean
+          description: Online travel agency.
         GlobalDistributionSystem:
           type: boolean
+          description: Global distribution system.
         Marketing:
           type: boolean
+          description: Marketing.
         Inactive:
           type: boolean
+          description: Inactive.
       additionalProperties: false
       x-schema-id: CompanyAccountClassifications
     CompanyAccountOptions:
-      title: CompanyAccountOptions
+      title: Company options
       type: object
       properties:
         Invoiceable:
           type: boolean
+          description: Whether the company is invoiceable or not.
         AddFeesToInvoices:
           type: boolean
+          description: Whether the company has an additional fee applied for invoicing or not.
         AddTaxDeductedPaymentToInvoices:
           type: boolean
+          description: Whether tax-deducted payments should be automatically added to invoices.
       additionalProperties: false
       x-schema-id: CompanyAccountOptions
     CompanyAddParameters:
@@ -21985,43 +22074,50 @@ components:
       additionalProperties: false
       x-schema-id: CompanyAddParameters
     CompanyClassificationUpdateParameters:
-      title: CompanyClassificationUpdateParameters
+      title: Company update classifications
       type: object
       properties:
         Corporate:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Corporate (or `null` if the value should not be updated).
           nullable: true
         Internal:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Internal (or `null` if the value should not be updated).
           nullable: true
         Private:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Private (or `null` if the value should not be updated).
           nullable: true
         OnlineTravelAgency:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Online travel agency (or `null` if the value should not be updated).
           nullable: true
         GlobalDistributionSystem:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Global distribution system (or `null` if the value should not be updated).
           nullable: true
         Marketing:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Marketing (or `null` if the value should not be updated).
           nullable: true
         Inactive:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Inactive (or `null` if the value should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: CompanyClassificationUpdateParameters
@@ -22249,22 +22345,25 @@ components:
       additionalProperties: false
       x-schema-id: CompanyFilterParameters
     CompanyOptionUpdateParameters:
-      title: Company Option Update Parameters
+      title: Company update options
       type: object
       properties:
         Invoiceable:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the company is invoiceable or not (or `null` if the `Invoiceable` field should not be updated).
           nullable: true
         AddFeesToInvoices:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the company has an additional fee applied for invoicing or not (or `null` if the `AddFeesToInvoices` field should not be updated).
           nullable: true
         AddTaxDeductedPaymentToInvoices:
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether tax-deducted payments should be automatically added to invoices (or `null` if the `AddTaxDeductedPaymentToInvoices` field should not be updated).
           nullable: true
       additionalProperties: false
       description: Options of the company.
@@ -22388,7 +22487,7 @@ components:
           description: 'The maximum time, when the invoice has to be be paid in ISO 8601 duration format (or `null` if the interval should not be updated).'
           nullable: true
         Options:
-          title: Company Option Update Parameters
+          title: Company update options
           allOf:
             - $ref: '#/components/schemas/CompanyOptionUpdateParameters'
           description: Options of the company (or `null` if the company options should not be updated).
@@ -23241,6 +23340,17 @@ components:
       additionalProperties: false
       description: Credit rating to define creditworthiness of the company.
       x-schema-id: CreditRating
+    CreditRatingBasic:
+      title: Credit rating basic
+      enum:
+        - CreditOk
+        - PaymentRequiredUpfront
+        - LocalDecisionRequired
+      type: string
+      x-enumDescriptions:
+        - Company can book services.
+        - Company must pay upfront.
+        - Requires local approval.
     CreditRatingBasicEnum:
       title: Credit rating basic
       enum:
@@ -23671,155 +23781,218 @@ components:
       additionalProperties: false
       x-schema-id: Customer
     CustomerAccount:
-      title: CustomerAccount
+      title: Customer
+      required:
+        - ChainId
+        - Classifications
+        - CreatedUtc
+        - LastName
+        - LegalEntityIdentifiers
+        - Options
+        - UpdatedUtc
+        - UpdaterProfileId
       type: object
       properties:
         ChainId:
           type: string
+          description: Unique identifier of the chain.
           format: uuid
         CreatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Creation date and time of the customer in UTC timezone in ISO 8601 format.
+          format: date-time
         UpdatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last update date and time of the customer in UTC timezone in ISO 8601 format.
+          format: date-time
         UpdaterProfileId:
           type: string
+          description: Unique identifier of the user who updated the customer.
           format: uuid
         Email:
           type: string
+          description: Email address of the customer.
+          format: email
           nullable: true
         TaxIdentifier:
           type: string
+          description: Tax identification number of the customer.
           nullable: true
         BillingCode:
           type: string
+          description: Billing code of the customer.
           nullable: true
         AccountingCode:
           type: string
+          description: Accounting code of the customer.
           nullable: true
         Notes:
           type: string
+          description: Internal notes about the customer.
           nullable: true
         LastName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last name of the customer.
         FirstName:
           type: string
+          description: First name of the customer.
           nullable: true
         SecondLastName:
           type: string
+          description: Second last name of the customer.
           nullable: true
         BirthPlace:
           type: string
+          description: Place of birth.
           nullable: true
         Telephone:
           type: string
+          description: Telephone number of the customer (possibly mobile).
           nullable: true
         Occupation:
           type: string
+          description: Occupation of the customer.
           nullable: true
         CarRegistrationNumber:
+          maxLength: 255
           type: string
+          description: Registration number of the customer's car.
           nullable: true
         DietaryRequirements:
+          maxLength: 255
           type: string
+          description: Dietary requirements of the customer.
           nullable: true
         LoyaltyCode:
           type: string
+          description: Loyalty code of the customer.
           nullable: true
         NationalityCode:
           type: string
+          description: ISO 3166-1 code of the `Country`.
           nullable: true
         CompanyId:
           type: string
+          description: Unique identifier of `Company` the customer is associated with.
           format: uuid
           nullable: true
         BirthDate:
           type: string
+          description: Date of birth in ISO 8601 format.
+          format: date-time
           nullable: true
         Sex:
           type: string
+          description: Sex of the customer.
           nullable: true
         Title:
           type: string
+          description: Title prefix of the customer.
           nullable: true
         PreferredLanguageCode:
           type: string
+          description: Language and culture code of the customer's preferred language. E.g. `en-US` or `fr-FR`.
           nullable: true
         Options:
-          title: CustomerAccountOptions
+          title: Customer options
           allOf:
             - $ref: '#/components/schemas/CustomerAccountOptions'
-          nullable: true
+          description: Options of the customer.
         Classifications:
-          title: CustomerAccountClassifications
+          title: Customer classifications
           allOf:
             - $ref: '#/components/schemas/CustomerAccountClassifications'
-          nullable: true
+          description: Classifications of the customer.
         LegalEntityIdentifiers:
+          title: Customer legal identifiers
           allOf:
             - $ref: '#/components/schemas/LegalEntityIdentifiers'
-          nullable: true
+          description: Legal entity identifiers of the customer.
       additionalProperties: false
       description: Updated customer data.
       x-schema-id: CustomerAccount
     CustomerAccountClassifications:
-      title: CustomerAccountClassifications
+      title: Customer classifications
       type: object
       properties:
         PaymasterAccount:
           type: boolean
+          description: Paymaster account.
         Blacklist:
           type: boolean
+          description: Blacklist.
         Media:
           type: boolean
+          description: Media.
         LoyaltyProgram:
           type: boolean
+          description: Loyalty program.
         PreviousComplaint:
           type: boolean
+          description: Previous complaint.
         Returning:
           type: boolean
+          description: Returning.
         Staff:
           type: boolean
+          description: Staff.
         FriendOrFamily:
           type: boolean
+          description: Friend or family.
         TopManagement:
           type: boolean
+          description: Top management.
         Important:
           type: boolean
+          description: Important.
         VeryImportant:
           type: boolean
+          description: Very important.
         Problematic:
           type: boolean
+          description: Problematic.
         Cashlist:
           type: boolean
+          description: Cash list.
         DisabledPerson:
           type: boolean
+          description: Disabled person.
         Military:
           type: boolean
+          description: Military.
         Airline:
           type: boolean
+          description: Airline.
         HealthCompliant:
           type: boolean
+          description: Health compliant.
         InRoom:
           type: boolean
+          description: In room.
         WaitingForRoom:
           type: boolean
+          description: Waiting for room.
         Student:
           type: boolean
+          description: Student.
       additionalProperties: false
       x-schema-id: CustomerAccountClassifications
     CustomerAccountOptions:
-      title: CustomerAccountOptions
+      title: Customer options
       type: object
       properties:
         SendMarketingEmails:
           type: boolean
+          description: Send marketing emails.
         Invoiceable:
           type: boolean
+          description: Invoiceable.
         BillAddressObjection:
           type: boolean
+          description: Bill address objection.
       additionalProperties: false
       x-schema-id: CustomerAccountOptions
     CustomerAddParameters:
@@ -23985,108 +24158,128 @@ components:
       additionalProperties: false
       x-schema-id: CustomerAddParameters
     CustomerClassificationUpdateParameters:
-      title: CustomerClassificationUpdateParameters
+      title: Customer update classifications
       type: object
       properties:
         PaymasterAccount:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Paymaster account (or `null` if the value should not be updated).
           nullable: true
         Blacklist:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Blacklist (or `null` if the value should not be updated).
           nullable: true
         Media:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Media (or `null` if the value should not be updated).
           nullable: true
         LoyaltyProgram:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Loyalty program (or `null` if the value should not be updated).
           nullable: true
         PreviousComplaint:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Previous complaint (or `null` if the value should not be updated).
           nullable: true
         Returning:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Returning (or `null` if the value should not be updated).
           nullable: true
         Staff:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Staff (or `null` if the value should not be updated).
           nullable: true
         FriendOrFamily:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Friend or family (or `null` if the value should not be updated).
           nullable: true
         TopManagement:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Top management (or `null` if the value should not be updated).
           nullable: true
         Important:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Important (or `null` if the value should not be updated).
           nullable: true
         VeryImportant:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Very important (or `null` if the value should not be updated).
           nullable: true
         Problematic:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Problematic (or `null` if the value should not be updated).
           nullable: true
         Cashlist:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Cashlist (or `null` if the value should not be updated).
           nullable: true
         DisabledPerson:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Disabled person (or `null` if the value should not be updated).
           nullable: true
         Military:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Military (or `null` if the value should not be updated).
           nullable: true
         Airline:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Airline (or `null` if the value should not be updated).
           nullable: true
         HealthCompliant:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Health compliant (or `null` if the value should not be updated).
           nullable: true
         InRoom:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: In room (or `null` if the value should not be updated).
           nullable: true
         WaitingForRoom:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Waiting for room (or `null` if the value should not be updated).
           nullable: true
         Student:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Student (or `null` if the value should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerClassificationUpdateParameters
@@ -24439,23 +24632,26 @@ components:
       additionalProperties: false
       x-schema-id: CustomerNameParameters
     CustomerOptionUpdateParameters:
-      title: CustomerOptionUpdateParameters
+      title: Customer update options
       type: object
       properties:
         SendMarketingEmails:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Send marketing email (or `null` if the value should not be updated).
           nullable: true
         Invoiceable:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Invoiceable (or `null` if the value should not be updated).
           nullable: true
         BillAddressObjection:
           title: BooleanUpdateValue
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Bill address objection (or `null` if the value should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerOptionUpdateParameters
@@ -29251,30 +29447,34 @@ components:
       additionalProperties: false
       x-schema-id: LedgerBalanceResult
     LegalEntityIdentifierUpdateParameters:
-      title: LegalEntityIdentifierUpdateParameters
+      title: Customer update legal entity identifiers
       type: object
       properties:
         ItDestinationCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Italian destination code (or `null` if the Italian destination code should not be updated).
           nullable: true
         ItFiscalCode:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Italian fiscal code (or `null` if the Italian fiscal code should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: LegalEntityIdentifierUpdateParameters
     LegalEntityIdentifiers:
-      title: LegalEntityIdentifiers
+      title: Customer legal identifiers
       type: object
       properties:
         ItDestinationCode:
           type: string
+          description: Italian destination code.
           nullable: true
         ItFiscalCode:
           type: string
+          description: Italian fiscal code.
           nullable: true
       additionalProperties: false
       x-schema-id: LegalEntityIdentifiers
@@ -30078,6 +30278,7 @@ components:
       additionalProperties: false
       x-schema-id: LoyaltyTierUpdateParameters
     MergeAccountType:
+      title: Account merge type
       enum:
         - Customer
         - Company
@@ -36371,6 +36572,14 @@ components:
       x-schema-id: RateFilterParameters
     RateGroup:
       title: Rate Group
+      required:
+        - CreatedUtc
+        - Id
+        - IsActive
+        - Names
+        - Ordering
+        - ServiceId
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -36385,13 +36594,15 @@ components:
           type: boolean
           description: Whether the rate group is still active.
         CreatedUtc:
+          minLength: 1
           type: string
           description: Creation date and time of the rate group in UTC timezone in ISO 8601 format.
-          nullable: true
+          format: date-time
         UpdatedUtc:
+          minLength: 1
           type: string
           description: Last update date and time of the rate group in UTC timezone in ISO 8601 format.
-          nullable: true
+          format: date-time
         Ordering:
           type: integer
           description: Ordering of the rate group.
@@ -36402,7 +36613,6 @@ components:
           additionalProperties:
             type: string
           description: All translations of the name.
-          nullable: true
           x-schema-id: LocalizedStrings
         ShortNames:
           title: Localized text
@@ -36421,6 +36631,7 @@ components:
           nullable: true
           x-schema-id: LocalizedStrings
         ExternalIdentifier:
+          maxLength: 255
           type: string
           description: Identifier of the rate group from external system.
           nullable: true
@@ -36528,14 +36739,16 @@ components:
       x-schema-id: RateGroupOld
     RateGroupResult:
       title: RateGroupResult
+      required:
+        - RateGroups
       type: object
       properties:
         RateGroups:
+          maxItems: 1000
           type: array
           items:
             $ref: '#/components/schemas/RateGroup'
           description: The filtered rate groups.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the last and hence oldest rate group returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older rate groups.'
