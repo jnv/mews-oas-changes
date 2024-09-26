@@ -1120,7 +1120,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddressResult'
+                $ref: '#/components/schemas/AddressResultPage'
               example:
                 Addresses:
                   - Id: fc7b2df3-de66-48a6-907d-af4600ecd892
@@ -16763,7 +16763,7 @@ components:
           description: 'A discriminator specifying the [type of account](https://mews-systems.gitbook.io/connector-api/operations/accounts/#account-type), e.g. customer or company.'
           nullable: true
         Line1:
-          maxLength: 255
+          maxLength: 1023
           type: string
           description: First line of the address.
           nullable: true
@@ -16783,12 +16783,10 @@ components:
           description: Postal code.
           nullable: true
         CountryCode:
-          maxLength: 3
           type: string
-          description: 'ISO 3166-1 code of the [Country](https://mews-systems.gitbook.io/connector-api/operations/countries/#country).'
+          description: ISO 3166-1 alpha-2 code of the Country.
           nullable: true
         CountrySubdivisionCode:
-          maxLength: 3
           type: string
           description: 'ISO 3166-2 code of the administrative division, e.g. DE-BW.'
           nullable: true
@@ -16810,9 +16808,6 @@ components:
         IsActive:
           type: boolean
           description: Whether the address is still active.
-        IsUpdatedByMe:
-          type: boolean
-          nullable: true
       additionalProperties: false
       x-schema-id: AccountAddress
     AccountCompanyUpdateParameters:
@@ -17130,7 +17125,16 @@ components:
           description: Unique identifier of the target account (`Customer` or `Company`).
           format: uuid
         AccountType:
-          $ref: '#/components/schemas/MergeAccountType'
+          title: Account merge type
+          allOf:
+            - $ref: '#/components/schemas/MergeAccountTypeEnum'
+          description: "Specifying types of the accounts provided (`Customer` or `Company`).\n\nCustomer\n\nCompany"
+          x-enumNames:
+            - Customer
+            - Company
+          x-enumDescriptions:
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: AccountMergeParameter
     AccountNote:
@@ -17473,12 +17477,19 @@ components:
           description: Updated account notes.
       additionalProperties: false
       x-schema-id: AccountNoteUpdateResult
-    AccountParameterDiscriminator:
+    AccountParameterDiscriminatorEnum:
       title: Account type discriminator
       enum:
         - Customer
         - Company
       type: string
+      description: "\n\nCustomer\n\nCompany"
+      x-enumNames:
+        - Customer
+        - Company
+      x-enumDescriptions:
+        - ''
+        - ''
     AccountResult:
       title: AccountResult
       required:
@@ -17524,7 +17535,16 @@ components:
           description: Unique identifier of the account.
           format: uuid
         Discriminator:
-          $ref: '#/components/schemas/AccountParameterDiscriminator'
+          title: Account type discriminator
+          allOf:
+            - $ref: '#/components/schemas/AccountParameterDiscriminatorEnum'
+          description: "Type of the account.\n\nCustomer\n\nCompany"
+          x-enumNames:
+            - Customer
+            - Company
+          x-enumDescriptions:
+            - ''
+            - ''
         Customer:
           title: Customer update parameters
           allOf:
@@ -18307,49 +18327,56 @@ components:
       additionalProperties: false
       x-schema-id: Address
     AddressAddParameters:
-      title: AddressAddParameters
+      title: Account address parameters
       required:
         - AccountId
       type: object
       properties:
         AccountId:
           type: string
+          description: Unique identifier of a Company or a Customer within the enterprise.
           format: uuid
         Line1:
           maxLength: 255
           type: string
+          description: First line of the address.
           nullable: true
         Line2:
           maxLength: 255
           type: string
+          description: Second line of the address.
           nullable: true
         City:
           maxLength: 255
           type: string
+          description: The city.
           nullable: true
         PostalCode:
           maxLength: 255
           type: string
+          description: Postal code.
           format: postal-code
           nullable: true
         CountryCode:
-          maxLength: 8
           type: string
+          description: ISO 3166-1 alpha-2 code of the Country.
           nullable: true
         CountrySubdivisionCode:
-          maxLength: 8
           type: string
+          description: 'ISO 3166-2 code of the administrative division, e.g. `DE-BW`.'
           nullable: true
         Latitude:
           maximum: 90
           minimum: -90
           type: number
+          description: The latitude in range of -90 to 90.
           format: double
           nullable: true
         Longitude:
           maximum: 180
           minimum: -180
           type: number
+          description: The longitude in range of -180 to 180.
           format: double
           nullable: true
       additionalProperties: false
@@ -18446,6 +18473,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of Address last update date and time. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -18490,71 +18518,85 @@ components:
       x-schema-id: AddressParameters
     AddressResult:
       title: AddressResult
+      required:
+        - Addresses
       type: object
       properties:
         Addresses:
           type: array
           items:
             $ref: '#/components/schemas/AccountAddress'
-          description: Updated addresses.
-          nullable: true
-        Cursor:
-          type: string
-          description: 'Unique identifier of the last and hence oldest address item returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older Account address.'
-          format: uuid
-          nullable: true
+          description: 'The collection of added or modified Account addresses, containing address and account information.'
       additionalProperties: false
       x-schema-id: AddressResult
+    AddressResultPage:
+      title: AddressResultPage
+      required:
+        - Addresses
+        - Cursor
+      type: object
+      properties:
+        Addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountAddress'
+          description: 'The collection of Account addresses, containing address and account information.'
+        Cursor:
+          type: string
+          description: Unique identifier of the last and hence oldest address item returned. This can be used in Limitation in a subsequent request to fetch the next batch of older Account address.
+          format: uuid
+      additionalProperties: false
+      x-schema-id: AddressResultPage
     AddressUpdateParameters:
-      title: AddressUpdateParameters
+      title: Account address update parameters
       required:
         - AddressId
       type: object
       properties:
         AddressId:
           type: string
+          description: Unique identifier of the address.
           format: uuid
-        AccountId:
-          type: string
-          format: uuid
-          deprecated: true
-          x-deprecatedMessage: The value is ignored.
         Line1:
           title: StringUpdateValue
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: First line of the address.
           nullable: true
         Line2:
           title: StringUpdateValue
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Second line of the address.
           nullable: true
         City:
           title: StringUpdateValue
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: The city.
           nullable: true
         PostalCode:
           title: StringUpdateValue
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Postal code.
           format: postal-code
           nullable: true
         CountryCode:
           title: StringUpdateValue
-          maxLength: 8
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: ISO 3166-1 alpha-2 code of the Country.
           nullable: true
         CountrySubdivisionCode:
           title: StringUpdateValue
-          maxLength: 8
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'ISO 3166-2 code of the administrative division, e.g. `DE-BW`.'
           nullable: true
       additionalProperties: false
       x-schema-id: AddressUpdateParameters
@@ -18696,7 +18738,6 @@ components:
         - Client
         - ClientToken
         - Limitation
-        - ServiceIds
       type: object
       properties:
         ClientToken:
@@ -18740,7 +18781,8 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) where the age category belong to.'
+          description: 'Unique identifiers of `Services` associated with the age categories. If not provided, defaults to all bookable services.'
+          nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
@@ -21361,10 +21403,6 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        ServiceId:
-          type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
-          format: uuid
         Data:
           maxItems: 1000
           minItems: 1
@@ -21372,6 +21410,10 @@ components:
           items:
             $ref: '#/components/schemas/RestrictionClearData'
           description: Details of the matching conditions and time intervals for clearing restrictions.
+        ServiceId:
+          minLength: 1
+          type: string
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
       additionalProperties: false
       x-schema-id: ClearRestrictionParameters
     Companionship:
@@ -21780,7 +21822,6 @@ components:
         - ChainId
         - Classifications
         - CreatedUtc
-        - CreditRatingBasic
         - Name
         - Options
         - UpdatedUtc
@@ -21845,7 +21886,10 @@ components:
           description: 'The maximum time ( in ISO 8601 duration format), when the invoice has to be be paid .'
           nullable: true
         CreditRatingBasic:
-          $ref: '#/components/schemas/CreditRatingBasic'
+          allOf:
+            - $ref: '#/components/schemas/CreditRatingBasicEnum'
+          description: "Credit rating to define credit worthiness of the company.\n\nCreditOk (Company can book services.)\n\nPaymentRequiredUpfront (Company must pay upfront.)\n\nLocalDecisionRequired (Requires local approval.)"
+          nullable: true
         Department:
           type: string
           description: 'The internal segmentation of a company, e.g. sales department.'
@@ -21902,7 +21946,7 @@ components:
             - $ref: '#/components/schemas/CompanyAccountOptions'
           description: Options of the company.
       additionalProperties: false
-      description: Updated company data.
+      description: ''
       x-schema-id: CompanyAccount
     CompanyAccountClassifications:
       title: Company classifications
@@ -23588,8 +23632,9 @@ components:
           description: Title prefix of the customer.
           nullable: true
         Sex:
-          type: string
-          description: Sex of the customer.
+          allOf:
+            - $ref: '#/components/schemas/SexEnum'
+          description: "\n\nMale\n\nFemale"
           nullable: true
         Gender:
           type: string
@@ -23728,12 +23773,12 @@ components:
         Classifications:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CustomerClassificationsEnum'
           description: Classifications of the customer.
         Options:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/CustomerOptionsEnum'
           description: Options of the customer.
         CategoryId:
           type: string
@@ -23770,9 +23815,6 @@ components:
           x-deprecatedMessage: Use `IsActive` instead.
         IsActive:
           type: boolean
-        IsUpdatedByMe:
-          type: boolean
-          nullable: true
         PreferredSpaceFeatures:
           type: array
           items:
@@ -24001,6 +24043,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
+        - LastName
         - OverwriteExisting
       type: object
       properties:
@@ -24025,9 +24068,9 @@ components:
           description: First name of the customer.
           nullable: true
         LastName:
+          minLength: 1
           type: string
           description: Last name of the customer.
-          nullable: true
         SecondLastName:
           type: string
           description: Second last name of the customer.
@@ -24283,6 +24326,76 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerClassificationUpdateParameters
+    CustomerClassificationsEnum:
+      title: Customer classification
+      enum:
+        - None
+        - PaymasterAccount
+        - Blacklist
+        - Media
+        - LoyaltyProgram
+        - PreviousComplaint
+        - Returning
+        - Staff
+        - FriendOrFamily
+        - TopManagement
+        - Important
+        - VeryImportant
+        - Problematic
+        - Cashlist
+        - DisabledPerson
+        - Military
+        - Airline
+        - HealthCompliant
+        - InRoom
+        - WaitingForRoom
+        - Student
+      type: string
+      description: "\n\nNone\n\nPaymasterAccount\n\nBlacklist\n\nMedia\n\nLoyaltyProgram\n\nPreviousComplaint\n\nReturning\n\nStaff\n\nFriendOrFamily\n\nTopManagement\n\nImportant\n\nVeryImportant\n\nProblematic\n\nCashlist\n\nDisabledPerson\n\nMilitary\n\nAirline\n\nHealthCompliant\n\nInRoom\n\nWaitingForRoom\n\nStudent"
+      x-enumNames:
+        - None
+        - PaymasterAccount
+        - Blacklist
+        - Media
+        - LoyaltyProgram
+        - PreviousComplaint
+        - Returning
+        - Staff
+        - FriendOrFamily
+        - TopManagement
+        - Important
+        - VeryImportant
+        - Problematic
+        - Cashlist
+        - DisabledPerson
+        - Military
+        - Airline
+        - HealthCompliant
+        - InRoom
+        - WaitingForRoom
+        - Student
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     CustomerEmailParameters:
       title: CustomerEmailParameters
       required:
@@ -24316,10 +24429,13 @@ components:
       properties:
         Customers:
           type: boolean
+          description: Whether the response should contain information about customers.
         Documents:
           type: boolean
+          description: Whether the response should contain identity documents of customers.
         Addresses:
           type: boolean
+          description: Whether the response should contain addresses of customers.
       additionalProperties: false
       description: Extent of data to be returned.
       x-schema-id: CustomerExtent
@@ -24398,17 +24514,20 @@ components:
           items:
             type: string
             format: uuid
+          description: 'Unique identifiers of the chains. Required when using Portfolio Access Tokens, ignored otherwise.'
           nullable: true
         CreatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which Customer was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which Customer was updated.
           nullable: true
           x-max-interval-in-months: 3
         Extent:
@@ -24416,22 +24535,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/CustomerExtent'
           description: Extent of data to be returned.
-        TimeFilter:
-          type: string
-          nullable: true
-          deprecated: true
-        StartUtc:
-          type: string
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          nullable: true
-          deprecated: true
         DeletedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which Customer was deleted. `ActivityStates` value `Deleted` should be provided with this filter to get expected results.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -24447,7 +24555,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Customers](https://mews-systems.gitbook.io/connector-api/operations/#customer). Required if no other filter is provided.'
+          description: Unique identifiers of Customers. Required if no other filter is provided.
           nullable: true
         CompanyIds:
           maxItems: 1
@@ -24456,6 +24564,7 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifier of the Company the customer is associated with.
           nullable: true
         Emails:
           maxItems: 1000
@@ -24655,8 +24764,42 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerOptionUpdateParameters
+    CustomerOptionsEnum:
+      title: Customer option
+      enum:
+        - None
+        - SendMarketingEmails
+        - Invoiceable
+        - BillAddressObjection
+        - SendMarketingPostalMail
+        - SendPartnerMarketingEmails
+        - SendPartnerMarketingPostalMail
+        - WithdrawCardConsent
+      type: string
+      description: "\n\nNone\n\nSendMarketingEmails\n\nInvoiceable\n\nBillAddressObjection\n\nSendMarketingPostalMail\n\nSendPartnerMarketingEmails\n\nSendPartnerMarketingPostalMail\n\nWithdrawCardConsent"
+      x-enumNames:
+        - None
+        - SendMarketingEmails
+        - Invoiceable
+        - BillAddressObjection
+        - SendMarketingPostalMail
+        - SendPartnerMarketingEmails
+        - SendPartnerMarketingPostalMail
+        - WithdrawCardConsent
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     CustomerResult:
       title: CustomerResult
+      required:
+        - Customers
+        - Documents
       type: object
       properties:
         Customers:
@@ -24664,13 +24807,11 @@ components:
           items:
             $ref: '#/components/schemas/Customer'
           description: The customers.
-          nullable: true
         Documents:
           type: array
           items:
             $ref: '#/components/schemas/Document'
           description: The identity documents of customers.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the last and hence oldest customer item returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older customers. If [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) is specified in the request message, then Cursor will always be included in the response message; this is true even when using Extents set to false so that no actual data is returned.'
@@ -24747,6 +24888,7 @@ components:
         - Client
         - ClientToken
         - CustomerId
+        - LastName
       type: object
       properties:
         ClientToken:
@@ -24770,9 +24912,9 @@ components:
           description: New first name.
           nullable: true
         LastName:
+          minLength: 1
           type: string
           description: New last name.
-          nullable: true
         SecondLastName:
           type: string
           description: New second last name.
@@ -27666,9 +27808,20 @@ components:
           description: 'Identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/#customer).'
           format: uuid
         Type:
-          type: string
-          description: Type of the document.
-          nullable: true
+          title: Document type
+          allOf:
+            - $ref: '#/components/schemas/IdentityDocumentTypeEnum'
+          description: "\n\nIdentityCard\n\nPassport\n\nVisa\n\nDriversLicense"
+          x-enumNames:
+            - IdentityCard
+            - Passport
+            - Visa
+            - DriversLicense
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
         Number:
           type: string
           description: Number of the document (e.g. passport number).
@@ -28833,6 +28986,25 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: IdealData
+    IdentityDocumentTypeEnum:
+      title: Document type
+      enum:
+        - IdentityCard
+        - Passport
+        - Visa
+        - DriversLicense
+      type: string
+      description: "\n\nIdentityCard\n\nPassport\n\nVisa\n\nDriversLicense"
+      x-enumNames:
+        - IdentityCard
+        - Passport
+        - Visa
+        - DriversLicense
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
     ImageResizeModeEnum:
       title: Image resize mode
       enum:
@@ -30277,12 +30449,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyTierUpdateParameters
-    MergeAccountType:
+    MergeAccountTypeEnum:
       title: Account merge type
       enum:
         - Customer
         - Company
       type: string
+      description: "\n\nCustomer\n\nCompany"
+      x-enumNames:
+        - Customer
+        - Company
+      x-enumDescriptions:
+        - ''
+        - ''
     Message:
       title: Message
       required:
@@ -40891,19 +41070,15 @@ components:
           $ref: '#/components/schemas/RestrictionType'
         ExactRateId:
           type: string
-          format: uuid
           nullable: true
         BaseRateId:
           type: string
-          format: uuid
           nullable: true
         RateGroupId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryType:
           anyOf:
@@ -40978,19 +41153,15 @@ components:
           type: string
         ExactRateId:
           type: string
-          format: uuid
           nullable: true
         BaseRateId:
           type: string
-          format: uuid
           nullable: true
         RateGroupId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryType:
           anyOf:
@@ -41265,19 +41436,15 @@ components:
           $ref: '#/components/schemas/RestrictionType'
         ExactRateId:
           type: string
-          format: uuid
           nullable: true
         BaseRateId:
           type: string
-          format: uuid
           nullable: true
         RateGroupId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryId:
           type: string
-          format: uuid
           nullable: true
         ResourceCategoryType:
           anyOf:
@@ -42860,10 +43027,6 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        ServiceId:
-          type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
-          format: uuid
         Data:
           maxItems: 1000
           minItems: 1
@@ -42871,13 +43034,31 @@ components:
           items:
             $ref: '#/components/schemas/RestrictionSetData'
           description: Parameters of restrictions.
+        ServiceId:
+          minLength: 1
+          type: string
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
       additionalProperties: false
       x-schema-id: SetRestrictionParameters
     Sex:
+      title: Sex
       enum:
         - Male
         - Female
       type: string
+    SexEnum:
+      title: Sex
+      enum:
+        - Male
+        - Female
+      type: string
+      description: "\n\nMale\n\nFemale"
+      x-enumNames:
+        - Male
+        - Female
+      x-enumDescriptions:
+        - ''
+        - ''
     Source:
       title: Source
       required:
