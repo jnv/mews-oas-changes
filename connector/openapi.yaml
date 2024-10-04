@@ -17760,6 +17760,7 @@ components:
     AccountingConfiguration:
       title: AccountingConfiguration
       required:
+        - EnabledExternalPaymentTypes
         - SurchargeConfiguration
       type: object
       properties:
@@ -17790,6 +17791,11 @@ components:
         SurchargeConfiguration:
           allOf:
             - $ref: '#/components/schemas/SurchargeConfiguration'
+        EnabledExternalPaymentTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalPaymentTypeEnum'
+          description: External payment types that are enabled for the enterprise and can be used in `payments/addExternal`.
       additionalProperties: false
       x-schema-id: AccountingConfiguration
     AccountingItem:
@@ -21418,6 +21424,7 @@ components:
           minLength: 1
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
+          x-schema-id: HybridIdentifier
       additionalProperties: false
       x-schema-id: ClearRestrictionParameters
     Companionship:
@@ -28631,6 +28638,7 @@ components:
       additionalProperties: false
       x-schema-id: ExternalPaymentParameters
     ExternalPaymentType:
+      title: External payment type
       enum:
         - Unspecified
         - BadDebts
@@ -28676,6 +28684,186 @@ components:
         - DepositCreditCard
         - DepositWireTransfer
       type: string
+      x-enumDescriptions:
+        - Unspecified (unavailable in French Legal Environment)
+        - Bad debts
+        - Bacs payment
+        - Wire transfer
+        - Invoice
+        - Exchange rate difference
+        - Complimentary
+        - Reseller
+        - Exchange rounding difference
+        - Barter
+        - Commission
+        - Bank charges
+        - Cross settlement
+        - Cash
+        - Credit card
+        - Prepayment
+        - Cheque
+        - Bancontact
+        - iDeal
+        - PayPal
+        - Gift card
+        - Loyalty points
+        - Chèque-Vacances
+        - Online payment
+        - Card check
+        - Payment hub redirection
+        - Voucher
+        - MasterCard
+        - Visa
+        - American Express
+        - Discover
+        - Diners Club
+        - JCB
+        - UnionPay
+        - TWINT
+        - Reka
+        - Loyalty card
+        - POS Dining & Spa Reward
+        - Direct debit
+        - Deposit - check
+        - Deposit - cash
+        - Deposit - credit card
+        - Deposit - wire transfer
+    ExternalPaymentTypeEnum:
+      title: External payment type
+      enum:
+        - Unspecified
+        - BadDebts
+        - Bacs
+        - WireTransfer
+        - Invoice
+        - ExchangeRateDifference
+        - Complimentary
+        - Reseller
+        - ExchangeRoundingDifference
+        - Barter
+        - Commission
+        - BankCharges
+        - CrossSettlement
+        - Cash
+        - CreditCard
+        - Prepayment
+        - Cheque
+        - Bancontact
+        - IDeal
+        - PayPal
+        - GiftCard
+        - LoyaltyPoints
+        - ChequeVacances
+        - OnlinePayment
+        - CardCheck
+        - PaymentHubRedirection
+        - Voucher
+        - MasterCard
+        - Visa
+        - Amex
+        - Discover
+        - DinersClub
+        - Jcb
+        - UnionPay
+        - Twint
+        - Reka
+        - LoyaltyCard
+        - PosDiningAndSpaReward
+        - DirectDebit
+        - DepositCheck
+        - DepositCash
+        - DepositCreditCard
+        - DepositWireTransfer
+      type: string
+      description: "\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+      x-enumNames:
+        - Unspecified
+        - BadDebts
+        - Bacs
+        - WireTransfer
+        - Invoice
+        - ExchangeRateDifference
+        - Complimentary
+        - Reseller
+        - ExchangeRoundingDifference
+        - Barter
+        - Commission
+        - BankCharges
+        - CrossSettlement
+        - Cash
+        - CreditCard
+        - Prepayment
+        - Cheque
+        - Bancontact
+        - IDeal
+        - PayPal
+        - GiftCard
+        - LoyaltyPoints
+        - ChequeVacances
+        - OnlinePayment
+        - CardCheck
+        - PaymentHubRedirection
+        - Voucher
+        - MasterCard
+        - Visa
+        - Amex
+        - Discover
+        - DinersClub
+        - Jcb
+        - UnionPay
+        - Twint
+        - Reka
+        - LoyaltyCard
+        - PosDiningAndSpaReward
+        - DirectDebit
+        - DepositCheck
+        - DepositCash
+        - DepositCreditCard
+        - DepositWireTransfer
+      x-enumDescriptions:
+        - Unspecified (unavailable in French Legal Environment)
+        - Bad debts
+        - Bacs payment
+        - Wire transfer
+        - Invoice
+        - Exchange rate difference
+        - Complimentary
+        - Reseller
+        - Exchange rounding difference
+        - Barter
+        - Commission
+        - Bank charges
+        - Cross settlement
+        - Cash
+        - Credit card
+        - Prepayment
+        - Cheque
+        - Bancontact
+        - iDeal
+        - PayPal
+        - Gift card
+        - Loyalty points
+        - Chèque-Vacances
+        - Online payment
+        - Card check
+        - Payment hub redirection
+        - Voucher
+        - MasterCard
+        - Visa
+        - American Express
+        - Discover
+        - Diners Club
+        - JCB
+        - UnionPay
+        - TWINT
+        - Reka
+        - Loyalty card
+        - POS Dining & Spa Reward
+        - Direct debit
+        - Deposit - check
+        - Deposit - cash
+        - Deposit - credit card
+        - Deposit - wire transfer
     ExternalPaymentTypeOld:
       enum:
         - Bacs
@@ -36364,7 +36552,14 @@ components:
     Rate:
       title: Rate
       required:
+        - GroupId
+        - Id
+        - IsActive
+        - IsEnabled
+        - IsPublic
         - Names
+        - ServiceId
+        - Type
         - UpdatedUtc
       type: object
       properties:
@@ -36400,10 +36595,18 @@ components:
           type: boolean
           description: Whether the rate is publicly available.
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/RateType'
-          description: Type of the rate
-          nullable: true
+          title: Rate type
+          allOf:
+            - $ref: '#/components/schemas/RateTypeEnum'
+          description: "\n\nPublic\n\nPrivate\n\nAvailabilityBlock"
+          x-enumNames:
+            - Public
+            - Private
+            - AvailabilityBlock
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
         Name:
           type: string
           description: Name of the rate (in the default language).
@@ -36453,6 +36656,7 @@ components:
       title: Rate parameters
       required:
         - Names
+        - PricingType
         - RateGroupId
         - ServiceId
       type: object
@@ -36522,10 +36726,9 @@ components:
           nullable: true
           x-schema-id: LocalizedStrings
         PricingType:
-          anyOf:
-            - $ref: '#/components/schemas/RatePricingDiscriminator'
-          description: Discriminator in which field inside `Pricing` contains additional data.
-          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/RatePricingDiscriminatorEnum'
+          description: "Discriminator in which field inside `Pricing` contains additional data.\n\nBaseRatePricing\n\nDependentRatePricing"
         ExternalIdentifier:
           maxLength: 255
           type: string
@@ -37068,22 +37271,29 @@ components:
           title: Base rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/BaseRatePricingParameters'
-          description: Additional data for rate with base rate pricing.
+          description: Additional data for rate with base rate pricing. Required when `PricingType` is `BaseRatePricing`.
           nullable: true
         DependentRatePricing:
           title: Dependent rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/DependentRatePricingParameters'
-          description: Additional data for rate with dependent rate pricing.
+          description: Additional data for rate with dependent rate pricing. Required when `PricingType` is `DependentRatePricing`.
           nullable: true
       additionalProperties: false
       x-schema-id: RatePricingDataParameters
-    RatePricingDiscriminator:
+    RatePricingDiscriminatorEnum:
       title: Rate pricing discriminator
       enum:
         - BaseRatePricing
         - DependentRatePricing
       type: string
+      description: "\n\nBaseRatePricing\n\nDependentRatePricing"
+      x-enumNames:
+        - BaseRatePricing
+        - DependentRatePricing
+      x-enumDescriptions:
+        - ''
+        - ''
     RatePricingParameters:
       title: Rate pricing parameters
       required:
@@ -37188,13 +37398,22 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateResult
-    RateType:
+    RateTypeEnum:
       title: Rate type
       enum:
         - Public
         - Private
         - AvailabilityBlock
       type: string
+      description: "\n\nPublic\n\nPrivate\n\nAvailabilityBlock"
+      x-enumNames:
+        - Public
+        - Private
+        - AvailabilityBlock
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
     RebateOrderItemData:
       title: RebateOrderItemData
       type: object
@@ -41123,18 +41342,22 @@ components:
           type: string
           description: Unique identifier of the exact `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         BaseRateId:
           type: string
           description: Unique identifier of the base `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         RateGroupId:
           type: string
           description: Unique identifier of the `Rate group` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryId:
           type: string
           description: Unique identifier of the `Resource category` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
@@ -41247,18 +41470,22 @@ components:
           type: string
           description: Unique identifier of the exact `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         BaseRateId:
           type: string
           description: Unique identifier of the base `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         RateGroupId:
           type: string
           description: Unique identifier of the `Rate group` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryId:
           type: string
           description: Unique identifier of the `Resource category` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
@@ -41572,18 +41799,22 @@ components:
           type: string
           description: Unique identifier of the exact `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         BaseRateId:
           type: string
           description: Unique identifier of the base `Rate` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         RateGroupId:
           type: string
           description: Unique identifier of the `Rate group` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryId:
           type: string
           description: Unique identifier of the `Resource category` to which the restriction applies.
           nullable: true
+          x-schema-id: HybridIdentifier
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
@@ -43190,6 +43421,7 @@ components:
           minLength: 1
           type: string
           description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
+          x-schema-id: HybridIdentifier
       additionalProperties: false
       x-schema-id: SetRestrictionParameters
     Sex:
