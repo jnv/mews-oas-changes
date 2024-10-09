@@ -17758,7 +17758,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountingCategoryResult
     AccountingConfiguration:
-      title: AccountingConfiguration
+      title: Accounting configuration
       required:
         - EnabledExternalPaymentTypes
         - SurchargeConfiguration
@@ -17767,30 +17767,38 @@ components:
         AdditionalTaxIdentifier:
           maxLength: 50
           type: string
+          description: Organization number.
           nullable: true
         CompanyName:
           maxLength: 100
           type: string
+          description: Legal name of the company.
           nullable: true
         BankAccountNumber:
           maxLength: 50
           type: string
+          description: Bank account number.
           nullable: true
         BankName:
           maxLength: 100
           type: string
+          description: Name of the bank.
           nullable: true
         Iban:
           maxLength: 40
           type: string
+          description: International Bank Account Number.
           nullable: true
         Bic:
           maxLength: 11
           type: string
+          description: Business Identification Code.
           nullable: true
         SurchargeConfiguration:
+          title: Surcharging fees configuration
           allOf:
             - $ref: '#/components/schemas/SurchargeConfiguration'
+          description: Configuration for surcharging fees.
         EnabledExternalPaymentTypes:
           type: array
           items:
@@ -21798,10 +21806,10 @@ components:
           format: date-time
           nullable: true
         Address:
-          title: OldAddress
+          title: Address
           allOf:
             - $ref: '#/components/schemas/OldAddress'
-          description: Address of the customer.
+          description: ''
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use AddressId instead.
@@ -22643,24 +22651,28 @@ components:
       x-schema-id: CompanyUpdateParameters
     Configuration:
       title: Configuration
+      required:
+        - Enterprise
+        - NowUtc
       type: object
       properties:
         NowUtc:
+          minLength: 1
           type: string
           description: Current server date and time in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         Enterprise:
+          title: Enterprise
           allOf:
             - $ref: '#/components/schemas/Enterprise'
           description: 'The enterprise (e.g. hotel, hostel) associated with the access token.'
-          nullable: true
         Service:
           allOf:
             - $ref: '#/components/schemas/Service'
-          description: ''
+          description: 'The reservable service (e.g. accommodation, parking) associated with the access token of the service scoped integration.'
           nullable: true
         PaymentCardStorage:
+          title: Payment card storage
           allOf:
             - $ref: '#/components/schemas/PaymentCardStorage'
           description: Contains information about payment card storage.
@@ -23484,7 +23496,7 @@ components:
       additionalProperties: false
       x-schema-id: Currency
     CurrencyAcceptance:
-      title: CurrencyAcceptance
+      title: Accepted currency
       required:
         - Currency
         - IsDefault
@@ -23494,11 +23506,14 @@ components:
         Currency:
           minLength: 1
           type: string
+          description: ISO-4217 code of the `Currency`.
           format: currency
         IsDefault:
           type: boolean
+          description: Whether the currency is a default accounting currency.
         IsEnabled:
           type: boolean
+          description: Whether the currency is enabled for usage.
       additionalProperties: false
       x-schema-id: CurrencyAcceptance
     CurrencyAcceptanceFilterParameters:
@@ -23771,10 +23786,10 @@ components:
           nullable: true
           deprecated: true
         Address:
-          title: OldAddress
+          title: Address
           allOf:
             - $ref: '#/components/schemas/OldAddress'
-          description: Address of the customer.
+          description: ''
           nullable: true
           deprecated: true
         AddressId:
@@ -27946,7 +27961,10 @@ components:
     Enterprise:
       title: Enterprise
       required:
+        - AccommodationEnvironmentCode
         - AccountingEditableHistoryInterval
+        - AccountingEnvironmentCode
+        - Address
         - AddressId
         - ChainId
         - CreatedUtc
@@ -27958,49 +27976,62 @@ components:
         - Name
         - OperationalEditableHistoryInterval
         - Pricing
+        - TaxEnvironmentCode
         - TimeZoneIdentifier
         - UpdatedUtc
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the enterprise.
           format: uuid
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: Identifier of the enterprise from external system.
           nullable: true
         ChainId:
           type: string
+          description: Unique identifier of the chain whose member the enterprise is.
           format: uuid
         CreatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         UpdatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         Name:
           minLength: 1
           type: string
+          description: Name of the enterprise.
         TimeZoneIdentifier:
           minLength: 1
           type: string
+          description: IANA timezone identifier of the enterprise.
         LegalEnvironmentCode:
           minLength: 1
           type: string
+          description: Unique identifier of the legal environment where the enterprise resides.
         AccommodationEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the accommodation environment where the enterprise resides.
         AccountingEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the accounting environment where the enterprise resides.
         TaxEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the tax environment where the enterprise resides.
         DefaultLanguageCode:
           minLength: 1
           type: string
+          description: Language-culture codes of the enterprise default `Language`.
         EditableHistoryInterval:
           minLength: 1
           type: string
@@ -28009,63 +28040,86 @@ components:
         AccountingEditableHistoryInterval:
           minLength: 1
           type: string
+          description: Editable history interval for accounting data in ISO 8601 duration format.
         OperationalEditableHistoryInterval:
           minLength: 1
           type: string
+          description: Editable history interval for operational data in ISO 8601 duration format.
         WebsiteUrl:
           type: string
+          description: URL of the enterprise website.
           format: uri
           nullable: true
         Email:
           type: string
+          description: Email address of the enterprise.
           format: email
           nullable: true
         Phone:
           type: string
+          description: Phone number of the enterprise.
           format: tel
           nullable: true
         LogoImageId:
           type: string
+          description: Unique identifier of the `Image` of the enterprise logo.
           format: uuid
           nullable: true
         CoverImageId:
           type: string
+          description: Unique identifier of the `Image` of the enterprise cover.
           format: uuid
           nullable: true
         Pricing:
-          $ref: '#/components/schemas/PricingMode'
+          title: Pricing
+          allOf:
+            - $ref: '#/components/schemas/PricingModeEnum'
+          description: "Pricing of the enterprise.\n\nGross (The enterprise shows amount with gross prices.)\n\nNet (The enterprise shows amount with net prices.)"
+          x-enumNames:
+            - Gross
+            - Net
+          x-enumDescriptions:
+            - The enterprise shows amount with gross prices.
+            - The enterprise shows amount with net prices.
         TaxPrecision:
           type: integer
+          description: 'Tax precision used for financial calculations in the enterprise. If `null`, `Currency` precision is used.'
           format: int32
           nullable: true
         AddressId:
           type: string
+          description: Unique identifier of the `Address` of the enterprise.
           format: uuid
         Address:
-          title: OldAddress
+          title: Address
           allOf:
             - $ref: '#/components/schemas/OldAddress'
-          description: Address of the customer.
-          nullable: true
+          description: ''
           deprecated: true
           x-deprecatedMessage: Use `AddressId` instead.
         Currencies:
           type: array
           items:
             $ref: '#/components/schemas/CurrencyAcceptance'
+          description: Currencies accepted by the enterprise.
         AccountingConfiguration:
+          title: Accounting configuration
           allOf:
             - $ref: '#/components/schemas/AccountingConfiguration'
+          description: Configuration information containing financial information about the property.
           nullable: true
         IsPortfolio:
           type: boolean
+          description: 'Whether the enterprise is a Portfolio enterprise (see [Multi-property guidelines](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property)).'
       additionalProperties: false
-      description: 'The enterprise (e.g. hotel, hostel) associated with the access token.'
+      description: ''
       x-schema-id: Enterprise
     EnterpriseBase:
       title: EnterpriseBase
       required:
+        - AccommodationEnvironmentCode
         - AccountingEditableHistoryInterval
+        - AccountingEnvironmentCode
         - AddressId
         - ChainId
         - CreatedUtc
@@ -28076,49 +28130,62 @@ components:
         - Name
         - OperationalEditableHistoryInterval
         - Pricing
+        - TaxEnvironmentCode
         - TimeZoneIdentifier
         - UpdatedUtc
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the enterprise.
           format: uuid
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: Identifier of the enterprise from external system.
           nullable: true
         ChainId:
           type: string
+          description: Unique identifier of the chain whose member the enterprise is.
           format: uuid
         CreatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         UpdatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         Name:
           minLength: 1
           type: string
+          description: Name of the enterprise.
         TimeZoneIdentifier:
           minLength: 1
           type: string
+          description: IANA timezone identifier of the enterprise.
         LegalEnvironmentCode:
           minLength: 1
           type: string
+          description: Unique identifier of the legal environment where the enterprise resides.
         AccommodationEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the accommodation environment where the enterprise resides.
         AccountingEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the accounting environment where the enterprise resides.
         TaxEnvironmentCode:
+          minLength: 1
           type: string
-          nullable: true
+          description: Unique code of the tax environment where the enterprise resides.
         DefaultLanguageCode:
           minLength: 1
           type: string
+          description: Language-culture codes of the enterprise default `Language`.
         EditableHistoryInterval:
           minLength: 1
           type: string
@@ -28127,37 +28194,55 @@ components:
         AccountingEditableHistoryInterval:
           minLength: 1
           type: string
+          description: Editable history interval for accounting data in ISO 8601 duration format.
         OperationalEditableHistoryInterval:
           minLength: 1
           type: string
+          description: Editable history interval for operational data in ISO 8601 duration format.
         WebsiteUrl:
           type: string
+          description: URL of the enterprise website.
           format: uri
           nullable: true
         Email:
           type: string
+          description: Email address of the enterprise.
           format: email
           nullable: true
         Phone:
           type: string
+          description: Phone number of the enterprise.
           format: tel
           nullable: true
         LogoImageId:
           type: string
+          description: Unique identifier of the `Image` of the enterprise logo.
           format: uuid
           nullable: true
         CoverImageId:
           type: string
+          description: Unique identifier of the `Image` of the enterprise cover.
           format: uuid
           nullable: true
         Pricing:
-          $ref: '#/components/schemas/PricingMode'
+          title: Pricing
+          allOf:
+            - $ref: '#/components/schemas/PricingModeEnum'
+          description: "Pricing of the enterprise.\n\nGross (The enterprise shows amount with gross prices.)\n\nNet (The enterprise shows amount with net prices.)"
+          x-enumNames:
+            - Gross
+            - Net
+          x-enumDescriptions:
+            - The enterprise shows amount with gross prices.
+            - The enterprise shows amount with net prices.
         TaxPrecision:
           type: integer
+          description: 'Tax precision used for financial calculations in the enterprise. If `null`, `Currency` precision is used.'
           format: int32
           nullable: true
         AddressId:
           type: string
+          description: Unique identifier of the `Address` of the enterprise.
           format: uuid
       additionalProperties: false
       x-schema-id: EnterpriseBase
@@ -32436,40 +32521,49 @@ components:
       type: object
       additionalProperties: false
     OldAddress:
-      title: OldAddress
+      title: Address
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the address.
           format: uuid
         Line1:
           type: string
+          description: First line of the address.
           nullable: true
         Line2:
           type: string
+          description: Second line of the address.
           nullable: true
         City:
           type: string
+          description: The city.
           nullable: true
         PostalCode:
           type: string
+          description: Postal code.
           nullable: true
         CountryCode:
           type: string
+          description: ISO 3166-1 code of the `Country`.
           nullable: true
         CountrySubdivisionCode:
           type: string
+          description: 'ISO 3166-2 code of the administrative division, e.g. `DE-BW`.'
           nullable: true
         Latitude:
           type: number
+          description: The latitude.
           format: double
           nullable: true
         Longitude:
           type: number
+          description: The longitude.
           format: double
           nullable: true
       additionalProperties: false
-      description: Address of the customer.
+      description: ''
       x-schema-id: OldAddress
     OldTaxation:
       title: OldTaxation
@@ -33898,14 +33992,17 @@ components:
       additionalProperties: false
       x-schema-id: PaymentCardPaymentData
     PaymentCardStorage:
-      title: PaymentCardStorage
+      title: Payment card storage
+      required:
+        - PublicKey
       type: object
       properties:
         PublicKey:
+          minLength: 1
           type: string
-          nullable: true
+          description: Key for accessing PCI proxy storage.
       additionalProperties: false
-      description: Contains information about payment card storage.
+      description: ''
       x-schema-id: PaymentCardStorage
     PaymentCreditCardData:
       title: PaymentCreditCardData
@@ -35321,11 +35418,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PreauthorizationResult
-    PricingMode:
+    PricingModeEnum:
+      title: Pricing
       enum:
         - Gross
         - Net
       type: string
+      description: "\n\nGross (The enterprise shows amount with gross prices.)\n\nNet (The enterprise shows amount with net prices.)"
+      x-enumNames:
+        - Gross
+        - Net
+      x-enumDescriptions:
+        - The enterprise shows amount with gross prices.
+        - The enterprise shows amount with net prices.
     PrinterCommandData:
       title: PrinterCommandData
       type: object
@@ -43669,22 +43774,104 @@ components:
       additionalProperties: false
       x-schema-id: StringUpdateValue
     SurchargeConfiguration:
-      title: SurchargeConfiguration
+      title: Surcharging fees configuration
       required:
         - SurchargeFees
       type: object
       properties:
         SurchargeFees:
+          title: CreditCardTypeDecimalIDictionary
           type: object
-          additionalProperties:
-            type: number
-            format: double
+          properties:
+            MasterCard:
+              type: number
+              format: double
+            Visa:
+              type: number
+              format: double
+            Amex:
+              type: number
+              format: double
+            Discover:
+              type: number
+              format: double
+            DinersClub:
+              type: number
+              format: double
+            Jcb:
+              type: number
+              format: double
+            Maestro:
+              type: number
+              format: double
+            UnionPay:
+              type: number
+              format: double
+            VPay:
+              type: number
+              format: double
+            RuPay:
+              type: number
+              format: double
+            Dankort:
+              type: number
+              format: double
+            Mir:
+              type: number
+              format: double
+            Verve:
+              type: number
+              format: double
+            Troy:
+              type: number
+              format: double
+            PostFinance:
+              type: number
+              format: double
+            Giro:
+              type: number
+              format: double
+            Bancomat:
+              type: number
+              format: double
+            Bc:
+              type: number
+              format: double
+            CarteBleue:
+              type: number
+              format: double
+            Eftpos:
+              type: number
+              format: double
+            Eps:
+              type: number
+              format: double
+            Interac:
+              type: number
+              format: double
+            Isracard:
+              type: number
+              format: double
+            Meps:
+              type: number
+              format: double
+            Nets:
+              type: number
+              format: double
+            Bancontact:
+              type: number
+              format: double
+          additionalProperties: false
+          description: Dictionary keys are `CreditCardType` and values are surcharging fees as a percentage.
+          x-schema-id: CreditCardTypeDecimalIDictionary
         SurchargeServiceId:
           type: string
+          description: Unique identifier of the surcharging `Service`.
           format: uuid
           nullable: true
         SurchargeTaxCode:
           type: string
+          description: Surcharging fee `TaxCode`.
           nullable: true
       additionalProperties: false
       x-schema-id: SurchargeConfiguration
