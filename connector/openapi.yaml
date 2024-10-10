@@ -19263,6 +19263,11 @@ components:
           $ref: '#/components/schemas/PickupDistribution'
         IsActive:
           type: boolean
+        QuoteId:
+          type: string
+          description: Unique identifier of the Mews Events quote associated with the availability block.
+          format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlock
     AvailabilityBlockAddParameters:
@@ -19352,6 +19357,11 @@ components:
           anyOf:
             - $ref: '#/components/schemas/AvailabilityBlockState'
           description: State of the availability block.
+          nullable: true
+        QuoteId:
+          type: string
+          description: Unique identifier of the Mews Events quote associated with the availability block.
+          format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddParameters
@@ -19650,6 +19660,11 @@ components:
           title: The strategy for automatic release of the availability block (or `null` if not updated).
           allOf:
             - $ref: '#/components/schemas/ReleaseStrategyUpdateValue'
+          nullable: true
+        QuoteId:
+          allOf:
+            - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the Mews Events quote associated with the availability block (or `null` if not updated).
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
