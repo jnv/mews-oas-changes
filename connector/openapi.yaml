@@ -2592,6 +2592,7 @@ paths:
     post:
       tags:
         - Cancellation policies
+      summary: Get cancellation policies by reservations
       description: 'Gets cancellation policies for enterprise grouped by reservation for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: cancellationPolicies_getByReservations
       requestBody:
@@ -2655,6 +2656,7 @@ paths:
     post:
       tags:
         - Cancellation policies
+      summary: Get cancellation policies by rates
       description: 'Gets cancellation policies for enterprise grouped by rate for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: cancellationPolicies_getByRates
       requestBody:
@@ -18443,7 +18445,7 @@ components:
         Promotions:
           allOf:
             - $ref: '#/components/schemas/Promotions'
-          description: ''
+          description: Promotions of the service.
       additionalProperties: false
       x-schema-id: AdditionalServiceData
     Address:
@@ -19285,7 +19287,13 @@ components:
     AvailabilityBlock:
       title: Availability block
       required:
+        - CreatedUtc
+        - FirstTimeUnitStartUtc
+        - IsActive
+        - LastTimeUnitStartUtc
         - PickupDistribution
+        - State
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -19294,6 +19302,7 @@ components:
           format: uuid
         EnterpriseId:
           type: string
+          description: 'Unique identifier of the [enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises#enterprise).'
           format: uuid
         ServiceId:
           type: string
@@ -19320,57 +19329,58 @@ components:
           nullable: true
         TravelAgencyId:
           type: string
+          description: Unique identifier of `Company`with `Travel agency contract` the Availability Block is related to.
           format: uuid
           nullable: true
         Budget:
           title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
-          description: Total price of the reservation.
+          description: The tentative budget for the total price of reservations in the block.
           nullable: true
         State:
-          type: string
-          description: State of the availability block.
-          nullable: true
+          title: Availability block state
+          allOf:
+            - $ref: '#/components/schemas/AvailabilityBlockStateEnum'
+          description: "State of the availability block.\n\nConfirmed (The block deducts availability and can have reservations assigned.)\n\nOptional (The block deducts availability and cannot have reservations assigned.)\n\nInquired (The block does not deduct availability and cannot have reservations assigned (waitlist).)\n\nCanceled (The block does not deduct availability and cannot have reservations assigned (waitlist).)"
+          x-enumNames:
+            - Confirmed
+            - Optional
+            - Inquired
+            - Canceled
+          x-enumDescriptions:
+            - The block deducts availability and can have reservations assigned.
+            - The block deducts availability and cannot have reservations assigned.
+            - The block does not deduct availability and cannot have reservations assigned (waitlist).
+            - The block does not deduct availability and cannot have reservations assigned (waitlist).
         ReservationPurpose:
-          type: string
-          description: The purpose of the block.
+          allOf:
+            - $ref: '#/components/schemas/ReservationPurposeEnum'
+          description: "The purpose of the block.\n\nLeisure\n\nBusiness\n\nStudent"
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
           description: Creation date and time of the block in UTC timezone in ISO 8601 format.
-          nullable: true
         UpdatedUtc:
+          minLength: 1
           type: string
           description: Last update date and time of the block in UTC timezone in ISO 8601 format.
-          nullable: true
-        ActivityState:
-          type: string
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `IsActive` instead.
-        StartUtc:
-          type: string
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          nullable: true
-          deprecated: true
         FirstTimeUnitStartUtc:
+          minLength: 1
           type: string
           description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
-          nullable: true
         LastTimeUnitStartUtc:
+          minLength: 1
           type: string
           description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/operations/services/#time-unit), in UTC timezone ISO 8601 format.'
-          nullable: true
         ReleasedUtc:
           type: string
-          description: The moment when the block and its availability is released in UTC timezone in ISO 8601 format.
+          description: The moment when the block and its availability is released in UTC timezone in ISO 8601 format. Mutually exclusive with `RollingReleaseOffset`; the block will not be automatically released if neither `ReleasedUtc` nor `RollingReleaseOffsetUtc` is specified.
           nullable: true
         RollingReleaseOffset:
           type: string
+          description: 'Exact offset from the start of availability adjustments to the moment the individual days in the adjustment should be released, in ISO 8601 duration format. Mutually exclusive with `ReleasedUtc`; the block will not be automatically released if neither `ReleasedUtc` nor `RollingReleaseOffsetUtc` is specified.'
           nullable: true
         ExternalIdentifier:
           maxLength: 255
@@ -19386,9 +19396,19 @@ components:
           description: Additional notes of the block.
           nullable: true
         PickupDistribution:
-          $ref: '#/components/schemas/PickupDistribution'
+          title: Pickup distribution
+          allOf:
+            - $ref: '#/components/schemas/PickupDistributionEnum'
+          description: "Whether assigning spaces to reservations within an availability block is done as a single group or divided into individual groups.\n\nAllInOneGroup (All created reservations in the block are added to the same reservation group.)\n\nIndividualGroups (Reservations can be picked up in multiple groups, with up to 750 reservations per group.)"
+          x-enumNames:
+            - AllInOneGroup
+            - IndividualGroups
+          x-enumDescriptions:
+            - All created reservations in the block are added to the same reservation group.
+            - 'Reservations can be picked up in multiple groups, with up to 750 reservations per group.'
         IsActive:
           type: boolean
+          description: Whether the `Availability Block` is still active.
         QuoteId:
           type: string
           description: Unique identifier of the Mews Events quote associated with the availability block.
@@ -19403,15 +19423,16 @@ components:
         - LastTimeUnitStartUtc
         - RateId
         - ServiceId
+        - State
       type: object
       properties:
         ServiceId:
           type: string
-          description: Unique identifier of the Service to assign block to.
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) to assign block to.'
           format: uuid
         RateId:
           type: string
-          description: Unique identifier of the Rate to assign block to.
+          description: 'Unique identifier of the [Rate](https://mews-systems.gitbook.io/connector-api/operations/rates#rate) to assign block to.'
           format: uuid
         FirstTimeUnitStartUtc:
           minLength: 1
@@ -19421,17 +19442,9 @@ components:
           minLength: 1
           type: string
           description: 'End of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format.'
-        StartUtc:
-          type: string
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          nullable: true
-          deprecated: true
         ReleasedUtc:
           type: string
-          description: 'The moment when the block and its availability is released, in UTC timezone ISO 8601 format.'
+          description: 'The moment when the block and its availability is released, in UTC timezone ISO 8601 format. Takes precedence over `RollingReleaseOffset`.'
           format: date-time
           nullable: true
         RollingReleaseOffset:
@@ -19444,7 +19457,7 @@ components:
           nullable: true
         VoucherCode:
           type: string
-          description: Voucher code providing access to specified private Rate.
+          description: 'Voucher code providing access to specified private [Rate](https://mews-systems.gitbook.io/connector-api/operations/rates#rate).'
           nullable: true
         BookerId:
           type: string
@@ -19453,10 +19466,12 @@ components:
           nullable: true
         CompanyId:
           type: string
+          description: 'Unique identifier of [Company](https://mews-systems.gitbook.io/connector-api/operations/companies#company).'
           format: uuid
           nullable: true
         TravelAgencyId:
           type: string
+          description: Unique identifier of travel agency (`Company` with a `TravelAgencyContract`).
           format: uuid
           nullable: true
         Budget:
@@ -19466,9 +19481,9 @@ components:
           description: The tentative budget for the total price of reservations.
           nullable: true
         ReservationPurpose:
-          anyOf:
-            - $ref: '#/components/schemas/ReservationPurpose'
-          description: The purpose of the block.
+          allOf:
+            - $ref: '#/components/schemas/ReservationPurposeEnum'
+          description: "The purpose of the block.\n\nLeisure\n\nBusiness\n\nStudent"
           nullable: true
         ExternalIdentifier:
           maxLength: 255
@@ -19480,10 +19495,9 @@ components:
           description: Additional notes of the block.
           nullable: true
         State:
-          anyOf:
-            - $ref: '#/components/schemas/AvailabilityBlockState'
-          description: State of the availability block.
-          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/AvailabilityBlockStateEnum'
+          description: "State of the availability block.\n\nConfirmed (The block deducts availability and can have reservations assigned.)\n\nOptional (The block deducts availability and cannot have reservations assigned.)\n\nInquired (The block does not deduct availability and cannot have reservations assigned (waitlist).)\n\nCanceled (The block does not deduct availability and cannot have reservations assigned (waitlist).)"
         QuoteId:
           type: string
           description: Unique identifier of the Mews Events quote associated with the availability block.
@@ -19493,6 +19507,8 @@ components:
       x-schema-id: AvailabilityBlockAddParameters
     AvailabilityBlockAddResult:
       title: AvailabilityBlockAddResult
+      required:
+        - AvailabilityBlocks
       type: object
       properties:
         AvailabilityBlocks:
@@ -19500,7 +19516,6 @@ components:
           items:
             $ref: '#/components/schemas/AvailabilityBlock'
           description: Availability blocks.
-          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddResult
     AvailabilityBlockAssignment:
@@ -19516,17 +19531,29 @@ components:
       additionalProperties: false
       x-schema-id: AvailabilityBlockAssignment
     AvailabilityBlockExtent:
-      title: AvailabilityBlockExtent
+      title: Availability block extent
       type: object
       properties:
         AvailabilityBlocks:
           type: boolean
+          description: Whether the response should contain the general availability blocks.
+          nullable: true
         Adjustments:
           type: boolean
+          description: Whether the response should contain individual availability adjustments related to availability blocks.
+          nullable: true
         ServiceOrders:
           type: boolean
+          description: Whether the response should contain reservations related to availability blocks.
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `reservations/getAll/2023-06-06` instead.
         Rates:
           type: boolean
+          description: Whether the response should contain rates related to availability blocks.
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `rates/getAll` instead.
       additionalProperties: false
       description: 'Extent of data to be returned, e.g. it is possible to specify that related service orders (for example reservations) are returned.'
       x-schema-id: AvailabilityBlockExtent
@@ -19566,7 +19593,7 @@ components:
           description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         Extent:
-          title: AvailabilityBlockExtent
+          title: Availability block extent
           allOf:
             - $ref: '#/components/schemas/AvailabilityBlockExtent'
           description: 'Extent of data to be returned, e.g. it is possible to specify that related service orders (for example reservations) are returned.'
@@ -19592,24 +19619,28 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the availability blocks were created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Availability blocks` were updated.
           nullable: true
           x-max-interval-in-months: 3
         CollidingUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Availability blocks` are active.
           nullable: true
           x-max-interval-in-months: 3
         ReleasedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Availability blocks`are released.
           nullable: true
           x-max-interval-in-months: 3
         ExternalIdentifiers:
@@ -19623,7 +19654,7 @@ components:
         States:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AvailabilityBlockStateEnum'
           description: States the availability blocks should be in.
           nullable: true
         ActivityStates:
@@ -19650,6 +19681,8 @@ components:
             $ref: '#/components/schemas/ReservationOld'
           description: Service orders (for example reservations) linked to availability blocks.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `reservations/getAll/2023-06-06` instead.
         Adjustments:
           type: array
           items:
@@ -19660,7 +19693,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
+          description: '`Rates` assigned to the block.'
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `rates/getAll` instead.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -19668,20 +19704,32 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockResult
-    AvailabilityBlockState:
+    AvailabilityBlockStateEnum:
+      title: Availability block state
       enum:
         - Confirmed
         - Optional
         - Inquired
         - Canceled
       type: string
+      description: "\n\nConfirmed (The block deducts availability and can have reservations assigned.)\n\nOptional (The block deducts availability and cannot have reservations assigned.)\n\nInquired (The block does not deduct availability and cannot have reservations assigned (waitlist).)\n\nCanceled (The block does not deduct availability and cannot have reservations assigned (waitlist).)"
+      x-enumNames:
+        - Confirmed
+        - Optional
+        - Inquired
+        - Canceled
+      x-enumDescriptions:
+        - The block deducts availability and can have reservations assigned.
+        - The block deducts availability and cannot have reservations assigned.
+        - The block does not deduct availability and cannot have reservations assigned (waitlist).
+        - The block does not deduct availability and cannot have reservations assigned (waitlist).
     AvailabilityBlockUpdateParameters:
       title: Availability block update parameters
       type: object
       properties:
         AvailabilityBlockId:
           type: string
-          description: Unique identifier of the Availability block.
+          description: 'Unique identifier of the [Availability block](https://mews-systems.gitbook.io/connector-api/operations/availabilityblocks#availability-block).'
           format: uuid
         Name:
           title: StringUpdateValue
@@ -19701,18 +19749,6 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'End of the time interval, expressed as the timestamp for the start of the last time unit, in UTC timezone ISO 8601 format (or `null` if the end time should not be updated).'
           nullable: true
-        StartUtc:
-          title: StringUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          nullable: true
-          deprecated: true
-        EndUtc:
-          title: StringUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          nullable: true
-          deprecated: true
         ExternalIdentifier:
           title: StringUpdateValue
           maxLength: 255
@@ -19736,11 +19772,13 @@ components:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies#company) (or `null` if not updated).'
           nullable: true
         TravelAgencyId:
           title: GuidNullableUpdateValue
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the travel agency (i.e. `Company`; or `null` if not updated).
           nullable: true
         BookerId:
           title: GuidNullableUpdateValue
@@ -19764,11 +19802,13 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Cancellation reason of the availability block (or `null` if not updated).
           nullable: true
         CancellationReasonDetail:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Cancellation reason detail of the availability block (or `null` if not updated).
           nullable: true
         RollingReleaseOffset:
           allOf:
@@ -19783,9 +19823,9 @@ components:
           format: date-time
           nullable: true
         ReleaseStrategy:
-          title: The strategy for automatic release of the availability block (or `null` if not updated).
           allOf:
             - $ref: '#/components/schemas/ReleaseStrategyUpdateValue'
+          description: The strategy for automatic release of the availability block (or `null` if not updated).
           nullable: true
         QuoteId:
           allOf:
@@ -22264,7 +22304,7 @@ components:
           nullable: true
         InvoiceDueInterval:
           type: string
-          description: 'The maximum time ( in ISO 8601 duration format), when the invoice has to be be paid .'
+          description: 'The maximum time (in ISO 8601 duration format), when the invoice has to be be paid.'
           nullable: true
         CreditRatingBasic:
           allOf:
@@ -35729,11 +35769,19 @@ components:
     PersonData:
       type: object
       additionalProperties: false
-    PickupDistribution:
+    PickupDistributionEnum:
+      title: Pickup distribution
       enum:
         - AllInOneGroup
         - IndividualGroups
       type: string
+      description: "\n\nAllInOneGroup (All created reservations in the block are added to the same reservation group.)\n\nIndividualGroups (Reservations can be picked up in multiple groups, with up to 750 reservations per group.)"
+      x-enumNames:
+        - AllInOneGroup
+        - IndividualGroups
+      x-enumDescriptions:
+        - All created reservations in the block are added to the same reservation group.
+        - 'Reservations can be picked up in multiple groups, with up to 750 reservations per group.'
     Preauthorization:
       title: Preauthorization
       type: object
@@ -37934,37 +37982,37 @@ components:
       additionalProperties: false
       x-schema-id: RelativeTaxRateStrategy
     ReleaseStrategyEnum:
-      title: The strategy for automatic release of the availability block.
+      title: Release strategy
       enum:
         - FixedRelease
         - RollingRelease
         - None
       type: string
-      description: "\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability ajdustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
+      description: "The strategy for automatic release of the availability block.\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability adjustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
       x-enumNames:
         - FixedRelease
         - RollingRelease
         - None
       x-enumDescriptions:
         - The availability block is released at a fixed time.
-        - Each availability ajdustment is released at a fixed offset from its start.
+        - Each availability adjustment is released at a fixed offset from its start.
         - The availability block is not automatically released.
     ReleaseStrategyUpdateValue:
       title: ReleaseStrategyUpdateValue
       type: object
       properties:
         Value:
-          title: The strategy for automatic release of the availability block.
+          title: Release strategy
           allOf:
             - $ref: '#/components/schemas/ReleaseStrategyEnum'
-          description: "\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability ajdustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
+          description: "The strategy for automatic release of the availability block.\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability adjustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
           x-enumNames:
             - FixedRelease
             - RollingRelease
             - None
           x-enumDescriptions:
             - The availability block is released at a fixed time.
-            - Each availability ajdustment is released at a fixed offset from its start.
+            - Each availability adjustment is released at a fixed offset from its start.
             - The availability block is not automatically released.
       additionalProperties: false
       x-schema-id: ReleaseStrategyUpdateValue
@@ -43037,6 +43085,7 @@ components:
           description: ''
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `Promotions` in `Data` instead.
         Type:
           type: string
           nullable: true
@@ -45207,6 +45256,7 @@ components:
         - Client
         - ClientToken
         - Limitation
+        - VoucherIds
       type: object
       properties:
         ClientToken:
@@ -45251,7 +45301,6 @@ components:
             type: string
             format: uuid
           description: Unique identifiers of vouchers.
-          nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
