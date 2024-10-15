@@ -18814,7 +18814,7 @@ components:
             - ''
         IsActive:
           type: boolean
-          description: The activity state of the age category.
+          description: Whether the age category is still active.
       additionalProperties: false
       x-schema-id: AgeCategory
     AgeCategoryAdjustment:
@@ -19692,7 +19692,7 @@ components:
         Rates:
           type: array
           items:
-            $ref: '#/components/schemas/Rate'
+            $ref: '#/components/schemas/RateForExtent'
           description: '`Rates` assigned to the block.'
           nullable: true
           deprecated: true
@@ -19834,6 +19834,29 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
+    BaseRatePricingData:
+      title: Base rate pricing
+      required:
+        - Amount
+        - ExtraOccupancyAdjustment
+        - NegativeOccupancyAdjustment
+      type: object
+      properties:
+        Amount:
+          title: Amount
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          description: Price of the product that overrides the price defined in Mews.
+        NegativeOccupancyAdjustment:
+          type: number
+          description: The amount added to the price when occupancy of the space is less than the Space Category Capacity. A negative value means a discount price for under-occupancy.
+          format: double
+        ExtraOccupancyAdjustment:
+          type: number
+          description: The amount added to the price when the Space Category Capacity is exceeded.
+          format: double
+      additionalProperties: false
+      x-schema-id: BaseRatePricingData
     BaseRatePricingParameters:
       title: Base rate pricing parameters
       type: object
@@ -25719,6 +25742,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: DepartmentResult
+    DependentRatePricingData:
+      title: Dependent rate pricing
+      required:
+        - AbsoluteAdjustment
+        - BaseRateId
+        - RelativeAdjustment
+      type: object
+      properties:
+        BaseRateId:
+          type: string
+          description: Unique identifier of the base rate.
+          format: uuid
+        RelativeAdjustment:
+          type: number
+          description: Specific amount which shows the difference between this rate and the base rate.
+          format: double
+        AbsoluteAdjustment:
+          type: number
+          description: Relative amount which shows the difference between this rate and the base rate.
+          format: double
+      additionalProperties: false
+      x-schema-id: DependentRatePricingData
     DependentRatePricingParameters:
       title: Dependent rate pricing parameters
       type: object
@@ -37073,6 +37118,7 @@ components:
         - IsEnabled
         - IsPublic
         - Names
+        - Pricing
         - ServiceId
         - Type
         - UpdatedUtc
@@ -37084,20 +37130,22 @@ components:
           format: uuid
         GroupId:
           type: string
-          description: 'Unique identifier of [Rate group](https://mews-systems.gitbook.io/connector-api/operations/#rate-group) where the rate belongs.'
+          description: Unique identifier of `Rate Group` where the rate belongs.
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
+          description: Unique identifier of the `Service`.
           format: uuid
         BaseRateId:
           type: string
-          description: 'Unique identifier of the base [Rate](https://mews-systems.gitbook.io/connector-api/operations/#rate).'
+          description: Unique identifier of the base `Rate`.
           format: uuid
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use BaseRatePricing.
         BusinessSegmentId:
           type: string
-          description: 'Unique identifier of the [Business segment](https://mews-systems.gitbook.io/connector-api/operations/businesssegments/#business-segment).'
+          description: Unique identifier of the `Business Segment`.
           format: uuid
           nullable: true
         IsActive:
@@ -37113,7 +37161,7 @@ components:
           title: Rate type
           allOf:
             - $ref: '#/components/schemas/RateTypeEnum'
-          description: "\n\nPublic\n\nPrivate\n\nAvailabilityBlock"
+          description: "Type of the rate.\n\nPublic\n\nPrivate\n\nAvailabilityBlock"
           x-enumNames:
             - Public
             - Private
@@ -37428,6 +37476,112 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateFilterParameters
+    RateForExtent:
+      title: Rate for extent
+      required:
+        - GroupId
+        - Id
+        - IsActive
+        - IsEnabled
+        - IsPublic
+        - Names
+        - ServiceId
+        - Type
+        - UpdatedUtc
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the rate.
+          format: uuid
+        GroupId:
+          type: string
+          description: Unique identifier of `Rate Group` where the rate belongs.
+          format: uuid
+        ServiceId:
+          type: string
+          description: Unique identifier of the `Service`.
+          format: uuid
+        BaseRateId:
+          type: string
+          description: Unique identifier of the base `Rate`.
+          format: uuid
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use BaseRatePricing.
+        BusinessSegmentId:
+          type: string
+          description: Unique identifier of the `Business Segment`.
+          format: uuid
+          nullable: true
+        IsActive:
+          type: boolean
+          description: Whether the rate is still active.
+        IsEnabled:
+          type: boolean
+          description: Whether the rate is currently available to customers.
+        IsPublic:
+          type: boolean
+          description: Whether the rate is publicly available.
+        Type:
+          title: Rate type
+          allOf:
+            - $ref: '#/components/schemas/RateTypeEnum'
+          description: "Type of the rate.\n\nPublic\n\nPrivate\n\nAvailabilityBlock"
+          x-enumNames:
+            - Public
+            - Private
+            - AvailabilityBlock
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+        Name:
+          type: string
+          description: Name of the rate (in the default language).
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `Names` instead
+        Names:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the name.
+          x-schema-id: LocalizedStrings
+        ShortName:
+          type: string
+          description: Short name of the rate (in the default language).
+          nullable: true
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: Interval in which the rates were updated.
+          format: date-time
+        ExternalNames:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the external name of the rate.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        Description:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the description of the rate.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        ExternalIdentifier:
+          maxLength: 255
+          type: string
+          description: Identifier of the rate from external system.
+          nullable: true
+      additionalProperties: false
+      description: '`Rate` entity, without some of the details, e.g. pricing.'
+      x-schema-id: RateForExtent
     RateGroup:
       title: Rate Group
       required:
@@ -37778,6 +37932,35 @@ components:
           format: double
       additionalProperties: false
       x-schema-id: RatePricing
+    RatePricingData:
+      title: RatePricingData
+      type: object
+      properties:
+        Discriminator:
+          title: Rate pricing discriminator
+          allOf:
+            - $ref: '#/components/schemas/RatePricingDiscriminatorEnum'
+          description: "\n\nBaseRatePricing\n\nDependentRatePricing"
+          readOnly: true
+          x-enumNames:
+            - BaseRatePricing
+            - DependentRatePricing
+          x-enumDescriptions:
+            - ''
+            - ''
+        BaseRatePricing:
+          title: Base rate pricing
+          allOf:
+            - $ref: '#/components/schemas/BaseRatePricingData'
+          nullable: true
+        DependentRatePricing:
+          title: Dependent rate pricing
+          allOf:
+            - $ref: '#/components/schemas/DependentRatePricingData'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+      x-schema-id: RatePricingData
     RatePricingDataParameters:
       title: Rate pricing data parameters
       type: object
@@ -39464,7 +39647,7 @@ components:
         Rates:
           type: array
           items:
-            $ref: '#/components/schemas/Rate'
+            $ref: '#/components/schemas/RateForExtent'
           description: Rates of the reservations.
           nullable: true
         RateGroups:
@@ -42968,7 +43151,7 @@ components:
         Rates:
           type: array
           items:
-            $ref: '#/components/schemas/Rate'
+            $ref: '#/components/schemas/RateForExtent'
           description: Rates used in conditions.
           nullable: true
         RateGroups:
@@ -45482,7 +45665,7 @@ components:
         Rates:
           type: array
           items:
-            $ref: '#/components/schemas/Rate'
+            $ref: '#/components/schemas/RateForExtent'
           description: The assigned rates.
           nullable: true
         Companies:
