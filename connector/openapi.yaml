@@ -17431,7 +17431,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -17821,7 +17821,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -18587,7 +18587,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -18901,7 +18901,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -19232,7 +19232,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -19582,7 +19582,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -20518,7 +20518,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -20933,7 +20933,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -21315,7 +21315,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -21465,7 +21465,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -21580,7 +21580,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -22007,7 +22007,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -22417,6 +22417,9 @@ components:
         Inactive:
           type: boolean
           description: Inactive.
+        GovernmentEntity:
+          type: boolean
+          description: Government Entity
       additionalProperties: false
       x-schema-id: CompanyAccountClassifications
     CompanyAccountOptions:
@@ -22607,6 +22610,11 @@ components:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Inactive (or `null` if the value should not be updated).
           nullable: true
+        GovernmentEntity:
+          allOf:
+            - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Government Entity (or `null` if the value should not be updated).
+          nullable: true
       additionalProperties: false
       x-schema-id: CompanyClassificationUpdateParameters
     CompanyClassifications:
@@ -22627,6 +22635,8 @@ components:
           type: boolean
         Inactive:
           type: boolean
+        GovernmentEntity:
+          type: boolean
       additionalProperties: false
       x-schema-id: CompanyClassifications
     CompanyClassificationsParameters:
@@ -22646,6 +22656,8 @@ components:
         Marketing:
           type: boolean
         Inactive:
+          type: boolean
+        GovernmentEntity:
           type: boolean
       additionalProperties: false
       x-schema-id: CompanyClassificationsParameters
@@ -22674,7 +22686,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -23318,7 +23330,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -23631,7 +23643,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -25697,7 +25709,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -30252,6 +30264,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -31227,7 +31240,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -31363,7 +31376,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -33451,7 +33464,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -33965,7 +33978,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -34183,7 +34196,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -34554,7 +34567,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -34993,7 +35006,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -36545,7 +36558,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -36717,7 +36730,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -36976,7 +36989,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -37421,7 +37434,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -37673,7 +37686,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -39002,7 +39015,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -39723,7 +39736,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -40371,7 +40384,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -40733,7 +40746,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -40950,7 +40963,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -41112,7 +41125,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -41217,7 +41230,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -41562,7 +41575,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -41737,7 +41750,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -41820,7 +41833,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -42344,7 +42357,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -42753,7 +42766,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -43099,7 +43112,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -43572,7 +43585,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -43870,7 +43883,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -44229,7 +44242,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -44600,7 +44613,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -45463,7 +45476,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
@@ -45575,7 +45588,7 @@ components:
         Limitation:
           allOf:
             - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         EnterpriseIds:
           maxItems: 1000
           minItems: 1
