@@ -6873,6 +6873,130 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       x-restricted: true
+  /api/connector/v1/identityDocuments/delete:
+    post:
+      tags:
+        - Identity documents
+      summary: Delete identity documents
+      description: 'Deletes specified identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      operationId: identityDocuments_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityDocumentDeleteParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocumentIds":["7e55ee8e-11a0-4d9d-8880-f8d8494824b5","2e1c6096-3a28-411d-a375-150a7350b278"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/identityDocuments/clear:
+    post:
+      tags:
+        - Identity documents
+      summary: Clear identity documents
+      description: 'Deletes all identity documents for provided `Customers`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      operationId: identityDocuments_clear
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityDocumentClearParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/images/getUrls:
     post:
       tags:
@@ -29167,9 +29291,9 @@ components:
           nullable: true
           deprecated: true
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/ExternalPaymentTypeOld'
-          description: Type of the external payment. *Except for the enterprises based in the French Legal Environment. Unspecified is considered as fraud.
+          allOf:
+            - $ref: '#/components/schemas/ExternalPaymentTypeEnum'
+          description: "\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
           nullable: true
         ExternalIdentifier:
           type: string
@@ -29408,19 +29532,6 @@ components:
         - Deposit - cash
         - Deposit - credit card
         - Deposit - wire transfer
-    ExternalPaymentTypeOld:
-      enum:
-        - Bacs
-        - WireTransfer
-        - Invoice
-        - Reseller
-        - CrossSettlement
-        - Cash
-        - CreditCard
-        - PayPal
-        - Twint
-        - DepositWireTransfer
-      type: string
     FiscalMachineCommandData:
       title: FiscalMachineCommandData
       type: object
@@ -29674,6 +29785,78 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: IdealData
+    IdentityDocumentClearParameters:
+      title: IdentityDocumentClearParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomerIds:
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the customer for whom documents will be deleted.
+      additionalProperties: false
+      x-schema-id: IdentityDocumentClearParameters
+    IdentityDocumentDeleteParameters:
+      title: IdentityDocumentDeleteParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - IdentityDocumentIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        IdentityDocumentIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the identity documents to be deleted.
+      additionalProperties: false
+      x-schema-id: IdentityDocumentDeleteParameters
     IdentityDocumentTypeEnum:
       title: Document type
       enum:
