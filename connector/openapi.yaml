@@ -38569,10 +38569,11 @@ components:
           deprecated: true
         PostCancellationFee:
           type: boolean
-          description: Whether cancellation fees should be charged according to rate conditions.
+          description: Whether the cancellation fees should be charged according to rate conditions. The default is `false`.
+          nullable: true
         SendEmail:
           type: boolean
-          description: Whether cancellation email should be sent. The default is `true`.
+          description: Whether the cancellation email should be sent. The default is `true`.
           nullable: true
         Notes:
           type: string
