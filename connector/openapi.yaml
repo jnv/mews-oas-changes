@@ -2038,7 +2038,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsResult'
-              example: {"Bills":[{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fe795f96-0b64-445b-89ed-c032563f2bac","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["26afba60-06c3-455b-92db-0e3983be0b1d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"26afba60-06c3-455b-92db-0e3983be0b1d"}
+              example: {"Bills":[{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fe795f96-0b64-445b-89ed-c032563f2bac","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["26afba60-06c3-455b-92db-0e3983be0b1d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"26afba60-06c3-455b-92db-0e3983be0b1d"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -4395,68 +4395,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Configuration'
-              example:
-                NowUtc: '2018-01-01T14:58:02Z'
-                Enterprise:
-                  Id: 851df8c8-90f2-4c4a-8e01-a4fc46b25178
-                  ChainId: 8ddea57b-6a5c-4eec-8c4c-24467dce118e
-                  CreatedUtc: '2015-07-07T13:33:17Z'
-                  UpdatedUtc: '2015-07-07T13:33:17Z'
-                  Name: Connector API Hotel
-                  TimeZoneIdentifier: Europe/Budapest
-                  LegalEnvironmentCode: UK
-                  DefaultLanguageCode: en-US
-                  AccountingEditableHistoryInterval: P0M7DT0H0M0S
-                  OperationalEditableHistoryInterval: P0M5DT0H0M0S
-                  WebsiteUrl: https://en.wikipedia.org/wiki/St._Vitus_Cathedral
-                  Email: charging-api@mews.li
-                  Phone: 00000 123 456 789
-                  LogoImageId: 
-                  CoverImageId: 
-                  Address:
-                    Id: 8c2c4371-5d42-40a9-b551-ab0b00d75076
-                    Line1: Anenské nám. 1
-                    Line2: Ahoj
-                    City: Prague
-                    PostalCode: 110 00
-                    CountryCode: CZ
-                    CountrySubdivisionCode: 
-                    Latitude: 50.08518
-                    Longitude: 14.414926
-                  Currencies:
-                    - Currency: GBP
-                      IsDefault: true
-                      IsEnabled: true
-                    - Currency: USD
-                      IsDefault: false
-                      IsEnabled: true
-                  Pricing: Gross
-                  TaxPrecision: 
-                  ExternalIdentifier: 
-                  AccountingConfiguration:
-                    AdditionalTaxIdentifier: 
-                    CompanyName: Connector API Hotel
-                    BankAccountNumber: '1234'
-                    BankName: Random bank
-                    Iban: CZ7250517882393618329719
-                    Bic: GIBACZPY
-                Service:
-                  Id: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                  EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CreatedUtc: '2023-10-01T11:48:57Z'
-                  UpdatedUtc: '2023-10-28T11:48:57Z'
-                  IsActive: true
-                  Name: Accommodation
-                  StartTime: PT14H
-                  EndTime: PT12H
-                  Promotions:
-                    BeforeCheckIn: false
-                    AfterCheckIn: false
-                    DuringStay: false
-                    BeforeCheckOut: false
-                    AfterCheckOut: false
-                  Type: Reservable
-                PaymentCardStorage: 
+              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"Anenské nám. 1","Line2":"Ahoj","City":"Prague","PostalCode":"110 00","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":50.08518,"Longitude":14.414926},"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","GroupNames":["Connector API Group"]},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -19899,6 +19838,10 @@ components:
           type: string
           description: Unique identifier of the bill.
           format: uuid
+        Name:
+          type: string
+          description: Name of the bill.
+          nullable: true
         EnterpriseId:
           type: string
           description: Unique identifier of the `Enterprise`.
