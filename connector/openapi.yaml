@@ -19288,6 +19288,7 @@ components:
     AvailabilityBlock:
       title: Availability block
       required:
+        - AvailabilityBlockNumber
         - CreatedUtc
         - FirstTimeUnitStartUtc
         - IsActive
@@ -19415,6 +19416,10 @@ components:
           description: Unique identifier of the Mews Events quote associated with the availability block.
           format: uuid
           nullable: true
+        AvailabilityBlockNumber:
+          minLength: 1
+          type: string
+          description: Unique number for a specific availability block within the Mews system.
       additionalProperties: false
       x-schema-id: AvailabilityBlock
     AvailabilityBlockAddParameters:
