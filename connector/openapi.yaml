@@ -2093,7 +2093,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BillFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Extent":{"Items":false},"TimeFilter":null,"StartUtc":null,"EndUtc":null,"ClosedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"PaidUtc":null,"DueUtc":null,"CreatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"BillIds":["e654f217-d1b5-46be-a820-e93ba568dfac"],"CustomerIds":["fe795f96-0b64-445b-89ed-c032563f2bac"],"State":"Closed","CorrectionState":null,"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100,"Cursor":"e7f26210-10e7-462e-9da8-ae8300be8ab7"}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Extent":{"Items":false},"ClosedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"CreatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2020-02-05T00:00:00Z","EndUtc":"2020-02-10T00:00:00Z"},"BillIds":["e654f217-d1b5-46be-a820-e93ba568dfac"],"CustomerIds":["fe795f96-0b64-445b-89ed-c032563f2bac"],"State":"Closed","EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100,"Cursor":"e7f26210-10e7-462e-9da8-ae8300be8ab7"}}
       responses:
         '200':
           description: OK
@@ -2156,7 +2156,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BillPdfParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillId":"44eba542-193e-47c7-8077-abd7008eb206","BillPrintEventId":null}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillId":"44eba542-193e-47c7-8077-abd7008eb206"}
       responses:
         '200':
           description: OK
@@ -2727,7 +2727,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CancellationPolicyByRateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RateIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"ReservationStartUtc":null,"ReservationEndUtc":null}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RateIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"]}
       responses:
         '200':
           description: OK
@@ -5192,38 +5192,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainIds:
-                - 1df21f06-0cfc-4960-9c58-a3bf1261663e
-                - 5fcd1933-22f2-40b9-84da-7db04cbecec2
-              CustomerIds:
-                - 35d4b117-4e60-44a3-9580-c582117eff98
-              Emails:
-                - john@doe.com
-              FirstNames:
-                - John
-                - Jane
-              LastNames:
-                - Doe
-              LoyaltyCodes:
-                - LL810213
-              CreatedUtc:
-                StartUtc: '2019-12-05T00:00:00Z'
-                EndUtc: '2019-12-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2019-12-10T00:00:00Z'
-                EndUtc: '2019-12-17T00:00:00Z'
-              ActivityStates:
-                - Active
-              Extent:
-                Customers: 'true'
-                Documents: 'true'
-                Addresses: 'false'
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2018-01-01T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2018-01-02T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"Extent":{"Customers":true,"Documents":true,"Addresses":false},"ActivityStates":["Active"],"CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CompanyIds":["c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"],"Emails":["j.smith@example.com"],"FirstNames":["John","Jane"],"LastNames":["Doe","Smith"],"LoyaltyCodes":["LL810213"],"Limitation":{"Count":10}}
       responses:
         '200':
           description: OK
@@ -5231,55 +5200,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerResult'
-              example:
-                Customers:
-                  - Address:
-                      Line1: Somerford Road Hello House/135
-                      Line2: 
-                      City: Christchurch
-                      PostalCode: BH23 3PY
-                      CountryCode: GB
-                      Latitude: 
-                      Longitude: 
-                    BirthDate: 
-                    BirthPlace: 
-                    CategoryId: 
-                    Classifications: [ ]
-                    CreatedUtc: '2016-01-01T00:00:00Z'
-                    Email: 
-                    FirstName: John
-                    Sex: Male
-                    Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                    ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-                    IdentityCard: 
-                    LanguageCode: 
-                    LastName: Smith
-                    LoyaltyCode: 
-                    AccountingCode: 
-                    BillingCode: 
-                    NationalityCode: US
-                    Notes: ''
-                    CarRegistrationNumber: 
-                    Options: [ ]
-                    Number: '1'
-                    Phone: '00420123456789'
-                    SecondLastName: 
-                    TaxIdentificationNumber: 
-                    Title: 
-                    UpdatedUtc: '2016-01-01T00:00:00Z'
-                    CompanyId: cb7d4a2f-10e0-4163-a176-ad03007efa8a
-                    MergeTargetId: 
-                    ActivityState: Active
-                Documents:
-                  - Id: e8a72a69-c20b-4278-b699-ab0400a32ecc
-                    CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-                    Type: IdentityCard
-                    Number: '123456'
-                    Expiration: '2020-01-01'
-                    Issuance: '2016-01-01'
-                    IssuingCountryCode: CZ
-                    IssuingCity: Prague
-                Cursor: 35d4b117-4e60-44a3-9580-c582117eff98
+              example: {"Customers":[{"Id":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"12345","Title":"Mister","Sex":"Male","FirstName":"John","LastName":"Smith","SecondLastName":"Williams","NationalityCode":"US","PreferredLanguageCode":"en-GB","LanguageCode":"en-US","BirthDate":"1983-12-31","BirthPlace":"New York City, NY","Occupation":"Carpenter","Email":"j.smith@example.com","HasOtaEmail":false,"Phone":"00420123456789","TaxIdentificationNumber":"123456789","LoyaltyCode":"LL810213","AccountingCode":"AC123","BillingCode":null,"Notes":"","CarRegistrationNumber":"1A2 3456","DietaryRequirements":null,"CreatedUtc":"2018-01-01T00:00:00Z","UpdatedUtc":"2018-01-02T00:00:00Z","Passport":null,"IdentityCard":{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"123456","Expiration":"2020-01-01","Issuance":"2015-01-01","IssuingCountryCode":"US","IssuingCity":"New York City"},"Visa":null,"DriversLicense":null,"Address":{"Id":"f8495413-bf49-45dd-843c-44be7f365569","Line1":"Somerford Road Hello House/135","Line2":null,"City":"Christchurch","PostalCode":"BH23 3PY","CountryCode":"GB","CountrySubdivisionCode":"GB-ENG","Latitude":null,"Longitude":null},"AddressId":"f8495413-bf49-45dd-843c-44be7f365569","Classifications":["Returning"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":null,"ItalianFiscalCode":null,"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","MergeTargetId":null,"ActivityState":"Active","IsActive":true,"PreferredSpaceFeatures":["OceanView"]}],"Documents":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"123456","Expiration":"2020-01-01","Issuance":"2015-01-01","IssuingCountryCode":"US","IssuingCity":"New York City"}],"Cursor":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5427,7 +5348,7 @@ paths:
       tags:
         - Customers
       summary: Get customers open items
-      description: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items)'
+      description: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items) instead.'
       operationId: customers_getOpenItems
       requestBody:
         content:
@@ -5520,7 +5441,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-      x-deprecatedMessage: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items)'
+      x-deprecatedMessage: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items) instead.'
   /api/connector/v1/customers/add:
     post:
       tags:
@@ -5533,41 +5454,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              Client: Sample Client 1.0.0
-              OverwriteExisting: false
-              FirstName: John
-              LastName: Doe
-              SecondLastName: the Second
-              Title: Mister
-              Sex: Male
-              NationalityCode: US
-              BirthDate: '2000-01-01'
-              BirthPlace: 'Prague, Czech Republic'
-              Email: john@doe.com
-              Phone: '00420123456789'
-              LoyaltyCode: 
-              Notes: 
-              IdentityCard:
-                Number: '123456'
-                Expiration: '2020-01-01'
-                Issuance: '2016-01-01'
-                IssuingCountryCode: US
-                IssuingCity: Seattle
-              Passport: 
-              Visa: 
-              DriversLicense: 
-              Address:
-                Line1: Astronautů 2
-                Line2: ''
-                City: Havířov
-                PostalCode: '736 01'
-                CountryCode: CZ
-                CountrySubdivisionCode: 
-              ItalianDestinationCode: '1234567'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","OverwriteExisting":false,"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Passport":{"Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"]}
       responses:
         '200':
           description: OK
@@ -5575,91 +5462,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-              example:
-                Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                ChainId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                Number: string
-                Title: string
-                Sex: string
-                FirstName: string
-                LastName: string
-                SecondLastName: string
-                NationalityCode: string
-                LanguageCode: string
-                BirthDate: string
-                BirthPlace: string
-                CitizenNumber: string
-                MotherName: string
-                FatherName: string
-                Occupation: string
-                Email: string
-                HasOtaEmail: true
-                Phone: string
-                TaxIdentificationNumber: string
-                LoyaltyCode: string
-                AccountingCode: string
-                BillingCode: string
-                Notes: string
-                CarRegistrationNumber: string
-                CreatedUtc: '2024-04-11T08:54:47.193Z'
-                UpdatedUtc: '2024-04-11T08:54:47.193Z'
-                Passport:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                IdentityCard:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                Visa:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                DriversLicense:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                Address:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Line1: string
-                  Line2: string
-                  City: string
-                  PostalCode: string
-                  CountryCode: string
-                  CountrySubdivisionCode: string
-                  Latitude: 0
-                  Longitude: 0
-                AddressId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                Classifications:
-                  - string
-                Options:
-                  - string
-                ItalianDestinationCode: string
-                ItalianFiscalCode: string
-                CompanyId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                MergeTargetId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                ActivityState: string
-                IsUpdatedByMe: true
+              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":{"Id":"42c3da09-e4cb-4454-8087-6eb35bcc4bcb","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Type":"Passport","Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5714,35 +5517,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerUpdateParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              Client: Sample Client 1.0.0
-              CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-              FirstName: John
-              LastName: Smith
-              SecondLastName: the Second
-              Title: Mister
-              Sex: Male
-              NationalityCode: US
-              BirthDate: '2000-01-01'
-              BirthPlace: 'Prague, Czech Republic'
-              Email: john.smith@gmail.com
-              Phone: '00420123456789'
-              LoyaltyCode: 
-              Notes: 
-              IdentityCard:
-                Number: '123456'
-                Expiration: '2020-01-01'
-                Issuance: '2016-01-01'
-                IssuingCountryCode: US
-                IssuingCity: Seattle
-              Passport: 
-              Visa: 
-              DriversLicense: 
-              ItalianDestinationCode:
-                Value: '7654321'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Passport":{"Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":{"Value":"7654321"},"ItalianFiscalCode":{"Value":"ZGNZLR17U72P554F"}}
       responses:
         '200':
           description: OK
@@ -5750,91 +5525,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-              example:
-                Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                ChainId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                Number: string
-                Title: string
-                Sex: string
-                FirstName: string
-                LastName: string
-                SecondLastName: string
-                NationalityCode: string
-                LanguageCode: string
-                BirthDate: string
-                BirthPlace: string
-                CitizenNumber: string
-                MotherName: string
-                FatherName: string
-                Occupation: string
-                Email: string
-                HasOtaEmail: true
-                Phone: string
-                TaxIdentificationNumber: string
-                LoyaltyCode: string
-                AccountingCode: string
-                BillingCode: string
-                Notes: string
-                CarRegistrationNumber: string
-                CreatedUtc: '2024-04-11T08:54:47.193Z'
-                UpdatedUtc: '2024-04-11T08:54:47.193Z'
-                Passport:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                IdentityCard:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                Visa:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                DriversLicense:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  CustomerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Type: string
-                  Number: string
-                  Expiration: string
-                  Issuance: string
-                  IssuingCountryCode: string
-                  IssuingCity: string
-                Address:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Line1: string
-                  Line2: string
-                  City: string
-                  PostalCode: string
-                  CountryCode: string
-                  CountrySubdivisionCode: string
-                  Latitude: 0
-                  Longitude: 0
-                AddressId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                Classifications:
-                  - string
-                Options:
-                  - string
-                ItalianDestinationCode: string
-                ItalianFiscalCode: string
-                CompanyId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                MergeTargetId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                ActivityState: string
-                IsUpdatedByMe: true
+              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":{"Id":"42c3da09-e4cb-4454-8087-6eb35bcc4bcb","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Type":"Passport","Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -23843,8 +23534,6 @@ components:
         Sex:
           allOf:
             - $ref: '#/components/schemas/SexEnum'
-          anyOf:
-            - $ref: '#/components/schemas/Sex'
           description: "Sex of the customer.\n\nMale\n\nFemale"
           nullable: true
         FirstName:
@@ -23865,11 +23554,11 @@ components:
           nullable: true
         PreferredLanguageCode:
           type: string
-          description: 'Language and culture code of customer''s preferred language as set via Operations or API (i.e. without customer''s choice). For example: `en-GB`, `fr-CA`.'
+          description: 'Language and culture code of the customer''s preferred language, according to their profile. For example: `en-GB`, `fr-CA`.'
           nullable: true
         LanguageCode:
           type: string
-          description: 'Language and culture code of the customers specified in the booking process, otherwise customers preferred language or native language. E.g. `en-US` or `fr-FR`. '
+          description: 'Language and culture code of the customer''s language, based on multiple sources. These sources include the preferred language specified in internal data based on previous bookings, and the preferred language of the customer specified in their profile. If neither of these sources are present, we use the native language based on the customer''s nationality. The format is, for example, `en-US` or `fr-FR`.'
           nullable: true
         BirthDate:
           type: string
@@ -23922,7 +23611,7 @@ components:
         DietaryRequirements:
           maxLength: 255
           type: string
-          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          description: 'Customer''s dietary requirements, e.g. Vegan, Halal.'
           nullable: true
         CreatedUtc:
           minLength: 1
@@ -24294,11 +23983,6 @@ components:
             - $ref: '#/components/schemas/Sex'
           description: Sex of the customer.
           nullable: true
-        Gender:
-          type: string
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `Sex` instead.
         BirthDate:
           type: string
           description: Date of birth in ISO 8601 format.
@@ -24338,7 +24022,7 @@ components:
         DietaryRequirements:
           maxLength: 255
           type: string
-          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          description: 'Customer''s dietary requirements, e.g. Vegan, Halal.'
           nullable: true
         TaxIdentificationNumber:
           type: string
@@ -25228,7 +24912,7 @@ components:
         DietaryRequirements:
           maxLength: 255
           type: string
-          description: 'Customer''s preferred Dietary requirements like Vegan, Halal, etc.'
+          description: 'Customer''s dietary requirements, e.g. Vegan, Halal.'
           nullable: true
         TaxIdentificationNumber:
           type: string
@@ -28101,16 +27785,6 @@ components:
           type: string
           description: City from which document issued
           nullable: true
-        ExpirationUtc:
-          type: string
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `Expiration` instead.
-        IssuanceUtc:
-          type: string
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use `Issuance` instead.
       additionalProperties: false
       description: ''
       x-schema-id: DocumentParameters
