@@ -4426,7 +4426,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Configuration'
-              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"Anenské nám. 1","Line2":"Ahoj","City":"Prague","PostalCode":"110 00","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":50.08518,"Longitude":14.414926},"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","GroupNames":["Connector API Group"],"Subscription":null},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null}
+              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"Anenské nám. 1","Line2":"Ahoj","City":"Prague","PostalCode":"110 00","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":50.08518,"Longitude":14.414926},"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","GroupNames":["Connector API Group"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5834,29 +5834,14 @@ paths:
       tags:
         - Enterprises
       summary: Get all enterprises
-      description: 'Returns all enterprises within scope of the `Access Token`, optionally filtered by enterprise identifiers and external identifiers. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all enterprises within scope of the `Access Token`, optionally filtered by enterprise identifiers and external identifiers. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: enterprises_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/EnterpriseFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              ExternalIdentifiers:
-                - Enterprise2023
-              LinkedUtc:
-                StartUtc: '2023-06-01T00:00:00Z'
-                EndUtc: '2023-06-06T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2023-10-01T00:00:00Z'
-                EndUtc: '2023-10-31T00:00:00Z'
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"ExternalIdentifiers":["Enterprise2023"],"LinkedUtc":{"StartUtc":"2023-06-01T00:00:00Z","EndUtc":"2023-06-06T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2023-10-01T00:00:00Z","EndUtc":"2023-10-31T00:00:00Z"},"Limitation":{"Count":100,"Cursor":"4d0201db-36f5-428b-8d11-4f0a65e960cc"}}
       responses:
         '200':
           description: OK
@@ -5864,32 +5849,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnterpriseResult'
-              example:
-                Enterprises:
-                  - Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    ExternalIdentifier: Enterprise2023
-                    ChainId: 2f6be44e-9881-4b12-aefe-afce011a9d67
-                    CreatedUtc: '2022-03-23T17:12:06Z'
-                    UpdatedUtc: '2022-03-23T17:12:06Z'
-                    LinkedUtc: '2023-06-01T00:00:00Z'
-                    Name: Sample Portfolio Hotel
-                    TimeZoneIdentifier: Europe/Budapest
-                    LegalEnvironmentCode: DE-2020-1
-                    AccommodationEnvironmentCode: DE
-                    AccountingEnvironmentCode: DE
-                    TaxEnvironmentCode: DE-2020-1
-                    DefaultLanguageCode: en-US
-                    AccountingEditableHistoryInterval: P0M7DT0H0M0S
-                    OperationalEditableHistoryInterval: P0M5DT0H0M0S
-                    WebsiteUrl: https://www.sample-portfolio-hotel-10004.com/
-                    Email: email@sample-portfolio-hotel.com
-                    Phone: (555) 555-1234
-                    LogoImageId: 
-                    CoverImageId: 
-                    Pricing: Gross
-                    TaxPrecision: 2
-                    AddressId: 31c505e9-9858-4d2f-9eab-afce011c4f47
-                Cursor: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              example: {"Enterprises":[{"LinkedUtc":"2023-06-01T00:00:00Z","Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ExternalIdentifier":"Enterprise2023","ChainId":"2f6be44e-9881-4b12-aefe-afce011a9d67","CreatedUtc":"2022-03-23T17:12:06Z","UpdatedUtc":"2022-03-23T17:12:06Z","Name":"Sample Portfolio Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"DE-2020-1","AccommodationEnvironmentCode":"DE","AccountingEnvironmentCode":"DE","TaxEnvironmentCode":"DE-2020-1","DefaultLanguageCode":"en-US","EditableHistoryInterval":null,"AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://www.sample-portfolio-hotel-10004.com/","Email":"email@sample-portfolio-hotel.com","Phone":"(555) 555-1234","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":2,"AddressId":"31c505e9-9858-4d2f-9eab-afce011c4f47","GroupNames":["Sample Group Name"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}}],"Cursor":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -18098,7 +18058,6 @@ components:
       title: AddressResultPage
       required:
         - Addresses
-        - Cursor
       type: object
       properties:
         Addresses:
@@ -18110,6 +18069,7 @@ components:
           type: string
           description: Unique identifier of the last and hence oldest address item returned. This can be used in Limitation in a subsequent request to fetch the next batch of older Account address.
           format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: AddressResultPage
     AddressUpdateParameters:
@@ -27837,7 +27797,7 @@ components:
           nullable: true
         ChainId:
           type: string
-          description: Unique identifier of the chain whose member the enterprise is.
+          description: Unique identifier of the chain to which the enterprise belongs.
           format: uuid
         CreatedUtc:
           minLength: 1
@@ -27941,8 +27901,10 @@ components:
             type: string
           description: A list of the group names of the enterprise.
         Subscription:
+          title: Enterprise subscription
           allOf:
             - $ref: '#/components/schemas/EnterpriseSubscription'
+          description: Subscription information of the enterprise.
         Address:
           title: Address
           allOf:
@@ -27967,148 +27929,6 @@ components:
       additionalProperties: false
       description: ''
       x-schema-id: Enterprise
-    EnterpriseBase:
-      title: EnterpriseBase
-      required:
-        - AccommodationEnvironmentCode
-        - AccountingEditableHistoryInterval
-        - AccountingEnvironmentCode
-        - AddressId
-        - ChainId
-        - CreatedUtc
-        - DefaultLanguageCode
-        - EditableHistoryInterval
-        - GroupNames
-        - Id
-        - LegalEnvironmentCode
-        - Name
-        - OperationalEditableHistoryInterval
-        - Pricing
-        - Subscription
-        - TaxEnvironmentCode
-        - TimeZoneIdentifier
-        - UpdatedUtc
-      type: object
-      properties:
-        Id:
-          type: string
-          description: Unique identifier of the enterprise.
-          format: uuid
-        ExternalIdentifier:
-          maxLength: 255
-          type: string
-          description: Identifier of the enterprise from external system.
-          nullable: true
-        ChainId:
-          type: string
-          description: Unique identifier of the chain whose member the enterprise is.
-          format: uuid
-        CreatedUtc:
-          minLength: 1
-          type: string
-          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
-          format: date-time
-        UpdatedUtc:
-          minLength: 1
-          type: string
-          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
-          format: date-time
-        Name:
-          minLength: 1
-          type: string
-          description: Name of the enterprise.
-        TimeZoneIdentifier:
-          minLength: 1
-          type: string
-          description: IANA timezone identifier of the enterprise.
-        LegalEnvironmentCode:
-          minLength: 1
-          type: string
-          description: Unique identifier of the legal environment where the enterprise resides.
-        AccommodationEnvironmentCode:
-          minLength: 1
-          type: string
-          description: Unique code of the accommodation environment where the enterprise resides.
-        AccountingEnvironmentCode:
-          minLength: 1
-          type: string
-          description: Unique code of the accounting environment where the enterprise resides.
-        TaxEnvironmentCode:
-          minLength: 1
-          type: string
-          description: Unique code of the tax environment where the enterprise resides.
-        DefaultLanguageCode:
-          minLength: 1
-          type: string
-          description: Language-culture codes of the enterprise default `Language`.
-        EditableHistoryInterval:
-          minLength: 1
-          type: string
-          deprecated: true
-          x-deprecatedMessage: Use `AccountingEditableHistoryInterval` and `OperationalEditableHistoryInterval` instead.
-        AccountingEditableHistoryInterval:
-          minLength: 1
-          type: string
-          description: Editable history interval for accounting data in ISO 8601 duration format.
-        OperationalEditableHistoryInterval:
-          minLength: 1
-          type: string
-          description: Editable history interval for operational data in ISO 8601 duration format.
-        WebsiteUrl:
-          type: string
-          description: URL of the enterprise website.
-          format: uri
-          nullable: true
-        Email:
-          type: string
-          description: Email address of the enterprise.
-          format: email
-          nullable: true
-        Phone:
-          type: string
-          description: Phone number of the enterprise.
-          format: tel
-          nullable: true
-        LogoImageId:
-          type: string
-          description: Unique identifier of the `Image` of the enterprise logo.
-          format: uuid
-          nullable: true
-        CoverImageId:
-          type: string
-          description: Unique identifier of the `Image` of the enterprise cover.
-          format: uuid
-          nullable: true
-        Pricing:
-          title: Pricing
-          allOf:
-            - $ref: '#/components/schemas/PricingModeEnum'
-          description: "Pricing of the enterprise.\n\nGross (The enterprise shows amount with gross prices.)\n\nNet (The enterprise shows amount with net prices.)"
-          x-enumNames:
-            - Gross
-            - Net
-          x-enumDescriptions:
-            - The enterprise shows amount with gross prices.
-            - The enterprise shows amount with net prices.
-        TaxPrecision:
-          type: integer
-          description: 'Tax precision used for financial calculations in the enterprise. If `null`, `Currency` precision is used.'
-          format: int32
-          nullable: true
-        AddressId:
-          type: string
-          description: Unique identifier of the `Address` of the enterprise.
-          format: uuid
-        GroupNames:
-          type: array
-          items:
-            type: string
-          description: A list of the group names of the enterprise.
-        Subscription:
-          allOf:
-            - $ref: '#/components/schemas/EnterpriseSubscription'
-      additionalProperties: false
-      x-schema-id: EnterpriseBase
     EnterpriseFilterParameters:
       title: EnterpriseFilterParameters
       required:
@@ -28165,6 +27985,157 @@ components:
           description: Limitation on the quantity of data returned.
       additionalProperties: false
       x-schema-id: EnterpriseFilterParameters
+    EnterprisePortfolio:
+      title: Enterprise
+      required:
+        - AccommodationEnvironmentCode
+        - AccountingEditableHistoryInterval
+        - AccountingEnvironmentCode
+        - AddressId
+        - ChainId
+        - CreatedUtc
+        - DefaultLanguageCode
+        - EditableHistoryInterval
+        - GroupNames
+        - Id
+        - LegalEnvironmentCode
+        - LinkedUtc
+        - Name
+        - OperationalEditableHistoryInterval
+        - Pricing
+        - Subscription
+        - TaxEnvironmentCode
+        - TimeZoneIdentifier
+        - UpdatedUtc
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the enterprise.
+          format: uuid
+        ExternalIdentifier:
+          maxLength: 255
+          type: string
+          description: Identifier of the enterprise from external system.
+          nullable: true
+        ChainId:
+          type: string
+          description: Unique identifier of the chain to which the enterprise belongs.
+          format: uuid
+        CreatedUtc:
+          minLength: 1
+          type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
+          format: date-time
+        Name:
+          minLength: 1
+          type: string
+          description: Name of the enterprise.
+        TimeZoneIdentifier:
+          minLength: 1
+          type: string
+          description: IANA timezone identifier of the enterprise.
+        LegalEnvironmentCode:
+          minLength: 1
+          type: string
+          description: Unique identifier of the legal environment where the enterprise resides.
+        AccommodationEnvironmentCode:
+          minLength: 1
+          type: string
+          description: Unique code of the accommodation environment where the enterprise resides.
+        AccountingEnvironmentCode:
+          minLength: 1
+          type: string
+          description: Unique code of the accounting environment where the enterprise resides.
+        TaxEnvironmentCode:
+          minLength: 1
+          type: string
+          description: Unique code of the tax environment where the enterprise resides.
+        DefaultLanguageCode:
+          minLength: 1
+          type: string
+          description: Language-culture codes of the enterprise default `Language`.
+        EditableHistoryInterval:
+          minLength: 1
+          type: string
+          deprecated: true
+          x-deprecatedMessage: Use `AccountingEditableHistoryInterval` and `OperationalEditableHistoryInterval` instead.
+        AccountingEditableHistoryInterval:
+          minLength: 1
+          type: string
+          description: Editable history interval for accounting data in ISO 8601 duration format.
+        OperationalEditableHistoryInterval:
+          minLength: 1
+          type: string
+          description: Editable history interval for operational data in ISO 8601 duration format.
+        WebsiteUrl:
+          type: string
+          description: URL of the enterprise website.
+          format: uri
+          nullable: true
+        Email:
+          type: string
+          description: Email address of the enterprise.
+          format: email
+          nullable: true
+        Phone:
+          type: string
+          description: Phone number of the enterprise.
+          format: tel
+          nullable: true
+        LogoImageId:
+          type: string
+          description: Unique identifier of the `Image` of the enterprise logo.
+          format: uuid
+          nullable: true
+        CoverImageId:
+          type: string
+          description: Unique identifier of the `Image` of the enterprise cover.
+          format: uuid
+          nullable: true
+        Pricing:
+          title: Pricing
+          allOf:
+            - $ref: '#/components/schemas/PricingModeEnum'
+          description: "Pricing of the enterprise.\n\nGross (The enterprise shows amount with gross prices.)\n\nNet (The enterprise shows amount with net prices.)"
+          x-enumNames:
+            - Gross
+            - Net
+          x-enumDescriptions:
+            - The enterprise shows amount with gross prices.
+            - The enterprise shows amount with net prices.
+        TaxPrecision:
+          type: integer
+          description: 'Tax precision used for financial calculations in the enterprise. If `null`, `Currency` precision is used.'
+          format: int32
+          nullable: true
+        AddressId:
+          type: string
+          description: Unique identifier of the `Address` of the enterprise.
+          format: uuid
+        GroupNames:
+          type: array
+          items:
+            type: string
+          description: A list of the group names of the enterprise.
+        Subscription:
+          title: Enterprise subscription
+          allOf:
+            - $ref: '#/components/schemas/EnterpriseSubscription'
+          description: Subscription information of the enterprise.
+        LinkedUtc:
+          minLength: 1
+          type: string
+          description: Date and time when enterprise was added to the portfolio in UTC timezone in ISO 8601 format.
+          format: date-time
+      additionalProperties: false
+      description: ''
+      x-schema-id: EnterprisePortfolio
     EnterpriseProfileData:
       title: Enterprise profile data
       required:
@@ -28186,7 +28157,7 @@ components:
         Enterprises:
           type: array
           items:
-            $ref: '#/components/schemas/EnterpriseBase'
+            $ref: '#/components/schemas/EnterprisePortfolio'
           description: The filtered enterprises.
         Cursor:
           type: string
@@ -28211,7 +28182,7 @@ components:
         - CreditNoteBillCounter
       type: string
     EnterpriseSubscription:
-      title: EnterpriseSubscription
+      title: Enterprise subscription
       type: object
       properties:
         TaxIdentifier:
@@ -28219,6 +28190,7 @@ components:
           description: Tax identifier of the `Enterprise`.
           nullable: true
       additionalProperties: false
+      description: ''
       x-schema-id: EnterpriseSubscription
     ExchangeRate:
       title: Exchange rate
