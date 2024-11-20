@@ -4,6 +4,7 @@ name: Synchronize OAS
 
 on:
   schedule:
+    # Run every day at 00:39 UTC
     - cron: '39 0 * * *'
   workflow_dispatch:
 
@@ -11,15 +12,39 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  synchronize:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api_name: [connector, distributor]
+    concurrency:
+      group: ${{ github.run_id }}
 
     steps:
+      - name: Install oasdiff
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with: # Grab a specific tag with caching
+          repo: Tufin/oasdiff
+          tag: v1.10.27
+          cache: enable
       - uses: actions/checkout@v4
+      - name: Set env variables
+        run: |
+          echo "OAS_URL=https://api.mews.com/swagger/${{ matrix.api_name }}/swagger.yaml" >> $GITHUB_ENV
+          echo "OUTPUT_OAS_FILE=${{ matrix.api_name }}/openapi.yaml" >> $GITHUB_ENV
+          echo "OUTPUT_CHANGELOG_FILE=${{ matrix.api_name }}/CHANGELOG.md" >> $GITHUB_ENV
+          echo "TMP_CHANGELOG_FILE=tmp/oasdiff-changelog.md" >> $GITHUB_ENV
+          echo "TMP_OAS_FILE=tmp/${{ matrix.api_name }}.yaml" >> $GITHUB_ENV
+          mkdir -p "${{ matrix.api_name }}"
+          mkdir -p tmp
       - name: Download OAS
         run: |
-          curl --create-dirs --output connector/openapi.yaml https://api.mews.com/swagger/connector/swagger.yaml
-          curl --create-dirs --output distributor/openapi.yaml https://api.mews.com/swagger/distributor/swagger.yaml
+          curl --no-progress-meter --create-dirs --output "$TMP_OAS_FILE" "$OAS_URL"
+      
+      - name: Run oasdiff and update changelog
+        run: |
+          ./scripts/changelog.sh
+
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
