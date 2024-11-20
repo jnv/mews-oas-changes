@@ -16,7 +16,7 @@ oasdiff changelog "$OUTPUT_OAS_FILE" "$TMP_OAS_FILE" --format markup --attribute
 # Check if the file is empty or contains only whitespace
 if [ ! -s "$TMP_CHANGELOG_FILE" ] || ! grep -q '[^[:space:]]' "$TMP_CHANGELOG_FILE"; then
     echo "No changes detected" >&2
-    exit 1
+    exit 0
 fi
 
 echo "Changes detected" >&2
