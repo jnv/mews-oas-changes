@@ -44,6 +44,7 @@ jobs:
       - name: Run oasdiff and update changelog
         run: |
           ./scripts/changelog.sh
+          mv -f "$TMP_OAS_FILE" "$OUTPUT_OAS_FILE"
 
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
