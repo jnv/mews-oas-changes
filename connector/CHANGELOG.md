@@ -1,3 +1,11 @@
+# 2024-11-22
+
+
+## POST /api/connector/v1/vouchers/update
+-  the 'VoucherUpdates/items/AssignedRateIds' request property's maxLength was increased from '5' to '10'
+
+
+
 # 2024-11-20
 
 

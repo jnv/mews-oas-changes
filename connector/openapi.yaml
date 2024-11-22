@@ -45356,7 +45356,7 @@ components:
           format: uuid
           nullable: true
         AssignedRateIds:
-          maxItems: 5
+          maxItems: 10
           type: array
           items:
             type: string
@@ -45779,7 +45779,7 @@ components:
           nullable: true
         AssignedRateIds:
           title: GuidIEnumerableUpdateValue
-          maxLength: 5
+          maxLength: 10
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
           description: Unique identifiers of Rates (or `null` should it not be updated).
