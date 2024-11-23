@@ -15205,25 +15205,14 @@ paths:
       tags:
         - Source assignments
       summary: Get all source assignments
-      description: 'Returns all [Sources](https://mews-systems.gitbook.io/connector-api/operations/sources/#source) assigned to a [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group). Each reservation group can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
+      description: 'Returns all Sources assigned to a Reservation group. Each reservation group can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: sourceAssignments_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SourceAssignmentFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ReservationGroupIds:
-                - 730d050c-8098-415a-95af-af2500a2de47
-              UpdatedUtc:
-                StartUtc: '2023-02-1T00:00:00Z'
-                EndUtc: '2023-02-28T00:00:00Z'
-              Limitation:
-                Count: 10
-                Cursor: 
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationGroupIds":["730d050c-8098-415a-95af-af2500a2de47"],"UpdatedUtc":{"StartUtc":"2023-02-1T00:00:00Z","EndUtc":"2023-02-28T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":10}}
       responses:
         '200':
           description: OK
