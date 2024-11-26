@@ -2101,7 +2101,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsResult'
-              example: {"Bills":[{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fe795f96-0b64-445b-89ed-c032563f2bac","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["26afba60-06c3-455b-92db-0e3983be0b1d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"26afba60-06c3-455b-92db-0e3983be0b1d"}
+              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"ea087d64-3901-4eee-b0b7-9fce4c58a005"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -23399,11 +23399,14 @@ components:
       x-schema-id: CreditCardResult
     CreditCardTransaction:
       title: Credit card transaction
+      required:
+        - ChargedAmount
+        - PaymentId
       type: object
       properties:
         PaymentId:
           type: string
-          description: 'Unique identifier of the [Payment item](https://mews-systems.gitbook.io/connector-api/operations/#payment-item).'
+          description: Unique identifier of the `PaymentItem`.
           format: uuid
         SettlementId:
           type: string
@@ -23412,30 +23415,30 @@ components:
         SettledUtc:
           type: string
           description: Settlement date and time in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         Fee:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
+          description: Transaction fee - this includes an estimate of bank charges.
           nullable: true
         AdjustedFee:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
+          description: 'Transaction fee (adjusted) - this is the final confirmed transaction fee, including confirmed bank charges.'
           nullable: true
         ChargedAmount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: Charged amount of the transaction.
         SettledAmount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
+          description: Settled amount of the transaction.
           nullable: true
       additionalProperties: false
       x-schema-id: CreditCardTransaction
@@ -28808,97 +28811,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ExternalPaymentParameters
-    ExternalPaymentType:
-      title: External payment type
-      enum:
-        - Unspecified
-        - BadDebts
-        - Bacs
-        - WireTransfer
-        - Invoice
-        - ExchangeRateDifference
-        - Complimentary
-        - Reseller
-        - ExchangeRoundingDifference
-        - Barter
-        - Commission
-        - BankCharges
-        - CrossSettlement
-        - Cash
-        - CreditCard
-        - Prepayment
-        - Cheque
-        - Bancontact
-        - IDeal
-        - PayPal
-        - GiftCard
-        - LoyaltyPoints
-        - ChequeVacances
-        - OnlinePayment
-        - CardCheck
-        - PaymentHubRedirection
-        - Voucher
-        - MasterCard
-        - Visa
-        - Amex
-        - Discover
-        - DinersClub
-        - Jcb
-        - UnionPay
-        - Twint
-        - Reka
-        - LoyaltyCard
-        - PosDiningAndSpaReward
-        - DirectDebit
-        - DepositCheck
-        - DepositCash
-        - DepositCreditCard
-        - DepositWireTransfer
-      type: string
-      x-enumDescriptions:
-        - Unspecified (unavailable in French Legal Environment)
-        - Bad debts
-        - Bacs payment
-        - Wire transfer
-        - Invoice
-        - Exchange rate difference
-        - Complimentary
-        - Reseller
-        - Exchange rounding difference
-        - Barter
-        - Commission
-        - Bank charges
-        - Cross settlement
-        - Cash
-        - Credit card
-        - Prepayment
-        - Cheque
-        - Bancontact
-        - iDeal
-        - PayPal
-        - Gift card
-        - Loyalty points
-        - Chèque-Vacances
-        - Online payment
-        - Card check
-        - Payment hub redirection
-        - Voucher
-        - MasterCard
-        - Visa
-        - American Express
-        - Discover
-        - Diners Club
-        - JCB
-        - UnionPay
-        - TWINT
-        - Reka
-        - Loyalty card
-        - POS Dining & Spa Reward
-        - Direct debit
-        - Deposit - check
-        - Deposit - cash
-        - Deposit - credit card
-        - Deposit - wire transfer
     ExternalPaymentTypeEnum:
       title: External payment type
       enum:
@@ -34047,98 +33959,137 @@ components:
       title: Payment
       required:
         - AccountingState
+        - CreatedUtc
         - EnterpriseId
         - Id
+        - Kind
+        - SettlementUtc
         - State
+        - Type
+        - UpdatedUtc
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the payment.
           format: uuid
         EnterpriseId:
           type: string
+          description: Unique identifier of the `Enterprise`.
           format: uuid
         AccountId:
           type: string
+          description: Unique identifier of the account (for example `Customer`) the payment belongs to.
           format: uuid
           nullable: true
         AccountType:
           anyOf:
             - $ref: '#/components/schemas/AccountType'
+          description: 'A discriminator specifying the account type, e.g. `Customer` or `Company`.'
           nullable: true
         BillId:
           type: string
+          description: Unique identifier of the `Bill` the payment is assigned to.
           format: uuid
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation` the payment belongs to.
           format: uuid
           nullable: true
         AccountingCategoryId:
           type: string
+          description: Unique identifier of the `AccountingCategory` the payment belongs to.
           format: uuid
           nullable: true
         Amount:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: ''
+          description: 'Payment''s amount, negative amount represents either rebate or a payment.'
           nullable: true
         OriginalAmount:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: ''
+          description: 'Payment''s original amount, negative amount represents either rebate or a payment. Contains the earliest known value in conversion chain.'
           nullable: true
         Notes:
           type: string
+          description: Additional notes.
           nullable: true
         SettlementId:
           type: string
+          description: Identifier of the settled payment from the external system (ApplePay/GooglePay).
           nullable: true
         ConsumedUtc:
           type: string
+          description: Date and time of the item consumption in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         ClosedUtc:
           type: string
+          description: Date and time of the payment bill closure in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         ChargedUtc:
           type: string
+          description: Charged date and time of the payment in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
+          description: Creation date and time of the payment created in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         UpdatedUtc:
+          minLength: 1
           type: string
+          description: Last update date and time of the payment in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         SettlementUtc:
+          minLength: 1
           type: string
+          description: Date and time of the payment settlement in UTC timezone in ISO 8601 format.
           format: date-time
-          nullable: true
         AccountingState:
           $ref: '#/components/schemas/AccountingState'
         State:
           $ref: '#/components/schemas/PaymentState'
         Identifier:
           type: string
-          nullable: true
-        Kind:
-          anyOf:
-            - $ref: '#/components/schemas/PaymentKind'
+          description: Additional unique identifier of the payment.
           nullable: true
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/PaymentDiscriminator'
-          nullable: true
+          title: Payment type
+          allOf:
+            - $ref: '#/components/schemas/PaymentDiscriminatorEnum'
+          description: "Payment type, e.g. whether credit card or cash.\n\nPayment\n\nCreditCardPayment\n\nAlternativePayment\n\nCashPayment\n\nInvoicePayment\n\nExternalPayment\n\nGhostPayment\n\nTaxDeductedPayment"
+          x-enumNames:
+            - Payment
+            - CreditCardPayment
+            - AlternativePayment
+            - CashPayment
+            - InvoicePayment
+            - ExternalPayment
+            - GhostPayment
+            - TaxDeductedPayment
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+        Kind:
+          $ref: '#/components/schemas/PaymentKind'
         Data:
-          title: PaymentData
+          title: Payment data
           allOf:
             - $ref: '#/components/schemas/PaymentData'
+          description: Additional payment data.
           nullable: true
       additionalProperties: false
       x-schema-id: Payment
@@ -34166,49 +34117,55 @@ components:
       description: ''
       x-schema-id: PaymentCardStorage
     PaymentCreditCardData:
-      title: PaymentCreditCardData
+      title: Credit card payment data
       type: object
       properties:
         CreditCardId:
           type: string
+          description: Unique identifier of the payment card.
           format: uuid
           nullable: true
         Transaction:
           title: Credit card transaction
           allOf:
             - $ref: '#/components/schemas/CreditCardTransaction'
+          description: The credit card payment transaction.
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentCreditCardData
     PaymentData:
-      title: PaymentData
+      title: Payment data
+      required:
+        - Discriminator
       type: object
       properties:
         Discriminator:
-          anyOf:
-            - $ref: '#/components/schemas/PaymentDataDiscriminator'
-          nullable: true
-          readOnly: true
+          $ref: '#/components/schemas/PaymentDataDiscriminator'
         CreditCard:
-          title: PaymentCreditCardData
+          title: Credit card payment data
           allOf:
             - $ref: '#/components/schemas/PaymentCreditCardData'
+          description: Contains additional data in the case of a card payment.
           nullable: true
         Invoice:
-          title: PaymentInvoiceData
+          title: Invoice payment data
           allOf:
             - $ref: '#/components/schemas/PaymentInvoiceData'
+          description: Contains additional data in the case of an invoice payment.
           nullable: true
           readOnly: true
         External:
-          title: PaymentExternalData
+          title: External payment data
           allOf:
             - $ref: '#/components/schemas/PaymentExternalData'
+          description: Contains additional data in the case of an external payment.
           nullable: true
           readOnly: true
         Ghost:
+          title: Ghost payment data
           allOf:
             - $ref: '#/components/schemas/PaymentGhostData'
+          description: Contains additional data in the case of a ghost payment.
           nullable: true
           readOnly: true
       additionalProperties: false
@@ -34220,7 +34177,8 @@ components:
         - External
         - Ghost
       type: string
-    PaymentDiscriminator:
+    PaymentDiscriminatorEnum:
+      title: Payment type
       enum:
         - Payment
         - CreditCardPayment
@@ -34231,16 +34189,127 @@ components:
         - GhostPayment
         - TaxDeductedPayment
       type: string
+      description: "\n\nPayment\n\nCreditCardPayment\n\nAlternativePayment\n\nCashPayment\n\nInvoicePayment\n\nExternalPayment\n\nGhostPayment\n\nTaxDeductedPayment"
+      x-enumNames:
+        - Payment
+        - CreditCardPayment
+        - AlternativePayment
+        - CashPayment
+        - InvoicePayment
+        - ExternalPayment
+        - GhostPayment
+        - TaxDeductedPayment
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     PaymentExternalData:
-      title: PaymentExternalData
+      title: External payment data
       required:
         - Type
       type: object
       properties:
         Type:
-          $ref: '#/components/schemas/ExternalPaymentType'
+          title: External payment type
+          allOf:
+            - $ref: '#/components/schemas/ExternalPaymentTypeEnum'
+          description: "Type of the external payment. *Except for enterprises based in the French Legal Environment. `Unspecified` is considered as fraud.\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+          x-enumNames:
+            - Unspecified
+            - BadDebts
+            - Bacs
+            - WireTransfer
+            - Invoice
+            - ExchangeRateDifference
+            - Complimentary
+            - Reseller
+            - ExchangeRoundingDifference
+            - Barter
+            - Commission
+            - BankCharges
+            - CrossSettlement
+            - Cash
+            - CreditCard
+            - Prepayment
+            - Cheque
+            - Bancontact
+            - IDeal
+            - PayPal
+            - GiftCard
+            - LoyaltyPoints
+            - ChequeVacances
+            - OnlinePayment
+            - CardCheck
+            - PaymentHubRedirection
+            - Voucher
+            - MasterCard
+            - Visa
+            - Amex
+            - Discover
+            - DinersClub
+            - Jcb
+            - UnionPay
+            - Twint
+            - Reka
+            - LoyaltyCard
+            - PosDiningAndSpaReward
+            - DirectDebit
+            - DepositCheck
+            - DepositCash
+            - DepositCreditCard
+            - DepositWireTransfer
+          x-enumDescriptions:
+            - Unspecified (unavailable in French Legal Environment)
+            - Bad debts
+            - Bacs payment
+            - Wire transfer
+            - Invoice
+            - Exchange rate difference
+            - Complimentary
+            - Reseller
+            - Exchange rounding difference
+            - Barter
+            - Commission
+            - Bank charges
+            - Cross settlement
+            - Cash
+            - Credit card
+            - Prepayment
+            - Cheque
+            - Bancontact
+            - iDeal
+            - PayPal
+            - Gift card
+            - Loyalty points
+            - Chèque-Vacances
+            - Online payment
+            - Card check
+            - Payment hub redirection
+            - Voucher
+            - MasterCard
+            - Visa
+            - American Express
+            - Discover
+            - Diners Club
+            - JCB
+            - UnionPay
+            - TWINT
+            - Reka
+            - Loyalty card
+            - POS Dining & Spa Reward
+            - Direct debit
+            - Deposit - check
+            - Deposit - cash
+            - Deposit - credit card
+            - Deposit - wire transfer
         ExternalIdentifier:
           type: string
+          description: Identifier of the payment from external system.
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentExternalData
@@ -34285,7 +34354,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of specific [Payments](https://mews-systems.gitbook.io/connector-api/operations/payments/#payment). Required if no other filter is provided.'
+          description: Unique identifiers of specific `Payment` items. Required if no other filter is provided.
           nullable: true
         BillIds:
           maxItems: 1000
@@ -34294,7 +34363,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of specific [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill) to which payments are assigned. Required if no other filter is provided.'
+          description: Unique identifiers of specific `Bill` items to which payments are assigned. Required if no other filter is provided.
           nullable: true
         ReservationIds:
           maxItems: 1000
@@ -34303,44 +34372,49 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of specific `Reservations` to which payments belong. Required if no other filter is provided.
           nullable: true
         CreatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Time interval during which the `Payment` was created. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Time interval during which the `Payment` was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ChargedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Time interval during which the `Payment` was charged. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Time interval during which the `Payment` was closed. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         SettlementUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Payments` were settled.
           nullable: true
           x-max-interval-in-months: 3
         Currency:
           type: string
-          description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency) the item costs should be converted to.'
+          description: ISO-4217 code of the `Currency` the item costs should be converted to.
           format: currency
           nullable: true
         AccountingStates:
-          maxItems: 1000
           minItems: 1
           type: array
           items:
@@ -34348,42 +34422,47 @@ components:
           description: Accounting state of the item.
           nullable: true
         States:
-          maxItems: 1000
           minItems: 1
           type: array
           items:
             $ref: '#/components/schemas/PaymentState'
+          description: Payment state of the item.
           nullable: true
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/PaymentDiscriminator'
+          allOf:
+            - $ref: '#/components/schemas/PaymentDiscriminatorEnum'
+          description: "Payment state of the item.\n\nPayment\n\nCreditCardPayment\n\nAlternativePayment\n\nCashPayment\n\nInvoicePayment\n\nExternalPayment\n\nGhostPayment\n\nTaxDeductedPayment"
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentFilterParameters
     PaymentGhostData:
-      title: PaymentGhostData
+      title: Ghost payment data
+      required:
+        - OriginalPaymentId
       type: object
       properties:
         OriginalPaymentId:
           type: string
+          description: Unique identifier of the original payment.
           format: uuid
       additionalProperties: false
       x-schema-id: PaymentGhostData
     PaymentInvoiceData:
-      title: PaymentInvoiceData
+      title: Invoice payment data
       required:
         - Type
       type: object
       properties:
         InvoiceId:
           type: string
+          description: Unique identifier of the invoice `Bill`.
           format: uuid
           nullable: true
         Type:
           title: Invoice payment type
           allOf:
             - $ref: '#/components/schemas/InvoicePaymentTypeEnum'
-          description: "\n\nReceivable\n\nBalancing\n\nUnderpaymentBalancingReceivable\n\nOverpaymentBalancingReceivable\n\nOverpayment"
+          description: "Type of the invoice payment.\n\nReceivable\n\nBalancing\n\nUnderpaymentBalancingReceivable\n\nOverpaymentBalancingReceivable\n\nOverpayment"
           x-enumNames:
             - Receivable
             - Balancing
@@ -34482,6 +34561,7 @@ components:
       description: Payment item
       x-schema-id: PaymentItemOld
     PaymentKind:
+      title: Payment kind
       enum:
         - Payment
         - Chargeback
@@ -34818,6 +34898,7 @@ components:
       additionalProperties: false
       x-schema-id: PaymentResult
     PaymentState:
+      title: Payment state
       enum:
         - Charged
         - Canceled
