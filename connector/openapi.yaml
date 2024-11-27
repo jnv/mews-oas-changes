@@ -6150,7 +6150,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IdentityDocumentDeleteParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocumentIds":["7e55ee8e-11a0-4d9d-8880-f8d8494824b5","2e1c6096-3a28-411d-a375-150a7350b278"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocumentIds":["e8a72a69-c20b-4278-b699-ab0400a32ecc","2e1c6096-3a28-411d-a375-150a7350b278"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -18743,6 +18743,21 @@ components:
       additionalProperties: false
       description: Price of the product that overrides the price defined in Mews.
       x-schema-id: AmountParameters
+    AssignedRateIds:
+      title: Assigned rate ids
+      type: object
+      properties:
+        Value:
+          maxItems: 10
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of Rates (or `null` should it not be updated).
+          nullable: true
+      additionalProperties: false
+      description: 'Has same structure as [Array of strings update value](https://mews-systems.gitbook.io/connector-api/operations/_objects#array-of-strings-update-value).'
+      x-schema-id: AssignedRateIds
     AvailabilityAdjustment:
       title: Availability adjustment
       required:
@@ -25520,6 +25535,10 @@ components:
             - $ref: '#/components/schemas/DeviceCommandData'
           oneOf:
             - title: PaymentTerminalCommandData
+              required:
+                - AccountData
+                - AccountId
+                - CustomerId
               type: object
               oneOf:
                 - $ref: '#/components/schemas/PaymentTerminalCommandData'
@@ -26070,9 +26089,17 @@ components:
                 CustomerId:
                   type: string
                   format: uuid
+                  deprecated: true
+                  x-deprecatedMessage: Use `AccountId` instead.
+                AccountId:
+                  type: string
+                  description: Unique identifier of the account.
+                  format: uuid
                 FullName:
                   type: string
                   nullable: true
+                  deprecated: true
+                  x-deprecatedMessage: 'Use `AccountData.Customer.FullName`, if `AccountData.Discriminator` is `Customer`, instead.'
                 BillId:
                   type: string
                   format: uuid
@@ -26104,6 +26131,11 @@ components:
                   allOf:
                     - $ref: '#/components/schemas/PayworksData'
                   nullable: true
+                AccountData:
+                  title: Account data for payment terminal command
+                  allOf:
+                    - $ref: '#/components/schemas/PaymentTerminalCommandAccountData'
+                  description: Account data for the payment terminal command.
               additionalProperties: false
               x-schema-id: PaymentTerminalCommandData
             - title: PrinterCommandData
@@ -26663,6 +26695,10 @@ components:
       type: object
       oneOf:
         - title: PaymentTerminalCommandData
+          required:
+            - AccountData
+            - AccountId
+            - CustomerId
           type: object
           oneOf:
             - $ref: '#/components/schemas/PaymentTerminalCommandData'
@@ -27213,9 +27249,17 @@ components:
             CustomerId:
               type: string
               format: uuid
+              deprecated: true
+              x-deprecatedMessage: Use `AccountId` instead.
+            AccountId:
+              type: string
+              description: Unique identifier of the account.
+              format: uuid
             FullName:
               type: string
               nullable: true
+              deprecated: true
+              x-deprecatedMessage: 'Use `AccountData.Customer.FullName`, if `AccountData.Discriminator` is `Customer`, instead.'
             BillId:
               type: string
               format: uuid
@@ -27247,6 +27291,11 @@ components:
               allOf:
                 - $ref: '#/components/schemas/PayworksData'
               nullable: true
+            AccountData:
+              title: Account data for payment terminal command
+              allOf:
+                - $ref: '#/components/schemas/PaymentTerminalCommandAccountData'
+              description: Account data for the payment terminal command.
           additionalProperties: false
           x-schema-id: PaymentTerminalCommandData
         - title: PrinterCommandData
@@ -34906,8 +34955,67 @@ components:
         - Failed
         - Verifying
       type: string
+    PaymentTerminalCommandAccountData:
+      title: Account data for payment terminal command
+      required:
+        - Discriminator
+      type: object
+      properties:
+        Discriminator:
+          title: Account type
+          allOf:
+            - $ref: '#/components/schemas/AccountTypeEnum'
+          description: "Type of the account.\n\nCompany\n\nCustomer"
+          x-enumNames:
+            - Company
+            - Customer
+          x-enumDescriptions:
+            - ''
+            - ''
+        Customer:
+          title: Customer data for payment terminal command.
+          allOf:
+            - $ref: '#/components/schemas/PaymentTerminalCommandCustomerData'
+          description: Customer data if the `Discriminator` is `Customer`.
+          nullable: true
+        Company:
+          title: Company data for payment terminal command.
+          allOf:
+            - $ref: '#/components/schemas/PaymentTerminalCommandCompanyData'
+          description: Company data if the `Discriminator` is `Company`.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PaymentTerminalCommandAccountData
+    PaymentTerminalCommandCompanyData:
+      title: Company data for payment terminal command.
+      required:
+        - Name
+      type: object
+      properties:
+        Name:
+          minLength: 1
+          type: string
+          description: Name of the company.
+      additionalProperties: false
+      x-schema-id: PaymentTerminalCommandCompanyData
+    PaymentTerminalCommandCustomerData:
+      title: Customer data for payment terminal command.
+      required:
+        - FullName
+      type: object
+      properties:
+        FullName:
+          minLength: 1
+          type: string
+          description: Full name of the customer.
+      additionalProperties: false
+      x-schema-id: PaymentTerminalCommandCustomerData
     PaymentTerminalCommandData:
       title: PaymentTerminalCommandData
+      required:
+        - AccountData
+        - AccountId
+        - CustomerId
       type: object
       oneOf:
         - $ref: '#/components/schemas/PaymentTerminalCommandData'
@@ -35458,9 +35566,17 @@ components:
         CustomerId:
           type: string
           format: uuid
+          deprecated: true
+          x-deprecatedMessage: Use `AccountId` instead.
+        AccountId:
+          type: string
+          description: Unique identifier of the account.
+          format: uuid
         FullName:
           type: string
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use `AccountData.Customer.FullName`, if `AccountData.Discriminator` is `Customer`, instead.'
         BillId:
           type: string
           format: uuid
@@ -35492,6 +35608,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/PayworksData'
           nullable: true
+        AccountData:
+          title: Account data for payment terminal command
+          allOf:
+            - $ref: '#/components/schemas/PaymentTerminalCommandAccountData'
+          description: Account data for the payment terminal command.
       additionalProperties: false
       x-schema-id: PaymentTerminalCommandData
     PaymentTerminalCommandParameters:
@@ -45848,10 +45969,9 @@ components:
           description: Unique identifier of Company (Company or Travel Agency) the voucher is related to. This is required for Type of `PartnerCompany` or `TravelAgency`. Use `null` if Company should not be updated.
           nullable: true
         AssignedRateIds:
-          title: GuidIEnumerableUpdateValue
-          maxLength: 10
+          title: Assigned rate ids
           allOf:
-            - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
+            - $ref: '#/components/schemas/AssignedRateIds'
           description: Unique identifiers of Rates (or `null` should it not be updated).
           nullable: true
         OccupiableIntervalStartUtc:
