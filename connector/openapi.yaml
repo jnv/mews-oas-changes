@@ -9568,6 +9568,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       x-restricted: true
+  /api/connector/v1/products/updatePrice:
+    post:
+      tags:
+        - Products
+      summary: Update product pricing
+      description: 'Updates the prices for a given product. You can make multiple price updates with one API call, and for each one specify the price amount per [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units) and the time interval for which it applies. The price will be updated for all service time units that the specified time interval intersects. It is not permitted to update historical prices older than specified by `EditableHistoryInterval`.'
+      operationId: products_updatePrice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductPriceUpdateParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ProductId":"6b97a38b-0043-41e0-afbd-3f083bdbc0d2","PriceUpdates":[{"Value":100.0,"FirstTimeUnitStartUtc":"2024-03-01T23:00:00.000Z","LastTimeUnitStartUtc":"2024-03-03T23:00:00.000Z"},{"Value":200.0,"FirstTimeUnitStartUtc":"2024-03-06T23:00:00.000Z","LastTimeUnitStartUtc":"2024-03-08T23:00:00.000Z"}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/products/getAll:
     post:
       tags:
@@ -36757,6 +36819,68 @@ components:
       x-enumDescriptions:
         - ''
         - ''
+    ProductPriceUpdate:
+      title: Product price update
+      type: object
+      properties:
+        Value:
+          type: number
+          description: 'New value of the product on the interval. If not specified, removes all price adjustments within the interval.'
+          format: double
+          nullable: true
+        FirstTimeUnitStartUtc:
+          type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
+          format: date-time
+          nullable: true
+        LastTimeUnitStartUtc:
+          type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ProductPriceUpdate
+    ProductPriceUpdateParameters:
+      title: Product price update parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - PriceUpdates
+        - ProductId
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ProductId:
+          minLength: 1
+          type: string
+          description: Unique identifier of the `Product`.
+          x-schema-id: HybridIdentifier
+        PriceUpdates:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductPriceUpdate'
+          description: Price adjustments for specific time intervals.
+      additionalProperties: false
+      x-schema-id: ProductPriceUpdateParameters
     ProductPricing:
       title: Product pricing data discriminator
       enum:

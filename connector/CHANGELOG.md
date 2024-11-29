@@ -1,3 +1,11 @@
+# 2024-11-29
+
+
+## POST /api/connector/v1/products/updatePrice
+-  endpoint added
+
+
+
 # 2024-11-27
 
 
