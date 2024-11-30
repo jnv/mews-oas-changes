@@ -18644,13 +18644,32 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AgeCategoryResult
-    AlternativePaymentMethods:
+    AlternativePaymentMethodDeprecated:
+      title: Alternative payment methods
+      enum:
+        - Ideal
+        - ApplePay
+        - GooglePay
+      type: string
+    AlternativePaymentMethodEnum:
+      title: Alternative payment method data discriminator
       enum:
         - Ideal
         - ApplePay
         - GooglePay
         - SepaDirectDebit
       type: string
+      description: "\n\nIdeal (iDEAL data.)\n\nApplePay (No additional data.)\n\nGooglePay (No additional data.)\n\nSepaDirectDebit (SEPA Direct Debit data.)"
+      x-enumNames:
+        - Ideal
+        - ApplePay
+        - GooglePay
+        - SepaDirectDebit
+      x-enumDescriptions:
+        - iDEAL data.
+        - No additional data.
+        - No additional data.
+        - SEPA Direct Debit data.
     AlternativePaymentParameters:
       title: AlternativePaymentParameters
       required:
@@ -18659,6 +18678,7 @@ components:
         - Client
         - ClientToken
         - CustomerId
+        - Data
       type: object
       properties:
         ClientToken:
@@ -18684,24 +18704,28 @@ components:
           description: Price of the product that overrides the price defined in Mews.
         Method:
           anyOf:
-            - $ref: '#/components/schemas/AlternativePaymentMethods'
+            - $ref: '#/components/schemas/AlternativePaymentMethodDeprecated'
           description: Payment method to use for the alternative payment.
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Use `Data` instead.
         RedirectUrl:
           type: string
           description: URL where the customer will be redirected after completing their payment.
           format: uri
           nullable: true
           deprecated: true
+          x-deprecatedMessage: Pass redirect URL to relevant method in `Data` instead.
         ReservationId:
           type: string
+          description: Unique identifier of the reservation the payment belongs to.
           format: uuid
           nullable: true
         Data:
+          title: Alternative payment method data
           allOf:
             - $ref: '#/components/schemas/AlternativePaymentsData'
-          nullable: true
+          description: Data specific to particular alternative payment method.
       additionalProperties: false
       x-schema-id: AlternativePaymentParameters
     AlternativePaymentResult:
@@ -18727,19 +18751,37 @@ components:
       additionalProperties: false
       x-schema-id: AlternativePaymentResult
     AlternativePaymentsData:
-      title: AlternativePaymentsData
+      title: Alternative payment method data
+      required:
+        - Discriminator
       type: object
       properties:
         Discriminator:
-          type: string
-          nullable: true
+          title: Alternative payment method data discriminator
+          allOf:
+            - $ref: '#/components/schemas/AlternativePaymentMethodEnum'
+          description: "Type of alternative payment method (e.g. `Ideal`).\n\nIdeal (iDEAL data.)\n\nApplePay (No additional data.)\n\nGooglePay (No additional data.)\n\nSepaDirectDebit (SEPA Direct Debit data.)"
+          x-enumNames:
+            - Ideal
+            - ApplePay
+            - GooglePay
+            - SepaDirectDebit
+          x-enumDescriptions:
+            - iDEAL data.
+            - No additional data.
+            - No additional data.
+            - SEPA Direct Debit data.
         SepaDirectDebit:
+          title: SEPA Direct Debit data
           allOf:
             - $ref: '#/components/schemas/SepaDirectDebitData'
+          description: SEPA Direct Debit payment method data. Required when `Discriminator` is `SepaDirectDebit`.
           nullable: true
         Ideal:
+          title: iDEAL data
           allOf:
             - $ref: '#/components/schemas/IdealData'
+          description: iDEAL payment method data. Required when `Discriminator` is `Ideal`.
           nullable: true
       additionalProperties: false
       x-schema-id: AlternativePaymentsData
@@ -21422,7 +21464,7 @@ components:
       additionalProperties: false
       x-schema-id: ChannelManagerReservation
     ChargeCreditCardParameters:
-      title: ChargeCreditCardParameters
+      title: CreditCard payment data
       required:
         - AccessToken
         - Amount
@@ -21453,19 +21495,14 @@ components:
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation the payment belongs to.
           format: uuid
           nullable: true
         Amount:
-          title: ExtendedAmountParameters
+          title: Amount value
           allOf:
             - $ref: '#/components/schemas/ExtendedAmountParameters'
-          description: Amount of the external card payment.
-        Category:
-          title: AccountingCategoryParameters
-          allOf:
-            - $ref: '#/components/schemas/AccountingCategoryParameters'
-          nullable: true
-          deprecated: true
+          description: Amount of the credit card payment.
         Notes:
           type: string
           description: Additional payment notes.
@@ -23364,7 +23401,7 @@ components:
       additionalProperties: false
       x-schema-id: CreditCardFilterParameters
     CreditCardParameters:
-      title: CreditCardParameters
+      title: Credit card parameters
       required:
         - Name
         - Number
@@ -23374,19 +23411,19 @@ components:
         Type:
           minLength: 1
           type: string
-        ObfuscatedNumber:
-          type: string
-          nullable: true
-          readOnly: true
+          description: 'Type of the credit card, one of: `Visa`, `MasterCard`, `Amex`, `Discover`, `DinersClub`, `Jcb`, `EnRoute`, `Maestro`, `UnionPay`.'
         Number:
           minLength: 1
           type: string
+          description: 'Obfuscated credit card number. At most first six digits and last four digits can be specified, the digits in between should be replaced with `*`. It is possible to provide even more obfuscated number or just last four digits. **Never provide full credit card number**. For example `411111******1111`.'
         Expiration:
           type: string
+          description: 'Expiration of the credit card in format `MM/YYYY`, e.g. `12/2016` or `04/2017`.'
           nullable: true
         Name:
           minLength: 1
           type: string
+          description: Name of the card holder.
       additionalProperties: false
       description: Credit card details.
       x-schema-id: CreditCardParameters
@@ -23425,19 +23462,14 @@ components:
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation the payment belongs to.
           format: uuid
           nullable: true
         Amount:
-          title: ExtendedAmountParameters
+          title: Amount value
           allOf:
             - $ref: '#/components/schemas/ExtendedAmountParameters'
-          description: Amount of the external card payment.
-        Category:
-          title: AccountingCategoryParameters
-          allOf:
-            - $ref: '#/components/schemas/AccountingCategoryParameters'
-          nullable: true
-          deprecated: true
+          description: Amount of the credit card payment.
         Notes:
           type: string
           description: Additional payment notes.
@@ -23447,7 +23479,7 @@ components:
           description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
           format: uuid
         CreditCard:
-          title: CreditCardParameters
+          title: Credit card parameters
           allOf:
             - $ref: '#/components/schemas/CreditCardParameters'
           description: Credit card details.
@@ -28799,7 +28831,7 @@ components:
       description: ''
       x-schema-id: ExtendedAmount
     ExtendedAmountParameters:
-      title: ExtendedAmountParameters
+      title: Amount value
       required:
         - Currency
       type: object
@@ -28807,42 +28839,26 @@ components:
         Currency:
           minLength: 1
           type: string
+          description: ISO-4217 code of the `Currency`.
           format: currency
         NetValue:
           type: number
+          description: Net value in case the item is taxed.
           format: double
           nullable: true
         GrossValue:
           type: number
+          description: Gross value including all taxes.
           format: double
           nullable: true
         TaxCodes:
           type: array
           items:
             type: string
+          description: The tax values applied.
           nullable: true
-        Value:
-          type: number
-          format: double
-          nullable: true
-          deprecated: true
-        Net:
-          type: number
-          format: double
-          nullable: true
-          deprecated: true
-        Tax:
-          type: number
-          format: double
-          nullable: true
-          deprecated: true
-        TaxRate:
-          type: number
-          format: double
-          nullable: true
-          deprecated: true
       additionalProperties: false
-      description: Amount of the external card payment.
+      description: ''
       x-schema-id: ExtendedAmountParameters
     ExternalPaymentParameters:
       title: ExternalPaymentParameters
@@ -28894,23 +28910,18 @@ components:
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation the payment belongs to.
           format: uuid
           nullable: true
         Amount:
-          title: ExtendedAmountParameters
+          title: Amount value
           allOf:
             - $ref: '#/components/schemas/ExtendedAmountParameters'
           description: Amount of the external card payment.
-        Category:
-          title: AccountingCategoryParameters
-          allOf:
-            - $ref: '#/components/schemas/AccountingCategoryParameters'
-          nullable: true
-          deprecated: true
         Type:
           allOf:
             - $ref: '#/components/schemas/ExternalPaymentTypeEnum'
-          description: "\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+          description: "Type of the external payment. (Required for the enterprises based in the French Legal Environment where `Unspecified` is considered as fraud.)\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
           nullable: true
         ExternalIdentifier:
           type: string
@@ -29303,12 +29314,16 @@ components:
       additionalProperties: false
       x-schema-id: Hours
     IdealData:
-      title: IdealData
+      title: iDEAL data
+      required:
+        - RedirectUrl
       type: object
       properties:
         RedirectUrl:
+          minLength: 1
           type: string
-          nullable: true
+          description: URL where the customer will be redirected after completing their iDEAL payment.
+          format: uri
       additionalProperties: false
       x-schema-id: IdealData
     IdentityDocument:
@@ -32686,21 +32701,29 @@ components:
       additionalProperties: false
       x-schema-id: MultipleVoucherUpdateParameters
     NextAction:
-      title: NextAction
+      title: Alternative payment next action
+      required:
+        - Type
+        - Url
       type: object
       properties:
         Type:
+          minLength: 1
           type: string
-          nullable: true
+          description: Determines type of value.
         Url:
+          minLength: 1
           type: string
-          nullable: true
+          description: String value depending on `Type`.
       additionalProperties: false
       x-schema-id: NextAction
     NextActionType:
+      title: Payment next action discriminator
       enum:
         - RedirectToUrl
       type: string
+      x-enumDescriptions:
+        - Redirect customer to a URL where they can complete their payment.
     ObjectData:
       type: object
       additionalProperties: false
@@ -34073,7 +34096,6 @@ components:
         - CreatedUtc
         - EnterpriseId
         - Id
-        - Kind
         - SettlementUtc
         - State
         - Type
@@ -34164,9 +34186,37 @@ components:
           description: Date and time of the payment settlement in UTC timezone in ISO 8601 format.
           format: date-time
         AccountingState:
-          $ref: '#/components/schemas/AccountingState'
+          title: Order item accounting state
+          allOf:
+            - $ref: '#/components/schemas/AccountingStateEnum'
+          description: "Accounting state of the payment.\n\nOpen (Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.)\n\nClosed (Order items which carry a non-zero value and have been closed on a bill or invoice.)\n\nInactive (Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.)\n\nCanceled (Order items which have been canceled, regardless of whether the item is of zero value.)"
+          x-enumNames:
+            - Open
+            - Closed
+            - Inactive
+            - Canceled
+          x-enumDescriptions:
+            - 'Order items which carry a non-zero value, are open, and have not been closed on a bill or invoice.'
+            - Order items which carry a non-zero value and have been closed on a bill or invoice.
+            - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
+            - 'Order items which have been canceled, regardless of whether the item is of zero value.'
         State:
-          $ref: '#/components/schemas/PaymentState'
+          title: Payment state
+          allOf:
+            - $ref: '#/components/schemas/PaymentStateEnum'
+          description: "Payment state of the payment.\n\nCharged\n\nCanceled\n\nPending\n\nFailed\n\nVerifying"
+          x-enumNames:
+            - Charged
+            - Canceled
+            - Pending
+            - Failed
+            - Verifying
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
         Identifier:
           type: string
           description: Additional unique identifier of the payment.
@@ -34195,7 +34245,10 @@ components:
             - ''
             - ''
         Kind:
-          $ref: '#/components/schemas/PaymentKind'
+          allOf:
+            - $ref: '#/components/schemas/PaymentKindEnum'
+          description: "Payment kind, e.g. whether payment or refund.\n\nPayment\n\nChargeback\n\nChargebackReversal\n\nRefund"
+          nullable: true
         Data:
           title: Payment data
           allOf:
@@ -34251,7 +34304,21 @@ components:
       type: object
       properties:
         Discriminator:
-          $ref: '#/components/schemas/PaymentDataDiscriminator'
+          title: Payment data discriminator
+          allOf:
+            - $ref: '#/components/schemas/PaymentDataDiscriminatorEnum'
+          description: "Discriminator pointing to the fields within this object that contains additional data.\n\nCreditCard\n\nInvoice\n\nExternal\n\nGhost"
+          readOnly: true
+          x-enumNames:
+            - CreditCard
+            - Invoice
+            - External
+            - Ghost
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
         CreditCard:
           title: Credit card payment data
           allOf:
@@ -34281,13 +34348,25 @@ components:
           readOnly: true
       additionalProperties: false
       x-schema-id: PaymentData
-    PaymentDataDiscriminator:
+    PaymentDataDiscriminatorEnum:
+      title: Payment data discriminator
       enum:
         - CreditCard
         - Invoice
         - External
         - Ghost
       type: string
+      description: "\n\nCreditCard\n\nInvoice\n\nExternal\n\nGhost"
+      x-enumNames:
+        - CreditCard
+        - Invoice
+        - External
+        - Ghost
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
     PaymentDiscriminatorEnum:
       title: Payment type
       enum:
@@ -34671,7 +34750,7 @@ components:
       additionalProperties: false
       description: Payment item
       x-schema-id: PaymentItemOld
-    PaymentKind:
+    PaymentKindEnum:
       title: Payment kind
       enum:
         - Payment
@@ -34679,6 +34758,17 @@ components:
         - ChargebackReversal
         - Refund
       type: string
+      description: "\n\nPayment\n\nChargeback\n\nChargebackReversal\n\nRefund"
+      x-enumNames:
+        - Payment
+        - Chargeback
+        - ChargebackReversal
+        - Refund
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
     PaymentRefundParameters:
       title: PaymentRefundParameters
       required:
@@ -34743,7 +34833,16 @@ components:
           description: Unique identifier of refund.
           format: uuid
         Type:
-          $ref: '#/components/schemas/RefundType'
+          title: Refund type
+          allOf:
+            - $ref: '#/components/schemas/RefundTypeEnum'
+          description: "Type of refund.\n\nCreditCardPayment\n\nAlternativePayment"
+          x-enumNames:
+            - CreditCardPayment
+            - AlternativePayment
+          x-enumDescriptions:
+            - ''
+            - ''
         Amount:
           title: Currency value (ver 2023-02-02)
           allOf:
@@ -35017,6 +35116,28 @@ components:
         - Failed
         - Verifying
       type: string
+    PaymentStateEnum:
+      title: Payment state
+      enum:
+        - Charged
+        - Canceled
+        - Pending
+        - Failed
+        - Verifying
+      type: string
+      description: "\n\nCharged\n\nCanceled\n\nPending\n\nFailed\n\nVerifying"
+      x-enumNames:
+        - Charged
+        - Canceled
+        - Pending
+        - Failed
+        - Verifying
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     PaymentTerminalCommandAccountData:
       title: Account data for payment terminal command
       required:
@@ -38198,11 +38319,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RebateOrderItemData
-    RefundType:
+    RefundTypeEnum:
+      title: Refund type
       enum:
         - CreditCardPayment
         - AlternativePayment
       type: string
+      description: "\n\nCreditCardPayment\n\nAlternativePayment"
+      x-enumNames:
+        - CreditCardPayment
+        - AlternativePayment
+      x-enumDescriptions:
+        - ''
+        - ''
     RelativeProductPrice:
       title: Relative product price
       type: object
@@ -43273,24 +43402,36 @@ components:
         - Enterprise
       type: string
     SepaDirectDebitData:
-      title: SepaDirectDebitData
+      title: SEPA Direct Debit data
+      required:
+        - Email
+        - Iban
+        - Name
+        - RemoteIpAddress
+        - UserAgent
       type: object
       properties:
         Iban:
+          minLength: 1
           type: string
-          nullable: true
+          description: The customer's bank account number in IBAN format.
         Name:
+          minLength: 1
           type: string
-          nullable: true
+          description: Full name of the customer.
         Email:
+          minLength: 1
           type: string
-          nullable: true
+          description: Email address of the customer.
+          format: email
         UserAgent:
+          minLength: 1
           type: string
-          nullable: true
+          description: The user agent of the browser from which the Mandate was accepted by the customer.
         RemoteIpAddress:
+          minLength: 1
           type: string
-          nullable: true
+          description: The IP address from which the Mandate was accepted by the customer.
       additionalProperties: false
       x-schema-id: SepaDirectDebitData
     Service:

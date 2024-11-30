@@ -1,3 +1,102 @@
+# 2024-11-30
+
+
+## POST /api/connector/v1/creditCards/charge
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Net'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Tax'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/TaxRate'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Value'
+- :warning: removed the request property 'Category'
+
+
+## POST /api/connector/v1/payments/addAlternative
+- :warning: added '#/components/schemas/AlternativePaymentMethodEnum' to the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Discriminator' request property 'allOf' list
+- :warning: removed '#/components/schemas/AlternativePaymentMethods' from the 'Method' request property 'anyOf' list
+- :warning: the request property 'Data' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Discriminator' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Ideal/allOf[subschema #1: IdealData -> subschema #1: iDEAL data]/RedirectUrl' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Email' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Iban' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Name' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/RemoteIpAddress' became not nullable
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/UserAgent' became not nullable
+- :warning: the request property 'Data' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Discriminator' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Ideal/allOf[subschema #1: IdealData -> subschema #1: iDEAL data]/RedirectUrl' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Email' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Iban' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Name' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/RemoteIpAddress' became required
+- :warning: the request property 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/UserAgent' became required
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Ideal/allOf[subschema #1: IdealData -> subschema #1: iDEAL data]/RedirectUrl' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Email' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Iban' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Name' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/RemoteIpAddress' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/UserAgent' request property's minLength was increased from '0' to '1'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Discriminator' request property type/format changed from 'string'/'' to ''/''
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/Ideal/allOf[subschema #1: IdealData -> subschema #1: iDEAL data]/RedirectUrl' request property type/format changed from 'string'/'' to 'string'/'uri'
+- :warning: the 'Data/allOf[subschema #1: AlternativePaymentsData -> subschema #1: Alternative payment method data]/SepaDirectDebit/allOf[subschema #1: SepaDirectDebitData -> subschema #1: SEPA Direct Debit data]/Email' request property type/format changed from 'string'/'' to 'string'/'email'
+-  added '#/components/schemas/AlternativePaymentMethodDeprecated' to the 'Method' request property 'anyOf' list
+-  the response property 'NextAction/value/oneOf[subschema #1: NextAction -> subschema #1: Alternative payment next action]/Type' became required for the status '200'
+-  the response property 'NextAction/value/oneOf[subschema #1: NextAction -> subschema #1: Alternative payment next action]/Url' became required for the status '200'
+
+
+## POST /api/connector/v1/payments/addCreditCard
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Net'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Tax'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/TaxRate'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Value'
+- :warning: removed the request property 'Category'
+
+
+## POST /api/connector/v1/payments/addExternal
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Net'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Tax'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/TaxRate'
+- :warning: removed the request property 'Amount/allOf[subschema #1: ExtendedAmountParameters -> subschema #1: Amount value]/Value'
+- :warning: removed the request property 'Category'
+
+
+## POST /api/connector/v1/payments/getAll
+- :warning: the response property 'Payments/items/Kind' became nullable for the status '200'
+- :warning: the response property 'Payments/items/Kind' became optional for the status '200'
+- :warning: the 'Payments/items/AccountingState' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'Payments/items/Kind' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'Payments/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/AccountingStateEnum' to the 'Payments/items/AccountingState' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/PaymentDataDiscriminatorEnum' to the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/PaymentKindEnum' to the 'Payments/items/Kind' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/PaymentStateEnum' to the 'Payments/items/State' response property 'allOf' list for the response status '200'
+-  removed the 'Canceled' enum value from the 'Payments/items/AccountingState' response property for the response status '200'
+-  removed the 'Canceled' enum value from the 'Payments/items/State' response property for the response status '200'
+-  removed the 'Chargeback' enum value from the 'Payments/items/Kind' response property for the response status '200'
+-  removed the 'ChargebackReversal' enum value from the 'Payments/items/Kind' response property for the response status '200'
+-  removed the 'Charged' enum value from the 'Payments/items/State' response property for the response status '200'
+-  removed the 'Closed' enum value from the 'Payments/items/AccountingState' response property for the response status '200'
+-  removed the 'CreditCard' enum value from the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response property for the response status '200'
+-  removed the 'External' enum value from the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response property for the response status '200'
+-  removed the 'Failed' enum value from the 'Payments/items/State' response property for the response status '200'
+-  removed the 'Ghost' enum value from the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response property for the response status '200'
+-  removed the 'Inactive' enum value from the 'Payments/items/AccountingState' response property for the response status '200'
+-  removed the 'Invoice' enum value from the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' response property for the response status '200'
+-  removed the 'Open' enum value from the 'Payments/items/AccountingState' response property for the response status '200'
+-  removed the 'Payment' enum value from the 'Payments/items/Kind' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'Payments/items/State' response property for the response status '200'
+-  removed the 'Refund' enum value from the 'Payments/items/Kind' response property for the response status '200'
+-  removed the 'Verifying' enum value from the 'Payments/items/State' response property for the response status '200'
+-  the response required property 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator' became read-only for the status '200'
+
+
+## POST /api/connector/v1/payments/refund
+- :warning: the 'Type' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/RefundTypeEnum' to the 'Type' response property 'allOf' list for the response status '200'
+-  removed the 'AlternativePayment' enum value from the 'Type' response property for the response status '200'
+-  removed the 'CreditCardPayment' enum value from the 'Type' response property for the response status '200'
+
+
+
 # 2024-11-29
 
 
