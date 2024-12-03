@@ -1,3 +1,11 @@
+# 2024-12-03
+
+
+## POST /api/connector/v1/bills/update
+-  endpoint added
+
+
+
 # 2024-11-30
 
 
