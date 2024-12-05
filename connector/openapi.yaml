@@ -9636,7 +9636,7 @@ paths:
       tags:
         - Products
       summary: Update product pricing
-      description: 'Updates the prices for a given product. You can make multiple price updates with one API call, and for each one specify the price amount per [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units) and the time interval for which it applies. The price will be updated for all service time units that the specified time interval intersects. It is not permitted to update historical prices older than specified by `EditableHistoryInterval`.'
+      description: 'Updates the prices for a given product. You can make multiple price updates with one API call, and for each one specify the price amount per [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units) and the time interval for which it applies. The price will be updated for all service time units that the specified time interval intersects. It is not permitted to update historical prices older than specified by `EditableHistoryInterval`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: products_updatePrice
       requestBody:
         content:
@@ -19095,6 +19095,7 @@ components:
         - IsActive
         - LastTimeUnitStartUtc
         - PickupDistribution
+        - ReleaseStrategy
         - State
         - UpdatedUtc
       type: object
@@ -19221,6 +19222,19 @@ components:
           minLength: 1
           type: string
           description: Unique number for a specific availability block within the Mews system.
+        ReleaseStrategy:
+          title: Release strategy
+          allOf:
+            - $ref: '#/components/schemas/ReleaseStrategyEnum'
+          description: "The strategy for automatic release of the availability block.\n\nFixedRelease (The availability block is released at a fixed time.)\n\nRollingRelease (Each availability adjustment is released at a fixed offset from its start.)\n\nNone (The availability block is not automatically released.)"
+          x-enumNames:
+            - FixedRelease
+            - RollingRelease
+            - None
+          x-enumDescriptions:
+            - The availability block is released at a fixed time.
+            - Each availability adjustment is released at a fixed offset from its start.
+            - The availability block is not automatically released.
       additionalProperties: false
       x-schema-id: AvailabilityBlock
     AvailabilityBlockAddParameters:
@@ -25639,11 +25653,11 @@ components:
           format: uuid
         RelativeAdjustment:
           type: number
-          description: Specific amount which shows the difference between this rate and the base rate.
+          description: Relative amount which shows the difference between this rate and the base rate.
           format: double
         AbsoluteAdjustment:
           type: number
-          description: Relative amount which shows the difference between this rate and the base rate.
+          description: Specific amount which shows the difference between this rate and the base rate.
           format: double
       additionalProperties: false
       x-schema-id: DependentRatePricingParameters
@@ -37409,10 +37423,10 @@ components:
         - GroupId
         - Id
         - IsActive
+        - IsBaseRate
         - IsEnabled
         - IsPublic
         - Names
-        - Pricing
         - ServiceId
         - Type
         - UpdatedUtc
@@ -37435,8 +37449,9 @@ components:
           description: Unique identifier of the base `Rate`.
           format: uuid
           nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use DependentRatePricing.
+        IsBaseRate:
+          type: boolean
+          description: Whether the rate is a base rate.
         BusinessSegmentId:
           type: string
           description: Unique identifier of the `Business Segment`.
@@ -37812,6 +37827,7 @@ components:
         - GroupId
         - Id
         - IsActive
+        - IsBaseRate
         - IsEnabled
         - IsPublic
         - Names
@@ -37837,8 +37853,9 @@ components:
           description: Unique identifier of the base `Rate`.
           format: uuid
           nullable: true
-          deprecated: true
-          x-deprecatedMessage: Use BaseRatePricing.
+        IsBaseRate:
+          type: boolean
+          description: Whether the rate is a base rate.
         BusinessSegmentId:
           type: string
           description: Unique identifier of the `Business Segment`.

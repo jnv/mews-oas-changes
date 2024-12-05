@@ -1,3 +1,44 @@
+# 2024-12-05
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the required property 'AvailabilityBlocks/items/ReleaseStrategy' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the required property 'AvailabilityBlocks/items/ReleaseStrategy' to the response with the '200' status
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the required property 'AvailabilityBlocks/items/ReleaseStrategy' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/add
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/getAll
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/rules/getAll
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/getAll
+-  added the required property 'Rates/items/IsBaseRate' to the response with the '200' status
+
+
+
 # 2024-12-03
 
 
