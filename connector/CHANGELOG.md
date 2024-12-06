@@ -1,3 +1,15 @@
+# 2024-12-06
+
+
+## POST /api/connector/v1/routingRules/add
+-  added the new optional request property 'RoutingRules/items/AssignmentTargetType'
+
+
+## POST /api/connector/v1/routingRules/update
+-  added the new optional request property 'RoutingRuleUpdates/items/AssignmentTargetType'
+
+
+
 # 2024-12-05
 
 

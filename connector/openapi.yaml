@@ -43037,6 +43037,10 @@ components:
           $ref: '#/components/schemas/RoutingRuleApplicability'
         RouteType:
           $ref: '#/components/schemas/RoutingRuleRouteType'
+        AssignmentTargetType:
+          anyOf:
+            - $ref: '#/components/schemas/RoutingRuleRouteType'
+          nullable: true
         SelectedStayItems:
           title: RoutingRuleStayItemsAddParameters
           allOf:
@@ -43255,6 +43259,12 @@ components:
             - $ref: '#/components/schemas/RoutingRuleApplicability'
           nullable: true
         RouteType:
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          anyOf:
+            - $ref: '#/components/schemas/RoutingRuleRouteType'
+          nullable: true
+        AssignmentTargetType:
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
