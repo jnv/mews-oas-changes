@@ -1,3 +1,20 @@
+# 2024-12-07
+
+
+## POST /api/connector/v1/payments/addAlternative
+- :warning: the response property 'NextAction' became nullable for the status '200'
+- :warning: the 'NextAction' response's property type/format changed from 'object'/'' to ''/'' for status '200'
+- :warning: removed the optional property 'NextAction/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'NextAction/value' from the response with the '200' status
+-  added '#/components/schemas/NextAction' to the 'NextAction' response property 'allOf' list for the response status '200'
+-  the response property 'PaymentId' became required for the status '200'
+
+
+## POST /api/connector/v1/rates/set
+-  endpoint added
+
+
+
 # 2024-12-06
 
 

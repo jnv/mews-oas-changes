@@ -10181,6 +10181,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/rates/set:
+    post:
+      tags:
+        - Rates
+      summary: Set rates
+      description: 'Adds new Rates or updates existing ones if they are matched by `Id` or `ExternalIdentifier` property. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      operationId: rates_set
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateSetParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":true,"Type":"Public","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Base rate"},"ShortNames":{"en-US":"BR"},"ExternalNames":{"en-US":"External base rate"},"Descriptions":{"en-US":"Base rate description."},"PricingType":"BaseRatePricing","Pricing":{"BaseRatePricing":{"Amount":{"Currency":"EUR","NetValue":100.0},"NegativeOccupancyAdjustment":0.0,"ExtraOccupancyAdjustment":0.0}}},{"ExternalIdentifier":"55698","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":false,"Type":"Private","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Dependent rate"},"ShortNames":{"en-US":"DR"},"ExternalNames":{"en-US":"External dependent rate"},"Descriptions":{"en-US":"Dependent rate description."},"PricingType":"DependentRatePricing","Pricing":{"DependentRatePricing":{"BaseRateId":"00392166-3869-4174-b491-cf0162524a38","RelativeAdjustment":0.25,"AbsoluteAdjustment":10.0}}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateSetResult'
+              example: {"Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":null,"IsBaseRate":true,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":true,"IsPublic":true,"Type":"Public","Name":null,"Names":{"en-US":"Base rate"},"ShortName":"BR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External base rate"},"Description":{"en-US":"Base rate description."},"ExternalIdentifier":null},{"Id":"8eb1f163-bce7-49ca-a62c-c9261951c85f","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":"00392166-3869-4174-b491-cf0162524a38","IsBaseRate":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":false,"IsPublic":false,"Type":"Private","Name":null,"Names":{"en-US":"Dependent rate"},"ShortName":"DR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External dependent rate"},"Description":{"en-US":"Dependent rate description."},"ExternalIdentifier":"55698"}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/rates/delete:
     post:
       tags:
@@ -18793,6 +18857,8 @@ components:
       x-schema-id: AlternativePaymentParameters
     AlternativePaymentResult:
       title: AlternativePaymentResult
+      required:
+        - PaymentId
       type: object
       properties:
         PaymentId:
@@ -18800,17 +18866,11 @@ components:
           description: Unique identifier of the created payment.
           format: uuid
         NextAction:
-          title: NextAction
-          type: object
-          properties:
-            discriminator:
-              $ref: '#/components/schemas/NextActionType'
-            value:
-              oneOf:
-                - $ref: '#/components/schemas/NextAction'
+          title: Alternative payment next action
+          allOf:
+            - $ref: '#/components/schemas/NextAction'
           description: Next action to take in order to complete the payment.
-          x-coproduct: true
-          x-schema-id: AlternativePaymentResultNextActionCoproductOfNextActionType
+          nullable: true
       additionalProperties: false
       x-schema-id: AlternativePaymentResult
     AlternativePaymentsData:
@@ -32850,25 +32910,33 @@ components:
     NextAction:
       title: Alternative payment next action
       required:
-        - Type
-        - Url
+        - Discriminator
+        - Value
       type: object
       properties:
-        Type:
-          minLength: 1
-          type: string
-          description: Determines type of value.
-        Url:
+        Discriminator:
+          title: Payment next action discriminator
+          allOf:
+            - $ref: '#/components/schemas/NextActionTypeEnum'
+          description: "Determines type of value.\n\nRedirectToUrl (Redirect customer to a URL where they can complete their payment.)"
+          x-enumNames:
+            - RedirectToUrl
+          x-enumDescriptions:
+            - Redirect customer to a URL where they can complete their payment.
+        Value:
           minLength: 1
           type: string
           description: String value depending on `Type`.
       additionalProperties: false
       x-schema-id: NextAction
-    NextActionType:
+    NextActionTypeEnum:
       title: Payment next action discriminator
       enum:
         - RedirectToUrl
       type: string
+      description: "\n\nRedirectToUrl (Redirect customer to a URL where they can complete their payment.)"
+      x-enumNames:
+        - RedirectToUrl
       x-enumDescriptions:
         - Redirect customer to a URL where they can complete their payment.
     ObjectData:
@@ -37451,7 +37519,7 @@ components:
           nullable: true
         IsBaseRate:
           type: boolean
-          description: Whether the rate is a base rate.
+          description: Indicates if this is a base rate.
         BusinessSegmentId:
           type: string
           description: Unique identifier of the `Business Segment`.
@@ -37459,13 +37527,13 @@ components:
           nullable: true
         IsActive:
           type: boolean
-          description: Whether the rate is still active.
+          description: Indicates if this rate is active.
         IsEnabled:
           type: boolean
-          description: Whether the rate is currently available to customers.
+          description: Indicates if this rate is currently available to customers.
         IsPublic:
           type: boolean
-          description: Whether the rate is publicly available.
+          description: Indicates if this rate is publicly available.
         Type:
           title: Rate type
           allOf:
@@ -38443,6 +38511,150 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateResult
+    RateSetData:
+      title: Set rate parameters
+      required:
+        - Names
+        - Pricing
+        - PricingType
+        - RateGroupId
+        - ServiceId
+        - Type
+      type: object
+      properties:
+        Id:
+          type: string
+          description: 'Unique identifier of the rate. If it matches an existing rate, that rate will be updated. If no match is found, an error will be returned.'
+          format: uuid
+          nullable: true
+        ExternalIdentifier:
+          maxLength: 255
+          type: string
+          description: 'Unique identifier of the rate in the external system. If `Id` is not provided and `ExternalIdentifier` matches an existing rate, the corresponding rate will be updated. If no match is found, a new rate will be created.'
+          nullable: true
+        ServiceId:
+          type: string
+          description: Unique identifier of the service. Ignored in case of updating an existing rate.
+          format: uuid
+        RateGroupId:
+          type: string
+          description: Unique identifier of the rate group under which rate is assigned. Ignored in case of updating an existing rate.
+          format: uuid
+        IsEnabled:
+          type: boolean
+          description: Whether the rate is available to customers. `false` will be used as a default when not provided.
+          nullable: true
+        Type:
+          title: Rate Add Type
+          allOf:
+            - $ref: '#/components/schemas/RateAddTypeEnum'
+          description: "Type of the rate.\n\nPublic\n\nPrivate"
+          x-enumNames:
+            - Public
+            - Private
+          x-enumDescriptions:
+            - ''
+            - ''
+        AccountingCategoryId:
+          type: string
+          description: Unique identifier of the accounting category the rate belongs to.
+          format: uuid
+          nullable: true
+        BusinessSegmentId:
+          type: string
+          description: Unique identifier of the business segment.
+          format: uuid
+          nullable: true
+        Names:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the name of the rate.
+          x-schema-id: LocalizedStrings
+        ShortNames:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the short name of the rate.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        ExternalNames:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the external name of the rate.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        Descriptions:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the description.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        PricingType:
+          allOf:
+            - $ref: '#/components/schemas/RatePricingDiscriminatorEnum'
+          description: "Rate pricing type. Must match existing pricing type in case of update.\n\nBaseRatePricing\n\nDependentRatePricing"
+        Pricing:
+          title: Rate pricing data parameters
+          allOf:
+            - $ref: '#/components/schemas/RatePricingDataParameters'
+          description: Contains additional data about pricing of the rate.
+      additionalProperties: false
+      x-schema-id: RateSetData
+    RateSetParameters:
+      title: Set rates parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Rates
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        Rates:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/RateSetData'
+          description: Rates to be added or updated.
+      additionalProperties: false
+      x-schema-id: RateSetParameters
+    RateSetResult:
+      title: Rate set result
+      type: object
+      properties:
+        Rates:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+          description: Rates that were added or updated.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: RateSetResult
     RateTypeEnum:
       title: Rate type
       enum:
