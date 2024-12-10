@@ -1,3 +1,38 @@
+# 2024-12-10
+
+
+## POST /api/connector/v1/identityDocuments/add
+-  endpoint added
+
+
+## POST /api/connector/v1/identityDocuments/clear
+-  endpoint added
+
+
+## POST /api/connector/v1/identityDocuments/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/identityDocuments/update
+-  endpoint added
+
+
+## POST /api/connector/v1/payments/addExternal
+- :warning: the request property 'AccountId' became not nullable
+- :warning: the request property 'AccountId' became required
+
+
+## POST /api/connector/v1/payments/getAll
+-  the response property 'Payments/items/AccountId' became required for the status '200'
+-  the response property 'Payments/items/Amount' became required for the status '200'
+-  the response property 'Payments/items/OriginalAmount' became required for the status '200'
+
+
+## POST /api/connector/v1/payments/refund
+-  the response property 'Amount' became required for the status '200'
+
+
+
 # 2024-12-07
 
 
