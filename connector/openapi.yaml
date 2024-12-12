@@ -10445,7 +10445,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RatePricingParameters'
+              $ref: '#/components/schemas/RatePricingFilterParameters'
             example:
               ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
               AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
@@ -37739,7 +37739,7 @@ components:
       type: string
       description: ''
     ProductPricingFilterParameters:
-      title: Product pricing parameters
+      title: Product pricing filter parameters
       required:
         - AccessToken
         - Client
@@ -38742,8 +38742,6 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - FirstTimeUnitStartUtc
-        - LastTimeUnitStartUtc
         - PriceUpdates
         - RateId
       type: object
@@ -38760,20 +38758,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        FirstTimeUnitStartUtc:
-          minLength: 1
-          type: string
-          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
-          format: date-time
-        LastTimeUnitStartUtc:
-          minLength: 1
-          type: string
-          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
-          format: date-time
         RateId:
+          minLength: 1
           type: string
-          description: 'Unique identifier of the base [Rate](https://mews-systems.gitbook.io/connector-api/operations/#rate) to update.'
-          format: uuid
+          description: Unique identifier of the `Rate`.
+          x-schema-id: HybridIdentifier
         ProductId:
           type: string
           description: Unique identifier of the `Product`.
@@ -38785,7 +38774,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RatePriceUpdate'
-          description: Price updates.
+          description: Price adjustments for specific time intervals.
       additionalProperties: false
       x-schema-id: RatePriceUpdateParameters
     RatePricing:
@@ -38921,8 +38910,8 @@ components:
       x-enumDescriptions:
         - ''
         - ''
-    RatePricingParameters:
-      title: Rate pricing parameters
+    RatePricingFilterParameters:
+      title: Rate pricing filter parameters
       required:
         - AccessToken
         - Client
@@ -38944,6 +38933,15 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        RateId:
+          type: string
+          description: Unique identifier of the `Rate`.
+          format: uuid
+        ProductId:
+          type: string
+          description: Unique identifier of the `Product`.
+          format: uuid
+          nullable: true
         FirstTimeUnitStartUtc:
           minLength: 1
           type: string
@@ -38954,17 +38952,8 @@ components:
           type: string
           description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s time unit: 367 hours if hours, 367 days if days, or 24 months if months.'
           format: date-time
-        RateId:
-          type: string
-          description: 'Unique identifier of the [Rate](https://mews-systems.gitbook.io/connector-api/operations/#rate) whose prices should be returned.'
-          format: uuid
-        ProductId:
-          type: string
-          description: Unique identifier of the `Product`.
-          format: uuid
-          nullable: true
       additionalProperties: false
-      x-schema-id: RatePricingParameters
+      x-schema-id: RatePricingFilterParameters
     RateRestrictionResult:
       title: Rate restriction result
       required:

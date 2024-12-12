@@ -1,3 +1,14 @@
+# 2024-12-12
+
+
+## POST /api/connector/v1/rates/updatePrice
+- :warning: the 'RateId' request property's minLength was increased from '0' to '1'
+- :warning: the 'RateId' request property type/format changed from 'string'/'uuid' to 'string'/''
+- :warning: removed the request property 'FirstTimeUnitStartUtc'
+- :warning: removed the request property 'LastTimeUnitStartUtc'
+
+
+
 # 2024-12-10
 
 
