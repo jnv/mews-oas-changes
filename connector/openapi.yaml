@@ -6206,7 +6206,7 @@ paths:
       tags:
         - Identity documents
       summary: Get all identity documents
-      description: 'Returns all identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all identity documents for the specified customers, with additional filtering options available. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: identityDocuments_getAll
       requestBody:
         content:
@@ -6331,7 +6331,7 @@ paths:
       tags:
         - Identity documents
       summary: Clear identity documents
-      description: 'Deletes all identity documents for provided `Customers`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Deletes all identity documents for the specified customers. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: identityDocuments_clear
       requestBody:
         content:
@@ -17372,7 +17372,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the Chains. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         AccountNoteIds:
           maxItems: 1000
@@ -18531,7 +18531,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the Chains. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         AccountIds:
           maxItems: 1000
@@ -29709,7 +29709,7 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifiers of the customer for whom documents will be deleted.
+          description: Unique identifiers of the `Customer` for whom documents will be deleted.
       additionalProperties: false
       x-schema-id: IdentityDocumentClearParameters
     IdentityDocumentDeleteParameters:
@@ -29781,7 +29781,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the Chains. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         IdentityDocumentIds:
           maxItems: 100
@@ -29990,11 +29990,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IdentityDocumentV20241025'
-          description: Updated identity documents of customers.
+          description: Modified identity documents.
       additionalProperties: false
       x-schema-id: IdentityDocumentWriteResult
     IdentityDocumentsAddData:
-      title: Identity documents parameters
+      title: Identity document parameters
       required:
         - CustomerId
         - Number
@@ -30080,7 +30080,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IdentityDocumentsAddData'
-          description: Identity documents to be added
+          description: Identity documents to be added.
       additionalProperties: false
       x-schema-id: IdentityDocumentsAddParameters
     ImageResizeModeEnum:
