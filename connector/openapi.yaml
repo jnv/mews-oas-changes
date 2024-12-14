@@ -2085,7 +2085,7 @@ paths:
     post:
       tags:
         - Bills
-      summary: Update Bills
+      summary: Update bills
       description: 'Updates one or more existing bills in the system. Closed bills cannot be updated. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: bills_update
       requestBody:
@@ -2093,7 +2093,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleBillsUpdateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillsUpdates":[{"BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","OwnerId":{"Value":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"},"AssociatedAccountId":{"Value":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d"}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillsUpdates":[{"BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","AccountId":{"Value":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"},"AssociatedAccountIds":{"Value":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"]}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -2144,6 +2144,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/bills/getAll:
     post:
       tags:
@@ -19112,6 +19113,22 @@ components:
       additionalProperties: false
       description: 'Has same structure as [Array of strings update value](https://mews-systems.gitbook.io/connector-api/operations/_objects#array-of-strings-update-value).'
       x-schema-id: AssignedRateIds
+    AssociatedAccountIdsUpdate:
+      title: Associated account IDs update parameters
+      type: object
+      properties:
+        Value:
+          maxItems: 1
+          minItems: 0
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `Customer` or `Company` that are associated to the bill. Set to `null` to remove all associated accounts. Note that only single associated account is currently supported.
+          nullable: true
+      additionalProperties: false
+      description: 'Has same structure as [Array of strings update value](https://mews-systems.gitbook.io/connector-api/operations/_objects#array-of-strings-update-value).'
+      x-schema-id: AssociatedAccountIdsUpdate
     AvailabilityAdjustment:
       title: Availability adjustment
       required:
@@ -20755,7 +20772,7 @@ components:
         - Default; the bill has been paid in full; only applicable after the bill is closed.
         - Bill has not been paid in full but an invoice has been issued to request payment.
     BillUpdateParameters:
-      title: BillUpdateParameters
+      title: Bill update parameters
       required:
         - BillId
       type: object
@@ -20764,15 +20781,16 @@ components:
           type: string
           description: Unique identifier of the bill to update.
           format: uuid
-        OwnerId:
+        AccountId:
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
-          description: Unique identifier of the owner to whom the bill was assigned (or null if the owner should not be updated).
+          description: Unique identifier of the account (`Customer` or `Company`) the bill is issued to (or null if the account should not be updated).
           nullable: true
-        AssociatedAccountId:
+        AssociatedAccountIds:
+          title: Associated account IDs update parameters
           allOf:
-            - $ref: '#/components/schemas/GuidNullableUpdateValue'
-          description: Unique identifier of the account that has a possible link with the owner of the bill (or null if the account should not be updated).
+            - $ref: '#/components/schemas/AssociatedAccountIdsUpdate'
+          description: Unique identifiers of the `Customer` or `Company` that are associated to the bill (or null if the account should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: BillUpdateParameters
@@ -32282,7 +32300,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BillUpdateParameters'
-          description: Bills to be updated.
+          description: Information about bills to be updated.
       additionalProperties: false
       x-schema-id: MultipleBillsUpdateParameters
     MultipleCompanyContractAddParameters:

@@ -1,3 +1,14 @@
+# 2024-12-14
+
+
+## POST /api/connector/v1/bills/update
+- :warning: removed the request property 'BillsUpdates/items/AssociatedAccountId'
+- :warning: removed the request property 'BillsUpdates/items/OwnerId'
+-  added the new optional request property 'BillsUpdates/items/AccountId'
+-  added the new optional request property 'BillsUpdates/items/AssociatedAccountIds'
+
+
+
 # 2024-12-12
 
 
