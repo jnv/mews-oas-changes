@@ -9089,22 +9089,14 @@ paths:
       tags:
         - Payments
       summary: Refund payment
-      description: 'Refunds a specified payment. Note only credit card or alternative payments can be refunded. The refund is itself a payment, so to get more information about the refund, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/#get-all-payments) with the identifier from `RefundId`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: "Refunds a specified payment on a specified account. A reason must be provided. Optionally, specify an amount for a partial refund. This operation supports [Portfolio Access Tokens](../guidelines/multi-property.md).\r\n                                                   \r\n* **Payment types**: Only `CreditCardPayment` and `AlternativePayment` can be refunded. Other payment types will fail.\r\n* **Refund information**: The refund is a payment itself. To get more information, use [Get all payments](payments.md#get-all-payments) with the `RefundId` as the `PaymentId`.\r\n* **Potential failures**: This operation initiates the refund process, but refunds can fail if the payment is in a `Pending` state and fails processing. To check the status of a pending payment, including refunds, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments)."
       operationId: payments_refund
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PaymentRefundParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              PaymentId: f6313945-94c1-4e27-b402-031c2a8c989f
-              AccountId: 35d4b117-4e60-44a3-9580-c582117eff98
-              Reason: Sample reason
-              ValueToRefund: 110.5
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentId":"f6313945-94c1-4e27-b402-031c2a8c989f","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Reason":"Sample reason","ValueToRefund":110.5,"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -9112,13 +9104,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRefundResult'
-              example:
-                PaymentId: f6313945-94c1-4e27-b402-031c2a8c989f
-                RefundId: 1d65c488-111a-4719-b3ea-e1a9969c6069
-                Type: CreditCardPayment
-                Amount:
-                  Currency: GBP
-                  Value: 100
+              example: {"PaymentId":"f6313945-94c1-4e27-b402-031c2a8c989f","RefundId":"1d65c488-111a-4719-b3ea-e1a9969c6069","Type":"CreditCardPayment","Amount":{"Currency":"GBP","Value":100.0},"State":"Pending"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20428,9 +20414,9 @@ components:
           description: Second last name of the customer.
           nullable: true
         TitlePrefix:
-          anyOf:
+          allOf:
             - $ref: '#/components/schemas/Title'
-          description: Title prefix of the customer.
+          description: "Title prefix of the customer.\n\nMister (Mr.)\n\nMiss (Ms.)\n\nMisses (Mrs.)"
           nullable: true
       additionalProperties: false
       x-schema-id: BillCustomerData
@@ -24127,9 +24113,9 @@ components:
           type: string
           description: Number of the customer.
         Title:
-          anyOf:
+          allOf:
             - $ref: '#/components/schemas/Title'
-          description: Title of the customer.
+          description: "Title of the customer.\n\nMister (Mr.)\n\nMiss (Ms.)\n\nMisses (Mrs.)"
           nullable: true
         Sex:
           allOf:
@@ -24417,8 +24403,9 @@ components:
           description: Sex of the customer.
           nullable: true
         Title:
-          type: string
-          description: Title prefix of the customer.
+          allOf:
+            - $ref: '#/components/schemas/Title'
+          description: "Title prefix of the customer.\n\nMister (Mr.)\n\nMiss (Ms.)\n\nMisses (Mrs.)"
           nullable: true
         PreferredLanguageCode:
           type: string
@@ -35569,6 +35556,7 @@ components:
         - Amount
         - PaymentId
         - RefundId
+        - State
         - Type
       type: object
       properties:
@@ -35596,6 +35584,23 @@ components:
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
           description: Absolute value of the fee.
+        State:
+          title: Payment state
+          allOf:
+            - $ref: '#/components/schemas/PaymentStateEnum'
+          description: "Payment state of the refund.\n\nCharged\n\nCanceled\n\nPending\n\nFailed\n\nVerifying"
+          x-enumNames:
+            - Charged
+            - Canceled
+            - Pending
+            - Failed
+            - Verifying
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
       additionalProperties: false
       x-schema-id: PaymentRefundResult
     PaymentRequest:
@@ -46271,6 +46276,17 @@ components:
         - Miss
         - Misses
       type: string
+      description: "Type of the title prefix of the customer.\r\n\r\nNote that the value should not be used as-is, but localized. For example, the value `Misses` should be displayed as `Mrs.` in English and `Fr.` in German.\n\nMister (Mr.)\n\nMiss (Ms.)\n\nMisses (Mrs.)"
+      x-enumNames:
+        - Mister
+        - Miss
+        - Misses
+      x-enumDescriptions:
+        - Mr.
+        - Ms.
+        - Mrs.
+      x-schema-id: Title
+      x-showDescription: true
     TokenizedCreditCardParameters:
       title: TokenizedCreditCardParameters
       required:
