@@ -2086,7 +2086,7 @@ paths:
       tags:
         - Bills
       summary: Update bills
-      description: 'Updates one or more existing bills in the system. Closed bills cannot be updated. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Updates one or more existing bills in the system. Closed bills cannot be updated. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: bills_update
       requestBody:
         content:
@@ -2529,7 +2529,7 @@ paths:
       tags:
         - Business segments
       summary: Get all business segments
-      description: 'Returns all business segments. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all business segments. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: businessSegments_getAll
       requestBody:
         content:
@@ -2688,7 +2688,7 @@ paths:
       tags:
         - Cancellation policies
       summary: Get cancellation policies by reservations
-      description: 'Gets cancellation policies for enterprise grouped by reservation for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Gets cancellation policies for enterprise grouped by reservation for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: cancellationPolicies_getByReservations
       requestBody:
         content:
@@ -2752,7 +2752,7 @@ paths:
       tags:
         - Cancellation policies
       summary: Get cancellation policies by rates
-      description: 'Gets cancellation policies for enterprise grouped by rate for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Gets cancellation policies for enterprise grouped by rate for granular cancellation policies flow. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: cancellationPolicies_getByRates
       requestBody:
         content:
@@ -2904,29 +2904,14 @@ paths:
       tags:
         - Cashiers
       summary: Get all cashiers
-      description: "Returns all cashiers in the enterprise.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      description: 'Returns all cashiers. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
       operationId: cashiers_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CashierParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              Ids:
-                - 9a36e3fa-2299-474b-a8a2-5ea4da317abc
-              UpdatedUtc:
-                StartUtc: '2023-10-01T00:00:00Z'
-                EndUtc: '2023-10-31T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Ids":["9a36e3fa-2299-474b-a8a2-5ea4da317abc"],"UpdatedUtc":{"StartUtc":"2023-10-01T00:00:00Z","EndUtc":"2023-10-31T00:00:00Z"},"ActivityStates":["Active"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":10}}
       responses:
         '200':
           description: OK
@@ -2934,15 +2919,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CashierResult'
-              example:
-                Cashiers:
-                  - Id: 9a36e3fa-2299-474b-a8a2-5ea4da317abc
-                    EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    IsActive: true
-                    Name: Main Cashier
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                Cursor: 9a36e3fa-2299-474b-a8a2-5ea4da317abc
+              example: {"Cashiers":[{"Id":"9a36e3fa-2299-474b-a8a2-5ea4da317abc","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Main Cashier","CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}],"Cursor":"0b9560fb-055d-47d3-a6d4-e579c44ca558"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5898,7 +5875,7 @@ paths:
       tags:
         - Enterprises
       summary: Get all enterprises
-      description: 'Returns all enterprises within scope of the `Access Token`, optionally filtered by enterprise identifiers and external identifiers. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all enterprises within scope of the `Access Token`, optionally filtered by enterprise identifiers and external identifiers. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: enterprises_getAll
       requestBody:
         content:
@@ -6207,7 +6184,7 @@ paths:
       tags:
         - Identity documents
       summary: Get all identity documents
-      description: 'Returns all identity documents for the specified customers, with additional filtering options available. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all identity documents for the specified customers, with additional filtering options available. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: identityDocuments_getAll
       requestBody:
         content:
@@ -6270,7 +6247,7 @@ paths:
       tags:
         - Identity documents
       summary: Delete identity documents
-      description: 'Deletes specified identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Deletes specified identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: identityDocuments_delete
       requestBody:
         content:
@@ -6332,7 +6309,7 @@ paths:
       tags:
         - Identity documents
       summary: Clear identity documents
-      description: 'Deletes all identity documents for the specified customers. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Deletes all identity documents for the specified customers. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: identityDocuments_clear
       requestBody:
         content:
@@ -6394,7 +6371,7 @@ paths:
       tags:
         - Identity documents
       summary: Update identity documents
-      description: 'Updates specified identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Updates specified identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: identityDocuments_update
       requestBody:
         content:
@@ -6457,7 +6434,7 @@ paths:
       tags:
         - Identity documents
       summary: Add identity documents
-      description: 'Adds identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Adds identity documents. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: identityDocuments_add
       requestBody:
         content:
@@ -8097,7 +8074,7 @@ paths:
       tags:
         - Order items
       summary: Get all order items
-      description: 'Returns all order items. At least one of the `OrderItemIds`, `ServiceOrderIds`, `ServiceIds`, `BillIds`, `CreatedUtc`, `UpdatedUtc`, `ClosedUtc` filters must be specified in the request. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all order items. At least one of the `OrderItemIds`, `ServiceOrderIds`, `ServiceIds`, `BillIds`, `CreatedUtc`, `UpdatedUtc`, `ClosedUtc` filters must be specified in the request. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: orderItems_getAll
       requestBody:
         content:
@@ -9089,7 +9066,7 @@ paths:
       tags:
         - Payments
       summary: Refund payment
-      description: "Refunds a specified payment on a specified account. A reason must be provided. Optionally, specify an amount for a partial refund. This operation supports [Portfolio Access Tokens](../guidelines/multi-property.md).\r\n                                                   \r\n* **Payment types**: Only `CreditCardPayment` and `AlternativePayment` can be refunded. Other payment types will fail.\r\n* **Refund information**: The refund is a payment itself. To get more information, use [Get all payments](payments.md#get-all-payments) with the `RefundId` as the `PaymentId`.\r\n* **Potential failures**: This operation initiates the refund process, but refunds can fail if the payment is in a `Pending` state and fails processing. To check the status of a pending payment, including refunds, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments)."
+      description: "Refunds a specified payment on a specified account. A reason must be provided. Optionally, specify an amount for a partial refund. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).\r\n                                                   \r\n* **Payment types**: Only `CreditCardPayment` and `AlternativePayment` can be refunded. Other payment types will fail.\r\n* **Refund information**: The refund is a payment itself. To get more information, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) with the `RefundId` as the `PaymentId`.\r\n* **Potential failures**: This operation initiates the refund process, but refunds can fail if the payment is in a `Pending` state and fails processing. To check the status of a pending payment, including refunds, use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments)."
       operationId: payments_refund
       requestBody:
         content:
@@ -9231,7 +9208,7 @@ paths:
       tags:
         - Payments
       summary: Add external payment
-      description: "Adds a new external payment to a bill of the specified customer. An external payment represents a payment that is tracked outside of the system. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).\r\n\r\n**Prerequisites:** The external payment type must be enabled by the property in order to accept such payments in their Mews environment. Use [Get configuration](https://mews-systems.gitbook.io/connector-api/operations/configuration#get-configuration) to check which external payment types are supported."
+      description: "Adds a new external payment to a bill of the specified customer. An external payment represents a payment that is tracked outside of the system. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).\r\n\r\n**Prerequisites:** The external payment type must be enabled by the property in order to accept such payments in their Mews environment. Use [Get configuration](https://mews-systems.gitbook.io/connector-api/operations/configuration#get-configuration) to check which external payment types are supported."
       operationId: payments_addExternal
       requestBody:
         content:
@@ -9686,7 +9663,7 @@ paths:
       tags:
         - Products
       summary: Get product pricing
-      description: 'Returns prices for a given product for a specified time interval. UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 100 hours if hours, 100 days if days, or 24 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units). This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns prices for a given product for a specified time interval. UTC timestamps must correspond to the start boundary of a time unit, e.g. 00:00 converted to UTC for a time unit of "Day". Other timestamps are not permitted. The __maximum size of time interval__ depends on the service''s time unit: 100 hours if hours, 100 days if days, or 24 months if months. For more information about time units, see [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units). This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: products_getPricing
       requestBody:
         content:
@@ -9750,7 +9727,7 @@ paths:
       tags:
         - Products
       summary: Update product pricing
-      description: 'Updates the prices for a given product. You can make multiple price updates with one API call, and for each one specify the price amount per [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units) and the time interval for which it applies. The price will be updated for all service time units that the specified time interval intersects. It is not permitted to update historical prices older than specified by `EditableHistoryInterval`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Updates the prices for a given product. You can make multiple price updates with one API call, and for each one specify the price amount per [Time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units) and the time interval for which it applies. The price will be updated for all service time units that the specified time interval intersects. It is not permitted to update historical prices older than specified by `EditableHistoryInterval`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: products_updatePrice
       requestBody:
         content:
@@ -9812,7 +9789,7 @@ paths:
       tags:
         - Products
       summary: Get all products
-      description: 'Returns all products offered together with the specified services. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all products offered together with the specified services. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: products_getAll
       requestBody:
         content:
@@ -9962,7 +9939,7 @@ paths:
       tags:
         - Products
       summary: Delete products
-      description: 'Deletes specified products. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Deletes specified products. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: products_delete
       requestBody:
         content:
@@ -10093,7 +10070,7 @@ paths:
       tags:
         - Rates
       summary: Get all rates
-      description: 'Returns all rates (pricing setups) of the default service provided by the enterprise. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all rates (pricing setups) of the default service provided by the enterprise. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: rates_getAll
       requestBody:
         content:
@@ -10300,7 +10277,7 @@ paths:
       tags:
         - Rates
       summary: Set rates
-      description: 'Adds new Rates or updates existing ones if they are matched by `Id` or `ExternalIdentifier` property. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Adds new Rates or updates existing ones if they are matched by `Id` or `ExternalIdentifier` property. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: rates_set
       requestBody:
         content:
@@ -10364,7 +10341,7 @@ paths:
       tags:
         - Rates
       summary: Delete rates
-      description: 'Deletes specified rates. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Deletes specified rates. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: rates_delete
       requestBody:
         content:
@@ -11006,7 +10983,7 @@ paths:
       tags:
         - Reservations
       summary: Price reservations
-      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/)."
+      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
       operationId: reservations_price
       requestBody:
         content:
@@ -11430,7 +11407,7 @@ paths:
       tags:
         - Reservations
       summary: Confirm reservation
-      description: 'Marks all specified reservations as `Confirmed`. Succeeds only if all confirmation conditions are met (the reservations have the `Optional` state). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Marks all specified reservations as `Confirmed`. Succeeds only if all confirmation conditions are met (the reservations have the `Optional` state). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: reservations_confirm
       requestBody:
         content:
@@ -11848,7 +11825,7 @@ paths:
       tags:
         - Reservations
       summary: Add reservation companion
-      description: 'Adds a customer as a companion to the reservation. Succeeds only if there is space for the new companion (count of current companions is less than `AdultCount + ChildCount`). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Adds a customer as a companion to the reservation. Succeeds only if there is space for the new companion (count of current companions is less than `AdultCount + ChildCount`). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: reservations_addCompanion
       requestBody:
         content:
@@ -11915,7 +11892,7 @@ paths:
       tags:
         - Reservations
       summary: Delete reservation companion
-      description: 'Removes customer companionship from the reservation. Note that the customer profile stays untouched, only the relation between the customer and reservation is deleted. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Removes customer companionship from the reservation. Note that the customer profile stays untouched, only the relation between the customer and reservation is deleted. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: reservations_deleteCompanion
       requestBody:
         content:
@@ -14884,7 +14861,7 @@ paths:
       tags:
         - Service overbooking limits
       summary: Get all service overbooking limits
-      description: 'Returns all service overbooking limits. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all service overbooking limits. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: serviceOverbookingLimits_getAll
       requestBody:
         content:
@@ -14948,7 +14925,7 @@ paths:
       tags:
         - Service overbooking limits
       summary: Set service overbooking limits
-      description: 'Adds new service overbooking limits with the specified conditions. Past overbooking limits cannot be updated outside of `OperationalEditableHistoryInterval`. Care is needed to specify `FirstTimeUnitStartUtc` and `LastTimeUnitStartUtc` in the correct format - see [Datetimes](../guidelines/serialization.md#datetimes). This operation supports [Portfolio Access Tokens](../guidelines/multi-property.md).'
+      description: 'Adds new service overbooking limits with the specified conditions. Past overbooking limits cannot be updated outside of `OperationalEditableHistoryInterval`. Care is needed to specify `FirstTimeUnitStartUtc` and `LastTimeUnitStartUtc` in the correct format - see [Datetimes](https://mews-systems.gitbook.io/connector-api/guidelines/serialization#datetimes). This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: serviceOverbookingLimits_set
       requestBody:
         content:
@@ -15011,7 +14988,7 @@ paths:
       tags:
         - Service overbooking limits
       summary: Clear service overbooking limits
-      description: 'Deletes service overbooking limits that exactly match the specified conditions. This operation is intended to be used alongside `serviceOverbookingLimits/set`. The specified conditions must be met exactly. The time interval, however, does not need to correspond to an existing service overbooking limit in the system, instead the API uses a splicing algorithm to work out how to divide up any existing service overbooking limit to meet the specified time interval. Past overbooking limits cannot be cleared outside of `OperationalEditableHistoryInterval`. Care is needed to specify `FirstTimeUnitStartUtc` and `LastTimeUnitStartUtc` in the correct format - see [Datetimes](../guidelines/serialization.md#datetimes). This operation supports [Portfolio Access Tokens](../guidelines/multi-property.md).'
+      description: 'Deletes service overbooking limits that exactly match the specified conditions. This operation is intended to be used alongside `serviceOverbookingLimits/set`. The specified conditions must be met exactly. The time interval, however, does not need to correspond to an existing service overbooking limit in the system, instead the API uses a splicing algorithm to work out how to divide up any existing service overbooking limit to meet the specified time interval. Past overbooking limits cannot be cleared outside of `OperationalEditableHistoryInterval`. Care is needed to specify `FirstTimeUnitStartUtc` and `LastTimeUnitStartUtc` in the correct format - see [Datetimes](https://mews-systems.gitbook.io/connector-api/guidelines/serialization#datetimes). This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: serviceOverbookingLimits_clear
       requestBody:
         content:
@@ -15508,7 +15485,7 @@ paths:
       tags:
         - Source assignments
       summary: Get all source assignments
-      description: 'Returns all Sources assigned to a Reservation group. Each reservation group can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all Sources assigned to a Reservation group. Each reservation group can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: sourceAssignments_getAll
       requestBody:
         content:
@@ -15576,6 +15553,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/sourceAssignments/getAll/2024-09-20:
+    post:
+      tags:
+        - Source assignments
+      summary: Get all source assignments (ver 2024-09-20)
+      description: 'Returns all Sources assigned to Reservations. Each reservation can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: sourceAssignments_getAll_2024-09-20
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceAssignmentFilterParametersV20240920'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"Limitation":{"Count":10}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceAssignmentResultV20240920'
+              example: {"SourceAssignments":[{"Id":"c5e11f73-7e85-4a3c-9fe1-872014a10b43","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"22e42a59-b321-43f8-a5d1-af1f00e1bb8b","IsPrimary":true},{"Id":"5411ffd5-72c6-4ab3-b179-708bcac73d08","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"bbe29c21-401a-4746-b97d-af1f00e1bb8b","IsPrimary":false}],"Cursor":"5411ffd5-72c6-4ab3-b179-708bcac73d08"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/sources/getAll:
     post:
       tags:
@@ -21475,12 +21516,12 @@ components:
         CreatedUtc:
           minLength: 1
           type: string
-          description: Creation date and time of the rule in UTC timezone in ISO 8601 format.
+          description: Creation date and time of the `Cashier` in UTC timezone in ISO 8601 format.
           format: date-time
         UpdatedUtc:
           minLength: 1
           type: string
-          description: Last update date and time of the rule in UTC timezone in ISO 8601 format.
+          description: Last update date and time of the `Cashier` in UTC timezone in ISO 8601 format.
           format: date-time
       additionalProperties: false
       x-schema-id: Cashier
@@ -21531,6 +21572,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Cashier` was updated.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -21543,6 +21585,8 @@ components:
       x-schema-id: CashierParameters
     CashierResult:
       title: CashierResult
+      required:
+        - Cashiers
       type: object
       properties:
         Cashiers:
@@ -21550,7 +21594,6 @@ components:
           items:
             $ref: '#/components/schemas/Cashier'
           description: Cashiers in the enterprise.
-          nullable: true
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -45637,6 +45680,51 @@ components:
           x-max-interval-in-months: 3
       additionalProperties: false
       x-schema-id: SourceAssignmentFilterParameters
+    SourceAssignmentFilterParametersV20240920:
+      title: SourceAssignmentFilterParametersV20240920
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        ReservationIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of `Reservation`.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: SourceAssignmentFilterParametersV20240920
     SourceAssignmentResult:
       title: SourceAssignmentResult
       required:
@@ -45655,6 +45743,50 @@ components:
           format: uuid
       additionalProperties: false
       x-schema-id: SourceAssignmentResult
+    SourceAssignmentResultV20240920:
+      title: SourceAssignmentResultV20240920
+      required:
+        - SourceAssignments
+      type: object
+      properties:
+        SourceAssignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceAssignmentV20240920'
+          description: Assignments between `Reservation` and `Source`.
+        Cursor:
+          type: string
+          description: Opaque pagination cursor which can be used in `Limitation` to fetch newer source assignments.
+          format: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: SourceAssignmentResultV20240920
+    SourceAssignmentV20240920:
+      title: Source assignments (ver 2024-09-20)
+      required:
+        - Id
+        - IsPrimary
+        - ReservationId
+        - SourceId
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the source assignment.
+          format: uuid
+        ReservationId:
+          type: string
+          description: Unique identifier of the `Reservation`.
+          format: uuid
+        SourceId:
+          type: string
+          description: Unique identifier of the `Source`.
+          format: uuid
+        IsPrimary:
+          type: boolean
+          description: Specifies whether the source is primary for the `Reservation`.
+      additionalProperties: false
+      x-schema-id: SourceAssignmentV20240920
     SourceFilterParameters:
       title: SourceFilterParameters
       required:

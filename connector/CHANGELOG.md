@@ -1,3 +1,15 @@
+# 2025-01-07
+
+
+## POST /api/connector/v1/cashiers/getAll
+-  the response property 'Cashiers' became required for the status '200'
+
+
+## POST /api/connector/v1/sourceAssignments/getAll/2024-09-20
+-  endpoint added
+
+
+
 # 2024-12-14
 
 
