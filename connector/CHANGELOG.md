@@ -1,3 +1,11 @@
+# 2025-01-08
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the new optional request property 'AvailabilityBlockIds'
+
+
+
 # 2025-01-07
 
 
