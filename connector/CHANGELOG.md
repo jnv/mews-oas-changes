@@ -1,3 +1,81 @@
+# 2025-01-10
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the optional property 'DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Documents/items/IdentityDocumentSupportNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Documents/items/IdentityDocumentSupportNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the optional property 'DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the required property 'Enterprises/items/Address' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added '#/components/schemas/OrderNoteTypeEnum' to the 'Notes/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/OrderNoteType' from the 'Notes/items/Type' response property 'anyOf' list for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IdentityDocumentSupportNumber' to the response with the '200' status
+-  added '#/components/schemas/OrderNoteTypeEnum' to the 'Notes/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/OrderNoteType' from the 'Notes/items/Type' response property 'anyOf' list for the response status '200'
+
+
+## POST /api/connector/v1/serviceOrderNotes/add
+-  added '#/components/schemas/OrderNoteTypeEnum' to the 'ServiceOrderNotes/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/OrderNoteType' from the 'ServiceOrderNotes/items/Type' response property 'anyOf' list for the response status '200'
+
+
+## POST /api/connector/v1/serviceOrderNotes/getAll
+-  added '#/components/schemas/OrderNoteTypeEnum' to the 'ServiceOrderNotes/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/OrderNoteType' from the 'ServiceOrderNotes/items/Type' response property 'anyOf' list for the response status '200'
+
+
+## POST /api/connector/v1/serviceOrderNotes/update
+-  added '#/components/schemas/OrderNoteTypeEnum' to the 'ServiceOrderNotes/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/OrderNoteType' from the 'ServiceOrderNotes/items/Type' response property 'anyOf' list for the response status '200'
+
+
+
 # 2025-01-08
 
 
