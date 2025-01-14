@@ -1,3 +1,94 @@
+# 2025-01-14
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'Amphitheater' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'Amphitheater' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/resourceCategories/getAll
+- :warning: added the new 'Amphitheater' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/resources/getAll
+- :warning: added the new 'Amphitheater' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/restrictions/add
+- :warning: added the new 'Amphitheater' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'Restrictions/items/Restriction/allOf[subschema #1: Restriction]/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+-  added the new 'Amphitheater' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'ConferenceRoom' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Garden' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'PrivateSpaces' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Restaurant' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Rooftop' enum value to the request property 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition data]/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/restrictions/clear
+-  added the new 'Amphitheater' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'ConferenceRoom' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Garden' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'PrivateSpaces' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Restaurant' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Rooftop' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/restrictions/getAll
+- :warning: added the new 'Amphitheater' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/restrictions/set
+-  added the new 'Amphitheater' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'ConferenceRoom' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Garden' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'PrivateSpaces' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Restaurant' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Rooftop' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/rules/getAll
+- :warning: added the new 'Amphitheater' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'ConferenceRoom' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Garden' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'PrivateSpaces' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Restaurant' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Rooftop' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+
 # 2025-01-10
 
 

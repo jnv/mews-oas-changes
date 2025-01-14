@@ -42377,6 +42377,12 @@ components:
         - ExtraBed
         - Cot
         - Crib
+        - ConferenceRoom
+        - Rooftop
+        - Garden
+        - Restaurant
+        - Amphitheater
+        - PrivateSpaces
       type: string
     ResourceCategoryTypeEnum:
       title: Resource category type
@@ -42401,8 +42407,14 @@ components:
         - ExtraBed
         - Cot
         - Crib
+        - ConferenceRoom
+        - Rooftop
+        - Garden
+        - Restaurant
+        - Amphitheater
+        - PrivateSpaces
       type: string
-      description: "\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib"
+      description: "\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
       x-enumNames:
         - Room
         - Bed
@@ -42424,7 +42436,19 @@ components:
         - ExtraBed
         - Cot
         - Crib
+        - ConferenceRoom
+        - Rooftop
+        - Garden
+        - Restaurant
+        - Amphitheater
+        - PrivateSpaces
       x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
         - ''
         - ''
         - ''
@@ -43125,7 +43149,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib"
+          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
           nullable: true
         StartUtc:
           type: string
@@ -43186,7 +43210,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the restricted `Resource category type`.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib"
+          description: "Name of the restricted `Resource category type`.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
           nullable: true
         StartUtc:
           type: string
@@ -43253,7 +43277,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib"
+          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
           nullable: true
         StartUtc:
           type: string
@@ -43582,7 +43606,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib"
+          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
           nullable: true
         StartUtc:
           type: string
