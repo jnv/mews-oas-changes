@@ -2991,6 +2991,12 @@ components:
         - ExtraBed
         - Cot
         - Crib
+        - ConferenceRoom
+        - Rooftop
+        - Garden
+        - Restaurant
+        - Amphitheater
+        - PrivateSpaces
       type: string
     ResourceOccupancyPricing:
       title: ResourceOccupancyPricing
