@@ -1,3 +1,16 @@
+# 2025-01-15
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the new optional request property 'AccountIds'
+
+
+## POST /api/connector/v1/resourceAccessTokens/update
+-  added the new optional request property 'EnterpriseId'
+-  added the new optional request property 'ResourceAccessTokenUpdates/items/Value'
+
+
+
 # 2025-01-14
 
 
