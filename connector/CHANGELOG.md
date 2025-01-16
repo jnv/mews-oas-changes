@@ -1,3 +1,12 @@
+# 2025-01-16
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+- :warning: added '#/components/schemas/UpdateValueCurrencyValueOld' to the 'AvailabilityBlocks/items/Budget' request property 'allOf' list
+- :warning: removed '#/components/schemas/CurrencyValueOldUpdateValue' from the 'AvailabilityBlocks/items/Budget' request property 'allOf' list
+
+
+
 # 2025-01-15
 
 
