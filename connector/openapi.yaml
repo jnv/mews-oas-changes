@@ -1743,7 +1743,7 @@ paths:
       tags:
         - Availability blocks
       summary: Get all availability blocks
-      description: 'Returns all availability blocks filtered by services, unique identifiers and other filters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/guidelines/multi-property/).'
+      description: 'Returns all availability blocks filtered by services, unique identifiers and other filters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: availabilityBlocks_getAll
       requestBody:
         content:
@@ -7915,6 +7915,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/orderItems/cancel:
+    post:
+      tags:
+        - Order items
+      description: 'Cancels all order items with specified identifiers. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: orderItems_cancel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelOrderItemParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","OrderItemIds":["f5c6b7a8-9d4f-4e2a-8a3b-2f3b8b9e6a1f","a6b7c8d9-0e1f-4d2a-9b3c-5d6e7f8a9b0c"],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/orderItems/getAll:
     post:
       tags:
@@ -13406,7 +13468,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-      x-deprecatedMessage: 'Please use [Set restriction](https://mews-systems.gitbook.io/connector-api/operations/restrictions#set-restrictions) instead.'
+      x-deprecatedMessage: 'Use [Set restrictions](https://mews-systems.gitbook.io/connector-api/operations/restrictions#set-restrictions) instead.'
   /api/connector/v1/restrictions/delete:
     post:
       tags:
@@ -13476,7 +13538,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-      x-deprecatedMessage: 'Please use [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/restrictions#clear-restrictions) instead.'
+      x-deprecatedMessage: 'Use [Clear restrictions](https://mews-systems.gitbook.io/connector-api/operations/restrictions#clear-restrictions) instead.'
   /api/connector/v1/restrictions/set:
     post:
       tags:
@@ -13489,40 +13551,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SetRestrictionParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-              Data:
-                - Type: Start
-                  StartUtc: '2023-02-15T00:00:00Z'
-                  EndUtc: '2023-02-22T00:00:00Z'
-                  ExactRateId: 7c7e89d6-69c0-4cce-9d42-35443f2193f3
-                  ResourceCategoryId: 86336EAC-4168-46B1-A544-2A47251BF864
-                  Days:
-                    Monday: false
-                    Tuesday: false
-                    Wednesday: false
-                    Thursday: false
-                    Friday: true
-                    Saturday: true
-                    Sunday: true
-                  MinLength: P0M2DT0H0M0S
-                  MaxLength: P0M7DT0H0M0S
-                - Type: Start
-                  StartUtc: '2023-02-23T00:00:00Z'
-                  EndUtc: '2023-03-03T00:00:00Z'
-                  BaseRateId: e5b538b1-36e6-43a0-9f5c-103204c7f68e
-                  Days:
-                    Monday: false
-                    Tuesday: false
-                    Wednesday: false
-                    Thursday: false
-                    Friday: true
-                    Saturday: true
-                    Sunday: true
-                  MinAdvance: P0Y0M1DT0H0M0S
-                  MaxAdvance: P0Y0M3DT0H0M0S
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","Data":[{"Type":"Start","ExactRateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":"2023-02-15T00:00:00Z","EndUtc":"2023-02-22T00:00:00Z","Days":{"Monday":false,"Tuesday":false,"Wednesday":false,"Thursday":false,"Friday":true,"Saturday":true,"Sunday":true},"MinLength":"P0M2DT0H0M0S","MaxLength":"P0M7DT0H0M0S"},{"Type":"Start","BaseRateId":"e5b538b1-36e6-43a0-9f5c-103204c7f68e","StartUtc":"2023-02-23T00:00:00Z","EndUtc":"2023-03-03T00:00:00Z","Days":{"Monday":true,"Tuesday":true,"Wednesday":true,"Thursday":true,"Friday":true,"Saturday":false,"Sunday":false},"MinAdvance":"P0Y0M1DT0H0M0S","MaxAdvance":"P0Y0M3DT0H0M0S"}]}
       responses:
         '200':
           description: OK
@@ -13530,6 +13559,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Unit'
+              example: {}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13590,36 +13620,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ClearRestrictionParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-              Data:
-                - Type: Start
-                  StartUtc: '2023-02-15T00:00:00Z'
-                  EndUtc: '2023-02-22T00:00:00Z'
-                  ExactRateId: 7c7e89d6-69c0-4cce-9d42-35443f2193f3
-                  ResourceCategoryId: 86336EAC-4168-46B1-A544-2A47251BF864
-                  Days:
-                    Monday: false
-                    Tuesday: false
-                    Wednesday: false
-                    Thursday: false
-                    Friday: true
-                    Saturday: true
-                    Sunday: true
-                - Type: Start
-                  StartUtc: '2023-02-23T00:00:00Z'
-                  EndUtc: '2023-03-03T00:00:00Z'
-                  BaseRateId: e5b538b1-36e6-43a0-9f5c-103204c7f68e
-                  Days:
-                    Monday: false
-                    Tuesday: false
-                    Wednesday: false
-                    Thursday: false
-                    Friday: true
-                    Saturday: true
-                    Sunday: true
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","Data":[{"Type":"Start","ExactRateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":"2023-02-15T00:00:00Z","EndUtc":"2023-02-22T00:00:00Z","Days":{"Monday":false,"Tuesday":false,"Wednesday":false,"Thursday":false,"Friday":true,"Saturday":true,"Sunday":true}},{"Type":"Start","BaseRateId":"e5b538b1-36e6-43a0-9f5c-103204c7f68e","StartUtc":"2023-02-23T00:00:00Z","EndUtc":"2023-03-03T00:00:00Z","Days":{"Monday":true,"Tuesday":true,"Wednesday":true,"Thursday":true,"Friday":true,"Saturday":false,"Sunday":false}}]}
       responses:
         '200':
           description: OK
@@ -13627,6 +13628,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Unit'
+              example: {}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -19135,11 +19137,11 @@ components:
         FirstTimeUnitStartUtc:
           minLength: 1
           type: string
-          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format.'
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format. See [Time units](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
         LastTimeUnitStartUtc:
           minLength: 1
           type: string
-          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/), in UTC timezone ISO 8601 format. The maximum size of time interval depends on the service''s [time unit](https://mews-systems.gitbook.io/connector-api/concepts/time-units/): 367 hours if hours, 367 days if days, or 60 months if months.'
+          description: 'End of the time interval, expressed as the timestamp for the start of the last time unit, in UTC timezone ISO 8601 format. See [Time units](https://mews-systems.gitbook.io/connector-api/concepts/time-units).'
         ReleasedUtc:
           type: string
           description: The moment when the block and its availability is released in UTC timezone in ISO 8601 format. Mutually exclusive with `RollingReleaseOffset`; the block will not be automatically released if neither `ReleasedUtc` nor `RollingReleaseOffsetUtc` is specified.
@@ -19366,13 +19368,13 @@ components:
           description: Whether the response should contain reservations related to availability blocks.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use `reservations/getAll/2023-06-06` instead.
+          x-deprecatedMessage: 'Use [Get all reservations (ver 2023-06-06)](https://mews-systems.gitbook.io/connector-api/operations/reservations#get-all-reservations-ver-2023-06-06) instead.'
         Rates:
           type: boolean
           description: Whether the response should contain rates related to availability blocks.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use `rates/getAll` instead.
+          x-deprecatedMessage: 'Use [Get all rates](https://mews-systems.gitbook.io/connector-api/operations/rates#get-all-rates) instead.'
       additionalProperties: false
       description: ''
       x-schema-id: AvailabilityBlockExtent
@@ -19492,21 +19494,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailabilityBlock'
-          description: Whether the response should contain the general availability blocks.
+          description: Availability blocks.
           nullable: true
         ServiceOrders:
           type: array
           items:
             $ref: '#/components/schemas/ReservationOld'
-          description: Whether the response should contain reservations related to availability blocks.
+          description: Service orders (for example reservations) linked to availability blocks.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use `reservations/getAll/2023-06-06` instead.
+          x-deprecatedMessage: 'Use [Get all reservations (ver 2023-06-06)](https://mews-systems.gitbook.io/connector-api/operations/reservations#get-all-reservations-ver-2023-06-06) instead.'
         Adjustments:
           type: array
           items:
             $ref: '#/components/schemas/AvailabilityAdjustment'
-          description: Whether the response should contain individual availability adjustments related to availability blocks.
+          description: Availability adjustments of availability blocks.
           nullable: true
         Rates:
           type: array
@@ -19515,7 +19517,7 @@ components:
           description: '`Rates` assigned to the block.'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use `rates/getAll` instead.
+          x-deprecatedMessage: 'Use [Get all rates](https://mews-systems.gitbook.io/connector-api/operations/rates#get-all-rates) instead.'
         Cursor:
           type: string
           description: Unique identifier of the last returned availability block. This can be used in Limitation in a subsequent request to fetch the next batch of availability block.
@@ -20843,6 +20845,42 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: BusinessSegmentResult
+    CancelOrderItemParameters:
+      title: CancelOrderItemParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - OrderItemIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        OrderItemIds:
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `OrderItems` to cancel.
+      additionalProperties: false
+      x-schema-id: CancelOrderItemParameters
     CancellationFeeExtent:
       title: Cancellation Fee Extent
       enum:
@@ -21681,6 +21719,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        ServiceId:
+          minLength: 1
+          type: string
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) to which the restrictions apply.'
+          x-schema-id: HybridIdentifier
         Data:
           maxItems: 1000
           minItems: 1
@@ -21688,11 +21731,6 @@ components:
           items:
             $ref: '#/components/schemas/RestrictionClearData'
           description: Details of the matching conditions and time intervals for clearing restrictions.
-        ServiceId:
-          minLength: 1
-          type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the restrictions apply.'
-          x-schema-id: HybridIdentifier
       additionalProperties: false
       x-schema-id: ClearRestrictionParameters
     Companionship:
@@ -45357,6 +45395,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        ServiceId:
+          minLength: 1
+          type: string
+          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) restrictions will be set in.'
+          x-schema-id: HybridIdentifier
         Data:
           maxItems: 1000
           minItems: 1
@@ -45364,11 +45407,6 @@ components:
           items:
             $ref: '#/components/schemas/RestrictionSetData'
           description: Parameters of restrictions.
-        ServiceId:
-          minLength: 1
-          type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) restrictions will be set in.'
-          x-schema-id: HybridIdentifier
       additionalProperties: false
       x-schema-id: SetRestrictionParameters
     Sex:
