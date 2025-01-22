@@ -10663,7 +10663,7 @@ paths:
       tags:
         - Reservations
       summary: Get all reservations (ver 2017-04-12)
-      description: 'Use [Get all reservations (ver 2023-06-06)](../operations/reservations.md#get-all-reservations-ver-2023-06-06).'
+      description: 'Use [Get all reservations (ver 2023-06-06)](https://mews-systems.gitbook.io/connector-api/operations/reservations#get-all-reservations-ver-2023-06-06).'
       operationId: reservations_getAll
       requestBody:
         content:
@@ -10819,7 +10819,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-      x-deprecatedMessage: 'Use [Get all reservations (ver 2023-06-06)](../operations/reservations.md#get-all-reservations-ver-2023-06-06).'
+      x-deprecatedMessage: 'Use [Get all reservations (ver 2023-06-06)](https://mews-systems.gitbook.io/connector-api/operations/reservations#get-all-reservations-ver-2023-06-06).'
   /api/connector/v1/reservations/price:
     post:
       tags:
@@ -33608,7 +33608,7 @@ components:
           title: Order item type
           allOf:
             - $ref: '#/components/schemas/OrderItemTypeEnum'
-          description: "Order item type, e.g. whether product order or space order.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee"
+          description: "Order item type, e.g. whether product order or space order.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount"
           x-enumNames:
             - CancellationFee
             - NightRebate
@@ -33627,7 +33627,9 @@ components:
             - ResourceUpgradeFee
             - InvoiceFee
             - MulticurrencyFee
+            - AllowanceDiscount
           x-enumDescriptions:
+            - ''
             - ''
             - ''
             - ''
@@ -34053,8 +34055,9 @@ components:
         - ResourceUpgradeFee
         - InvoiceFee
         - MulticurrencyFee
+        - AllowanceDiscount
       type: string
-      description: "\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee"
+      description: "\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount"
       x-enumNames:
         - CancellationFee
         - NightRebate
@@ -34073,7 +34076,9 @@ components:
         - ResourceUpgradeFee
         - InvoiceFee
         - MulticurrencyFee
+        - AllowanceDiscount
       x-enumDescriptions:
+        - ''
         - ''
         - ''
         - ''

@@ -1,3 +1,12 @@
+# 2025-01-22
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'AllowanceDiscount' enum value to the 'OrderItems/items/Type/allOf[subschema #1: Order item type]/' response property for the response status '200'
+-  added the new 'AllowanceDiscount' enum value to the request property 'Types/items/'
+
+
+
 # 2025-01-17
 
 
