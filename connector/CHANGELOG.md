@@ -1,3 +1,15 @@
+# 2025-01-24
+
+
+## POST /api/connector/v1/ageCategories/getAll
+-  added the optional property 'AgeCategories/items/ExternalIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/outletBills/add
+-  added the new optional request property 'IdempotencyKey'
+
+
+
 # 2025-01-22
 
 
