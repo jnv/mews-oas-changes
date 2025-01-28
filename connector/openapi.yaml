@@ -18004,10 +18004,6 @@ components:
           items:
             $ref: '#/components/schemas/OutletBillParameters'
           description: The new outlet bills.
-        IdempotencyKey:
-          maxLength: 50
-          type: string
-          nullable: true
       additionalProperties: false
       x-schema-id: AddOutletBillsParameters
     AddOutletBillsResult:

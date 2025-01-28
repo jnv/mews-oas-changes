@@ -1,3 +1,11 @@
+# 2025-01-28
+
+
+## POST /api/connector/v1/outletBills/add
+- :warning: removed the request property 'IdempotencyKey'
+
+
+
 # 2025-01-24
 
 
