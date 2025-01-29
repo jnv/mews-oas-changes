@@ -40767,7 +40767,13 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
-          description: Interval filtering Reservations by their scheduled start time.
+          description: Interval filtering Reservations by their scheduled start time. Cannot be used with `ActualStartUtc`.
+          nullable: true
+          x-max-interval-in-months: 3
+        ActualStartUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval filtering Reservations by their actual start (check-in) time. Cannot be used with `ScheduledStartUtc`. Note that the filter applies only to started or processed reservations.
           nullable: true
           x-max-interval-in-months: 3
         ScheduledEndUtc:

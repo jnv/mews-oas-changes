@@ -1,3 +1,11 @@
+# 2025-01-29
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the new optional request property 'ActualStartUtc'
+
+
+
 # 2025-01-28
 
 
