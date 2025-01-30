@@ -1,3 +1,12 @@
+# 2025-01-30
+
+
+## POST /api/connector/v1/bills/getPdf
+-  added the new optional request property 'PdfTemplate'
+-  added the new optional request property 'PrintReason'
+
+
+
 # 2025-01-29
 
 
