@@ -1,3 +1,23 @@
+# 2025-01-31
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added '#/components/schemas/RateAddPricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RatePricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+
+
+## POST /api/connector/v1/rates/delete
+- :warning: the 'RateIds/items/' request property type/format changed from 'string'/'uuid' to 'string'/''
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added '#/components/schemas/RateSetPricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RatePricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+-  the request property 'Rates/items/Pricing' became nullable
+-  the request property 'Rates/items/Pricing' became optional
+
+
+
 # 2025-01-30
 
 
