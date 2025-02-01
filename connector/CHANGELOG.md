@@ -1,3 +1,12 @@
+# 2025-02-01
+
+
+## POST /api/connector/v1/customers/getAll
+- :warning: the response property 'Documents' became nullable for the status '200'
+- :warning: the response property 'Documents' became optional for the status '200'
+
+
+
 # 2025-01-31
 
 

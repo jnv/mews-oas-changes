@@ -5047,7 +5047,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2018-01-01T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2018-01-02T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"Extent":{"Customers":true,"Documents":true,"Addresses":false},"ActivityStates":["Active"],"CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CompanyIds":["c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"],"Emails":["j.smith@example.com"],"FirstNames":["John","Jane"],"LastNames":["Doe","Smith"],"LoyaltyCodes":["LL810213"],"Limitation":{"Count":10}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2018-01-01T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2018-01-02T00:00:00Z","EndUtc":"2018-01-30T00:00:00Z"},"Extent":{"Customers":true,"Documents":false,"Addresses":false},"ActivityStates":["Active"],"CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CompanyIds":["c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"],"Emails":["j.smith@example.com"],"FirstNames":["John","Jane"],"LastNames":["Doe","Smith"],"LoyaltyCodes":["LL810213"],"Limitation":{"Count":10}}
       responses:
         '200':
           description: OK
@@ -5055,7 +5055,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerResult'
-              example: {"Customers":[{"Id":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"12345","Title":"Mister","Sex":"Male","FirstName":"John","LastName":"Smith","SecondLastName":"Williams","NationalityCode":"US","PreferredLanguageCode":"en-GB","LanguageCode":"en-US","BirthDate":"1983-12-31","BirthPlace":"New York City, NY","Occupation":"Carpenter","Email":"j.smith@example.com","HasOtaEmail":false,"Phone":"00420123456789","TaxIdentificationNumber":"123456789","LoyaltyCode":"LL810213","AccountingCode":"AC123","BillingCode":null,"Notes":"","CarRegistrationNumber":"1A2 3456","DietaryRequirements":null,"CreatedUtc":"2018-01-01T00:00:00Z","UpdatedUtc":"2018-01-02T00:00:00Z","Passport":null,"IdentityCard":{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"123456","Expiration":"2020-01-01","Issuance":"2015-01-01","IssuingCountryCode":"US","IssuingCity":"New York City","IdentityDocumentSupportNumber":null},"Visa":null,"DriversLicense":null,"Address":{"Id":"f8495413-bf49-45dd-843c-44be7f365569","Line1":"Somerford Road Hello House/135","Line2":null,"City":"Christchurch","PostalCode":"BH23 3PY","CountryCode":"GB","CountrySubdivisionCode":"GB-ENG","Latitude":null,"Longitude":null},"AddressId":"f8495413-bf49-45dd-843c-44be7f365569","Classifications":["Returning"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":null,"ItalianFiscalCode":null,"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","MergeTargetId":null,"ActivityState":"Active","IsActive":true,"PreferredSpaceFeatures":["OceanView"]}],"Documents":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"123456","Expiration":"2020-01-01","Issuance":"2015-01-01","IssuingCountryCode":"US","IssuingCity":"New York City","IdentityDocumentSupportNumber":null}],"Cursor":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d"}
+              example: {"Customers":[{"Id":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"12345","Title":"Mister","Sex":"Male","FirstName":"John","LastName":"Smith","SecondLastName":"Williams","NationalityCode":"US","PreferredLanguageCode":"en-GB","LanguageCode":"en-US","BirthDate":"1983-12-31","BirthPlace":"New York City, NY","Occupation":"Carpenter","Email":"j.smith@example.com","HasOtaEmail":false,"Phone":"00420123456789","TaxIdentificationNumber":"123456789","LoyaltyCode":"LL810213","AccountingCode":"AC123","BillingCode":null,"Notes":"","CarRegistrationNumber":"1A2 3456","DietaryRequirements":null,"CreatedUtc":"2018-01-01T00:00:00Z","UpdatedUtc":"2018-01-02T00:00:00Z","Passport":null,"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"f8495413-bf49-45dd-843c-44be7f365569","Line1":"Somerford Road Hello House/135","Line2":null,"City":"Christchurch","PostalCode":"BH23 3PY","CountryCode":"GB","CountrySubdivisionCode":"GB-ENG","Latitude":null,"Longitude":null},"AddressId":"f8495413-bf49-45dd-843c-44be7f365569","Classifications":["Returning"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":null,"ItalianFiscalCode":null,"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","MergeTargetId":null,"ActivityState":"Active","IsActive":true,"PreferredSpaceFeatures":["OceanView"]}],"Documents":null,"Cursor":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5127,35 +5127,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSearchResult'
-              example:
-                Customers:
-                  - Customer:
-                      Address: 
-                      BirthDate: 
-                      BirthPlace: 
-                      CategoryId: 
-                      Classifications: [ ]
-                      CreatedUtc: '2016-01-01T00:00:00Z'
-                      Email: 
-                      FirstName: John
-                      Sex: Male
-                      Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                      IdentityCard: 
-                      LanguageCode: 
-                      LastName: Smith
-                      LoyaltyCode: 
-                      NationalityCode: US
-                      Notes: ''
-                      Number: '1'
-                      Options: [ ]
-                      Passport: 
-                      Phone: '00420123456789'
-                      SecondLastName: 
-                      TaxIdentificationNumber: 
-                      Title: 
-                      UpdatedUtc: '2016-01-01T00:00:00Z'
-                      Visa: 
-                    Reservation: 
+              example: {"Customers":[{"Customer":{"Id":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"12345","Title":"Mister","Sex":"Male","FirstName":"John","LastName":"Smith","SecondLastName":"Williams","NationalityCode":"US","PreferredLanguageCode":"en-GB","LanguageCode":"en-US","BirthDate":"1983-12-31","BirthPlace":"New York City, NY","Occupation":"Carpenter","Email":"j.smith@example.com","HasOtaEmail":false,"Phone":"00420123456789","TaxIdentificationNumber":"123456789","LoyaltyCode":"LL810213","AccountingCode":"AC123","BillingCode":null,"Notes":"","CarRegistrationNumber":"1A2 3456","DietaryRequirements":null,"CreatedUtc":"2018-01-01T00:00:00Z","UpdatedUtc":"2018-01-02T00:00:00Z","Passport":null,"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"f8495413-bf49-45dd-843c-44be7f365569","Line1":"Somerford Road Hello House/135","Line2":null,"City":"Christchurch","PostalCode":"BH23 3PY","CountryCode":"GB","CountrySubdivisionCode":"GB-ENG","Latitude":null,"Longitude":null},"AddressId":"f8495413-bf49-45dd-843c-44be7f365569","Classifications":["Returning"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":null,"ItalianFiscalCode":null,"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","MergeTargetId":null,"ActivityState":"Active","IsActive":true,"PreferredSpaceFeatures":["OceanView"]},"Reservation":null}],"Documents":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5309,7 +5281,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerAddParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","OverwriteExisting":false,"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Passport":{"Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","OverwriteExisting":false,"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"]}
       responses:
         '200':
           description: OK
@@ -5317,7 +5289,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":{"Id":"42c3da09-e4cb-4454-8087-6eb35bcc4bcb","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Type":"Passport","Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome","IdentityDocumentSupportNumber":null},"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
+              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":null,"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5372,7 +5344,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerUpdateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Passport":{"Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":{"Value":"7654321"},"ItalianFiscalCode":{"Value":"ZGNZLR17U72P554F"}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"],"ItalianDestinationCode":{"Value":"7654321"},"ItalianFiscalCode":{"Value":"ZGNZLR17U72P554F"}}
       responses:
         '200':
           description: OK
@@ -5380,7 +5352,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":{"Id":"42c3da09-e4cb-4454-8087-6eb35bcc4bcb","CustomerId":"99b4f0af-9558-463b-8452-07a9bc414708","Type":"Passport","Number":"AA123456","Expiration":"2030-05-20","Issuance":"2020-05-20","IssuingCountryCode":"IT","IssuingCity":"Rome","IdentityDocumentSupportNumber":null},"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
+              example: {"Id":"99b4f0af-9558-463b-8452-07a9bc414708","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Number":"390881","Title":"Miss","Sex":null,"FirstName":"Thea","LastName":"Carbone","SecondLastName":null,"NationalityCode":null,"PreferredLanguageCode":null,"LanguageCode":null,"BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","HasOtaEmail":false,"Phone":"+39 06 555 5555","TaxIdentificationNumber":"ZGNZLR17U72P554F","LoyaltyCode":null,"AccountingCode":null,"BillingCode":null,"Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","DietaryRequirements":null,"CreatedUtc":"2024-09-17T12:22:33Z","UpdatedUtc":"2024-10-12T09:45:00Z","Passport":null,"IdentityCard":null,"Visa":null,"DriversLicense":null,"Address":{"Id":"81f62f08-26d5-408f-9b0d-d030957dc799","Line1":"Via Antimo 474 Piano 5","Line2":null,"City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65","Latitude":28.56333,"Longitude":-121.243143},"AddressId":"81f62f08-26d5-408f-9b0d-d030957dc799","Classifications":["Media","FriendOrFamily"],"Options":[],"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","CompanyId":"f3b4f0af-9558-463b-8452-07a9bc414708","MergeTargetId":null,"ActivityState":null,"IsActive":true,"PreferredSpaceFeatures":["LowerBed"]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -24068,28 +24040,28 @@ components:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use record from `Documents` with relevant `CustomerId` instead.
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
         IdentityCard:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use record from `Documents` with relevant `CustomerId` instead.
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
         Visa:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use record from `Documents` with relevant `CustomerId` instead.
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
         DriversLicense:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: Use record from `Documents` with relevant `CustomerId` instead.
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
         Address:
           title: Address
           allOf:
@@ -24485,24 +24457,32 @@ components:
             - $ref: '#/components/schemas/DocumentParameters'
           description: Identity card details of the customer.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Add identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#add-identity-documents) to add document.'
         Passport:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: Passport details of the customer.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Add identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#add-identity-documents) to add document.'
         Visa:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: Visa details of the customer.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Add identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#add-identity-documents) to add document.'
         DriversLicense:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: Drivers license details of the customer.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Add identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#add-identity-documents) to add document.'
         Classifications:
           uniqueItems: true
           type: array
@@ -24810,6 +24790,8 @@ components:
           type: boolean
           description: Whether the response should contain identity documents of customers.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) instead.'
         Addresses:
           type: boolean
           description: Whether the response should contain addresses of customers.
@@ -25181,7 +25163,6 @@ components:
       title: CustomerResult
       required:
         - Customers
-        - Documents
       type: object
       properties:
         Customers:
@@ -25194,6 +25175,9 @@ components:
           items:
             $ref: '#/components/schemas/IdentityDocument'
           description: The identity documents of customers.
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
         Cursor:
           type: string
           description: 'Unique identifier of the last and hence oldest customer item returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older customers. If [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) is specified in the request message, then Cursor will always be included in the response message; this is true even when using Extents set to false so that no actual data is returned.'
@@ -25255,6 +25239,8 @@ components:
             $ref: '#/components/schemas/IdentityDocument'
           description: The identity documents of customers.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
       additionalProperties: false
       x-schema-id: CustomerSearchResult
     CustomerUpdateParameters:
@@ -25375,24 +25361,32 @@ components:
             - $ref: '#/components/schemas/DocumentParameters'
           description: New identity card details.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Update identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#update-identity-documents) to update document.'
         Passport:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: New passport details.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Update identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#update-identity-documents) to update document.'
         Visa:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: New visa details.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Update identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#update-identity-documents) to update document.'
         DriversLicense:
           title: Identity document parameters
           allOf:
             - $ref: '#/components/schemas/DocumentParameters'
           description: New drivers license details.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use [Update identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#update-identity-documents) to update document.'
         Classifications:
           uniqueItems: true
           type: array
