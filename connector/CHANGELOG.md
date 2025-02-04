@@ -1,3 +1,27 @@
+# 2025-02-04
+
+
+## POST /api/connector/v1/rates/add
+- :warning: the request property 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Add rate pricing data parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' became required
+- :warning: the 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Add rate pricing data parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/RateGroupId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/ServiceId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Add rate pricing data parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' request property type/format changed from 'string'/'uuid' to 'string'/''
+- :warning: the 'Rates/items/RateGroupId' request property type/format changed from 'string'/'uuid' to 'string'/''
+- :warning: the 'Rates/items/ServiceId' request property type/format changed from 'string'/'uuid' to 'string'/''
+
+
+## POST /api/connector/v1/rates/set
+- :warning: the request property 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Set rate pricing parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' became required
+- :warning: the 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Set rate pricing parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/RateGroupId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/ServiceId' request property's minLength was increased from '0' to '1'
+- :warning: the 'Rates/items/Pricing/allOf[subschema #1: Rate pricing data parameters -> subschema #1: Set rate pricing parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/BaseRateId' request property type/format changed from 'string'/'uuid' to 'string'/''
+- :warning: the 'Rates/items/RateGroupId' request property type/format changed from 'string'/'uuid' to 'string'/''
+- :warning: the 'Rates/items/ServiceId' request property type/format changed from 'string'/'uuid' to 'string'/''
+
+
+
 # 2025-02-01
 
 

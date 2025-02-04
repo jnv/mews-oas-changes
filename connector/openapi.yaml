@@ -10164,7 +10164,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RateSetParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":true,"Type":"Public","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Base rate"},"ShortNames":{"en-US":"BR"},"ExternalNames":{"en-US":"External base rate"},"Descriptions":{"en-US":"Base rate description."},"PricingType":"BaseRatePricing","Pricing":{"BaseRatePricing":{"Amount":{"Currency":"EUR","NetValue":100.0}}}},{"ExternalIdentifier":"55698","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":false,"Type":"Private","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Dependent rate"},"ShortNames":{"en-US":"DR"},"ExternalNames":{"en-US":"External dependent rate"},"Descriptions":{"en-US":"Dependent rate description."},"PricingType":"DependentRatePricing","Pricing":{"DependentRatePricing":{"BaseRateId":"00392166-3869-4174-b491-cf0162524a38","RelativeAdjustment":0.25,"AbsoluteAdjustment":10.0}}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":true,"Type":"Public","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Base rate"},"ShortNames":{"en-US":"BR"},"ExternalNames":{"en-US":"External base rate"},"Descriptions":{"en-US":"Base rate description."},"PricingType":"BaseRatePricing","Pricing":{"BaseRatePricing":{"Amount":{"Currency":"EUR","NetValue":100.0}}}},{"ExternalIdentifier":"55698","ServiceId":"eid:Stay","RateGroupId":"eid:RG10","IsEnabled":false,"Type":"Private","AccountingCategoryId":"07781f3c-94b6-4b31-9175-03786a84cd50","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","Names":{"en-US":"Dependent rate"},"ShortNames":{"en-US":"DR"},"ExternalNames":{"en-US":"External dependent rate"},"Descriptions":{"en-US":"Dependent rate description."},"PricingType":"DependentRatePricing","Pricing":{"DependentRatePricing":{"BaseRateId":"00392166-3869-4174-b491-cf0162524a38","RelativeAdjustment":0.25,"AbsoluteAdjustment":10.0}}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -17929,7 +17929,7 @@ components:
       additionalProperties: false
       x-schema-id: AddAccountFileResult
     AddBaseRatePricingParameters:
-      title: Base rate pricing parameters
+      title: Add base rate pricing parameters
       required:
         - Amount
       type: object
@@ -25684,12 +25684,15 @@ components:
       x-schema-id: DependentRatePricingData
     DependentRatePricingParameters:
       title: Dependent rate pricing parameters
+      required:
+        - BaseRateId
       type: object
       properties:
         BaseRateId:
+          minLength: 1
           type: string
           description: Unique identifier of the base rate.
-          format: uuid
+          x-schema-id: HybridIdentifier
         RelativeAdjustment:
           type: number
           description: Relative amount which shows the difference between this rate and the base rate.
@@ -38020,13 +38023,15 @@ components:
       type: object
       properties:
         ServiceId:
+          minLength: 1
           type: string
           description: Unique identifier of the service.
-          format: uuid
+          x-schema-id: HybridIdentifier
         RateGroupId:
+          minLength: 1
           type: string
           description: Unique identifier of the rate group under which rate is assigned.
-          format: uuid
+          x-schema-id: HybridIdentifier
         IsEnabled:
           type: boolean
           description: Whether the rate is available to customers. `false` will be used as a default when not provided.
@@ -38100,7 +38105,7 @@ components:
           description: Identifier of the rate from external system.
           nullable: true
         Pricing:
-          title: Rate pricing data parameters
+          title: Add rate pricing data parameters
           allOf:
             - $ref: '#/components/schemas/RateAddPricingDataParameters'
           description: Contains additional data about pricing of the rate.
@@ -38138,6 +38143,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
         Rates:
           maxItems: 1000
           minItems: 1
@@ -38145,19 +38155,14 @@ components:
           items:
             $ref: '#/components/schemas/RateAddData'
           description: Information about rates to be created.
-        EnterpriseId:
-          type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise). Required when using a [Portfolio Access Token](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
-          format: uuid
-          nullable: true
       additionalProperties: false
       x-schema-id: RateAddParameters
     RateAddPricingDataParameters:
-      title: Rate pricing data parameters
+      title: Add rate pricing data parameters
       type: object
       properties:
         BaseRatePricing:
-          title: Base rate pricing parameters
+          title: Add base rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/AddBaseRatePricingParameters'
           description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
@@ -38946,13 +38951,15 @@ components:
           description: 'Unique identifier of the rate in the external system. If `Id` is not provided and `ExternalIdentifier` matches an existing rate, the corresponding rate will be updated. If no match is found, a new rate will be created.'
           nullable: true
         ServiceId:
+          minLength: 1
           type: string
           description: Unique identifier of the service. Ignored in case of updating an existing rate.
-          format: uuid
+          x-schema-id: HybridIdentifier
         RateGroupId:
+          minLength: 1
           type: string
           description: Unique identifier of the rate group under which rate is assigned. Ignored in case of updating an existing rate.
-          format: uuid
+          x-schema-id: HybridIdentifier
         IsEnabled:
           type: boolean
           description: Whether the rate is available to customers. `false` will be used as a default when not provided.
@@ -39021,7 +39028,7 @@ components:
             - ''
             - ''
         Pricing:
-          title: Rate pricing data parameters
+          title: Set rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/RateSetPricingDataParameters'
           description: Contains additional data about pricing of the rate.
@@ -39064,11 +39071,11 @@ components:
       additionalProperties: false
       x-schema-id: RateSetParameters
     RateSetPricingDataParameters:
-      title: Rate pricing data parameters
+      title: Set rate pricing parameters
       type: object
       properties:
         BaseRatePricing:
-          title: Base rate pricing parameters
+          title: Set base rate pricing parameters
           allOf:
             - $ref: '#/components/schemas/SetBaseRatePricingParameters'
           description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
@@ -45449,7 +45456,7 @@ components:
       additionalProperties: false
       x-schema-id: ServiceResult
     SetBaseRatePricingParameters:
-      title: Base rate pricing parameters
+      title: Set base rate pricing parameters
       type: object
       properties:
         Amount:
