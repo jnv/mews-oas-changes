@@ -10172,7 +10172,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RateSetResult'
-              example: {"Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":null,"IsBaseRate":true,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":true,"IsPublic":true,"Type":"Public","Name":null,"Names":{"en-US":"Base rate"},"ShortName":"BR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External base rate"},"Description":{"en-US":"Base rate description."},"ExternalIdentifier":null},{"Id":"8eb1f163-bce7-49ca-a62c-c9261951c85f","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":"00392166-3869-4174-b491-cf0162524a38","IsBaseRate":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":false,"IsPublic":false,"Type":"Private","Name":null,"Names":{"en-US":"Dependent rate"},"ShortName":"DR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External dependent rate"},"Description":{"en-US":"Dependent rate description."},"ExternalIdentifier":"55698"}]}
+              example: {"Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":null,"IsBaseRate":true,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":true,"IsPublic":true,"Type":"Public","Name":null,"Names":{"en-US":"Base rate"},"ShortName":"BR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External base rate"},"Description":{"en-US":"Base rate description."},"ExternalIdentifier":null,"TaxExemptionReason":null,"TaxExemptionLegalReference":null},{"Id":"8eb1f163-bce7-49ca-a62c-c9261951c85f","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":"00392166-3869-4174-b491-cf0162524a38","IsBaseRate":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":false,"IsPublic":false,"Type":"Private","Name":null,"Names":{"en-US":"Dependent rate"},"ShortName":"DR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External dependent rate"},"Description":{"en-US":"Dependent rate description."},"ExternalIdentifier":"55698","TaxExemptionReason":null,"TaxExemptionLegalReference":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -33693,6 +33693,15 @@ components:
             - $ref: '#/components/schemas/OrderItemData'
           description: Additional order item data.
           nullable: true
+        TaxExemptionReason:
+          allOf:
+            - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
+          description: "Specifies the reason an order item is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          nullable: true
+        TaxExemptionLegalReference:
+          type: string
+          description: Legal reference that states why this order item is exempt from tax.
+          nullable: true
       additionalProperties: false
       x-schema-id: OrderItem
     OrderItemAdditionData:
@@ -37148,6 +37157,15 @@ components:
           type: string
           description: Identifier of the product from external system.
           nullable: true
+        TaxExemptionReason:
+          allOf:
+            - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
+          description: "Specifies the reason a product is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          nullable: true
+        TaxExemptionLegalReference:
+          type: string
+          description: Legal reference that states why this product is exempt from tax.
+          nullable: true
         CreatedUtc:
           minLength: 1
           type: string
@@ -38010,6 +38028,15 @@ components:
           maxLength: 255
           type: string
           description: Identifier of the rate from external system.
+          nullable: true
+        TaxExemptionReason:
+          allOf:
+            - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
+          description: "Specifies the reason a rate is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          nullable: true
+        TaxExemptionLegalReference:
+          type: string
+          description: Legal reference that states why this rate is exempt from tax.
           nullable: true
       additionalProperties: false
       x-schema-id: Rate
@@ -46228,6 +46255,28 @@ components:
           deprecated: true
       additionalProperties: false
       x-schema-id: TaxEnvironmentResult
+    TaxExemptionReasonTypeEnum:
+      title: Tax exemption reason type
+      enum:
+        - IT_N1
+        - IT_N2_2
+        - IT_N3_5
+        - IT_N4
+        - IT_N5
+      type: string
+      description: "\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+      x-enumNames:
+        - IT_N1
+        - IT_N2_2
+        - IT_N3_5
+        - IT_N4
+        - IT_N5
+      x-enumDescriptions:
+        - N1 - Escluse ex art.15
+        - N2.2 - Non soggette – altri casi
+        - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
+        - N4 - Esenti
+        - N5 - Regime del margine / IVA non esposta in fattura
     TaxRate:
       title: Tax rate
       type: object

@@ -1,3 +1,44 @@
+# 2025-02-05
+
+
+## POST /api/connector/v1/orderItems/getAll
+-  added the optional property 'OrderItems/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'OrderItems/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/products/getAll
+-  added the optional property 'CustomerProducts/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'CustomerProducts/items/TaxExemptionReason' to the response with the '200' status
+-  added the optional property 'Products/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Products/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/add
+-  added the optional property 'Rates/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Rates/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/getAll
+-  added the optional property 'Rates/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Rates/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/set
+-  added the optional property 'Rates/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Rates/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Products/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Products/items/TaxExemptionReason' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Products/items/TaxExemptionLegalReference' to the response with the '200' status
+-  added the optional property 'Products/items/TaxExemptionReason' to the response with the '200' status
+
+
+
 # 2025-02-04
 
 
