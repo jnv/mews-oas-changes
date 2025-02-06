@@ -1,3 +1,28 @@
+# 2025-02-06
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'SpecialRequest' enum value to the 'Notes/items/Type/allOf[subschema #1: Service order note type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'SpecialRequest' enum value to the 'Notes/items/Type/allOf[subschema #1: Service order note type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/serviceOrderNotes/add
+- :warning: added the new 'SpecialRequest' enum value to the 'ServiceOrderNotes/items/Type/allOf[subschema #1: Service order note type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/serviceOrderNotes/getAll
+- :warning: added the new 'SpecialRequest' enum value to the 'ServiceOrderNotes/items/Type/allOf[subschema #1: Service order note type]/' response property for the response status '200'
+-  added the new optional request property 'Types'
+
+
+## POST /api/connector/v1/serviceOrderNotes/update
+- :warning: added the new 'SpecialRequest' enum value to the 'ServiceOrderNotes/items/Type/allOf[subschema #1: Service order note type]/' response property for the response status '200'
+
+
+
 # 2025-02-05
 
 

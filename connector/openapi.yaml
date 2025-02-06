@@ -34176,11 +34176,13 @@ components:
           title: Service order note type
           allOf:
             - $ref: '#/components/schemas/OrderNoteTypeEnum'
-          description: "A discriminator specifying the type of service order note, e.g. general or channel manager.\n\nGeneral\n\nChannelManager"
+          description: "A discriminator specifying the type of service order note, e.g. general or channel manager.\n\nGeneral\n\nChannelManager\n\nSpecialRequest"
           x-enumNames:
             - General
             - ChannelManager
+            - SpecialRequest
           x-enumDescriptions:
+            - ''
             - ''
             - ''
         CreatedUtc:
@@ -34200,12 +34202,15 @@ components:
       enum:
         - General
         - ChannelManager
+        - SpecialRequest
       type: string
-      description: "\n\nGeneral\n\nChannelManager"
+      description: "\n\nGeneral\n\nChannelManager\n\nSpecialRequest"
       x-enumNames:
         - General
         - ChannelManager
+        - SpecialRequest
       x-enumDescriptions:
+        - ''
         - ''
         - ''
     Outlet:
@@ -45026,6 +45031,12 @@ components:
           description: Timestamp in UTC timezone ISO 8601 format when the service order note was updated.
           nullable: true
           x-max-interval-in-months: 3
+        Types:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderNoteTypeEnum'
+          description: 'Type of the service order note. Defaults to `["General", "ChannelManage"]`.'
+          nullable: true
       additionalProperties: false
       x-schema-id: ServiceOrderNoteFilterParameters
     ServiceOrderNoteResult:
