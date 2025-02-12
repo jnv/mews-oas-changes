@@ -1,3 +1,11 @@
+# 2025-02-12
+
+
+## POST /api/connector/v1/creditCards/disable
+-  endpoint added
+
+
+
 # 2025-02-06
 
 
