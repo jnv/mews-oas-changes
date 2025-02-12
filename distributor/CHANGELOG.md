@@ -1,3 +1,21 @@
+# 2025-02-12
+
+
+## OPTIONS /api/distributor/v1/services/getPricing
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MaxPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerFullTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MaxPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MinPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerFullTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MinPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerTimeUnit' to the response with the '200' status
+
+
+## POST /api/distributor/v1/services/getPricing
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MaxPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerFullTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MaxPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MinPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerFullTimeUnit' to the response with the '200' status
+-  added the required property 'CategoryPrices/items/OccupancyPrices/items/RateGroupPrices/items/MinPrice/allOf[subschema #1: RatePricing]/AverageServiceItemAmountPerTimeUnit' to the response with the '200' status
+
+
+
 # 2025-01-14
 
 

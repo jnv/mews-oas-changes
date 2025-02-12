@@ -2521,6 +2521,8 @@ components:
       required:
         - AverageAmountPerFullTimeUnit
         - AverageAmountPerTimeUnit
+        - AverageServiceItemAmountPerFullTimeUnit
+        - AverageServiceItemAmountPerTimeUnit
         - TotalAmount
       type: object
       properties:
@@ -2531,6 +2533,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/Amount'
         AverageAmountPerFullTimeUnit:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+        AverageServiceItemAmountPerTimeUnit:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+        AverageServiceItemAmountPerFullTimeUnit:
           allOf:
             - $ref: '#/components/schemas/Amount'
       additionalProperties: false
