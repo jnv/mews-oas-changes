@@ -1947,7 +1947,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsUpdateResult'
-              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}]}
+              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -2011,7 +2011,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsResult'
-              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"ea087d64-3901-4eee-b0b7-9fce4c58a005"}
+              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"ea087d64-3901-4eee-b0b7-9fce4c58a005"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -10631,6 +10631,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/reservations/getChannelManagerDetails:
+    post:
+      tags:
+        - Reservations
+      summary: Get reservations' channel manager details
+      description: 'Returns additional channel manager-related details for provided reservations. Currently returns only requested rate codes of the reservations. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: reservations_getChannelManagerDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationsChannelManagerDetailsFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"]}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationsChannelManagerDetailsResult'
+              example: {"ChannelManagerDetails":[{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"TKyFHQwLtEBfs1akKan1a2Ea4"}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/reservations/getAll/2023-06-06:
     post:
       tags:
@@ -20190,6 +20254,26 @@ components:
           type: string
           description: Additional tax identifier of the company.
           nullable: true
+        DUNS:
+          type: string
+          description: DUNS of the company.
+          nullable: true
+        Telephone:
+          type: string
+          description: Company telephone number.
+          nullable: true
+        TaxIdentifier:
+          type: string
+          description: Tax identifier of the company.
+          nullable: true
+        InvoicingEmail:
+          type: string
+          description: Invoicing email of the company.
+          nullable: true
+        Department:
+          type: string
+          description: Department of the company.
+          nullable: true
       additionalProperties: false
       description: ''
       x-schema-id: BillCompanyData
@@ -21655,6 +21739,23 @@ components:
           description: Prices of the rate for the resource category in the covered dates.
       additionalProperties: false
       x-schema-id: CategoryPricing
+    ChannelManagerDetails:
+      title: Reservations' channel manager details
+      required:
+        - RequestedRateCode
+        - ReservationId
+      type: object
+      properties:
+        ReservationId:
+          type: string
+          description: Unique identifier of the `Reservations`.
+          format: uuid
+        RequestedRateCode:
+          minLength: 1
+          type: string
+          description: Rate code requested by the channel manager for this reservation.
+      additionalProperties: false
+      x-schema-id: ChannelManagerDetails
     ChannelManagerReservation:
       title: ChannelManagerReservation
       type: object
@@ -32283,19 +32384,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        ServiceIds:
-          maxItems: 1000
-          minItems: 1
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: 'Unique identifiers of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) the travel agency contract belongs to.'
-        ServiceId:
+        EnterpriseId:
           type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
           format: uuid
           nullable: true
-          deprecated: true
         TravelAgencyContractIds:
           maxItems: 1000
           minItems: 1
@@ -32304,6 +32397,14 @@ components:
             type: string
             format: uuid
           description: Unique identifiers of the Travel agency contract to delete.
+        ServiceIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) the travel agency contract belongs to.'
       additionalProperties: false
       x-schema-id: MultipleCompanyContractDeleteParameters
     MultipleCompanyContractUpdateParameters:
@@ -41274,6 +41375,50 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ReservationUpdatePersonCountParameters
+    ReservationsChannelManagerDetailsFilterParameters:
+      title: Reservations channel Manager details filter parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ReservationIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ReservationIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `Reservations`.
+      additionalProperties: false
+      x-schema-id: ReservationsChannelManagerDetailsFilterParameters
+    ReservationsChannelManagerDetailsResult:
+      title: Reservations' channel manager details result
+      required:
+        - ChannelManagerDetails
+      type: object
+      properties:
+        ChannelManagerDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelManagerDetails'
+          description: List of reservations' channel manager details.
+      additionalProperties: false
+      x-schema-id: ReservationsChannelManagerDetailsResult
     ReservationsUpdateCustomerParameters:
       title: ReservationsUpdateCustomerParameters
       required:
