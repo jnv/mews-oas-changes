@@ -1,3 +1,15 @@
+# 2025-02-25
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the new optional request property 'ActualEndUtc'
+
+
+## POST /api/connector/v1/resources/getOccupancyState
+-  endpoint added
+
+
+
 # 2025-02-12
 
 

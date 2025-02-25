@@ -4659,6 +4659,7 @@ paths:
     post:
       tags:
         - Credit cards
+      description: 'Use [Get all credit cards](https://mews-systems.gitbook.io/connector-api/operations/creditcards#get-all-credit-cards) instead.'
       operationId: creditCards_getAllByIds
       requestBody:
         content:
@@ -4738,10 +4739,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: 'Use [Get all credit cards](https://mews-systems.gitbook.io/connector-api/operations/creditcards#get-all-credit-cards) instead.'
   /api/connector/v1/creditCards/getAllByCustomers:
     post:
       tags:
         - Credit cards
+      description: 'Use [Get all credit cards](https://mews-systems.gitbook.io/connector-api/operations/creditcards#get-all-credit-cards) instead.'
       operationId: creditCards_getAllByCustomers
       requestBody:
         content:
@@ -4819,6 +4822,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
+      x-deprecatedMessage: 'Use [Get all credit cards](https://mews-systems.gitbook.io/connector-api/operations/creditcards#get-all-credit-cards) instead.'
   /api/connector/v1/creditCards/addTokenized:
     post:
       tags:
@@ -13423,6 +13427,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/resources/getOccupancyState:
+    post:
+      tags:
+        - Resources
+      summary: Get resources' occupancy state
+      description: 'Returns the occupancy state of the specified resources. This operation returns the occupancy state for the current day. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: resources_getOccupancyState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcesOccupancyStateFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceCategoryIds":["773d5e42-de1e-43a0-9ce6-f940faf2303f"],"ResourceStates":["Clean","Inspected"],"OccupancyStates":["Vacant","Reserved"]}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcesOccupancyStateResult'
+              example: {"ResourceCategoryOccupancyStates":[{"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","ResourceOccupancyStates":[{"ResourceId":"f3b3b3b3-3b3b-3b3b-3b3b-3b3b3b3b3b3b","ResourceState":"Inspected","OccupancyState":"Reserved"},{"ResourceId":"c32386aa-1cd2-414a-a823-489325842fbe","ResourceState":"Inspected","OccupancyState":"Vacant"}]}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/restrictions/add:
     post:
       tags:
@@ -33508,6 +33576,28 @@ components:
     ObjectData:
       type: object
       additionalProperties: false
+    OccupancyStateEnum:
+      title: Occupancy State
+      enum:
+        - Vacant
+        - ReservedLocked
+        - Reserved
+        - InternalUse
+        - OutOfOrder
+      type: string
+      description: "\n\nVacant\n\nReservedLocked\n\nReserved\n\nInternalUse\n\nOutOfOrder"
+      x-enumNames:
+        - Vacant
+        - ReservedLocked
+        - Reserved
+        - InternalUse
+        - OutOfOrder
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     OldAddress:
       title: Address
       type: object
@@ -41071,10 +41161,16 @@ components:
           description: Interval filtering Reservations by their actual start (check-in) time. Cannot be used with `ScheduledStartUtc`. Note that the filter applies only to started or processed reservations.
           nullable: true
           x-max-interval-in-months: 3
+        ActualEndUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval filtering Reservations by their actual end (check-out) time. Cannot be used with `ScheduledEndUtc`.
+          nullable: true
+          x-max-interval-in-months: 3
         ScheduledEndUtc:
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
-          description: Interval filtering Reservations by their scheduled end time.
+          description: Interval filtering Reservations by their scheduled end time. Cannot be used with `ActualEndUtc`.
           nullable: true
           x-max-interval-in-months: 3
         States:
@@ -42583,6 +42679,25 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryImageAssignmentResult
+    ResourceCategoryOccupancyState:
+      title: Resource category occupancy state
+      required:
+        - ResourceCategoryId
+        - ResourceOccupancyStates
+      type: object
+      properties:
+        ResourceCategoryId:
+          type: string
+          description: Unique identifier of the 'Resource category'.
+          format: uuid
+        ResourceOccupancyStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceOccupancyState'
+          description: The resource occupancy states.
+      additionalProperties: false
+      description: The list of `ResourceOccupancyState`s grouped by resource category.
+      x-schema-id: ResourceCategoryOccupancyState
     ResourceCategoryResult:
       title: ResourceCategoryResult
       required:
@@ -43198,6 +43313,55 @@ components:
           x-max-interval-in-months: 3
       additionalProperties: false
       x-schema-id: ResourceFilterParameters
+    ResourceOccupancyState:
+      title: Resource occupancy state
+      required:
+        - OccupancyState
+        - ResourceId
+        - ResourceState
+      type: object
+      properties:
+        ResourceId:
+          type: string
+          description: Unique identifier of the resource.
+          format: uuid
+        ResourceState:
+          title: Resource State
+          allOf:
+            - $ref: '#/components/schemas/ResourceStateEnum'
+          description: "Resource state of the resource.\n\nDirty\n\nClean\n\nInspected\n\nOutOfService\n\nOutOfOrder"
+          x-enumNames:
+            - Dirty
+            - Clean
+            - Inspected
+            - OutOfService
+            - OutOfOrder
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+        OccupancyState:
+          title: Occupancy State
+          allOf:
+            - $ref: '#/components/schemas/OccupancyStateEnum'
+          description: "State of the resource.\n\nVacant\n\nReservedLocked\n\nReserved\n\nInternalUse\n\nOutOfOrder"
+          x-enumNames:
+            - Vacant
+            - ReservedLocked
+            - Reserved
+            - InternalUse
+            - OutOfOrder
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+      additionalProperties: false
+      description: The occupancy state of a `Resource`.
+      x-schema-id: ResourceOccupancyState
     ResourceResult:
       title: ResourceResult
       type: object
@@ -43250,6 +43414,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceResult
+    ResourceStateEnum:
+      title: Resource State
+      enum:
+        - Dirty
+        - Clean
+        - Inspected
+        - OutOfService
+        - OutOfOrder
+      type: string
+      description: "\n\nDirty\n\nClean\n\nInspected\n\nOutOfService\n\nOutOfOrder"
+      x-enumNames:
+        - Dirty
+        - Clean
+        - Inspected
+        - OutOfService
+        - OutOfOrder
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ResourceUpdateParameters:
       title: ResourceUpdateParameters
       required:
@@ -43296,6 +43482,61 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceUpdateParameters
+    ResourcesOccupancyStateFilterParameters:
+      title: ResourcesOccupancyStateFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ResourceCategoryIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ResourceCategoryIds:
+          maxItems: 5
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `Resource category`.
+        ResourceStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceStateEnum'
+          description: States of the `Resource`
+          nullable: true
+        OccupancyStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/OccupancyStateEnum'
+          description: Occupancy states of the `Resource`.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ResourcesOccupancyStateFilterParameters
+    ResourcesOccupancyStateResult:
+      title: ResourcesOccupancyStateResult
+      required:
+        - ResourceCategoryOccupancyStates
+      type: object
+      properties:
+        ResourceCategoryOccupancyStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategoryOccupancyState'
+          description: The resource categories.
+      additionalProperties: false
+      x-schema-id: ResourcesOccupancyStateResult
     Restriction:
       title: Restriction
       required:
