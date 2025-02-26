@@ -25871,6 +25871,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Department` was updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
