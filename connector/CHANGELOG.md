@@ -1,3 +1,14 @@
+# 2025-02-27
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'AllowanceBreakage' enum value to the 'OrderItems/items/Type/allOf[subschema #1: Order item type]/' response property for the response status '200'
+- :warning: added the new 'AllowanceContraBreakage' enum value to the 'OrderItems/items/Type/allOf[subschema #1: Order item type]/' response property for the response status '200'
+-  added the new 'AllowanceBreakage' enum value to the request property 'Types/items/'
+-  added the new 'AllowanceContraBreakage' enum value to the request property 'Types/items/'
+
+
+
 # 2025-02-25
 
 

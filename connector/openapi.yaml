@@ -33931,7 +33931,7 @@ components:
           title: Order item type
           allOf:
             - $ref: '#/components/schemas/OrderItemTypeEnum'
-          description: "Order item type, e.g. whether product order or space order.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount"
+          description: "Order item type, e.g. whether product order or space order.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount\n\nAllowanceBreakage\n\nAllowanceContraBreakage"
           x-enumNames:
             - CancellationFee
             - NightRebate
@@ -33951,7 +33951,11 @@ components:
             - InvoiceFee
             - MulticurrencyFee
             - AllowanceDiscount
+            - AllowanceBreakage
+            - AllowanceContraBreakage
           x-enumDescriptions:
+            - ''
+            - ''
             - ''
             - ''
             - ''
@@ -34388,8 +34392,10 @@ components:
         - InvoiceFee
         - MulticurrencyFee
         - AllowanceDiscount
+        - AllowanceBreakage
+        - AllowanceContraBreakage
       type: string
-      description: "\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount"
+      description: "\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount\n\nAllowanceBreakage\n\nAllowanceContraBreakage"
       x-enumNames:
         - CancellationFee
         - NightRebate
@@ -34409,7 +34415,11 @@ components:
         - InvoiceFee
         - MulticurrencyFee
         - AllowanceDiscount
+        - AllowanceBreakage
+        - AllowanceContraBreakage
       x-enumDescriptions:
+        - ''
+        - ''
         - ''
         - ''
         - ''
