@@ -1,3 +1,22 @@
+# 2025-02-28
+
+
+## POST /api/connector/v1/availabilityAdjustments/getAll
+-  added the required property 'AvailabilityAdjustments/items/FirstTimeUnitReleaseUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the required property 'Adjustments/items/FirstTimeUnitReleaseUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+- :warning: added '#/components/schemas/SexEnum' to the 'Sex' request property 'allOf' list
+- :warning: added '#/components/schemas/Title' to the 'Title' request property 'allOf' list
+- :warning: removed '#/components/schemas/Sex' from the 'Sex' request property 'anyOf' list
+- :warning: removed '#/components/schemas/Title' from the 'Title' request property 'anyOf' list
+
+
+
 # 2025-02-27
 
 
