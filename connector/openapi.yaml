@@ -34123,6 +34123,15 @@ components:
             format: uuid
           description: 'Unique identifiers of the [Order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item). Required if no other filter is provided.'
           nullable: true
+        AccountIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of specific `Accounts` to which order items are belongs to. Required if no other filter is provided.
+          nullable: true
         ServiceOrderIds:
           maxItems: 1000
           minItems: 1

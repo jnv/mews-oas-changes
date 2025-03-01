@@ -1,3 +1,11 @@
+# 2025-03-01
+
+
+## POST /api/connector/v1/orderItems/getAll
+-  added the new optional request property 'AccountIds'
+
+
+
 # 2025-02-28
 
 
