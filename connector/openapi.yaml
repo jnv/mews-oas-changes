@@ -22294,7 +22294,7 @@ components:
           x-deprecatedMessage: Use `AdditionalTaxIdentifier` instead.
         Identifier:
           type: string
-          description: 'Other identifier of the company, e.g. legal identifier.'
+          description: Fiscal or legal identifier of the company.
           nullable: true
         Iata:
           type: string
@@ -22632,7 +22632,7 @@ components:
           nullable: true
         Identifier:
           type: string
-          description: Identifier of the company (e.g. legal identifier).
+          description: Fiscal or legal identifier of the company.
           nullable: true
         Iata:
           type: string
@@ -23150,7 +23150,7 @@ components:
           title: StringUpdateValue
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
-          description: 'Identifier of the company, e.g. legal identifier (or `null` if the identifier should not be updated).'
+          description: Fiscal or legal identifier of the company (or `null` if the identifier should not be updated).
           nullable: true
         Iata:
           title: StringUpdateValue
