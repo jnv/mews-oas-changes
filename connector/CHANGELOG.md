@@ -1,3 +1,19 @@
+# 2025-03-06
+
+
+## POST /api/connector/v1/cashierTransactions/getAll
+- :warning: removed the request property 'EndUtc'
+- :warning: removed the request property 'StartUtc'
+-  the response property 'CashierTransactions' became required for the status '200'
+-  the response property 'CashierTransactions/items/Amount' became required for the status '200'
+-  the response property 'CashierTransactions/items/CashierId' became required for the status '200'
+-  the response property 'CashierTransactions/items/CreatedUtc' became required for the status '200'
+-  the response property 'CashierTransactions/items/EnterpriseId' became required for the status '200'
+-  the response property 'CashierTransactions/items/Id' became required for the status '200'
+-  the response property 'CashierTransactions/items/Number' became required for the status '200'
+
+
+
 # 2025-03-01
 
 

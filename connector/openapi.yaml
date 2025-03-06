@@ -2662,7 +2662,7 @@ paths:
       tags:
         - Cashier transactions
       summary: Get all cashier transactions
-      description: "Returns all cashier transactions created within the specified interval.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property)."
+      description: 'Returns all cashier transactions. At least one of the filter parameters `CashierTransactionIds` or `CreatedUtc` must be specified in the request. Note this operation uses [Pagination](../guidelines/pagination.md) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: cashierTransactions_getAll
       requestBody:
         content:
@@ -21619,6 +21619,13 @@ components:
       x-schema-id: CashierResult
     CashierTransaction:
       title: Cashier transaction
+      required:
+        - Amount
+        - CashierId
+        - CreatedUtc
+        - EnterpriseId
+        - Id
+        - Number
       type: object
       properties:
         Id:
@@ -21639,13 +21646,13 @@ components:
           format: uuid
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
           description: Creation date and time of the transaction.
-          nullable: true
         Number:
+          minLength: 1
           type: string
           description: Number of the transaction.
-          nullable: true
         Notes:
           type: string
           description: Additional notes of the transaction.
@@ -21654,8 +21661,7 @@ components:
           title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
-          description: Total price of the reservation.
-          nullable: true
+          description: Total price of the transaction
       additionalProperties: false
       x-schema-id: CashierTransaction
     CashierTransactionParameters:
@@ -21699,33 +21705,28 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of the Cashier transactions.
           nullable: true
         CreatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which Cashier transaction was created.
           nullable: true
           x-max-interval-in-months: 3
-        StartUtc:
-          type: string
-          nullable: true
-          deprecated: true
-        EndUtc:
-          type: string
-          nullable: true
-          deprecated: true
       additionalProperties: false
       x-schema-id: CashierTransactionParameters
     CashierTransactionResult:
       title: CashierTransactionResult
+      required:
+        - CashierTransactions
       type: object
       properties:
         CashierTransactions:
           type: array
           items:
             $ref: '#/components/schemas/CashierTransaction'
-          description: Cashier transactions created in the interval.
-          nullable: true
+          description: The collection of cashier transactions.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
