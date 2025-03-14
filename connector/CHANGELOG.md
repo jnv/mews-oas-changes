@@ -1,3 +1,24 @@
+# 2025-03-14
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added '#/components/schemas/RatePricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RateAddPricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added '#/components/schemas/RatePricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RateSetPricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed the request property 'Rates/items/AccountingCategoryId'
+- :warning: removed the request property 'Rates/items/BusinessSegmentId'
+- :warning: removed the request property 'Rates/items/ExternalNames'
+- :warning: removed the request property 'Rates/items/ShortNames'
+-  the request property 'Rates/items/RateGroupId' became nullable
+-  the request property 'Rates/items/RateGroupId' became optional
+-  the 'Rates/items/RateGroupId' request property's minLength was decreased from '1' to '0'
+
+
+
 # 2025-03-06
 
 
