@@ -1,3 +1,27 @@
+# 2025-03-15
+
+
+## DELETE /api/rms-proxy/v1/{proxyPath}
+-  endpoint added
+
+
+## GET /api/rms-proxy/v1/{proxyPath}
+-  endpoint added
+
+
+## OPTIONS /api/rms-proxy/v1/{proxyPath}
+-  endpoint added
+
+
+## POST /api/rms-proxy/v1/{proxyPath}
+-  endpoint added
+
+
+## PUT /api/rms-proxy/v1/{proxyPath}
+-  endpoint added
+
+
+
 # 2025-02-12
 
 
