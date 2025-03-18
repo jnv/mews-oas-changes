@@ -10639,8 +10639,8 @@ paths:
     post:
       tags:
         - Reservations
-      summary: Get reservations' channel manager details
-      description: 'Returns additional channel manager-related details for provided reservations. Currently returns only requested rate codes of the reservations. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      summary: Get reservation channel manager details
+      description: 'Returns channel manager-related details for the specified reservations. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: reservations_getChannelManagerDetails
       requestBody:
         content:
@@ -10655,7 +10655,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationsChannelManagerDetailsResult'
-              example: {"ChannelManagerDetails":[{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"TKyFHQwLtEBfs1akKan1a2Ea4"}]}
+              example: {"ChannelManagerDetails":[{"ReservationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","RequestedRateCode":"XyZ123AbC789","ChannelManagerName":"HotelConnect","ChannelNumber":"HC1234","ChannelManagerNumber":"9E5F7BC3B6F0102","CreatedUtc":"2025-03-10T15:30:00Z"},{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"LmN456OpQ012","ChannelManagerName":"GlobalRes","ChannelNumber":"GR5678","ChannelManagerNumber":"461190401CD25FE","CreatedUtc":"2025-03-11T09:45:00Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -21904,7 +21904,7 @@ components:
       additionalProperties: false
       x-schema-id: CategoryPricing
     ChannelManagerDetails:
-      title: Reservations' channel manager details
+      title: Reservation channel manager details
       required:
         - RequestedRateCode
         - ReservationId
@@ -21918,6 +21918,23 @@ components:
           minLength: 1
           type: string
           description: Rate code requested by the channel manager for this reservation.
+        ChannelManagerName:
+          type: string
+          description: Name of the Channel Manager associated with this reservation.
+          nullable: true
+        ChannelNumber:
+          type: string
+          description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number).'
+          nullable: true
+        ChannelManagerNumber:
+          type: string
+          description: Unique number of the reservation within the reservation group.
+          nullable: true
+        CreatedUtc:
+          type: string
+          description: The timestamp when the Channel Manager reservation was created.
+          format: date-time
+          nullable: true
       additionalProperties: false
       x-schema-id: ChannelManagerDetails
     ChannelManagerReservation:
@@ -41537,7 +41554,7 @@ components:
       additionalProperties: false
       x-schema-id: ReservationUpdatePersonCountParameters
     ReservationsChannelManagerDetailsFilterParameters:
-      title: Reservations channel Manager details filter parameters
+      title: Reservation channel manager details filter parameters
       required:
         - AccessToken
         - Client
@@ -41564,11 +41581,11 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifiers of the `Reservations`.
+          description: Unique identifiers of the `Reservation`.
       additionalProperties: false
       x-schema-id: ReservationsChannelManagerDetailsFilterParameters
     ReservationsChannelManagerDetailsResult:
-      title: Reservations' channel manager details result
+      title: Reservation channel manager details result
       required:
         - ChannelManagerDetails
       type: object
@@ -41577,7 +41594,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChannelManagerDetails'
-          description: List of reservations' channel manager details.
+          description: List of reservation channel manager details.
       additionalProperties: false
       x-schema-id: ReservationsChannelManagerDetailsResult
     ReservationsUpdateCustomerParameters:

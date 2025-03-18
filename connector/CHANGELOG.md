@@ -1,3 +1,14 @@
+# 2025-03-18
+
+
+## POST /api/connector/v1/reservations/getChannelManagerDetails
+-  added the optional property 'ChannelManagerDetails/items/ChannelManagerName' to the response with the '200' status
+-  added the optional property 'ChannelManagerDetails/items/ChannelManagerNumber' to the response with the '200' status
+-  added the optional property 'ChannelManagerDetails/items/ChannelNumber' to the response with the '200' status
+-  added the optional property 'ChannelManagerDetails/items/CreatedUtc' to the response with the '200' status
+
+
+
 # 2025-03-15
 
 
