@@ -1,3 +1,27 @@
+# 2025-03-19
+
+
+## DELETE /api/rms-proxy/v1/{proxyPath}
+- :warning: api path removed without deprecation
+
+
+## GET /api/rms-proxy/v1/{proxyPath}
+- :warning: api path removed without deprecation
+
+
+## OPTIONS /api/rms-proxy/v1/{proxyPath}
+- :warning: api path removed without deprecation
+
+
+## POST /api/rms-proxy/v1/{proxyPath}
+- :warning: api path removed without deprecation
+
+
+## PUT /api/rms-proxy/v1/{proxyPath}
+- :warning: api path removed without deprecation
+
+
+
 # 2025-03-15
 
 
