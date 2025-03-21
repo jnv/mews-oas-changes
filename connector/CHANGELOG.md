@@ -1,3 +1,11 @@
+# 2025-03-21
+
+
+## POST /api/connector/v1/reservations/getChannelManagerDetails
+-  the response property 'ChannelManagerDetails/items/CreatedUtc' became required for the status '200'
+
+
+
 # 2025-03-19
 
 
