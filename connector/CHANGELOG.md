@@ -1,3 +1,27 @@
+# 2025-03-27
+
+
+## POST /api/connector/v1/billingAutomations/add
+-  endpoint added
+
+
+## POST /api/connector/v1/billingAutomations/delete
+-  endpoint added
+
+
+## POST /api/connector/v1/billingAutomations/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/billingAutomations/update
+-  endpoint added
+
+
+## POST /api/connector/v1/billingAutomations/updateAssignments
+-  endpoint added
+
+
+
 # 2025-03-21
 
 
