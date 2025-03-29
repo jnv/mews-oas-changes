@@ -1,3 +1,23 @@
+# 2025-03-29
+
+
+## POST /api/connector/v1/commands/getAllActive
+- :warning: added '#/components/schemas/PaymentTerminalCommandData, #/components/schemas/PrinterCommandData, #/components/schemas/KeyCutterCommandData, #/components/schemas/FiscalMachineCommandData, #/components/schemas/PassportScannerCommandData' to the 'Commands/items/Data' response property 'oneOf' list for the response status '200'
+-  removed '#/components/schemas/DeviceCommandData' from the 'Commands/items/Data' response property 'allOf' list for the response status '200'
+-  removed 'subschema #1: PaymentTerminalCommandData, subschema #2: PrinterCommandData, subschema #3: KeyCutterCommandData, subschema #4: FiscalMachineCommandData, subschema #5: PassportScannerCommandData' from the 'Commands/items/Data' response property 'oneOf' list for the response status '200'
+
+
+## POST /api/connector/v1/commands/getAllByIds
+- :warning: added '#/components/schemas/PaymentTerminalCommandData, #/components/schemas/PrinterCommandData, #/components/schemas/KeyCutterCommandData, #/components/schemas/FiscalMachineCommandData, #/components/schemas/PassportScannerCommandData' to the 'Commands/items/Data' response property 'oneOf' list for the response status '200'
+-  removed '#/components/schemas/DeviceCommandData' from the 'Commands/items/Data' response property 'allOf' list for the response status '200'
+-  removed 'subschema #1: PaymentTerminalCommandData, subschema #2: PrinterCommandData, subschema #3: KeyCutterCommandData, subschema #4: FiscalMachineCommandData, subschema #5: PassportScannerCommandData' from the 'Commands/items/Data' response property 'oneOf' list for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the new optional request property 'ChannelNumbers'
+
+
+
 # 2025-03-27
 
 
