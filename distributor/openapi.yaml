@@ -594,6 +594,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServicePricingResult'
+  '/rms/{path}':
+    get:
+      tags:
+        - Rms
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/assets/images/{fileName}':
+    get:
+      tags:
+        - Rms
+      parameters:
+        - name: fileName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     AdditionalService:
