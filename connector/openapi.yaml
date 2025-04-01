@@ -1590,24 +1590,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AvailabilityAdjustmentParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              AvailabilityAdjustmentIds:
-                - e19297af-373e-4701-b4ea-afae0129bded
-                - 7413724a-6c48-46d4-ab3a-afae01280999
-              UpdatedUtc:
-                StartUtc: '2023-02-18T18:00:10.155Z'
-                EndUtc: '2023-02-20T18:00:10.155Z'
-              ActivityStates:
-                - Active
-                - Deleted
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","AvailabilityAdjustmentIds":["e19297af-373e-4701-b4ea-afae0129bded","7413724a-6c48-46d4-ab3a-afae01280999"],"UpdatedUtc":{"StartUtc":"2023-02-18T18:00:10.155Z","EndUtc":"2023-02-20T18:00:10.155Z"},"ActivityStates":["Active","Deleted"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -1615,25 +1598,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityAdjustmentResult'
-              example:
-                AvailabilityAdjustments:
-                  - Id: e19297af-373e-4701-b4ea-afae0129bded
-                    AvailabilityBlockId: 12806ae8-9c15-44c7-9a44-afae01289928
-                    ResourceCategoryId: e6a2457d-f82c-4597-90f9-afa900d0d17d
-                    FirstTimeUnitStartUtc: '2023-02-21T23:00:00Z'
-                    LastTimeUnitStartUtc: '2023-02-21T23:00:00Z'
-                    UnitCount: -3
-                    ActivityState: Active
-                    UpdatedUtc: '2023-02-28T23:00:00Z'
-                  - Id: 7413724a-6c48-46d4-ab3a-afae01280999
-                    AvailabilityBlockId: 
-                    ResourceCategoryId: e6a2457d-f82c-4597-90f9-afa900d0d17d
-                    FirstTimeUnitStartUtc: '2023-02-19T23:00:00Z'
-                    LastTimeUnitStartUtc: '2023-02-23T23:00:00Z'
-                    UnitCount: 5
-                    ActivityState: Deleted
-                    UpdatedUtc: '2023-02-28T23:00:00Z'
-                Cursor: 7413724a-6c48-46d4-ab3a-afae01280999
+              example: {"AvailabilityAdjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"},{"Id":"7413724a-6c48-46d4-ab3a-afae01280999","AvailabilityBlockId":null,"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2023-02-19T23:00:00Z","LastTimeUnitStartUtc":"2023-02-23T23:00:00Z","UnitCount":5,"ActivityState":"Deleted","ReleaseOverrideUtc":null,"UpdatedUtc":"2023-02-28T23:00:00Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":null}],"Cursor":"7413724a-6c48-46d4-ab3a-afae01280999"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -5288,6 +5253,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/creditCards/disable:
+    post:
+      tags:
+        - Credit cards
+      summary: Disable gateway credit card
+      description: 'Disable an existing credit card in the system. Only gateway credit cards can be disabled. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: creditCards_disable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableCreditCardParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CreditCardId":"f5c6b7a8-9d4f-4e2a-8a3b-2f3b8b9e6a1f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+              example: {}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/currencies/getAll:
     post:
       tags:
@@ -8215,6 +8244,7 @@ paths:
     post:
       tags:
         - Order items
+      summary: Cancel order items
       description: 'Cancels all order items with specified identifiers. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: orderItems_cancel
       requestBody:
@@ -9202,70 +9232,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/creditCards/disable:
-    post:
-      tags:
-        - Payments
-      summary: Disable gateway credit card
-      description: 'Disable an existing credit card in the system. Only gateway credit card can be disabled. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
-      operationId: creditCards_disable
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DisableCreditCardParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CreditCardId":"f5c6b7a8-9d4f-4e2a-8a3b-2f3b8b9e6a1f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Unit'
-              example: {}
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/payments/getAll:
     post:
       tags:
@@ -14307,6 +14273,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  '/rms/{path}':
+    get:
+      tags:
+        - Rms
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/assets/images/{fileName}':
+    get:
+      tags:
+        - Rms
+      parameters:
+        - name: fileName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
   /api/connector/v1/routingRules/getAll:
     post:
       tags:
@@ -19401,7 +19393,6 @@ components:
       title: Availability adjustment
       required:
         - ActivityState
-        - FirstTimeUnitReleaseUtc
         - FirstTimeUnitStartUtc
         - Id
         - IsActive
@@ -19482,10 +19473,10 @@ components:
           description: Collection of predicted occupancy of availability adjustments. Relates to how many adjustments are assigned to each count of guests.
           nullable: true
         FirstTimeUnitReleaseUtc:
-          minLength: 1
           type: string
           description: 'Exact moment the first time unit of the availability adjustment is released based on `ReleaseOverrideUtc` or the `ReleaseStrategy` of the associated availability block, or the `OperationalEditableHistoryInterval` of the associated enterprise if not set, or `null` if `AvailabilityBlockId` is `null`.'
           format: date-time
+          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityAdjustment
     AvailabilityAdjustmentParameters:
@@ -25512,28 +25503,28 @@ components:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
         IdentityCard:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
         Visa:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
         DriversLicense:
           title: Identity document
           allOf:
             - $ref: '#/components/schemas/IdentityDocument'
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
         Address:
           title: Address
           allOf:
@@ -26263,7 +26254,7 @@ components:
           description: Whether the response should contain identity documents of customers.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) instead.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) instead.'
         Addresses:
           type: boolean
           description: Whether the response should contain addresses of customers.
@@ -26649,7 +26640,7 @@ components:
           description: The identity documents of customers.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
         Cursor:
           type: string
           description: 'Unique identifier of the last and hence oldest customer item returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older customers. If [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) is specified in the request message, then Cursor will always be included in the response message; this is true even when using Extents set to false so that no actual data is returned.'
@@ -26712,7 +26703,7 @@ components:
           description: The identity documents of customers.
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use [Get all identity documents](https://github.com/MewsSystems/gitbook-connector-api/pull/identitydocuments.md#get-all-identity-documents) to fetch identity documents.'
+          x-deprecatedMessage: 'Use [Get all identity documents](https://mews-systems.gitbook.io/connector-api/operations/identitydocuments#get-all-identity-documents) to fetch identity documents.'
       additionalProperties: false
       x-schema-id: CustomerSearchResult
     CustomerUpdateParameters:
@@ -32989,7 +32980,7 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifiers of specific `Accounts` to which order items are belongs to. Required if no other filter is provided.
+          description: Unique identifiers of specific `Accounts` to which the order items belong to. Required if no other filter is provided.
           nullable: true
         ServiceOrderIds:
           maxItems: 1000
@@ -34344,7 +34335,7 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifiers of specific `Accounts` to which payments are belongs to. Required if no other filter is provided.
+          description: Unique identifiers of specific `Accounts` to which payments belong. Required if no other filter is provided.
           nullable: true
         BillIds:
           maxItems: 1000
@@ -43557,7 +43548,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderNoteTypeEnum'
-          description: 'Type of the service order note. Defaults to `["General", "ChannelManage"]`.'
+          description: 'Type of the service order note. Defaults to `["General", "ChannelManager"]`.'
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceOrderNoteFilterParameters

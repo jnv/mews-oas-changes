@@ -1,3 +1,32 @@
+# 2025-04-01
+
+
+## POST /api/connector/v1/availabilityAdjustments/getAll
+- :warning: the response property 'AvailabilityAdjustments/items/FirstTimeUnitReleaseUtc' became nullable for the status '200'
+- :warning: the response property 'AvailabilityAdjustments/items/FirstTimeUnitReleaseUtc' became optional for the status '200'
+- :warning: the 'AvailabilityAdjustments/items/FirstTimeUnitReleaseUtc' response property's minLength was decreased from '1' to '0' for the response status '200'
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+- :warning: the response property 'Adjustments/items/FirstTimeUnitReleaseUtc' became nullable for the status '200'
+- :warning: the response property 'Adjustments/items/FirstTimeUnitReleaseUtc' became optional for the status '200'
+- :warning: the 'Adjustments/items/FirstTimeUnitReleaseUtc' response property's minLength was decreased from '1' to '0' for the response status '200'
+
+
+## POST /api/connector/v1/creditCards/disable
+-  api tag 'Credit cards' added
+-  api tag 'Payments' removed
+
+
+## GET /assets/images/{fileName}
+-  endpoint added
+
+
+## GET /rms/{path}
+-  endpoint added
+
+
+
 # 2025-03-29
 
 
