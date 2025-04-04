@@ -1,3 +1,11 @@
+# 2025-04-04
+
+
+## POST /api/connector/v1/companyContracts/getAll
+-  added the new optional request property 'ActivityStates'
+
+
+
 # 2025-04-01
 
 
