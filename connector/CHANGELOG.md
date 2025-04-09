@@ -1,3 +1,115 @@
+# 2025-04-09
+
+
+## POST /api/connector/v1/commands/addKeyCutter
+-  the response property 'CommandId' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/addPaymentTerminal
+- :warning: added '#/components/schemas/PaymentTerminalCommandTypeEnum' to the 'Type' request property 'allOf' list
+- :warning: the request property 'Amount' became not nullable
+- :warning: the request property 'Amount' became required
+- :warning: removed the enum value 'Payment' of the request property 'Type'
+- :warning: removed the enum value 'Preauthorization' of the request property 'Type'
+- :warning: the 'Type' request property type/format changed from 'string'/'' to ''/''
+-  the response property 'CommandId' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/addPrinter
+-  the response property 'CommandId' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllActive
+- :warning: the 'Commands/items/CreatedUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/EndUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/StartUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/PayworksData' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/ExternalRequestIdentifier' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/KeyMode' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/Password' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/UserName' from the response with the '200' status
+-  added '#/components/schemas/BillFiscalMachineData' to the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/BillFiscalMachineData' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/BillFiscalMachinePayloadData' to the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/PayloadData' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/DeviceCommandCreator' to the 'Commands/items/Creator' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/DeviceCommandStateEnum' to the 'Commands/items/State' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/Coproduct' from the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/BillFiscalMachineData' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/Coproduct' from the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/PayloadData' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/User' from the 'Commands/items/Creator' response property 'allOf' list for the response status '200'
+-  the response property 'Commands' became required for the status '200'
+-  the response property 'Commands/items/CreatedUtc' became required for the status '200'
+-  the response property 'Commands/items/Data' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/Amount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/PaymentTerminalId' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/CopyCount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/FileData' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/FileType' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterDriverName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterPortName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/EndUtc' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/KeyCount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/LastName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/LockIds' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/StartUtc' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/Bill' became required for the status '200'
+-  the response property 'Commands/items/Device' became required for the status '200'
+-  the response property 'Commands/items/Id' became required for the status '200'
+-  the response property 'Commands/items/State' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllByIds
+- :warning: the 'Commands/items/CreatedUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/EndUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/StartUtc' response's property type/format changed from 'string'/'' to 'string'/'date-time' for status '200'
+- :warning: the 'Commands/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/PayworksData' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/ExternalRequestIdentifier' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/KeyMode' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/Password' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/UserName' from the response with the '200' status
+-  added '#/components/schemas/BillFiscalMachineData' to the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/BillFiscalMachineData' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/BillFiscalMachinePayloadData' to the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/PayloadData' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/DeviceCommandCreator' to the 'Commands/items/Creator' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/DeviceCommandStateEnum' to the 'Commands/items/State' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/Coproduct' from the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/BillFiscalMachineData' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/Coproduct' from the 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/PayloadData' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/User' from the 'Commands/items/Creator' response property 'allOf' list for the response status '200'
+-  the response property 'Commands' became required for the status '200'
+-  the response property 'Commands/items/CreatedUtc' became required for the status '200'
+-  the response property 'Commands/items/Data' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/Amount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #1: PaymentTerminalCommandData -> subschema #1: Payment terminal command data]/PaymentTerminalId' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/CopyCount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/FileData' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/FileType' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterDriverName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #2: PrinterCommandData -> subschema #2: Printer command data]/PrinterPortName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/EndUtc' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/KeyCount' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/LastName' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/LockIds' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #3: KeyCutterCommandData -> subschema #3: Key cutter command data]/StartUtc' became required for the status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #4: FiscalMachineCommandData -> subschema #4: Fiscal machine command data]/Bill' became required for the status '200'
+-  the response property 'Commands/items/Device' became required for the status '200'
+-  the response property 'Commands/items/Id' became required for the status '200'
+-  the response property 'Commands/items/State' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/update
+- :warning: added '#/components/schemas/DeviceCommandStateEnum' to the 'State' request property 'allOf' list
+- :warning: removed the enum value 'Cancelled' of the request property 'State'
+- :warning: removed the enum value 'Error' of the request property 'State'
+- :warning: removed the enum value 'Pending' of the request property 'State'
+- :warning: removed the enum value 'Processed' of the request property 'State'
+- :warning: removed the enum value 'Processing' of the request property 'State'
+- :warning: removed the enum value 'Received' of the request property 'State'
+- :warning: the 'State' request property type/format changed from 'string'/'' to ''/''
+- :warning: removed the request property 'ExternalRequestIdentifier'
+
+
+
 # 2025-04-04
 
 

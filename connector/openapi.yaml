@@ -3412,7 +3412,7 @@ paths:
       tags:
         - Commands
       summary: Add payment command
-      description: "> ### Restricted!\n> This operation is part of a custom workflow for Mews partners such as POS systems to access Mews Payment Terminals.\n> See [Mews Payment Terminals](https://mews-systems.gitbook.io/connector-api/use-cases/mews-terminals/).\nAdds a new Mews Payment Terminal command for taking a customer payment.\nThe operation instructs a specified terminal device to take a payment from a specified customer for a specified amount."
+      description: "> ### Restricted!\r\n> This operation is part of a custom workflow for Mews partners such as POS systems to access Mews Payment Terminals.\r\n> See [Mews Payment Terminals](../use-cases/mews-terminals.md).\r\n\r\nAdds a new Mews Payment Terminal command for taking a customer payment.\r\nThe operation instructs a specified terminal device to take a payment from a specified customer for a specified amount."
       operationId: commands_addPaymentTerminal
       requestBody:
         content:
@@ -20930,6 +20930,61 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: BillFilterParameters
+    BillFiscalMachineData:
+      title: Fiscal machine data
+      required:
+        - Discriminator
+        - Value
+      type: object
+      properties:
+        Discriminator:
+          title: Fiscal machine data discriminator
+          allOf:
+            - $ref: '#/components/schemas/BillFiscalMachineDataDiscriminatorEnum'
+          description: "Discriminator of the object.\n\nItalianFiscalMachineData"
+          x-enumNames:
+            - ItalianFiscalMachineData
+          x-enumDescriptions:
+            - ''
+        Value:
+          title: Fiscal machine data for Italian fiscal machine
+          allOf:
+            - $ref: '#/components/schemas/ItalianFiscalMachineData'
+          description: Structure of the object depends on `Discriminator` (currently only `ItalianFiscalMachineData` is supported).
+      additionalProperties: false
+      x-schema-id: BillFiscalMachineData
+    BillFiscalMachineDataDiscriminatorEnum:
+      title: Fiscal machine data discriminator
+      enum:
+        - ItalianFiscalMachineData
+      type: string
+      description: "\n\nItalianFiscalMachineData"
+      x-enumNames:
+        - ItalianFiscalMachineData
+      x-enumDescriptions:
+        - ''
+    BillFiscalMachinePayloadData:
+      title: Fiscal machine payload
+      required:
+        - Discriminator
+        - Value
+      type: object
+      properties:
+        Discriminator:
+          title: Fiscal machine payload discriminator
+          allOf:
+            - $ref: '#/components/schemas/FiscalMachinePayloadDataDiscriminatorEnum'
+          description: "Discriminator of the object.\n\nItalianFiscalMachine"
+          x-enumNames:
+            - ItalianFiscalMachine
+          x-enumDescriptions:
+            - ''
+        Value:
+          minLength: 1
+          type: string
+          description: Base64-encoded data of the file to be printed.
+      additionalProperties: false
+      x-schema-id: BillFiscalMachinePayloadData
     BillOptions:
       title: Bill options
       type: object
@@ -27211,27 +27266,53 @@ components:
       additionalProperties: false
       x-schema-id: Device
     DeviceCommand:
-      title: DeviceCommand
+      title: Command
+      required:
+        - CreatedUtc
+        - Data
+        - Device
+        - Id
+        - State
       type: object
       properties:
         Id:
           type: string
+          description: Unique identifier of the command.
           format: uuid
         State:
-          type: string
-          nullable: true
+          title: Command state
+          allOf:
+            - $ref: '#/components/schemas/DeviceCommandStateEnum'
+          description: "State of the command.\n\nPending (Created in Mews, but not yet received by the client application.)\n\nReceived (Received by the client application.)\n\nProcessing (Being processed by the client application.)\n\nProcessed (Successfully processed command.)\n\nCancelled (A command whose execution has been canceled before (or during) processing.)\n\nError (A command whose execution or processing was terminated by an error.)"
+          x-enumNames:
+            - Pending
+            - Received
+            - Processing
+            - Processed
+            - Cancelled
+            - Error
+          x-enumDescriptions:
+            - 'Created in Mews, but not yet received by the client application.'
+            - Received by the client application.
+            - Being processed by the client application.
+            - Successfully processed command.
+            - A command whose execution has been canceled before (or during) processing.
+            - A command whose execution or processing was terminated by an error.
         CreatedUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Creation date and time of the command.
+          format: date-time
         Creator:
           title: User
           allOf:
-            - $ref: '#/components/schemas/User'
+            - $ref: '#/components/schemas/DeviceCommandCreator'
+          description: Creator of the command.
           nullable: true
         Device:
           allOf:
             - $ref: '#/components/schemas/Device'
-          nullable: true
+          description: Device that the command should be executed on.
         Data:
           oneOf:
             - $ref: '#/components/schemas/PaymentTerminalCommandData'
@@ -27239,19 +27320,42 @@ components:
             - $ref: '#/components/schemas/KeyCutterCommandData'
             - $ref: '#/components/schemas/FiscalMachineCommandData'
             - $ref: '#/components/schemas/PassportScannerCommandData'
-          nullable: true
+          description: 'Structure of the object depends on [Device type](https://mews-systems.gitbook.io/connector-api/operations/devices#device-type).'
       additionalProperties: false
       x-schema-id: DeviceCommand
     DeviceCommandAddResult:
       title: DeviceCommandAddResult
+      required:
+        - CommandId
       type: object
       properties:
         CommandId:
           type: string
-          description: 'Unique identifier of the created [Command](https://mews-systems.gitbook.io/connector-api/operations/#command).'
+          description: Unique identifier of the created `Command`.
           format: uuid
       additionalProperties: false
       x-schema-id: DeviceCommandAddResult
+    DeviceCommandCreator:
+      title: User
+      required:
+        - LastName
+      type: object
+      properties:
+        FirstName:
+          type: string
+          description: First name of the user.
+          nullable: true
+        LastName:
+          minLength: 1
+          type: string
+          description: Last name of the user.
+        ImageUrl:
+          type: string
+          description: URL of the profile image.
+          format: uri
+          nullable: true
+      additionalProperties: false
+      x-schema-id: DeviceCommandCreator
     DeviceCommandData:
       type: object
       additionalProperties: false
@@ -27293,15 +27397,18 @@ components:
       x-schema-id: DeviceCommandFilterParameters
     DeviceCommandResult:
       title: DeviceCommandResult
+      required:
+        - Commands
       type: object
       properties:
         Commands:
           type: array
           items:
             $ref: '#/components/schemas/DeviceCommand'
-          nullable: true
+          description: The active commands.
         Cursor:
           type: string
+          description: Unique identifier of the last returned command. This can be used in Limitation in a subsequent request to fetch the next batch of commands.
           format: uuid
           nullable: true
       additionalProperties: false
@@ -27311,7 +27418,8 @@ components:
         - ItalianFiscalMachine
         - SaltoMobileKeyDto
       type: string
-    DeviceCommandState:
+    DeviceCommandStateEnum:
+      title: Command state
       enum:
         - Pending
         - Received
@@ -27320,6 +27428,21 @@ components:
         - Cancelled
         - Error
       type: string
+      description: "\n\nPending (Created in Mews, but not yet received by the client application.)\n\nReceived (Received by the client application.)\n\nProcessing (Being processed by the client application.)\n\nProcessed (Successfully processed command.)\n\nCancelled (A command whose execution has been canceled before (or during) processing.)\n\nError (A command whose execution or processing was terminated by an error.)"
+      x-enumNames:
+        - Pending
+        - Received
+        - Processing
+        - Processed
+        - Cancelled
+        - Error
+      x-enumDescriptions:
+        - 'Created in Mews, but not yet received by the client application.'
+        - Received by the client application.
+        - Being processed by the client application.
+        - Successfully processed command.
+        - A command whose execution has been canceled before (or during) processing.
+        - A command whose execution or processing was terminated by an error.
     DeviceCommandUpdateParameters:
       title: DeviceCommandUpdateParameters
       required:
@@ -27344,23 +27467,20 @@ components:
           description: Name and version of the client application.
         CommandId:
           type: string
-          description: 'Identifier of the [Command](https://mews-systems.gitbook.io/connector-api/operations/#command) to be updated.'
+          description: Identifier of the `Command` to be updated.
           format: uuid
         State:
-          $ref: '#/components/schemas/DeviceCommandState'
+          allOf:
+            - $ref: '#/components/schemas/DeviceCommandStateEnum'
+          description: "New state of the command.\n\nPending (Created in Mews, but not yet received by the client application.)\n\nReceived (Received by the client application.)\n\nProcessing (Being processed by the client application.)\n\nProcessed (Successfully processed command.)\n\nCancelled (A command whose execution has been canceled before (or during) processing.)\n\nError (A command whose execution or processing was terminated by an error.)"
         Progress:
           type: number
-          description: 'Progress of the command processing. Only used if the State is Processing, otherwise ignored.'
+          description: 'Progress of the command processing. Only used if the `State` is `Processing`, otherwise ignored.'
           format: double
           nullable: true
         Notes:
           type: string
-          description: 'Notes about command execution. Only used if the State is Processed, Cancelled or Error, otherwise ignored.'
-          nullable: true
-        ExternalRequestIdentifier:
-          title: StringUpdateValue
-          allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Notes about command execution. Only used if the `State` is `Processed`, `Cancelled` or `Error`, otherwise ignored.'
           nullable: true
       additionalProperties: false
       x-schema-id: DeviceCommandUpdateParameters
@@ -28451,38 +28571,58 @@ components:
         - Consumption overview (not fiscal document). Items are grouped by the item type and price without reservation details and consumption date.
         - 'Overview by guest. Items are grouped by guest, reservation, consumption date, and item type.'
     FiscalMachineCommandData:
-      title: FiscalMachineCommandData
+      title: Fiscal machine command data
+      required:
+        - Bill
       type: object
       allOf:
         - $ref: '#/components/schemas/DeviceCommandData'
       properties:
         FiscalMachineId:
           type: string
+          description: Identifier of the fiscal machine.
           nullable: true
         ApiUrl:
           type: string
+          description: URL of the fiscal machine API.
           nullable: true
         FiscalMachineData:
           type: string
+          description: Custom JSON data.
           nullable: true
         Bill:
           title: Bill
           allOf:
             - $ref: '#/components/schemas/Bill'
-          nullable: true
+          description: The issued bill that should be fiscalized.
         TaxIdentifier:
           type: string
+          description: Tax identifier to be used for fiscalization.
           nullable: true
         BillFiscalMachineData:
+          title: Fiscal machine data
           allOf:
-            - $ref: '#/components/schemas/Coproduct'
+            - $ref: '#/components/schemas/BillFiscalMachineData'
+          description: Fiscal machine data; currently only `ItalianFiscalMachineData` is supported.
           nullable: true
         PayloadData:
+          title: Fiscal machine payload
           allOf:
-            - $ref: '#/components/schemas/Coproduct'
+            - $ref: '#/components/schemas/BillFiscalMachinePayloadData'
+          description: Fiscal machine payload data; currently only `ItalianFiscalMachinePayloadData` is supported.
           nullable: true
       additionalProperties: false
       x-schema-id: FiscalMachineCommandData
+    FiscalMachinePayloadDataDiscriminatorEnum:
+      title: Fiscal machine payload discriminator
+      enum:
+        - ItalianFiscalMachine
+      type: string
+      description: "\n\nItalianFiscalMachine"
+      x-enumNames:
+        - ItalianFiscalMachine
+      x-enumDescriptions:
+        - ''
     FlatTaxRateStrategy:
       title: FlatTaxRateStrategy
       type: object
@@ -29281,6 +29421,32 @@ components:
         - ''
         - ''
         - ''
+    ItalianFiscalMachineData:
+      title: Fiscal machine data for Italian fiscal machine
+      type: object
+      properties:
+        IsRefund:
+          type: boolean
+          description: Indicates if the transaction is a refund.
+        RebatedReceiptNumber:
+          type: string
+          description: Number of the rebated receipt.
+          nullable: true
+        RebatedReceiptSequence:
+          type: string
+          description: Sequence of the rebated receipt.
+          nullable: true
+        RebatedReceiptDateTimeUtc:
+          type: string
+          description: Date and time of the rebated receipt in UTC.
+          format: date-time
+          nullable: true
+        PrinterSerialNumber:
+          type: string
+          description: Serial number of the printer.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ItalianFiscalMachineData
     ItalianFiscalMachineResultData:
       title: ItalianFiscalMachineResultData
       type: object
@@ -29298,46 +29464,56 @@ components:
       items:
         $ref: '#/components/schemas/JToken'
     KeyCutterCommandData:
-      title: KeyCutterCommandData
+      title: Key cutter command data
+      required:
+        - EndUtc
+        - KeyCount
+        - LastName
+        - LockIds
+        - StartUtc
       type: object
       allOf:
         - $ref: '#/components/schemas/DeviceCommandData'
       properties:
         KeyCutterId:
           type: string
+          description: Identifier of the key cutter.
           nullable: true
         ApiUrl:
           type: string
-          nullable: true
-        UserName:
-          type: string
-          nullable: true
-        Password:
-          type: string
+          description: URL of the key cutter server API.
           nullable: true
         KeyCutterData:
           type: string
+          description: Custom JSON data.
           nullable: true
         KeyCount:
           type: integer
+          description: Count of keys to cut.
           format: int32
         LockIds:
           type: array
           items:
             type: string
-          nullable: true
+          description: Identifiers of locks/rooms the key should open.
         StartUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Reservation start.
+          format: date-time
         EndUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Reservation end.
+          format: date-time
         FirstName:
           type: string
+          description: First name of the reservation owner.
           nullable: true
         LastName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Last name of the reservation owner.
         NormalizedFirstName:
           type: string
           description: Normalized first name of the customer without special characters.
@@ -29348,22 +29524,20 @@ components:
           nullable: true
         Telephone:
           type: string
+          description: Telephone of the reservation owner.
           nullable: true
         Email:
           type: string
+          description: Email of the reservation owner.
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the reservation.
           format: uuid
           nullable: true
         ReservationNumber:
           type: string
-          nullable: true
-        KeyMode:
-          type: string
-          nullable: true
-        ExternalRequestIdentifier:
-          type: string
+          description: Confirmation number of the reservation in Mews.
           nullable: true
       additionalProperties: false
       x-schema-id: KeyCutterCommandData
@@ -30751,17 +30925,22 @@ components:
       properties:
         EndpointId:
           type: string
+          description: Unique identifier of the mobile key endpoint.
           nullable: true
         Label:
           type: string
+          description: Label of the mobile key.
           nullable: true
         Description:
           type: string
+          description: Description of the mobile key.
           nullable: true
         RevokeMobileKeyId:
           type: string
+          description: Unique identifier of the mobile key for revocation.
           nullable: true
       additionalProperties: false
+      description: Mobile key command data
       x-schema-id: MobileKeyData
     MultipleAccountMergeParameters:
       title: MultipleAccountMergeParameters
@@ -33826,20 +34005,23 @@ components:
       description: '[Parent product category](https://mews-systems.gitbook.io/connector-api/operations/#parent-product-category).'
       x-schema-id: ParentProductCategory
     PassportScannerCommandData:
-      title: PassportScannerCommandData
+      title: Passport scanner command data
       type: object
       allOf:
         - $ref: '#/components/schemas/DeviceCommandData'
       properties:
         PassportScannerId:
           type: string
-          nullable: true
-        ReservationId:
-          type: string
-          format: uuid
+          description: Identifier of the passport scanner.
           nullable: true
         CustomerId:
           type: string
+          description: Unique identifier of the `Customer` who should be processed.
+          format: uuid
+          nullable: true
+        ReservationId:
+          type: string
+          description: Unique identifier of the reservation whose companions should be processed.
           format: uuid
           nullable: true
       additionalProperties: false
@@ -34993,18 +35175,21 @@ components:
       additionalProperties: false
       x-schema-id: PaymentTerminalCommandCustomerData
     PaymentTerminalCommandData:
-      title: PaymentTerminalCommandData
+      title: Payment terminal command data
       required:
         - AccountData
         - AccountId
+        - Amount
         - CustomerId
+        - PaymentTerminalId
       type: object
       allOf:
         - $ref: '#/components/schemas/DeviceCommandData'
       properties:
         PaymentTerminalId:
+          minLength: 1
           type: string
-          nullable: true
+          description: Identifier of the payment terminal.
         CustomerId:
           type: string
           format: uuid
@@ -35018,37 +35203,36 @@ components:
           type: string
           nullable: true
           deprecated: true
-          x-deprecatedMessage: 'Use `AccountData.Customer.FullName`, if `AccountData.Discriminator` is `Customer`, instead.'
+          x-deprecatedMessage: 'Use `AccountData.Customer.FullName`, if `AccountData.Discriminator` is `Customer`.'
         BillId:
           type: string
+          description: Identifier of the bill.
           format: uuid
           nullable: true
         PaymentId:
           type: string
+          description: Identifier of the `Payment`.
           format: uuid
           nullable: true
         PreauthorizationId:
           type: string
+          description: Identifier of the `Preauthorization`.
           format: uuid
           nullable: true
         Amount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: Amount to be processed.
         Fee:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
+          description: Payment fee to be processed.
           nullable: true
         PaymentTerminalData:
           type: string
-          nullable: true
-        PayworksData:
-          allOf:
-            - $ref: '#/components/schemas/PayworksData'
+          description: Custom JSON data.
           nullable: true
         AccountData:
           title: Account data for payment terminal command
@@ -35061,6 +35245,7 @@ components:
       title: PaymentTerminalCommandParameters
       required:
         - AccessToken
+        - Amount
         - Client
         - ClientToken
         - CustomerId
@@ -35086,36 +35271,47 @@ components:
           format: uuid
         CustomerId:
           type: string
-          description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
+          description: Unique identifier of the `Customer`.
           format: uuid
         Type:
-          $ref: '#/components/schemas/PaymentTerminalCommandType'
+          allOf:
+            - $ref: '#/components/schemas/PaymentTerminalCommandTypeEnum'
+          description: "The type of payment, e.g. `Preauthorization`.\n\nPayment\n\nPreauthorization"
         Amount:
           title: Currency value (ver 2018-06-07)
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
-          description: Total price of the reservation.
-          nullable: true
+          description: Amount of the payment.
         BillId:
           type: string
-          description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill).'
+          description: Unique identifier of the `Bill`.
           format: uuid
           nullable: true
         PaymentRequestId:
           type: string
+          description: Unique identifier of the `PaymentRequest`.
           format: uuid
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation`.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentTerminalCommandParameters
-    PaymentTerminalCommandType:
+    PaymentTerminalCommandTypeEnum:
+      title: Payment type
       enum:
         - Payment
         - Preauthorization
       type: string
+      description: "\n\nPayment\n\nPreauthorization"
+      x-enumNames:
+        - Payment
+        - Preauthorization
+      x-enumDescriptions:
+        - ''
+        - ''
     PaymentType:
       enum:
         - CreditCard
@@ -35245,29 +35441,42 @@ components:
         - The enterprise shows amount with gross prices.
         - The enterprise shows amount with net prices.
     PrinterCommandData:
-      title: PrinterCommandData
+      title: Printer command data
+      required:
+        - CopyCount
+        - FileData
+        - FileType
+        - PrinterDriverName
+        - PrinterName
+        - PrinterPortName
       type: object
       allOf:
         - $ref: '#/components/schemas/DeviceCommandData'
       properties:
         CopyCount:
           type: integer
+          description: Number of copies to be printed.
           format: int32
         FileType:
+          minLength: 1
           type: string
-          nullable: true
+          description: MIME type of the file to be printed (e.g. `application/pdf`).
         FileData:
+          minLength: 1
           type: string
-          nullable: true
+          description: Base64-encoded data of the file to be printed.
         PrinterName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the printer.
         PrinterDriverName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the printer driver.
         PrinterPortName:
+          minLength: 1
           type: string
-          nullable: true
+          description: Name of the printer port.
       additionalProperties: false
       x-schema-id: PrinterCommandData
     PrinterCommandParameters:
@@ -35300,7 +35509,7 @@ components:
           nullable: true
         PrinterId:
           type: string
-          description: 'Uniqque identifier of the Printer [Device](https://mews-systems.gitbook.io/connector-api/operations/devices/#device) where to print the document.'
+          description: Unique identifier of the `Printer` `Device` where to print the document.
           format: uuid
         Data:
           minLength: 1
@@ -45218,34 +45427,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: UpdateValueCurrencyValueOld
-    User:
-      title: User
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-          nullable: true
-        FirstName:
-          type: string
-          nullable: true
-        LastName:
-          type: string
-          nullable: true
-        ImageUrl:
-          type: string
-          format: uri
-          nullable: true
-        Email:
-          type: string
-          format: email
-          nullable: true
-        LastSuccessfulSignInUtc:
-          type: string
-          format: date-time
-          nullable: true
-      additionalProperties: false
-      x-schema-id: User
     Voucher:
       title: Voucher
       required:
