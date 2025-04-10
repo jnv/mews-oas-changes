@@ -38143,7 +38143,7 @@ components:
         State:
           anyOf:
             - $ref: '#/components/schemas/ServiceOrderState'
-          description: 'State of the newly created reservation (either `Optional`, `Enquired` or `Confirmed`). If not specified, `Confirmed` is used.'
+          description: 'State of the newly created reservation (either `Optional`, `Inquired` or `Confirmed`). If not specified, `Confirmed` is used.'
           nullable: true
         StartUtc:
           minLength: 1
