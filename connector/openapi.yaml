@@ -14258,32 +14258,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  '/rms/{path}':
-    get:
-      tags:
-        - Rms
-      parameters:
-        - name: path
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  '/assets/images/{fileName}':
-    get:
-      tags:
-        - Rms
-      parameters:
-        - name: fileName
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
   /api/connector/v1/routingRules/getAll:
     post:
       tags:
@@ -18352,8 +18326,9 @@ components:
         - Deposit
         - Guest
         - City
+        - NonRevenue
       type: string
-      description: "\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity"
+      description: "\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity\n\nNonRevenue"
       x-enumNames:
         - Revenue
         - Tax
@@ -18361,7 +18336,9 @@ components:
         - Deposit
         - Guest
         - City
+        - NonRevenue
       x-enumDescriptions:
+        - ''
         - ''
         - ''
         - ''
@@ -29702,7 +29679,7 @@ components:
           title: Accounting ledger type
           allOf:
             - $ref: '#/components/schemas/AccountingLedgerTypeEnum'
-          description: "Type of accounting ledger.\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity"
+          description: "Type of accounting ledger.\n\nRevenue\n\nTax\n\nPayment\n\nDeposit\n\nGuest\n\nCity\n\nNonRevenue"
           x-enumNames:
             - Revenue
             - Tax
@@ -29710,7 +29687,9 @@ components:
             - Deposit
             - Guest
             - City
+            - NonRevenue
           x-enumDescriptions:
+            - ''
             - ''
             - ''
             - ''

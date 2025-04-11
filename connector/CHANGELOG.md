@@ -1,3 +1,20 @@
+# 2025-04-11
+
+
+## POST /api/connector/v1/ledgerBalances/getAll
+- :warning: added the new 'NonRevenue' enum value to the 'LedgerBalances/items/LedgerType/allOf[subschema #1: Accounting ledger type]/' response property for the response status '200'
+-  added the new 'NonRevenue' enum value to the request property 'LedgerTypes/items/'
+
+
+## GET /assets/images/{fileName}
+- :warning: api path removed without deprecation
+
+
+## GET /rms/{path}
+- :warning: api path removed without deprecation
+
+
+
 # 2025-04-09
 
 
