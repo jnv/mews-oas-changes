@@ -1,3 +1,15 @@
+# 2025-04-11
+
+
+## GET /assets/images/{fileName}
+- :warning: api path removed without deprecation
+
+
+## GET /rms/{path}
+- :warning: api path removed without deprecation
+
+
+
 # 2025-04-01
 
 
