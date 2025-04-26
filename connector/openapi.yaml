@@ -21281,7 +21281,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationAccountingCategoryAssignmentIEnumerableUpdateValue
     BillingAutomationAddParameters:
-      title: BillingAutomationAddParameters
+      title: Billing automation add parameters
       required:
         - Assignments
         - AssignmentTargetType
@@ -21439,7 +21439,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationAssignment
     BillingAutomationAssignmentAddParameters:
-      title: BillingAutomationAssignmentAddParameters
+      title: Billing automation assignment add parameters
       required:
         - RoutedItemTypes
         - ServiceId
@@ -21523,7 +21523,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationAssignmentTargetTypeUpdateValue
     BillingAutomationAssignmentUpdateParameters:
-      title: BillingAutomationAssignmentUpdateParameters
+      title: Billing automation assignment update parameters
       required:
         - BillingAutomationAssignmentId
       type: object
@@ -21565,7 +21565,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationAssignmentUpdateParameters
     BillingAutomationAssignmentsUpdateParameters:
-      title: BillingAutomationAssignmentsUpdateParameters
+      title: Billing automation assignments update parameters
       required:
         - AccessToken
         - BillingAutomationId
@@ -21807,7 +21807,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationItemTypesUpdateParameters
     BillingAutomationModificationResult:
-      title: BillingAutomationModificationResult
+      title: Billing automation modification result
       type: object
       properties:
         BillingAutomations:
@@ -21894,7 +21894,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationPrepaymentUpdateValue
     BillingAutomationResult:
-      title: BillingAutomationResult
+      title: Billing automation result
       type: object
       properties:
         BillingAutomations:
@@ -21928,7 +21928,7 @@ components:
         - Billing automation is executed monthly.
         - Legacy
     BillingAutomationUpdateParameters:
-      title: BillingAutomationUpdateParameters
+      title: Billing automation update parameters
       required:
         - BillingAutomationId
       type: object
@@ -24207,7 +24207,7 @@ components:
       description: Options of the company.
       x-schema-id: CompanyOptionsParameters
     CompanyRelationsParameters:
-      title: CompanyRelationsParameters
+      title: Company with relations parameters
       type: object
       properties:
         PartnerCompany:
@@ -24405,7 +24405,7 @@ components:
       additionalProperties: false
       x-schema-id: CompanyUpdateParameters
     CompanyWithBillingAutomationRelation:
-      title: CompanyWithBillingAutomationRelation
+      title: Company with billing automation relation
       required:
         - CompanyId
         - CompanyRelations
@@ -24416,6 +24416,7 @@ components:
           description: Unique identifier of the company.
           format: uuid
         CompanyRelations:
+          title: Company with relations parameters
           allOf:
             - $ref: '#/components/schemas/CompanyRelationsParameters'
           description: Company relations.
@@ -31301,7 +31302,7 @@ components:
       additionalProperties: false
       x-schema-id: MultipleBillAddParameters
     MultipleBillingAutomationAddParameters:
-      title: MultipleBillingAutomationAddParameters
+      title: Multiple billing automation add parameters
       required:
         - AccessToken
         - BillingAutomations
@@ -31336,7 +31337,7 @@ components:
       additionalProperties: false
       x-schema-id: MultipleBillingAutomationAddParameters
     MultipleBillingAutomationUpdateParameters:
-      title: MultipleBillingAutomationUpdateParameters
+      title: Multiple billing automation update parameters
       required:
         - AccessToken
         - BillingAutomationUpdates
