@@ -1,3 +1,15 @@
+# 2025-05-03
+
+
+## POST /api/connector/v1/configuration/get
+-  added the optional property 'Enterprise/allOf[subschema #1: Enterprise]/HoldingKey' to the response with the '200' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the optional property 'Enterprises/items/HoldingKey' to the response with the '200' status
+
+
+
 # 2025-04-11
 
 
