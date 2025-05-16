@@ -17031,57 +17031,57 @@ components:
       type: object
       properties:
         Email:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Email address (or `null` if the email should not be updated).
           format: email
           nullable: true
         TaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identification number (or `null` if the tax identification number should not be updated).
           nullable: true
         BillingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Billing code (or `null` if the billing code should not be updated).
           nullable: true
         AccountingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Accounting code (or `null` if the accounting code should not be updated).
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Notes (or `null` if the notes should not be updated).
           nullable: true
         Name:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Name (or `null` if the name should not be updated).
           nullable: true
         MotherCompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Mother company identifier (or `null` if the mother company identifier should not be updated).
           nullable: true
         WebsiteUrl:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Website url (or `null` if the website url should not be updated).
           format: uri
           nullable: true
         InvoiceDueInterval:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Invoice due interval (or `null` if the invoice due interval should not be updated).
@@ -17099,7 +17099,7 @@ components:
           description: Options of the company.
           nullable: true
         CreditRatingBasic:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
@@ -17107,68 +17107,68 @@ components:
           description: Basic credit rating (or `null` if the basic credit rating should not be updated).
           nullable: true
         Department:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Department (or `null` if the department should not be updated).
           nullable: true
         DunsNumber:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Duns number (or `null` if the duns number should not be updated).
           nullable: true
         ReferenceId:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Reference identifier (or `null` if the reference identifier should not be updated).
           nullable: true
         ExternalIdentifier:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: External identifier (or `null` if the external identifier should not be updated).
           nullable: true
         AdditionalTaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Additional tax identifier (or `null` if the additional tax identifier should not be updated).
           nullable: true
         Contact:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Contact (or `null` if the contact should not be updated).
           nullable: true
         ContactPerson:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Contact person (or `null` if the contact person should not be updated).
           nullable: true
         FiscalIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Fiscal identifier (or `null` if the fiscal identifier should not be updated).
           nullable: true
         Iata:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: IATA of the company (or `null` if the iata should not be updated).
           nullable: true
         Telephone:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Telephone number (or `null` if the telephone number should not be updated).
           nullable: true
         SourceId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Source identifier (or `null` if the source identifier should not be updated).
@@ -17180,122 +17180,123 @@ components:
       type: object
       properties:
         Email:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Email address (or `null` if the email should not be updated).
           nullable: true
         TaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identification number (or `null` if the tax identification number should not be updated).
           nullable: true
         BillingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Billing code (or `null` if the billing code should not be updated).
           nullable: true
         AccountingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Accounting code (or `null` if the accounting code should not be updated).
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Notes (or `null` if the notes should not be updated).
           nullable: true
         LastName:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Last name (or `null` if the last name should not be updated).
           nullable: true
         FirstName:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: First name (or `null` if the first name should not be updated).
           nullable: true
         SecondLastName:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Second last name (or `null` if the second last name should not be updated).
           nullable: true
         BirthPlace:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Birth place (or `null` if the birth place should not be updated).
           nullable: true
         Telephone:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Telephone number (or `null` if the telephone should not be updated).
           nullable: true
         Occupation:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Occupation (or `null` if the occupation should not be updated).
           nullable: true
         CarRegistrationNumber:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Car registration number (or `null` if the car registration number should not be updated).
           nullable: true
         DietaryRequirements:
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Dietary requirements (or `null` if the dietary requirements should not be updated).
           nullable: true
         LoyaltyCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Loyalty code (or `null` if the loyalty code should not be updated).
           nullable: true
         NationalityCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Nationality code (or `null` if the nationality code should not be updated).
           nullable: true
         CompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the company (or `null` if the company should not be updated).
           nullable: true
         BirthDate:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Birth date (or `null` if the birth date should not be updated).
           nullable: true
         Sex:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Sex (or `null` if the sex should not be updated).
           nullable: true
         Title:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Title (or `null` if the title should not be updated).
           nullable: true
         PreferredLanguageCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Preferred language code (or `null` if the preferred language code should not be updated).
@@ -17630,73 +17631,73 @@ components:
       type: object
       properties:
         General:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Company and Customer: Boolean value defining the general classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FoodAndBeverage:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the food and beverage classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FrontOffice:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the front office classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Reservations:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the reservations classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Housekeeping:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the housekeeping classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Maintenance:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the maintenance classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         PreviousStay:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the previous stay classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         FamilyRelations:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the family relations classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Gifts:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the gifts classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Accounting:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the accounting classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Complaints:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the complaints classification for the account note (or `null` if the value should not be updated).'
           nullable: true
         Other:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: 'Customer only: Boolean value defining the other classification for the account note (or `null` if the value should not be updated).'
@@ -17715,7 +17716,7 @@ components:
           description: Unique identifier of the account note.
           format: uuid
         Content:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 1000
           minLength: 1
           allOf:
@@ -18307,12 +18308,12 @@ components:
           type: string
           format: uuid
         AccountId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           nullable: true
         BillId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
       additionalProperties: false
@@ -18858,28 +18859,28 @@ components:
           description: Unique identifier of the address.
           format: uuid
         Line1:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: First line of the address.
           nullable: true
         Line2:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Second line of the address.
           nullable: true
         City:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: The city.
           nullable: true
         PostalCode:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
@@ -18887,13 +18888,13 @@ components:
           format: postal-code
           nullable: true
         CountryCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: ISO 3166-1 alpha-2 code of the Country.
           nullable: true
         CountrySubdivisionCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'ISO 3166-2 code of the administrative division, e.g. `DE-BW`.'
@@ -20020,62 +20021,62 @@ components:
           description: 'Unique identifier of the [Availability block](https://mews-systems.gitbook.io/connector-api/operations/availabilityblocks#availability-block).'
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: The name of the block (or `null` if the name should not be updated).
           nullable: true
         FirstTimeUnitStartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'Start of the time interval, expressed as the timestamp for the start of the first time unit, in UTC timezone ISO 8601 format (or `null` if the start time should not be updated).'
           nullable: true
         LastTimeUnitStartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'End of the time interval, expressed as the timestamp for the start of the last time unit, in UTC timezone ISO 8601 format (or `null` if the end time should not be updated).'
           nullable: true
         ExternalIdentifier:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Identifier of the block from external system (or `null` if the identifier should not be updated).
           nullable: true
         State:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: State of the availability block (or `null` if not updated).
           nullable: true
         ReservationPurpose:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: The purpose of the block (or `null` if not updated).
           nullable: true
         CompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies#company) (or `null` if not updated).'
           nullable: true
         TravelAgencyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the travel agency (i.e. `Company`; or `null` if not updated).
           nullable: true
         BookerId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the Booker as a creator of an availability block (or `null` if not updated).
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Additional notes of the block (or `null` if not updated).
@@ -20087,24 +20088,25 @@ components:
           description: The tentative budget for the total price of reservations (or `null` if not updated).
           nullable: true
         CancellationReason:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Cancellation reason of the availability block (or `null` if not updated).
           nullable: true
         CancellationReasonDetail:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Cancellation reason detail of the availability block (or `null` if not updated).
           nullable: true
         RollingReleaseOffset:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'Exact offset from the start of availability adjustments to the moment the availability adjustment should be released, in ISO 8601 duration format. Required if `ReleaseStrategy` is set to `RollingRelease`, ignored otherwise.'
           nullable: true
         ReleasedUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'The moment when the block and its availability is released, in UTC timezone ISO 8601 format. Required if `ReleaseStrategy` is set to `FixedRelease`, or used when `ReleaseStrategy` update is unspecified.'
@@ -20117,6 +20119,7 @@ components:
           description: The strategy for automatic release of the availability block (or `null` if not updated).
           nullable: true
         QuoteId:
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the Mews Events quote associated with the availability block (or `null` if not updated).
@@ -20441,7 +20444,7 @@ components:
           description: Unique identifier of the associated account (`Customer` or `Company`) the bill is associated to.
           format: uuid
         TaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identifier of the associated account to be put on a bill.
@@ -20504,25 +20507,25 @@ components:
           description: 'Options of the bill. If not provided, both DisplayCustomer and DisplayTaxation are set by default.'
           nullable: true
         TaxedDate:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Date of consumption for tax purposes. Can be used only with `Type` of `Invoice`.
           nullable: true
         DueDate:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Deadline when bill is due to be paid. Can be used only with `Type` of `Invoice`.
           nullable: true
         VariableSymbol:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Optional unique identifier of requested payment. Can be used only with `Type` of `Invoice`.
           nullable: true
         TaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identifier of account to be put on a bill.
@@ -20530,13 +20533,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
         AccountTaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identifier of account to be put on a bill.
           nullable: true
         CompanyTaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identifier of company to be put on a bill.
@@ -20544,13 +20547,13 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `AccountTaxIdentifier` or `AssociatedAccountData` instead.
         PurchaseOrderNumber:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Unique number of the purchase order from the buyer.
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Notes to be attached to bill.
@@ -20992,12 +20995,12 @@ components:
       type: object
       properties:
         DisplayCustomer:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Display customer information on a bill.
         DisplayTaxation:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Display taxation detail on a bill.
@@ -21128,6 +21131,7 @@ components:
           description: Unique identifier of the bill to update.
           format: uuid
         AccountId:
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           description: Unique identifier of the account (`Customer` or `Company`) the bill is issued to (or null if the account should not be updated).
@@ -21270,7 +21274,7 @@ components:
       additionalProperties: false
       x-schema-id: BillingAutomationAccountingCategoryAssignment
     BillingAutomationAccountingCategoryAssignmentIEnumerableUpdateValue:
-      title: BillingAutomationAccountingCategoryAssignmentIEnumerableUpdateValue
+      title: Billing automation accounting category assignment array update value
       type: object
       properties:
         Value:
@@ -21504,7 +21508,7 @@ components:
         - 'The company will be the owner in the resulting routed bill, and the customer might be the associated account.'
         - The customer will be owner of the bill.
     BillingAutomationAssignmentTargetTypeUpdateValue:
-      title: BillingAutomationAssignmentTargetTypeUpdateValue
+      title: Billing automation assignment target type update value
       type: object
       properties:
         Value:
@@ -21539,24 +21543,28 @@ components:
           description: Type of items that are going to be routed (or `null` should it not be updated).
           nullable: true
         RateIds:
+          title: Guid array update value
           maxLength: 100
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
           description: Unique identifiers of `Rates` that will be applied as billing automation condition (or `null` should it not be updated).
           nullable: true
         ProductCategoryIds:
+          title: Guid array update value
           maxLength: 100
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
           description: Unique identifiers of `Product Categories` that will be applied as billing automation condition (or `null` should it not be updated).
           nullable: true
         ProductIds:
+          title: Guid array update value
           maxLength: 100
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
           description: Unique identifiers of `Products` that will be applied as billing automation condition (or `null` should it not be updated).
           nullable: true
         AccountingCategories:
+          title: Billing automation accounting category assignment array update value
           maxLength: 100
           allOf:
             - $ref: '#/components/schemas/BillingAutomationAccountingCategoryAssignmentIEnumerableUpdateValue'
@@ -21638,7 +21646,7 @@ components:
         - Group all moved items on one bill.
         - Create a separate bill for each reservation group.
     BillingAutomationBillAggregationTypeUpdateValue:
-      title: BillingAutomationBillAggregationTypeUpdateValue
+      title: Billing automation bill aggregation type update value
       type: object
       properties:
         Value:
@@ -21781,26 +21789,32 @@ components:
       type: object
       properties:
         SpaceOrder:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         CityTax:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         AllProducts:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         Deposits:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         AdditionalExpenses:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         AllCustomItems:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
@@ -21841,7 +21855,7 @@ components:
         - Only items with a consumption date within this and the next month will be routed.
         - Only items with a consumption date within the next month will be routed.
     BillingAutomationOrderItemConsumptionPeriodTypeUpdateValue:
-      title: BillingAutomationOrderItemConsumptionPeriodTypeUpdateValue
+      title: Billing automation order item consumption period type update value
       type: object
       properties:
         Value:
@@ -21877,7 +21891,7 @@ components:
         - All
         - Prepaid
     BillingAutomationPrepaymentUpdateValue:
-      title: BillingAutomationPrepaymentUpdateValue
+      title: Billing automation prepayment type update value
       type: object
       properties:
         Value:
@@ -21938,44 +21952,52 @@ components:
           description: Unique identifier of the billing automation.
           format: uuid
         Name:
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Name of the billing automation (or null should it not be updated).
           nullable: true
         Description:
+          title: String update value
           maxLength: 1000
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Description of the billing automation (or null should it not be updated).
           nullable: true
         Companies:
+          title: Company with billing automation relation array update value
           maxLength: 1000
           allOf:
             - $ref: '#/components/schemas/CompanyWithBillingAutomationRelationIEnumerableUpdateValue'
           description: List of companies with relations representing whether the company should be taken into account as travel agency or company in the reservation. Can only be empty if the `AssignmentTargetType` is `CompanyAsDetails` or `NoCompany`. (or null should it not be updated).
           nullable: true
         Prepayment:
+          title: Billing automation prepayment type update value
           allOf:
             - $ref: '#/components/schemas/BillingAutomationPrepaymentUpdateValue'
           description: Type of prepayment (or null should it not be updated).
           nullable: true
         AssignmentTargetType:
+          title: Billing automation assignment target type update value
           allOf:
             - $ref: '#/components/schemas/BillingAutomationAssignmentTargetTypeUpdateValue'
           description: Type of assignment of company to the bill. If value is `NoCompany` then `BillAggregationType` must be `AggregateByCustomer`. (or null should it not be updated).
           nullable: true
         BillAggregationType:
+          title: Billing automation bill aggregation type update value
           allOf:
             - $ref: '#/components/schemas/BillingAutomationBillAggregationTypeUpdateValue'
           description: Billing automation aggregation target type. If value is not `AggregateByCustomer` then `AssignmentTargetType` must be `CompanyAsOwner`. (or null should it not be updated).
           nullable: true
         OrderItemConsumptionPeriod:
+          title: Billing automation order item consumption period type update value
           allOf:
             - $ref: '#/components/schemas/BillingAutomationOrderItemConsumptionPeriodTypeUpdateValue'
           description: Type of billing automation's order item consumption period. Required if the billing automation `TriggerType` is recurring (or null should it not be updated).
           nullable: true
         ProcessingStartOffset:
+          title: String update value
           maxLength: 20
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
@@ -22098,7 +22120,7 @@ components:
       additionalProperties: false
       x-schema-id: BookableServiceData
     BooleanNullableUpdateValue:
-      title: BooleanNullableUpdateValue
+      title: Boolean update value
       type: object
       properties:
         Value:
@@ -22107,7 +22129,7 @@ components:
       additionalProperties: false
       x-schema-id: BooleanNullableUpdateValue
     BooleanUpdateValue:
-      title: BooleanUpdateValue
+      title: Boolean update value
       type: object
       properties:
         Value:
@@ -23870,48 +23892,49 @@ components:
       type: object
       properties:
         Corporate:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Corporate (or `null` if the value should not be updated).
           nullable: true
         Internal:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Internal (or `null` if the value should not be updated).
           nullable: true
         Private:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Private (or `null` if the value should not be updated).
           nullable: true
         OnlineTravelAgency:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Online travel agency (or `null` if the value should not be updated).
           nullable: true
         GlobalDistributionSystem:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Global distribution system (or `null` if the value should not be updated).
           nullable: true
         Marketing:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Marketing (or `null` if the value should not be updated).
           nullable: true
         Inactive:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Inactive (or `null` if the value should not be updated).
           nullable: true
         GovernmentEntity:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Government Entity (or `null` if the value should not be updated).
@@ -24155,18 +24178,19 @@ components:
       type: object
       properties:
         Invoiceable:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Whether the company is invoiceable or not (or `null` if the `Invoiceable` field should not be updated).
           nullable: true
         AddFeesToInvoices:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Whether the company has an additional fee applied for invoicing or not (or `null` if the `AddFeesToInvoices` field should not be updated).
           nullable: true
         AddTaxDeductedPaymentToInvoices:
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Whether tax-deducted payments should be automatically added to invoices (or `null` if the `AddTaxDeductedPaymentToInvoices` field should not be updated).
@@ -24273,33 +24297,33 @@ components:
           description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/#company).'
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Name of the company (or `null` if the name should not be updated).
           nullable: true
         MotherCompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the mother company (or `null` if the mother company should not be updated).
           nullable: true
         InvoicingEmail:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Email for issuing invoices to the company  (or `null` if the email for issuing invoices should not be updated).
           format: email
           nullable: true
         WebsiteUrl:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: The website url of the company (or `null` if the website url should not be updated).
           format: uri
           nullable: true
         InvoiceDueInterval:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'The maximum time, when the invoice has to be be paid in ISO 8601 duration format (or `null` if the interval should not be updated).'
@@ -24317,86 +24341,86 @@ components:
           description: Credit rating to define creditworthiness of the company (or `null` if the credit rating should not be updated).
           nullable: true
         Department:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'The internal segmentation of a company, e.g. sales department (or `null` if the department should not be updated).'
           nullable: true
         DunsNumber:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: The Dun & Bradstreet unique 9-digit DUNS number (or `null` if the Duns number should not be updated).
           nullable: true
         ReferenceIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: External system identifier - custom identifier used by an external system such as an external database (or `null` if the identifier should not be updated).
           nullable: true
         AccountingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Accounting code of the company (or `null` if the accounting code should not be updated).
           nullable: true
         AdditionalTaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Additional tax identifier of the company (or `null` if the additional tax identifier should not be updated).
           nullable: true
         BillingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Billing code of the company (or `null` if the billing code should not be updated).
           nullable: true
         Contact:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'Other contact details, such as telephone, email or similar (or `null` if the contact should not be updated).'
           nullable: true
         ContactPerson:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Contact person of the company (or `null` if the contact person should not be updated).
           nullable: true
         Identifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Fiscal or legal identifier of the company (or `null` if the identifier should not be updated).
           nullable: true
         Iata:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Iata of the company (or `null` if the Iata should not be updated).
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Notes of the company (or `null` if the notes should not be updated).
           nullable: true
         TaxIdentifier:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Tax identification number of the company (or `null` if the tax identifier should not be updated).
           nullable: true
         Telephone:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Contact telephone number (or `null` if the telephone number should not be updated).
           format: tel
           nullable: true
         ExternalIdentifier:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
@@ -24423,7 +24447,7 @@ components:
       additionalProperties: false
       x-schema-id: CompanyWithBillingAutomationRelation
     CompanyWithBillingAutomationRelationIEnumerableUpdateValue:
-      title: CompanyWithBillingAutomationRelationIEnumerableUpdateValue
+      title: Company with billing automation relation array update value
       type: object
       properties:
         Value:
@@ -25217,7 +25241,7 @@ components:
         - Company must pay upfront.
         - Requires local approval.
     CreditRatingBasicUpdateValue:
-      title: CreditRatingBasicUpdateValue
+      title: Credit rating basic update value
       type: object
       properties:
         Value:
@@ -26073,121 +26097,121 @@ components:
       type: object
       properties:
         PaymasterAccount:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Paymaster account (or `null` if the value should not be updated).
           nullable: true
         Blacklist:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Blacklist (or `null` if the value should not be updated).
           nullable: true
         Media:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Media (or `null` if the value should not be updated).
           nullable: true
         LoyaltyProgram:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Loyalty program (or `null` if the value should not be updated).
           nullable: true
         PreviousComplaint:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Previous complaint (or `null` if the value should not be updated).
           nullable: true
         Returning:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Returning (or `null` if the value should not be updated).
           nullable: true
         Staff:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Staff (or `null` if the value should not be updated).
           nullable: true
         FriendOrFamily:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Friend or family (or `null` if the value should not be updated).
           nullable: true
         TopManagement:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Top management (or `null` if the value should not be updated).
           nullable: true
         Important:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Important (or `null` if the value should not be updated).
           nullable: true
         VeryImportant:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Very important (or `null` if the value should not be updated).
           nullable: true
         Problematic:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Problematic (or `null` if the value should not be updated).
           nullable: true
         Cashlist:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Cashlist (or `null` if the value should not be updated).
           nullable: true
         DisabledPerson:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Disabled person (or `null` if the value should not be updated).
           nullable: true
         Military:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Military (or `null` if the value should not be updated).
           nullable: true
         Airline:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Airline (or `null` if the value should not be updated).
           nullable: true
         HealthCompliant:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Health compliant (or `null` if the value should not be updated).
           nullable: true
         InRoom:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: In room (or `null` if the value should not be updated).
           nullable: true
         WaitingForRoom:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Waiting for room (or `null` if the value should not be updated).
           nullable: true
         Student:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Student (or `null` if the value should not be updated).
@@ -26595,19 +26619,19 @@ components:
       type: object
       properties:
         SendMarketingEmails:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Send marketing email (or `null` if the value should not be updated).
           nullable: true
         Invoiceable:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Invoiceable (or `null` if the value should not be updated).
           nullable: true
         BillAddressObjection:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Bill address objection (or `null` if the value should not be updated).
@@ -26888,13 +26912,13 @@ components:
           description: Options of the customer.
           nullable: true
         ItalianDestinationCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: New Italian destination code of customer.
           nullable: true
         ItalianFiscalCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: New Italian fiscal code of customer.
@@ -27001,7 +27025,7 @@ components:
       additionalProperties: false
       x-schema-id: DaysParameters
     DecimalNullableUpdateValue:
-      title: DecimalNullableUpdateValue
+      title: Decimal update value
       type: object
       properties:
         Value:
@@ -28646,7 +28670,7 @@ components:
       additionalProperties: false
       x-schema-id: GetAllActiveCommandsParameters
     GuidIEnumerableUpdateValue:
-      title: GuidIEnumerableUpdateValue
+      title: Guid array update value
       type: object
       properties:
         Value:
@@ -28658,7 +28682,7 @@ components:
       additionalProperties: false
       x-schema-id: GuidIEnumerableUpdateValue
     GuidNullableUpdateValue:
-      title: GuidNullableUpdateValue
+      title: Guid update value
       type: object
       properties:
         Value:
@@ -28668,7 +28692,7 @@ components:
       additionalProperties: false
       x-schema-id: GuidNullableUpdateValue
     GuidUpdateValue:
-      title: GuidUpdateValue
+      title: Guid update value
       type: object
       properties:
         Value:
@@ -29057,33 +29081,39 @@ components:
           description: Type of the document (or `null` if the number should not be updated).
           nullable: true
         Number:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Number of the document (e.g. passport number or `null` if the number should not be updated).
           nullable: true
         ExpirationDate:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Expiration date in ISO 8601 format (or `null` if the expiration date should not be updated).
           format: date
           nullable: true
         IssuanceDate:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Date of issuance in ISO 8601 format (or `null` if the issuance date should not be updated).
           format: date
           nullable: true
         IssuingCountryCode:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: ISO 3166-1 code of the `Country` (or `null` if the issuing country code should not be updated).
           nullable: true
         IssuingCity:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: City where the document was issued (or `null` if the issuing city should not be updated).
           nullable: true
         IdentityDocumentSupportNumber:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Identity document support number. Only required for Spanish identity cards in Spanish hotels.
@@ -29359,7 +29389,7 @@ components:
       additionalProperties: false
       x-schema-id: ImageUrlResult
     Int32NullableUpdateValue:
-      title: Int32NullableUpdateValue
+      title: Int32 update value
       type: object
       properties:
         Value:
@@ -29369,7 +29399,7 @@ components:
       additionalProperties: false
       x-schema-id: Int32NullableUpdateValue
     Int32UpdateValue:
-      title: Int32UpdateValue
+      title: Int32 update value
       type: object
       properties:
         Value:
@@ -29794,13 +29824,13 @@ components:
       type: object
       properties:
         ItDestinationCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Italian destination code (or `null` if the Italian destination code should not be updated).
           nullable: true
         ItFiscalCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Italian fiscal code (or `null` if the Italian fiscal code should not be updated).
@@ -30152,45 +30182,46 @@ components:
           type: string
           format: uuid
         LoyaltyProgramId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           nullable: true
         State:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/LoyaltyMembershipState'
           nullable: true
         IsPrimary:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         Code:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Points:
-          title: Int32NullableUpdateValue
+          title: Int32 update value
           allOf:
             - $ref: '#/components/schemas/Int32NullableUpdateValue'
           nullable: true
         ExpirationDate:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           format: date
           nullable: true
         Url:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           format: uri
           nullable: true
         LoyaltyTierId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           nullable: true
@@ -30399,17 +30430,19 @@ components:
           type: string
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Type:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/LoyaltyProgramType'
           nullable: true
         Subscription:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
@@ -30602,19 +30635,19 @@ components:
           type: string
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 50
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Code:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 50
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Ordering:
-          title: Int32UpdateValue
+          title: Int32 update value
           allOf:
             - $ref: '#/components/schemas/Int32UpdateValue'
           nullable: true
@@ -31997,25 +32030,25 @@ components:
           description: Unique identifier of the reservation.
           format: uuid
         ChannelNumber:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number) (or `null` if the channel number should not be updated).'
           nullable: true
         StartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Reservation start in UTC timezone in ISO 8601 format. (or `null` if the start time should not be updated).
           nullable: true
         EndUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Reservation end in UTC timezone in ISO 8601 format. (or `null` if the end time should not be updated).
           nullable: true
         ReleasedUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Date when the optional reservation is released in UTC timezone in ISO 8601 format. (or `null` if the release time should not be updated).
@@ -32027,49 +32060,49 @@ components:
           description: 'Number of people per age category the reservation is for. If supplied, the person counts will be replaced. (or `null` if the person counts should not be updated).'
           nullable: true
         AssignedResourceId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the assigned `Resource`.
           nullable: true
         RequestedCategoryId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           description: Identifier of the requested `ResourceCategory` (or `null` if resource category should not be updated).
           nullable: true
         TravelAgencyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Company` that mediated the reservation (or `null` if travel agency should not be updated).
           nullable: true
         CompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Company` on behalf of which the reservation was made (or `null` if company should not be updated).
           nullable: true
         BusinessSegmentId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the reservation `BusinessSegment` (or `null` if the business segment should not be updated).
           nullable: true
         Purpose:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: '`Purpose` of the reservation (or `null` if the purpose should not be updated).'
           nullable: true
         RateId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           description: Identifier of the reservation `Rate` (or `null` if the rate should not be updated).
           nullable: true
         CreditCardId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.  (or `null` if the credit card should not be updated).
@@ -32081,19 +32114,19 @@ components:
           description: Prices for time units of the reservation. E.g. prices for the first or second night. (or `null` if the unit amounts should not be updated).
           nullable: true
         BookerId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Customer` on whose behalf the reservation was made. (or `null` if the booker should not be updated).
           nullable: true
         AssignedResourceLocked:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
           nullable: true
         AvailabilityBlockId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the `AvailabilityBlock` the reservation is assigned to.
@@ -39522,7 +39555,7 @@ components:
       type: object
       properties:
         OwnerCheckedIn:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: True if the owner of the reservation is checked in. (or `null` if the value should not be updated).
@@ -39560,25 +39593,25 @@ components:
           description: Unique identifier of the reservation.
           format: uuid
         ChannelNumber:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number) (or `null` if the channel number should not be updated).'
           nullable: true
         StartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Reservation start in UTC timezone in ISO 8601 format. (or `null` if the start time should not be updated).
           nullable: true
         EndUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Reservation end in UTC timezone in ISO 8601 format. (or `null` if the end time should not be updated).
           nullable: true
         ReleasedUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Date when the optional reservation is released in UTC timezone in ISO 8601 format. (or `null` if the release time should not be updated).
@@ -39590,49 +39623,49 @@ components:
           description: 'Number of people per age category the reservation is for. If supplied, the person counts will be replaced. (or `null` if the person counts should not be updated).'
           nullable: true
         AssignedResourceId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the assigned `Resource`.
           nullable: true
         RequestedCategoryId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           description: Identifier of the requested `ResourceCategory` (or `null` if resource category should not be updated).
           nullable: true
         TravelAgencyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Company` that mediated the reservation (or `null` if travel agency should not be updated).
           nullable: true
         CompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Company` on behalf of which the reservation was made (or `null` if company should not be updated).
           nullable: true
         BusinessSegmentId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the reservation `BusinessSegment` (or `null` if the business segment should not be updated).
           nullable: true
         Purpose:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: '`Purpose` of the reservation (or `null` if the purpose should not be updated).'
           nullable: true
         RateId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           description: Identifier of the reservation `Rate` (or `null` if the rate should not be updated).
           nullable: true
         CreditCardId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of `CreditCard` belonging to `Customer` who owns the reservation.  (or `null` if the credit card should not be updated).
@@ -39644,19 +39677,19 @@ components:
           description: Prices for time units of the reservation. E.g. prices for the first or second night. (or `null` if the unit amounts should not be updated).
           nullable: true
         BookerId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Identifier of the `Customer` on whose behalf the reservation was made. (or `null` if the booker should not be updated).
           nullable: true
         AssignedResourceLocked:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
           nullable: true
         AvailabilityBlockId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of the `AvailabilityBlock` the reservation is assigned to.
@@ -40094,22 +40127,22 @@ components:
       type: object
       properties:
         Bed:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         Room:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         Floor:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         Building:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
@@ -40145,16 +40178,17 @@ components:
           type: string
           format: uuid
         ValidityStartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         ValidityEndUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Value:
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
@@ -41666,12 +41700,12 @@ components:
           type: string
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         ParentResourceId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           nullable: true
@@ -41691,12 +41725,12 @@ components:
           x-coproduct: true
           x-schema-id: ResourceUpdateParametersDataCoproductOfResourceDataDiscriminator
         State:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         StateReason:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
@@ -42648,17 +42682,17 @@ components:
       type: object
       properties:
         Nights:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         CityTax:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         ProductCategoryIds:
-          title: GuidIEnumerableUpdateValue
+          title: Guid array update value
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
           nullable: true
@@ -42674,34 +42708,38 @@ components:
           type: string
           format: uuid
         CompanyId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           nullable: true
         ServiceId:
-          title: GuidUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
           nullable: true
         CompanyRelation:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleCompanyRelation'
           nullable: true
         Applicability:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleApplicability'
           nullable: true
         RouteType:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleRouteType'
           nullable: true
         AssignmentTargetType:
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
@@ -43316,7 +43354,7 @@ components:
           description: 'Unique identifier of the [Resource category](https://mews-systems.gitbook.io/connector-api/operations/resources#resource-category) whose availability to update.'
           format: uuid
         UnitCountAdjustment:
-          title: Int32NullableUpdateValue
+          title: Int32 update value
           allOf:
             - $ref: '#/components/schemas/Int32NullableUpdateValue'
           description: 'Adjustment value to be applied on the interval, can be both positive and negative (relative adjustment, not an absolute number). If specified without `Value` parameter, removes all adjustments within the interval.'
@@ -43770,7 +43808,7 @@ components:
           description: Unique identifier of the `Service order note`.
           format: uuid
         Text:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Content of the service order note (or `null` if the content should not be updated).
@@ -44557,7 +44595,7 @@ components:
       additionalProperties: false
       x-schema-id: SpaceData
     StringUpdateValue:
-      title: StringUpdateValue
+      title: String update value
       type: object
       properties:
         Value:
@@ -45319,12 +45357,12 @@ components:
       type: object
       properties:
         IncludeCancellationFeeInCommissionEstimate:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
         SkipAutomaticSettlement:
-          title: BooleanUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
           nullable: true
@@ -45340,27 +45378,27 @@ components:
           type: string
           format: uuid
         CommissionIncluded:
-          title: BooleanNullableUpdateValue
+          title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanNullableUpdateValue'
           nullable: true
         Commission:
-          title: DecimalNullableUpdateValue
+          title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
           nullable: true
         ChannelManagerBusinessSegmentId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           nullable: true
         ChannelManagerAbsoluteAdjustment:
-          title: DecimalNullableUpdateValue
+          title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
           nullable: true
         ChannelManagerRelativeAdjustment:
-          title: DecimalNullableUpdateValue
+          title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
           nullable: true
@@ -45370,33 +45408,33 @@ components:
             - $ref: '#/components/schemas/TravelAgencyContractOptionsParameters'
           nullable: true
         AccountingCode:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         InvoiceDueInterval:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         ContactPerson:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         ContactEmail:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           format: email
           nullable: true
         AdditionalContactInfo:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
         Notes:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           nullable: true
@@ -45913,7 +45951,7 @@ components:
         - ''
         - ''
     VoucherTypeUpdateValue:
-      title: VoucherTypeUpdateValue
+      title: Voucher Type update value
       type: object
       properties:
         Value:
@@ -45942,19 +45980,20 @@ components:
           description: Unique identifier of the Voucher.
           format: uuid
         Name:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 128
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Internal name of the voucher (or `null` if the name should not be updated).
           nullable: true
         Type:
+          title: Voucher Type update value
           allOf:
             - $ref: '#/components/schemas/VoucherTypeUpdateValue'
           description: 'Type of the voucher e.g. ''Public'', ''PartnerCompany'' or ''TravelAgency'' (or `null` if the type should not be updated).'
           nullable: true
         CompanyId:
-          title: GuidNullableUpdateValue
+          title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
           description: Unique identifier of Company (Company or Travel Agency) the voucher is related to. This is required for Type of `PartnerCompany` or `TravelAgency`. Use `null` if Company should not be updated.
@@ -45966,21 +46005,21 @@ components:
           description: Unique identifiers of Rates (or `null` should it not be updated).
           nullable: true
         OccupiableIntervalStartUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Start of the interval in which the voucher can be applied (or `null` if the start time should not be updated).
           format: date-time
           nullable: true
         OccupiableIntervalEndUtc:
-          title: StringUpdateValue
+          title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: End of the interval in which the voucher can be applied (or `null` if the end time should not be updated).
           format: date-time
           nullable: true
         ExternalIdentifier:
-          title: StringUpdateValue
+          title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
