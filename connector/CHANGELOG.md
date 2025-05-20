@@ -1,3 +1,19 @@
+# 2025-05-20
+
+
+## POST /api/connector/v1/rates/add
+-  added the required property 'Rates/items/IsDefault' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/getAll
+-  added the required property 'Rates/items/IsDefault' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/set
+-  added the required property 'Rates/items/IsDefault' to the response with the '200' status
+
+
+
 # 2025-05-03
 
 

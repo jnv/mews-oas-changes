@@ -2096,7 +2096,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BillingAutomationAssignmentsUpdateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","AssignmentsToUpdate":[{"BillingAutomationAssignmentId":"00000000-0000-0000-0000-000000000000","RoutedItemTypes":{"SpaceOrder":{"Value":true},"CityTax":{"Value":true},"AllProducts":{"Value":false},"Deposits":{"Value":true},"AdditionalExpenses":{"Value":true},"AllCustomItems":{"Value":false}},"ProductIds":{"Value":["507d93e6-9fb5-4734-a6d1-977afc4dfdff"]}}]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","AssignmentsToUpdate":[{"BillingAutomationAssignmentId":"5cd5a731-8084-4929-94c2-fe29065db6f1","RoutedItemTypes":{"SpaceOrder":{"Value":true},"CityTax":{"Value":true},"AllProducts":{"Value":false},"Deposits":{"Value":true},"AdditionalExpenses":{"Value":true},"AllCustomItems":{"Value":false}},"ProductIds":{"Value":["507d93e6-9fb5-4734-a6d1-977afc4dfdff"]}}]}
       responses:
         '200':
           description: OK
@@ -2232,7 +2232,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsUpdateResult'
-              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}]}
+              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":{"TaxIdentifier":"CZ24227781","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":"150483782","Telephone":"+420123456789","TaxIdentifier":"CZ24227781","InvoicingEmail":"billing@acme.example","Department":"Billing"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":{"TaxIdentifier":"CZ24227781","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":"150483782","Telephone":"+420123456789","TaxIdentifier":"CZ24227781","InvoicingEmail":"billing@acme.example","Department":"Billing"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -2296,7 +2296,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillsResult'
-              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"Joe Doe street","Line2":"Very long ave","City":"Townston","PostalCode":"154 00","SubdivisionCode":"AU-NSW","CountryCode":"AU"},"LegalIdentifiers":{"TaxIdentifier":"CZ8810310963","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":null,"Telephone":null,"TaxIdentifier":null,"InvoicingEmail":null,"Department":null}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"ea087d64-3901-4eee-b0b7-9fce4c58a005"}
+              example: {"Bills":[{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"29","VariableSymbol":null,"CreatedUtc":"2017-01-31T10:48:06Z","IssuedUtc":"2017-01-31T10:58:06Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-01-31T10:58:06Z","PurchaseOrderNumber":"XX-123","Notes":"","Options":{"DisplayCustomer":true,"DisplayTaxation":true,"TrackReceivable":true,"DisplayCid":false,"Rebated":false},"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":{"TaxIdentifier":"CZ24227781","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":"150483782","Telephone":"+420123456789","TaxIdentifier":"CZ24227781","InvoicingEmail":"billing@acme.example","Department":"Billing"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCompanyData","BillCustomerData":null,"BillCompanyData":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":{"TaxIdentifier":"CZ24227781","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":"150483782","Telephone":"+420123456789","TaxIdentifier":"CZ24227781","InvoicingEmail":"billing@acme.example","Department":"Billing"}}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null}],"Cursor":"ea087d64-3901-4eee-b0b7-9fce4c58a005"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -10511,7 +10511,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RateSetResult'
-              example: {"Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":null,"IsBaseRate":true,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":true,"IsPublic":true,"Type":"Public","Name":null,"Names":{"en-US":"Base rate"},"ShortName":"BR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External base rate"},"Description":{"en-US":"Base rate description."},"ExternalIdentifier":null,"TaxExemptionReason":null,"TaxExemptionLegalReference":null},{"Id":"8eb1f163-bce7-49ca-a62c-c9261951c85f","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":"00392166-3869-4174-b491-cf0162524a38","IsBaseRate":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":false,"IsPublic":false,"Type":"Private","Name":null,"Names":{"en-US":"Dependent rate"},"ShortName":"DR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External dependent rate"},"Description":{"en-US":"Dependent rate description."},"ExternalIdentifier":"55698","TaxExemptionReason":null,"TaxExemptionLegalReference":null}]}
+              example: {"Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":null,"IsBaseRate":true,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":true,"IsPublic":true,"IsDefault":false,"Type":"Public","Name":null,"Names":{"en-US":"Base rate"},"ShortName":"BR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External base rate"},"Description":{"en-US":"Base rate description."},"ExternalIdentifier":null,"TaxExemptionReason":null,"TaxExemptionLegalReference":null},{"Id":"8eb1f163-bce7-49ca-a62c-c9261951c85f","GroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","BaseRateId":"00392166-3869-4174-b491-cf0162524a38","IsBaseRate":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","IsActive":true,"IsEnabled":false,"IsPublic":false,"IsDefault":false,"Type":"Private","Name":null,"Names":{"en-US":"Dependent rate"},"ShortName":"DR","UpdatedUtc":"2024-11-20T00:00:00Z","ExternalNames":{"en-US":"External dependent rate"},"Description":{"en-US":"Dependent rate description."},"ExternalIdentifier":"55698","TaxExemptionReason":null,"TaxExemptionLegalReference":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20621,7 +20621,7 @@ components:
           nullable: true
         DUNS:
           type: string
-          description: DUNS of the company.
+          description: DUNS (Data Universal Numbering System) number of the company.
           nullable: true
         Telephone:
           type: string
@@ -21208,7 +21208,7 @@ components:
           title: Billing automation trigger type
           allOf:
             - $ref: '#/components/schemas/BillingAutomationTriggerTypeEnum'
-          description: "Trigger type of billing automation.\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Legacy)"
+          description: "Trigger type of billing automation.\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.)"
           x-enumNames:
             - Continuous
             - Recurring
@@ -21216,7 +21216,7 @@ components:
           x-enumDescriptions:
             - 'Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.'
             - Billing automation is executed monthly.
-            - Legacy
+            - Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.
         BillAggregationType:
           title: Billing automation bill aggregation type
           allOf:
@@ -21340,7 +21340,7 @@ components:
           title: Billing automation trigger type
           allOf:
             - $ref: '#/components/schemas/BillingAutomationTriggerTypeEnum'
-          description: "Trigger type of billing automation.\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Legacy)"
+          description: "Trigger type of billing automation.\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.)"
           x-enumNames:
             - Continuous
             - Recurring
@@ -21348,7 +21348,7 @@ components:
           x-enumDescriptions:
             - 'Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.'
             - Billing automation is executed monthly.
-            - Legacy
+            - Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.
         BillAggregationType:
           title: Billing automation bill aggregation type
           allOf:
@@ -21932,7 +21932,7 @@ components:
         - Recurring
         - Legacy
       type: string
-      description: "\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Legacy)"
+      description: "\n\nContinuous (Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.)\n\nRecurring (Billing automation is executed monthly.)\n\nLegacy (Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.)"
       x-enumNames:
         - Continuous
         - Recurring
@@ -21940,7 +21940,7 @@ components:
       x-enumDescriptions:
         - 'Billing automation is continuously triggered by reservation actions, such as creation, updates, and rebates.'
         - Billing automation is executed monthly.
-        - Legacy
+        - Billing automation is executed on reservation creation only. Items added later are not transfered to any bill.
     BillingAutomationUpdateParameters:
       title: Billing automation update parameters
       required:
@@ -36519,6 +36519,7 @@ components:
         - Id
         - IsActive
         - IsBaseRate
+        - IsDefault
         - IsEnabled
         - IsPublic
         - Names
@@ -36561,6 +36562,9 @@ components:
         IsPublic:
           type: boolean
           description: Indicates if this rate is publicly available.
+        IsDefault:
+          type: boolean
+          description: Indicates if this rate is the default rate for the service. Assigned automatically to the first rate of a service.
         Type:
           title: Rate type
           allOf:
