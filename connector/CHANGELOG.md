@@ -1,3 +1,51 @@
+# 2025-05-21
+
+
+## POST /api/connector/v1/billingAutomations/update
+- :warning: removed the required property 'AccessToken' from the response with the '200' status
+- :warning: removed the required property 'BillingAutomationUpdates' from the response with the '200' status
+- :warning: removed the required property 'Client' from the response with the '200' status
+- :warning: removed the required property 'ClientToken' from the response with the '200' status
+- :warning: removed the optional property 'EnterpriseId' from the response with the '200' status
+-  added the optional property 'BillingAutomations' to the response with the '200' status
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the required property 'Customers/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'Customers/items/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the required property 'CreatorProfileId' to the response with the '200' status
+-  added the required property 'UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the required property 'Customers/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'Customers/items/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the required property 'Customers/items/Customer/allOf[subschema #1: Customer]/CreatorProfileId' to the response with the '200' status
+-  added the required property 'Customers/items/Customer/allOf[subschema #1: Customer]/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the required property 'CreatorProfileId' to the response with the '200' status
+-  added the required property 'UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the required property 'Customers/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'Customers/items/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the required property 'Customers/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'Customers/items/UpdaterProfileId' to the response with the '200' status
+
+
+
 # 2025-05-20
 
 
