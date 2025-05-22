@@ -8919,6 +8919,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/paymentPlans/add:
+    post:
+      tags:
+        - Payment plans
+      summary: Create a payment plan
+      description: Adds a payment plan with `Name` connected to a `Reservation` and returns the payment request URL associated with the created payment plan. The fulfillment of the payment request will initiate the payment plan.
+      operationId: paymentPlans_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentPlanAddParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","Name":"Payment Plan Name","PaymentRequest":{"PaymentMethods":["PaymentCard","SepaDirectDebit"],"Message":"Payment request message","Note":"Internal Note","PaymentRequestExpirationOffsetDays":30},"StartMonth":"2023-10"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentPlanAddResult'
+              example: {"PaymentRequestUrl":"https://example.com/payment-request-url"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/paymentRequests/getAll:
     post:
       tags:
@@ -34781,6 +34845,123 @@ components:
         - ''
         - ''
         - ''
+    PaymentMethodsEnum:
+      title: Available payment plan payment methods
+      enum:
+        - Ideal
+        - PaymentCard
+        - ApplePay
+        - GooglePay
+        - SepaDirectDebit
+        - All
+      type: string
+      description: "\n\nIdeal (iDEAL)\n\nPaymentCard (Payment card)\n\nApplePay (Apple Pay)\n\nGooglePay (Google Pay)\n\nSepaDirectDebit (SEPA Direct Debit)\n\nAll"
+      x-enumNames:
+        - Ideal
+        - PaymentCard
+        - ApplePay
+        - GooglePay
+        - SepaDirectDebit
+        - All
+      x-enumDescriptions:
+        - iDEAL
+        - Payment card
+        - Apple Pay
+        - Google Pay
+        - SEPA Direct Debit
+        - ''
+    PaymentPlanAddParameters:
+      title: PaymentPlanAddParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Name
+        - PaymentRequest
+        - ReservationId
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ReservationId:
+          type: string
+          description: Reservation Id associated with the payment plan.
+          format: uuid
+        Name:
+          minLength: 1
+          type: string
+          description: Name of the payment plan.
+        PaymentRequest:
+          allOf:
+            - $ref: '#/components/schemas/PaymentPlanPaymentRequest'
+          description: Data related to the payment request associated with the payment plan created.
+        StartMonth:
+          type: string
+          description: 'Specifies the month when the payment plan begins collecting payments, in the ''YYYY-MM'' format. The month must be in the future and fall within the reservation period.'
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PaymentPlanAddParameters
+    PaymentPlanAddResult:
+      title: PaymentPlanAddResult
+      required:
+        - PaymentRequestUrl
+      type: object
+      properties:
+        PaymentRequestUrl:
+          minLength: 1
+          type: string
+          description: Payment request URL associated with the created payment plan.
+      additionalProperties: false
+      x-schema-id: PaymentPlanAddResult
+    PaymentPlanPaymentRequest:
+      title: PaymentPlanPaymentRequest
+      required:
+        - Message
+        - PaymentMethods
+      type: object
+      properties:
+        PaymentMethods:
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethodsEnum'
+          description: Allowed payment methods to pay for the payment plan.
+        Message:
+          minLength: 1
+          type: string
+          description: Message in the payment request.
+        Note:
+          type: string
+          description: Internal note for the payment request.
+          nullable: true
+        PaymentRequestExpirationOffsetDays:
+          type: integer
+          description: 'Custom expiration date offset in days for the payment request. If not set, it''ll expire in one week, unless the first scheduled payment should be executed before. In that case, The expiration date will be set one second before the scheduled payment execution (the last possible moment when we can get the payment method).'
+          format: int32
+          nullable: true
+        SendEmail:
+          type: boolean
+          description: Specifies whether a payment request email is sent to the customer. Defaults to true.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PaymentPlanPaymentRequest
     PaymentRefundParameters:
       title: PaymentRefundParameters
       required:

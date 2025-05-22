@@ -1,3 +1,11 @@
+# 2025-05-22
+
+
+## POST /api/connector/v1/paymentPlans/add
+-  endpoint added
+
+
+
 # 2025-05-21
 
 
