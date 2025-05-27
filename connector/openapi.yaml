@@ -36183,6 +36183,9 @@ components:
         CityTax:
           type: boolean
           description: Product is classified as city tax.
+        Fee:
+          type: boolean
+          description: Product is classified as fee.
       additionalProperties: false
       description: ''
       x-schema-id: ProductClassifications

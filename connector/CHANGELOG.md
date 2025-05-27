@@ -1,3 +1,20 @@
+# 2025-05-27
+
+
+## POST /api/connector/v1/products/getAll
+-  added the optional property 'CustomerProducts/items/Classifications/allOf[subschema #1: Product classifications]/Fee' to the response with the '200' status
+-  added the optional property 'Products/items/Classifications/allOf[subschema #1: Product classifications]/Fee' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Products/items/Classifications/allOf[subschema #1: Product classifications]/Fee' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Products/items/Classifications/allOf[subschema #1: Product classifications]/Fee' to the response with the '200' status
+
+
+
 # 2025-05-22
 
 
