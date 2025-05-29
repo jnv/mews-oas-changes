@@ -1,3 +1,34 @@
+# 2025-05-29
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the new optional request property 'AvailabilityBlocks/items/PurchaseOrderNumber'
+-  added the optional property 'AvailabilityBlocks/items/PurchaseOrderNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the optional property 'AvailabilityBlocks/items/PurchaseOrderNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the new optional request property 'AvailabilityBlocks/items/PurchaseOrderNumber'
+-  added the optional property 'AvailabilityBlocks/items/PurchaseOrderNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/add
+-  added the optional property 'LoyaltyMemberships/items/ProviderMembershipId' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/getAll
+-  added the new optional request property 'ProviderMembershipIds'
+-  added the optional property 'LoyaltyMemberships/items/ProviderMembershipId' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+-  added the optional property 'LoyaltyMemberships/items/ProviderMembershipId' to the response with the '200' status
+
+
+
 # 2025-05-27
 
 
