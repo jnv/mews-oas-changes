@@ -1,3 +1,84 @@
+# 2025-06-03
+
+
+## POST /api/connector/v1/bills/add
+-  added the optional property 'Bills/items/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/close
+-  added the optional property 'Bills/items/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/getAll
+-  added the optional property 'Bills/items/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/update
+-  added the optional property 'Bills/items/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllActive
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllByIds
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/BillCustomerData/allOf[subschema #1: Bill customer data]/TaxIdentifier' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/value/oneOf[subschema #2: Bill customer data]/TaxIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/add
+- :warning: added '#/components/schemas/LoyaltyMembershipStateEnum' to the 'LoyaltyMemberships/items/State' request property 'allOf' list
+- :warning: removed '#/components/schemas/LoyaltyMembershipState' from the 'LoyaltyMemberships/items/State' request property 'anyOf' list
+- :warning: the 'LoyaltyMemberships/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/LoyaltyMembershipStateEnum' to the 'LoyaltyMemberships/items/State' response property 'allOf' list for the response status '200'
+-  the response property 'LoyaltyMemberships/items/CreatorProfile' became required for the status '200'
+-  the response property 'LoyaltyMemberships/items/UpdaterProfile' became required for the status '200'
+-  removed the 'Canceled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Declined' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Enrolled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'New' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+
+
+## POST /api/connector/v1/loyaltyMemberships/getAll
+- :warning: the 'LoyaltyMemberships/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/LoyaltyMembershipStateEnum' to the 'LoyaltyMemberships/items/State' response property 'allOf' list for the response status '200'
+-  the response property 'LoyaltyMemberships/items/CreatorProfile' became required for the status '200'
+-  the response property 'LoyaltyMemberships/items/UpdaterProfile' became required for the status '200'
+-  removed the 'Canceled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Declined' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Enrolled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'New' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+- :warning: added '#/components/schemas/LoyaltyMembershipStateUpdateValue' to the 'LoyaltyMembershipUpdates/items/State' request property 'allOf' list
+- :warning: removed '#/components/schemas/LoyaltyMembershipState' from the 'LoyaltyMembershipUpdates/items/State' request property 'anyOf' list
+- :warning: the 'LoyaltyMemberships/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: removed '#/components/schemas/StringUpdateValue' from the 'LoyaltyMembershipUpdates/items/State' request property 'allOf' list
+-  added '#/components/schemas/LoyaltyMembershipStateEnum' to the 'LoyaltyMemberships/items/State' response property 'allOf' list for the response status '200'
+-  the response property 'LoyaltyMemberships/items/CreatorProfile' became required for the status '200'
+-  the response property 'LoyaltyMemberships/items/UpdaterProfile' became required for the status '200'
+-  removed the 'Canceled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Declined' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Enrolled' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'New' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'LoyaltyMemberships/items/State' response property for the response status '200'
+
+
+
 # 2025-05-29
 
 

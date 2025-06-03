@@ -6941,42 +6941,14 @@ paths:
       tags:
         - Loyalty memberships
       summary: Get all loyalty memberships
-      description: "Returns all loyalty memberships of the enterprise (in the given activity states), optionally filtered by specific loyalty membership identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property)."
+      description: 'Returns all loyalty memberships of the enterprise, optionally filtered by specific loyalty membership identifiers, activity states, or other filter parameters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: loyaltyMemberships_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyMembershipFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainIds:
-                - 1df21f06-0cfc-4960-9c58-a3bf1261663e
-                - 5fcd1933-22f2-40b9-84da-7db04cbecec2
-              LoyaltyMembershipIds:
-                - 3f4d9db2-9910-4a63-b9f0-e94a13fab9ac
-                - ea7da00f-fdc9-4014-b0f7-71003b87e3d0
-              LoyaltyProgramIds:
-                - 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                - 8a98965a-7c03-48a1-a28c-ab1b009b53c8
-              AccountIds:
-                - 87d4c7c4-4832-4341-8b54-e45c1a73df34
-                - 0ed43ab7-4592-4c99-906a-426588de1c00
-              MembershipStates:
-                - New
-                - Enrolled
-              CreatedUtc:
-                StartUtc: '2022-10-15T00:00:00Z'
-                EndUtc: '2022-10-20T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2022-10-15T00:00:00Z'
-                EndUtc: '2022-10-20T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 100
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"],"AccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5"],"MembershipStates":["Pending","Enrolled"],"ActivityStates":["Active"],"Codes":["MBR-2025-AX49ZT73"],"ProviderMembershipIds":["PRV-MBR-9842XKLT"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -6984,15 +6956,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example:
-                LoyaltyMemberships:
-                  - Id: f9e434a3-720c-4820-b82e-202cb2efa2fd
-                    LoyaltyProgramId: 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                    AccountId: 87d4c7c4-4832-4341-8b54-e45c1a73df34
-                    Code: Code-003
-                    ExpirationDate: '2030-12-31'
-                    Url: https://www.mews.com/
-                    LoyaltyTierId: 34c29a01-c075-49e4-906a-3b1d4012463e
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7040,28 +7004,14 @@ paths:
       tags:
         - Loyalty memberships
       summary: Add loyalty memberships
-      description: 'Adds loyalty memberships to the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property).'
+      description: 'Adds loyalty memberships to the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: loyaltyMemberships_add
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleLoyaltyMembershipAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              LoyaltyMemberships:
-                - LoyaltyProgramId: 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                  AccountId: 87d4c7c4-4832-4341-8b54-e45c1a73df34
-                  Code: Code-003
-                  IsPrimary: true
-                  Points: 5
-                  ExpirationDate: '2022-12-31'
-                  Url: ''
-                  LoyaltyTierId: 34c29a01-c075-49e4-906a-3b1d4012463e
-                  State: New
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyMemberships":[{"AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","IsPrimary":true,"State":"Enrolled","Code":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-12-24T00:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37"}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -7069,15 +7019,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example:
-                LoyaltyMemberships:
-                  - Id: f9e434a3-720c-4820-b82e-202cb2efa2fd
-                    LoyaltyProgramId: 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                    AccountId: 87d4c7c4-4832-4341-8b54-e45c1a73df34
-                    Code: Code-003
-                    ExpirationDate: '2030-12-31'
-                    Url: https://www.mews.com/
-                    LoyaltyTierId: 34c29a01-c075-49e4-906a-3b1d4012463e
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7125,30 +7067,14 @@ paths:
       tags:
         - Loyalty memberships
       summary: Update loyalty memberships
-      description: 'Updates information about the specified loyalty memberships. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property).'
+      description: 'Updates information about the specified loyalty memberships. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: loyaltyMemberships_update
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleLoyaltyMembershipUpdateParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              Client: Sample Client 1.0.0
-              LoyaltyMembershipUpdates:
-                - LoyaltyMembershipId: f9e434a3-720c-4820-b82e-202cb2efa2fd
-                  LoyaltyProgramId:
-                    Value: 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                  ExpirationDate:
-                    Value: '2030-12-31'
-                  Url:
-                    Value: https://www.mews.com/
-                  LoyaltyTierId:
-                    Value: 34c29a01-c075-49e4-906a-3b1d4012463e
-                  State:
-                    Value: Canceled
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyMembershipUpdates":[{"LoyaltyMembershipId":"905a4489-0960-4ac9-96ec-793f47365c92","LoyaltyProgramId":{"Value":"f701dafb-5765-4cf4-b1dd-1f602a740ae5"},"State":{"Value":"Canceled"},"IsPrimary":{"Value":true},"Code":{"Value":"MBR-2025-AX49ZT73"},"Points":{"Value":42},"ExpirationDate":{"Value":"2038-01-19T03:14:07Z"},"Url":{"Value":"https://final-rewards.example.com/member/PRV-MBR-9842XKLT"},"LoyaltyTierId":{"Value":"69eedfd2-6f25-42fc-b3c8-39df70f85e37"}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -7156,15 +7082,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example:
-                LoyaltyMemberships:
-                  - Id: f9e434a3-720c-4820-b82e-202cb2efa2fd
-                    LoyaltyProgramId: 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                    AccountId: 87d4c7c4-4832-4341-8b54-e45c1a73df34
-                    Code: Code-003
-                    ExpirationDate: '2030-12-31'
-                    Url: https://www.mews.com/
-                    LoyaltyTierId: 34c29a01-c075-49e4-906a-3b1d4012463e
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7219,12 +7137,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyMembershipDeleteParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              LoyaltyMembershipIds:
-                - f9e434a3-720c-4820-b82e-202cb2efa2fd
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"]}
       responses:
         '200':
           description: OK
@@ -20798,6 +20711,10 @@ components:
             - $ref: '#/components/schemas/Title'
           description: "Title prefix of the customer.\n\nMister (Mr.)\n\nMiss (Ms.)\n\nMisses (Mrs.)"
           nullable: true
+        TaxIdentifier:
+          type: string
+          description: Tax identifier of the customer.
+          nullable: true
       additionalProperties: false
       x-schema-id: BillCustomerData
     BillDeleteParameters:
@@ -30019,10 +29936,12 @@ components:
       required:
         - AccountId
         - ChainId
+        - CreatorProfile
         - Id
         - IsPrimary
         - LoyaltyProgramId
         - State
+        - UpdaterProfile
       type: object
       properties:
         Id:
@@ -30042,7 +29961,22 @@ components:
           description: Unique identifier of the loyalty program.
           format: uuid
         State:
-          $ref: '#/components/schemas/LoyaltyMembershipState'
+          title: Loyalty membership state
+          allOf:
+            - $ref: '#/components/schemas/LoyaltyMembershipStateEnum'
+          description: "State of the loyalty membership.\n\nNew\n\nPending\n\nEnrolled\n\nCanceled\n\nDeclined"
+          x-enumNames:
+            - New
+            - Pending
+            - Enrolled
+            - Canceled
+            - Declined
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
         IsPrimary:
           type: boolean
           description: Defines the primary loyalty membership.
@@ -30078,17 +30012,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/ProfileData'
           description: The profile data of the user who created or last updated the record.
-          nullable: true
         UpdaterProfile:
           title: Profile data
           allOf:
             - $ref: '#/components/schemas/ProfileData'
           description: The profile data of the user who created or last updated the record.
-          nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyMembership
     LoyaltyMembershipAddParameters:
-      title: LoyaltyMembershipAddParameters
+      title: Loyalty membership parameters
       required:
         - AccountId
         - IsPrimary
@@ -30097,40 +30029,49 @@ components:
       properties:
         AccountId:
           type: string
+          description: Unique identifier of the customer account.
           format: uuid
         LoyaltyProgramId:
           type: string
+          description: Unique identifier of the loyalty program.
           format: uuid
         IsPrimary:
           type: boolean
+          description: Defines the primary loyalty membership for the account.
         State:
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyMembershipState'
+          allOf:
+            - $ref: '#/components/schemas/LoyaltyMembershipStateEnum'
+          description: "State of the loyalty membership. The default is `Enrolled`.\n\nNew\n\nPending\n\nEnrolled\n\nCanceled\n\nDeclined"
           nullable: true
         Code:
           maxLength: 255
           type: string
+          description: 'Loyalty membership code, such as an identification number printed on a loyalty card visible to the customer.'
           nullable: true
         Points:
           type: integer
+          description: The loyalty points for the account in that membership.
           format: int32
           nullable: true
         ExpirationDate:
           type: string
+          description: Expiration date of the loyalty membership in UTC timezone in ISO 8601 format.
           format: date
           nullable: true
         Url:
           type: string
+          description: URL of the loyalty membership in external loyalty system.
           format: uri
           nullable: true
         LoyaltyTierId:
           type: string
+          description: Unique identifier of the loyalty tier.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyMembershipAddParameters
     LoyaltyMembershipDeleteParameters:
-      title: LoyaltyMembershipDeleteParameters
+      title: Loyalty membership delete parameters
       required:
         - AccessToken
         - Client
@@ -30161,7 +30102,7 @@ components:
       additionalProperties: false
       x-schema-id: LoyaltyMembershipDeleteParameters
     LoyaltyMembershipFilterParameters:
-      title: LoyaltyMembershipFilterParameters
+      title: Loyalty membership filter parameters
       required:
         - AccessToken
         - Client
@@ -30182,7 +30123,7 @@ components:
           type: string
           description: Name and version of the client application.
         ChainIds:
-          maxItems: 100
+          maxItems: 1000
           minItems: 1
           type: array
           items:
@@ -30194,12 +30135,14 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: The time interval during which the membership was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: The time interval during which the membership was last updated.
           nullable: true
           x-max-interval-in-months: 3
         LoyaltyMembershipIds:
@@ -30232,7 +30175,7 @@ components:
         MembershipStates:
           type: array
           items:
-            $ref: '#/components/schemas/LoyaltyMembershipState'
+            $ref: '#/components/schemas/LoyaltyMembershipStateEnum'
           description: States of the loyalty memberships.
           nullable: true
         ActivityStates:
@@ -30247,6 +30190,7 @@ components:
           type: array
           items:
             type: string
+          description: 'List of loyalty membership codes, such as identification numbers printed on loyalty cards visible to the customer.'
           nullable: true
         ProviderMembershipIds:
           maxItems: 1000
@@ -30254,6 +30198,7 @@ components:
           type: array
           items:
             type: string
+          description: List of unique loyalty membership identifiers assigned and managed by the external loyalty provider's system.
           nullable: true
         Limitation:
           allOf:
@@ -30262,7 +30207,7 @@ components:
       additionalProperties: false
       x-schema-id: LoyaltyMembershipFilterParameters
     LoyaltyMembershipResult:
-      title: LoyaltyMembershipResult
+      title: Loyalty membership result
       required:
         - LoyaltyMemberships
       type: object
@@ -30271,7 +30216,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyMembership'
-          description: Added loyalty memberships.
+          description: The loyalty memberships of the enterprise.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -30279,7 +30224,8 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyMembershipResult
-    LoyaltyMembershipState:
+    LoyaltyMembershipStateEnum:
+      title: Loyalty membership state
       enum:
         - New
         - Pending
@@ -30287,58 +30233,101 @@ components:
         - Canceled
         - Declined
       type: string
+      description: "State of the loyalty membership.\n\nNew\n\nPending\n\nEnrolled\n\nCanceled\n\nDeclined"
+      x-enumNames:
+        - New
+        - Pending
+        - Enrolled
+        - Canceled
+        - Declined
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+    LoyaltyMembershipStateUpdateValue:
+      title: Loyalty membership state update value
+      type: object
+      properties:
+        Value:
+          title: Loyalty membership state
+          allOf:
+            - $ref: '#/components/schemas/LoyaltyMembershipStateEnum'
+          description: Value which is to be updated.
+          x-enumNames:
+            - New
+            - Pending
+            - Enrolled
+            - Canceled
+            - Declined
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+      additionalProperties: false
+      x-schema-id: LoyaltyMembershipStateUpdateValue
     LoyaltyMembershipUpdateParameters:
-      title: LoyaltyMembershipUpdateParameters
+      title: Loyalty membership update parameters
       required:
         - LoyaltyMembershipId
       type: object
       properties:
         LoyaltyMembershipId:
           type: string
+          description: Unique identifier of the loyalty membership.
           format: uuid
         LoyaltyProgramId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Unique identifier of the loyalty program (or `null` if the program should not be updated).
           nullable: true
         State:
-          title: String update value
+          title: Loyalty membership state update value
           allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyMembershipState'
+            - $ref: '#/components/schemas/LoyaltyMembershipStateUpdateValue'
+          description: 'State of the loyalty membership, (or `null` if the state should not be updated).'
           nullable: true
         IsPrimary:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Boolean value defining the primary loyalty membership for the account (or `null` if the value should not be updated).
           nullable: true
         Code:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Code of the loyalty membership. (or `null` if the code should not be updated).
           nullable: true
         Points:
           title: Int32 update value
           allOf:
             - $ref: '#/components/schemas/Int32NullableUpdateValue'
+          description: The loyalty points the account has in the loyalty membership (or `null` if the points should not be updated).
           nullable: true
         ExpirationDate:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Expiration date of the loyalty membership in UTC timezone in ISO 8601 format (or `null` if the date should not be updated).
           format: date
           nullable: true
         Url:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: URL of the loyalty membership (or `null` if the URL should not be updated).
           format: uri
           nullable: true
         LoyaltyTierId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the loyalty tier (or `null` if the tier should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyMembershipUpdateParameters
