@@ -1,3 +1,11 @@
+# 2025-06-04
+
+
+## GET /api/distribution/integrations/expedia/{hotelCode}
+-  endpoint added
+
+
+
 # 2025-04-11
 
 
