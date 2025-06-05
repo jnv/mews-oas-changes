@@ -20328,9 +20328,9 @@ components:
           title: Bill assignee data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
@@ -20342,9 +20342,9 @@ components:
           title: Bill owner data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
@@ -21091,9 +21091,9 @@ components:
           title: Bill PDF result discriminator
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/BillPdfResultDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/BillPdfFile'
                 - $ref: '#/components/schemas/BillPrintEvent'
@@ -33513,9 +33513,9 @@ components:
           title: Data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/OrderItemTypeOld'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/RebateOrderItemData'
                 - $ref: '#/components/schemas/ProductOrderItemData'
@@ -34885,9 +34885,9 @@ components:
           title: Data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/PaymentType'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/PaymentCardPaymentData'
                 - $ref: '#/components/schemas/InvoicePaymentData'
@@ -35997,9 +35997,9 @@ components:
           title: Product pricing
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/ProductPricing'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/ExtendedAmount'
                 - $ref: '#/components/schemas/RelativeProductPrice'
@@ -40149,9 +40149,9 @@ components:
           title: Data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               type: string
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/SpaceData'
                 - type: object
@@ -41998,9 +41998,9 @@ components:
           title: Data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/ResourceDataDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/SpaceData'
                 - type: object
@@ -43088,9 +43088,9 @@ components:
           title: Data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/RuleActionDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/RuleActionProductData'
           description: Additional information about action.
@@ -43437,9 +43437,9 @@ components:
           title: Service data
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/ServiceDataDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/BookableServiceData'
                 - $ref: '#/components/schemas/AdditionalServiceData'
@@ -45326,9 +45326,9 @@ components:
           title: Strategy
           type: object
           properties:
-            discriminator:
+            Discriminator:
               $ref: '#/components/schemas/TaxRateStrategyDiscriminator'
-            value:
+            Value:
               oneOf:
                 - $ref: '#/components/schemas/RelativeTaxRateStrategy'
                 - $ref: '#/components/schemas/FlatTaxRateStrategy'

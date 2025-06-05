@@ -1,3 +1,266 @@
+# 2025-06-05
+
+
+## POST /api/connector/v1/accountingItems/getAll
+- :warning: removed the optional property 'OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/accountingItems/update
+- :warning: removed the optional property 'OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/add
+- :warning: removed the optional property 'Bills/items/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/close
+- :warning: removed the optional property 'Bills/items/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/getAll
+- :warning: removed the optional property 'Bills/items/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/getPdf
+- :warning: removed the optional property 'Result/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Result/value' from the response with the '200' status
+-  added the optional property 'Result/Discriminator' to the response with the '200' status
+-  added the optional property 'Result/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/update
+- :warning: removed the optional property 'Bills/items/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Bills/items/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Bills/items/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllActive
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllByIds
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/value' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData/Value' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/configuration/get
+- :warning: removed the optional property 'Service/allOf[subschema #1: Service]/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Service/allOf[subschema #1: Service]/Data/value' from the response with the '200' status
+-  added the optional property 'Service/allOf[subschema #1: Service]/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Service/allOf[subschema #1: Service]/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getOpenItems
+- :warning: removed the optional property 'Customers/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Customers/items/OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Customers/items/PaymentItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Customers/items/PaymentItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Customers/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Customers/items/OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Customers/items/PaymentItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Customers/items/PaymentItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/products/getAll
+- :warning: removed the optional property 'CustomerProducts/items/Pricing/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'CustomerProducts/items/Pricing/value' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/value' from the response with the '200' status
+-  added the optional property 'CustomerProducts/items/Pricing/Discriminator' to the response with the '200' status
+-  added the optional property 'CustomerProducts/items/Pricing/Value' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Discriminator' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: removed the optional property 'OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/value' from the response with the '200' status
+- :warning: removed the optional property 'Resources/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Resources/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Services/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Services/items/Data/value' from the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Discriminator' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Value' to the response with the '200' status
+-  added the optional property 'Resources/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Resources/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Services/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Services/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAllItems
+- :warning: removed the optional property 'Reservations/items/OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Reservations/items/OrderItems/items/Data/value' from the response with the '200' status
+-  added the optional property 'Reservations/items/OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Reservations/items/OrderItems/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: removed the optional property 'OrderItems/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'OrderItems/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Products/items/Pricing/value' from the response with the '200' status
+- :warning: removed the optional property 'Resources/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Resources/items/Data/value' from the response with the '200' status
+- :warning: removed the optional property 'Services/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Services/items/Data/value' from the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Discriminator' to the response with the '200' status
+-  added the optional property 'Products/items/Pricing/Value' to the response with the '200' status
+-  added the optional property 'Resources/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Resources/items/Data/Value' to the response with the '200' status
+-  added the optional property 'Services/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Services/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/resources/getAll
+- :warning: removed the optional property 'Resources/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Resources/items/Data/value' from the response with the '200' status
+-  added the optional property 'Resources/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Resources/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/resources/update
+- :warning: removed the request property 'ResourceUpdates/items/Data/discriminator'
+- :warning: removed the request property 'ResourceUpdates/items/Data/value'
+-  added the new optional request property 'ResourceUpdates/items/Data/Discriminator'
+-  added the new optional request property 'ResourceUpdates/items/Data/Value'
+
+
+## POST /api/connector/v1/rules/getAll
+- :warning: removed the optional property 'RuleActions/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'RuleActions/items/Data/value' from the response with the '200' status
+-  added the optional property 'RuleActions/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'RuleActions/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/services/getAll
+- :warning: removed the optional property 'Services/items/Data/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'Services/items/Data/value' from the response with the '200' status
+-  added the optional property 'Services/items/Data/Discriminator' to the response with the '200' status
+-  added the optional property 'Services/items/Data/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/taxEnvironments/getAll
+- :warning: removed the optional property 'TaxRates/items/Strategy/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'TaxRates/items/Strategy/value' from the response with the '200' status
+-  added the optional property 'TaxRates/items/Strategy/Discriminator' to the response with the '200' status
+-  added the optional property 'TaxRates/items/Strategy/Value' to the response with the '200' status
+
+
+## POST /api/connector/v1/taxations/getAll
+- :warning: removed the optional property 'TaxRates/items/Strategy/discriminator' from the response with the '200' status
+- :warning: removed the optional property 'TaxRates/items/Strategy/value' from the response with the '200' status
+-  added the optional property 'TaxRates/items/Strategy/Discriminator' to the response with the '200' status
+-  added the optional property 'TaxRates/items/Strategy/Value' to the response with the '200' status
+
+
+
 # 2025-06-04
 
 
