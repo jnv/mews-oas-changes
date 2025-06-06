@@ -1,3 +1,15 @@
+# 2025-06-06
+
+
+## POST /api/connector/v1/configuration/get
+-  added the required property 'Enterprise/allOf[subschema #1: Enterprise]/ChainName' to the response with the '200' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the required property 'Enterprises/items/ChainName' to the response with the '200' status
+
+
+
 # 2025-06-05
 
 
