@@ -1,3 +1,11 @@
+# 2025-06-07
+
+
+## GET /api/distribution/integrations/expedia/{hotelCode}
+- :warning: api path removed without deprecation
+
+
+
 # 2025-06-06
 
 

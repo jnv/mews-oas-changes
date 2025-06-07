@@ -6026,29 +6026,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  '/api/distribution/integrations/expedia/{hotelCode}':
-    get:
-      tags:
-        - DistributionApi
-      parameters:
-        - name: hotelCode
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ExpediaIntegrationDto'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExpediaIntegrationDto'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ExpediaIntegrationDto'
   /api/connector/v1/enterprises/getAll:
     post:
       tags:
@@ -28166,40 +28143,6 @@ components:
           description: The available exchange rates.
       additionalProperties: false
       x-schema-id: ExchangeRateResult
-    ExpediaIntegrationDto:
-      title: ExpediaIntegrationDto
-      type: object
-      properties:
-        Id:
-          type: string
-          format: uuid
-        IsEnabled:
-          type: boolean
-        ChannelManagerClientId:
-          type: string
-          format: uuid
-        ClientId:
-          type: string
-          nullable: true
-        ClientSecret:
-          type: string
-          nullable: true
-        ReceiveReservationEnabled:
-          type: boolean
-        OAuthTokenEndpoint:
-          type: string
-          format: uri
-          nullable: true
-        LodgingSupplyEndpoint:
-          type: string
-          format: uri
-          nullable: true
-        PaymentManagementEndpoint:
-          type: string
-          format: uri
-          nullable: true
-      additionalProperties: false
-      x-schema-id: ExpediaIntegrationDto
     Export:
       title: Export
       required:
