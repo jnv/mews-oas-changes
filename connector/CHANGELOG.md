@@ -1,3 +1,11 @@
+# 2025-06-12
+
+
+## POST /api/connector/v1/configuration/get
+-  added the optional property 'IsIdentityDocumentNumberRequired' to the response with the '200' status
+
+
+
 # 2025-06-07
 
 
