@@ -1,3 +1,12 @@
+# 2025-06-17
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the new optional request property 'PartnerCompanyIds'
+-  added the new optional request property 'TravelAgencyIds'
+
+
+
 # 2025-06-12
 
 
