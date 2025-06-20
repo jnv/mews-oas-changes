@@ -1,3 +1,62 @@
+# 2025-06-20
+
+
+## POST /api/connector/v1/companionships/getAll
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/add
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Options/items/' response property for the response status '200'
+-  added the new 'GuestPhotoConsent' enum value to the request property 'Options/items/'
+-  added the new 'IdPhotosConsent' enum value to the request property 'Options/items/'
+
+
+## POST /api/connector/v1/customers/getAll
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/search
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Customers/items/Customer/allOf[subschema #1: Customer]/Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Customers/items/Customer/allOf[subschema #1: Customer]/Options/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/update
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Options/items/' response property for the response status '200'
+-  added the new 'GuestPhotoConsent' enum value to the request property 'Options/items/'
+-  added the new 'IdPhotosConsent' enum value to the request property 'Options/items/'
+
+
+## POST /api/connector/v1/rates/updateCapacityOffset
+-  endpoint added
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getChannelManagerDetails
+-  added the optional property 'ChannelManagerDetails/items/ChannelManagerGroupNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'GuestPhotoConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+- :warning: added the new 'IdPhotosConsent' enum value to the 'Customers/items/Options/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/resourceBlocks/add
+-  added the optional property 'ResourceBlocks/items/DeletedUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/resourceBlocks/getAll
+-  added the optional property 'ResourceBlocks/items/DeletedUtc' to the response with the '200' status
+
+
+
 # 2025-06-17
 
 

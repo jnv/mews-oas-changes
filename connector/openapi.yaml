@@ -10261,6 +10261,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/rates/updateCapacityOffset:
+    post:
+      tags:
+        - Rates
+      operationId: rates_updateCapacityOffset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleRateCapacityOffsetUpdateParameters'
+            example: {"CapacityOffsetUpdates":[{"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","NegativeOccupancyAdjustment":{"Value":10.0},"ExtraOccupancyAdjustment":{"Value":20.0}},{"RateId":"b7e6a1c2-4f3a-4e2b-9c1d-2a5e7b8c9d0f","ExtraOccupancyAdjustment":{"Value":15.0}}]}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/rates/getAll:
     post:
       tags:
@@ -10903,7 +10963,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationsChannelManagerDetailsResult'
-              example: {"ChannelManagerDetails":[{"ReservationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","RequestedRateCode":"XyZ123AbC789","ChannelManagerName":"HotelConnect","ChannelNumber":"HC1234","ChannelManagerNumber":"9E5F7BC3B6F0102","CreatedUtc":"2025-03-10T15:30:00Z"},{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"LmN456OpQ012","ChannelManagerName":"GlobalRes","ChannelNumber":"GR5678","ChannelManagerNumber":"461190401CD25FE","CreatedUtc":"2025-03-11T09:45:00Z"}]}
+              example: {"ChannelManagerDetails":[{"ReservationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","RequestedRateCode":"XyZ123AbC789","ChannelManagerName":"HotelConnect","ChannelNumber":"HC1234","ChannelManagerGroupNumber":null,"ChannelManagerNumber":"9E5F7BC3B6F0102","CreatedUtc":"2025-03-10T15:30:00Z"},{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"LmN456OpQ012","ChannelManagerName":"GlobalRes","ChannelNumber":"GR5678","ChannelManagerGroupNumber":null,"ChannelManagerNumber":"461190401CD25FE","CreatedUtc":"2025-03-11T09:45:00Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -23046,6 +23106,10 @@ components:
           type: string
           description: 'Number of the reservation within the Channel (i.e. OTA, GDS, CRS, etc) in case the reservation group originates there (e.g. Booking.com confirmation number).'
           nullable: true
+        ChannelManagerGroupNumber:
+          type: string
+          description: Number of the reservation group within a Channel Manager.
+          nullable: true
         ChannelManagerNumber:
           type: string
           description: Unique number of the reservation within the reservation group.
@@ -26614,8 +26678,10 @@ components:
         - SendPartnerMarketingEmails
         - SendPartnerMarketingPostalMail
         - WithdrawCardConsent
+        - GuestPhotoConsent
+        - IdPhotosConsent
       type: string
-      description: "\n\nSendMarketingEmails\n\nInvoiceable\n\nBillAddressObjection\n\nSendMarketingPostalMail\n\nSendPartnerMarketingEmails\n\nSendPartnerMarketingPostalMail\n\nWithdrawCardConsent"
+      description: "\n\nSendMarketingEmails\n\nInvoiceable\n\nBillAddressObjection\n\nSendMarketingPostalMail\n\nSendPartnerMarketingEmails\n\nSendPartnerMarketingPostalMail\n\nWithdrawCardConsent\n\nGuestPhotoConsent (Whether to ask for consent to take a guest photo.)\n\nIdPhotosConsent (Whether to ask for consent to take identity document photos.)"
       x-enumNames:
         - SendMarketingEmails
         - Invoiceable
@@ -26624,6 +26690,8 @@ components:
         - SendPartnerMarketingEmails
         - SendPartnerMarketingPostalMail
         - WithdrawCardConsent
+        - GuestPhotoConsent
+        - IdPhotosConsent
       x-enumDescriptions:
         - ''
         - ''
@@ -26632,6 +26700,8 @@ components:
         - ''
         - ''
         - ''
+        - Whether to ask for consent to take a guest photo.
+        - Whether to ask for consent to take identity document photos.
     CustomerOptionUpdateParameters:
       title: Customer update options
       type: object
@@ -26667,8 +26737,10 @@ components:
         - SendPartnerMarketingEmails
         - SendPartnerMarketingPostalMail
         - WithdrawCardConsent
+        - GuestPhotoConsent
+        - IdPhotosConsent
       type: string
-      description: "\n\nNone\n\nSendMarketingEmails\n\nInvoiceable\n\nBillAddressObjection\n\nSendMarketingPostalMail\n\nSendPartnerMarketingEmails\n\nSendPartnerMarketingPostalMail\n\nWithdrawCardConsent"
+      description: "\n\nNone\n\nSendMarketingEmails\n\nInvoiceable\n\nBillAddressObjection\n\nSendMarketingPostalMail\n\nSendPartnerMarketingEmails\n\nSendPartnerMarketingPostalMail\n\nWithdrawCardConsent\n\nGuestPhotoConsent\n\nIdPhotosConsent"
       x-enumNames:
         - None
         - SendMarketingEmails
@@ -26678,7 +26750,11 @@ components:
         - SendPartnerMarketingEmails
         - SendPartnerMarketingPostalMail
         - WithdrawCardConsent
+        - GuestPhotoConsent
+        - IdPhotosConsent
       x-enumDescriptions:
+        - ''
+        - ''
         - ''
         - ''
         - ''
@@ -27053,6 +27129,16 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: DecimalNullableUpdateValue
+    DecimalUpdateValue:
+      title: Decimal update value
+      type: object
+      properties:
+        Value:
+          type: number
+          description: Value which is to be updated.
+          format: double
+      additionalProperties: false
+      x-schema-id: DecimalUpdateValue
     DeleteRestrictionParameters:
       title: DeleteRestrictionParameters
       required:
@@ -32101,6 +32187,42 @@ components:
           description: Identifiers of payment requests to be canceled.
       additionalProperties: false
       x-schema-id: MultiplePaymentRequestCancelParameters
+    MultipleRateCapacityOffsetUpdateParameters:
+      title: MultipleRateCapacityOffsetUpdateParameters
+      required:
+        - AccessToken
+        - CapacityOffsetUpdates
+        - Client
+        - ClientToken
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CapacityOffsetUpdates:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/RateCapacityOffsetUpdateParameters'
+          description: A list of rate capacity offset updates to apply.
+      additionalProperties: false
+      description: Parameters for updating rate capacity offsets in an enterprise.
+      x-schema-id: MultipleRateCapacityOffsetUpdateParameters
     MultipleReservationResult:
       title: MultipleReservationResult
       required:
@@ -37039,6 +37161,30 @@ components:
       x-enumDescriptions:
         - ''
         - ''
+    RateCapacityOffsetUpdateParameters:
+      title: RateCapacityOffsetUpdateParameters
+      required:
+        - RateId
+      type: object
+      properties:
+        RateId:
+          type: string
+          description: The unique identifier of the `Rate` to update.
+          format: uuid
+        NegativeOccupancyAdjustment:
+          title: Decimal update value
+          allOf:
+            - $ref: '#/components/schemas/DecimalUpdateValue'
+          description: Amount added to the price when occupancy is less than the Space Category Capacity. Use a negative value to provide a discount for under-occupancy. Set to 'null' if not updated.
+          nullable: true
+        ExtraOccupancyAdjustment:
+          title: Decimal update value
+          allOf:
+            - $ref: '#/components/schemas/DecimalUpdateValue'
+          description: Amount added to the price when the Space Category Capacity is exceeded.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: RateCapacityOffsetUpdateParameters
     RateDeleteParameters:
       title: RateDeleteParameters
       required:
@@ -40544,6 +40690,10 @@ components:
           minLength: 1
           type: string
           description: Last update date and time of the block in UTC timezone in ISO 8601 format.
+        DeletedUtc:
+          type: string
+          description: Date and time when the block was deleted (for inactive ones) in UTC timezone in ISO 8601 format.
+          nullable: true
         Name:
           minLength: 1
           type: string
