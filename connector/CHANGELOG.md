@@ -1,3 +1,23 @@
+# 2025-06-24
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added '#/components/schemas/RateAddPricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RatePricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added '#/components/schemas/RateSetPricingDataParameters' to the 'Rates/items/Pricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/RatePricingDataParameters' from the 'Rates/items/Pricing' request property 'allOf' list
+
+
+## POST /api/connector/v1/resourceBlocks/getAll
+-  added the new optional request property 'ActivityStates'
+-  the request property 'Extent' became nullable
+-  the request property 'Extent' became optional
+
+
+
 # 2025-06-20
 
 

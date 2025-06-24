@@ -10265,6 +10265,8 @@ paths:
     post:
       tags:
         - Rates
+      summary: Update rate capacity offset pricing
+      description: 'Updates capacity offset based pricing for specified rates. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: rates_updateCapacityOffset
       requestBody:
         content:
@@ -10540,7 +10542,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RateSetParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":true,"Type":"Public","Names":{"en-US":"Base rate"},"Descriptions":{"en-US":"Base rate with all fields specified using GUID identifiers."},"PricingType":"BaseRatePricing","Pricing":{"BaseRatePricing":{"Amount":{"Currency":"EUR","NetValue":100.0},"NegativeOccupancyAdjustment":0.0,"ExtraOccupancyAdjustment":0.0}}},{"ExternalIdentifier":"55698","ServiceId":"eid:Stay","RateGroupId":"eid:RG10","IsEnabled":false,"Type":"Private","Names":{"en-US":"Dependent rate"},"Descriptions":{"en-US":"Dependent rate with all field specified using eid identifiers."},"PricingType":"DependentRatePricing","Pricing":{"DependentRatePricing":{"BaseRateId":"00392166-3869-4174-b491-cf0162524a38","RelativeAdjustment":0.0,"AbsoluteAdjustment":0.0}}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Rates":[{"Id":"e1b0bf46-32a3-4f7c-99c1-1ff78447d55d","ServiceId":"956176af-e10b-4f3c-beb7-274801bce328","RateGroupId":"d7adfddc-c2dc-4798-ace2-28de7b25408f","IsEnabled":true,"Type":"Public","Names":{"en-US":"Base rate"},"Descriptions":{"en-US":"Base rate with all fields specified using GUID identifiers."},"PricingType":"BaseRatePricing","Pricing":{"BaseRatePricing":{"Amount":{"Currency":"EUR","NetValue":100.0}}}},{"ExternalIdentifier":"55698","ServiceId":"eid:Stay","RateGroupId":"eid:RG10","IsEnabled":false,"Type":"Private","Names":{"en-US":"Dependent rate"},"Descriptions":{"en-US":"Dependent rate with all field specified using eid identifiers."},"PricingType":"DependentRatePricing","Pricing":{"DependentRatePricing":{"BaseRateId":"00392166-3869-4174-b491-cf0162524a38","RelativeAdjustment":0.0,"AbsoluteAdjustment":0.0}}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -10963,7 +10965,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationsChannelManagerDetailsResult'
-              example: {"ChannelManagerDetails":[{"ReservationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","RequestedRateCode":"XyZ123AbC789","ChannelManagerName":"HotelConnect","ChannelNumber":"HC1234","ChannelManagerGroupNumber":null,"ChannelManagerNumber":"9E5F7BC3B6F0102","CreatedUtc":"2025-03-10T15:30:00Z"},{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"LmN456OpQ012","ChannelManagerName":"GlobalRes","ChannelNumber":"GR5678","ChannelManagerGroupNumber":null,"ChannelManagerNumber":"461190401CD25FE","CreatedUtc":"2025-03-11T09:45:00Z"}]}
+              example: {"ChannelManagerDetails":[{"ReservationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","RequestedRateCode":"XyZ123AbC789","ChannelManagerName":"HotelConnect","ChannelNumber":"HC1234","ChannelManagerGroupNumber":"9E5F7BC3B6F0102","ChannelManagerNumber":"1","CreatedUtc":"2025-03-10T15:30:00Z"},{"ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","RequestedRateCode":"LmN456OpQ012","ChannelManagerName":"GlobalRes","ChannelNumber":"GR5678","ChannelManagerGroupNumber":"461190401CD25FE","ChannelManagerNumber":"1","CreatedUtc":"2025-03-11T09:45:00Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20211,6 +20213,19 @@ components:
           format: double
       additionalProperties: false
       x-schema-id: BaseRatePricingParameters
+    BaseRatePricingWithoutAdjustmentsParameters:
+      title: Base rate pricing parameters
+      required:
+        - Amount
+      type: object
+      properties:
+        Amount:
+          title: Amount parameters
+          allOf:
+            - $ref: '#/components/schemas/AmountParameters'
+          description: Price of the product that overrides the price defined in Mews.
+      additionalProperties: false
+      x-schema-id: BaseRatePricingWithoutAdjustmentsParameters
     Bill:
       title: Bill
       required:
@@ -32214,7 +32229,7 @@ components:
           format: uuid
           nullable: true
         CapacityOffsetUpdates:
-          maxItems: 1000
+          maxItems: 50
           minItems: 1
           type: array
           items:
@@ -37083,9 +37098,9 @@ components:
           description: Identifier of the rate from external system.
           nullable: true
         Pricing:
-          title: Rate pricing data parameters
+          title: Rate add pricing data parameters
           allOf:
-            - $ref: '#/components/schemas/RatePricingDataParameters'
+            - $ref: '#/components/schemas/RateAddPricingDataParameters'
           description: Contains additional data about pricing of the rate.
           nullable: true
       additionalProperties: false
@@ -37135,6 +37150,24 @@ components:
           description: Information about rates to be created.
       additionalProperties: false
       x-schema-id: RateAddParameters
+    RateAddPricingDataParameters:
+      title: Rate add pricing data parameters
+      type: object
+      properties:
+        BaseRatePricing:
+          title: Base rate pricing parameters with occupancy adjustments
+          allOf:
+            - $ref: '#/components/schemas/BaseRatePricingParameters'
+          description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
+          nullable: true
+        DependentRatePricing:
+          title: Dependent rate pricing parameters
+          allOf:
+            - $ref: '#/components/schemas/DependentRatePricingParameters'
+          description: Additional data for rate with dependent rate pricing. Required when `PricingType` is `DependentRatePricing`.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: RateAddPricingDataParameters
     RateAddResult:
       title: Rate add result
       type: object
@@ -37797,24 +37830,6 @@ components:
           readOnly: true
       additionalProperties: false
       x-schema-id: RatePricingData
-    RatePricingDataParameters:
-      title: Rate pricing data parameters
-      type: object
-      properties:
-        BaseRatePricing:
-          title: Base rate pricing parameters
-          allOf:
-            - $ref: '#/components/schemas/BaseRatePricingParameters'
-          description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
-          nullable: true
-        DependentRatePricing:
-          title: Dependent rate pricing parameters
-          allOf:
-            - $ref: '#/components/schemas/DependentRatePricingParameters'
-          description: Additional data for rate with dependent rate pricing. Required when `PricingType` is `DependentRatePricing`.
-          nullable: true
-      additionalProperties: false
-      x-schema-id: RatePricingDataParameters
     RatePricingDiscriminatorEnum:
       title: Rate pricing discriminator
       enum:
@@ -37997,9 +38012,9 @@ components:
             - ''
             - ''
         Pricing:
-          title: Rate pricing data parameters
+          title: Rate set pricing data parameters
           allOf:
-            - $ref: '#/components/schemas/RatePricingDataParameters'
+            - $ref: '#/components/schemas/RateSetPricingDataParameters'
           description: Contains additional data about pricing of the rate.
           nullable: true
       additionalProperties: false
@@ -38039,6 +38054,24 @@ components:
           description: Rates to be added or updated.
       additionalProperties: false
       x-schema-id: RateSetParameters
+    RateSetPricingDataParameters:
+      title: Rate set pricing data parameters
+      type: object
+      properties:
+        BaseRatePricing:
+          title: Base rate pricing parameters
+          allOf:
+            - $ref: '#/components/schemas/BaseRatePricingWithoutAdjustmentsParameters'
+          description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
+          nullable: true
+        DependentRatePricing:
+          title: Dependent rate pricing parameters
+          allOf:
+            - $ref: '#/components/schemas/DependentRatePricingParameters'
+          description: Additional data for rate with dependent rate pricing. Required when `PricingType` is `DependentRatePricing`.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: RateSetPricingDataParameters
     RateSetResult:
       title: Rate set result
       type: object
@@ -40781,7 +40814,6 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - Extent
         - Limitation
       type: object
       properties:
@@ -40815,6 +40847,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/ResourceBlockExtent'
           description: Extent of data to be returned.
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: 'Use ActivityStates with `["Active", "Deleted"]` instead.'
         ResourceBlockIds:
           maxItems: 1000
           minItems: 1
@@ -40832,6 +40867,12 @@ components:
             type: string
             format: uuid
           description: 'Unique identifiers of the requested Assigned [Resources](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource).'
+          nullable: true
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted or both records. Defaults to `Active` if not specified.'
           nullable: true
         CollidingUtc:
           title: TimeFilterInterval
