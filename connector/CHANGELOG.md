@@ -1,3 +1,11 @@
+# 2025-06-26
+
+
+## POST /api/connector/v1/paymentPlans/add
+-  added the new optional request property 'PaymentRequest/allOf[subschema #1: PaymentPlanPaymentRequest]/PaymentRequestType'
+
+
+
 # 2025-06-24
 
 
