@@ -1,3 +1,31 @@
+# 2025-06-27
+
+
+## POST /api/connector/v1/bills/add
+-  added the required property 'Bills/items/AccountType' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/close
+-  added the required property 'Bills/items/AccountType' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/getAll
+-  added the required property 'Bills/items/AccountType' to the response with the '200' status
+
+
+## POST /api/connector/v1/bills/update
+-  added the required property 'Bills/items/AccountType' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllActive
+-  added the required property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AccountType' to the response with the '200' status
+
+
+## POST /api/connector/v1/commands/getAllByIds
+-  added the required property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AccountType' to the response with the '200' status
+
+
+
 # 2025-06-26
 
 
