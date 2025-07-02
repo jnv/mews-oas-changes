@@ -1,3 +1,11 @@
+# 2025-07-02
+
+
+## POST /api/connector/v1/fiscalMachineCommands/getAll
+-  endpoint added
+
+
+
 # 2025-06-27
 
 

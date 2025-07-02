@@ -3548,6 +3548,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/fiscalMachineCommands/getAll:
+    post:
+      tags:
+        - Commands
+      operationId: fiscalMachineCommands_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/CommandsGetAllFilterByCommandIdParameters'
+                - $ref: '#/components/schemas/CommandsGetAllFilterByStatesParameters'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiscalMachineCommandDataV20250623Result'
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/companies/add:
     post:
       tags:
@@ -21226,6 +21288,150 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: BillUpdateParameters
+    BillV20250623:
+      title: Bill (ver 2025-06-23)
+      required:
+        - AccountId
+        - AssociatedAccountIds
+        - CorrectionState
+        - CreatedUtc
+        - EnterpriseId
+        - Id
+        - State
+        - Type
+        - UpdatedUtc
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the bill.
+          format: uuid
+        Name:
+          type: string
+          description: Name of the bill.
+          nullable: true
+        EnterpriseId:
+          type: string
+          description: Unique identifier of the `Enterprise`.
+          format: uuid
+        AccountId:
+          type: string
+          description: Unique identifier of the account (`Customer` or `Company`) the bill is issued to.
+          format: uuid
+        AssociatedAccountIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `Customers` or `Companies` that are associated to the bill.
+          nullable: true
+        CounterId:
+          type: string
+          description: Unique identifier of the bill `Counter`.
+          format: uuid
+          nullable: true
+        State:
+          $ref: '#/components/schemas/BillState'
+        Type:
+          $ref: '#/components/schemas/BillType'
+        Number:
+          type: string
+          description: Number of the bill.
+          nullable: true
+        VariableSymbol:
+          type: string
+          description: Variable symbol of the bill.
+          nullable: true
+        CreatedUtc:
+          minLength: 1
+          type: string
+          description: Date and time of the bill creation in UTC timezone in ISO 8601 format.
+          format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: 'Date and time when the bill was last updated, in UTC timezone in ISO 8601 format.'
+          format: date-time
+        IssuedUtc:
+          type: string
+          description: Date and time of the bill issuance in UTC timezone in ISO 8601 format.
+          format: date-time
+          nullable: true
+        TaxedUtc:
+          type: string
+          description: Taxation date of the bill in UTC timezone in ISO 8601 format.
+          format: date-time
+          nullable: true
+        PaidUtc:
+          type: string
+          description: Date when the bill was paid in UTC timezone in ISO 8601 format.
+          format: date-time
+          nullable: true
+        DueUtc:
+          type: string
+          description: Bill due date and time in UTC timezone in ISO 8601 format.
+          format: date-time
+          nullable: true
+        LastReminderDateUtc:
+          type: string
+          description: 'Date and time when an email reminder to pay an invoice was last sent, in UTC timezone in ISO 8601 format.'
+          format: date-time
+          nullable: true
+        PurchaseOrderNumber:
+          type: string
+          description: Unique number of the purchase order from the buyer.
+          nullable: true
+        Notes:
+          type: string
+          description: Additional notes.
+          nullable: true
+        Options:
+          title: Bill options
+          allOf:
+            - $ref: '#/components/schemas/BillOptions'
+          description: Options of the bill.
+          nullable: true
+        Owner:
+          title: Bill owner data
+          allOf:
+            - $ref: '#/components/schemas/BillAccountData'
+          description: Additional information about owner of the bill. Can be a `Customer` or `Company`. Persisted at the time of closing of the bill.
+          nullable: true
+        AssociatedAccountsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillAccountData'
+          description: 'Additional information about the associated account of the bill. Can be a `Customer` or `Company`. Persisted at the time of closing of the bill. Currently only one account can be associated with a bill, but this may be extended in future.'
+          nullable: true
+        EnterpriseData:
+          title: Bill enterprise data
+          allOf:
+            - $ref: '#/components/schemas/BillEnterpriseData'
+          description: 'Additional information about the enterprise issuing the bill, including bank account details. Persisted at the time of closing of the bill.'
+          nullable: true
+        CorrectionState:
+          title: Bill correction state
+          allOf:
+            - $ref: '#/components/schemas/BillCorrectionStateEnum'
+          description: "Whether the bill is a regular bill or a corrective bill.\n\nBill (Regular bill.)\n\nCorrectiveBill (Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.)"
+          x-enumNames:
+            - Bill
+            - CorrectiveBill
+          x-enumDescriptions:
+            - Regular bill.
+            - 'Corrective bill, i.e. the `CorrectionType` is either `Edit`, `Cancellation`, or `ReceivablePaymentsBalance`.'
+        CorrectionType:
+          allOf:
+            - $ref: '#/components/schemas/BillCorrectionTypeEnum'
+          description: "Type of correction.\n\nCancellation\n\nEdit\n\nCreditNote\n\nReinstatement\n\nReceivablePaymentsBalance"
+          nullable: true
+        CorrectedBillId:
+          type: string
+          description: 'The ID of the bill that the corrective bill corrects. If the corrected bill was deleted, this field is `null`.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: BillV20250623
     BillingAutomation:
       title: Billing automation
       required:
@@ -23278,6 +23484,89 @@ components:
           description: Details of the matching conditions and time intervals for clearing restrictions.
       additionalProperties: false
       x-schema-id: ClearRestrictionParameters
+    CommandsGetAllFilterByCommandIdParameters:
+      title: CommandsGetAllFilterByCommandIdParameters
+      required:
+        - CommandIds
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommandsGetAllFilterParameters'
+      properties:
+        CommandIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
+      description: Filter commands by their unique identifiers.
+      x-schema-id: CommandsGetAllFilterByCommandIdParameters
+    CommandsGetAllFilterByStatesParameters:
+      title: CommandsGetAllFilterByStatesParameters
+      required:
+        - DeviceIds
+        - States
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommandsGetAllFilterParameters'
+      properties:
+        DeviceIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+        States:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceCommandStateEnum'
+        UpdatedUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          nullable: true
+          x-max-interval-in-months: 3
+      additionalProperties: false
+      description: 'Filter commands by the unique identifiers of `Device` and states, with optional filtering by their update interval.'
+      x-schema-id: CommandsGetAllFilterByStatesParameters
+    CommandsGetAllFilterParameters:
+      title: CommandsGetAllFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CommandsGetAllFilterParameters
     Companionship:
       title: Companionship
       type: object
@@ -28724,6 +29013,29 @@ components:
         - Overview by reservation (no date). Items of the same type and price are grouped by reservation.
         - Consumption overview (not fiscal document). Items are grouped by the item type and price without reservation details and consumption date.
         - 'Overview by guest. Items are grouped by guest, reservation, consumption date, and item type.'
+    FiscalMachineAdditionalData:
+      title: FiscalMachineAdditionalData
+      type: object
+      properties:
+        Discriminator:
+          allOf:
+            - $ref: '#/components/schemas/FiscalMachineDataDiscriminatorEnum'
+          description: "Type of additional data for Italian fiscal machine.\n\nItalianFiscalMachineData\n\nItalianFiscalMachinePayload"
+          nullable: true
+        ItalianFiscalMachineData:
+          title: Italian fiscal machine data
+          allOf:
+            - $ref: '#/components/schemas/ItalianFiscalMachineDataV20250623'
+          description: Fiscal machine data for Italian fiscal machine.
+          nullable: true
+        ItalianFiscalMachinePayload:
+          title: Italian fiscal machine payload.
+          allOf:
+            - $ref: '#/components/schemas/ItalianFiscalMachinePayloadV20250623'
+          description: Fiscal machine payload for Italian fiscal machine.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: FiscalMachineAdditionalData
     FiscalMachineCommandData:
       title: Fiscal machine command data
       required:
@@ -28767,6 +29079,113 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: FiscalMachineCommandData
+    FiscalMachineCommandDataV20250623:
+      title: Fiscal machine command data (ver. 2025-06-23)
+      required:
+        - ApiUrl
+        - Bill
+        - CreatedUtc
+        - Device
+        - FiscalMachineData
+        - FiscalMachineId
+        - Id
+        - State
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the command.
+          format: uuid
+        State:
+          title: Command state
+          allOf:
+            - $ref: '#/components/schemas/DeviceCommandStateEnum'
+          description: "State of the command.\n\nPending (Created in Mews, but not yet received by the client application.)\n\nReceived (Received by the client application.)\n\nProcessing (Being processed by the client application.)\n\nProcessed (Successfully processed command.)\n\nCancelled (A command whose execution has been canceled before (or during) processing.)\n\nError (A command whose execution or processing was terminated by an error.)"
+          x-enumNames:
+            - Pending
+            - Received
+            - Processing
+            - Processed
+            - Cancelled
+            - Error
+          x-enumDescriptions:
+            - 'Created in Mews, but not yet received by the client application.'
+            - Received by the client application.
+            - Being processed by the client application.
+            - Successfully processed command.
+            - A command whose execution has been canceled before (or during) processing.
+            - A command whose execution or processing was terminated by an error.
+        CreatedUtc:
+          minLength: 1
+          type: string
+          description: Creation date and time of the command.
+          format: date-time
+        Creator:
+          title: Profile data
+          allOf:
+            - $ref: '#/components/schemas/ProfileData'
+          description: Creator of the command.
+          nullable: true
+        FiscalMachineId:
+          minLength: 1
+          type: string
+          description: Identifier of the fiscal machine.
+        ApiUrl:
+          minLength: 1
+          type: string
+          description: URL of the fiscal machine API.
+        FiscalMachineData:
+          minLength: 1
+          type: string
+          description: Custom JSON data.
+        TaxIdentifier:
+          type: string
+          description: Tax identifier to be used for fiscalization.
+          nullable: true
+        Device:
+          allOf:
+            - $ref: '#/components/schemas/Device'
+          description: Device that the command should be executed on.
+        Bill:
+          title: Bill (ver 2025-06-23)
+          allOf:
+            - $ref: '#/components/schemas/BillV20250623'
+          description: The issued bill that should be fiscalized.
+        CommandData:
+          allOf:
+            - $ref: '#/components/schemas/FiscalMachineAdditionalData'
+          description: Additional data of the fiscal machine.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: FiscalMachineCommandDataV20250623
+    FiscalMachineCommandDataV20250623Result:
+      title: FiscalMachineCommandDataV20250623Result
+      type: object
+      properties:
+        Commands:
+          type: array
+          items:
+            $ref: '#/components/schemas/FiscalMachineCommandDataV20250623'
+          nullable: true
+        Cursor:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: FiscalMachineCommandDataV20250623Result
+    FiscalMachineDataDiscriminatorEnum:
+      title: Fiscal machine data discriminator
+      enum:
+        - ItalianFiscalMachineData
+        - ItalianFiscalMachinePayload
+      type: string
+      description: "\n\nItalianFiscalMachineData\n\nItalianFiscalMachinePayload"
+      x-enumNames:
+        - ItalianFiscalMachineData
+        - ItalianFiscalMachinePayload
+      x-enumDescriptions:
+        - ''
+        - ''
     FiscalMachinePayloadDataDiscriminatorEnum:
       title: Fiscal machine payload discriminator
       enum:
@@ -29612,6 +30031,44 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ItalianFiscalMachineData
+    ItalianFiscalMachineDataV20250623:
+      title: Italian fiscal machine data
+      type: object
+      properties:
+        IsRefund:
+          type: boolean
+          description: Indicates if the transaction is a refund.
+        RebatedReceiptNumber:
+          type: string
+          description: Number of the rebated receipt.
+          nullable: true
+        RebatedReceiptSequence:
+          type: string
+          description: Sequence of the rebated receipt.
+          nullable: true
+        RebatedReceiptDateTimeUtc:
+          type: string
+          description: Date and time of the rebated receipt in UTC.
+          format: date-time
+          nullable: true
+        PrinterSerialNumber:
+          type: string
+          description: Serial number of the printer.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ItalianFiscalMachineDataV20250623
+    ItalianFiscalMachinePayloadV20250623:
+      title: Italian fiscal machine payload.
+      required:
+        - Payload
+      type: object
+      properties:
+        Payload:
+          minLength: 1
+          type: string
+          description: Base64-encoded data of the file to be printed.
+      additionalProperties: false
+      x-schema-id: ItalianFiscalMachinePayloadV20250623
     ItalianFiscalMachineResultData:
       title: ItalianFiscalMachineResultData
       type: object
