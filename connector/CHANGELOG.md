@@ -1,3 +1,15 @@
+# 2025-07-03
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'AllowanceDiscount' enum value to the 'OrderItems/items/Data/allOf[subschema #1: Order item data]/Discriminator/allOf[subschema #1: Order item data discriminator]/' response property for the response status '200'
+- :warning: added the new 'AllowanceProfits' enum value to the 'OrderItems/items/Data/allOf[subschema #1: Order item data]/Discriminator/allOf[subschema #1: Order item data discriminator]/' response property for the response status '200'
+-  added the optional property 'OrderItems/items/Data/allOf[subschema #1: Order item data]/AllowanceDiscount' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/allOf[subschema #1: Order item data]/AllowanceProfits' to the response with the '200' status
+-  added the optional property 'OrderItems/items/Data/allOf[subschema #1: Order item data]/Product/allOf[subschema #1: Product data]/ProductType' to the response with the '200' status
+
+
+
 # 2025-07-02
 
 

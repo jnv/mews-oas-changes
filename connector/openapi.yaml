@@ -19223,6 +19223,25 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AgeCategoryResult
+    AllowanceProfitTypeEnum:
+      title: Allowance profit type
+      enum:
+        - AllowanceBreakage
+        - AllowanceContraBreakage
+        - AllowanceLoss
+        - AllowanceContraLoss
+      type: string
+      description: "\n\nAllowanceBreakage (Profit of the allowance product.)\n\nAllowanceContraBreakage (Accounting balance for profit of the allowance product.)\n\nAllowanceLoss (Loss of the allowance product.)\n\nAllowanceContraLoss (Accounting balance for loss of the allowance product.)"
+      x-enumNames:
+        - AllowanceBreakage
+        - AllowanceContraBreakage
+        - AllowanceLoss
+        - AllowanceContraLoss
+      x-enumDescriptions:
+        - Profit of the allowance product.
+        - Accounting balance for profit of the allowance product.
+        - Loss of the allowance product.
+        - Accounting balance for loss of the allowance product.
     AlternativePaymentMethodDeprecated:
       title: Alternative payment methods
       enum:
@@ -33802,6 +33821,40 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: OrderItemAdditionData
+    OrderItemAllowanceDiscountData:
+      title: Allowance discount data
+      required:
+        - AllowanceProductOrderItemId
+        - DiscountedOrderItemId
+      type: object
+      properties:
+        DiscountedOrderItemId:
+          type: string
+          description: 'Unique identifier of [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which has been discounted by current item.'
+          format: uuid
+        AllowanceProductOrderItemId:
+          type: string
+          description: 'Unique identifier of the allowance product [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which credit has been consumed by current item.'
+          format: uuid
+      additionalProperties: false
+      x-schema-id: OrderItemAllowanceDiscountData
+    OrderItemAllowanceProfitsData:
+      title: Allowance profits data
+      required:
+        - AllowanceProductOrderItemId
+        - AllowanceProfitType
+      type: object
+      properties:
+        AllowanceProductOrderItemId:
+          type: string
+          description: 'Unique identifier of the allowance product [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which credit has been consumed by current item.'
+          format: uuid
+        AllowanceProfitType:
+          allOf:
+            - $ref: '#/components/schemas/AllowanceProfitTypeEnum'
+          description: "Type of allowance profit.\n\nAllowanceBreakage (Profit of the allowance product.)\n\nAllowanceContraBreakage (Accounting balance for profit of the allowance product.)\n\nAllowanceLoss (Loss of the allowance product.)\n\nAllowanceContraLoss (Accounting balance for loss of the allowance product.)"
+      additionalProperties: false
+      x-schema-id: OrderItemAllowanceProfitsData
     OrderItemData:
       title: Order item data
       type: object
@@ -33810,13 +33863,17 @@ components:
           title: Order item data discriminator
           allOf:
             - $ref: '#/components/schemas/OrderItemDataDiscriminatorEnum'
-          description: "Discriminator pointing to the fields within this object that contains additional data.\n\nRebate\n\nProduct"
+          description: "Discriminator pointing to the fields within this object that contains additional data.\n\nRebate (Rebate.)\n\nProduct (Product.)\n\nAllowanceDiscount (Allowance discount.)\n\nAllowanceProfits (Allowance profits.)"
           x-enumNames:
             - Rebate
             - Product
+            - AllowanceDiscount
+            - AllowanceProfits
           x-enumDescriptions:
-            - ''
-            - ''
+            - Rebate.
+            - Product.
+            - Allowance discount.
+            - Allowance profits.
         Rebate:
           title: Rebate data
           allOf:
@@ -33829,6 +33886,18 @@ components:
             - $ref: '#/components/schemas/OrderItemProductData'
           description: Contains additional data in the case of product item.
           nullable: true
+        AllowanceDiscount:
+          title: Allowance discount data
+          allOf:
+            - $ref: '#/components/schemas/OrderItemAllowanceDiscountData'
+          description: Contains additional data in the case of allowance discount item.
+          nullable: true
+        AllowanceProfits:
+          title: Allowance profits data
+          allOf:
+            - $ref: '#/components/schemas/OrderItemAllowanceProfitsData'
+          description: Contains additional data in the case of allowance profits item.
+          nullable: true
       additionalProperties: false
       description: Additional order item data.
       x-schema-id: OrderItemData
@@ -33837,14 +33906,20 @@ components:
       enum:
         - Rebate
         - Product
+        - AllowanceDiscount
+        - AllowanceProfits
       type: string
-      description: "\n\nRebate\n\nProduct"
+      description: "\n\nRebate (Rebate.)\n\nProduct (Product.)\n\nAllowanceDiscount (Allowance discount.)\n\nAllowanceProfits (Allowance profits.)"
       x-enumNames:
         - Rebate
         - Product
+        - AllowanceDiscount
+        - AllowanceProfits
       x-enumDescriptions:
-        - ''
-        - ''
+        - Rebate.
+        - Product.
+        - Allowance discount.
+        - Allowance profits.
     OrderItemFilterParameters:
       title: OrderItemFilterParameters
       required:
@@ -34112,6 +34187,11 @@ components:
           type: string
           description: 'Unique identifier of the [Age Category](https://mews-systems.gitbook.io/connector-api/operations/agecategories/#age-category).'
           format: uuid
+          nullable: true
+        ProductType:
+          allOf:
+            - $ref: '#/components/schemas/ProductTypeEnum'
+          description: "Type of Product, e.g. whether allowance or product.\n\nProduct\n\nAllowance"
           nullable: true
       additionalProperties: false
       x-schema-id: OrderItemProductData
@@ -37315,6 +37395,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ProductServiceOrderResult
+    ProductTypeEnum:
+      title: Product type
+      enum:
+        - Product
+        - Allowance
+      type: string
+      description: "\n\nProduct\n\nAllowance"
+      x-enumNames:
+        - Product
+        - Allowance
+      x-enumDescriptions:
+        - ''
+        - ''
     ProfileData:
       title: Profile data
       required:
