@@ -1,3 +1,1989 @@
+# 2025-07-04
+
+
+## POST /api/connector/v1/accountNotes/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountNotes/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountNotes/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountNotes/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountingCategories/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountingItems/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accountingItems/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accounts/addFile
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accounts/merge
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/accounts/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/addresses/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/addresses/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/addresses/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/addresses/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/ageCategories/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/availabilityAdjustments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/availabilityBlocks/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/billingAutomations/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/billingAutomations/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/billingAutomations/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/billingAutomations/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/billingAutomations/updateAssignments
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/close
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/getPdf
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/bills/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/businessSegments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/cancellationPolicies/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/cancellationPolicies/getByRates
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/cancellationPolicies/getByReservations
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/cashierTransactions/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/cashiers/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/addKeyCutter
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/addPaymentTerminal
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/addPrinter
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/getAllActive
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/getAllByIds
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/commands/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companies/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companies/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companies/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companies/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companyContracts/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companyContracts/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companyContracts/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/companyContracts/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/configuration/get
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/counters/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/countries/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/addTokenized
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/charge
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/disable
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/getAllByCustomers
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/creditCards/getAllByIds
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/currencies/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/addFile
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/getOpenItems
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/merge
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/departments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/devices/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/exchangeRates/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/exports/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/exports/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/fiscalMachineCommands/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/identityDocuments/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/identityDocuments/clear
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/identityDocuments/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/identityDocuments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/identityDocuments/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/images/getUrls
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/languages/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/languages/getTexts
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/ledgerBalances/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyPrograms/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyPrograms/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyPrograms/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyPrograms/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyTiers/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyTiers/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyTiers/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/loyaltyTiers/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/messageThreads/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/messageThreads/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/messages/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/messages/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/orderItems/cancel
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/orderItems/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/orders/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/outletBills/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/outletItems/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/outlets/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/paymentPlans/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/paymentRequests/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/paymentRequests/cancel
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/paymentRequests/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/payments/addAlternative
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/payments/addCreditCard
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/payments/addExternal
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/payments/refund
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/preauthorizations/getAllByCustomers
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/productCategories/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/productServiceOrders/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/products/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/products/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/products/getPricing
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/products/updatePrice
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rateGroups/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/getPricing
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/set
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/updateCapacityOffset
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rates/updatePrice
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservationGroups/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/addCompanion
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/addProduct
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/cancel
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/confirm
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/deleteCompanion
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/getAllItems
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/getChannelManagerDetails
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/price
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/process
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/start
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/updateCustomer
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/reservations/updateInterval
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceAccessTokens/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceAccessTokens/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceAccessTokens/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceAccessTokens/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceBlocks/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceBlocks/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceBlocks/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceCategories/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceCategoryAssignments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceCategoryImageAssignments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceFeatureAssignments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resourceFeatures/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resources/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resources/getOccupancyState
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/resources/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/restrictions/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/restrictions/clear
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '409' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/restrictions/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/restrictions/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/restrictions/set
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '409' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/routingRules/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/routingRules/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/routingRules/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/routingRules/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/rules/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOrderNotes/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOrderNotes/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOrderNotes/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOrderNotes/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOverbookingLimits/clear
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOverbookingLimits/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/serviceOverbookingLimits/set
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/services/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/services/getAvailability
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/services/getAvailability/2024-01-22
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/services/updateAvailability
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/sourceAssignments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/sourceAssignments/getAll/2024-09-20
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/sources/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/tasks/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/tasks/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/taxEnvironments/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/taxations/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/voucherCodes/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/voucherCodes/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/voucherCodes/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/vouchers/add
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/vouchers/delete
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/vouchers/getAll
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+## POST /api/connector/v1/vouchers/update
+-  added the optional property 'RequestId' to the response with the '204' status
+-  added the optional property 'RequestId' to the response with the '400' status
+-  added the optional property 'RequestId' to the response with the '401' status
+-  added the optional property 'RequestId' to the response with the '403' status
+-  added the optional property 'RequestId' to the response with the '408' status
+-  added the optional property 'RequestId' to the response with the '429' status
+-  added the optional property 'RequestId' to the response with the '500' status
+
+
+
 # 2025-07-03
 
 

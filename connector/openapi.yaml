@@ -24966,6 +24966,9 @@ components:
         Message:
           type: string
           nullable: true
+        RequestId:
+          type: string
+          nullable: true
         Details:
           nullable: true
       additionalProperties: false
