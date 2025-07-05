@@ -1,3 +1,20 @@
+# 2025-07-05
+
+
+## POST /api/connector/v1/loyaltyTiers/add
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyTiers/getAll
+- :warning: the request property 'Limitation' became not nullable
+- :warning: the request property 'Limitation' became required
+
+
+## POST /api/connector/v1/loyaltyTiers/update
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+
+
+
 # 2025-07-04
 
 
