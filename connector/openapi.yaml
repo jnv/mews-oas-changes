@@ -33740,7 +33740,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -36648,7 +36648,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          description: "Specifies the reason a product is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -37540,7 +37540,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -45995,20 +45995,26 @@ components:
         - IT_N3_5
         - IT_N4
         - IT_N5
+        - PL_ZW
+        - PL_NP
       type: string
-      description: "\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)"
+      description: "\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)"
       x-enumNames:
         - IT_N1
         - IT_N2_2
         - IT_N3_5
         - IT_N4
         - IT_N5
+        - PL_ZW
+        - PL_NP
       x-enumDescriptions:
         - N1 - Escluse ex art.15
         - N2.2 - Non soggette – altri casi
         - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
         - N4 - Esenti
         - N5 - Regime del margine / IVA non esposta in fattura
+        - ZW - Zwolniony
+        - NP - Nie podlega
     TaxRate:
       title: Tax rate
       type: object
