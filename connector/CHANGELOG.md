@@ -1,3 +1,11 @@
+# 2025-07-15
+
+
+## POST /api/connector/v1/fiscalMachineCommands/getAll
+-  the response property 'Commands' became required for the status '200'
+
+
+
 # 2025-07-10
 
 
