@@ -28810,7 +28810,7 @@ components:
         Type:
           allOf:
             - $ref: '#/components/schemas/ExternalPaymentTypeEnum'
-          description: "Type of the external payment. (Required for the enterprises based in the French Legal Environment where `Unspecified` is considered as fraud.)\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+          description: "Type of the external payment. (Required for the enterprises based in the French Legal Environment where `Unspecified` is considered as fraud.)\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card – deprecated, only for existing partners)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal – deprecated, only for existing partners)\n\nPayPal (PayPal – deprecated, only for existing partners)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment – deprecated, only for existing partners)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard – deprecated, only for existing partners)\n\nVisa (Visa – deprecated, only for existing partners)\n\nAmex (American Express – deprecated, only for existing partners)\n\nDiscover (Discover – deprecated, only for existing partners)\n\nDinersClub (Diners Club – deprecated, only for existing partners)\n\nJcb (JCB – deprecated, only for existing partners)\n\nUnionPay (UnionPay – deprecated, only for existing partners)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
           nullable: true
         ExternalIdentifier:
           type: string
@@ -28869,7 +28869,7 @@ components:
         - DepositCreditCard
         - DepositWireTransfer
       type: string
-      description: "\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+      description: "\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card – deprecated, only for existing partners)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal – deprecated, only for existing partners)\n\nPayPal (PayPal – deprecated, only for existing partners)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment – deprecated, only for existing partners)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard – deprecated, only for existing partners)\n\nVisa (Visa – deprecated, only for existing partners)\n\nAmex (American Express – deprecated, only for existing partners)\n\nDiscover (Discover – deprecated, only for existing partners)\n\nDinersClub (Diners Club – deprecated, only for existing partners)\n\nJcb (JCB – deprecated, only for existing partners)\n\nUnionPay (UnionPay – deprecated, only for existing partners)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
       x-enumNames:
         - Unspecified
         - BadDebts
@@ -28929,26 +28929,26 @@ components:
         - Bank charges
         - Cross settlement
         - Cash
-        - Credit card
+        - 'Credit card – deprecated, only for existing partners'
         - Prepayment
         - Cheque
         - Bancontact
-        - iDeal
-        - PayPal
+        - 'iDeal – deprecated, only for existing partners'
+        - 'PayPal – deprecated, only for existing partners'
         - Gift card
         - Loyalty points
         - Chèque-Vacances
-        - Online payment
+        - 'Online payment – deprecated, only for existing partners'
         - Card check
         - Payment hub redirection
         - Voucher
-        - MasterCard
-        - Visa
-        - American Express
-        - Discover
-        - Diners Club
-        - JCB
-        - UnionPay
+        - 'MasterCard – deprecated, only for existing partners'
+        - 'Visa – deprecated, only for existing partners'
+        - 'American Express – deprecated, only for existing partners'
+        - 'Discover – deprecated, only for existing partners'
+        - 'Diners Club – deprecated, only for existing partners'
+        - 'JCB – deprecated, only for existing partners'
+        - 'UnionPay – deprecated, only for existing partners'
         - TWINT
         - Reka
         - Loyalty card
@@ -35162,7 +35162,7 @@ components:
           title: External payment type
           allOf:
             - $ref: '#/components/schemas/ExternalPaymentTypeEnum'
-          description: "Type of the external payment. *Except for enterprises based in the French Legal Environment. `Unspecified` is considered as fraud.\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal)\n\nPayPal (PayPal)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard)\n\nVisa (Visa)\n\nAmex (American Express)\n\nDiscover (Discover)\n\nDinersClub (Diners Club)\n\nJcb (JCB)\n\nUnionPay (UnionPay)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
+          description: "Type of the external payment. *Except for enterprises based in the French Legal Environment. `Unspecified` is considered as fraud.\n\nUnspecified (Unspecified (unavailable in French Legal Environment))\n\nBadDebts (Bad debts)\n\nBacs (Bacs payment)\n\nWireTransfer (Wire transfer)\n\nInvoice (Invoice)\n\nExchangeRateDifference (Exchange rate difference)\n\nComplimentary (Complimentary)\n\nReseller (Reseller)\n\nExchangeRoundingDifference (Exchange rounding difference)\n\nBarter (Barter)\n\nCommission (Commission)\n\nBankCharges (Bank charges)\n\nCrossSettlement (Cross settlement)\n\nCash (Cash)\n\nCreditCard (Credit card – deprecated, only for existing partners)\n\nPrepayment (Prepayment)\n\nCheque (Cheque)\n\nBancontact (Bancontact)\n\nIDeal (iDeal – deprecated, only for existing partners)\n\nPayPal (PayPal – deprecated, only for existing partners)\n\nGiftCard (Gift card)\n\nLoyaltyPoints (Loyalty points)\n\nChequeVacances (Chèque-Vacances)\n\nOnlinePayment (Online payment – deprecated, only for existing partners)\n\nCardCheck (Card check)\n\nPaymentHubRedirection (Payment hub redirection)\n\nVoucher (Voucher)\n\nMasterCard (MasterCard – deprecated, only for existing partners)\n\nVisa (Visa – deprecated, only for existing partners)\n\nAmex (American Express – deprecated, only for existing partners)\n\nDiscover (Discover – deprecated, only for existing partners)\n\nDinersClub (Diners Club – deprecated, only for existing partners)\n\nJcb (JCB – deprecated, only for existing partners)\n\nUnionPay (UnionPay – deprecated, only for existing partners)\n\nTwint (TWINT)\n\nReka (Reka)\n\nLoyaltyCard (Loyalty card)\n\nPosDiningAndSpaReward (POS Dining & Spa Reward)\n\nDirectDebit (Direct debit)\n\nDepositCheck (Deposit - check)\n\nDepositCash (Deposit - cash)\n\nDepositCreditCard (Deposit - credit card)\n\nDepositWireTransfer (Deposit - wire transfer)"
           x-enumNames:
             - Unspecified
             - BadDebts
@@ -35222,26 +35222,26 @@ components:
             - Bank charges
             - Cross settlement
             - Cash
-            - Credit card
+            - 'Credit card – deprecated, only for existing partners'
             - Prepayment
             - Cheque
             - Bancontact
-            - iDeal
-            - PayPal
+            - 'iDeal – deprecated, only for existing partners'
+            - 'PayPal – deprecated, only for existing partners'
             - Gift card
             - Loyalty points
             - Chèque-Vacances
-            - Online payment
+            - 'Online payment – deprecated, only for existing partners'
             - Card check
             - Payment hub redirection
             - Voucher
-            - MasterCard
-            - Visa
-            - American Express
-            - Discover
-            - Diners Club
-            - JCB
-            - UnionPay
+            - 'MasterCard – deprecated, only for existing partners'
+            - 'Visa – deprecated, only for existing partners'
+            - 'American Express – deprecated, only for existing partners'
+            - 'Discover – deprecated, only for existing partners'
+            - 'Diners Club – deprecated, only for existing partners'
+            - 'JCB – deprecated, only for existing partners'
+            - 'UnionPay – deprecated, only for existing partners'
             - TWINT
             - Reka
             - Loyalty card
