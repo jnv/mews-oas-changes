@@ -594,6 +594,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServicePricingResult'
+  /api/distributor/v1/services/getPromotions:
+    post:
+      tags:
+        - DistributorApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicePromotionParameters'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotedServiceResult'
 components:
   schemas:
     AdditionalService:
@@ -1181,7 +1197,6 @@ components:
         - Id
         - Name
         - NormalBedCount
-        - Ordering
         - SpaceType
       type: object
       properties:
@@ -1206,6 +1221,7 @@ components:
         Ordering:
           type: integer
           format: int32
+          nullable: true
         NormalBedCount:
           type: integer
           format: int32
@@ -2406,6 +2422,122 @@ components:
           format: currency
       additionalProperties: false
       x-schema-id: ProductPricingParameters
+    PromotedService:
+      title: PromotedService
+      required:
+        - MinPricePerTimeUnit
+        - Ordering
+        - PromotedRateId
+        - PromotedRateName
+        - PromotedResourceCategoryDescription
+        - PromotedResourceCategoryId
+        - PromotedResourceCategoryName
+        - PromotedServiceAssignmentId
+        - PromotedServiceDefaultOccupancyData
+        - PromotedServiceEndOffset
+        - PromotedServiceId
+        - PromotedServiceOptions
+        - PromotedServiceReservationIntervalLimit
+        - PromotedServiceStartOffset
+        - PromotedServiceTimeUnitPeriod
+        - PromotedServiceUnitCountLimit
+      type: object
+      properties:
+        PromotedServiceAssignmentId:
+          type: string
+          format: uuid
+        PromotedServiceId:
+          type: string
+          format: uuid
+        PromotedRateId:
+          type: string
+          format: uuid
+        PromotedServiceTimeUnitPeriod:
+          $ref: '#/components/schemas/TimeUnitPeriod'
+        PromotedServiceStartOffset:
+          minLength: 1
+          type: string
+          format: date-time
+        PromotedServiceEndOffset:
+          minLength: 1
+          type: string
+          format: date-time
+        PromotedServiceUnitCountLimit:
+          $ref: '#/components/schemas/PromotedServiceAssignmentUnitCountLimit'
+        PromotedServiceReservationIntervalLimit:
+          $ref: '#/components/schemas/PromotedServiceAssignmentReservationIntervalLimit'
+        PromotedServiceDefaultOccupancyData:
+          allOf:
+            - $ref: '#/components/schemas/OccupancyData'
+        PromotedServiceOptions:
+          allOf:
+            - $ref: '#/components/schemas/ServiceOptions'
+        PromotedRateName:
+          type: object
+          additionalProperties:
+            type: string
+        PromotedResourceCategoryId:
+          type: string
+          format: uuid
+        PromotedResourceCategoryName:
+          type: object
+          additionalProperties:
+            type: string
+        PromotedResourceCategoryDescription:
+          type: object
+          additionalProperties:
+            type: string
+        AvailableCount:
+          type: integer
+          format: int32
+        TotalAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          nullable: true
+        UnitAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          nullable: true
+        ImageId:
+          type: string
+          format: uuid
+          nullable: true
+        Ordering:
+          type: integer
+          format: int32
+        MinPricePerTimeUnit:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+      additionalProperties: false
+      x-schema-id: PromotedService
+    PromotedServiceAssignmentReservationIntervalLimit:
+      enum:
+        - SameAsParent
+        - InsideParent
+      type: string
+    PromotedServiceAssignmentUnitCountLimit:
+      enum:
+        - PerReservation
+        - PerSpace
+        - PerGuest
+        - NoLimit
+      type: string
+    PromotedServiceResult:
+      title: PromotedServiceResult
+      type: object
+      properties:
+        PromotedServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotedService'
+          nullable: true
+        ResourceCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PromotedServiceResult
     Rate:
       title: Rate
       required:
@@ -3310,6 +3442,16 @@ components:
             $ref: '#/components/schemas/Restriction'
       additionalProperties: false
       x-schema-id: ServiceAvailabilityResult
+    ServiceOptions:
+      title: ServiceOptions
+      required:
+        - ProRataCharging
+      type: object
+      properties:
+        ProRataCharging:
+          type: boolean
+      additionalProperties: false
+      x-schema-id: ServiceOptions
     ServicePricingParameters:
       title: ServicePricingParameters
       required:
@@ -3414,6 +3556,51 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ServicePricingResult
+    ServicePromotionParameters:
+      title: ServicePromotionParameters
+      required:
+        - Client
+        - CurrencyCode
+        - EndUtc
+        - EnterpriseId
+        - FullAmounts
+        - ServiceId
+        - StartUtc
+      type: object
+      properties:
+        Client:
+          minLength: 1
+          type: string
+        LanguageCode:
+          type: string
+          nullable: true
+        CultureCode:
+          type: string
+          nullable: true
+        FullAmounts:
+          type: boolean
+        Session:
+          type: string
+          nullable: true
+        EnterpriseId:
+          type: string
+          format: uuid
+        ServiceId:
+          type: string
+          format: uuid
+        CurrencyCode:
+          minLength: 1
+          type: string
+        StartUtc:
+          minLength: 1
+          type: string
+          format: date-time
+        EndUtc:
+          minLength: 1
+          type: string
+          format: date-time
+      additionalProperties: false
+      x-schema-id: ServicePromotionParameters
     SettlementRuleAction:
       enum:
         - ChargeCreditCard

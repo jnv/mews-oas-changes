@@ -1,3 +1,31 @@
+# 2025-07-17
+
+
+## OPTIONS /api/distributor/v1/configuration/get
+- :warning: the response property 'Configurations/items/Enterprise/allOf[subschema #1: Enterprise]/Categories/items/Ordering' became nullable for the status '200'
+- :warning: the response property 'Configurations/items/Enterprise/allOf[subschema #1: Enterprise]/Categories/items/Ordering' became optional for the status '200'
+
+
+## POST /api/distributor/v1/configuration/get
+- :warning: the response property 'Configurations/items/Enterprise/allOf[subschema #1: Enterprise]/Categories/items/Ordering' became nullable for the status '200'
+- :warning: the response property 'Configurations/items/Enterprise/allOf[subschema #1: Enterprise]/Categories/items/Ordering' became optional for the status '200'
+
+
+## OPTIONS /api/distributor/v1/hotels/get
+- :warning: the response property 'RoomCategories/items/Ordering' became nullable for the status '200'
+- :warning: the response property 'RoomCategories/items/Ordering' became optional for the status '200'
+
+
+## POST /api/distributor/v1/hotels/get
+- :warning: the response property 'RoomCategories/items/Ordering' became nullable for the status '200'
+- :warning: the response property 'RoomCategories/items/Ordering' became optional for the status '200'
+
+
+## POST /api/distributor/v1/services/getPromotions
+-  endpoint added
+
+
+
 # 2025-06-07
 
 
