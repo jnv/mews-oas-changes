@@ -28569,6 +28569,9 @@ components:
           $ref: '#/components/schemas/ExportEntityType'
       additionalProperties: false
       x-schema-id: ExportAddParameters
+    ExportAddParametersFilters:
+      type: object
+      additionalProperties: false
     ExportAddResult:
       title: ExportAddResult
       required:
@@ -28593,8 +28596,20 @@ components:
         - AvailabilityAdjustment
         - AvailabilityBlock
         - ResourceBlock
+        - LedgerEntry
       type: string
       description: Type of exported entities
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - Beta testing - subject to change
     ExportFileEntry:
       title: Export file entry
       required:
@@ -28644,6 +28659,16 @@ components:
           description: 'Unique identifiers of the [Exports](https://mews-systems.gitbook.io/connector-api/operations/#export).'
       additionalProperties: false
       x-schema-id: ExportFilterParameters
+    ExportLedgerEntryFilters:
+      title: ExportLedgerEntryFilters
+      type: object
+      properties:
+        Posting:
+          allOf:
+            - $ref: '#/components/schemas/DateFilterInterval'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ExportLedgerEntryFilters
     ExportResult:
       title: ExportResult
       required:

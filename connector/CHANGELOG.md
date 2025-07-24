@@ -1,3 +1,16 @@
+# 2025-07-24
+
+
+## POST /api/connector/v1/exports/add
+- :warning: added the new 'LedgerEntry' enum value to the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  added the new 'LedgerEntry' enum value to the request property 'EntityType'
+
+
+## POST /api/connector/v1/exports/getAll
+- :warning: added the new 'LedgerEntry' enum value to the 'Exports/items/EntityType' response property for the response status '200'
+
+
+
 # 2025-07-15
 
 
