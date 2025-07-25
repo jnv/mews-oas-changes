@@ -20214,8 +20214,8 @@ components:
           description: Price of the product that overrides the price defined in Mews.
       additionalProperties: false
       x-schema-id: BaseRatePricingData
-    BaseRatePricingParameters:
-      title: Base rate pricing parameters
+    BaseRatePricingParametersWithOccupancyAdjustments:
+      title: Base rate pricing parameters (with occupancy adjustments)
       required:
         - Amount
       type: object
@@ -20234,9 +20234,9 @@ components:
           description: This is the amount added to the price when the Space Category Capacity is exceeded.
           format: double
       additionalProperties: false
-      x-schema-id: BaseRatePricingParameters
+      x-schema-id: BaseRatePricingParametersWithOccupancyAdjustments
     BaseRatePricingWithoutAdjustmentsParameters:
-      title: Base rate pricing parameters
+      title: Base rate pricing parameters (without occupancy adjustments)
       required:
         - Amount
       type: object
@@ -32804,7 +32804,7 @@ components:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
-          description: Identifier of the assigned `Resource`.
+          description: 'Identifier of the assigned `Resource`. If the assigned resource is locked, see `AssignedResourceLocked` for updating the assigned resource. (`null` if the assigned resource should not be updated)'
           nullable: true
         RequestedCategoryId:
           title: Guid update value
@@ -32864,7 +32864,7 @@ components:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-          description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
+          description: 'Whether the reservation should be locked to the assigned `Resource`. To reassign the reservation to a new `Resource`, first set `AssignedResourceLocked` to `false` to unlock the resource. Then, assign the reservation to a new `Resource` by setting `AssignedResourceId` to the new resource ID. (`null` if the lock should not be updated)'
           nullable: true
         AvailabilityBlockId:
           title: Guid update value
@@ -37734,9 +37734,9 @@ components:
       type: object
       properties:
         BaseRatePricing:
-          title: Base rate pricing parameters with occupancy adjustments
+          title: Base rate pricing parameters (with occupancy adjustments)
           allOf:
-            - $ref: '#/components/schemas/BaseRatePricingParameters'
+            - $ref: '#/components/schemas/BaseRatePricingParametersWithOccupancyAdjustments'
           description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
           nullable: true
         DependentRatePricing:
@@ -38638,7 +38638,7 @@ components:
       type: object
       properties:
         BaseRatePricing:
-          title: Base rate pricing parameters
+          title: Base rate pricing parameters (without occupancy adjustments)
           allOf:
             - $ref: '#/components/schemas/BaseRatePricingWithoutAdjustmentsParameters'
           description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
@@ -39164,8 +39164,8 @@ components:
           nullable: true
         State:
           anyOf:
-            - $ref: '#/components/schemas/ServiceOrderState'
-          description: 'State of the newly created reservation (either `Optional`, `Inquired` or `Confirmed`). If not specified, `Confirmed` is used.'
+            - $ref: '#/components/schemas/ServiceOrderStateOld'
+          description: 'State of the newly created reservation (either `Optional`, `Enquired` or `Confirmed`). If not specified, `Confirmed` is used.'
           nullable: true
         StartUtc:
           minLength: 1
@@ -40643,7 +40643,7 @@ components:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
-          description: Identifier of the assigned `Resource`.
+          description: 'Identifier of the assigned `Resource`. If the assigned resource is locked, see `AssignedResourceLocked` for updating the assigned resource. (`null` if the assigned resource should not be updated)'
           nullable: true
         RequestedCategoryId:
           title: Guid update value
@@ -40703,7 +40703,7 @@ components:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-          description: Whether the reservation should be locked to the assigned `Resource`. Unlocking and assigning reservation to new `Resource` can be done in one call.
+          description: 'Whether the reservation should be locked to the assigned `Resource`. To reassign the reservation to a new `Resource`, first set `AssignedResourceLocked` to `false` to unlock the resource. Then, assign the reservation to a new `Resource` by setting `AssignedResourceId` to the new resource ID. (`null` if the lock should not be updated)'
           nullable: true
         AvailabilityBlockId:
           title: Guid update value

@@ -1,3 +1,22 @@
+# 2025-07-25
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added '#/components/schemas/BaseRatePricingParametersWithOccupancyAdjustments' to the 'Rates/items/Pricing/allOf[subschema #1: Rate add pricing data parameters]/BaseRatePricing' request property 'allOf' list
+- :warning: removed '#/components/schemas/BaseRatePricingParameters' from the 'Rates/items/Pricing/allOf[subschema #1: Rate add pricing data parameters]/BaseRatePricing' request property 'allOf' list
+
+
+## POST /api/connector/v1/reservations/add
+- :warning: removed '#/components/schemas/ServiceOrderState' from the 'Reservations/items/State' request property 'anyOf' list
+-  added '#/components/schemas/ServiceOrderStateOld' to the 'Reservations/items/State' request property 'anyOf' list
+
+
+## POST /api/connector/v1/reservations/price
+- :warning: removed '#/components/schemas/ServiceOrderState' from the 'Reservations/items/State' request property 'anyOf' list
+-  added '#/components/schemas/ServiceOrderStateOld' to the 'Reservations/items/State' request property 'anyOf' list
+
+
+
 # 2025-07-24
 
 
