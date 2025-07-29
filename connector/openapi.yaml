@@ -28569,9 +28569,6 @@ components:
           $ref: '#/components/schemas/ExportEntityType'
       additionalProperties: false
       x-schema-id: ExportAddParameters
-    ExportAddParametersFilters:
-      type: object
-      additionalProperties: false
     ExportAddResult:
       title: ExportAddResult
       required:
@@ -28584,6 +28581,16 @@ components:
           description: Added export.
       additionalProperties: false
       x-schema-id: ExportAddResult
+    ExportDataFilters:
+      title: ExportDataFilters
+      type: object
+      properties:
+        UpdatedUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ExportDataFilters
     ExportEntityType:
       title: Exported entity type
       enum:
@@ -28659,8 +28666,8 @@ components:
           description: 'Unique identifiers of the [Exports](https://mews-systems.gitbook.io/connector-api/operations/#export).'
       additionalProperties: false
       x-schema-id: ExportFilterParameters
-    ExportLedgerEntryFilters:
-      title: ExportLedgerEntryFilters
+    ExportLedgerEntryDataFilters:
+      title: ExportLedgerEntryDataFilters
       type: object
       properties:
         Posting:
@@ -28668,7 +28675,7 @@ components:
             - $ref: '#/components/schemas/DateFilterInterval'
           nullable: true
       additionalProperties: false
-      x-schema-id: ExportLedgerEntryFilters
+      x-schema-id: ExportLedgerEntryDataFilters
     ExportResult:
       title: ExportResult
       required:
