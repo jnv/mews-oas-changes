@@ -25002,6 +25002,7 @@ components:
           format: uuid
         EnterpriseId:
           type: string
+          description: Unique identifier of the enterprise to which the counter belongs.
           format: uuid
         Name:
           minLength: 1
@@ -25012,12 +25013,12 @@ components:
           description: Whether the counter is used by default.
         Value:
           type: integer
-          description: Current value the counter.
+          description: Current value of the counter.
           format: int64
         Format:
           minLength: 1
           type: string
-          description: Format the counter is displayed in.
+          description: Display format of the counter.
         Type:
           $ref: '#/components/schemas/EnterpriseScopeCounterDiscriminator'
         CreatedUtc:
@@ -25073,6 +25074,7 @@ components:
           items:
             type: string
             format: uuid
+          description: 'Unique identifiers of the counters. If not specified, the operation returns all counters.'
           nullable: true
         Type:
           anyOf:
@@ -25083,6 +25085,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Counter` was updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -25107,34 +25110,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Counter'
-          description: 'The counters used to count closed [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill). **Deprecated!**'
+          description: The counters used to count closed `Bills`.
           deprecated: true
+          x-deprecatedMessage: Use `Counters` instead.
         ProformaCounters:
           type: array
           items:
             $ref: '#/components/schemas/Counter'
-          description: 'The counters used to count Pro Forma invoices for [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill). **Deprecated!**'
+          description: The counters used to count Pro Forma invoices for `Bills`.
           deprecated: true
+          x-deprecatedMessage: Use `Counters` instead.
         BillPreviewCounters:
           type: array
           items:
             $ref: '#/components/schemas/Counter'
-          description: 'The counters used to count bill previews for [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill). **Deprecated!**'
+          description: The counters used to count bill previews for `Bills`.
           deprecated: true
+          x-deprecatedMessage: Use `Counters` instead.
         ServiceOrderCounters:
           type: array
           items:
             $ref: '#/components/schemas/Counter'
-          description: The counters used to count service orders (for example reservations). **Deprecated!**
+          description: The counters used to count service orders (for example reservations).
           deprecated: true
+          x-deprecatedMessage: Use `Counters` instead.
         RegistrationCardCounters:
           type: array
           items:
             $ref: '#/components/schemas/Counter'
-          description: The counters used to count registration cards. **Deprecated!**
+          description: The counters used to count registration cards.
           deprecated: true
+          x-deprecatedMessage: Use `Counters` instead.
         Cursor:
           type: string
+          description: Unique identifier of the last returned counter in `Counters`. This can be used in Limitation in a subsequent request to fetch the next batch of counters.
           format: uuid
           nullable: true
       additionalProperties: false
@@ -28443,6 +28452,7 @@ components:
       additionalProperties: false
       x-schema-id: EnterpriseResult
     EnterpriseScopeCounterDiscriminator:
+      title: Counter type discriminator
       enum:
         - Counter
         - AccountingCounter
@@ -28457,6 +28467,20 @@ components:
         - PaymentConfirmationBillCounter
         - CreditNoteBillCounter
       type: string
+      description: Type of the counter.
+      x-enumDescriptions:
+        - Any type of counter.
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     EnterpriseSubscription:
       title: Enterprise subscription
       type: object
@@ -30209,28 +30233,34 @@ components:
       x-schema-id: KeyCutterCommandParameters
     Language:
       title: Language
+      required:
+        - Code
+        - EnglishName
+        - LocalName
       type: object
       properties:
         Code:
+          minLength: 1
           type: string
           description: Language-culture code of the language.
-          nullable: true
         FallbackLanguageCode:
           type: string
           description: Language-culture code of the fallback language.
           nullable: true
         EnglishName:
+          minLength: 1
           type: string
           description: English name of the language.
-          nullable: true
         LocalName:
+          minLength: 1
           type: string
           description: Local name of the language.
-          nullable: true
       additionalProperties: false
       x-schema-id: Language
     LanguageResult:
       title: LanguageResult
+      required:
+        - Languages
       type: object
       properties:
         Languages:
@@ -30238,7 +30268,6 @@ components:
           items:
             $ref: '#/components/schemas/Language'
           description: The supported languages.
-          nullable: true
       additionalProperties: false
       x-schema-id: LanguageResult
     LanguageTextParameters:
@@ -30267,7 +30296,7 @@ components:
           type: array
           items:
             type: string
-          description: 'Language-culture codes of the [Languages](https://mews-systems.gitbook.io/connector-api/operations/#language) whose texts to return.'
+          description: Language-culture codes of the `Languages` whose texts to return.
         Scope:
           minLength: 1
           type: string
@@ -30276,6 +30305,8 @@ components:
       x-schema-id: LanguageTextParameters
     LanguageTextResult:
       title: LanguageTextResult
+      required:
+        - LanguageTexts
       type: object
       properties:
         LanguageTexts:
@@ -30283,24 +30314,26 @@ components:
           items:
             $ref: '#/components/schemas/LanguageTexts'
           description: Texts in the specified languages.
-          nullable: true
       additionalProperties: false
       x-schema-id: LanguageTextResult
     LanguageTexts:
       title: Language texts
+      required:
+        - LanguageCode
+        - Texts
       type: object
       properties:
         LanguageCode:
+          minLength: 1
           type: string
-          description: 'Language-culture code of the [Language](https://mews-systems.gitbook.io/connector-api/operations/#language).'
-          nullable: true
+          description: Language-culture code of the `Language`.
         Texts:
+          title: Dictionary
           type: object
           additionalProperties:
             type: string
-            nullable: true
           description: Texts in the specified language by their keys.
-          nullable: true
+          x-schema-id: Dictionary
       additionalProperties: false
       x-schema-id: LanguageTexts
     LedgerBalance:

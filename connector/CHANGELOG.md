@@ -1,3 +1,20 @@
+# 2025-07-31
+
+
+## POST /api/connector/v1/languages/getAll
+-  the response property 'Languages' became required for the status '200'
+-  the response property 'Languages/items/Code' became required for the status '200'
+-  the response property 'Languages/items/EnglishName' became required for the status '200'
+-  the response property 'Languages/items/LocalName' became required for the status '200'
+
+
+## POST /api/connector/v1/languages/getTexts
+-  the response property 'LanguageTexts' became required for the status '200'
+-  the response property 'LanguageTexts/items/LanguageCode' became required for the status '200'
+-  the response property 'LanguageTexts/items/Texts' became required for the status '200'
+
+
+
 # 2025-07-25
 
 
