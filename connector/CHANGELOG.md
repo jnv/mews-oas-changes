@@ -1,3 +1,19 @@
+# 2025-08-01
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+-  added the new optional request property 'LoyaltyMembershipUpdates/items/ProviderMembershipId'
+
+
+## POST /api/connector/v1/productCategories/getAll
+- :warning: the request property 'ServiceIds' became not nullable
+- :warning: the request property 'ServiceIds' became required
+-  the response property 'ProductCategories/items/Descriptions' became required for the status '200'
+-  the response property 'ProductCategories/items/ShortNames' became required for the status '200'
+-  added the required property 'ProductCategories/items/EnterpriseId' to the response with the '200' status
+
+
+
 # 2025-07-31
 
 
