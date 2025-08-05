@@ -18508,6 +18508,8 @@ components:
       x-schema-id: AddOutletBillsParameters
     AddOutletBillsResult:
       title: AddOutletBillsResult
+      required:
+        - OutletBillIds
       type: object
       properties:
         OutletBillIds:
@@ -18516,7 +18518,6 @@ components:
             type: string
             format: uuid
           description: Array of unique identifiers of the added Outlet bills.
-          nullable: true
       additionalProperties: false
       x-schema-id: AddOutletBillsResult
     AddProductItemsResult:
@@ -34498,7 +34499,7 @@ components:
       additionalProperties: false
       x-schema-id: OutletBill
     OutletBillParameters:
-      title: OutletBillParameters
+      title: Outlet bill parameters
       required:
         - ClosedUtc
         - Items
@@ -34508,23 +34509,29 @@ components:
       properties:
         OutletId:
           type: string
+          description: Unique identifier of the `Outlet` where the bill was issued.
           format: uuid
         Number:
           minLength: 1
           type: string
+          description: Number of the bill.
         ClosedUtc:
           minLength: 1
           type: string
+          description: Date and time of the bill closure in UTC timezone in ISO 8601 format.
         Items:
           type: array
           items:
             $ref: '#/components/schemas/OutletItemParameters'
+          description: The items on the bill.
         AccountId:
           type: string
+          description: Unique identifier of the `Account` to be assigned to the bill.
           format: uuid
           nullable: true
         Notes:
           type: string
+          description: Additional notes on the bill.
           nullable: true
       additionalProperties: false
       x-schema-id: OutletBillParameters
@@ -34664,10 +34671,11 @@ components:
       additionalProperties: false
       x-schema-id: OutletItem
     OutletItemParameters:
-      title: OutletItemParameters
+      title: Outlet item parameters
       required:
         - ConsumedUtc
         - Name
+        - Type
         - UnitAmount
         - UnitCount
       type: object
@@ -34675,43 +34683,37 @@ components:
         Name:
           minLength: 1
           type: string
+          description: Name of the item.
         UnitCount:
           type: integer
+          description: Unit count of the item.
           format: int32
         UnitAmount:
           title: Amount parameters
           allOf:
             - $ref: '#/components/schemas/AmountParameters'
-          description: Price of the product that overrides the price defined in Mews.
+          description: Unit amount of the item.
         ConsumedUtc:
           minLength: 1
           type: string
+          description: Date and time of the item consumption in UTC timezone in ISO 8601 format.
           format: date-time
         Type:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/OutletItemType'
         ExternalIdentifier:
           maxLength: 255
           type: string
+          description: An identifier of this item from another system.
           nullable: true
         Notes:
           type: string
+          description: Additional notes of the item.
           nullable: true
         AccountingCategoryId:
           type: string
+          description: Unique identifier of an `AccountingCategory` to be assigned to the item.
           format: uuid
           nullable: true
-        AccountingCategory:
-          title: AccountingCategoryParameters
-          allOf:
-            - $ref: '#/components/schemas/AccountingCategoryParameters'
-          nullable: true
-        UnitCost:
-          title: CostParameters
-          allOf:
-            - $ref: '#/components/schemas/CostParameters'
-          nullable: true
-          deprecated: true
       additionalProperties: false
       x-schema-id: OutletItemParameters
     OutletItemResult:

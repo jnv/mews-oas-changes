@@ -1,3 +1,19 @@
+# 2025-08-05
+
+
+## POST /api/connector/v1/outletBills/add
+- :warning: request property 'Bills/items/Items/items/Type' was restricted to a list of enum values
+- :warning: the request property 'Bills/items/Items/items/Type' became not nullable
+- :warning: the request property 'Bills/items/Items/items/Type' became required
+- :warning: removed the request property 'Bills/items/Items/items/AccountingCategory'
+- :warning: removed the request property 'Bills/items/Items/items/UnitCost'
+-  added the new 'NonRevenue' enum value to the request property 'Bills/items/Items/items/Type'
+-  added the new 'Payment' enum value to the request property 'Bills/items/Items/items/Type'
+-  added the new 'Revenue' enum value to the request property 'Bills/items/Items/items/Type'
+-  the response property 'OutletBillIds' became required for the status '200'
+
+
+
 # 2025-08-01
 
 
