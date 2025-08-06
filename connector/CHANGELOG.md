@@ -1,3 +1,47 @@
+# 2025-08-06
+
+
+## POST /api/connector/v1/preauthorizations/getAllByCustomers
+- :warning: added the new 'Cancelled' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+- :warning: added the new 'Chargeable' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+- :warning: added the new 'Charged' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+- :warning: added the new 'Expired' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+- :warning: added the new 'Failed' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+- :warning: added the new 'Pending' enum value to the 'Preauthorizations/items/State' response property for the response status '200'
+-  added the optional property 'Preauthorizations/items/ReservationId' to the response with the '200' status
+-  the response property 'Preauthorizations' became required for the status '200'
+-  the response property 'Preauthorizations/items/Amount' became required for the status '200'
+-  the response property 'Preauthorizations/items/CreditCardId' became required for the status '200'
+-  the response property 'Preauthorizations/items/Id' became required for the status '200'
+-  the response property 'Preauthorizations/items/State' became required for the status '200'
+
+
+## POST /api/connector/v1/taxEnvironments/getAll
+- :warning: removed the optional property 'TaxRates' from the response with the '200' status
+- :warning: removed the optional property 'Taxations' from the response with the '200' status
+-  the response property 'TaxEnvironments' became required for the status '200'
+-  the response property 'TaxEnvironments/items/Code' became required for the status '200'
+-  the response property 'TaxEnvironments/items/CountryCode' became required for the status '200'
+-  the response property 'TaxEnvironments/items/TaxationCodes' became required for the status '200'
+
+
+## POST /api/connector/v1/taxations/getAll
+-  the response property 'TaxRates' became required for the status '200'
+-  the response property 'TaxRates/items/Code' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy/Value/oneOf[subschema #1: RelativeTaxRateStrategy -> subschema #1: Relative tax rate strategy data]/Value' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy/Value/oneOf[subschema #2: FlatTaxRateStrategy -> subschema #2: Flat tax rate strategy data]/CurrencyCode' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy/Value/oneOf[subschema #2: FlatTaxRateStrategy -> subschema #2: Flat tax rate strategy data]/Value' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy/Value/oneOf[subschema #3: DependentTaxRateStrategy -> subschema #3: Dependent tax rate strategy data]/BaseTaxationCodes' became required for the status '200'
+-  the response property 'TaxRates/items/Strategy/Value/oneOf[subschema #3: DependentTaxRateStrategy -> subschema #3: Dependent tax rate strategy data]/Value' became required for the status '200'
+-  the response property 'TaxRates/items/TaxationCode' became required for the status '200'
+-  the response property 'Taxations' became required for the status '200'
+-  the response property 'Taxations/items/Code' became required for the status '200'
+-  the response property 'Taxations/items/LocalName' became required for the status '200'
+-  the response property 'Taxations/items/Name' became required for the status '200'
+
+
+
 # 2025-08-05
 
 
