@@ -1,3 +1,22 @@
+# 2025-08-07
+
+
+## POST /api/connector/v1/loyaltyMemberships/add
+-  added the new optional request property 'LoyaltyMemberships/items/MembershipNumber'
+-  added the optional property 'LoyaltyMemberships/items/MembershipNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/getAll
+-  added the new optional request property 'MembershipNumbers'
+-  added the optional property 'LoyaltyMemberships/items/MembershipNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+-  added the new optional request property 'LoyaltyMembershipUpdates/items/MembershipNumber'
+-  added the optional property 'LoyaltyMemberships/items/MembershipNumber' to the response with the '200' status
+
+
+
 # 2025-08-06
 
 
