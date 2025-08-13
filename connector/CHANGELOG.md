@@ -1,3 +1,11 @@
+# 2025-08-13
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the optional property 'Payments/items/PaymentOrigin' to the response with the '200' status
+
+
+
 # 2025-08-07
 
 

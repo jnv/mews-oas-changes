@@ -9217,7 +9217,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentResult'
-              example: {"Payments":[{"Id":"f6313945-94c1-4e27-b402-031c2a8c989f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-3700.00,"GrossValue":-3700.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"GBP","NetValue":-3700.0,"GrossValue":-3700.0,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.0,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":null,"ChargedUtc":"2023-03-06T07:31:52Z","CreatedUtc":"2023-03-06T07:31:51Z","UpdatedUtc":"2023-03-06T07:31:53Z","SettlementUtc":null,"AccountingState":"Open","State":"Charged","Identifier":"ch_764309db-4bcd-4f2c-ad6a-1c178089deec","Type":"CreditCardPayment","Kind":"Payment","Data":{"Discriminator":"CreditCard","CreditCard":{"CreditCardId":"c922266b-291d-4e25-9df7-afbd007c1991","Transaction":null},"Invoice":null,"External":null,"Ghost":null}},{"Id":"be922eb7-bc5f-4877-b847-1120c0c2acd2","EnterpriseId":"4d0201db-36f5-428b-8d11-4f0a65e960cc","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","BillId":"d23ac52f-9b86-4a03-a6fe-5822dfcfc5c4","ReservationId":"b7a3f5cb-1e69-4a5f-a069-10f461996d7f","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":"2023-03-02T12:12:35Z","ChargedUtc":"2023-03-02T12:12:32Z","CreatedUtc":"2023-03-02T12:12:32Z","UpdatedUtc":"2023-03-02T12:12:37Z","SettlementUtc":null,"AccountingState":"Closed","State":"Charged","Identifier":"","Type":"CashPayment","Kind":"Payment","Data":null}],"Cursor":"be922eb7-bc5f-4877-b847-1120c0c2acd2"}
+              example: {"Payments":[{"Id":"f6313945-94c1-4e27-b402-031c2a8c989f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-3700.00,"GrossValue":-3700.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"GBP","NetValue":-3700.0,"GrossValue":-3700.0,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.0,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":null,"ChargedUtc":"2023-03-06T07:31:52Z","CreatedUtc":"2023-03-06T07:31:51Z","UpdatedUtc":"2023-03-06T07:31:53Z","SettlementUtc":null,"AccountingState":"Open","State":"Charged","Identifier":"ch_764309db-4bcd-4f2c-ad6a-1c178089deec","Type":"CreditCardPayment","Kind":"Payment","Data":{"Discriminator":"CreditCard","CreditCard":{"CreditCardId":"c922266b-291d-4e25-9df7-afbd007c1991","Transaction":null},"Invoice":null,"External":null,"Ghost":null},"PaymentOrigin":"Terminal"},{"Id":"be922eb7-bc5f-4877-b847-1120c0c2acd2","EnterpriseId":"4d0201db-36f5-428b-8d11-4f0a65e960cc","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","BillId":"d23ac52f-9b86-4a03-a6fe-5822dfcfc5c4","ReservationId":"b7a3f5cb-1e69-4a5f-a069-10f461996d7f","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":"2023-03-02T12:12:35Z","ChargedUtc":"2023-03-02T12:12:32Z","CreatedUtc":"2023-03-02T12:12:32Z","UpdatedUtc":"2023-03-02T12:12:37Z","SettlementUtc":null,"AccountingState":"Closed","State":"Charged","Identifier":"","Type":"CashPayment","Kind":"Payment","Data":null,"PaymentOrigin":"PointOfSales"}],"Cursor":"be922eb7-bc5f-4877-b847-1120c0c2acd2"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -35096,6 +35096,11 @@ components:
             - $ref: '#/components/schemas/PaymentData'
           description: Additional payment data.
           nullable: true
+        PaymentOrigin:
+          allOf:
+            - $ref: '#/components/schemas/PaymentOriginEnum'
+          description: "Payment origin indicating how the payment was initiated.\n\nOther (Fallback value unmapped in the current version of the API.)\n\nSystem\n\nOperations\n\nAutomaticPayment\n\nPaymentRequest\n\nBookingEngine\n\nApi (Connector API.)\n\nTerminal\n\nChannelManager\n\nOnlineCheckout\n\nBillBalancing\n\nOnlineCheckin\n\nPointOfSales\n\nPaymentToInvoiceLinking"
+          nullable: true
       additionalProperties: false
       x-schema-id: Payment
     PaymentCardPaymentData:
@@ -35643,6 +35648,55 @@ components:
         - Apple Pay
         - Google Pay
         - SEPA Direct Debit
+        - ''
+    PaymentOriginEnum:
+      title: Payment origin
+      enum:
+        - Other
+        - System
+        - Operations
+        - AutomaticPayment
+        - PaymentRequest
+        - BookingEngine
+        - Api
+        - Terminal
+        - ChannelManager
+        - OnlineCheckout
+        - BillBalancing
+        - OnlineCheckin
+        - PointOfSales
+        - PaymentToInvoiceLinking
+      type: string
+      description: "\n\nOther (Fallback value unmapped in the current version of the API.)\n\nSystem\n\nOperations\n\nAutomaticPayment\n\nPaymentRequest\n\nBookingEngine\n\nApi (Connector API.)\n\nTerminal\n\nChannelManager\n\nOnlineCheckout\n\nBillBalancing\n\nOnlineCheckin\n\nPointOfSales\n\nPaymentToInvoiceLinking"
+      x-enumNames:
+        - Other
+        - System
+        - Operations
+        - AutomaticPayment
+        - PaymentRequest
+        - BookingEngine
+        - Api
+        - Terminal
+        - ChannelManager
+        - OnlineCheckout
+        - BillBalancing
+        - OnlineCheckin
+        - PointOfSales
+        - PaymentToInvoiceLinking
+      x-enumDescriptions:
+        - Fallback value unmapped in the current version of the API.
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - Connector API.
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
         - ''
     PaymentPlanAddParameters:
       title: PaymentPlanAddParameters
