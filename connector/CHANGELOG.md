@@ -1,3 +1,150 @@
+# 2025-08-16
+
+
+## POST /api/connector/v1/addresses/add
+- :warning: the 'Addresses/items/AccountType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'Company' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+- :warning: added the new 'Customer' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+-  removed '#/components/schemas/AccountType' from the 'Addresses/items/AccountType' response property 'anyOf' list for the response status '200'
+-  the response property 'Addresses/items/AccountType' became required for the status '200'
+
+
+## POST /api/connector/v1/addresses/getAll
+- :warning: the 'Addresses/items/AccountType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'Company' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+- :warning: added the new 'Customer' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+-  removed '#/components/schemas/AccountType' from the 'Addresses/items/AccountType' response property 'anyOf' list for the response status '200'
+-  the response property 'Addresses/items/AccountType' became required for the status '200'
+
+
+## POST /api/connector/v1/addresses/update
+- :warning: the 'Addresses/items/AccountType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'Company' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+- :warning: added the new 'Customer' enum value to the 'Addresses/items/AccountType' response property for the response status '200'
+-  removed '#/components/schemas/AccountType' from the 'Addresses/items/AccountType' response property 'anyOf' list for the response status '200'
+-  the response property 'Addresses/items/AccountType' became required for the status '200'
+
+
+## POST /api/connector/v1/bills/add
+- :warning: the 'Bills/items/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Bills/items/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Bills/items/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Bills/items/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/bills/close
+- :warning: the 'Bills/items/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Bills/items/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Bills/items/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Bills/items/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/bills/getAll
+- :warning: the 'Bills/items/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Bills/items/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Bills/items/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Bills/items/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/bills/update
+- :warning: the 'Bills/items/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Bills/items/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Bills/items/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Bills/items/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Bills/items/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllActive
+- :warning: the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllByIds
+- :warning: the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property for the response status '200'
+-  the response optional property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssociatedAccountData/items/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/fiscalMachineCommands/getAll
+- :warning: the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCompanyData' enum value to the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' response property for the response status '200'
+- :warning: added the new 'BillCustomerData' enum value to the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' response property for the response status '200'
+-  the response optional property 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' became not read-only for the status '200'
+-  the response optional property 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' became not read-only for the status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/BillAssigneeDataDiscriminator' from the 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' response property 'anyOf' list for the response status '200'
+-  the response property 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AssociatedAccountsData/items/Discriminator' became required for the status '200'
+-  the response property 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/Owner/allOf[subschema #1: Associated account bill data]/Discriminator' became required for the status '200'
+
+
+## POST /api/connector/v1/payments/getAll
+- :warning: the 'Payments/items/AccountType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'Company' enum value to the 'Payments/items/AccountType' response property for the response status '200'
+- :warning: added the new 'Customer' enum value to the 'Payments/items/AccountType' response property for the response status '200'
+-  removed '#/components/schemas/AccountType' from the 'Payments/items/AccountType' response property 'anyOf' list for the response status '200'
+-  the response property 'Payments/items/AccountType' became required for the status '200'
+
+
+## POST /api/connector/v1/voucherCodes/add
+- :warning: the 'VoucherCodes/items/ActivityState' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/ActivityStateEnum' to the 'VoucherCodes/items/ActivityState' response property 'allOf' list for the response status '200'
+-  the response property 'VoucherCodes/items/ActivityState' became required for the status '200'
+-  the response property 'VoucherCodes/items/Id' became required for the status '200'
+-  the response property 'VoucherCodes/items/IsActive' became required for the status '200'
+-  the response property 'VoucherCodes/items/VoucherId' became required for the status '200'
+
+
+## POST /api/connector/v1/voucherCodes/getAll
+- :warning: the 'VoucherCodes/items/ActivityState' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/ActivityStateEnum' to the 'VoucherCodes/items/ActivityState' response property 'allOf' list for the response status '200'
+-  the response property 'VoucherCodes/items/ActivityState' became required for the status '200'
+-  the response property 'VoucherCodes/items/Id' became required for the status '200'
+-  the response property 'VoucherCodes/items/IsActive' became required for the status '200'
+-  the response property 'VoucherCodes/items/VoucherId' became required for the status '200'
+
+
+## POST /api/connector/v1/vouchers/add
+-  added '#/components/schemas/ActivityStateEnum' to the 'Vouchers/items/ActivityState' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/ActivityState' from the 'Vouchers/items/ActivityState' response property 'anyOf' list for the response status '200'
+-  the response property 'Vouchers/items/ActivityState' became required for the status '200'
+
+
+## POST /api/connector/v1/vouchers/getAll
+- :warning: the 'VoucherCodes/items/ActivityState' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/ActivityStateEnum' to the 'VoucherCodes/items/ActivityState' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ActivityStateEnum' to the 'Vouchers/items/ActivityState' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/ActivityState' from the 'Vouchers/items/ActivityState' response property 'anyOf' list for the response status '200'
+-  the response property 'VoucherCodes/items/ActivityState' became required for the status '200'
+-  the response property 'VoucherCodes/items/Id' became required for the status '200'
+-  the response property 'VoucherCodes/items/IsActive' became required for the status '200'
+-  the response property 'VoucherCodes/items/VoucherId' became required for the status '200'
+-  the response property 'Vouchers/items/ActivityState' became required for the status '200'
+
+
+## POST /api/connector/v1/vouchers/update
+-  added '#/components/schemas/ActivityStateEnum' to the 'Vouchers/items/ActivityState' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/ActivityState' from the 'Vouchers/items/ActivityState' response property 'anyOf' list for the response status '200'
+-  the response property 'Vouchers/items/ActivityState' became required for the status '200'
+
+
+
 # 2025-08-13
 
 

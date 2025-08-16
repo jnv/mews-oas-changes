@@ -5686,7 +5686,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerAddParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","OverwriteExisting":false,"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Title":"Miss","FirstName":"Thea","LastName":"Carbone","BirthDate":"1985-09-30","BirthPlace":"Pescara (BI)","Occupation":"Giornalista","Email":"thea@quotidiano.example","Phone":"+39 06 555 5555","Notes":"Check-in notturno.","CarRegistrationNumber":"AA 111AA","TaxIdentificationNumber":"ZGNZLR17U72P554F","Address":{"Line1":"Via Antimo 474 Piano 5","City":"Liborio laziale","PostalCode":"30228","CountryCode":"IT","CountrySubdivisionCode":"IT-65"},"Classifications":["Media","FriendOrFamily"],"Options":["SendMarketingEmails"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","OverwriteExisting":false,"ItalianDestinationCode":"7654321","ItalianFiscalCode":"ZGNZLR17U72P554F"}
       responses:
         '200':
           description: OK
@@ -16970,6 +16970,8 @@ components:
       x-schema-id: Account
     AccountAddress:
       title: Account address
+      required:
+        - AccountType
       type: object
       properties:
         Id:
@@ -16986,10 +16988,7 @@ components:
           format: uuid
           nullable: true
         AccountType:
-          anyOf:
-            - $ref: '#/components/schemas/AccountType'
-          description: 'A discriminator specifying the [type of account](https://mews-systems.gitbook.io/connector-api/operations/accounts/#account-type), e.g. customer or company.'
-          nullable: true
+          $ref: '#/components/schemas/AccountType'
         Line1:
           maxLength: 1023
           type: string
@@ -17788,13 +17787,14 @@ components:
         - Company
         - Customer
       type: string
+      description: 'A discriminator specifying the account type, e.g. `Customer` or `Company`'
     AccountTypeEnum:
       title: Account type
       enum:
         - Company
         - Customer
       type: string
-      description: "\n\nCompany\n\nCustomer"
+      description: "A discriminator specifying the account type, e.g. `Customer` or `Company`\n\nCompany\n\nCustomer"
       x-enumNames:
         - Company
         - Customer
@@ -20453,14 +20453,12 @@ components:
       x-schema-id: Bill
     BillAccountData:
       title: Associated account bill data
+      required:
+        - Discriminator
       type: object
       properties:
         Discriminator:
-          anyOf:
-            - $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
-          description: Determines type of value.
-          nullable: true
-          readOnly: true
+          $ref: '#/components/schemas/BillAssigneeDataDiscriminator'
         BillCustomerData:
           title: Bill customer data
           allOf:
@@ -20503,7 +20501,7 @@ components:
         - BillCustomerData
         - BillCompanyData
       type: string
-      description: ''
+      description: Determines type of value.
     BillCloseAccountParameters:
       title: Bill close account parameters
       required:
@@ -34935,6 +34933,7 @@ components:
       required:
         - AccountId
         - AccountingState
+        - AccountType
         - Amount
         - CreatedUtc
         - EnterpriseId
@@ -34959,10 +34958,7 @@ components:
           description: Unique identifier of the account (for example `Customer`) the payment belongs to.
           format: uuid
         AccountType:
-          anyOf:
-            - $ref: '#/components/schemas/AccountType'
-          description: 'A discriminator specifying the account type, e.g. `Customer` or `Company`.'
-          nullable: true
+          $ref: '#/components/schemas/AccountType'
         BillId:
           type: string
           description: Unique identifier of the `Bill` the payment is assigned to.
@@ -46659,6 +46655,7 @@ components:
     Voucher:
       title: Voucher
       required:
+        - ActivityState
         - CreatedUtc
         - Id
         - IsActive
@@ -46705,11 +46702,17 @@ components:
             - ''
             - ''
         ActivityState:
-          anyOf:
-            - $ref: '#/components/schemas/ActivityState'
-          description: Whether voucher is active or deleted.
-          nullable: true
+          title: Activity State
+          allOf:
+            - $ref: '#/components/schemas/ActivityStateEnum'
+          description: "Whether voucher is active or deleted.\n\nDeleted\n\nActive"
           deprecated: true
+          x-enumNames:
+            - Deleted
+            - Active
+          x-enumDescriptions:
+            - ''
+            - ''
           x-deprecatedMessage: Use `IsActive` instead.
         CompanyId:
           type: string
@@ -46817,6 +46820,11 @@ components:
       x-schema-id: VoucherAssignment
     VoucherCode:
       title: Voucher code
+      required:
+        - ActivityState
+        - Id
+        - IsActive
+        - VoucherId
       type: object
       properties:
         Id:
@@ -46825,7 +46833,7 @@ components:
           format: uuid
         VoucherId:
           type: string
-          description: 'Unique identifier of [Voucher](https://mews-systems.gitbook.io/connector-api/operations/#voucher) the code belongs to.'
+          description: Unique identifier of `Voucher` the code belongs to.
           format: uuid
         Value:
           type: string
@@ -46848,10 +46856,17 @@ components:
           description: Last update date and time of the voucher in UTC timezone in ISO 8601 format.
           nullable: true
         ActivityState:
-          type: string
-          description: Whether voucher code is active or deleted.
-          nullable: true
+          title: Activity State
+          allOf:
+            - $ref: '#/components/schemas/ActivityStateEnum'
+          description: "Whether voucher code is active or deleted.\n\nDeleted\n\nActive"
           deprecated: true
+          x-enumNames:
+            - Deleted
+            - Active
+          x-enumDescriptions:
+            - ''
+            - ''
           x-deprecatedMessage: Use `IsActive` instead.
         IsActive:
           type: boolean
