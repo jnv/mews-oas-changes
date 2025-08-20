@@ -28518,6 +28518,7 @@ components:
         - EntityType
         - Files
         - Id
+        - Scope
         - Status
       type: object
       properties:
@@ -28529,6 +28530,10 @@ components:
           $ref: '#/components/schemas/ExportStatus'
         EntityType:
           $ref: '#/components/schemas/ExportEntityType'
+        Scope:
+          allOf:
+            - $ref: '#/components/schemas/ExportScope'
+          description: 'The scope of the export, i.e. which enterprises or chains the data is exported for.'
         Files:
           type: array
           items:
@@ -28564,6 +28569,11 @@ components:
           description: Name and version of the client application.
         EntityType:
           $ref: '#/components/schemas/ExportEntityType'
+        Scope:
+          allOf:
+            - $ref: '#/components/schemas/ExportScopeSelector'
+          description: 'Selects enterprises or chains for which the data should be exported. Which one is used depends on `EntityType`. If not specified, the export will include all enterprises or chains the client has access to.'
+          nullable: true
       additionalProperties: false
       x-schema-id: ExportAddParameters
     ExportAddResult:
@@ -28686,6 +28696,54 @@ components:
           description: Requested exports.
       additionalProperties: false
       x-schema-id: ExportResult
+    ExportScope:
+      title: ExportScope
+      type: object
+      properties:
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of enterprises for which the data is exported.
+          nullable: true
+        ChainIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of chains for which the data is exported.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ExportScope
+    ExportScopeSelector:
+      title: ExportScopeSelector
+      type: object
+      properties:
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the enterprises to export data for. If not specified, data for all enterprises within the access token''s scope will be returned.'
+          nullable: true
+        ChainIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the chains to export data for. If not specified, data for all chains within the access token''s scope will be returned.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ExportScopeSelector
     ExportStatus:
       title: Export status
       enum:

@@ -1,3 +1,16 @@
+# 2025-08-20
+
+
+## POST /api/connector/v1/exports/add
+-  added the new optional request property 'Scope'
+-  added the required property 'Export/allOf[subschema #1: Export]/Scope' to the response with the '200' status
+
+
+## POST /api/connector/v1/exports/getAll
+-  added the required property 'Exports/items/Scope' to the response with the '200' status
+
+
+
 # 2025-08-16
 
 
