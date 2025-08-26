@@ -4650,7 +4650,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Configuration'
-              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"HoldingKey":"CA123","ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","ChainName":"Connector API Chain","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Connector API Group"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null,"IsIdentityDocumentNumberRequired":true}
+              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"HoldingKey":"CA123","ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","ChainName":"Connector API Chain","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","BusinessDayClosingOffset":null,"WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Connector API Group"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null,"IsIdentityDocumentNumberRequired":true}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6113,7 +6113,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnterpriseResult'
-              example: {"Enterprises":[{"LinkedUtc":"2023-06-01T00:00:00Z","Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ExternalIdentifier":"Enterprise2023","HoldingKey":"CA123","ChainId":"2f6be44e-9881-4b12-aefe-afce011a9d67","ChainName":"Connector API Chain","CreatedUtc":"2022-03-23T17:12:06Z","UpdatedUtc":"2022-03-23T17:12:06Z","Name":"Sample Portfolio Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"DE-2020-1","AccommodationEnvironmentCode":"DE","AccountingEnvironmentCode":"DE","TaxEnvironmentCode":"DE-2020-1","DefaultLanguageCode":"en-US","EditableHistoryInterval":null,"AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","WebsiteUrl":"https://www.sample-portfolio-hotel-10004.com/","Email":"email@sample-portfolio-hotel.com","Phone":"(555) 555-1234","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":2,"AddressId":"31c505e9-9858-4d2f-9eab-afce011c4f47","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Sample Group Name"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}}],"Cursor":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+              example: {"Enterprises":[{"LinkedUtc":"2023-06-01T00:00:00Z","Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ExternalIdentifier":"Enterprise2023","HoldingKey":"CA123","ChainId":"2f6be44e-9881-4b12-aefe-afce011a9d67","ChainName":"Connector API Chain","CreatedUtc":"2022-03-23T17:12:06Z","UpdatedUtc":"2022-03-23T17:12:06Z","Name":"Sample Portfolio Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"DE-2020-1","AccommodationEnvironmentCode":"DE","AccountingEnvironmentCode":"DE","TaxEnvironmentCode":"DE-2020-1","DefaultLanguageCode":"en-US","EditableHistoryInterval":null,"AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","BusinessDayClosingOffset":null,"WebsiteUrl":"https://www.sample-portfolio-hotel-10004.com/","Email":"email@sample-portfolio-hotel.com","Phone":"(555) 555-1234","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":2,"AddressId":"31c505e9-9858-4d2f-9eab-afce011c4f47","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Sample Group Name"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}}],"Cursor":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6234,18 +6234,14 @@ paths:
       tags:
         - Exports
       summary: Add export
-      description: "Create a pending export. Export all entities of the specified `EntityType` within the enterprise. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property) but doesn't have filtering by `EnterpriseIds` or `ChainIds`, so will return entities from all enterprises within the scope of the portfolio.\nIf there is already an export with status `Pending` or `Processing` for the specified entity type, the request for a new export will be rejected. Successful exports remain available for download until the expiration date specified in `ExpiresUtc`."
+      description: 'Creates a new pending export for all entities of the specified `EntityType`. If an export with status Pending or Processing already exists for the same entity type, the request will be rejected. Successfully created exports remain available for download until the expiration date specified in ExpiresUtc. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: exports_add
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ExportAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EntityType: OrderItem
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"]},"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}}
       responses:
         '200':
           description: OK
@@ -6253,15 +6249,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportAddResult'
-              example:
-                Export:
-                  Id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                  Status: Pending
-                  EntityType: OrderItem
-                  Files:
-                    - Url: string
-                      SizeInBytes: 0
-                  ExpiresUtc: '2024-04-11T08:54:47.193Z'
+              example: {"Export":{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}}}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6310,22 +6298,14 @@ paths:
       tags:
         - Exports
       summary: Get all exports
-      description: 'Get exports for the given `ExportIds`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property).'
+      description: 'Returns exports for the given `ExportIds`. This operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: exports_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ExportFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ExportIds:
-                - 3fa85f64-5717-4562-b3fd-2c963f66afa6
-                - 09708665-0e31-4b23-b337-b0a000be0df0
-                - 706dc6d5-9511-4751-825e-538ce99da2ce
-                - f776f20a-6f1a-4ddf-93f4-9dae95261415
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ExportIds":["3fa85f64-5717-4562-b3fd-2c963f66afa6","09708665-0e31-4b23-b337-b0a000be0df0","706dc6d5-9511-4751-825e-538ce99da2ce","f776f20a-6f1a-4ddf-93f4-9dae95261415"]}
       responses:
         '200':
           description: OK
@@ -6333,32 +6313,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportResult'
-              example:
-                Exports:
-                  - Id: 3fa85f64-5717-4562-b3fd-2c963f66afa6
-                    Status: Success
-                    EntityType: OrderItem
-                    ExpiresUtc: '2023-10-26T11:42:28Z'
-                    Files:
-                      - Url: https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-1.jsonl?example=signature
-                        SizeInBytes: 1215279
-                      - Url: https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-2.jsonl?example=signature
-                        SizeInBytes: 1398362
-                  - Id: 09708665-0e31-4b23-b337-b0a000be0df0
-                    Status: Pending
-                    EntityType: OrderItem
-                    Files: [ ]
-                    ExpiresUtc: 
-                  - Id: 706dc6d5-9511-4751-825e-538ce99da2ce
-                    Status: Processing
-                    EntityType: OrderItem
-                    Files: [ ]
-                    ExpiresUtc: 
-                  - Id: f776f20a-6f1a-4ddf-93f4-9dae95261415
-                    Status: Expired
-                    EntityType: OrderItem
-                    Files: [ ]
-                    ExpiresUtc: '2023-10-24T14:12:30Z'
+              example: {"Exports":[{"Id":"3fa85f64-5717-4562-b3fd-2c963f66afa6","Status":"Success","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"ChainIds":null},"Files":[{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-1.jsonl?example=signature","SizeInBytes":1215279},{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-2.jsonl?example=signature","SizeInBytes":1398362}],"ExpiresUtc":"2023-10-26T11:42:28Z","Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}},{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}},{"Id":"706dc6d5-9511-4751-825e-538ce99da2ce","Status":"Processing","EntityType":"Company","Scope":{"EnterpriseIds":null,"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"]},"Files":[],"ExpiresUtc":null,"Filters":null},{"Id":"f776f20a-6f1a-4ddf-93f4-9dae95261415","Status":"Expired","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":"2023-10-24T14:12:30Z","Filters":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -28094,6 +28049,10 @@ components:
           minLength: 1
           type: string
           description: Editable history interval for operational data in ISO 8601 duration format.
+        BusinessDayClosingOffset:
+          type: string
+          description: 'The offset value for the business day closing time, in ISO 8601 duration format.'
+          nullable: true
         WebsiteUrl:
           type: string
           description: URL of the enterprise website.
@@ -28326,6 +28285,10 @@ components:
           minLength: 1
           type: string
           description: Editable history interval for operational data in ISO 8601 duration format.
+        BusinessDayClosingOffset:
+          type: string
+          description: 'The offset value for the business day closing time, in ISO 8601 duration format.'
+          nullable: true
         WebsiteUrl:
           type: string
           description: URL of the enterprise website.
@@ -28527,10 +28490,51 @@ components:
           description: Unique identifier of the export.
           format: uuid
         Status:
-          $ref: '#/components/schemas/ExportStatus'
+          title: Export status
+          allOf:
+            - $ref: '#/components/schemas/ExportStatusEnum'
+          description: "Export status.\n\nPending\n\nProcessing\n\nSuccess\n\nFailed\n\nExpired"
+          x-enumNames:
+            - Pending
+            - Processing
+            - Success
+            - Failed
+            - Expired
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
         EntityType:
-          $ref: '#/components/schemas/ExportEntityType'
+          title: Exported entity type
+          allOf:
+            - $ref: '#/components/schemas/ExportEntityTypeEnum'
+          description: "Exported entity type.\n\nOrderItem\n\nPayment\n\nReservation\n\nCustomer\n\nCompany\n\nBill\n\nAvailabilityAdjustment\n\nAvailabilityBlock\n\nResourceBlock\n\nLedgerEntry (Beta testing - subject to change)"
+          x-enumNames:
+            - OrderItem
+            - Payment
+            - Reservation
+            - Customer
+            - Company
+            - Bill
+            - AvailabilityAdjustment
+            - AvailabilityBlock
+            - ResourceBlock
+            - LedgerEntry
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - Beta testing - subject to change
         Scope:
+          title: Export scope
           allOf:
             - $ref: '#/components/schemas/ExportScope'
           description: 'The scope of the export, i.e. which enterprises or chains the data is exported for.'
@@ -28543,6 +28547,12 @@ components:
           type: string
           description: Expiration date and time of the export in UTC timezone in ISO 8601 format. After this time the Exported files may no longer be available for download.
           format: date-time
+          nullable: true
+        Filters:
+          title: Export data filters
+          allOf:
+            - $ref: '#/components/schemas/ExportDataFilters'
+          description: 'Filters applied to the exported data set. If omitted, all available data is included in the export.'
           nullable: true
       additionalProperties: false
       x-schema-id: Export
@@ -28568,11 +28578,20 @@ components:
           type: string
           description: Name and version of the client application.
         EntityType:
-          $ref: '#/components/schemas/ExportEntityType'
-        Scope:
           allOf:
-            - $ref: '#/components/schemas/ExportScopeSelector'
+            - $ref: '#/components/schemas/ExportEntityTypeEnum'
+          description: "Specifies the type of entity which should be exported.\n\nOrderItem\n\nPayment\n\nReservation\n\nCustomer\n\nCompany\n\nBill\n\nAvailabilityAdjustment\n\nAvailabilityBlock\n\nResourceBlock\n\nLedgerEntry (Beta testing - subject to change)"
+        Scope:
+          title: Export scope parameters
+          allOf:
+            - $ref: '#/components/schemas/ExportScopeParameters'
           description: 'Selects enterprises or chains for which the data should be exported. Which one is used depends on `EntityType`. If not specified, the export will include all enterprises or chains the client has access to.'
+          nullable: true
+        Filters:
+          title: Export data filters
+          allOf:
+            - $ref: '#/components/schemas/ExportDataFilters'
+          description: 'Specifies filters to apply on the exported data set. If omitted, the export will include all available data.'
           nullable: true
       additionalProperties: false
       x-schema-id: ExportAddParameters
@@ -28589,16 +28608,17 @@ components:
       additionalProperties: false
       x-schema-id: ExportAddResult
     ExportDataFilters:
-      title: ExportDataFilters
+      title: Export data filters
       type: object
       properties:
         UpdatedUtc:
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Filters entities by the specified UTC update interval. The end of the interval must be no later than 5 minutes in the past. The maximum interval is 180 days.
           nullable: true
       additionalProperties: false
       x-schema-id: ExportDataFilters
-    ExportEntityType:
+    ExportEntityTypeEnum:
       title: Exported entity type
       enum:
         - OrderItem
@@ -28612,7 +28632,18 @@ components:
         - ResourceBlock
         - LedgerEntry
       type: string
-      description: Type of exported entities
+      description: "Type of exported entities\n\nOrderItem\n\nPayment\n\nReservation\n\nCustomer\n\nCompany\n\nBill\n\nAvailabilityAdjustment\n\nAvailabilityBlock\n\nResourceBlock\n\nLedgerEntry (Beta testing - subject to change)"
+      x-enumNames:
+        - OrderItem
+        - Payment
+        - Reservation
+        - Customer
+        - Company
+        - Bill
+        - AvailabilityAdjustment
+        - AvailabilityBlock
+        - ResourceBlock
+        - LedgerEntry
       x-enumDescriptions:
         - ''
         - ''
@@ -28643,7 +28674,7 @@ components:
       additionalProperties: false
       x-schema-id: ExportFileEntry
     ExportFilterParameters:
-      title: ExportFilterParameters
+      title: Export filter parameters
       required:
         - AccessToken
         - Client
@@ -28697,7 +28728,7 @@ components:
       additionalProperties: false
       x-schema-id: ExportResult
     ExportScope:
-      title: ExportScope
+      title: Export scope
       type: object
       properties:
         EnterpriseIds:
@@ -28720,8 +28751,8 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ExportScope
-    ExportScopeSelector:
-      title: ExportScopeSelector
+    ExportScopeParameters:
+      title: Export scope parameters
       type: object
       properties:
         EnterpriseIds:
@@ -28743,8 +28774,8 @@ components:
           description: 'Unique identifiers of the chains to export data for. If not specified, data for all chains within the access token''s scope will be returned.'
           nullable: true
       additionalProperties: false
-      x-schema-id: ExportScopeSelector
-    ExportStatus:
+      x-schema-id: ExportScopeParameters
+    ExportStatusEnum:
       title: Export status
       enum:
         - Pending
@@ -28753,7 +28784,19 @@ components:
         - Failed
         - Expired
       type: string
-      description: Current status of the export.
+      description: "Current status of the export.\n\nPending\n\nProcessing\n\nSuccess\n\nFailed\n\nExpired"
+      x-enumNames:
+        - Pending
+        - Processing
+        - Success
+        - Failed
+        - Expired
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
     ExtendedAmount:
       title: Extended amount
       required:
@@ -39737,7 +39780,6 @@ components:
       required:
         - EnterpriseId
         - Id
-        - Name
       type: object
       properties:
         Id:
@@ -39745,9 +39787,9 @@ components:
           description: Unique identifier of the reservation group.
           format: uuid
         Name:
-          minLength: 1
           type: string
           description: 'Name of the reservation group, might be empty or same for multiple groups.'
+          nullable: true
         ChannelManager:
           type: string
           description: Name of the corresponding channel manager.
@@ -39758,7 +39800,7 @@ components:
           nullable: true
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise) the reservation group belongs to.'
+          description: Unique identifier of the `Enterprise` the reservation group belongs to.
           format: uuid
       additionalProperties: false
       x-schema-id: ReservationGroup
@@ -39803,12 +39845,13 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Reservation Group](https://mews-systems.gitbook.io/connector-api/operations/#reservation-group). Required if no other filter is provided.'
+          description: Unique identifiers of the `ReservationGroup`. Required if no other filter is provided.
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `ReservationGroup` was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -39841,7 +39884,7 @@ components:
           description: The filtered reservation groups.
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest reservation group returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older reservation groups.'
+          description: Unique identifier of the last and hence oldest reservation group returned. This can be used in `Limitation` in a subsequent request to fetch the next batch of older reservation groups.
           format: uuid
           nullable: true
       additionalProperties: false

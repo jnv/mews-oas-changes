@@ -1,3 +1,82 @@
+# 2025-08-26
+
+
+## POST /api/connector/v1/configuration/get
+-  added the optional property 'Enterprise/allOf[subschema #1: Enterprise]/BusinessDayClosingOffset' to the response with the '200' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the optional property 'Enterprises/items/BusinessDayClosingOffset' to the response with the '200' status
+
+
+## POST /api/connector/v1/exports/add
+- :warning: added '#/components/schemas/ExportEntityTypeEnum' to the 'EntityType' request property 'allOf' list
+- :warning: added '#/components/schemas/ExportScopeParameters' to the 'Scope' request property 'allOf' list
+- :warning: removed the enum value 'AvailabilityAdjustment' of the request property 'EntityType'
+- :warning: removed the enum value 'AvailabilityBlock' of the request property 'EntityType'
+- :warning: removed the enum value 'Bill' of the request property 'EntityType'
+- :warning: removed the enum value 'Company' of the request property 'EntityType'
+- :warning: removed the enum value 'Customer' of the request property 'EntityType'
+- :warning: removed the enum value 'LedgerEntry' of the request property 'EntityType'
+- :warning: removed the enum value 'OrderItem' of the request property 'EntityType'
+- :warning: removed the enum value 'Payment' of the request property 'EntityType'
+- :warning: removed the enum value 'Reservation' of the request property 'EntityType'
+- :warning: removed the enum value 'ResourceBlock' of the request property 'EntityType'
+- :warning: the 'EntityType' request property type/format changed from 'string'/'' to ''/''
+- :warning: the 'Export/allOf[subschema #1: Export]/EntityType' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'Export/allOf[subschema #1: Export]/Status' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: removed '#/components/schemas/ExportScopeSelector' from the 'Scope' request property 'allOf' list
+-  added the new optional request property 'Filters'
+-  added the optional property 'Export/allOf[subschema #1: Export]/Filters' to the response with the '200' status
+-  added '#/components/schemas/ExportEntityTypeEnum' to the 'Export/allOf[subschema #1: Export]/EntityType' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ExportStatusEnum' to the 'Export/allOf[subschema #1: Export]/Status' response property 'allOf' list for the response status '200'
+-  removed the 'AvailabilityAdjustment' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'AvailabilityBlock' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Bill' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Company' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Customer' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Expired' enum value from the 'Export/allOf[subschema #1: Export]/Status' response property for the response status '200'
+-  removed the 'Failed' enum value from the 'Export/allOf[subschema #1: Export]/Status' response property for the response status '200'
+-  removed the 'LedgerEntry' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'OrderItem' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Payment' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'Export/allOf[subschema #1: Export]/Status' response property for the response status '200'
+-  removed the 'Processing' enum value from the 'Export/allOf[subschema #1: Export]/Status' response property for the response status '200'
+-  removed the 'Reservation' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'ResourceBlock' enum value from the 'Export/allOf[subschema #1: Export]/EntityType' response property for the response status '200'
+-  removed the 'Success' enum value from the 'Export/allOf[subschema #1: Export]/Status' response property for the response status '200'
+
+
+## POST /api/connector/v1/exports/getAll
+- :warning: the 'Exports/items/EntityType' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'Exports/items/Status' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added the optional property 'Exports/items/Filters' to the response with the '200' status
+-  added '#/components/schemas/ExportEntityTypeEnum' to the 'Exports/items/EntityType' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ExportStatusEnum' to the 'Exports/items/Status' response property 'allOf' list for the response status '200'
+-  removed the 'AvailabilityAdjustment' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'AvailabilityBlock' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Bill' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Company' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Customer' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Expired' enum value from the 'Exports/items/Status' response property for the response status '200'
+-  removed the 'Failed' enum value from the 'Exports/items/Status' response property for the response status '200'
+-  removed the 'LedgerEntry' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'OrderItem' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Payment' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Pending' enum value from the 'Exports/items/Status' response property for the response status '200'
+-  removed the 'Processing' enum value from the 'Exports/items/Status' response property for the response status '200'
+-  removed the 'Reservation' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'ResourceBlock' enum value from the 'Exports/items/EntityType' response property for the response status '200'
+-  removed the 'Success' enum value from the 'Exports/items/Status' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservationGroups/getAll
+- :warning: the response property 'ReservationGroups/items/Name' became nullable for the status '200'
+- :warning: the response property 'ReservationGroups/items/Name' became optional for the status '200'
+- :warning: the 'ReservationGroups/items/Name' response property's minLength was decreased from '1' to '0' for the response status '200'
+
+
+
 # 2025-08-20
 
 
