@@ -9686,28 +9686,14 @@ paths:
       tags:
         - Product service orders
       summary: Get all product service orders
-      description: 'Returns all product service orders orders associated with the given enterprise. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property)..'
+      description: 'Returns all product service orders associated with the given enterprise. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: productServiceOrders_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ProductServiceOrderFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ProductServiceOrderIds:
-                - 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-              ServiceIds:
-                - ae8da28c-e8a4-4141-9df0-8c998976c691
-                - 6b02d015-47ac-4c41-8e9f-5b4db61d4284
-              UpdatedUtc:
-                StartUtc: '2023-04-01T00:00:00Z'
-                EndUtc: '2023-05-05T00:00:00Z'
-              Limitation:
-                Cursor: 819e3435-7d5e-441f-bc68-76d89c69b8f5
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ProductServiceOrderIds":["9e6d4492-315b-4089-b9d6-5b1bd2eddc1b"],"ServiceIds":["ae8da28c-e8a4-4141-9df0-8c998976c691","6b02d015-47ac-4c41-8e9f-5b4db61d4284"],"LinkedReservationIds":["0f515589-99b4-423d-b83a-b237009f0509","b7a3f5cb-1e69-4a5f-a069-10f461996d7f"],"UpdatedUtc":{"StartUtc":"2023-04-01T00:00:00Z","EndUtc":"2023-05-05T00:00:00Z"},"States":["Confirmed","Started"],"Limitation":{"Count":10,"Cursor":"819e3435-7d5e-441f-bc68-76d89c69b8f5"}}
       responses:
         '200':
           description: OK
@@ -9715,31 +9701,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductServiceOrderResult'
-              example:
-                ProductServiceOrders:
-                  - Id: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
-                    ServiceId: ae8da28c-e8a4-4141-9df0-8c998976c691
-                    AccountId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    AccountType: Customer
-                    CreatorProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    UpdaterProfileId: 3cd637ef-4728-47f9-8fb1-afb900c9cdcf
-                    BookerId: ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72
-                    Number: '52'
-                    State: Confirmed
-                    Origin: Connector
-                    CommanderOrigin: 
-                    OriginDetails: 
-                    CreatedUtc: '2023-04-23T14:58:02Z'
-                    UpdatedUtc: '2023-04-23T14:58:02Z'
-                    CancelledUtc: 
-                    VoucherId: 
-                    BusinessSegmentId: 
-                    Options:
-                      OwnerCheckedIn: true
-                      AllCompanionsCheckedIn: true
-                      AnyCompanionCheckedIn: true
-                      ConnectorCheckIn: true
-                Cursor: 9b59b50d-bd32-4ce5-add8-09ea0e1300e7
+              example: {"ProductServiceOrders":[{"Id":"9e6d4492-315b-4089-b9d6-5b1bd2eddc1b","ServiceId":"ae8da28c-e8a4-4141-9df0-8c998976c691","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","BookerId":"bccdafd1-3e44-439d-861f-341526b597a9","Number":"52","State":"Confirmed","Origin":"Connector","CommanderOrigin":null,"OriginDetails":null,"CreatedUtc":"2023-04-23T14:58:02Z","UpdatedUtc":"2023-04-23T14:58:02Z","CancelledUtc":null,"VoucherId":null,"BusinessSegmentId":null,"LinkedReservationId":"0f515589-99b4-423d-b83a-b237009f0509","Options":{"OwnerCheckedIn":true,"AllCompanionsCheckedIn":true,"AnyCompanionCheckedIn":true,"ConnectorCheckIn":true}}],"Cursor":"9e6d4492-315b-4089-b9d6-5b1bd2eddc1b"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -10957,7 +10919,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationServiceOrderResult'
-              example: {"Reservations":[{"Id":"0f515589-99b4-423d-b83a-b237009f0509","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","Number":"52","State":"Confirmed","Origin":"Connector","CommanderOrigin":null,"OriginDetails":null,"CreatedUtc":"2023-03-23T16:00:00Z","UpdatedUtc":"2023-04-22T17:00:00Z","CancelledUtc":null,"VoucherId":null,"BusinessSegmentId":null,"Options":{"OwnerCheckedIn":true,"AllCompanionsCheckedIn":true,"AnyCompanionCheckedIn":true,"ConnectorCheckIn":true},"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","CreditCardId":null,"GroupId":"94843f6f-3be3-481b-a1c7-06458774c3df","RequestedResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","PartnerCompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","TravelAgencyId":"a793d381-65a2-4fa6-9514-00c4c5bfe607","AssignedResourceLocked":false,"ChannelNumber":"TW48ZP","ChannelManagerNumber":"","CancellationReason":null,"ReleasedUtc":null,"StartUtc":"2023-04-23T14:00:00Z","EndUtc":"2023-04-25T12:00:00Z","ScheduledStartUtc":"2023-04-23T14:00:00Z","ActualStartUtc":null,"ScheduledEndUtc":"2023-04-25T12:00:00Z","ActualEndUtc":null,"Purpose":"Leisure","QrCodeData":null,"PersonCounts":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2},{"AgeCategoryId":"ab58c939-be30-4a60-8f75-ae1600c60c9f","Count":2}]}],"Cursor":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7"}
+              example: {"Reservations":[{"Id":"0f515589-99b4-423d-b83a-b237009f0509","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","Number":"52","State":"Confirmed","Origin":"Connector","CommanderOrigin":null,"OriginDetails":null,"CreatedUtc":"2023-03-23T16:00:00Z","UpdatedUtc":"2023-04-22T17:00:00Z","CancelledUtc":null,"VoucherId":null,"BusinessSegmentId":null,"Options":{"OwnerCheckedIn":true,"AllCompanionsCheckedIn":true,"AnyCompanionCheckedIn":true,"ConnectorCheckIn":true},"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","CreditCardId":null,"GroupId":"94843f6f-3be3-481b-a1c7-06458774c3df","RequestedResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","PartnerCompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","TravelAgencyId":"a793d381-65a2-4fa6-9514-00c4c5bfe607","AssignedResourceLocked":false,"ChannelNumber":"TW48ZP","ChannelManagerNumber":"","CancellationReason":null,"ReleasedUtc":null,"StartUtc":"2023-04-23T14:00:00Z","EndUtc":"2023-04-25T12:00:00Z","ScheduledStartUtc":"2023-04-23T14:00:00Z","ActualStartUtc":null,"ScheduledEndUtc":"2023-04-25T12:00:00Z","ActualEndUtc":null,"Purpose":"Leisure","QrCodeData":null,"PersonCounts":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2},{"AgeCategoryId":"ab58c939-be30-4a60-8f75-ae1600c60c9f","Count":2}]}],"Cursor":"0f515589-99b4-423d-b83a-b237009f0509"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -18346,13 +18308,13 @@ components:
         - 'Order items which are either of zero value and have not been canceled, if the state of the payment item is Pending or Failed, or items of optional reservations. Until the reservation is confirmed, all its accounting items are Inactive.'
         - 'Order items which have been canceled, regardless of whether the item is of zero value.'
     ActivityState:
-      title: Activity State
+      title: Activity state
       enum:
         - Deleted
         - Active
       type: string
     ActivityStateEnum:
-      title: Activity State
+      title: Activity state
       enum:
         - Deleted
         - Active
@@ -18365,10 +18327,12 @@ components:
         - ''
         - ''
     ActivityStates:
+      title: Activity state
       enum:
         - Deleted
         - Active
       type: string
+      description: Activity states used for filtering.
     AddAccountFileResult:
       title: AddAccountFileResult
       required:
@@ -19390,7 +19354,7 @@ components:
           description: Adjustment value applied on the interval.
           format: int32
         ActivityState:
-          title: Activity State
+          title: Activity state
           allOf:
             - $ref: '#/components/schemas/ActivityStateEnum'
           description: "Shows whether the availability adjustment is active or deleted.\n\nDeleted\n\nActive"
@@ -23461,15 +23425,15 @@ components:
       properties:
         Id:
           type: string
-          description: 'Unique identifier of [Companionship](https://mews-systems.gitbook.io/connector-api/operations/#companionship).'
+          description: Unique identifier of `Companionship`.
           format: uuid
         CustomerId:
           type: string
-          description: 'Unique identifier of [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
+          description: Unique identifier of Customer.
           format: uuid
         ReservationGroupId:
           type: string
-          description: 'Unique identifier of [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group).'
+          description: Unique identifier of ReservationGroup.
           format: uuid
         ReservationId:
           type: string
@@ -23565,17 +23529,23 @@ components:
       additionalProperties: false
       x-schema-id: CompanionshipDeleteParameters
     CompanionshipExtent:
-      title: CompanionshipExtent
+      title: Companionship extent
       type: object
       properties:
         Reservations:
           type: boolean
+          description: Whether the response should contain reservations.
+          nullable: true
         ReservationGroups:
           type: boolean
+          description: Whether the response should contain reservation groups.
+          nullable: true
         Customers:
           type: boolean
+          description: Whether the response should contain customers.
+          nullable: true
       additionalProperties: false
-      description: 'Extent of data to be returned. E.g. it is possible to specify that together with the companionships, customers, reservations, and reservation groups should be also returned.'
+      description: ''
       x-schema-id: CompanionshipExtent
     CompanionshipFilterParameters:
       title: CompanionshipFilterParameters
@@ -23619,10 +23589,10 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Companionship](https://mews-systems.gitbook.io/connector-api/operations/#companionship).'
+          description: Unique identifiers of `Companionship`. Required if no other filter is provided.
           nullable: true
         Extent:
-          title: CompanionshipExtent
+          title: Companionship extent
           allOf:
             - $ref: '#/components/schemas/CompanionshipExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the companionships, customers, reservations, and reservation groups should be also returned.'
@@ -23633,7 +23603,7 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifiers of reservations.
+          description: Unique identifiers of `Reservation`. Required if no other filter is provided.
           nullable: true
         CustomerIds:
           maxItems: 1000
@@ -23642,7 +23612,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Customers](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer).'
+          description: Unique identifiers of `Customer`. Required if no other filter is provided.
           nullable: true
         ReservationGroupIds:
           maxItems: 1000
@@ -23651,12 +23621,13 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Reservation groups](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-group).'
+          description: Unique identifiers of `ReservationGroup`. Required if no other filter is provided.
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Companionship` was updated. Must be used together with at least one another filter.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -37583,7 +37554,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Product service order](https://mews-systems.gitbook.io/connector-api/operations/#product-service-order).'
+          description: Unique identifiers of the Product service order.
           nullable: true
         ServiceIds:
           maxItems: 1000
@@ -37592,7 +37563,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
+          description: Unique identifiers of the `Service`.
         AccountIds:
           maxItems: 1000
           minItems: 1
@@ -37600,6 +37571,7 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of the Customer or Company who owns the product service order.
           nullable: true
         LinkedReservationIds:
           maxItems: 1000
@@ -37608,11 +37580,13 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of linked Reservations.
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the Product service orders were updated.
           nullable: true
           x-max-interval-in-months: 3
         States:
@@ -37633,7 +37607,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceOrder'
-          description: The product service order of the enterprise.
+          description: The collection of product service orders.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -39156,7 +39130,7 @@ components:
           format: uuid
           nullable: true
         Options:
-          title: Service Order Options
+          title: Service order options
           allOf:
             - $ref: '#/components/schemas/ServiceOrderOptions'
           description: Options of the reservation.
@@ -42437,15 +42411,15 @@ components:
       properties:
         Id:
           type: string
-          description: Unique identifier of the feature.
+          description: Unique identifier of `ResourceFeature`.
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
+          description: Unique identifier of `Service` the resource feature belongs to.
           format: uuid
         IsActive:
           type: boolean
-          description: Whether the resource feature is still active.
+          description: Whether the `ResourceFeature` is active.
         Classification:
           $ref: '#/components/schemas/ResourceFeatureClassification'
         Names:
@@ -42472,10 +42446,12 @@ components:
         CreatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the resource feature in UTC timezone in ISO 8601 format.
           format: date-time
         UpdatedUtc:
           minLength: 1
           type: string
+          description: Last update date and time of the resource feature in UTC timezone in ISO 8601 format.
           format: date-time
       additionalProperties: false
       x-schema-id: ResourceFeature
@@ -42602,7 +42578,7 @@ components:
       additionalProperties: false
       x-schema-id: ResourceFeatureAssignmentResult
     ResourceFeatureClassification:
-      title: Resource Feature Classification
+      title: Resource feature classification
       enum:
         - SeaView
         - RiverView
@@ -42625,8 +42601,9 @@ components:
         - PrivateBathroom
         - SharedBathroom
       type: string
+      description: Classification of `ResourceFeature`.
     ResourceFeatureClassificationEnum:
-      title: Resource Feature Classification
+      title: Resource feature classification
       enum:
         - SeaView
         - RiverView
@@ -42649,7 +42626,7 @@ components:
         - PrivateBathroom
         - SharedBathroom
       type: string
-      description: "\n\nSeaView\n\nRiverView\n\nOceanView\n\nTwinBeds\n\nDoubleBed\n\nRollawayBed\n\nUpperBed\n\nLowerBed\n\nBalcony\n\nAccessibleBathroom\n\nAccessibleRoom\n\nElevatorAccess\n\nHighFloor\n\nKitchenette\n\nAirConditioning\n\nPrivateJacuzzi\n\nPrivateSauna\n\nEnsuiteRoom\n\nPrivateBathroom\n\nSharedBathroom"
+      description: "Classification of `ResourceFeature`.\n\nSeaView\n\nRiverView\n\nOceanView\n\nTwinBeds\n\nDoubleBed\n\nRollawayBed\n\nUpperBed\n\nLowerBed\n\nBalcony\n\nAccessibleBathroom\n\nAccessibleRoom\n\nElevatorAccess\n\nHighFloor\n\nKitchenette\n\nAirConditioning\n\nPrivateJacuzzi\n\nPrivateSauna\n\nEnsuiteRoom\n\nPrivateBathroom\n\nSharedBathroom"
       x-enumNames:
         - SeaView
         - RiverView
@@ -42734,7 +42711,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Resource features](https://mews-systems.gitbook.io/connector-api/operations/#resource-feature).'
+          description: Unique identifiers of `ResourceFeature`.
           nullable: true
         ServiceIds:
           maxItems: 1000
@@ -42742,11 +42719,12 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the resource features belong.'
+          description: Unique identifiers of `Service` to which the resource features belong.
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Last update date and time of the resource feature in UTC timezone in ISO 8601 format.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -42771,7 +42749,7 @@ components:
           description: Resource features.
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest resource features returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older resource feature.'
+          description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
           format: uuid
           nullable: true
       additionalProperties: false
@@ -44757,12 +44735,14 @@ components:
       description: Options of the service.
       x-schema-id: ServiceOptions
     ServiceOrder:
-      title: ServiceOrder
+      title: Product service order
       required:
         - AccountId
+        - AccountType
         - CreatedUtc
         - CreatorProfileId
         - Id
+        - Number
         - Options
         - Origin
         - ServiceId
@@ -44773,70 +44753,121 @@ components:
       properties:
         Id:
           type: string
+          description: Unique identifier of the product service order
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services#service) that service order is made against.'
+          description: Unique identifier of the `Service` that product service order is made against.
           format: uuid
         AccountId:
           type: string
+          description: Unique identifier of the Customer or Company who owns the product service order.
           format: uuid
         AccountType:
-          anyOf:
-            - $ref: '#/components/schemas/AccountType'
-          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/AccountTypeEnum'
+          description: "A discriminator specifying the type of account, e.g. `Customer` or `Company`.\n\nCompany\n\nCustomer"
         CreatorProfileId:
           type: string
+          description: Unique identifier of the user who created the product service order.
           format: uuid
         UpdaterProfileId:
           type: string
+          description: Unique identifier of the user who updated the product service order.
           format: uuid
         BookerId:
           type: string
+          description: Unique identifier of the Customer on whose behalf the service order was made.
           format: uuid
           nullable: true
         Number:
+          minLength: 1
           type: string
-          nullable: true
+          description: Confirmation number of the service order in Mews.
         State:
-          $ref: '#/components/schemas/ServiceOrderState'
+          title: Service order state
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderStateEnum'
+          description: "State of the product service order.\n\nInquired (Confirmed neither by the customer nor enterprise.)\n\nConfirmed (Confirmed by both parties, before check-in.)\n\nStarted (Checked in.)\n\nProcessed (Checked out.)\n\nCanceled (Canceled.)\n\nOptional (Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).)\n\nRequested (Confirmed by the customer but not by the enterprise (waitlist).)"
+          x-enumNames:
+            - Inquired
+            - Confirmed
+            - Started
+            - Processed
+            - Canceled
+            - Optional
+            - Requested
+          x-enumDescriptions:
+            - Confirmed neither by the customer nor enterprise.
+            - 'Confirmed by both parties, before check-in.'
+            - Checked in.
+            - Checked out.
+            - Canceled.
+            - Confirmed by enterprise but not by the guest (the enterprise is holding resource for the guest).
+            - Confirmed by the customer but not by the enterprise (waitlist).
         Origin:
-          $ref: '#/components/schemas/ServiceOrderOrigin'
+          title: Service order origin
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderOriginEnum'
+          description: "Origin of the product service order.\n\nDistributor (From the Mews Booking Engine or Booking Engine API.)\n\nChannelManager (From a channel manager.)\n\nCommander (From Mews Operations.)\n\nImport (From an import process.)\n\nConnector (From the Mews Connector API.)\n\nNavigator (From Mews Guest Services.)"
+          x-enumNames:
+            - Distributor
+            - ChannelManager
+            - Commander
+            - Import
+            - Connector
+            - Navigator
+          x-enumDescriptions:
+            - From the Mews Booking Engine or Booking Engine API.
+            - From a channel manager.
+            - From Mews Operations.
+            - From an import process.
+            - From the Mews Connector API.
+            - From Mews Guest Services.
         CommanderOrigin:
-          anyOf:
-            - $ref: '#/components/schemas/ServiceOrderCommanderOrigin'
+          allOf:
+            - $ref: '#/components/schemas/ServiceOrderCommanderOriginEnum'
+          description: "Further detail about origin in case of Origin Commander.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
           nullable: true
         OriginDetails:
           type: string
+          description: Details about the product service order Origin.
           nullable: true
         CreatedUtc:
           minLength: 1
           type: string
+          description: Creation date and time of the product service order in UTC timezone in ISO 8601 format.
           format: date-time
         UpdatedUtc:
           minLength: 1
           type: string
+          description: Last update date and time of the product service order in UTC timezone in ISO 8601 format.
           format: date-time
         CancelledUtc:
           type: string
+          description: Cancellation date and time in UTC timezone in ISO 8601 format.
           format: date-time
           nullable: true
         VoucherId:
           type: string
+          description: Unique identifier of the Voucher that has been used to create product service order.
           format: uuid
           nullable: true
         BusinessSegmentId:
           type: string
+          description: Identifier of the Business segment.
           format: uuid
           nullable: true
         LinkedReservationId:
           type: string
+          description: Identifier of the linked Reservation.
           format: uuid
           nullable: true
         Options:
-          title: Service Order Options
+          title: Service order options
           allOf:
             - $ref: '#/components/schemas/ServiceOrderOptions'
+          description: Options of the service order.
       additionalProperties: false
       x-schema-id: ServiceOrder
     ServiceOrderCancellationReasonEnum:
@@ -44891,17 +44922,6 @@ components:
         - ''
         - ''
         - ''
-    ServiceOrderCommanderOrigin:
-      title: Commander origin
-      enum:
-        - InPerson
-        - Channel
-        - Phone
-        - Email
-        - Website
-        - Message
-        - CallCenter
-      type: string
     ServiceOrderCommanderOriginEnum:
       title: Commander origin
       enum:
@@ -45130,23 +45150,6 @@ components:
           description: Check in was done via Connector API.
       additionalProperties: false
       x-schema-id: ServiceOrderOptions
-    ServiceOrderOrigin:
-      title: Service order origin
-      enum:
-        - Distributor
-        - ChannelManager
-        - Commander
-        - Import
-        - Connector
-        - Navigator
-      type: string
-      x-enumDescriptions:
-        - From the Mews Booking Engine or Booking Engine API.
-        - From a channel manager.
-        - From Mews Operations.
-        - From an import process.
-        - From the Mews Connector API.
-        - From Mews Guest Services.
     ServiceOrderOriginEnum:
       title: Service order origin
       enum:
@@ -46803,7 +46806,7 @@ components:
             - ''
             - ''
         ActivityState:
-          title: Activity State
+          title: Activity state
           allOf:
             - $ref: '#/components/schemas/ActivityStateEnum'
           description: "Whether voucher is active or deleted.\n\nDeleted\n\nActive"
@@ -46957,7 +46960,7 @@ components:
           description: Last update date and time of the voucher in UTC timezone in ISO 8601 format.
           nullable: true
         ActivityState:
-          title: Activity State
+          title: Activity state
           allOf:
             - $ref: '#/components/schemas/ActivityStateEnum'
           description: "Whether voucher code is active or deleted.\n\nDeleted\n\nActive"

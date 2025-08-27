@@ -1,3 +1,39 @@
+# 2025-08-27
+
+
+## POST /api/connector/v1/companionships/getAll
+-  the request property 'Extent/allOf[subschema #1: CompanionshipExtent -> subschema #1: Companionship extent]/Customers' became nullable
+-  the request property 'Extent/allOf[subschema #1: CompanionshipExtent -> subschema #1: Companionship extent]/ReservationGroups' became nullable
+-  the request property 'Extent/allOf[subschema #1: CompanionshipExtent -> subschema #1: Companionship extent]/Reservations' became nullable
+
+
+## POST /api/connector/v1/productServiceOrders/getAll
+- :warning: the 'ProductServiceOrders/items/Origin' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: the 'ProductServiceOrders/items/State' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/AccountTypeEnum' to the 'ProductServiceOrders/items/AccountType' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ServiceOrderCommanderOriginEnum' to the 'ProductServiceOrders/items/CommanderOrigin' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ServiceOrderOriginEnum' to the 'ProductServiceOrders/items/Origin' response property 'allOf' list for the response status '200'
+-  added '#/components/schemas/ServiceOrderStateEnum' to the 'ProductServiceOrders/items/State' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/AccountType' from the 'ProductServiceOrders/items/AccountType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/ServiceOrderCommanderOrigin' from the 'ProductServiceOrders/items/CommanderOrigin' response property 'anyOf' list for the response status '200'
+-  the response property 'ProductServiceOrders/items/AccountType' became required for the status '200'
+-  the response property 'ProductServiceOrders/items/Number' became required for the status '200'
+-  removed the 'Canceled' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'ChannelManager' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Commander' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Confirmed' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'Connector' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Distributor' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Import' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Inquired' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'Navigator' enum value from the 'ProductServiceOrders/items/Origin' response property for the response status '200'
+-  removed the 'Optional' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'Processed' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'Requested' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+-  removed the 'Started' enum value from the 'ProductServiceOrders/items/State' response property for the response status '200'
+
+
+
 # 2025-08-26
 
 
