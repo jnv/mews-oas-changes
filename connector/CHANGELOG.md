@@ -1,3 +1,40 @@
+# 2025-08-28
+
+
+## POST /api/connector/v1/creditCards/addTokenized
+- :warning: removed the request property 'CreditCardData/allOf[subschema #1: CreditCardData -> subschema #1: Credit card data]/ObfuscatedNumber'
+
+
+## POST /api/connector/v1/creditCards/charge
+- :warning: the request property 'CreditCardId' became required
+- :warning: removed the request property 'BillId'
+
+
+## POST /api/connector/v1/creditCards/getAll
+- :warning: the 'CreditCards/items/Type' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: added the new 'Disabled' enum value to the 'CreditCards/items/State' response property for the response status '200'
+- :warning: added the new 'Enabled' enum value to the 'CreditCards/items/State' response property for the response status '200'
+- :warning: added the new 'Gateway' enum value to the 'CreditCards/items/Kind' response property for the response status '200'
+- :warning: added the new 'Physical' enum value to the 'CreditCards/items/Format' response property for the response status '200'
+- :warning: added the new 'Terminal' enum value to the 'CreditCards/items/Kind' response property for the response status '200'
+- :warning: added the new 'Virtual' enum value to the 'CreditCards/items/Format' response property for the response status '200'
+-  added '#/components/schemas/CreditCardType' to the 'CreditCards/items/Type' response property 'anyOf' list for the response status '200'
+-  the response property 'CreditCards' became required for the status '200'
+-  the response property 'CreditCards/items/EnterpriseId' became required for the status '200'
+-  the response property 'CreditCards/items/Format' became required for the status '200'
+-  the response property 'CreditCards/items/Kind' became required for the status '200'
+-  the response property 'CreditCards/items/State' became required for the status '200'
+
+
+## POST /api/connector/v1/creditCards/getAllByCustomers
+-  api path removed with deprecation
+
+
+## POST /api/connector/v1/creditCards/getAllByIds
+-  api path removed with deprecation
+
+
+
 # 2025-08-27
 
 
