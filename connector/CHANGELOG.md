@@ -1,3 +1,29 @@
+# 2025-09-02
+
+
+## POST /api/connector/v1/messageThreads/add
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+
+
+## POST /api/connector/v1/messages/add
+- :warning: the 'Messages/items/Message/allOf[subschema #1: Message]/Sender' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+- :warning: removed the request property 'Messages/items/AccessToken'
+- :warning: removed the request property 'Messages/items/Client'
+- :warning: removed the request property 'Messages/items/ClientToken'
+-  added '#/components/schemas/SenderCoproduct' to the 'Messages/items/Message/allOf[subschema #1: Message]/Sender' response property 'allOf' list for the response status '200'
+-  the response property 'Messages/items/Message' became required for the status '200'
+-  removed the 'Application' enum value from the 'Messages/items/Message/allOf[subschema #1: Message]/Sender' response property for the response status '200'
+-  removed the 'Enterprise' enum value from the 'Messages/items/Message/allOf[subschema #1: Message]/Sender' response property for the response status '200'
+
+
+## POST /api/connector/v1/messages/getAll
+- :warning: the 'Messages/items/Sender' response's property type/format changed from 'string'/'' to ''/'' for status '200'
+-  added '#/components/schemas/SenderCoproduct' to the 'Messages/items/Sender' response property 'allOf' list for the response status '200'
+-  removed the 'Application' enum value from the 'Messages/items/Sender' response property for the response status '200'
+-  removed the 'Enterprise' enum value from the 'Messages/items/Sender' response property for the response status '200'
+
+
+
 # 2025-08-28
 
 
