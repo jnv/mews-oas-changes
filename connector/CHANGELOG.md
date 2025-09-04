@@ -1,3 +1,15 @@
+# 2025-09-04
+
+
+## POST /api/connector/v1/resourceCategoryImageAssignments/getAll
+-  added the required property 'ResourceCategoryImageAssignments/items/Ordering' to the response with the '200' status
+
+
+## POST /api/connector/v1/resources/getAll
+-  added the required property 'ResourceCategoryImageAssignments/items/Ordering' to the response with the '200' status
+
+
+
 # 2025-09-02
 
 
