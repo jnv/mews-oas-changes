@@ -1,3 +1,15 @@
+# 2025-09-05
+
+
+## POST /api/connector/v1/orders/add
+- :warning: the request property 'AccountId' became not nullable
+- :warning: the request property 'AccountId' became required
+- :warning: removed the request property 'Items/items/Category'
+- :warning: removed the optional property 'ChargeId' from the response with the '200' status
+-  the request property 'Options/allOf[subschema #1: OrderAdditionOptions -> subschema #1: Order addition options]/DisableItemGrouping' became nullable
+
+
+
 # 2025-09-04
 
 
