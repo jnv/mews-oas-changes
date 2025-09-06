@@ -1,3 +1,36 @@
+# 2025-09-06
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'DE_NATO' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/products/getAll
+- :warning: added the new 'DE_NATO' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'DE_NATO' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added the new 'DE_NATO' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/getAll
+- :warning: added the new 'DE_NATO' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added the new 'DE_NATO' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'DE_NATO' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'DE_NATO' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+
 # 2025-09-05
 
 
