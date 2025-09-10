@@ -1841,7 +1841,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleAvailabilityBlockUpdateParameters'
-            example: {"AvailabilityBlocks":[{"AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","Name":{"Value":"Mr. Smith's block"},"FirstTimeUnitStartUtc":{"Value":"2021-07-05T00:00:00Z"},"LastTimeUnitStartUtc":{"Value":"2021-07-15T00:00:00Z"},"ExternalIdentifier":{"Value":"Block-0001"},"State":{"Value":"Confirmed"},"ReservationPurpose":{"Value":"Leisure"},"BookerId":{"Value":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72"},"Notes":{"Value":"Have a nice stay"},"Budget":{"Value":{"Currency":"USD","Value":48.0}},"ReleasedUtc":{"Value":"2021-07-01T00:00:00Z"},"QuoteId":{}},{"AvailabilityBlockId":"c32386aa-1cd2-414a-a823-489325842fbe","Name":{"Value":"Rolling release block"},"FirstTimeUnitStartUtc":{"Value":"2022-07-05T00:00:00Z"},"LastTimeUnitStartUtc":{"Value":"2022-07-15T00:00:00Z"},"ExternalIdentifier":{"Value":"Block-0002"},"State":{"Value":"Confirmed"},"ReservationPurpose":{"Value":"Leisure"},"BookerId":{"Value":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72"},"Notes":{"Value":"Have a nice stay"},"Budget":{"Value":{"Currency":"USD","Value":48.0}},"RollingReleaseOffset":{"Value":"P-3DT4H"},"ReleasedUtc":{"Value":"2021-07-01T00:00:00Z"},"ReleaseStrategy":{"Value":"RollingRelease"},"QuoteId":{"Value":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c"}}]}
+            example: {"AvailabilityBlocks":[{"AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","Name":{"Value":"Mr. Smith's block"},"FirstTimeUnitStartUtc":{"Value":"2021-07-05T00:00:00Z"},"LastTimeUnitStartUtc":{"Value":"2021-07-15T00:00:00Z"},"ExternalIdentifier":{"Value":"Block-0001"},"State":{"Value":"Confirmed"},"ReservationPurpose":{"Value":"Leisure"},"BookerId":{"Value":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72"},"Notes":{"Value":"Have a nice stay"},"Budget":{"Value":{"Currency":"USD","Value":48.0}},"ReleasedUtc":{"Value":"2021-07-01T00:00:00Z"},"QuoteId":{},"BusinessSegmentId":{}},{"AvailabilityBlockId":"c32386aa-1cd2-414a-a823-489325842fbe","Name":{"Value":"Rolling release block"},"FirstTimeUnitStartUtc":{"Value":"2022-07-05T00:00:00Z"},"LastTimeUnitStartUtc":{"Value":"2022-07-15T00:00:00Z"},"ExternalIdentifier":{"Value":"Block-0002"},"State":{"Value":"Confirmed"},"ReservationPurpose":{"Value":"Leisure"},"BookerId":{"Value":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72"},"Notes":{"Value":"Have a nice stay"},"Budget":{"Value":{"Currency":"USD","Value":48.0}},"RollingReleaseOffset":{"Value":"P-3DT4H"},"ReleasedUtc":{"Value":"2021-07-01T00:00:00Z"},"ReleaseStrategy":{"Value":"RollingRelease"},"QuoteId":{"Value":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c"},"BusinessSegmentId":{}}]}
       responses:
         '200':
           description: OK
@@ -19449,6 +19449,11 @@ components:
           type: string
           description: Unique number of the purchase order. This number is propagated to any newly picked up `Reservation` within the block.
           nullable: true
+        BusinessSegmentId:
+          type: string
+          description: Unique identifier of the business segment.
+          format: uuid
+          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddParameters
     AvailabilityBlockAddResult:
@@ -19822,6 +19827,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Unique number of the purchase order. This number is propagated to any newly picked up `Reservation` within the block.
+          nullable: true
+        BusinessSegmentId:
+          title: Guid update value
+          allOf:
+            - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the Business segment.
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters

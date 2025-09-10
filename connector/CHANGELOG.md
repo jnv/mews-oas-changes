@@ -1,3 +1,15 @@
+# 2025-09-10
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the new optional request property 'AvailabilityBlocks/items/BusinessSegmentId'
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the new optional request property 'AvailabilityBlocks/items/BusinessSegmentId'
+
+
+
 # 2025-09-06
 
 
