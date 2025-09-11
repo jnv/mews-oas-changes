@@ -6802,7 +6802,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyMembershipFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"],"AccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5"],"MembershipStates":["Pending","Enrolled"],"ActivityStates":["Active"],"MembershipNumbers":["MBR-2025-AX49ZT73"],"ProviderMembershipIds":["PRV-MBR-9842XKLT"],"Limitation":{"Count":100}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2022-10-15T00:00:00Z","EndUtc":"2022-10-20T00:00:00Z"},"LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"],"AccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5","da34b396-41f7-47f6-8847-aecf00a3f19e"],"MembershipStates":["Pending","Enrolled"],"ActivityStates":["Active"],"MembershipNumbers":["MBR-2025-AX49ZT73"],"ProviderMembershipIds":["PRV-MBR-9842XKLT"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -7046,33 +7046,14 @@ paths:
       tags:
         - Loyalty programs
       summary: Get all loyalty programs
-      description: "Returns all loyalty programs of the enterprise (in the given activity state), optionally filtered by specific loyalty program identifiers or other filter parameters.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property)."
+      description: 'Returns all loyalty programs of the enterprise, optionally filtered by specific loyalty program identifiers, activity states, or other filter parameters. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: loyaltyPrograms_getAll
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyProgramFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainIds:
-                - 1df21f06-0cfc-4960-9c58-a3bf1261663e
-                - 5fcd1933-22f2-40b9-84da-7db04cbecec2
-              LoyaltyProgramIds:
-                - 3ed9e2f3-4bba-4df6-8d41-ab1b009b6425
-                - 8a98965a-7c03-48a1-a28c-ab1b009b53c8
-              CreatedUtc:
-                StartUtc: '2022-10-05T00:00:00Z'
-                EndUtc: '2022-10-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2022-10-10T00:00:00Z'
-                EndUtc: '2022-10-17T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 100
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"CreatedUtc":{"StartUtc":"2022-10-05T00:00:00Z","EndUtc":"2022-10-10T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2022-10-10T00:00:00Z","EndUtc":"2022-10-17T00:00:00Z"},"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5","da34b396-41f7-47f6-8847-aecf00a3f19e"],"ActivityStates":["Active"],"Codes":["PC01","GEC07"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -7080,13 +7061,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyProgramResult'
-              example:
-                LoyaltyPrograms:
-                  - Id: a58ff7cb-77e3-495a-bd61-aecf00a3f19d
-                    Name: Platinum Club Extra
-                    Code: PC01
-                    Type: Hotel
-                    Subscription: Free
+              example: {"LoyaltyPrograms":[{"Id":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Platinum Club","Code":"PC01","Type":"Hotel","Subscription":"Free"},{"Id":"da34b396-41f7-47f6-8847-aecf00a3f19e","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Gold Exclusive Club","Code":"GEC07","Type":"ExternalPartner","Subscription":"Paid"}],"Cursor":"da34b396-41f7-47f6-8847-aecf00a3f19e"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7141,31 +7116,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleLoyaltyProgramAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              LoyaltyPrograms:
-                - DataClusterId: 8ddea57b-6a5c-4eec-8c4c-24467dce118e
-                  Name: Platinum Club
-                  Code: PC01
-                  Type: Hotel
-                  Subscription: Free
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyPrograms":[{"Name":"Platinum Club","Code":"PC01","Type":"Hotel","Subscription":"Free"}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoyaltyProgramResult'
-              example:
-                LoyaltyPrograms:
-                  - Id: a58ff7cb-77e3-495a-bd61-aecf00a3f19d
-                    Name: Platinum Club Extra
-                    Code: PC01
-                    Type: Hotel
-                    Subscription: Free
+                $ref: '#/components/schemas/LoyaltyProgramAdditionResult'
+              example: {"LoyaltyPrograms":[{"Id":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Platinum Club","Code":"PC01","Type":"Hotel","Subscription":"Free"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7220,33 +7179,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleLoyaltyProgramUpdateParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ChainId: 1df21f06-0cfc-4960-9c58-a3bf1261663e
-              LoyaltyProgramUpdates:
-                - LoyaltyProgramId: a58ff7cb-77e3-495a-bd61-aecf00a3f19d
-                  Name:
-                    Value: Platinum Club Extra
-                  Type:
-                    Value: Hotel
-                  Subscription:
-                    Value: Free
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyProgramUpdates":[{"LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","Name":{"Value":"Platinum Club Extra"},"Type":{"Value":"Hotel"},"Subscription":{"Value":"Free"}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoyaltyProgramResult'
-              example:
-                LoyaltyPrograms:
-                  - Id: a58ff7cb-77e3-495a-bd61-aecf00a3f19d
-                    Name: Platinum Club Extra
-                    Code: PC01
-                    Type: Hotel
-                    Subscription: Free
+                $ref: '#/components/schemas/LoyaltyProgramUpdateResult'
+              example: {"LoyaltyPrograms":[{"Id":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Platinum Club","Code":"PC01","Type":"Hotel","Subscription":"Free"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7301,13 +7242,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyProgramDeleteParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              LoyaltyProgramIds:
-                - a58ff7cb-77e3-495a-bd61-aecf00a3f19d
-                - da34b396-41f7-47f6-8847-aecf00a3f19e
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5","da34b396-41f7-47f6-8847-aecf00a3f19e"]}
       responses:
         '200':
           description: OK
@@ -7369,7 +7304,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyTierFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5"],"LoyaltyTierIds":["69eedfd2-6f25-42fc-b3c8-39df70f85e37","3cad97ef-5257-4ced-8599-8e6bbd33331f"],"ActivityStates":["Active"],"UpdatedUtc":{"StartUtc":"2022-10-10T00:00:00Z","EndUtc":"2022-10-17T00:00:00Z"},"Limitation":{"Count":100}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"LoyaltyProgramIds":["f701dafb-5765-4cf4-b1dd-1f602a740ae5","da34b396-41f7-47f6-8847-aecf00a3f19e"],"LoyaltyTierIds":["69eedfd2-6f25-42fc-b3c8-39df70f85e37","3cad97ef-5257-4ced-8599-8e6bbd33331f"],"ActivityStates":["Active"],"UpdatedUtc":{"StartUtc":"2022-10-10T00:00:00Z","EndUtc":"2022-10-17T00:00:00Z"},"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -30832,6 +30767,8 @@ components:
         - Code
         - Id
         - Name
+        - Subscription
+        - Type
       type: object
       properties:
         Id:
@@ -30851,40 +30788,50 @@ components:
           type: string
           description: Code of the loyalty program.
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramType'
-          nullable: true
+          $ref: '#/components/schemas/LoyaltyProgramType'
         Subscription:
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramSubscription'
-          nullable: true
+          $ref: '#/components/schemas/LoyaltyProgramSubscription'
       additionalProperties: false
       x-schema-id: LoyaltyProgram
     LoyaltyProgramAddParameters:
-      title: LoyaltyProgramAddParameters
+      title: Loyalty program parameters
       required:
         - Code
         - Name
+        - Subscription
+        - Type
       type: object
       properties:
         Name:
           maxLength: 100
           minLength: 1
           type: string
+          description: Name of the loyalty program.
         Code:
           maxLength: 50
           minLength: 1
           type: string
+          description: Code of the loyalty program.
         Type:
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramType'
-          nullable: true
+          $ref: '#/components/schemas/LoyaltyProgramType'
         Subscription:
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramSubscription'
-          nullable: true
+          $ref: '#/components/schemas/LoyaltyProgramSubscription'
       additionalProperties: false
       x-schema-id: LoyaltyProgramAddParameters
+    LoyaltyProgramAdditionResult:
+      title: LoyaltyProgramAdditionResult
+      required:
+        - LoyaltyPrograms
+      type: object
+      properties:
+        LoyaltyPrograms:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyProgram'
+          description: Added loyalty programs.
+      additionalProperties: false
+      x-schema-id: LoyaltyProgramAdditionResult
     LoyaltyProgramDeleteParameters:
       title: LoyaltyProgramDeleteParameters
       required:
@@ -30950,12 +30897,14 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of `LoyaltyProgram` creation date and time.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of `LoyaltyProgram` last update date and time.
           nullable: true
           x-max-interval-in-months: 3
         LoyaltyProgramIds:
@@ -30965,7 +30914,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Loyalty programs](https://mews-systems.gitbook.io/connector-api/operations/#loyalty-program).'
+          description: Unique identifiers of `LoyaltyProgram`.
           nullable: true
         ActivityStates:
           type: array
@@ -30979,6 +30928,7 @@ components:
           type: array
           items:
             type: string
+          description: Codes of `LoyaltyProgram`.
           nullable: true
         Limitation:
           allOf:
@@ -30998,7 +30948,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LoyaltyProgram'
-          description: Updated loyalty programs.
+          description: The loyalty programs of the enterprise.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -31007,47 +30957,123 @@ components:
       additionalProperties: false
       x-schema-id: LoyaltyProgramResult
     LoyaltyProgramSubscription:
+      title: Loyalty program subscription
       enum:
         - Free
         - Paid
       type: string
+      description: "Subscription of the loyalty program.\n\nFree\n\nPaid"
+      x-enumNames:
+        - Free
+        - Paid
+      x-enumDescriptions:
+        - ''
+        - ''
+      x-schema-id: LoyaltyProgramSubscription
+    LoyaltyProgramSubscriptionUpdateValue:
+      title: Loyalty program subscription update value
+      type: object
+      properties:
+        Value:
+          title: Loyalty program subscription
+          allOf:
+            - $ref: '#/components/schemas/LoyaltyProgramSubscription'
+          description: Value which is to be updated.
+          x-enumNames:
+            - Free
+            - Paid
+          x-enumDescriptions:
+            - ''
+            - ''
+          x-schema-id: LoyaltyProgramSubscription
+      additionalProperties: false
+      x-schema-id: LoyaltyProgramSubscriptionUpdateValue
     LoyaltyProgramType:
+      title: Loyalty program type
       enum:
         - Hotel
         - ExternalPartner
         - SoftBrand
         - Unknown
       type: string
+      description: "Type of the loyalty program.\n\nHotel\n\nExternalPartner\n\nSoftBrand\n\nUnknown"
+      x-enumNames:
+        - Hotel
+        - ExternalPartner
+        - SoftBrand
+        - Unknown
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+      x-schema-id: LoyaltyProgramType
+    LoyaltyProgramTypeUpdateValue:
+      title: Loyalty program type update value
+      type: object
+      properties:
+        Value:
+          title: Loyalty program type
+          allOf:
+            - $ref: '#/components/schemas/LoyaltyProgramType'
+          description: Value which is to be updated.
+          x-enumNames:
+            - Hotel
+            - ExternalPartner
+            - SoftBrand
+            - Unknown
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+          x-schema-id: LoyaltyProgramType
+      additionalProperties: false
+      x-schema-id: LoyaltyProgramTypeUpdateValue
     LoyaltyProgramUpdateParameters:
-      title: LoyaltyProgramUpdateParameters
+      title: Loyalty program update parameters
       required:
         - LoyaltyProgramId
       type: object
       properties:
         LoyaltyProgramId:
           type: string
+          description: Unique identifier of the loyalty program.
           format: uuid
         Name:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Name of the loyalty program (or `null` if the name should not be updated).
           nullable: true
         Type:
-          title: String update value
+          title: Loyalty program type update value
           allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramType'
+            - $ref: '#/components/schemas/LoyaltyProgramTypeUpdateValue'
+          description: Type of the loyalty program (or `null` if the type should not be updated).
           nullable: true
         Subscription:
-          title: String update value
+          title: Loyalty program subscription update value
           allOf:
-            - $ref: '#/components/schemas/StringUpdateValue'
-          anyOf:
-            - $ref: '#/components/schemas/LoyaltyProgramSubscription'
+            - $ref: '#/components/schemas/LoyaltyProgramSubscriptionUpdateValue'
+          description: Subscription of the loyalty program (or `null` if the subscription should not be updated).
           nullable: true
       additionalProperties: false
       x-schema-id: LoyaltyProgramUpdateParameters
+    LoyaltyProgramUpdateResult:
+      title: LoyaltyProgramUpdateResult
+      required:
+        - LoyaltyPrograms
+      type: object
+      properties:
+        LoyaltyPrograms:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyProgram'
+          description: Updated loyalty programs.
+      additionalProperties: false
+      x-schema-id: LoyaltyProgramUpdateResult
     LoyaltyTier:
       title: Loyalty tier
       required:

@@ -1,3 +1,78 @@
+# 2025-09-11
+
+
+## POST /api/connector/v1/loyaltyPrograms/add
+- :warning: removed '#/components/schemas/LoyaltyProgramSubscription' from the 'LoyaltyPrograms/items/Subscription' request property 'anyOf' list
+- :warning: removed '#/components/schemas/LoyaltyProgramType' from the 'LoyaltyPrograms/items/Type' request property 'anyOf' list
+- :warning: request property 'LoyaltyPrograms/items/Subscription' was restricted to a list of enum values
+- :warning: request property 'LoyaltyPrograms/items/Type' was restricted to a list of enum values
+- :warning: the request property 'LoyaltyPrograms/items/Subscription' became not nullable
+- :warning: the request property 'LoyaltyPrograms/items/Type' became not nullable
+- :warning: the request property 'LoyaltyPrograms/items/Subscription' became required
+- :warning: the request property 'LoyaltyPrograms/items/Type' became required
+- :warning: the 'LoyaltyPrograms/items/Subscription' request property type/format changed from ''/'' to 'string'/''
+- :warning: the 'LoyaltyPrograms/items/Type' request property type/format changed from ''/'' to 'string'/''
+- :warning: the 'LoyaltyPrograms' response property's minItems was decreased from '1' to '0' for the response status '200'
+- :warning: the 'LoyaltyPrograms/items/Subscription' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'LoyaltyPrograms/items/Type' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+- :warning: added the new 'ExternalPartner' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Free' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'Hotel' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Paid' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'SoftBrand' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Unknown' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+-  added the new 'ExternalPartner' enum value to the request property 'LoyaltyPrograms/items/Type'
+-  added the new 'Free' enum value to the request property 'LoyaltyPrograms/items/Subscription'
+-  added the new 'Hotel' enum value to the request property 'LoyaltyPrograms/items/Type'
+-  added the new 'Paid' enum value to the request property 'LoyaltyPrograms/items/Subscription'
+-  added the new 'SoftBrand' enum value to the request property 'LoyaltyPrograms/items/Type'
+-  added the new 'Unknown' enum value to the request property 'LoyaltyPrograms/items/Type'
+-  removed '#/components/schemas/LoyaltyProgramSubscription' from the 'LoyaltyPrograms/items/Subscription' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/LoyaltyProgramType' from the 'LoyaltyPrograms/items/Type' response property 'anyOf' list for the response status '200'
+-  the response property 'LoyaltyPrograms/items/Subscription' became required for the status '200'
+-  the response property 'LoyaltyPrograms/items/Type' became required for the status '200'
+
+
+## POST /api/connector/v1/loyaltyPrograms/getAll
+- :warning: the 'LoyaltyPrograms/items/Subscription' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'LoyaltyPrograms/items/Type' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'ExternalPartner' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Free' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'Hotel' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Paid' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'SoftBrand' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Unknown' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+-  removed '#/components/schemas/LoyaltyProgramSubscription' from the 'LoyaltyPrograms/items/Subscription' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/LoyaltyProgramType' from the 'LoyaltyPrograms/items/Type' response property 'anyOf' list for the response status '200'
+-  the response property 'LoyaltyPrograms/items/Subscription' became required for the status '200'
+-  the response property 'LoyaltyPrograms/items/Type' became required for the status '200'
+
+
+## POST /api/connector/v1/loyaltyPrograms/update
+- :warning: added '#/components/schemas/LoyaltyProgramSubscriptionUpdateValue' to the 'LoyaltyProgramUpdates/items/Subscription' request property 'allOf' list
+- :warning: added '#/components/schemas/LoyaltyProgramTypeUpdateValue' to the 'LoyaltyProgramUpdates/items/Type' request property 'allOf' list
+- :warning: removed '#/components/schemas/LoyaltyProgramSubscription' from the 'LoyaltyProgramUpdates/items/Subscription' request property 'anyOf' list
+- :warning: removed '#/components/schemas/LoyaltyProgramType' from the 'LoyaltyProgramUpdates/items/Type' request property 'anyOf' list
+- :warning: the 'LoyaltyPrograms' response property's minItems was decreased from '1' to '0' for the response status '200'
+- :warning: the 'LoyaltyPrograms/items/Subscription' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'LoyaltyPrograms/items/Type' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: removed '#/components/schemas/StringUpdateValue' from the 'LoyaltyProgramUpdates/items/Subscription' request property 'allOf' list
+- :warning: removed '#/components/schemas/StringUpdateValue' from the 'LoyaltyProgramUpdates/items/Type' request property 'allOf' list
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+- :warning: added the new 'ExternalPartner' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Free' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'Hotel' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Paid' enum value to the 'LoyaltyPrograms/items/Subscription' response property for the response status '200'
+- :warning: added the new 'SoftBrand' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+- :warning: added the new 'Unknown' enum value to the 'LoyaltyPrograms/items/Type' response property for the response status '200'
+-  removed '#/components/schemas/LoyaltyProgramSubscription' from the 'LoyaltyPrograms/items/Subscription' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/LoyaltyProgramType' from the 'LoyaltyPrograms/items/Type' response property 'anyOf' list for the response status '200'
+-  the response property 'LoyaltyPrograms/items/Subscription' became required for the status '200'
+-  the response property 'LoyaltyPrograms/items/Type' became required for the status '200'
+
+
+
 # 2025-09-10
 
 
