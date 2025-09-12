@@ -1,3 +1,68 @@
+# 2025-09-12
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: the 'Resources/items/State' response property's minLength was decreased from '1' to '0' for the response status '200'
+- :warning: added 'subschema #2: Object resource data, subschema #3: Person resource data' to the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+- :warning: added the new 'Clean' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Dirty' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Inspected' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Object' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'OutOfOrder' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'OutOfService' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Person' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'Space' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+-  removed 'subschema #2, subschema #3' from the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: the 'Resources/items/State' response property's minLength was decreased from '1' to '0' for the response status '200'
+- :warning: added 'subschema #2: Object resource data, subschema #3: Person resource data' to the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+- :warning: added the new 'Clean' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Dirty' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Inspected' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Object' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'OutOfOrder' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'OutOfService' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Person' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'Space' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+-  removed 'subschema #2, subschema #3' from the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+
+
+## POST /api/connector/v1/resources/getAll
+- :warning: the request property 'Extent' became not nullable
+- :warning: the request property 'Extent' became required
+- :warning: the 'Resources/items/State' response property's minLength was decreased from '1' to '0' for the response status '200'
+- :warning: added 'subschema #2: Object resource data, subschema #3: Person resource data' to the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+- :warning: added the new 'Clean' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Dirty' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Inspected' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Object' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'OutOfOrder' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'OutOfService' enum value to the 'Resources/items/State' response property for the response status '200'
+- :warning: added the new 'Person' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+- :warning: added the new 'Space' enum value to the 'Resources/items/Data/Discriminator' response property for the response status '200'
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/Inactive' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/ResourceCategories' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/ResourceCategoryAssignments' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/ResourceCategoryImageAssignments' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/ResourceFeatureAssignments' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/ResourceFeatures' became nullable
+-  the request property 'Extent/allOf[subschema #1: ResourceExtent -> subschema #1: Resource extent]/Resources' became nullable
+-  removed 'subschema #2, subschema #3' from the 'Resources/items/Data/Value' response property 'oneOf' list for the response status '200'
+
+
+## POST /api/connector/v1/resources/getOccupancyState
+-  added '#/components/schemas/ResourceState' to the 'ResourceCategoryOccupancyStates/items/ResourceOccupancyStates/items/ResourceState' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/ResourceStateEnum' from the 'ResourceCategoryOccupancyStates/items/ResourceOccupancyStates/items/ResourceState' response property 'allOf' list for the response status '200'
+
+
+## POST /api/connector/v1/resources/update
+- :warning: removed '#/components/schemas/SpaceData, subschema #2, subschema #3' from the 'ResourceUpdates/items/Data/Value' request property 'oneOf' list
+-  added '#/components/schemas/SpaceDataUpdateParameters, subschema #2: Object resource data update, subschema #3: Person resource data update' to the 'ResourceUpdates/items/Data/Value' request property 'oneOf' list
+
+
+
 # 2025-09-11
 
 
