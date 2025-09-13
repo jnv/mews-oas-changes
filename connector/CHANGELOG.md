@@ -1,3 +1,19 @@
+# 2025-09-13
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the required property 'AvailabilityBlocks/items/BusinessSegmentId' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the required property 'AvailabilityBlocks/items/BusinessSegmentId' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the required property 'AvailabilityBlocks/items/BusinessSegmentId' to the response with the '200' status
+
+
+
 # 2025-09-12
 
 
