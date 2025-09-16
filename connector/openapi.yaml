@@ -4376,7 +4376,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContractResult'
+                $ref: '#/components/schemas/ContractAdditionResult'
               example:
                 TravelAgencyContracts:
                   - Id: 0078f370-3787-43dc-a615-af150066bb88
@@ -4490,7 +4490,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContractResult'
+                $ref: '#/components/schemas/ContractUpdateResult'
               example:
                 TravelAgencyContracts:
                   - Id: 0078f370-3787-43dc-a615-af150066bb88
@@ -4560,7 +4560,7 @@ paths:
       tags:
         - Company contracts
       summary: Delete company contracts
-      description: Deletes one or more company contracts.
+      description: 'Deletes one or more company contracts. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: companyContracts_delete
       requestBody:
         content:
@@ -19878,6 +19878,7 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
+          nullable: true
           deprecated: true
           x-coproduct: true
           x-schema-id: BillAssigneeDataCoproductOfBillAssigneeDataDiscriminator
@@ -19892,7 +19893,8 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/BillCompanyData'
                 - $ref: '#/components/schemas/BillCustomerData'
-          description: 'Additional information about owner of the bill. Can be a [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company). Persisted at the time of closing of the bill.'
+          description: Additional information about owner of the bill. Can be a `Customer` or `Company`. Persisted at the time of closing of the bill.
+          nullable: true
           x-coproduct: true
           x-schema-id: BillOwnerDataCoproductOfBillAssigneeDataDiscriminator
         CompanyDetails:
@@ -20623,6 +20625,8 @@ components:
       x-schema-id: BillPdfParameters
     BillPdfResult:
       title: BillPdfResult
+      required:
+        - Result
       type: object
       properties:
         BillId:
@@ -20639,6 +20643,7 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/BillPdfFile'
                 - $ref: '#/components/schemas/BillPrintEvent'
+          description: The result of operation.
           x-coproduct: true
           x-schema-id: BillPdfResultResultCoproductOfBillPdfResultDiscriminator
       additionalProperties: false
@@ -20649,7 +20654,7 @@ components:
         - BillPdfFile
         - BillPrintEvent
       type: string
-      description: The result of operation.
+      description: ''
       x-enumDescriptions:
         - 'PDF version of a `Bill` was successfully created, `Value` is `BillPdfFile`.'
         - 'PDF version of a `Bill` couldn''t be created at this moment (for example bill haven''t been reported to authorities yet), `Value` is `BillPrintEvent`'
@@ -23800,7 +23805,6 @@ components:
         - Client
         - ClientToken
         - Limitation
-        - ServiceIds
       type: object
       properties:
         ClientToken:
@@ -23835,7 +23839,7 @@ components:
           items:
             type: string
             format: uuid
-          description: Unique identifier of the Travel agency contract to fetch.
+          description: Unique identifier of the Travel agency contracts to fetch.
           nullable: true
         CompanyIds:
           maxItems: 1000
@@ -23844,7 +23848,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Companies](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) assigned with Travel agency contracts.'
+          description: Unique identifiers of `Company` assigned with Travel agency contracts.
           nullable: true
         ServiceIds:
           maxItems: 1000
@@ -23853,17 +23857,20 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) where the Travel agency contract belong to.'
+          description: Unique identifiers of `Service` where the Travel agency contracts belong to.
+          nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the Travel agency contracts were updated.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
           type: array
           items:
             $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted or both records.'
           nullable: true
       additionalProperties: false
       x-schema-id: CompanyContractFilterParameters
@@ -24378,6 +24385,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ConnectorApiExceptionResult
+    ContractAdditionResult:
+      title: ContractAdditionResult
+      required:
+        - TravelAgencyContracts
+      type: object
+      properties:
+        TravelAgencyContracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelAgencyContract'
+          description: The added travel agency contracts.
+      additionalProperties: false
+      x-schema-id: ContractAdditionResult
     ContractResult:
       title: ContractResult
       required:
@@ -24388,14 +24408,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TravelAgencyContract'
-          description: The updated travel agency contracts.
+          description: The travel agency contracts.
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest contract returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older messages.'
+          description: Unique identifier of the last and hence oldest contract returned. This can be used in `Limitation` in a subsequent request to fetch the next batch of older messages.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: ContractResult
+    ContractUpdateResult:
+      title: ContractUpdateResult
+      required:
+        - TravelAgencyContracts
+      type: object
+      properties:
+        TravelAgencyContracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelAgencyContract'
+          description: The updated travel agency contracts.
+      additionalProperties: false
+      x-schema-id: ContractUpdateResult
     Coproduct:
       title: Coproduct
       required:
@@ -32064,7 +32097,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) the travel agency contract belongs to.'
+          description: Unique identifiers of the `Service` the travel agency contract belongs to.
       additionalProperties: false
       x-schema-id: MultipleCompanyContractDeleteParameters
     MultipleCompanyContractUpdateParameters:
@@ -33970,6 +34003,7 @@ components:
                 - $ref: '#/components/schemas/RebateOrderItemData'
                 - $ref: '#/components/schemas/ProductOrderItemData'
           description: Additional data specific to particular order item.
+          nullable: true
           x-coproduct: true
           x-schema-id: OrderItemOldDataCoproductOfOrderItemTypeOld
       additionalProperties: false
@@ -35353,6 +35387,7 @@ components:
                 - $ref: '#/components/schemas/PaymentCardPaymentData'
                 - $ref: '#/components/schemas/InvoicePaymentData'
           description: Additional data specific to particular payment item.
+          nullable: true
           x-coproduct: true
           x-schema-id: PaymentItemOldDataCoproductOfPaymentType
       additionalProperties: false
@@ -36397,6 +36432,7 @@ components:
         - Ordering
         - PostingMode
         - Price
+        - Pricing
         - Promotions
         - ServiceId
         - ShortNames
@@ -42713,6 +42749,8 @@ components:
                   type: object
                   additionalProperties: false
               description: 'Based on `Discriminator`. Currently supported only for `Space` resources with [Space resource data update](https://mews-systems.gitbook.io/connector-api/operations/resources#space-resource-data-update).'
+          description: New additional data of the resource.
+          nullable: true
           x-coproduct: true
           x-schema-id: ResourceUpdateParametersDataCoproductOfResourceDataDiscriminator
         State:
@@ -43802,6 +43840,7 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/RuleActionProductData'
           description: Additional information about action.
+          nullable: true
           x-coproduct: true
           x-schema-id: RuleActionDataCoproductOfRuleActionDiscriminator
       additionalProperties: false
@@ -46288,6 +46327,7 @@ components:
         - CreatedUtc
         - Id
         - IsActive
+        - Options
         - ServiceId
         - UpdatedUtc
       type: object
@@ -46298,18 +46338,18 @@ components:
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) the contract is related to.'
+          description: Unique identifier of the `Service` the contract is related to.
           format: uuid
         CompanyId:
           type: string
-          description: 'Unique identifier of the contracted [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company).'
+          description: Unique identifier of the contracted `Company`.
           format: uuid
         IsActive:
           type: boolean
           description: Whether the contract is still active.
         CommissionIncluded:
           type: boolean
-          description: 'Whether commission of the travel agency is included in the rate. When CommissionIncluded is not provided in the response, that means commission is unspecified, when set to true it means the the commission is included in the rate and false means the commission in not included in the rate.'
+          description: 'Whether commission of the travel agency is included in the rate. When `CommissionIncluded` is not provided in the response, that means commission is unspecified, when set to true it means the the commission is included in the rate and false means the commission in not included in the rate.'
           nullable: true
         Commission:
           type: number
@@ -46327,11 +46367,10 @@ components:
           format: double
           nullable: true
         Options:
-          title: TravelAgencyContractOptions
+          title: Travel agency contract options
           allOf:
             - $ref: '#/components/schemas/TravelAgencyContractOptions'
           description: Options of the travel agency contract.
-          nullable: true
         AccountingCode:
           type: string
           description: Accounting code of the travel agency contract.
@@ -46342,6 +46381,7 @@ components:
           nullable: true
         ChannelManagerBusinessSegmentId:
           type: string
+          description: 'Unique identifier of the `BusinessSegment` used for incoming reservations originating from Channel Managers, for this particular contract.'
           format: uuid
           nullable: true
         ContactPerson:
@@ -46374,160 +46414,194 @@ components:
       additionalProperties: false
       x-schema-id: TravelAgencyContract
     TravelAgencyContractAddParameters:
-      title: TravelAgencyContractAddParameters
+      title: Travel agency contract parameters
       required:
         - CompanyId
+        - Options
         - ServiceId
       type: object
       properties:
         ServiceId:
           type: string
+          description: Unique identifier of the `Service` the travel agency contract is created to.
           format: uuid
         CompanyId:
           type: string
+          description: Unique identifier of the `Company` the travel agency contract is issued to.
           format: uuid
         CommissionIncluded:
           type: boolean
+          description: Whether commission of the travel agency is included in the rate.
           nullable: true
         Commission:
           type: number
+          description: Commission of the travel agency. Value must be between 0 and 1.
           format: double
           nullable: true
         ChannelManagerBusinessSegmentId:
           type: string
+          description: 'Unique identifier of the `BusinessSegment` used for incoming reservations originating from Channel Managers, for this particular contract.'
           format: uuid
           nullable: true
         ChannelManagerAbsoluteAdjustment:
           type: number
+          description: Flat fee added to (or subtracted from) the reservation price when coming from Channel Managers.
           format: double
           nullable: true
         ChannelManagerRelativeAdjustment:
           type: number
+          description: Percentage of the reservation price added to (or subtracted from) price when coming from Channel Managers. Value must be between -1 and 1.
           format: double
           nullable: true
         Options:
-          title: TravelAgencyContractOptions
+          title: Travel agency contract options
           allOf:
             - $ref: '#/components/schemas/TravelAgencyContractOptions'
           description: Options of the travel agency contract.
-          nullable: true
         AccountingCode:
           type: string
+          description: Accounting code of the travel agency contract.
           nullable: true
         InvoiceDueInterval:
           type: string
+          description: 'The maximum time, when the invoice has to be be paid in ISO 8601 duration format.'
           nullable: true
         ContactPerson:
           type: string
+          description: Contact person of the travel agency.
           nullable: true
         ContactEmail:
           type: string
+          description: Contact email of the travel agency.
           format: email
           nullable: true
         AdditionalContactInfo:
           type: string
+          description: Additional contact info of the travel agency.
           nullable: true
         Notes:
           type: string
+          description: Additional notes of the travel agency contract.
           nullable: true
       additionalProperties: false
       x-schema-id: TravelAgencyContractAddParameters
     TravelAgencyContractOptions:
-      title: TravelAgencyContractOptions
+      title: Travel agency contract options
+      required:
+        - IncludeCancellationFeeInCommissionEstimate
+        - SkipAutomaticSettlement
       type: object
       properties:
         IncludeCancellationFeeInCommissionEstimate:
           type: boolean
+          description: Cancellation fee will be considered when calculating the travel agency commission estimate.
         SkipAutomaticSettlement:
           type: boolean
+          description: Reservations from travel agencies will not be automatically charged.
       additionalProperties: false
-      description: Options of the travel agency contract.
+      description: ''
       x-schema-id: TravelAgencyContractOptions
     TravelAgencyContractOptionsParameters:
-      title: TravelAgencyContractOptionsParameters
+      title: Travel agency contract update options
+      required:
+        - IncludeCancellationFeeInCommissionEstimate
+        - SkipAutomaticSettlement
       type: object
       properties:
         IncludeCancellationFeeInCommissionEstimate:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-          nullable: true
+          description: Cancellation fee will be considered when calculating the travel agency commission estimate.
         SkipAutomaticSettlement:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-          nullable: true
+          description: Reservations from travel agencies will not be automatically charged.
       additionalProperties: false
       x-schema-id: TravelAgencyContractOptionsParameters
     TravelAgencyContractUpdateParameters:
-      title: TravelAgencyContractUpdateParameters
+      title: Travel agency contract update parameters
       required:
         - TravelAgencyContractId
       type: object
       properties:
         TravelAgencyContractId:
           type: string
+          description: Unique identifier of the Travel agency contract.
           format: uuid
         CommissionIncluded:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanNullableUpdateValue'
+          description: Whether commission of the travel agency is included in the rate.
           nullable: true
         Commission:
           title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
+          description: Commission of the travel agency.
           nullable: true
         ChannelManagerBusinessSegmentId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: 'Unique identifier of the `BusinessSegment` used for incoming reservations originating from Channel Managers, for this particular contract.'
           nullable: true
         ChannelManagerAbsoluteAdjustment:
           title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
+          description: Flat fee added to (or subtracted from) the reservation price when coming from Channel Managers.
           nullable: true
         ChannelManagerRelativeAdjustment:
           title: Decimal update value
           allOf:
             - $ref: '#/components/schemas/DecimalNullableUpdateValue'
+          description: Percentage of the reservation price added to (or subtracted from) price when coming from Channel Managers.
           nullable: true
         Options:
-          title: TravelAgencyContractOptionsParameters
+          title: Travel agency contract update options
           allOf:
             - $ref: '#/components/schemas/TravelAgencyContractOptionsParameters'
+          description: Options of the travel agency contract.
           nullable: true
         AccountingCode:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Accounting code of the travel agency contract.
           nullable: true
         InvoiceDueInterval:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'The maximum time, when the invoice has to be be paid in ISO 8601 duration format.'
           nullable: true
         ContactPerson:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Contact person of the travel agency.
           nullable: true
         ContactEmail:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Contact email of the travel agency.
           format: email
           nullable: true
         AdditionalContactInfo:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Additional contact info of the travel agency.
           nullable: true
         Notes:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Additional notes of the travel agency contract.
           nullable: true
       additionalProperties: false
       x-schema-id: TravelAgencyContractUpdateParameters

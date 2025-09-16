@@ -1,3 +1,125 @@
+# 2025-09-16
+
+
+## POST /api/connector/v1/accountingItems/getAll
+- :warning: the response property 'OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/accountingItems/update
+- :warning: the response property 'OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/bills/add
+- :warning: the response property 'Bills/items/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/bills/close
+- :warning: the response property 'Bills/items/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/bills/getAll
+- :warning: the response property 'Bills/items/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/bills/getPdf
+-  the response property 'Result' became required for the status '200'
+
+
+## POST /api/connector/v1/bills/update
+- :warning: the response property 'Bills/items/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Bills/items/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Bills/items/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllActive
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/commands/getAllByIds
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/AssigneeData' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/OwnerData' became nullable for the status '200'
+- :warning: the response property 'Commands/items/Data/oneOf[subschema #4: Fiscal machine command data]/Bill/allOf[subschema #1: Bill]/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/companyContracts/add
+- :warning: the request property 'TravelAgencyContracts/items/Options' became not nullable
+- :warning: the request property 'TravelAgencyContracts/items/Options' became required
+- :warning: the request property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/IncludeCancellationFeeInCommissionEstimate' became required
+- :warning: the request property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/SkipAutomaticSettlement' became required
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  the response property 'TravelAgencyContracts/items/Options' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/IncludeCancellationFeeInCommissionEstimate' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/SkipAutomaticSettlement' became required for the status '200'
+
+
+## POST /api/connector/v1/companyContracts/getAll
+-  the request property 'ServiceIds' became nullable
+-  the request property 'ServiceIds' became optional
+-  the response property 'TravelAgencyContracts/items/Options' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/IncludeCancellationFeeInCommissionEstimate' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/SkipAutomaticSettlement' became required for the status '200'
+
+
+## POST /api/connector/v1/companyContracts/update
+- :warning: the request property 'TravelAgencyContractUpdates/items/Options/allOf[subschema #1: TravelAgencyContractOptionsParameters -> subschema #1: Travel agency contract update options]/IncludeCancellationFeeInCommissionEstimate' became not nullable
+- :warning: the request property 'TravelAgencyContractUpdates/items/Options/allOf[subschema #1: TravelAgencyContractOptionsParameters -> subschema #1: Travel agency contract update options]/SkipAutomaticSettlement' became not nullable
+- :warning: the request property 'TravelAgencyContractUpdates/items/Options/allOf[subschema #1: TravelAgencyContractOptionsParameters -> subschema #1: Travel agency contract update options]/IncludeCancellationFeeInCommissionEstimate' became required
+- :warning: the request property 'TravelAgencyContractUpdates/items/Options/allOf[subschema #1: TravelAgencyContractOptionsParameters -> subschema #1: Travel agency contract update options]/SkipAutomaticSettlement' became required
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  the response property 'TravelAgencyContracts/items/Options' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/IncludeCancellationFeeInCommissionEstimate' became required for the status '200'
+-  the response property 'TravelAgencyContracts/items/Options/allOf[subschema #1: TravelAgencyContractOptions -> subschema #1: Travel agency contract options]/SkipAutomaticSettlement' became required for the status '200'
+
+
+## POST /api/connector/v1/customers/getOpenItems
+- :warning: the response property 'Customers/items/OrderItems/items/Data' became nullable for the status '200'
+- :warning: the response property 'Customers/items/PaymentItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/products/getAll
+-  the response property 'CustomerProducts/items/Pricing' became required for the status '200'
+-  the response property 'Products/items/Pricing' became required for the status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: the response property 'OrderItems/items/Data' became nullable for the status '200'
+-  the response property 'Products/items/Pricing' became required for the status '200'
+
+
+## POST /api/connector/v1/reservations/getAllItems
+- :warning: the response property 'Reservations/items/OrderItems/items/Data' became nullable for the status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: the response property 'OrderItems/items/Data' became nullable for the status '200'
+-  the response property 'Products/items/Pricing' became required for the status '200'
+
+
+## POST /api/connector/v1/resources/update
+-  the request property 'ResourceUpdates/items/Data' became nullable
+
+
+## POST /api/connector/v1/rules/getAll
+- :warning: the response property 'RuleActions/items/Data' became nullable for the status '200'
+
+
+
 # 2025-09-13
 
 
