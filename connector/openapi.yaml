@@ -12119,7 +12119,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResourceAccessTokenResult'
+                $ref: '#/components/schemas/ResourceAccessTokenAdditionResult'
               example:
                 ResourceAccessTokens:
                   - Id: 72d4b117-1f84-44a3-1f84-8b2c0635ac60
@@ -12219,7 +12219,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResourceAccessTokenResult'
+                $ref: '#/components/schemas/ResourceAccessTokenUpdateResult'
               example:
                 ResourceAccessTokens:
                   - Id: 72d4b117-1f84-44a3-1f84-8b2c0635ac60
@@ -12361,30 +12361,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ResourceBlockParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              ResourceBlockIds:
-                - c478f1b3-7edb-4ccc-8f07-dd32fae1ca70
-              AssignedResourceIds:
-                - b64f088d-49b5-4d5f-9766-2e27c4b75e27
-              CollidingUtc:
-                StartUtc: '2020-01-25T00:00:00Z'
-                EndUtc: '2020-01-30T00:00:00Z'
-              CreatedUtc:
-                StartUtc: '2020-01-05T00:00:00Z'
-                EndUtc: '2020-01-10T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2020-01-15T00:00:00Z'
-                EndUtc: '2020-01-20T00:00:00Z'
-              Extent:
-                Inactive: true
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceBlockIds":["7f8e9d0c-1b2a-3c4d-5e6f-7a8b9c0d1e2f","8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b","63f4ebee-7e36-4ca9-b7d8-6331a8b009e5"],"AssignedResourceIds":["20e00c32-d561-4008-8609-82d8aa525714","1ec29188-01ca-4294-9983-fac59f85a448","a1b2c3d4-e5f6-7890-abcd-ef1234567890"],"ActivityStates":["Active","Deleted"],"CollidingUtc":{"StartUtc":"2023-06-01T00:00:00Z","EndUtc":"2023-07-31T23:59:59Z"},"CreatedUtc":{"StartUtc":"2023-06-01T00:00:00Z","EndUtc":"2023-08-31T00:00:00Z"},"UpdatedUtc":{"StartUtc":"2023-06-01T00:00:00Z","EndUtc":"2023-07-31T23:59:59Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -12392,24 +12369,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResourceBlockResult'
-              example:
-                ResourceBlocks:
-                  - Id: 0913bd1d-69fc-4bcb-82d3-5a40520c8fb0
-                    AssignedResourceId: 0d71d44e-3d85-4506-9b6f-aab500b69c52
-                    Name: Resource block 1
-                    StartUtc: '2019-10-15T10:00:00Z'
-                    EndUtc: '2019-10-20T10:00:00Z'
-                    Type: OutOfOrder
-                    CreatedUtc: '2016-06-01T15:14:06Z'
-                    UpdatedUtc: '2016-06-01T15:14:06Z'
-                  - Id: 4d98ad40-a726-409e-8bf3-2c12ff3c0331
-                    AssignedResourceId: f7c4b4f5-ac83-4977-a41a-63d27cc6e3e9
-                    Name: Resource block 2
-                    StartUtc: '2019-10-15T10:00:00Z'
-                    EndUtc: '2019-10-20T10:00:00Z'
-                    Type: InternalUse
-                    CreatedUtc: '2016-06-01T15:14:06Z'
-                    UpdatedUtc: '2016-06-01T15:14:06Z'
+              example: {"ResourceBlocks":[{"Id":"7f8e9d0c-1b2a-3c4d-5e6f-7a8b9c0d1e2f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","IsActive":true,"Type":"OutOfOrder","StartUtc":"2023-07-15T14:00:00Z","EndUtc":"2023-07-15T18:00:00Z","CreatedUtc":"2023-07-10T09:30:00Z","UpdatedUtc":"2023-07-10T09:30:00Z","DeletedUtc":null,"Name":"Maintenance Block - Room 101","Notes":"Scheduled maintenance for air conditioning unit"},{"Id":"8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"1ec29188-01ca-4294-9983-fac59f85a448","IsActive":true,"Type":"InternalUse","StartUtc":"2023-07-20T10:00:00Z","EndUtc":"2023-07-22T12:00:00Z","CreatedUtc":"2023-07-18T14:20:00Z","UpdatedUtc":"2023-07-18T14:20:00Z","DeletedUtc":null,"Name":"Staff Training Session","Notes":null},{"Id":"63f4ebee-7e36-4ca9-b7d8-6331a8b009e5","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"a1b2c3d4-e5f6-7890-abcd-ef1234567890","IsActive":false,"Type":"OutOfOrder","StartUtc":"2023-06-01T20:00:00Z","EndUtc":"2023-06-03T23:59:59Z","CreatedUtc":"2023-06-01T16:45:00Z","UpdatedUtc":"2023-06-04T08:15:00Z","DeletedUtc":"2023-06-04T08:15:00Z","Name":"Renovation Block - Suite 1","Notes":"Room renovation completed, block removed"}],"Cursor":"9f0a1b2c-3d4e-5f6a-7b8c-9d0e1f2a3b4c"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -12464,48 +12424,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleResourceBlockAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ResourceBlocks:
-                - ResourceId: 0d71d44e-3d85-4506-9b6f-aab500b69c52
-                  Name: Resource block 1
-                  StartUtc: '2019-10-15T10:00:00Z'
-                  EndUtc: '2019-10-20T10:00:00Z'
-                  Type: OutOfOrder
-                  Notes: Note
-                - ResourceId: f7c4b4f5-ac83-4977-a41a-63d27cc6e3e9
-                  Name: Resource block 2
-                  StartUtc: '2019-10-15T10:00:00Z'
-                  EndUtc: '2019-10-20T10:00:00Z'
-                  Type: InternalUse
-                  Notes: Note
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceBlocks":[{"ResourceId":"20e00c32-d561-4008-8609-82d8aa525714","Name":"Maintenance Block - Room 101","Type":"OutOfOrder","StartUtc":"2023-08-01T14:00:00Z","EndUtc":"2023-08-01T18:00:00Z","Notes":"Scheduled maintenance for air conditioning unit"},{"ResourceId":"1ec29188-01ca-4294-9983-fac59f85a448","Name":"Staff Training Session","Type":"InternalUse","StartUtc":"2023-08-05T10:00:00Z","EndUtc":"2023-08-05T16:00:00Z","Notes":"Internal training session for new staff members"},{"ResourceId":"a1b2c3d4-e5f6-7890-abcd-ef1234567890","Name":"Deep Cleaning Block","Type":"OutOfOrder","StartUtc":"2023-08-10T09:00:00Z","EndUtc":"2023-08-10T17:00:00Z","Notes":"Deep cleaning and sanitization process"}]}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResourceBlockResult'
-              example:
-                ResourceBlocks:
-                  - Id: 0913bd1d-69fc-4bcb-82d3-5a40520c8fb0
-                    AssignedResourceId: 0d71d44e-3d85-4506-9b6f-aab500b69c52
-                    Name: Resource block 1
-                    StartUtc: '2019-10-15T10:00:00Z'
-                    EndUtc: '2019-10-20T10:00:00Z'
-                    Type: OutOfOrder
-                    CreatedUtc: '2016-06-01T15:14:06Z'
-                    UpdatedUtc: '2016-06-01T15:14:06Z'
-                  - Id: 4d98ad40-a726-409e-8bf3-2c12ff3c0331
-                    AssignedResourceId: f7c4b4f5-ac83-4977-a41a-63d27cc6e3e9
-                    Name: Resource block 2
-                    StartUtc: '2019-10-15T10:00:00Z'
-                    EndUtc: '2019-10-20T10:00:00Z'
-                    Type: InternalUse
-                    CreatedUtc: '2016-06-01T15:14:06Z'
-                    UpdatedUtc: '2016-06-01T15:14:06Z'
+                $ref: '#/components/schemas/ResourceBlockAdditionResult'
+              example: {"ResourceBlocks":[{"Id":"7f8e9d0c-1b2a-3c4d-5e6f-7a8b9c0d1e2f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","IsActive":true,"Type":"OutOfOrder","StartUtc":"2023-08-01T14:00:00Z","EndUtc":"2023-08-01T18:00:00Z","CreatedUtc":"2023-07-25T10:30:00Z","UpdatedUtc":"2023-07-25T10:30:00Z","DeletedUtc":null,"Name":"Maintenance Block - Room 101","Notes":"Scheduled maintenance for air conditioning unit"},{"Id":"8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"1ec29188-01ca-4294-9983-fac59f85a448","IsActive":true,"Type":"InternalUse","StartUtc":"2023-08-05T10:00:00Z","EndUtc":"2023-08-05T16:00:00Z","CreatedUtc":"2023-07-25T10:30:00Z","UpdatedUtc":"2023-07-25T10:30:00Z","DeletedUtc":null,"Name":"Staff Training Session","Notes":"Internal training session for new staff members"},{"Id":"9f0a1b2c-3d4e-5f6a-7b8c-9d0e1f2a3b4c","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AssignedResourceId":"a1b2c3d4-e5f6-7890-abcd-ef1234567890","IsActive":true,"Type":"OutOfOrder","StartUtc":"2023-08-10T09:00:00Z","EndUtc":"2023-08-10T17:00:00Z","CreatedUtc":"2023-07-25T10:30:00Z","UpdatedUtc":"2023-07-25T10:30:00Z","DeletedUtc":null,"Name":"Deep Cleaning Block","Notes":"Deep cleaning and sanitization process"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -12560,13 +12487,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ResourceBlockDeleteParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              ResourceBlockIds:
-                - bf1e10b7-8a03-4675-9e27-05fc84312a58
-                - e8fb6bfb-d64a-4e7c-acfe-ab0400d01183
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceBlockIds":["63f4ebee-7e36-4ca9-b7d8-6331a8b009e5"]}
       responses:
         '200':
           description: OK
@@ -32781,7 +32702,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceAccessTokenParameters'
-          description: 'Parameters of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
+          description: Parameters of resource access token.
       additionalProperties: false
       x-schema-id: MultipleResourceAccessTokenParameters
     MultipleResourceAccessTokenUpdateParameters:
@@ -32813,7 +32734,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceAccessTokenUpdateParameters'
-          description: 'Parameters of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
+          description: Parameters of resource access token to update.
           nullable: true
       additionalProperties: false
       x-schema-id: MultipleResourceAccessTokenUpdateParameters
@@ -40872,44 +40793,46 @@ components:
         - EnterpriseId
         - Id
         - IsActive
+        - Permissions
         - ServiceOrderId
         - Type
         - UpdatedUtc
         - ValidityEndUtc
         - ValidityStartUtc
+        - Value
       type: object
       properties:
         Id:
           type: string
-          description: 'Unique identifier of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
+          description: Unique identifier of the resource access token.
           format: uuid
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise).'
+          description: Unique identifier of the `Enterprise`.
           format: uuid
         ServiceOrderId:
           type: string
-          description: Unique identifier of a reservation.
+          description: Unique identifier of `Reservation`.
           format: uuid
         CompanionshipId:
           type: string
-          description: 'Unique identifier of [Companionship](https://mews-systems.gitbook.io/connector-api/operations/companionships/#companionship).'
+          description: Unique identifier of `Companionship`.
           format: uuid
           nullable: true
         ResourceId:
           type: string
-          description: 'Unique identifier of [Resource](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource).'
+          description: Unique identifier of `Resource`.
           format: uuid
           nullable: true
         Type:
           $ref: '#/components/schemas/ResourceAccessTokenType'
         Value:
+          minLength: 1
           type: string
-          description: Value of resource access token
-          nullable: true
+          description: Value of the resource access token.
         SerialNumber:
           type: string
-          description: 'Serial number of [Resource access token type](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token-type).'
+          description: Serial number of the resource access token.
           nullable: true
         ValidityStartUtc:
           minLength: 1
@@ -40922,11 +40845,10 @@ components:
           description: Marks the end of interval in which the resource access token can be used.
           format: date-time
         Permissions:
-          title: ResourceAccessTokenPermissions
+          title: Resource access token permissions
           allOf:
             - $ref: '#/components/schemas/ResourceAccessTokenPermissions'
-          description: 'Specify permissions of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
-          nullable: true
+          description: Permissions of the resource access token.
         CreatedUtc:
           minLength: 1
           type: string
@@ -40942,12 +40864,26 @@ components:
           description: Whether the resource access token is still active.
       additionalProperties: false
       x-schema-id: ResourceAccessToken
+    ResourceAccessTokenAdditionResult:
+      title: ResourceAccessTokenAdditionResult
+      required:
+        - ResourceAccessTokens
+      type: object
+      properties:
+        ResourceAccessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceAccessToken'
+          description: Added resource access tokens.
+      additionalProperties: false
+      x-schema-id: ResourceAccessTokenAdditionResult
     ResourceAccessTokenDeleteParameters:
       title: ResourceAccessTokenDeleteParameters
       required:
         - AccessToken
         - Client
         - ClientToken
+        - Ids
       type: object
       properties:
         ClientToken:
@@ -40967,8 +40903,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
-          nullable: true
+          description: Unique identifiers of the resource access token to delete.
       additionalProperties: false
       x-schema-id: ResourceAccessTokenDeleteParameters
     ResourceAccessTokenFilterParameters:
@@ -41012,7 +40947,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Resource access tokens](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token). Required if no other filter is provided.'
+          description: Unique identifiers of resource access token. Required if no other filter is provided.
           nullable: true
         ServiceOrderIds:
           maxItems: 1000
@@ -41027,12 +40962,14 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource access token is valid. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which resource access token was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -41044,85 +40981,109 @@ components:
       additionalProperties: false
       x-schema-id: ResourceAccessTokenFilterParameters
     ResourceAccessTokenParameters:
-      title: ResourceAccessTokenParameters
+      title: Resource access token parameter
+      required:
+        - Permissions
+        - ServiceOrderId
+        - Type
+        - ValidityEndUtc
+        - ValidityStartUtc
+        - Value
       type: object
       properties:
         ServiceOrderId:
           type: string
+          description: Unique identifier of a reservation.
           format: uuid
         CompanionshipId:
           type: string
+          description: Unique identifier of `Companionship`.
           format: uuid
           nullable: true
         ResourceId:
           type: string
+          description: Unique identifier of `Resource`.
           format: uuid
           nullable: true
         Value:
+          maxLength: 255
+          minLength: 1
           type: string
-          nullable: true
+          description: Value of the resource access token.
         Type:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/ResourceAccessTokenType'
         SerialNumber:
           type: string
+          description: Serial number of the resource access token.
           nullable: true
         ValidityStartUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Marks the start of interval in which the resource access token can be used.
         ValidityEndUtc:
+          minLength: 1
           type: string
-          nullable: true
+          description: Marks the end of interval in which the resource access token can be used.
         Permissions:
-          title: ResourceAccessTokenPermissionsParameters
+          title: Resource access token permission parameter
           allOf:
             - $ref: '#/components/schemas/ResourceAccessTokenPermissionsParameters'
-          nullable: true
+          description: Specify permissions of the resource access token.
       additionalProperties: false
       x-schema-id: ResourceAccessTokenParameters
     ResourceAccessTokenPermissions:
-      title: ResourceAccessTokenPermissions
+      title: Resource access token permissions
       type: object
       properties:
         Bed:
           type: boolean
+          description: Specify whether the resource access token grants permission to access bed.
         Room:
           type: boolean
+          description: Specify whether the resource access token grants permission to access room.
         Floor:
           type: boolean
+          description: Specify whether the resource access token grants permission to access floor.
         Building:
           type: boolean
+          description: Specify whether the resource access token grants permission to access building.
       additionalProperties: false
-      description: 'Specify permissions of [Resource access token](https://mews-systems.gitbook.io/connector-api/operations/#resource-access-token).'
+      description: ''
       x-schema-id: ResourceAccessTokenPermissions
     ResourceAccessTokenPermissionsParameters:
-      title: ResourceAccessTokenPermissionsParameters
+      title: Resource access token permission parameter
       type: object
       properties:
         Bed:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Specify whether the resource access token grants permission to access bed (or null if not being updated).
           nullable: true
         Room:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Specify whether the resource access token grants permission to access room (or null if not being updated).
           nullable: true
         Floor:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Specify whether the resource access token grants permission to access floor (or null if not being updated).
           nullable: true
         Building:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Specify whether the resource access token grants permission to access building (or null if not being updated).
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceAccessTokenPermissionsParameters
     ResourceAccessTokenResult:
       title: ResourceAccessTokenResult
+      required:
+        - ResourceAccessTokens
       type: object
       properties:
         ResourceAccessTokens:
@@ -41130,50 +41091,70 @@ components:
           items:
             $ref: '#/components/schemas/ResourceAccessToken'
           description: Resource access tokens.
-          nullable: true
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest item returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older tokens. If [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) is specified in the request message, then Cursor will always be included in the response message.'
+          description: 'Unique identifier of the last and hence oldest item returned. This can be used in `Limitation` in a subsequent request to fetch the next batch of older tokens. If `Limitation` is specified in the request message, then `Cursor` will always be included in the response message.'
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceAccessTokenResult
     ResourceAccessTokenType:
+      title: Resource access token type
       enum:
         - PinCode
         - RfidTag
       type: string
+      description: Type of stored value.
     ResourceAccessTokenUpdateParameters:
-      title: ResourceAccessTokenUpdateParameters
+      title: Resource access token update
+      required:
+        - ResourceAccessTokenId
       type: object
       properties:
         ResourceAccessTokenId:
           type: string
+          description: Unique identifier of the resource access token to update.
           format: uuid
         ValidityStartUtc:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Marks the start of interval in which the resource access token can be used (or null if not being updated).
           nullable: true
         ValidityEndUtc:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
+          description: Marks the end of interval in which the resource access token can be used (or null if not being updated).
           nullable: true
         Value:
           title: String update value
           maxLength: 255
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
-          description: Value of resource access token (or null if the value should not be updated).
+          description: Value of the resource access token (or null if not being updated).
           nullable: true
         Permissions:
-          title: ResourceAccessTokenPermissionsParameters
+          title: Resource access token permission parameter
           allOf:
             - $ref: '#/components/schemas/ResourceAccessTokenPermissionsParameters'
+          description: Specify permissions of the resource access token (or null if not being updated).
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceAccessTokenUpdateParameters
+    ResourceAccessTokenUpdateResult:
+      title: ResourceAccessTokenUpdateResult
+      required:
+        - ResourceAccessTokens
+      type: object
+      properties:
+        ResourceAccessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceAccessToken'
+          description: Updated resource access tokens.
+      additionalProperties: false
+      x-schema-id: ResourceAccessTokenUpdateResult
     ResourceAvailabilityMetricTypeEnum:
       title: Service availability metrics
       enum:
@@ -41228,39 +41209,40 @@ components:
       properties:
         Id:
           type: string
-          description: Unique identifier of the block.
+          description: Unique identifier of the resource block.
           format: uuid
         EnterpriseId:
           type: string
+          description: Unique identifier of the `Enterprise` the resource block belongs to.
           format: uuid
         AssignedResourceId:
           type: string
-          description: 'Unique identifier of the assigned [Resource](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource).'
+          description: Unique identifier of the assigned `Resource`.
           format: uuid
         IsActive:
           type: boolean
-          description: Whether the block is still active.
+          description: Whether the resource block is still active.
         Type:
           $ref: '#/components/schemas/ResourceBlockType'
         StartUtc:
           minLength: 1
           type: string
-          description: Start of the block in UTC timezone in ISO 8601 format.
+          description: Start of the resource block in UTC timezone in ISO 8601 format.
         EndUtc:
           minLength: 1
           type: string
-          description: End of the block in UTC timezone in ISO 8601 format.
+          description: End of the resource block in UTC timezone in ISO 8601 format.
         CreatedUtc:
           minLength: 1
           type: string
-          description: Creation date and time of the block in UTC timezone in ISO 8601 format.
+          description: Creation date and time of the resource block in UTC timezone in ISO 8601 format.
         UpdatedUtc:
           minLength: 1
           type: string
-          description: Last update date and time of the block in UTC timezone in ISO 8601 format.
+          description: Last update date and time of the resource block in UTC timezone in ISO 8601 format.
         DeletedUtc:
           type: string
-          description: Date and time when the block was deleted (for inactive ones) in UTC timezone in ISO 8601 format.
+          description: Date and time when the resource block was deleted (for inactive ones) in UTC timezone in ISO 8601 format.
           nullable: true
         Name:
           minLength: 1
@@ -41273,7 +41255,7 @@ components:
       additionalProperties: false
       x-schema-id: ResourceBlock
     ResourceBlockAddParameters:
-      title: ResourceBlockAddParameters
+      title: Resource block parameters
       required:
         - EndUtc
         - Name
@@ -41284,25 +41266,44 @@ components:
       properties:
         ResourceId:
           type: string
+          description: Unique identifier of `Resource`.
           format: uuid
         Name:
           minLength: 1
           type: string
+          description: Name of the resource block.
         Type:
           $ref: '#/components/schemas/ResourceBlockType'
         StartUtc:
           minLength: 1
           type: string
+          description: Start of the interval in UTC timezone in ISO 8601 format.
           format: date-time
         EndUtc:
           minLength: 1
           type: string
+          description: End of the interval in UTC timezone in ISO 8601 format.
           format: date-time
         Notes:
           type: string
+          description: Note describing the resource block.
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceBlockAddParameters
+    ResourceBlockAdditionResult:
+      title: ResourceBlockAdditionResult
+      required:
+        - ResourceBlocks
+      type: object
+      properties:
+        ResourceBlocks:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceBlock'
+          description: The resource blocks that were added.
+      additionalProperties: false
+      x-schema-id: ResourceBlockAdditionResult
     ResourceBlockDeleteParameters:
       title: ResourceBlockDeleteParameters
       required:
@@ -41331,20 +41332,21 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifier of [Resource blocks](https://mews-systems.gitbook.io/connector-api/operations/#resource-block) to be removed.'
+          description: Unique identifier of the resource blocks to be removed.
       additionalProperties: false
       x-schema-id: ResourceBlockDeleteParameters
     ResourceBlockExtent:
-      title: ResourceBlockExtent
+      title: Resource block extent
       type: object
       properties:
         Inactive:
           type: boolean
+          description: Whether the response should contain inactive entities.
       additionalProperties: false
-      description: Extent of data to be returned.
+      description: ''
       x-schema-id: ResourceBlockExtent
     ResourceBlockParameters:
-      title: ResourceBlockParameters
+      title: Resource block parameters
       required:
         - AccessToken
         - Client
@@ -41378,7 +41380,7 @@ components:
           description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         Extent:
-          title: ResourceBlockExtent
+          title: Resource block extent
           allOf:
             - $ref: '#/components/schemas/ResourceBlockExtent'
           description: Extent of data to be returned.
@@ -41392,7 +41394,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the requested [Resource blocks](https://mews-systems.gitbook.io/connector-api/operations/#resource-block).'
+          description: Unique identifiers of the requested resource block.
           nullable: true
         AssignedResourceIds:
           maxItems: 1000
@@ -41401,7 +41403,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the requested Assigned [Resources](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource).'
+          description: Unique identifiers of the requested Assigned `Resource`.
           nullable: true
         ActivityStates:
           type: array
@@ -41413,18 +41415,21 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource block is active.
           nullable: true
           x-max-interval-in-months: 3
         CreatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource block was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the resource block was updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -41440,18 +41445,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceBlock'
-          description: Resource blocks added.
+          description: The resource blocks colliding with the interval or matching the filter parameters.
         Cursor:
           type: string
+          description: Unique identifier of the last returned resource block. This can be used in `Limitation` in a subsequent request to fetch the next batch of resource blocks.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceBlockResult
     ResourceBlockType:
+      title: Resource block type
       enum:
         - OutOfOrder
         - InternalUse
       type: string
+      description: Type of the resource block.
     ResourceCategory:
       title: Resource category
       required:

@@ -1,3 +1,65 @@
+# 2025-09-17
+
+
+## POST /api/connector/v1/reservations/getAll
+-  the response property 'ResourceAccessTokens/items/Permissions' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/reservations/update
+-  the response property 'ResourceAccessTokens/items/Permissions' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/resourceAccessTokens/add
+- :warning: request property 'ResourceAccessTokenParameters/items/Type' was restricted to a list of enum values
+- :warning: the request property 'ResourceAccessTokenParameters/items/Permissions' became not nullable
+- :warning: the request property 'ResourceAccessTokenParameters/items/Type' became not nullable
+- :warning: the request property 'ResourceAccessTokenParameters/items/ValidityEndUtc' became not nullable
+- :warning: the request property 'ResourceAccessTokenParameters/items/ValidityStartUtc' became not nullable
+- :warning: the request property 'ResourceAccessTokenParameters/items/Value' became not nullable
+- :warning: the request property 'ResourceAccessTokenParameters/items/Permissions' became required
+- :warning: the request property 'ResourceAccessTokenParameters/items/ServiceOrderId' became required
+- :warning: the request property 'ResourceAccessTokenParameters/items/Type' became required
+- :warning: the request property 'ResourceAccessTokenParameters/items/ValidityEndUtc' became required
+- :warning: the request property 'ResourceAccessTokenParameters/items/ValidityStartUtc' became required
+- :warning: the request property 'ResourceAccessTokenParameters/items/Value' became required
+- :warning: the 'ResourceAccessTokenParameters/items/ValidityEndUtc' request property's minLength was increased from '0' to '1'
+- :warning: the 'ResourceAccessTokenParameters/items/ValidityStartUtc' request property's minLength was increased from '0' to '1'
+- :warning: the 'ResourceAccessTokenParameters/items/Value' request property's minLength was increased from '0' to '1'
+- :warning: the 'ResourceAccessTokenParameters/items/Value' request property's maxLength was set to '255'
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  added the new 'PinCode' enum value to the request property 'ResourceAccessTokenParameters/items/Type'
+-  added the new 'RfidTag' enum value to the request property 'ResourceAccessTokenParameters/items/Type'
+-  the response property 'ResourceAccessTokens' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Permissions' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/resourceAccessTokens/delete
+- :warning: the request property 'Ids' became not nullable
+- :warning: the request property 'Ids' became required
+
+
+## POST /api/connector/v1/resourceAccessTokens/getAll
+-  the response property 'ResourceAccessTokens' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Permissions' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/resourceAccessTokens/update
+- :warning: the request property 'ResourceAccessTokenUpdates/items/ResourceAccessTokenId' became required
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  the response property 'ResourceAccessTokens' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Permissions' became required for the status '200'
+-  the response property 'ResourceAccessTokens/items/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/resourceBlocks/add
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+
+
+
 # 2025-09-16
 
 
