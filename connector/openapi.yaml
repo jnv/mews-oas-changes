@@ -19198,6 +19198,11 @@ components:
           description: Unique identifier of the business segment.
           format: uuid
           nullable: true
+        PickupDistribution:
+          allOf:
+            - $ref: '#/components/schemas/PickupDistributionEnum'
+          description: "Pickup distribution. Defaults to `AllInOneGroup` if not specified.\n\nAllInOneGroup (All created reservations in the block are added to the same reservation group.)\n\nIndividualGroups (Reservations can be picked up in multiple groups, with up to 750 reservations per group.)"
+          nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddParameters
     AvailabilityBlockAddResult:
@@ -19391,7 +19396,7 @@ components:
         ActivityStates:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ActivityStates'
           description: 'Whether to return only active, only deleted or both records.'
           nullable: true
       additionalProperties: false

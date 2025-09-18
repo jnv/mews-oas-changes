@@ -1,3 +1,17 @@
+# 2025-09-18
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the new optional request property 'AvailabilityBlocks/items/PickupDistribution'
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+- :warning: request property 'ActivityStates/items/' was restricted to a list of enum values
+-  added the new 'Active' enum value to the request property 'ActivityStates/items/'
+-  added the new 'Deleted' enum value to the request property 'ActivityStates/items/'
+
+
+
 # 2025-09-17
 
 
