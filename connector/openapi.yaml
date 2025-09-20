@@ -502,7 +502,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountingItemResult'
+                $ref: '#/components/schemas/AccountingItemUpdateResult'
               example:
                 OrderItems:
                   - Id: 6c2897de-620a-4f48-af1e-ada8004202bd
@@ -577,7 +577,7 @@ paths:
       tags:
         - Accounting items
       summary: Get all accounting items
-      description: Use `payments/getAll` or `orderItems/getAll`.
+      description: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items) instead.'
       operationId: accountingItems_getAll
       requestBody:
         content:
@@ -613,33 +613,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountingItemResult'
-              example:
-                OrderItems:
-                  - Id: 6c2897de-620a-4f48-af1e-ada8004202bd
-                    AccountId: 182a56ee-037d-4da5-b6f8-ada8006e7d5c
-                    OrderId: f9090129-fb49-46d2-9dc5-ad9d015d43b9
-                    BillId: 9e3791dc-95c7-439a-aa8a-ada8007de0ca
-                    AccountingCategoryId: d250149e-a29d-4c70-b607-a1759faf7320
-                    Amount:
-                      Currency: GBP
-                      NetValue: 95.24
-                      GrossValue: 100
-                      TaxValues:
-                        - Code: UK-2020-R
-                          Value: 4.76
-                      Breakdown:
-                        Items:
-                          - TaxRateCode: UK-2020-R
-                            NetValue: 95.24
-                            TaxValue: 4.76
-                    RevenueType: Additional
-                    ConsumedUtc: '2021-09-19T04:00:20Z'
-                    ClosedUtc: 
-                    AccountingState: Open
-                    Data:
-                      Discriminator: CancellationFee
-                      Value: 
-                PaymentItems: [ ]
+              example: {"OrderItems":[{"Id":"cb643cb7-8b6e-48a6-b67e-ad4c0041f550","AccountId":"77673c9d-0e31-4e90-9228-ad4b00a9fcdc","OrderId":"1103b431-998a-4b78-84de-ad4b00a9fd99","BillId":null,"AccountingCategoryId":"d250149e-a29d-4c70-b607-a1759faf7320","UnitCount":15,"UnitAmount":{"Currency":"EUR","NetValue":8.40,"GrossValue":10.00,"TaxValues":[{"Code":"DE-2020-1-I","Value":1.60}],"Breakdown":{"Items":[{"TaxRateCode":"DE-2020-1-I","NetValue":8.40,"TaxValue":1.60}]}},"Amount":{"Value":150.00,"Net":126.05,"Tax":23.95,"TaxRate":19.0,"Currency":"EUR","NetValue":126.05,"GrossValue":150.00,"TaxValues":[{"Code":"DE-2020-1-I","Value":23.95}],"Breakdown":{"Items":[{"TaxRateCode":"DE-2020-1-I","NetValue":126.05,"TaxValue":23.95}]}},"OriginalAmount":{"Value":150.00,"Net":126.05,"Tax":23.95,"TaxRate":19.0,"Currency":"EUR","NetValue":126.05,"GrossValue":150.00,"TaxValues":[{"Code":"DE-2020-1-I","Value":23.95}],"Breakdown":{"Items":[{"TaxRateCode":"DE-2020-1-I","NetValue":126.05,"TaxValue":23.95}]}},"RevenueType":"Additional","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","CreatedUtc":"2021-06-19T00:00:00Z","UpdatedUtc":"2021-06-19T00:00:00Z","ConsumedUtc":"2021-06-19T04:00:08Z","CanceledUtc":null,"ClosedUtc":null,"StartUtc":null,"AccountingState":"Open","Data":{"Discriminator":"CancellationFee","Value":null}}],"PaymentItems":[{"Id":"44ca12b8-f009-455e-be91-ad4c013fcbc5","AccountId":"5da55e5c-18e5-48d8-9a0e-ac0600704c5c","BillId":null,"AccountingCategoryId":"b89345c1-2814-4750-808d-aa7900ee464a","Amount":{"Value":850.00,"Net":850.00,"Tax":0.0,"TaxRate":0.0,"Currency":"GBP","NetValue":850.00,"GrossValue":850.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":850.00,"TaxValue":0.0}]}},"OriginalAmount":{"Value":850.00,"Net":850.00,"Tax":0.0,"TaxRate":0.0,"Currency":"GBP","NetValue":850.00,"GrossValue":850.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":850.00,"TaxValue":0.0}]}},"AmountDefault":null,"Notes":"NORMAL0140","SettlementId":"po_1Lun9w4JpyDC38oQJQz7hAcx","ConsumedUtc":"2021-06-19T19:24:20Z","ClosedUtc":null,"AccountingState":"Open","State":"Charged","Identifier":null,"Data":{"Discriminator":"Invoice","Value":{"InvoiceId":"3c818013-d9de-47e9-bb2c-ad4c013f9ad3"}}}],"CreditCardTransactions":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -683,7 +657,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
-      x-deprecatedMessage: Use `payments/getAll` or `orderItems/getAll`.
+      x-deprecatedMessage: 'Use [Get all payments](https://mews-systems.gitbook.io/connector-api/operations/payments#get-all-payments) and [Get all order items](https://mews-systems.gitbook.io/connector-api/operations/orderitems#get-all-order-items) instead.'
   /api/connector/v1/accounts/update:
     post:
       tags:
@@ -4997,21 +4971,14 @@ paths:
       tags:
         - Credit cards
       summary: Add tokenized credit card
-      description: Adds a new tokenized credit card to the specified customer. To be able to use this operation special permission has to be granted during certification.
+      description: 'Adds a new tokenized credit card to the specified customer. To be able to use this operation special permission has to be granted during certification. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: creditCards_addTokenized
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TokenizedCreditCardParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              CustomerId: e98995b0-140a-4208-bbeb-b77f2c43d6ee
-              CreditCardData:
-                StorageData: '190510170631533875'
-                Expiration: '2025-10'
+              $ref: '#/components/schemas/TokenizedCreditCardAddParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CreditCardData":{"Expiration":"2025-10"},"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -5019,8 +4986,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCreditCardResult'
-              example:
-                CreditCardId: ee2209ce-71c6-4e3a-978f-aac700c82c7b
+              example: {"CreditCardId":"e417dfe8-c813-4938-837b-36081199ce88"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6984,14 +6950,14 @@ paths:
       tags:
         - Loyalty memberships
       summary: Delete loyalty memberships
-      description: Deletes loyalty memberships.
+      description: 'Deletes loyalty memberships. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
       operationId: loyaltyMemberships_delete
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/LoyaltyMembershipDeleteParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","LoyaltyMembershipIds":["905a4489-0960-4ac9-96ec-793f47365c92","ac48674e-58a2-43d6-a02b-9ead0b213b17"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -8563,25 +8529,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PaymentRequestFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              PaymentRequestIds:
-                - bcc76295-4e47-4cf1-a7cb-afae00bd1c35
-              AccountIds:
-                - 8466DFDD-0964-4002-8719-AFA900D0F1BA
-              UpdatedUtc:
-                StartUtc: '2020-01-05T00:00:00Z'
-                EndUtc: '2020-01-10T00:00:00Z'
-              States:
-                - Pending
-                - Expired
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentRequestIds":["bcc76295-4e47-4cf1-a7cb-afae00bd1c35","6282d17b-a068-4a9f-83d3-afae00c39bfb"],"AccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"ReservationIds":["0f515589-99b4-423d-b83a-b237009f0509"],"UpdatedUtc":{"StartUtc":"2020-01-05T00:00:00Z","EndUtc":"2020-01-10T00:00:00Z"},"States":["Pending","Expired"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -8589,31 +8537,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequestResult'
-              example:
-                PaymentRequests:
-                  - Id: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
-                    EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    AccountId: 8466dfdd-0964-4002-8719-afa900d0f1ba
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    ReservationGroupId: 
-                    State: Pending
-                    Amount:
-                      Currency: EUR
-                      NetValue: 10
-                      GrossValue: 10
-                      TaxValues: [ ]
-                      Breakdown:
-                        Items:
-                          - TaxRateCode: 
-                            NetValue: 10
-                            TaxValue: 0
-                    Type: Payment
-                    Reason: PaymentCardDeclined
-                    ExpirationUtc: '2023-02-23T23:00:00Z'
-                    Description: Payment required.
-                    Notes: 
-                Cursor: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
+              example: {"PaymentRequests":[{"Id":"bcc76295-4e47-4cf1-a7cb-afae00bd1c35","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ReservationGroupId":null,"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","State":"Pending","Amount":{"Currency":"EUR","NetValue":10.04,"GrossValue":10.4,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":10.05,"TaxValue":0.0}]}},"Type":"Payment","Reason":"PaymentCardDeclined","ExpirationUtc":"2023-02-23T23:00:00Z","Description":"Payment required.","Notes":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}],"Cursor":"bcc76295-4e47-4cf1-a7cb-afae00bd1c35"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -8668,53 +8592,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultiplePaymentRequestAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              PaymentRequests:
-                - AccountId: 8466dfdd-0964-4002-8719-afa900d0f1ba
-                  Amount:
-                    Currency: EUR
-                    Value: 10
-                  Type: Payment
-                  Reason: PaymentCardMissing
-                  ExpirationUtc: '2023-02-20T12:00:00.000Z'
-                  Description: Payment required
-                  Notes: Internal notes.
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentRequests":[{"AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Amount":{"Currency":"EUR","Value":10.4},"Type":"Payment","Reason":"PaymentCardMissing","ExpirationUtc":"2023-02-20T12:00:00Z","Description":"Payment required","Notes":"Internal notes.","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509"}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentRequestResult'
-              example:
-                PaymentRequests:
-                  - Id: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
-                    EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    AccountId: 8466dfdd-0964-4002-8719-afa900d0f1ba
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    ReservationGroupId: 
-                    State: Pending
-                    Amount:
-                      Currency: EUR
-                      NetValue: 10
-                      GrossValue: 10
-                      TaxValues: [ ]
-                      Breakdown:
-                        Items:
-                          - TaxRateCode: 
-                            NetValue: 10
-                            TaxValue: 0
-                    Type: Payment
-                    Reason: PaymentCardDeclined
-                    ExpirationUtc: '2023-02-23T23:00:00Z'
-                    Description: Payment required.
-                    Notes: 
-                Cursor: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
+                $ref: '#/components/schemas/PaymentRequestAdditionResult'
+              example: {"PaymentRequests":[{"Id":"6282d17b-a068-4a9f-83d3-afae00c39bfb","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ReservationGroupId":null,"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","State":"Pending","Amount":{"Currency":"EUR","NetValue":10.04,"GrossValue":10.4,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":10.05,"TaxValue":0.0}]}},"Type":"Payment","Reason":"PaymentCardMissing","ExpirationUtc":"2023-02-20T12:00:00Z","Description":"Payment required","Notes":"Internal notes.","CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -8769,44 +8655,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultiplePaymentRequestCancelParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              PaymentRequestIds:
-                - 6282d17b-a068-4a9f-83d3-afae00c39bfb
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentRequestIds":["6282d17b-a068-4a9f-83d3-afae00c39bfb"]}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentRequestResult'
-              example:
-                PaymentRequests:
-                  - Id: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
-                    EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                    AccountId: 8466dfdd-0964-4002-8719-afa900d0f1ba
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    ReservationGroupId: 
-                    State: Pending
-                    Amount:
-                      Currency: EUR
-                      NetValue: 10
-                      GrossValue: 10
-                      TaxValues: [ ]
-                      Breakdown:
-                        Items:
-                          - TaxRateCode: 
-                            NetValue: 10
-                            TaxValue: 0
-                    Type: Payment
-                    Reason: PaymentCardDeclined
-                    ExpirationUtc: '2023-02-23T23:00:00Z'
-                    Description: Payment required.
-                    Notes: 
-                Cursor: bcc76295-4e47-4cf1-a7cb-afae00bd1c35
+                $ref: '#/components/schemas/PaymentRequestCancellationResult'
+              example: {"PaymentRequests":[{"Id":"6282d17b-a068-4a9f-83d3-afae00c39bfb","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","ReservationGroupId":null,"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","State":"Canceled","Amount":{"Currency":"EUR","NetValue":10.04,"GrossValue":10.4,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":10.05,"TaxValue":0.0}]}},"Type":"Payment","Reason":"PaymentCardMissing","ExpirationUtc":"2023-02-20T12:00:00Z","Description":"Payment required","Notes":"Internal notes.","CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -17560,19 +17417,20 @@ components:
       additionalProperties: false
       x-schema-id: AccountingItem
     AccountingItemExtent:
-      title: AccountingItemExtent
+      title: Accounting item extent
       type: object
       properties:
-        AccountingItems:
-          type: boolean
         OrderItems:
           type: boolean
+          description: Whether the response should contain order items (consumed items such as nights or products).
         PaymentItems:
           type: boolean
+          description: 'Whether the response should contain payment items (such as cash, credit card payments or invoices).'
         CreditCardTransactions:
           type: boolean
+          description: Whether the response should contain credit card transactions of the payment items.
       additionalProperties: false
-      description: 'Extent of data to be returned. E.g. it is possible to specify that together with the accounting items, credit card transactions should be also returned.'
+      description: ''
       x-schema-id: AccountingItemExtent
     AccountingItemParameters:
       title: AccountingItemParameters
@@ -17580,9 +17438,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
-        - EndUtc
         - Extent
-        - StartUtc
       type: object
       properties:
         ClientToken:
@@ -17597,16 +17453,8 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
-        StartUtc:
-          minLength: 1
-          type: string
-          format: date-time
-        EndUtc:
-          minLength: 1
-          type: string
-          format: date-time
         Extent:
-          title: AccountingItemExtent
+          title: Accounting item extent
           allOf:
             - $ref: '#/components/schemas/AccountingItemExtent'
           description: 'Extent of data to be returned. E.g. it is possible to specify that together with the accounting items, credit card transactions should be also returned.'
@@ -17632,34 +17480,33 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the accounting item was closed. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the accounting item was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ConsumedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the accounting item was consumed. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
-        TimeFilter:
-          type: string
-          nullable: true
-          deprecated: true
         Currency:
           type: string
-          description: 'ISO-4217 code of the [Currency](https://mews-systems.gitbook.io/connector-api/operations/currencies/#currency) the item costs should be converted to.'
+          description: ISO-4217 code of the `Currency` the item costs should be converted to.
           format: currency
           nullable: true
         States:
           type: array
           items:
-            type: string
-          description: 'States the accounting items should be in. If not specified, accounting items in Open or Closed states are returned.'
+            $ref: '#/components/schemas/AccountingState'
+          description: 'States the accounting items should be in. If not specified, accounting items in `Open` or `Closed` states are returned.'
           nullable: true
       additionalProperties: false
       x-schema-id: AccountingItemParameters
@@ -17667,23 +17514,17 @@ components:
       title: AccountingItemResult
       type: object
       properties:
-        AccountingItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountingItem'
-          nullable: true
-          deprecated: true
         OrderItems:
           type: array
           items:
             $ref: '#/components/schemas/OrderItemOld'
-          description: Updated order items (consumed items such as nights or products).
+          description: The order items (consumed items such as nights or products).
           nullable: true
         PaymentItems:
           type: array
           items:
             $ref: '#/components/schemas/PaymentItemOld'
-          description: 'Updated payment items (such as cash, credit card payments or invoices).'
+          description: 'The payment items (such as cash, credit card payments or invoices).'
           nullable: true
         CreditCardTransactions:
           type: array
@@ -17694,7 +17535,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountingItemResult
     AccountingItemUpdateParameters:
-      title: AccountingItemUpdateParameters
+      title: Accounting item update
       required:
         - AccountingItemId
         - BillId
@@ -17702,18 +17543,39 @@ components:
       properties:
         AccountingItemId:
           type: string
+          description: Unique identifier of the `AccountingItem`.
           format: uuid
         AccountId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: 'Unique identifier of the account (for example `Customer`) the item is assigned to (or `null` if the assigned account should not be updated). If defined, valid account identifier must be provided.'
           nullable: true
         BillId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: 'Unique identifier of the `Bill` the items is assigned to. It''s possible to assign item to bill belonging to another account, in that case both `AccountId` and `BillId` must be provided.'
       additionalProperties: false
       x-schema-id: AccountingItemUpdateParameters
+    AccountingItemUpdateResult:
+      title: AccountingItemUpdateResult
+      type: object
+      properties:
+        OrderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemOld'
+          description: Updated order items.
+          nullable: true
+        PaymentItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentItemOld'
+          description: Updated payment items.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: AccountingItemUpdateResult
     AccountingLedgerTypeEnum:
       title: Accounting ledger type
       enum:
@@ -25209,9 +25071,11 @@ components:
         Currency:
           minLength: 1
           type: string
+          description: ISO-4217 code of the `Currency`.
           format: currency
         Value:
           type: number
+          description: Amount in the currency.
           format: double
       additionalProperties: false
       description: Absolute value of the fee.
@@ -29619,13 +29483,15 @@ components:
       additionalProperties: false
       x-schema-id: Int32UpdateValue
     InvoicePaymentData:
-      title: InvoicePaymentData
+      title: Invoice payment item data
+      required:
+        - InvoiceId
       type: object
       properties:
         InvoiceId:
           type: string
+          description: Unique identifier of the invoice `Bill`.
           format: uuid
-          nullable: true
       additionalProperties: false
       x-schema-id: InvoicePaymentData
     InvoicePaymentTypeEnum:
@@ -30341,6 +30207,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
         LoyaltyMembershipIds:
           maxItems: 1000
           minItems: 1
@@ -33831,6 +33702,20 @@ components:
       x-schema-id: OrderItemFilterParameters
     OrderItemOld:
       title: Order item
+      required:
+        - AccountId
+        - AccountingState
+        - Amount
+        - CreatedUtc
+        - CreatorProfileId
+        - Data
+        - Id
+        - OrderId
+        - OriginalAmount
+        - RevenueType
+        - UnitAmount
+        - UpdatedUtc
+        - UpdaterProfileId
       type: object
       properties:
         Id:
@@ -33839,21 +33724,20 @@ components:
           format: uuid
         AccountId:
           type: string
-          description: 'Unique identifier of the account (for example [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer)) the item belongs to.'
+          description: Unique identifier of the account (for example `Customer`) the item belongs to.
           format: uuid
-          nullable: true
         OrderId:
           type: string
-          description: 'Unique identifier of the order (or [Reservation](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-ver-2023-06-06) which is a special type of order) the item belongs to.'
+          description: Unique identifier of the order (or `Reservation` which is a special type of order) the item belongs to.
           format: uuid
         BillId:
           type: string
-          description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill) the item is assigned to.'
+          description: Unique identifier of the `Bill` the item is assigned to.
           format: uuid
           nullable: true
         AccountingCategoryId:
           type: string
-          description: 'Unique identifier of the [Accounting category](https://mews-systems.gitbook.io/connector-api/operations/accountingcategories/#accounting-category) the item belongs to.'
+          description: Unique identifier of the `AccountingCategory` the item belongs to.
           format: uuid
           nullable: true
         UnitCount:
@@ -33864,38 +33748,39 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: ''
-          nullable: true
+          description: 'Unit amount of item, i.e. the amount of each individual sub-item or unit, if applicable.'
         Amount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: Amount of item; note a negative amount represents a rebate or payment.
         OriginalAmount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: Amount of item; note a negative amount represents a rebate or payment. Contains the earliest known value in conversion chain.
         RevenueType:
+          minLength: 1
           type: string
           description: Revenue type of the item.
-          nullable: true
         CreatorProfileId:
           type: string
+          description: Unique identifier of the user who created the item.
           format: uuid
         UpdaterProfileId:
           type: string
+          description: Unique identifier of the user who updated the item.
           format: uuid
         CreatedUtc:
+          minLength: 1
           type: string
+          description: Creation date and time of the item in UTC timezone in ISO 8601 format.
           format: date
-          nullable: true
         UpdatedUtc:
+          minLength: 1
           type: string
+          description: Last update date and time of the item in UTC timezone in ISO 8601 format.
           format: date
-          nullable: true
         ConsumedUtc:
           type: string
           description: Date and time of the item consumption in UTC timezone in ISO 8601 format.
@@ -33903,6 +33788,7 @@ components:
           nullable: true
         CanceledUtc:
           type: string
+          description: Cancellation date and time of the item in UTC timezone in ISO 8601 format.
           format: date
           nullable: true
         ClosedUtc:
@@ -33912,14 +33798,15 @@ components:
           nullable: true
         StartUtc:
           type: string
+          description: Start date and time of the item in UTC timezone in ISO 8601 format.
           format: date
           nullable: true
         AccountingState:
+          minLength: 1
           type: string
           description: Accounting state of the item.
-          nullable: true
         Data:
-          title: Data
+          title: Order item data
           type: object
           properties:
             Discriminator:
@@ -33928,8 +33815,9 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/RebateOrderItemData'
                 - $ref: '#/components/schemas/ProductOrderItemData'
+              description: Based on order item discriminator or `null` for types without any additional data.
+              nullable: true
           description: Additional data specific to particular order item.
-          nullable: true
           x-coproduct: true
           x-schema-id: OrderItemOldDataCoproductOfOrderItemTypeOld
       additionalProperties: false
@@ -34072,6 +33960,7 @@ components:
         - ''
         - ''
     OrderItemTypeOld:
+      title: Order item data discriminator
       enum:
         - CancellationFee
         - Rebate
@@ -34087,6 +33976,20 @@ components:
         - ResourceUpgradeFee
         - InvoiceFee
       type: string
+      x-enumDescriptions:
+        - No additional data.
+        - '[Rebate order item data](https://mews-systems.gitbook.io/connector-api/operations/accountingitems#rebate-order-item-data)'
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - ''
+        - '[Product order item data](https://mews-systems.gitbook.io/connector-api/operations/accountingitems#product-order-item-data)'
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
     OrderNote:
       title: Service order note
       type: object
@@ -34817,11 +34720,12 @@ components:
       additionalProperties: false
       x-schema-id: Payment
     PaymentCardPaymentData:
-      title: PaymentCardPaymentData
+      title: Credit card payment item data
       type: object
       properties:
         PaymentCardId:
           type: string
+          description: Unique identifier of the `CreditCard`.
           format: uuid
           nullable: true
       additionalProperties: false
@@ -35237,6 +35141,15 @@ components:
       x-schema-id: PaymentInvoiceData
     PaymentItemOld:
       title: Payment item
+      required:
+        - AccountId
+        - AccountingState
+        - Amount
+        - ConsumedUtc
+        - Data
+        - Id
+        - OriginalAmount
+        - State
       type: object
       properties:
         Id:
@@ -35245,36 +35158,35 @@ components:
           format: uuid
         AccountId:
           type: string
-          description: 'Unique identifier of the account (for example [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer)) the item belongs to.'
+          description: Unique identifier of the account (for example `Customer`) the item belongs to.
           format: uuid
         BillId:
           type: string
-          description: 'Unique identifier of the [Bill](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill) the item is assigned to.'
+          description: Unique identifier of the `Bill` the item is assigned to.
           format: uuid
           nullable: true
         AccountingCategoryId:
           type: string
-          description: 'Unique identifier of the [Accounting category](https://mews-systems.gitbook.io/connector-api/operations/accountingcategories/#accounting-category) the item belongs to.'
+          description: Unique identifier of the `AccountingCategory` the item belongs to.
           format: uuid
           nullable: true
         Amount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: 'Item''s amount, negative amount represents either rebate or a payment.'
         OriginalAmount:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
-          nullable: true
+          description: Amount of item; note a negative amount represents a rebate or payment. Contains the earliest known value in conversion chain.
         AmountDefault:
           title: Extended amount
           allOf:
             - $ref: '#/components/schemas/ExtendedAmount'
-          description: ''
+          description: 'Item''s amount in property''s default currency, negative amount represents either rebate or a payment.'
           nullable: true
+          deprecated: true
         Notes:
           type: string
           description: Additional notes.
@@ -35284,26 +35196,27 @@ components:
           description: Identifier of the settled payment from the external system (ApplePay/GooglePay).
           nullable: true
         ConsumedUtc:
+          minLength: 1
           type: string
           description: Date and time of the item consumption in UTC timezone in ISO 8601 format.
-          nullable: true
         ClosedUtc:
           type: string
           description: Date and time of the item bill closure in UTC timezone in ISO 8601 format.
           nullable: true
         AccountingState:
+          minLength: 1
           type: string
           description: Accounting state of the item.
-          nullable: true
         State:
+          minLength: 1
           type: string
           description: Payment state of the item.
-          nullable: true
         Identifier:
           type: string
+          description: External payment identifier.
           nullable: true
         Data:
-          title: Data
+          title: Payment item data
           type: object
           properties:
             Discriminator:
@@ -35312,12 +35225,13 @@ components:
               oneOf:
                 - $ref: '#/components/schemas/PaymentCardPaymentData'
                 - $ref: '#/components/schemas/InvoicePaymentData'
+              description: Based on payment item data discriminator or `null` for types without any additional data.
+              nullable: true
           description: Additional data specific to particular payment item.
-          nullable: true
           x-coproduct: true
           x-schema-id: PaymentItemOldDataCoproductOfPaymentType
       additionalProperties: false
-      description: Payment item
+      description: ''
       x-schema-id: PaymentItemOld
     PaymentKindEnum:
       title: Payment kind
@@ -35644,25 +35558,27 @@ components:
           format: uuid
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise).'
+          description: Unique identifier of the `Enterprise`.
           format: uuid
         AccountId:
           type: string
-          description: 'Unique identifier of the [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) to which the payment request was issued.'
+          description: Unique identifier of the `Customer` to which the payment request was issued.
           format: uuid
         CustomerId:
           type: string
+          description: Unique identifier of the `Customer` to which the payment request was issued.
           format: uuid
           nullable: true
           deprecated: true
           x-deprecatedMessage: Use `AccountId`
         ReservationGroupId:
           type: string
-          description: 'Unique identifier of the [Reservation group](https://mews-systems.gitbook.io/connector-api/operations/reservations#reservation-group).'
+          description: Unique identifier of the `ReservationGroup`.
           format: uuid
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation` the payment request belongs to.
           format: uuid
           nullable: true
         State:
@@ -35671,7 +35587,7 @@ components:
           title: Amount
           allOf:
             - $ref: '#/components/schemas/Amount'
-          description: ''
+          description: Amount of the payment request.
         Type:
           $ref: '#/components/schemas/PaymentRequestType'
         Reason:
@@ -35704,7 +35620,7 @@ components:
       additionalProperties: false
       x-schema-id: PaymentRequest
     PaymentRequestAddParameters:
-      title: PaymentRequestAddParameters
+      title: Payment request parameters
       required:
         - AccountId
         - Amount
@@ -35716,12 +35632,13 @@ components:
       properties:
         AccountId:
           type: string
+          description: Unique identifier of the `Customer` account to which the payment request is issued.
           format: uuid
         Amount:
           title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
-          description: Absolute value of the fee.
+          description: Amount of the payment request.
         Type:
           $ref: '#/components/schemas/PaymentRequestType'
         Reason:
@@ -35729,21 +35646,53 @@ components:
         ExpirationUtc:
           minLength: 1
           type: string
+          description: Date and time of the payment request's expiration in ISO 8601 format.
           format: date-time
         Description:
           maxLength: 1000
           minLength: 1
           type: string
+          description: Description of the payment request.
         Notes:
           maxLength: 1000
           type: string
+          description: Payment request's notes.
           nullable: true
         ReservationId:
           type: string
+          description: Unique identifier of the `Reservation` the payment request belongs to.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentRequestAddParameters
+    PaymentRequestAdditionResult:
+      title: PaymentRequestAdditionResult
+      required:
+        - PaymentRequests
+      type: object
+      properties:
+        PaymentRequests:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRequest'
+          description: The added payment requests.
+      additionalProperties: false
+      x-schema-id: PaymentRequestAdditionResult
+    PaymentRequestCancellationResult:
+      title: PaymentRequestCancellationResult
+      required:
+        - PaymentRequests
+      type: object
+      properties:
+        PaymentRequests:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRequest'
+          description: The cancelled payment requests.
+      additionalProperties: false
+      x-schema-id: PaymentRequestCancellationResult
     PaymentRequestFilterParameters:
       title: PaymentRequestFilterParameters
       required:
@@ -35785,7 +35734,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the requested [Payment requests](https://mews-systems.gitbook.io/connector-api/operations/#payment-request).'
+          description: Unique identifiers of the requested payment requests.
           nullable: true
         AccountIds:
           maxItems: 1000
@@ -35794,7 +35743,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of [Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) accounts to which payment requests were issued.'
+          description: Unique identifiers of `Customer` accounts to which the payment requests were issued.
           nullable: true
         ReservationIds:
           maxItems: 1000
@@ -35803,11 +35752,13 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of `Reservation` to which the payment requests belong.
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the payment requests were updated.
           nullable: true
           x-max-interval-in-months: 3
         States:
@@ -35819,6 +35770,7 @@ components:
       additionalProperties: false
       x-schema-id: PaymentRequestFilterParameters
     PaymentRequestReason:
+      title: Payment request reason
       enum:
         - Other
         - PaymentCardMissing
@@ -35828,6 +35780,7 @@ components:
         - Fee
         - RecurringPayment
       type: string
+      description: A payment request reason.
     PaymentRequestResult:
       title: PaymentRequestResult
       required:
@@ -35842,23 +35795,35 @@ components:
           description: The filtered payment requests.
         Cursor:
           type: string
-          description: 'Unique identifier of the last and hence oldest payment request returned. This can be used in [Limitation](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/#limitation) in a subsequent request to fetch the next batch of older payment requests.'
+          description: Unique identifier of the last and hence oldest payment request returned. This can be used in `Limitation` in a subsequent request to fetch the next batch of older payment requests.
           format: uuid
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentRequestResult
     PaymentRequestState:
+      title: Payment request state
       enum:
         - Pending
         - Completed
         - Canceled
         - Expired
       type: string
+      description: A payment request state.
+      x-enumDescriptions:
+        - Payment request is active and waiting for completion.
+        - Payment request was fulfilled.
+        - Payment request was canceled.
+        - Payment request is past its expiration date and no longer active.
     PaymentRequestType:
+      title: Payment request type
       enum:
         - Payment
         - Preauthorization
       type: string
+      description: A payment request type.
+      x-enumDescriptions:
+        - Indicates that a payment is requested.
+        - Indicates that a `Preauthorization` is requested.
     PaymentResult:
       title: PaymentResult
       required:
@@ -36103,6 +36068,7 @@ components:
         - ''
         - ''
     PaymentType:
+      title: Payment item data discriminator
       enum:
         - CreditCard
         - Invoice
@@ -36116,6 +36082,18 @@ components:
         - Cheque
         - Other
       type: string
+      x-enumDescriptions:
+        - '[Credit card payment item data](https://mews-systems.gitbook.io/connector-api/operations/accountingitems#credit-card-payment-item-data)'
+        - '[Invoice payment item data](https://mews-systems.gitbook.io/connector-api/operations/accountingitems#invoice-payment-item-data)'
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
+        - No additional data.
     PayworksData:
       title: PayworksData
       type: object
@@ -36958,15 +36936,18 @@ components:
       additionalProperties: false
       x-schema-id: ProductOrderAdditionData
     ProductOrderItemData:
-      title: ProductOrderItemData
+      title: Product order item data
+      required:
+        - ProductId
       type: object
       properties:
         ProductId:
           type: string
+          description: Unique identifier of the `Product`.
           format: uuid
-          nullable: true
         AgeCategoryId:
           type: string
+          description: Unique identifier of the `AgeCategory`.
           format: uuid
           nullable: true
       additionalProperties: false
@@ -38559,13 +38540,15 @@ components:
         - ''
         - ''
     RebateOrderItemData:
-      title: RebateOrderItemData
+      title: Rebate order item data
+      required:
+        - RebatedItemId
       type: object
       properties:
         RebatedItemId:
           type: string
+          description: Unique identifier of `OrderItem` which has been rebated by current item.
           format: uuid
-          nullable: true
       additionalProperties: false
       x-schema-id: RebateOrderItemData
     RefundTypeEnum:
@@ -46300,8 +46283,8 @@ components:
         - Mrs.
       x-schema-id: Title
       x-showDescription: true
-    TokenizedCreditCardParameters:
-      title: TokenizedCreditCardParameters
+    TokenizedCreditCardAddParameters:
+      title: TokenizedCreditCardAddParameters
       required:
         - AccessToken
         - Client
@@ -46322,6 +46305,11 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
         CustomerId:
           type: string
           description: Unique identifier of the `Customer`.
@@ -46332,7 +46320,7 @@ components:
             - $ref: '#/components/schemas/CreditCardData'
           description: Credit card details provided by PCI provider.
       additionalProperties: false
-      x-schema-id: TokenizedCreditCardParameters
+      x-schema-id: TokenizedCreditCardAddParameters
     TravelAgencyContract:
       title: Travel agency contract
       required:
