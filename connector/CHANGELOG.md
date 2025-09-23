@@ -1,3 +1,11 @@
+# 2025-09-23
+
+
+## POST /api/connector/v1/services/getAll
+-  added the new optional request property 'ServiceType'
+
+
+
 # 2025-09-20
 
 

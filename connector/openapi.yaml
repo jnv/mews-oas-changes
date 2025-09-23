@@ -44471,6 +44471,19 @@ components:
         - Bookable
         - Additional
       type: string
+    ServiceDataDiscriminatorEnum:
+      title: Service data discriminator
+      enum:
+        - Bookable
+        - Additional
+      type: string
+      description: "\n\nBookable\n\nAdditional"
+      x-enumNames:
+        - Bookable
+        - Additional
+      x-enumDescriptions:
+        - ''
+        - ''
     ServiceFilterParameters:
       title: ServiceFilterParameters
       required:
@@ -44513,6 +44526,11 @@ components:
             type: string
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
+          nullable: true
+        ServiceType:
+          allOf:
+            - $ref: '#/components/schemas/ServiceDataDiscriminatorEnum'
+          description: "Filter services by type.\n\nBookable\n\nAdditional"
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
