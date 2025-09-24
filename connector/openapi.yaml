@@ -13523,24 +13523,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoutingRuleFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              RoutingRuleIds:
-                - ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                - d98c9611-0006-4691-a835-af2e00b170c4
-              CompanyIds:
-                - cd441e1a-6f19-4960-887a-af2a00d5d5f8
-                - ddc23f8d-131d-44d6-b150-af2a00d5d5f8
-              UpdatedUtc:
-                StartUtc: '2023-10-01T00:00:00Z'
-                EndUtc: '2023-10-31T00:00:00Z'
-              Limitation:
-                Count: 10
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CompanyIds":["c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","956aa0f0-a090-42c8-bee2-991972d32f80"],"RoutingRuleIds":["ff785b22-5422-4d1d-87f4-af2e00b3dfda","d98c9611-0006-4691-a835-af2e00b170c4"],"UpdatedUtc":{"StartUtc":"2023-10-01T00:00:00Z","EndUtc":"2023-10-31T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -13548,29 +13531,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RoutingRuleResult'
-              example:
-                RoutingRules:
-                  - Id: ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                    CompanyId: 35f493d1-6cf7-4132-982a-a5540549c322
-                    CompanyRelation: PartnerCompany
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: AllStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                  - Id: d98c9611-0006-4691-a835-af2e00b170c4
-                    CompanyId: 73a1fc8e-11c5-4019-b296-9234b651fc68
-                    CompanyRelation: TravelAgency
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: SelectedStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    SelectedStayItems:
-                      Nights: false
-                      CityTax: true
-                      ProductCategoryIds:
-                        - 004fa262-7b08-4853-b544-af2a00d5cf1f
+              example: {"RoutingRules":[{"Id":"ff785b22-5422-4d1d-87f4-af2e00b3dfda","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelation":"PartnerCompany","Applicability":"PrepaidOnly","RouteType":"AllStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},{"Id":"d98c9611-0006-4691-a835-af2e00b170c4","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","CompanyRelation":"TravelAgency","Applicability":"Always","RouteType":"SelectedStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":{"Nights":true,"CityTax":true,"ProductCategoryIds":["004fa262-7b08-4853-b544-af2a00d5cf1f","8f0dc6ef-1fd4-44e4-b353-af2c00b24caf","d4c1b435-0ed1-4d98-9833-af2c00b28518"]},"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}],"Cursor":"d98c9611-0006-4691-a835-af2e00b170c4"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13625,58 +13586,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleRoutingRuleAddParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              RoutingRules:
-                - CompanyId: cd441e1a-6f19-4960-887a-af2a00d5d5f8
-                  CompanyRelation: PartnerCompany
-                  ServiceId: 0907a1b4-ef7a-4aa8-b8a1-af2a00d5ca22
-                  Applicability: PrepaidOnly
-                  RouteType: AllStayItems
-                - CompanyId: ddc23f8d-131d-44d6-b150-af2a00d5d5f8
-                  CompanyRelation: TravelAgency
-                  ServiceId: 0907a1b4-ef7a-4aa8-b8a1-af2a00d5ca22
-                  Applicability: Always
-                  RouteType: SelectedStayItems
-                  SelectedStayItems:
-                    Nights: true
-                    CityTax: true
-                    ProductCategoryIds:
-                      - 004fa262-7b08-4853-b544-af2a00d5cf1f
-                      - 8f0dc6ef-1fd4-44e4-b353-af2c00b24caf
-                      - d4c1b435-0ed1-4d98-9833-af2c00b28518
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RoutingRules":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","CompanyRelation":"PartnerCompany","Applicability":"PrepaidOnly","RouteType":"AllStayItems"},{"CompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","CompanyRelation":"TravelAgency","Applicability":"Always","RouteType":"SelectedStayItems","AssignmentTargetType":"CompanyAsDetails","SelectedStayItems":{"Nights":true,"CityTax":true,"ProductCategoryIds":["004fa262-7b08-4853-b544-af2a00d5cf1f","8f0dc6ef-1fd4-44e4-b353-af2c00b24caf","d4c1b435-0ed1-4d98-9833-af2c00b28518"]}}]}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RoutingRuleResult'
-              example:
-                RoutingRules:
-                  - Id: ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                    CompanyId: 35f493d1-6cf7-4132-982a-a5540549c322
-                    CompanyRelation: PartnerCompany
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: AllStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                  - Id: d98c9611-0006-4691-a835-af2e00b170c4
-                    CompanyId: 73a1fc8e-11c5-4019-b296-9234b651fc68
-                    CompanyRelation: TravelAgency
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: SelectedStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    SelectedStayItems:
-                      Nights: false
-                      CityTax: true
-                      ProductCategoryIds:
-                        - 004fa262-7b08-4853-b544-af2a00d5cf1f
+                $ref: '#/components/schemas/RoutingRuleAdditionResult'
+              example: {"RoutingRules":[{"Id":"ff785b22-5422-4d1d-87f4-af2e00b3dfda","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelation":"PartnerCompany","Applicability":"PrepaidOnly","RouteType":"AllStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},{"Id":"d98c9611-0006-4691-a835-af2e00b170c4","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","CompanyRelation":"TravelAgency","Applicability":"Always","RouteType":"SelectedStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":{"Nights":true,"CityTax":true,"ProductCategoryIds":["004fa262-7b08-4853-b544-af2a00d5cf1f","8f0dc6ef-1fd4-44e4-b353-af2c00b24caf","d4c1b435-0ed1-4d98-9833-af2c00b28518"]},"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13731,71 +13649,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleRoutingRuleUpdateParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              RoutingRuleUpdates:
-                - RoutingRuleId: ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                  CompanyId:
-                    Value: 35f493d1-6cf7-4132-982a-a5540549c322
-                  CompanyRelation:
-                    Value: PartnerCompany
-                  ServiceId:
-                    Value: 708b3509-69ad-4a92-841b-d81f103edcee
-                  Applicability:
-                    Value: Always
-                  RouteType:
-                    Value: AllStayItems
-                - RoutingRuleId: d98c9611-0006-4691-a835-af2e00b170c4
-                  CompanyId:
-                    Value: 73a1fc8e-11c5-4019-b296-9234b651fc68
-                  CompanyRelation:
-                    Value: TravelAgency
-                  ServiceId:
-                    Value: 708b3509-69ad-4a92-841b-d81f103edcee
-                  Applicability:
-                    Value: Always
-                  RouteType:
-                    Value: SelectedStayItems
-                  SelectedStayItems:
-                    Nights:
-                      Value: false
-                    CityTax:
-                      Value: true
-                    ProductCategoryIds:
-                      Value:
-                        - 004fa262-7b08-4853-b544-af2a00d5cf1f
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RoutingRuleUpdates":[{"RoutingRuleId":"ff785b22-5422-4d1d-87f4-af2e00b3dfda","CompanyId":{"Value":"c021013e-4930-4592-8e32-91b0b1fc9663"},"ServiceId":{"Value":"bd26d8db-86da-4f96-9efc-e5a4654a4a94"},"CompanyRelation":{"Value":"PartnerCompany"},"Applicability":{"Value":"Always"},"RouteType":{"Value":"AllStayItems"}},{"RoutingRuleId":"d98c9611-0006-4691-a835-af2e00b170c4","CompanyId":{"Value":"a793d381-65a2-4fa6-9514-00c4c5bfe607"},"ServiceId":{"Value":"bd26d8db-86da-4f96-9efc-e5a4654a4a94"},"CompanyRelation":{"Value":"TravelAgency"},"Applicability":{"Value":"Always"},"RouteType":{"Value":"SelectedStayItems"},"AssignmentTargetType":{"Value":"CompanyAsDetails"},"SelectedStayItems":{"Nights":{"Value":false},"CityTax":{"Value":true},"ProductCategoryIds":{"Value":["004fa262-7b08-4853-b544-af2a00d5cf1f"]}}}]}
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RoutingRuleResult'
-              example:
-                RoutingRules:
-                  - Id: ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                    CompanyId: 35f493d1-6cf7-4132-982a-a5540549c322
-                    CompanyRelation: PartnerCompany
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: AllStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                  - Id: d98c9611-0006-4691-a835-af2e00b170c4
-                    CompanyId: 73a1fc8e-11c5-4019-b296-9234b651fc68
-                    CompanyRelation: TravelAgency
-                    ServiceId: 708b3509-69ad-4a92-841b-d81f103edcee
-                    Applicability: Always
-                    RouteType: SelectedStayItems
-                    CreatedUtc: '2023-10-01T11:48:57Z'
-                    UpdatedUtc: '2023-10-28T11:48:57Z'
-                    SelectedStayItems:
-                      Nights: false
-                      CityTax: true
-                      ProductCategoryIds:
-                        - 004fa262-7b08-4853-b544-af2a00d5cf1f
+                $ref: '#/components/schemas/RoutingRuleUpdateResult'
+              example: {"RoutingRules":[{"Id":"ff785b22-5422-4d1d-87f4-af2e00b3dfda","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelation":"PartnerCompany","Applicability":"PrepaidOnly","RouteType":"AllStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},{"Id":"d98c9611-0006-4691-a835-af2e00b170c4","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CompanyId":"c021013e-4930-4592-8e32-91b0b1fc9663","CompanyRelation":"TravelAgency","Applicability":"Always","RouteType":"SelectedStayItems","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","SelectedStayItems":{"Nights":true,"CityTax":true,"ProductCategoryIds":["004fa262-7b08-4853-b544-af2a00d5cf1f","8f0dc6ef-1fd4-44e4-b353-af2c00b24caf","d4c1b435-0ed1-4d98-9833-af2c00b28518"]},"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13850,13 +13712,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RoutingRuleDeleteParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              RoutingRuleIds:
-                - ff785b22-5422-4d1d-87f4-af2e00b3dfda
-                - d98c9611-0006-4691-a835-af2e00b170c4
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","RoutingRuleIds":["ff785b22-5422-4d1d-87f4-af2e00b3dfda","d98c9611-0006-4691-a835-af2e00b170c4"]}
       responses:
         '200':
           description: OK
@@ -13864,6 +13720,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Unit'
+              example: {}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -43469,6 +43326,7 @@ components:
         - EnterpriseId
         - Id
         - RouteType
+        - ServiceId
         - UpdatedUtc
       type: object
       properties:
@@ -43478,11 +43336,11 @@ components:
           format: uuid
         EnterpriseId:
           type: string
-          description: 'Unique identifier of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/enterprises/#enterprise).'
+          description: Unique identifier of the Enterprise.
           format: uuid
         CompanyId:
           type: string
-          description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company) routing rule is assigned to.'
+          description: Unique identifier of the Company routing rule is assigned to.
           format: uuid
         CompanyRelation:
           $ref: '#/components/schemas/RoutingRuleCompanyRelation'
@@ -43492,14 +43350,13 @@ components:
           $ref: '#/components/schemas/RoutingRuleRouteType'
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) routing rule is assigned to.'
+          description: Unique identifier of the Service routing rule is assigned to.
           format: uuid
-          nullable: true
         SelectedStayItems:
-          title: RoutingRuleStayItems
+          title: Selected stay items
           allOf:
             - $ref: '#/components/schemas/RoutingRuleStayItems'
-          description: Specific items to which the routing rule applies. Returns only if RouteType value is SelectedStayItems.
+          description: Specific items to which the routing rule applies. Returns only if `RouteType` value is `SelectedStayItems`.
           nullable: true
         CreatedUtc:
           minLength: 1
@@ -43514,7 +43371,7 @@ components:
       additionalProperties: false
       x-schema-id: RoutingRule
     RoutingRuleAddParameter:
-      title: RoutingRuleAddParameter
+      title: Routing rule parameters
       required:
         - Applicability
         - CompanyId
@@ -43525,9 +43382,11 @@ components:
       properties:
         CompanyId:
           type: string
+          description: Unique identifier of the Company routing rule is assigned to.
           format: uuid
         ServiceId:
           type: string
+          description: Unique identifier of the Service routing rule is assigned to.
           format: uuid
         CompanyRelation:
           $ref: '#/components/schemas/RoutingRuleCompanyRelation'
@@ -43537,25 +43396,51 @@ components:
           $ref: '#/components/schemas/RoutingRuleRouteType'
         AssignmentTargetType:
           anyOf:
-            - $ref: '#/components/schemas/RoutingRuleRouteType'
+            - $ref: '#/components/schemas/RoutingRuleAssignmentTargetType'
+          description: Relation of company to the bill. Defaults to `CompanyAsDetails`.
           nullable: true
         SelectedStayItems:
-          title: RoutingRuleStayItemsAddParameters
+          title: Selected stay items parameters
           allOf:
             - $ref: '#/components/schemas/RoutingRuleStayItemsAddParameters'
+          description: To which stay items routing rule applies to. Required only if `RouteType` value is `SelectedStayItems`.
           nullable: true
       additionalProperties: false
       x-schema-id: RoutingRuleAddParameter
+    RoutingRuleAdditionResult:
+      title: RoutingRuleAdditionResult
+      required:
+        - RoutingRules
+      type: object
+      properties:
+        RoutingRules:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutingRule'
+          description: Added routing rules.
+      additionalProperties: false
+      x-schema-id: RoutingRuleAdditionResult
     RoutingRuleApplicability:
+      title: Applicability
       enum:
         - Always
         - PrepaidOnly
       type: string
+      description: 'Determines if routing rule applies to all future reservations with this company or travel agency, or only future reservations that are prepaid.'
+    RoutingRuleAssignmentTargetType:
+      title: Assignment target type
+      enum:
+        - CompanyAsDetails
+        - CompanyAsOwner
+      type: string
     RoutingRuleCompanyRelation:
+      title: Company relation
       enum:
         - PartnerCompany
         - TravelAgency
       type: string
+      description: Relation of the company to the routing rule.
     RoutingRuleDeleteParameters:
       title: RoutingRuleDeleteParameters
       required:
@@ -43628,7 +43513,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifier of the [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company).'
+          description: Unique identifier of the `Company`.
           nullable: true
         RoutingRuleIds:
           maxItems: 1000
@@ -43637,12 +43522,13 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifier of the [Routing rule](https://mews-systems.gitbook.io/connector-api/operations/routingrules/#routing-rule).'
+          description: Unique identifier of the routing rules.
           nullable: true
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the routing rules were updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -43658,7 +43544,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RoutingRule'
-          description: Collection of Routing rules.
+          description: Collection of routing rules.
         Cursor:
           type: string
           description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
@@ -43667,82 +43553,98 @@ components:
       additionalProperties: false
       x-schema-id: RoutingRuleResult
     RoutingRuleRouteType:
+      title: Route type
       enum:
         - AllStayItems
         - SelectedStayItems
       type: string
+      description: Determines to which stay items the routing rule applies.
     RoutingRuleStayItems:
-      title: RoutingRuleStayItems
+      title: Selected stay items
       type: object
       properties:
         Nights:
           type: boolean
+          description: Whether the routing rule applies to nights.
         CityTax:
           type: boolean
+          description: Whether the routing rule applies to city tax.
         ProductCategoryIds:
           type: array
           items:
             type: string
             format: uuid
+          description: Product categories to which the routing rule applies to.
           nullable: true
       additionalProperties: false
-      description: Specific items to which the routing rule applies. Returns only if RouteType value is SelectedStayItems.
+      description: ''
       x-schema-id: RoutingRuleStayItems
     RoutingRuleStayItemsAddParameters:
-      title: RoutingRuleStayItemsAddParameters
+      title: Selected stay items parameters
       type: object
       properties:
         Nights:
           type: boolean
+          description: Whether the routing rule applies to nights.
         CityTax:
           type: boolean
+          description: Whether the routing rule applies to city tax.
         ProductCategoryIds:
           type: array
           items:
             type: string
             format: uuid
+          description: Product categories to which the routing rule applies to.
           nullable: true
       additionalProperties: false
+      description: ''
       x-schema-id: RoutingRuleStayItemsAddParameters
     RoutingRuleStayItemsUpdateParameters:
-      title: RoutingRuleStayItemsUpdateParameters
+      title: Selected stay items update parameters
       type: object
       properties:
         Nights:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the routing rule applies to nights (or null should it not be updated).
           nullable: true
         CityTax:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the routing rule applies to city tax (or null should it not be updated).
           nullable: true
         ProductCategoryIds:
           title: Guid array update value
           allOf:
             - $ref: '#/components/schemas/GuidIEnumerableUpdateValue'
+          description: Product categories to which the routing rule applies to (or null should it not be updated).
           nullable: true
       additionalProperties: false
+      description: ''
       x-schema-id: RoutingRuleStayItemsUpdateParameters
     RoutingRuleUpdateParameters:
-      title: RoutingRuleUpdateParameters
+      title: Routing rule update parameters
       required:
         - RoutingRuleId
       type: object
       properties:
         RoutingRuleId:
           type: string
+          description: Unique identifier of the routing rule.
           format: uuid
         CompanyId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Unique identifier of the Company (or null should it not be updated).
           nullable: true
         ServiceId:
           title: Guid update value
           allOf:
             - $ref: '#/components/schemas/GuidUpdateValue'
+          description: Unique identifier of the Service routing rule is assigned to (or null should it not be updated).
           nullable: true
         CompanyRelation:
           title: String update value
@@ -43750,6 +43652,7 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleCompanyRelation'
+          description: Company relation to the routing rule (or null should it not be updated).
           nullable: true
         Applicability:
           title: String update value
@@ -43757,6 +43660,7 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleApplicability'
+          description: Applicability that determines if routing rule apply to all future reservations with this company or travel agency attached or only future reservations that are prepaid in online travel agency (OTA) (or null should it not be updated).
           nullable: true
         RouteType:
           title: String update value
@@ -43764,21 +43668,38 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
             - $ref: '#/components/schemas/RoutingRuleRouteType'
+          description: What should be routed Route type (or null should it not be updated).
           nullable: true
         AssignmentTargetType:
           title: String update value
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           anyOf:
-            - $ref: '#/components/schemas/RoutingRuleRouteType'
+            - $ref: '#/components/schemas/RoutingRuleAssignmentTargetType'
+          description: Relation of company to the bill Assignment target type (or null should it not be updated).
           nullable: true
         SelectedStayItems:
-          title: RoutingRuleStayItemsUpdateParameters
+          title: Selected stay items update parameters
           allOf:
             - $ref: '#/components/schemas/RoutingRuleStayItemsUpdateParameters'
+          description: To which stay items routing rule applies to. Required only if `RouteType` value is `SelectedStayItems`.
           nullable: true
       additionalProperties: false
       x-schema-id: RoutingRuleUpdateParameters
+    RoutingRuleUpdateResult:
+      title: RoutingRuleUpdateResult
+      required:
+        - RoutingRules
+      type: object
+      properties:
+        RoutingRules:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutingRule'
+          description: Updated routing rules.
+      additionalProperties: false
+      x-schema-id: RoutingRuleUpdateResult
     Rule:
       title: Rule
       required:

@@ -1,3 +1,25 @@
+# 2025-09-24
+
+
+## POST /api/connector/v1/routingRules/add
+- :warning: removed '#/components/schemas/RoutingRuleRouteType' from the 'RoutingRules/items/AssignmentTargetType' request property 'anyOf' list
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  added '#/components/schemas/RoutingRuleAssignmentTargetType' to the 'RoutingRules/items/AssignmentTargetType' request property 'anyOf' list
+-  the response property 'RoutingRules/items/ServiceId' became required for the status '200'
+
+
+## POST /api/connector/v1/routingRules/getAll
+-  the response property 'RoutingRules/items/ServiceId' became required for the status '200'
+
+
+## POST /api/connector/v1/routingRules/update
+- :warning: removed '#/components/schemas/RoutingRuleRouteType' from the 'RoutingRuleUpdates/items/AssignmentTargetType' request property 'anyOf' list
+- :warning: removed the optional property 'Cursor' from the response with the '200' status
+-  added '#/components/schemas/RoutingRuleAssignmentTargetType' to the 'RoutingRuleUpdates/items/AssignmentTargetType' request property 'anyOf' list
+-  the response property 'RoutingRules/items/ServiceId' became required for the status '200'
+
+
+
 # 2025-09-23
 
 
