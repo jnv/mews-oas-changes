@@ -8457,8 +8457,8 @@ paths:
     post:
       tags:
         - Payment plans
-      summary: Create a payment plan
-      description: Adds a payment plan with `Name` connected to a `Reservation` and returns the payment request URL associated with the created payment plan. The fulfillment of the payment request will initiate the payment plan.
+      summary: Add payment plan
+      description: "Adds a payment plan connected to a `Reservation` and returns the payment request URL associated with the created payment plan. The fulfillment of the payment request will initiate the payment plan.\r\nNote this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
       operationId: paymentPlans_add
       requestBody:
         content:
@@ -14847,7 +14847,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SourceAssignmentFilterParametersV20240920'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"Limitation":{"Count":10}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -14855,7 +14855,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SourceAssignmentResultV20240920'
-              example: {"SourceAssignments":[{"Id":"c5e11f73-7e85-4a3c-9fe1-872014a10b43","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"22e42a59-b321-43f8-a5d1-af1f00e1bb8b","IsPrimary":true},{"Id":"5411ffd5-72c6-4ab3-b179-708bcac73d08","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"bbe29c21-401a-4746-b97d-af1f00e1bb8b","IsPrimary":false}],"Cursor":"5411ffd5-72c6-4ab3-b179-708bcac73d08"}
+              example: {"SourceAssignments":[{"Id":"c5e11f73-7e85-4a3c-9fe1-872014a10b43","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"22e42a59-b321-43f8-a5d1-af1f00e1bb8b","IsPrimary":true,"UpdatedUtc":"2025-11-05T11:00:00Z"},{"Id":"5411ffd5-72c6-4ab3-b179-708bcac73d08","ReservationId":"9b59b50d-bd32-4ce5-add8-09ea0e1300e7","SourceId":"bbe29c21-401a-4746-b97d-af1f00e1bb8b","IsPrimary":false,"UpdatedUtc":"2025-11-11T05:00:00Z"}],"Cursor":"5411ffd5-72c6-4ab3-b179-708bcac73d08"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20056,6 +20056,14 @@ components:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was closed.
           nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use `IssuedUtc` instead.
+          x-max-interval-in-months: 3
+        IssuedUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the `Bill` was issued.
+          nullable: true
           x-max-interval-in-months: 3
         PaidUtc:
           title: TimeFilterInterval
@@ -20104,9 +20112,14 @@ components:
           description: Unique identifiers of the `Customers`.
           nullable: true
         State:
-          anyOf:
-            - $ref: '#/components/schemas/BillState'
-          description: 'State the bills should be in. If not specified, `Open` and `Closed` bills are returned.'
+          allOf:
+            - $ref: '#/components/schemas/BillStateEnum'
+          description: "State the bills should be in. If not specified, `Open` and `Closed` bills are returned.\n\nOpen\n\nClosed"
+          nullable: true
+        Type:
+          allOf:
+            - $ref: '#/components/schemas/BillTypeEnum'
+          description: "Type of the bills. If not specified, all types are returned.\n\nReceipt (Default; the bill has been paid in full; only applicable after the bill is closed.)\n\nInvoice (Bill has not been paid in full but an invoice has been issued to request payment.)"
           nullable: true
         CorrectionState:
           uniqueItems: true
@@ -20320,6 +20333,19 @@ components:
         - Closed
       type: string
       description: Whether the bill is `Open` or `Closed`.
+    BillStateEnum:
+      title: Bill state
+      enum:
+        - Open
+        - Closed
+      type: string
+      description: "Whether the bill is `Open` or `Closed`.\n\nOpen\n\nClosed"
+      x-enumNames:
+        - Open
+        - Closed
+      x-enumDescriptions:
+        - ''
+        - ''
     BillType:
       title: Bill type
       enum:
@@ -20327,6 +20353,19 @@ components:
         - Invoice
       type: string
       description: 'After a bill is closed, the Bill Type is set to `Receipt` or `Invoice`. `Receipt` indicates that the bill has been fully paid and the balance is zero. `Invoice` indicates that the bill has not yet been fully paid but an invoice has been issued. Prior to closing, Bill Type should not be used.'
+      x-enumDescriptions:
+        - Default; the bill has been paid in full; only applicable after the bill is closed.
+        - Bill has not been paid in full but an invoice has been issued to request payment.
+    BillTypeEnum:
+      title: Bill type
+      enum:
+        - Receipt
+        - Invoice
+      type: string
+      description: "After a bill is closed, the Bill Type is set to `Receipt` or `Invoice`. `Receipt` indicates that the bill has been fully paid and the balance is zero. `Invoice` indicates that the bill has not yet been fully paid but an invoice has been issued. Prior to closing, Bill Type should not be used.\n\nReceipt (Default; the bill has been paid in full; only applicable after the bill is closed.)\n\nInvoice (Bill has not been paid in full but an invoice has been issued to request payment.)"
+      x-enumNames:
+        - Receipt
+        - Invoice
       x-enumDescriptions:
         - Default; the bill has been paid in full; only applicable after the bill is closed.
         - Bill has not been paid in full but an invoice has been issued to request payment.
@@ -33841,7 +33880,7 @@ components:
         - No additional data.
         - No additional data.
         - No additional data.
-        - ''
+        - No additional data.
         - '[Product order item data](https://mews-systems.gitbook.io/connector-api/operations/accountingitems#product-order-item-data)'
         - No additional data.
         - No additional data.
@@ -34068,6 +34107,7 @@ components:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the outlets were updated.
           nullable: true
           x-max-interval-in-months: 3
       additionalProperties: false
@@ -35220,6 +35260,7 @@ components:
           type: string
           description: Name of the payment plan.
         PaymentRequest:
+          title: Payment plan payment request
           allOf:
             - $ref: '#/components/schemas/PaymentPlanPaymentRequest'
           description: Data related to the payment request associated with the payment plan created.
@@ -35243,7 +35284,7 @@ components:
       additionalProperties: false
       x-schema-id: PaymentPlanAddResult
     PaymentPlanPaymentRequest:
-      title: PaymentPlanPaymentRequest
+      title: Payment plan payment request
       required:
         - Message
         - PaymentMethods
@@ -43703,6 +43744,7 @@ components:
     Rule:
       title: Rule
       required:
+        - Conditions
         - CreatedUtc
         - Id
         - ServiceId
@@ -43715,14 +43757,13 @@ components:
           format: uuid
         ServiceId:
           type: string
-          description: 'Unique identifier of the [Service](https://mews-systems.gitbook.io/connector-api/operations/services/#service) the rule is assigned to.'
+          description: Unique identifier of the `Service` the rule is assigned to.
           format: uuid
         Conditions:
-          title: RuleConditions
+          title: Rule conditions
           allOf:
             - $ref: '#/components/schemas/RuleConditions'
           description: Conditions of the rule.
-          nullable: true
         CreatedUtc:
           minLength: 1
           type: string
@@ -43737,6 +43778,9 @@ components:
       x-schema-id: Rule
     RuleAction:
       title: Rule action
+      required:
+        - Id
+        - RuleId
       type: object
       properties:
         Id:
@@ -43748,7 +43792,7 @@ components:
           description: Unique identifier of the rule.
           format: uuid
         Data:
-          title: Data
+          title: Rule action data
           type: object
           properties:
             Discriminator:
@@ -43763,105 +43807,144 @@ components:
       additionalProperties: false
       x-schema-id: RuleAction
     RuleActionDiscriminator:
+      title: Rule action discriminator
       enum:
         - Product
       type: string
+      x-enumDescriptions:
+        - Data specific to a product.
     RuleActionProductData:
-      title: RuleActionProductData
+      title: Rule action product data
+      required:
+        - ActionType
+        - ProductId
       type: object
       properties:
         ActionType:
-          type: string
-          nullable: true
+          $ref: '#/components/schemas/RuleActionType'
         ProductId:
           type: string
+          description: Unique identifier of product.
           format: uuid
       additionalProperties: false
       x-schema-id: RuleActionProductData
+    RuleActionType:
+      title: Product action type
+      enum:
+        - Add
+        - Delete
+      type: string
+      description: Action of rule.
+      x-enumDescriptions:
+        - Adds specified item.
+        - Deletes specified item.
     RuleCondition:
-      title: RuleCondition
+      title: Rule condition
+      required:
+        - ConditionType
+        - Value
       type: object
       properties:
         Value:
+          minLength: 1
           type: string
-          nullable: true
+          description: Value of the condition depending on the property. E.g. `ReservationOrigin` in case of origin condition or unique identifier of a rate in case of rate condition.
         ConditionType:
-          anyOf:
-            - $ref: '#/components/schemas/RuleConditionType'
-          nullable: true
+          $ref: '#/components/schemas/RuleConditionType'
       additionalProperties: false
       x-schema-id: RuleCondition
     RuleConditionType:
+      title: Condition type
       enum:
         - Equals
         - NotEquals
       type: string
+      description: Type of condition.
     RuleConditions:
-      title: RuleConditions
+      title: Rule conditions
       type: object
       properties:
         RateId:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `Rate`.
           nullable: true
         RateGroupId:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `RateGroup`.
           nullable: true
         BusinessSegmentId:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `BusinessSegment`.
           nullable: true
         ResourceCategoryId:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `ResourceCategory`.
           nullable: true
         ResourceCategoryType:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `ResourceCategoryType`.
           nullable: true
         Origin:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `ReservationOrigin`.
           nullable: true
         TravelAgencyId:
-          title: RuleCondition
+          title: Rule condition
           allOf:
             - $ref: '#/components/schemas/RuleCondition'
+          description: Condition based on `Company`.
           nullable: true
         MinimumTimeUnitCount:
           type: integer
+          description: Condition based on minimum amount of time units.
           format: int32
           nullable: true
         MaximumTimeUnitCount:
           type: integer
+          description: Condition based on maximum amount of time units.
           format: int32
           nullable: true
       additionalProperties: false
-      description: Conditions of the rule.
+      description: ''
       x-schema-id: RuleConditions
     RuleExtent:
-      title: RuleExtent
+      title: Rule extent
       type: object
       properties:
         RuleActions:
           type: boolean
+          description: Whether the response should contain rule actions.
+          nullable: true
         Rates:
           type: boolean
+          description: Whether the response should contain rates.
+          nullable: true
         RateGroups:
           type: boolean
+          description: Whether the response should contain rate groups.
+          nullable: true
         ResourceCategories:
           type: boolean
+          description: Whether the response should contain rate resource categories.
+          nullable: true
         BusinessSegments:
           type: boolean
+          description: Whether the response should contain business segments.
+          nullable: true
       additionalProperties: false
-      description: Extent of data to be returned.
+      description: ''
       x-schema-id: RuleExtent
     RuleFilterParameters:
       title: RuleFilterParameters
@@ -43906,6 +43989,7 @@ components:
           items:
             type: string
             format: uuid
+          description: Unique identifiers of the `Rule`.
           nullable: true
         ServiceIds:
           maxItems: 1000
@@ -43914,15 +43998,16 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
+          description: Unique identifiers of the `Service`.
         UpdatedUtc:
           title: TimeFilterInterval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which `Rule` was updated.
           nullable: true
           x-max-interval-in-months: 3
         Extent:
-          title: RuleExtent
+          title: Rule extent
           allOf:
             - $ref: '#/components/schemas/RuleExtent'
           description: Extent of data to be returned.
@@ -43930,6 +44015,8 @@ components:
       x-schema-id: RuleFilterParameters
     RuleResult:
       title: RuleResult
+      required:
+        - Rules
       type: object
       properties:
         Rules:
@@ -43937,7 +44024,6 @@ components:
           items:
             $ref: '#/components/schemas/Rule'
           description: Rules used with reservation creations and modifications.
-          nullable: true
         RuleActions:
           type: array
           items:
@@ -45507,6 +45593,7 @@ components:
         - IsPrimary
         - ReservationId
         - SourceId
+        - UpdatedUtc
       type: object
       properties:
         Id:
@@ -45524,6 +45611,11 @@ components:
         IsPrimary:
           type: boolean
           description: Specifies whether the source is primary for the `Reservation`.
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: Date and time of the source assignment last update in UTC timezone in ISO 8601 format.
+          format: date-time
       additionalProperties: false
       x-schema-id: SourceAssignmentV20240920
     SourceFilterParameters:

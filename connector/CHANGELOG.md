@@ -1,3 +1,76 @@
+# 2025-09-25
+
+
+## POST /api/connector/v1/bills/getAll
+- :warning: added '#/components/schemas/BillStateEnum' to the 'State' request property 'allOf' list
+- :warning: removed '#/components/schemas/BillState' from the 'State' request property 'anyOf' list
+-  added the new optional request property 'IssuedUtc'
+-  added the new optional request property 'Type'
+
+
+## POST /api/connector/v1/rules/getAll
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response's property type/format changed from ''/'' to 'string'/'' for status '200'
+- :warning: added the new 'Add' enum value to the 'RuleActions/items/Data/Value/oneOf[subschema #1: RuleActionProductData -> subschema #1: Rule action product data]/ActionType' response property for the response status '200'
+- :warning: added the new 'Delete' enum value to the 'RuleActions/items/Data/Value/oneOf[subschema #1: RuleActionProductData -> subschema #1: Rule action product data]/ActionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'Equals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+- :warning: added the new 'NotEquals' enum value to the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property for the response status '200'
+-  the request property 'Extent/allOf[subschema #1: RuleExtent -> subschema #1: Rule extent]/BusinessSegments' became nullable
+-  the request property 'Extent/allOf[subschema #1: RuleExtent -> subschema #1: Rule extent]/RateGroups' became nullable
+-  the request property 'Extent/allOf[subschema #1: RuleExtent -> subschema #1: Rule extent]/Rates' became nullable
+-  the request property 'Extent/allOf[subschema #1: RuleExtent -> subschema #1: Rule extent]/ResourceCategories' became nullable
+-  the request property 'Extent/allOf[subschema #1: RuleExtent -> subschema #1: Rule extent]/RuleActions' became nullable
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  removed '#/components/schemas/RuleConditionType' from the 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' response property 'anyOf' list for the response status '200'
+-  the response property 'RuleActions/items/Data/Value/oneOf[subschema #1: RuleActionProductData -> subschema #1: Rule action product data]/ActionType' became required for the status '200'
+-  the response property 'RuleActions/items/Data/Value/oneOf[subschema #1: RuleActionProductData -> subschema #1: Rule action product data]/ProductId' became required for the status '200'
+-  the response property 'RuleActions/items/Id' became required for the status '200'
+-  the response property 'RuleActions/items/RuleId' became required for the status '200'
+-  the response property 'Rules' became required for the status '200'
+-  the response property 'Rules/items/Conditions' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/BusinessSegmentId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/Origin/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateGroupId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/RateId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/ResourceCategoryType/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/ConditionType' became required for the status '200'
+-  the response property 'Rules/items/Conditions/allOf[subschema #1: RuleConditions -> subschema #1: Rule conditions]/TravelAgencyId/allOf[subschema #1: RuleCondition -> subschema #1: Rule condition]/Value' became required for the status '200'
+
+
+## POST /api/connector/v1/sourceAssignments/getAll/2024-09-20
+-  added the required property 'SourceAssignments/items/UpdatedUtc' to the response with the '200' status
+
+
+
 # 2025-09-24
 
 
