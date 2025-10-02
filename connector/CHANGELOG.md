@@ -1,3 +1,11 @@
+# 2025-10-02
+
+
+## POST /api/connector/v1/configuration/get
+-  added the required property 'Enterprise/allOf[subschema #1: Enterprise]/AccountingConfiguration/allOf[subschema #1: Accounting configuration]/Options' to the response with the '200' status
+
+
+
 # 2025-09-25
 
 

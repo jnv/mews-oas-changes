@@ -4624,7 +4624,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Configuration'
-              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"HoldingKey":"CA123","ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","ChainName":"Connector API Chain","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","BusinessDayClosingOffset":null,"WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Connector API Group"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null,"IsIdentityDocumentNumberRequired":true}
+              example: {"NowUtc":"2018-01-01T14:58:02Z","Enterprise":{"Currencies":[{"Currency":"GBP","IsDefault":true,"IsEnabled":true},{"Currency":"USD","IsDefault":false,"IsEnabled":true}],"AccountingConfiguration":{"AdditionalTaxIdentifier":null,"CompanyName":"Connector API Hotel","BankAccountNumber":"1234","BankName":"Random bank","Iban":"CZ7250517882393618329719","Bic":"GIBACZPY","SurchargeConfiguration":{"SurchargeFees":{"Amex":3.0,"DinersClub":4.0},"SurchargeServiceId":"2b9b0143-3135-485b-8064-76c90d1be69e","SurchargeTaxCode":"US-HI-KA"},"EnabledExternalPaymentTypes":["Invoice","Cash","GiftCard"],"Options":["ReceivableTrackingEnabled","GroupTaxesOnBill"]},"IsPortfolio":false,"Id":"851df8c8-90f2-4c4a-8e01-a4fc46b25178","ExternalIdentifier":null,"HoldingKey":"CA123","ChainId":"8ddea57b-6a5c-4eec-8c4c-24467dce118e","ChainName":"Connector API Chain","CreatedUtc":"2015-07-07T13:33:17Z","UpdatedUtc":"2015-07-07T13:33:17Z","Name":"Connector API Hotel","TimeZoneIdentifier":"Europe/Budapest","LegalEnvironmentCode":"UK","AccommodationEnvironmentCode":null,"AccountingEnvironmentCode":null,"TaxEnvironmentCode":null,"DefaultLanguageCode":"en-US","EditableHistoryInterval":"P0M7DT0H0M0S","AccountingEditableHistoryInterval":"P0M7DT0H0M0S","OperationalEditableHistoryInterval":"P0M5DT0H0M0S","BusinessDayClosingOffset":null,"WebsiteUrl":"https://en.wikipedia.org/wiki/St._Vitus_Cathedral","Email":"charging-api@mews.li","Phone":"00000 123 456 789","LogoImageId":null,"CoverImageId":null,"Pricing":"Gross","TaxPrecision":null,"AddressId":"c556f56e-713e-4102-9de5-0e853b5a8586","Address":{"Id":"8c2c4371-5d42-40a9-b551-ab0b00d75076","Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"1200","CountryCode":"CZ","CountrySubdivisionCode":null,"Latitude":14.429645,"Longitude":50.075181},"GroupNames":["Connector API Group"],"Subscription":{"TaxIdentifier":"123456789 RC 0001"}},"Service":{"Id":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"Name":"Accommodation","Names":{"en-GB":"Accommodation"},"StartTime":"PT14H","EndTime":"PT12H","Options":{"BillAsPackage":false},"Promotions":{"BeforeCheckIn":false,"AfterCheckIn":false,"DuringStay":false,"BeforeCheckOut":false,"AfterCheckOut":false,"DuringCheckOut":false},"Type":"Reservable","Ordering":0,"Data":null,"ExternalIdentifier":null,"CreatedUtc":"2023-10-01T11:48:57Z","UpdatedUtc":"2023-10-28T11:48:57Z"},"PaymentCardStorage":null,"IsIdentityDocumentNumberRequired":true}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -17151,6 +17151,7 @@ components:
       title: Accounting configuration
       required:
         - EnabledExternalPaymentTypes
+        - Options
         - SurchargeConfiguration
       type: object
       properties:
@@ -17194,8 +17195,44 @@ components:
           items:
             $ref: '#/components/schemas/ExternalPaymentTypeEnum'
           description: External payment types that are enabled for the enterprise and can be used in `payments/addExternal`.
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountingConfigurationOptionEnum'
+          description: Accounting configuration options.
       additionalProperties: false
       x-schema-id: AccountingConfiguration
+    AccountingConfigurationOptionEnum:
+      title: External payment type
+      enum:
+        - OptionalCreditCardPaymentDetails
+        - ReceivableTrackingEnabled
+        - SeparateDepositsOnBill
+        - AllowModifyingClosedBills
+        - RequireAccountingCategorySetup
+        - GroupTaxesOnBill
+        - DisplayEmployeeNameOnBill
+        - TaxDeclarationOnDeposit
+      type: string
+      description: "\n\nOptionalCreditCardPaymentDetails (Optional credit card payment details)\n\nReceivableTrackingEnabled (Receivable tracking enabled)\n\nSeparateDepositsOnBill (Separate deposits on bill)\n\nAllowModifyingClosedBills (Allow modifying closed bills)\n\nRequireAccountingCategorySetup (Require accounting category setup)\n\nGroupTaxesOnBill (Group taxes on bill)\n\nDisplayEmployeeNameOnBill (Display employee name on bill)\n\nTaxDeclarationOnDeposit (Tax declaration on deposit)"
+      x-enumNames:
+        - OptionalCreditCardPaymentDetails
+        - ReceivableTrackingEnabled
+        - SeparateDepositsOnBill
+        - AllowModifyingClosedBills
+        - RequireAccountingCategorySetup
+        - GroupTaxesOnBill
+        - DisplayEmployeeNameOnBill
+        - TaxDeclarationOnDeposit
+      x-enumDescriptions:
+        - Optional credit card payment details
+        - Receivable tracking enabled
+        - Separate deposits on bill
+        - Allow modifying closed bills
+        - Require accounting category setup
+        - Group taxes on bill
+        - Display employee name on bill
+        - Tax declaration on deposit
     AccountingItem:
       title: Accounting item
       type: object
