@@ -17203,7 +17203,7 @@ components:
       additionalProperties: false
       x-schema-id: AccountingConfiguration
     AccountingConfigurationOptionEnum:
-      title: External payment type
+      title: Accounting configuration option
       enum:
         - OptionalCreditCardPaymentDetails
         - ReceivableTrackingEnabled
