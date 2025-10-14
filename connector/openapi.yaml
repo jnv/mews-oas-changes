@@ -41569,7 +41569,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ActivityStates'
-          description: 'Whether to return only active, only deleted or both records.'
+          description: 'Whether to return only active, only deleted or both records. The `ActivityState` filter applies only to record’s own status. The `IsActive` response property also considers the parent’s status, so some returned records may have `IsActive = false` if their parent is deleted.'
           nullable: true
         ResourceIds:
           maxItems: 1000
