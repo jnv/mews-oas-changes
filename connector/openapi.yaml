@@ -33364,7 +33364,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -33807,10 +33807,12 @@ components:
           type: string
           description: 'Unique identifier of the [Product](https://mews-systems.gitbook.io/connector-api/operations/products/#product) of the original rebated [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item).'
           format: uuid
+          x-mews-legacy-nullable: true
         RebatedItemId:
           type: string
           description: 'Unique identifier of [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) which has been rebated by current item.'
           format: uuid
+          x-mews-legacy-nullable: true
       additionalProperties: false
       x-schema-id: OrderItemRebateData
     OrderItemResult:
@@ -36468,7 +36470,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -37378,7 +37380,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -46169,6 +46171,7 @@ components:
     TaxExemptionReasonTypeEnum:
       title: Tax exemption reason type
       enum:
+        - Unknown
         - IT_N1
         - IT_N2_2
         - IT_N3_5
@@ -46178,8 +46181,9 @@ components:
         - PL_NP
         - DE_NATO
       type: string
-      description: "\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
       x-enumNames:
+        - Unknown
         - IT_N1
         - IT_N2_2
         - IT_N3_5
@@ -46189,6 +46193,7 @@ components:
         - PL_NP
         - DE_NATO
       x-enumDescriptions:
+        - Unknown tax exemption reason
         - N1 - Escluse ex art.15
         - N2.2 - Non soggette – altri casi
         - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
