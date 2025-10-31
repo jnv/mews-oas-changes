@@ -1,3 +1,11 @@
+# 2025-10-31
+
+
+## POST /api/connector/v1/fiscalMachineCommands/getAll
+-  added the required property 'Commands/items/Bill/allOf[subschema #1: Bill (ver 2025-06-23)]/AccountType' to the response with the '200' status
+
+
+
 # 2025-10-22
 
 
