@@ -2536,6 +2536,11 @@ components:
           items:
             $ref: '#/components/schemas/Category'
           nullable: true
+        Rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+          nullable: true
       additionalProperties: false
       x-schema-id: PromotedServiceResult
     Rate:

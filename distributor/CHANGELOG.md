@@ -1,3 +1,11 @@
+# 2025-11-05
+
+
+## POST /api/distributor/v1/services/getPromotions
+-  added the optional property 'Rates' to the response with the '200' status
+
+
+
 # 2025-07-17
 
 
