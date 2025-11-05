@@ -14850,7 +14850,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SourceAssignmentFilterParametersV20240920'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"Limitation":{"Count":100}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"UpdatedUtc":{"StartUtc":"2025-11-01T00:00:00Z","EndUtc":"2025-11-30T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -45588,15 +45588,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/Limitation'
           description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
-        EnterpriseIds:
-          maxItems: 1000
-          minItems: 1
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
-          nullable: true
         ReservationIds:
           maxItems: 100
           minItems: 1
@@ -45605,6 +45596,21 @@ components:
             type: string
             format: uuid
           description: Unique identifiers of `Reservation`.
+          nullable: true
+        UpdatedUtc:
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval of source assignment last update date and time.
+          nullable: true
+          x-max-interval-in-months: 1
+        EnterpriseIds:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. Required when using Portfolio Access Tokens, ignored otherwise.'
           nullable: true
       additionalProperties: false
       x-schema-id: SourceAssignmentFilterParametersV20240920

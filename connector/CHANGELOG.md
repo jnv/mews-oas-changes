@@ -1,3 +1,11 @@
+# 2025-11-05
+
+
+## POST /api/connector/v1/sourceAssignments/getAll/2024-09-20
+-  added the new optional request property 'UpdatedUtc'
+
+
+
 # 2025-10-31
 
 
