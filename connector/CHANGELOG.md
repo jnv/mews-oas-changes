@@ -1,3 +1,40 @@
+# 2025-11-07
+
+
+## POST /api/connector/v1/companies/add
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/companies/getAll
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/companies/update
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/add
+-  added the required property 'Vouchers/items/EnterpriseId' to the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/getAll
+-  added the required property 'Companies/items/DebtorNumber' to the response with the '200' status
+-  added the required property 'Vouchers/items/EnterpriseId' to the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/update
+-  added the required property 'Vouchers/items/EnterpriseId' to the response with the '200' status
+
+
+
 # 2025-11-05
 
 
