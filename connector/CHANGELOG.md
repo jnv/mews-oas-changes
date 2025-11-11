@@ -1,3 +1,68 @@
+# 2025-11-11
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the new optional request property 'DriversLicense/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'IdentityCard/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'Passport/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'PreferredLanguageCode'
+-  added the new optional request property 'Visa/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the optional property 'DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Documents/items/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Documents/items/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the new optional request property 'DriversLicense/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'IdentityCard/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'Passport/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the new optional request property 'PreferredLanguageCode'
+-  added the new optional request property 'Visa/allOf[subschema #1: Identity document parameters]/IssuingCountrySubdivisionCode'
+-  added the optional property 'DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/DriversLicense/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/IdentityCard/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Passport/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Visa/allOf[subschema #1: Identity document]/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+
 # 2025-11-07
 
 
