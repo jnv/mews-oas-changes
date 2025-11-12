@@ -1929,7 +1929,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/billingAutomations/add:
     post:
       tags:
@@ -1993,7 +1992,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/billingAutomations/update:
     post:
       tags:
@@ -2057,7 +2055,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/billingAutomations/updateAssignments:
     post:
       tags:
@@ -2121,7 +2118,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/billingAutomations/delete:
     post:
       tags:
@@ -2185,7 +2181,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/bills/update:
     post:
       tags:
@@ -13519,7 +13514,7 @@ paths:
       tags:
         - Routing rules
       summary: Get all routing rules
-      description: "Returns all routing rules.\nNote this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property)."
+      description: 'Use [Get all billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#get-all-billing-automations).'
       operationId: routingRules_getAll
       requestBody:
         content:
@@ -13577,12 +13572,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      deprecated: true
+      x-deprecatedMessage: 'Use [Get all billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#get-all-billing-automations).'
   /api/connector/v1/routingRules/add:
     post:
       tags:
         - Routing rules
       summary: Add routing rules
-      description: Adds a new routing rules.
+      description: 'Use [Add billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#add-billing-automations).'
       operationId: routingRules_add
       requestBody:
         content:
@@ -13640,12 +13637,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      deprecated: true
+      x-deprecatedMessage: 'Use [Add billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#add-billing-automations).'
   /api/connector/v1/routingRules/update:
     post:
       tags:
         - Routing rules
       summary: Update routing rules
-      description: Updates routing rules.
+      description: 'Use [Update billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#update-billing-automations) and [Update billing automations assignments](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#update-billing-automations-assignments).'
       operationId: routingRules_update
       requestBody:
         content:
@@ -13703,12 +13702,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      deprecated: true
+      x-deprecatedMessage: 'Use [Update billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#update-billing-automations) and [Update billing automations assignments](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#update-billing-automations-assignments).'
   /api/connector/v1/routingRules/delete:
     post:
       tags:
         - Routing rules
       summary: Delete routing rules
-      description: Deletes routing rules.
+      description: 'Use [Delete billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#delete-billing-automations).'
       operationId: routingRules_delete
       requestBody:
         content:
@@ -13766,6 +13767,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      deprecated: true
+      x-deprecatedMessage: 'Use [Delete billing automations](https://mews-systems.gitbook.io/connector-api/operations/billingautomations#delete-billing-automations).'
   /api/connector/v1/rules/getAll:
     post:
       tags:
