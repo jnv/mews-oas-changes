@@ -1,3 +1,47 @@
+# 2025-11-14
+
+
+## POST /api/connector/v1/companies/add
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+## POST /api/connector/v1/companies/getAll
+- :warning: the request property 'Limitation' became not nullable
+- :warning: the request property 'Limitation' became required
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+## POST /api/connector/v1/companies/update
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+## POST /api/connector/v1/identityDocuments/add
+-  added the new optional request property 'IdentityDocuments/items/IssuingCountrySubdivisionCode'
+-  added the optional property 'IdentityDocuments/items/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/identityDocuments/getAll
+-  added the optional property 'IdentityDocuments/items/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/identityDocuments/update
+-  added the new optional request property 'IdentityDocuments/items/IssuingCountrySubdivisionCode'
+-  added the optional property 'IdentityDocuments/items/IssuingCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/getAll
+- :warning: removed the required property 'Companies/items/DebtorNumber' from the response with the '200' status
+
+
+
 # 2025-11-11
 
 

@@ -6170,7 +6170,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"},{"Id":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"ID7654321","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2024-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Brno","IdentityDocumentSupportNumber":"B-321"}],"Cursor":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4"}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"},{"Id":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"ID7654321","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2024-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Brno","IdentityDocumentSupportNumber":"B-321"}],"Cursor":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6357,7 +6357,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentWriteResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6420,7 +6420,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentWriteResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -22802,7 +22802,6 @@ components:
       required:
         - ChainId
         - CreditRating
-        - DebtorNumber
         - Id
         - IsActive
         - Name
@@ -22908,12 +22907,6 @@ components:
           type: integer
           description: Unique number of the company.
           format: int64
-        DebtorNumber:
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-          description: 'Auto-generated unique identifier of the company (from 1 to 2,147,483,647).'
-          format: int32
         TaxIdentifier:
           type: string
           description: Tax identification number of the company.
@@ -23455,6 +23448,7 @@ components:
         - AccessToken
         - Client
         - ClientToken
+        - Limitation
       type: object
       properties:
         ClientToken:
@@ -23469,6 +23463,10 @@ components:
           minLength: 1
           type: string
           description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
         ChainIds:
           maxItems: 1000
           minItems: 1
@@ -23476,7 +23474,7 @@ components:
           items:
             type: string
             format: uuid
-          description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         MotherCompanyIds:
           maxItems: 1000
@@ -23547,11 +23545,6 @@ components:
           items:
             $ref: '#/components/schemas/ActivityStates'
           description: 'Whether to return only active, only deleted, or both types of record. If not specified, both active and deleted records will be returned.'
-          nullable: true
-        Limitation:
-          allOf:
-            - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned.
           nullable: true
       additionalProperties: false
       x-schema-id: CompanyFilterParameters
@@ -28921,7 +28914,7 @@ components:
           title: Document type
           allOf:
             - $ref: '#/components/schemas/IdentityDocumentTypeEnum'
-          description: "Type of the document (or `null` if the number should not be updated).\n\nIdentityCard\n\nPassport\n\nVisa\n\nDriversLicense"
+          description: "Type of the document (or `null` if the type should not be updated).\n\nIdentityCard\n\nPassport\n\nVisa\n\nDriversLicense"
           x-enumNames:
             - IdentityCard
             - Passport
@@ -28949,7 +28942,7 @@ components:
           title: Identity document type update value
           allOf:
             - $ref: '#/components/schemas/IdentityDocumentTypeUpdateValue'
-          description: Type of the document (or `null` if the number should not be updated).
+          description: Type of the document (or `null` if the type should not be updated).
           nullable: true
         Number:
           title: String update value
@@ -28976,6 +28969,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: ISO 3166-1 code of the `Country` (or `null` if the issuing country code should not be updated).
+          nullable: true
+        IssuingCountrySubdivisionCode:
+          title: String update value
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: 'Identifier of the country subdivision where the document was issued (province, state or region) (or `null` if the value should not be updated).'
           nullable: true
         IssuingCity:
           title: String update value
@@ -29040,6 +29039,10 @@ components:
         IssuingCountryCode:
           type: string
           description: ISO 3166-1 code of the `Country`.
+          nullable: true
+        IssuingCountrySubdivisionCode:
+          type: string
+          description: 'Identifier of the country subdivision where the document was issued (province, state or region).'
           nullable: true
         IssuingCity:
           type: string
@@ -29109,6 +29112,10 @@ components:
         IssuingCountryCode:
           type: string
           description: ISO 3166-1 code of the `Country`).
+          nullable: true
+        IssuingCountrySubdivisionCode:
+          type: string
+          description: 'Identifier of the country subdivision where the document was issued (province, state or region).'
           nullable: true
         IssuingCity:
           type: string
