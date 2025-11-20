@@ -17037,8 +17037,9 @@ components:
         - GroupTaxesOnBill
         - DisplayEmployeeNameOnBill
         - TaxDeclarationOnDeposit
+        - SplitVatByClassificationOnBill
       type: string
-      description: "\n\nOptionalCreditCardPaymentDetails (Optional credit card payment details)\n\nReceivableTrackingEnabled (Receivable tracking enabled)\n\nSeparateDepositsOnBill (Separate deposits on bill)\n\nAllowModifyingClosedBills (Allow modifying closed bills)\n\nRequireAccountingCategorySetup (Require accounting category setup)\n\nGroupTaxesOnBill (Group taxes on bill)\n\nDisplayEmployeeNameOnBill (Display employee name on bill)\n\nTaxDeclarationOnDeposit (Tax declaration on deposit)"
+      description: "\n\nOptionalCreditCardPaymentDetails (Optional credit card payment details)\n\nReceivableTrackingEnabled (Receivable tracking enabled)\n\nSeparateDepositsOnBill (Separate deposits on bill)\n\nAllowModifyingClosedBills (Allow modifying closed bills)\n\nRequireAccountingCategorySetup (Require accounting category setup)\n\nGroupTaxesOnBill (Group taxes on bill)\n\nDisplayEmployeeNameOnBill (Display employee name on bill)\n\nTaxDeclarationOnDeposit (Tax declaration on deposit)\n\nSplitVatByClassificationOnBill (Split VAT by classification on bill)"
       x-enumNames:
         - OptionalCreditCardPaymentDetails
         - ReceivableTrackingEnabled
@@ -17048,6 +17049,7 @@ components:
         - GroupTaxesOnBill
         - DisplayEmployeeNameOnBill
         - TaxDeclarationOnDeposit
+        - SplitVatByClassificationOnBill
       x-enumDescriptions:
         - Optional credit card payment details
         - Receivable tracking enabled
@@ -17057,6 +17059,7 @@ components:
         - Group taxes on bill
         - Display employee name on bill
         - Tax declaration on deposit
+        - Split VAT by classification on bill
     AccountingItem:
       title: Accounting item
       type: object
