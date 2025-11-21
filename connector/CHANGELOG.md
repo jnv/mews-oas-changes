@@ -1,3 +1,25 @@
+# 2025-11-21
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+-  added the optional property 'AvailabilityBlocks/items/CanceledUtc' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReason' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReasonDetail' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+-  added the optional property 'AvailabilityBlocks/items/CanceledUtc' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReason' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReasonDetail' to the response with the '200' status
+
+
+## POST /api/connector/v1/availabilityBlocks/update
+-  added the optional property 'AvailabilityBlocks/items/CanceledUtc' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReason' to the response with the '200' status
+-  added the optional property 'AvailabilityBlocks/items/CancellationReasonDetail' to the response with the '200' status
+
+
+
 # 2025-11-20
 
 
