@@ -22922,7 +22922,7 @@ components:
           nullable: true
         Number:
           type: integer
-          description: Unique number of the company.
+          description: Unique number of the company (max 19 digits).
           format: int64
         TaxIdentifier:
           type: string
@@ -24927,9 +24927,10 @@ components:
           description: Unique identifier of the chain.
           format: uuid
         Number:
+          maxLength: 19
           minLength: 1
           type: string
-          description: Number of the customer.
+          description: Unique number of the customer (max 19 digits).
         Title:
           allOf:
             - $ref: '#/components/schemas/Title'
