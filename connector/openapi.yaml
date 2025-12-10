@@ -18801,7 +18801,7 @@ components:
         PickupDistribution:
           allOf:
             - $ref: '#/components/schemas/PickupDistributionEnum'
-          description: "Pickup distribution. Defaults to `AllInOneGroup` if not specified.\n\nAllInOneGroup (All created reservations in the block are added to the same reservation group.)\n\nIndividualGroups (Reservations can be picked up in multiple groups, with up to 750 reservations per group.)"
+          description: "Specifies how reservations within the block are distributed for pickup. Defaults to `AllInOneGroup` if not provided. This value cannot be updated after creation.\n\nAllInOneGroup (All created reservations in the block are added to the same reservation group.)\n\nIndividualGroups (Reservations can be picked up in multiple groups, with up to 750 reservations per group.)"
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddParameters
