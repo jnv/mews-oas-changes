@@ -8590,7 +8590,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultiplePaymentRequestAddParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentRequests":[{"AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Amount":{"Currency":"EUR","Value":10.4},"Type":"Payment","Reason":"PaymentCardMissing","ExpirationUtc":"2023-02-20T12:00:00Z","Description":"Payment required","Notes":"Internal notes.","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509"}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PaymentRequests":[{"AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Amount":{"Currency":"EUR","Value":10.4},"Type":"Payment","Reason":"PaymentCardMissing","ExpirationUtc":"2023-02-20T12:00:00Z","Description":"Payment required","Notes":"Internal notes.","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509"}],"SendPaymentRequestEmails":true,"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -32120,6 +32120,10 @@ components:
           items:
             $ref: '#/components/schemas/PaymentRequestAddParameters'
           description: Payment requests to be added.
+        SendPaymentRequestEmails:
+          type: boolean
+          description: Specifies whether a payment request email is sent to the customer. Defaults to `true`.
+          nullable: true
       additionalProperties: false
       x-schema-id: MultiplePaymentRequestAddParameters
     MultiplePaymentRequestCancelParameters:

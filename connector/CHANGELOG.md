@@ -1,3 +1,11 @@
+# 2026-01-14
+
+
+## POST /api/connector/v1/paymentRequests/add
+-  added the new optional request property 'SendPaymentRequestEmails'
+
+
+
 # 2025-11-21
 
 
