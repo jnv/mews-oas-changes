@@ -46729,6 +46729,7 @@ components:
           nullable: true
         AssignedRateIds:
           maxItems: 10
+          uniqueItems: true
           type: array
           items:
             type: string
