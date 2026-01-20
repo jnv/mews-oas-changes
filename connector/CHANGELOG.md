@@ -1,3 +1,39 @@
+# 2026-01-20
+
+
+## POST /api/connector/v1/availabilityBlocks/getAll
+- :warning: added the new 'CommanderRoomingList' enum value to the 'ServiceOrders/items/Origin' response property for the response status '200'
+
+
+## POST /api/connector/v1/companionships/getAll
+- :warning: added the new 'CommanderRoomingList' enum value to the 'Reservations/items/Origin' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/search
+- :warning: added the new 'CommanderRoomingList' enum value to the 'Customers/items/Reservation/allOf[subschema #1: Reservation (ver 2017-04-12)]/Origin' response property for the response status '200'
+
+
+## POST /api/connector/v1/productServiceOrders/getAll
+- :warning: added the new 'RoomingList' enum value to the 'ProductServiceOrders/items/CommanderOrigin/allOf[subschema #1: Commander origin]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/add
+- :warning: added the new 'CommanderRoomingList' enum value to the 'Reservations/items/Reservation/allOf[subschema #1: Reservation (ver 2017-04-12)]/Origin' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'CommanderRoomingList' enum value to the 'Reservations/items/Origin' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll/2023-06-06
+- :warning: added the new 'RoomingList' enum value to the 'Reservations/items/CommanderOrigin/allOf[subschema #1: Commander origin]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'CommanderRoomingList' enum value to the 'Reservations/items/Origin' response property for the response status '200'
+
+
+
 # 2026-01-14
 
 

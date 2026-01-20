@@ -38570,7 +38570,7 @@ components:
         CommanderOrigin:
           allOf:
             - $ref: '#/components/schemas/ServiceOrderCommanderOriginEnum'
-          description: "Further detail about origin in case of Origin `Commander`.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
+          description: "Further detail about origin in case of Origin `Commander`.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter\n\nRoomingList"
           nullable: true
         OriginDetails:
           type: string
@@ -39637,6 +39637,7 @@ components:
         - CommanderWebsite
         - CommanderMessage
         - CommanderCallCenter
+        - CommanderRoomingList
       type: string
       x-enumDescriptions:
         - From the Mews Booking Engine or Booking Engine API.
@@ -39651,6 +39652,7 @@ components:
         - 'From Mews Operations, via website.'
         - 'From Mews Operations, via message person.'
         - 'From Mews Operations, via call center.'
+        - 'From Mews Operations, via rooming list.'
     ReservationOptions:
       title: Reservation options
       required:
@@ -44587,7 +44589,7 @@ components:
         CommanderOrigin:
           allOf:
             - $ref: '#/components/schemas/ServiceOrderCommanderOriginEnum'
-          description: "Further detail about origin in case of Origin Commander.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
+          description: "Further detail about origin in case of Origin Commander.\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter\n\nRoomingList"
           nullable: true
         OriginDetails:
           type: string
@@ -44692,8 +44694,9 @@ components:
         - Website
         - Message
         - CallCenter
+        - RoomingList
       type: string
-      description: "\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter"
+      description: "\n\nInPerson\n\nChannel\n\nPhone\n\nEmail\n\nWebsite\n\nMessage\n\nCallCenter\n\nRoomingList"
       x-enumNames:
         - InPerson
         - Channel
@@ -44702,7 +44705,9 @@ components:
         - Website
         - Message
         - CallCenter
+        - RoomingList
       x-enumDescriptions:
+        - ''
         - ''
         - ''
         - ''
