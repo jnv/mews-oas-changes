@@ -15170,10 +15170,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Parameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0"}
       responses:
         '200':
           description: OK
@@ -15181,27 +15178,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaxEnvironmentResult'
-              example:
-                TaxEnvironments:
-                  - Code: AT-2020
-                    CountryCode: AUT
-                    TaxationCodes:
-                      - AT-2020
-                      - AT-2020-Extra
-                    ValidityStartUtc: '2020-06-30T22:00:00Z'
-                    ValidityEndUtc: 
-                  - Code: AT-2016
-                    CountryCode: AUT
-                    TaxationCodes:
-                      - AT-2016
-                    ValidityStartUtc: '2016-05-01T00:00:00Z'
-                    ValidityEndUtc: '2020-06-30T22:00:00Z'
-                  - Code: AT
-                    CountryCode: AUT
-                    TaxationCodes:
-                      - AT
-                    ValidityStartUtc: 
-                    ValidityEndUtc: '2016-05-01T00:00:00Z'
+              example: {"TaxEnvironments":[{"Code":"AT-2020","CountryCode":"AUT","ValidityStartUtc":"2020-06-30T22:00:00Z","ValidityEndUtc":null,"TaxationCodes":["AT-2020"]},{"Code":"AW-2023","CountryCode":"ABW","ValidityStartUtc":"2023-01-01T04:00:00Z","ValidityEndUtc":null,"TaxationCodes":["AW-2023","AW-TOURIST-2023","AW-RESIDENCE"]},{"Code":"CA-QC-TR-2023","CountryCode":"CAN","ValidityStartUtc":"2023-10-19T19:00:00Z","ValidityEndUtc":null,"TaxationCodes":["CA-TR-2023","CA-QC-2023","CA-QC-LODGING-2023","CA-QC-LO-FLAT"]},{"Code":"PH-MA-CUSTOM","CountryCode":"PHL","ValidityStartUtc":null,"ValidityEndUtc":null,"TaxationCodes":["PH","PH-MA-CUSTOM","PH-MA-SERVICE"]}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -15256,10 +15233,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Parameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0"}
       responses:
         '200':
           description: OK
@@ -15267,42 +15241,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaxationResult'
-              example:
-                Taxations:
-                  - Code: AT-2020
-                    Name: VAT
-                    LocalName: MWST
-                  - Code: AT-2020-Extra
-                    Name: Extra tax on top of VAT
-                    LocalName: Extra tax on top of MWST
-                  - Code: AT-2016
-                    Name: VAT
-                    LocalName: MWST
-                  - Code: AT
-                    Name: VAT
-                    LocalName: MWST
-                TaxRates:
-                  - Code: AT-2020-21%
-                    TaxationCode: AT
-                    Strategy:
-                      Discriminator: Relative
-                      Value:
-                        Value: 0.21
-                  - Code: AT-2020-Extra-10%
-                    TaxationCode: AT-2020-Extra-10%
-                    Strategy:
-                      Discriminator: Dependent
-                      Value:
-                        BaseTaxationCodes:
-                          - AT-2020
-                        Value: 0.1
-                  - Code: AT-5-EUR
-                    TaxationCode: AT
-                    Strategy:
-                      Discriminator: Flat
-                      Value:
-                        Value: 5
-                        CurrencyCode: EUR
+              example: {"Taxations":[{"Code":"AT-2020","Name":"VAT","LocalName":"MWST"},{"Code":"AT-2020-Extra","Name":"Extra tax on top of VAT","LocalName":"Extra tax on top of MWST"},{"Code":"AT-2016","Name":"VAT","LocalName":"MWST"},{"Code":"AT","Name":"VAT","LocalName":"MWST"},{"Code":"AW","Name":"TAX","LocalName":"TAX"},{"Code":"CA-QC-2023","Name":"TVQ/QST","LocalName":"TVQ/QST"},{"Code":"PH-MA-CUSTOM","Name":"Makati local tax","LocalName":"Makati local tax"}],"TaxRates":[{"Code":"AT-2020-21%","TaxationCode":"AT","Value":0.2100,"ValidityInvervalsUtc":null,"Strategy":{"Discriminator":"Relative","Value":{"Value":0.2100}}},{"Code":"AT-2020-Extra-10%","TaxationCode":"AT-2020-Extra","Value":0.1000,"ValidityInvervalsUtc":null,"Strategy":{"Discriminator":"Dependent","Value":{"Value":0.1000,"BaseTaxationCodes":["AT-2020"]}}},{"Code":"AT-5-EUR","TaxationCode":"AT","Value":5.0000,"ValidityInvervalsUtc":null,"Strategy":{"Discriminator":"Flat","Value":{"CurrencyCode":"EUR","Value":5.0000}}},{"Code":"AW-S","TaxationCode":"AW","Value":0.2062,"ValidityInvervalsUtc":[{"StartUtc":null,"EndUtc":"2021-01-14T00:00:00Z"}],"Strategy":{"Discriminator":"Relative","Value":{"Value":0.2062}}},{"Code":"CA-QC-2023-9.975%","TaxationCode":"CA-QC-2023","Value":0.0000,"ValidityInvervalsUtc":[{"StartUtc":"2023-10-19T19:00:00Z","EndUtc":null}],"Strategy":{"Discriminator":"Dependent","Value":{"Value":0.09975,"BaseTaxationCodes":["CA-QC-MT-LO","CA-QC-LODGING-2023","CA-QC-LO-FLAT"]}}},{"Code":"PH-MA-CUSTOM-0.75%","TaxationCode":"PH-MA-CUSTOM","Value":0.0075,"ValidityInvervalsUtc":null,"Strategy":{"Discriminator":"Relative","Value":{"Value":0.0075}}}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
