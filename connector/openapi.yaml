@@ -16469,7 +16469,7 @@ components:
           description: 'Unique identifiers of the accounts ([Customer](https://mews-systems.gitbook.io/connector-api/operations/customers/#customer) or [Company](https://mews-systems.gitbook.io/connector-api/operations/companies/#company)).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of Account note's last update date and time.
@@ -16851,7 +16851,7 @@ components:
           description: 'Unique identifiers of the requested [Accounting categories](https://mews-systems.gitbook.io/connector-api/operations/#accounting-category).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Last update date and time of the accounting category in UTC timezone in ISO 8601 format.
@@ -17140,21 +17140,21 @@ components:
           description: Unique identifiers of the Accounting items we are finding rebates for. Required if no other filter is provided.
           nullable: true
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the accounting item was closed. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the accounting item was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ConsumedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the accounting item was consumed. Required if no other filter is provided.
@@ -17700,7 +17700,7 @@ components:
           description: 'Unique identifiers of [Addresses](https://mews-systems.gitbook.io/connector-api/operations/#account-address) within the enterprise. Use this property if you want to fetch specific addresses. Required if no other filter is provided.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of Address last update date and time. Required if no other filter is provided.
@@ -18019,7 +18019,7 @@ components:
           description: 'Unique identifiers of `Service` associated with the age categories. If not provided, defaults to all bookable services.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the age category was updated.
@@ -18434,7 +18434,7 @@ components:
           description: 'Unique identifiers of the requested [Availability adjustments](https://mews-systems.gitbook.io/connector-api/operations/#availability-adjustment).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the availability adjustments were updated.
@@ -18891,28 +18891,28 @@ components:
           description: Unique identifiers of the requested `Availability blocks`.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the availability blocks were created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Availability blocks` were updated.
           nullable: true
           x-max-interval-in-months: 3
         CollidingUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Availability blocks` are active.
           nullable: true
           x-max-interval-in-months: 3
         ReleasedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Availability blocks`are released.
@@ -19871,7 +19871,7 @@ components:
           deprecated: true
           x-deprecatedMessage: Use `orderItems/getAll` and `payments/getAll` with `BillIds` filter instead.
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was closed.
@@ -19880,34 +19880,35 @@ components:
           x-deprecatedMessage: Use `IssuedUtc` instead.
           x-max-interval-in-months: 3
         IssuedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was issued.
           nullable: true
           x-max-interval-in-months: 3
         PaidUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was paid.
           nullable: true
           x-max-interval-in-months: 3
         DueUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` is due to be paid.
           nullable: true
           x-max-interval-in-months: 3
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Bill` was updated.
@@ -21461,7 +21462,7 @@ components:
           description: Unique identifiers of the `Services` from which the business segments are requested.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of `Business segment` last update date and time.
@@ -21890,7 +21891,7 @@ components:
           description: 'Unique identifiers of the [Rate group](https://mews-systems.gitbook.io/connector-api/operations/rates/#rategroup). Required if no other filter is provided.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Cancellation Policy was updated. Required if no other filter is provided.
@@ -22023,7 +22024,7 @@ components:
           description: 'Unique identifiers of the requested [Cashier](https://mews-systems.gitbook.io/connector-api/operations/#cashier).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Cashier` was updated.
@@ -22146,7 +22147,7 @@ components:
           description: Unique identifiers of the Cashier transactions.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which Cashier transaction was created.
@@ -22461,6 +22462,7 @@ components:
             $ref: '#/components/schemas/DeviceCommandStateEnum'
           description: States of the commands to filter by.
         UpdatedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the commands were updated.
@@ -22710,7 +22712,7 @@ components:
           description: Unique identifiers of `ReservationGroup`. Required if no other filter is provided.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Companionship` was updated. Must be used together with at least one another filter.
@@ -23376,7 +23378,7 @@ components:
           description: Unique identifiers of `Service` where the Travel agency contracts belong to.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Travel agency contracts were updated.
@@ -23442,15 +23444,17 @@ components:
           description: Unique identifiers of mother `Company`.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         TimeFilter:
@@ -24091,7 +24095,7 @@ components:
           description: 'Type of the counter. If not specified, the operation returns all types.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Counter` was updated.
@@ -24408,7 +24412,7 @@ components:
           description: Unique identifiers of the `Customer`.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `CreditCard` was updated.
@@ -25823,14 +25827,14 @@ components:
           description: 'Unique identifiers of the chains. Required when using Portfolio Access Tokens, ignored otherwise.'
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which Customer was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which Customer was updated.
@@ -25842,7 +25846,7 @@ components:
             - $ref: '#/components/schemas/CustomerExtent'
           description: Extent of data to be returned.
         DeletedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which Customer was deleted. `ActivityStates` value `Deleted` should be provided with this filter to get expected results.
@@ -26609,7 +26613,7 @@ components:
           description: 'Unique identifiers of [Department](https://mews-systems.gitbook.io/connector-api/operations/#department).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Department` was updated.
@@ -27316,15 +27320,17 @@ components:
           description: 'Identifiers of the [Enterprise](https://mews-systems.gitbook.io/connector-api/operations/#enterprise) from external system.'
           nullable: true
         LinkedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         Limitation:
@@ -27759,6 +27765,7 @@ components:
       type: object
       properties:
         UpdatedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Filters entities by the specified UTC update interval. The end of the interval must be no later than 5 minutes in the past. The maximum interval is 180 days.
@@ -30016,14 +30023,14 @@ components:
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: The time interval during which the membership was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: The time interval during which the membership was last updated.
@@ -30375,14 +30382,14 @@ components:
           description: 'Unique identifiers of the chain. If not specified, the operation returns data for all chains within scope of the Access Token.'
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of `LoyaltyProgram` creation date and time.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of `LoyaltyProgram` last update date and time.
@@ -30704,7 +30711,7 @@ components:
           description: 'Whether to return only active, only deleted or both records.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of `Loyalty tier` last update date and time.
@@ -30893,7 +30900,7 @@ components:
             format: uuid
           description: Unique identifiers of `MessageThread`s from where to return messages.
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Message` was created.
@@ -31045,14 +31052,14 @@ components:
           description: Unique identifiers of `MessageThread`. Required if no other filter is provided.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `MessageThread` was created. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `MessageThread` was updated. Required if no other filter is provided.
@@ -33410,35 +33417,35 @@ components:
           description: 'Unique identifiers of the [Bills](https://mews-systems.gitbook.io/connector-api/operations/bills/#bill) to which order item is assigned. Required if no other filter is provided.'
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was created. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was updated. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         ConsumedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was consumed. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         CanceledUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was canceled. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Order item](https://mews-systems.gitbook.io/connector-api/operations/orderitems/#order-item) was closed. Required if no other filter is provided.'
@@ -33977,7 +33984,7 @@ components:
           description: 'Unique identifiers of the requested [Outlets](https://mews-systems.gitbook.io/connector-api/operations/#outlet).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the outlets were updated.
@@ -34191,21 +34198,21 @@ components:
           description: 'Unique identifiers of the [Outlet items](#outlet-item). If not specified, the operation returns data for all [Outlet items](#outlet-item) within scope of the Access Token.'
           nullable: true
         ConsumedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Outlet item](#outlet-item) was consumed. Required if no other filter is provided.'
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Outlet bill](#outlet-bill) was updated.'
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Outlet bill](#outlet-bill) was closed.'
@@ -34807,35 +34814,35 @@ components:
           description: Unique identifiers of specific `Reservations` to which payments belong. Required if no other filter is provided.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Time interval during which the `Payment` was created. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Time interval during which the `Payment` was updated. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ChargedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Time interval during which the `Payment` was charged. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Time interval during which the `Payment` was closed. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         SettlementUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Payments` were settled.
@@ -35526,7 +35533,7 @@ components:
           description: Unique identifiers of `Reservation` to which the payment requests belong.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the payment requests were updated.
@@ -36470,7 +36477,7 @@ components:
             format: uuid
           description: Unique identifiers of `Service` to which the product categories belong.
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the product categories were updated.
@@ -36645,7 +36652,7 @@ components:
             format: uuid
           description: 'Unique identifiers of the [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service).'
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the products were updated.
@@ -36992,7 +36999,7 @@ components:
           description: Unique identifiers of linked Reservations.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Product service orders were updated.
@@ -37534,7 +37541,7 @@ components:
           description: 'Unique identifiers of the requested [Rates](https://mews-systems.gitbook.io/connector-api/operations/rates/#rate).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Rate` was updated.
@@ -37799,9 +37806,10 @@ components:
           description: 'Identifiers of [Rate group](https://mews-systems.gitbook.io/connector-api/operations/#rate-group) from external systems.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -39233,7 +39241,7 @@ components:
           description: Unique identifiers of the `ReservationGroup`. Required if no other filter is provided.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `ReservationGroup` was updated. Required if no other filter is provided.
@@ -40036,45 +40044,49 @@ components:
           description: Unique identifiers of the `Availability blocks` assigned to the reservations.
           nullable: true
         CreatedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: 'Interval in which the [Reservation](https://mews-systems.gitbook.io/connector-api/operations/reservations/#reservation-ver-2023-06-06) was created.'
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Reservations` were updated.
           nullable: true
           x-max-interval-in-months: 3
         CollidingUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the reservations are active. This is defined for a `Reservation` as the period between the reservation's scheduled start time `ScheduledStartUtc` and its scheduled end time `EndUtc`. Reservation is selected if any part of its interval intersects with the interval specified in `CollidingUtc
           nullable: true
           x-max-interval-in-months: 3
         ScheduledStartUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval filtering Reservations by their scheduled start time. Cannot be used with `ActualStartUtc`.
           nullable: true
           x-max-interval-in-months: 3
         ActualStartUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval filtering Reservations by their actual start (check-in) time. Cannot be used with `ScheduledStartUtc`. Note that the filter applies only to started or processed reservations.
           nullable: true
           x-max-interval-in-months: 3
         ActualEndUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval filtering Reservations by their actual end (check-out) time. Cannot be used with `ScheduledEndUtc`.
           nullable: true
           x-max-interval-in-months: 3
         ScheduledEndUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval filtering Reservations by their scheduled end time. Cannot be used with `ActualEndUtc`.
@@ -40720,14 +40732,14 @@ components:
           description: Unique identifiers of reservations. Required if no other filter is provided.
           nullable: true
         CollidingUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource access token is valid. Required if no other filter is provided.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which resource access token was updated. Required if no other filter is provided.
@@ -41173,21 +41185,21 @@ components:
           description: 'Whether to return only active, only deleted or both records. Defaults to `Active` if not specified.'
           nullable: true
         CollidingUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource block is active.
           nullable: true
           x-max-interval-in-months: 3
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource block was created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource block was updated.
@@ -41391,7 +41403,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Resource categories](https://mews-systems.gitbook.io/connector-api/operations/#resource-category) to which the resource category assignment belong.'
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource category assignments were updated.
@@ -41555,7 +41567,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Services](https://mews-systems.gitbook.io/connector-api/operations/services/#service) to which the resource categories belong.'
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource categories were updated.
@@ -41663,7 +41675,7 @@ components:
             format: uuid
           description: 'Unique identifiers of [Resource categories](https://mews-systems.gitbook.io/connector-api/operations/resources/#resource-category) to which the resource category image assignments belong.'
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resource category image assignments were updated.
@@ -42073,9 +42085,10 @@ components:
             format: uuid
           description: 'Unique identifiers of [Resource features](https://mews-systems.gitbook.io/connector-api/operations/#resource-feature) to which the resource feature assignments belong.'
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         ActivityStates:
@@ -42249,7 +42262,7 @@ components:
             format: uuid
           description: Unique identifiers of `Service` to which the resource features belong.
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Last update date and time of the resource feature in UTC timezone in ISO 8601 format.
@@ -42340,14 +42353,14 @@ components:
             - $ref: '#/components/schemas/ResourceExtent'
           description: Extent of data to be returned.
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resources were created.
           nullable: true
           x-max-interval-in-months: 3
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the resources were updated.
@@ -42994,19 +43007,19 @@ components:
           nullable: true
           deprecated: true
         CollidingUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Restriction` is active.
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Restriction` was created.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the `Restriction` was updated.
@@ -43441,7 +43454,7 @@ components:
           description: Unique identifier of the routing rules.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the routing rules were updated.
@@ -43875,7 +43888,7 @@ components:
             format: uuid
           description: Unique identifiers of the `Service`.
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Rule` was updated.
@@ -44415,7 +44428,7 @@ components:
           description: "Filter services by type.\n\nBookable\n\nAdditional"
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which `Services` were updated.
@@ -44768,7 +44781,7 @@ components:
           description: Unique identifiers of `Service order note`. Use this property if you want to fetch specific service order notes.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Timestamp in UTC timezone ISO 8601 format when the service order note was updated.
@@ -45099,11 +45112,13 @@ components:
           description: Unique identifiers of the service overbooking limits.
           nullable: true
         CollidingUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the service overbooking limit is active.
           nullable: true
         UpdatedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the service overbooking limits were updated.
@@ -45375,7 +45390,7 @@ components:
           description: Unique identifiers of the `Reservation group`.
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of `Reservation group` last update date and time.
@@ -45418,6 +45433,7 @@ components:
           description: Unique identifiers of `Reservation`.
           nullable: true
         UpdatedUtc:
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of source assignment last update date and time.
@@ -45533,7 +45549,7 @@ components:
           description: 'Unique identifiers of [Sources](https://mews-systems.gitbook.io/connector-api/operations/sources/#source).'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the source was updated.
@@ -45860,21 +45876,21 @@ components:
           description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
           nullable: true
         CreatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Task was created.
           nullable: true
           x-max-interval-in-months: 3
         ClosedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Task was closed.
           nullable: true
           x-max-interval-in-months: 3
         DeadlineUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval in which the Task has a deadline.
@@ -46154,7 +46170,7 @@ components:
       additionalProperties: false
       x-schema-id: TaxationResult
     TimeFilterInterval:
-      title: TimeFilterInterval
+      title: Time interval
       type: object
       properties:
         StartUtc:
@@ -46166,6 +46182,7 @@ components:
           format: date-time
           nullable: true
       additionalProperties: false
+      description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
       x-schema-id: TimeFilterInterval
     TimeUnitPeriodEnum:
       title: Time unit period
@@ -46847,7 +46864,7 @@ components:
             format: uuid
           description: Unique identifiers of vouchers.
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Interval of voucher code's last update date and time.
@@ -46987,9 +47004,10 @@ components:
           description: 'Whether to return only active, only deleted, or both types of record. If not specified, both active and deleted records will be returned.'
           nullable: true
         UpdatedUtc:
-          title: TimeFilterInterval
+          title: Time interval
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
+          description: "When a time interval is used for **filtering** (for example in parameters such as `CreatedUtc.StartUtc` / `CreatedUtc.EndUtc`), the following rules apply:\r\n\r\n- **Start equals End (equality mode)**  \r\n  If `StartUtc` and `EndUtc` are exactly the same timestamp, the filter is treated as an equality check for that precise moment in time:\r\n  \r\n  ```\r\n  CreatedUtc == StartUtc\r\n  ```\r\n  \r\n  This does not represent an interval; only records with `CreatedUtc` equal to that exact instant are returned.\r\n\r\n- **Start differs from End (interval mode)**  \r\n  If `StartUtc` and `EndUtc` are different, the filter is evaluated as a half-open interval:\r\n  \r\n  ```\r\n  StartUtc <= CreatedUtc < EndUtc\r\n  ```\r\n  \r\n  In other words, the start is inclusive and the end is exclusive.\r\n\r\nMake sure your integration takes inclusive Start / exclusive End behavior of time intervals into account so that no records at the boundaries are omitted."
           nullable: true
           x-max-interval-in-months: 3
         ExternalIdentifiers:
