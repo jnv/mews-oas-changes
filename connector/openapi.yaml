@@ -478,7 +478,7 @@ paths:
       tags:
         - Accounting items
       summary: Update accounting items
-      description: 'Updates specified accounting items. You can use this operation to assign an accounting item to a different account or bill. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property).'
+      description: "Updates specified accounting items. You can use this operation to assign an accounting item to a different account or bill. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).\r\n\r\n> **State Restrictions**: Only accounting items in specific states can be moved:\r\n> - **Order items**: Must be in `Open` state\r\n> - **Payments**: Must be in `Pending` state\r\n> \r\n> Attempting to move items in other states (e.g., `Closed`, `Inactive`, `Charged`, `Failed`, `Canceled`) will result in an `Invalid AccountingItemId` error."
       operationId: accountingItems_update
       requestBody:
         content:
