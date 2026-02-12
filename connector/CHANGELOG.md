@@ -1,3 +1,15 @@
+# 2026-02-12
+
+
+## POST /api/connector/v1/restrictions/add
+-  api path removed with deprecation
+
+
+## POST /api/connector/v1/restrictions/delete
+-  api path removed with deprecation
+
+
+
 # 2026-01-20
 
 
