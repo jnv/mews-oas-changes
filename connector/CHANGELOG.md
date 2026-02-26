@@ -1,3 +1,12 @@
+# 2026-02-26
+
+
+## POST /api/connector/v1/services/getAvailability/2024-01-22
+-  added the new 'HouseUse' enum value to the request property 'Metrics/items/'
+-  added the optional property 'ResourceCategoryAvailabilities/items/Metrics/HouseUse' to the response with the '200' status
+
+
+
 # 2026-02-12
 
 
