@@ -1,3 +1,15 @@
+# 2026-02-28
+
+
+## POST /api/connector/v1/paymentMethodRequests/add
+-  endpoint added
+
+
+## POST /api/connector/v1/tasks/close
+-  endpoint added
+
+
+
 # 2026-02-26
 
 
