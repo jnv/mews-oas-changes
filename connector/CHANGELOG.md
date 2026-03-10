@@ -1,3 +1,46 @@
+# 2026-03-10
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/BirthCountryCode' to the response with the '200' status
+-  added the optional property 'Customers/items/BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the new optional request property 'BirthCountryCode'
+-  added the new optional request property 'BirthCountrySubdivisionCode'
+-  added the optional property 'BirthCountryCode' to the response with the '200' status
+-  added the optional property 'BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/BirthCountryCode' to the response with the '200' status
+-  added the optional property 'Customers/items/BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/BirthCountryCode' to the response with the '200' status
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the new optional request property 'BirthCountryCode'
+-  added the new optional request property 'BirthCountrySubdivisionCode'
+-  added the optional property 'BirthCountryCode' to the response with the '200' status
+-  added the optional property 'BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/BirthCountryCode' to the response with the '200' status
+-  added the optional property 'Customers/items/BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/BirthCountryCode' to the response with the '200' status
+-  added the optional property 'Customers/items/BirthCountrySubdivisionCode' to the response with the '200' status
+
+
+
 # 2026-02-28
 
 
