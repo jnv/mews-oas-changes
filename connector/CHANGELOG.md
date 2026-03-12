@@ -1,3 +1,42 @@
+# 2026-03-12
+
+
+## POST /api/connector/v1/accounts/update
+-  added the new optional request property 'AccountUpdates/items/Customer/allOf[subschema #1: Customer update parameters]/LegalEntityIdentifiers/allOf[subschema #1: Customer update legal entity identifiers]/ItLotteryCode'
+-  added the optional property 'Accounts/items/Customer/allOf[subschema #1: Customer]/LegalEntityIdentifiers/allOf[subschema #1: Customer legal identifiers]/ItLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the new optional request property 'ItalianLotteryCode'
+-  added the optional property 'ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the new optional request property 'ItalianLotteryCode'
+-  added the optional property 'ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/ItalianLotteryCode' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/ItalianLotteryCode' to the response with the '200' status
+
+
+
 # 2026-03-10
 
 
