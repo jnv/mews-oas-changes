@@ -8456,7 +8456,7 @@ paths:
       tags:
         - Payment method requests
       summary: Add payment method request
-      description: " Create a payment method request for the specified customer or company account to securely collect a payment method without charging the guest immediately. \r\n An optional email notification is sent to the account's email address or a specified override address. \r\n Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
+      description: "Create a payment method request for the specified customer or company account to securely collect a payment method without charging the guest immediately. An optional email notification is sent to the account's email address or a specified override address.\r\nNote this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
       operationId: paymentMethodRequests_add
       requestBody:
         content:
@@ -16241,6 +16241,7 @@ components:
         - Only Customer
         - Only Customer
         - Only Customer
+      x-extensible: true
     AccountNoteFilterParameters:
       title: AccountNoteFilterParameters
       required:
@@ -16824,6 +16825,7 @@ components:
         - Display employee name on bill
         - Tax declaration on deposit
         - Split VAT by classification on bill
+      x-extensible: true
     AccountingItem:
       title: Accounting item
       type: object
@@ -17871,6 +17873,7 @@ components:
         - No additional data.
         - No additional data.
         - SEPA Direct Debit data.
+      x-extensible: true
     AlternativePaymentParameters:
       title: AlternativePaymentParameters
       required:
@@ -17968,6 +17971,7 @@ components:
             - No additional data.
             - No additional data.
             - SEPA Direct Debit data.
+          x-extensible: true
         SepaDirectDebit:
           title: SEPA Direct Debit data
           allOf:
@@ -34945,7 +34949,7 @@ components:
       additionalProperties: false
       x-schema-id: PaymentMethodRequestAdditionResult
     PaymentMethodRequestEmailTypesEnum:
-      title: Supported email types.
+      title: Supported email types
       enum:
         - PaymentMethodRequestAdded
       type: string
@@ -34955,7 +34959,7 @@ components:
       x-enumDescriptions:
         - ''
     PaymentMethodRequestPaymentMethodsEnum:
-      title: Acceptable payment methods.
+      title: Acceptable payment methods
       enum:
         - PaymentCard
         - SepaDirectDebit
