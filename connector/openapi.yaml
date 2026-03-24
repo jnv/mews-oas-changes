@@ -1886,7 +1886,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingAutomationResult'
-              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}],"Cursor":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693"}
+              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","UpdatedUtc":"2023-10-28T14:23:00Z","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}],"Cursor":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -1949,7 +1949,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingAutomationModificationResult'
-              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
+              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","UpdatedUtc":"2023-10-28T14:23:00Z","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -2012,7 +2012,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingAutomationModificationResult'
-              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
+              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","UpdatedUtc":"2023-10-28T14:23:00Z","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -2075,7 +2075,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingAutomationAssignmentsUpdateParameters'
-              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
+              example: {"BillingAutomations":[{"Id":"ecd64eec-4423-4c65-b844-814b9199856d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Continuous billing automation for company XYZ","Description":"Billing Automation for company XYZ with prepayment all, company as owner.","CompaniesWithRelations":[{"CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","CompanyRelations":{"PartnerCompany":true,"TravelAgency":false}}],"Prepayment":"All","AssignmentTargetType":"CompanyAsOwner","TriggerType":"Continuous","BillAggregationType":"AggregateAll","CreatedUtc":"2017-01-31T10:58:06Z","UpdatedUtc":"2023-10-28T14:23:00Z","CreatorProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf","UpdaterProfileId":"122fc063-ec6e-4198-b8db-6b168a59ffae","ProcessingStartOffset":null,"OrderItemConsumptionPeriod":null,"Assignments":[{"Id":"d6b550e9-9c4b-42dd-9daa-555312b030e6","BillingAutomationId":"ecd64eec-4423-4c65-b844-814b9199856d","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RoutedItemTypes":{"SpaceOrder":true,"CityTax":true,"AllProducts":true,"Deposits":true,"AdditionalExpenses":false,"AllCustomItems":false},"RateIds":["ab3682ba-4493-4eb0-bcdc-8d000f5bad65"],"ProductCategoryIds":["599c477e-b826-4444-8ded-4fa7276ef0c1"],"ProductIds":["f0184ec2-9f02-4026-9b70-0b2bed2adde7"],"AccountingCategoryAssignments":[{"AccountingCategoryId":"2e0f5930-605e-4a23-9994-a7701a56b576","ItemTypes":{"Products":true,"CustomItems":false}}]}]}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20156,11 +20156,14 @@ components:
         - BillAggregationType
         - CompaniesWithRelations
         - CreatedUtc
+        - CreatorProfileId
         - EnterpriseId
         - Id
         - Name
         - Prepayment
         - TriggerType
+        - UpdatedUtc
+        - UpdaterProfileId
       type: object
       properties:
         Id:
@@ -20242,6 +20245,19 @@ components:
           type: string
           description: Creation date and time of the billing automation in UTC timezone in ISO 8601 format.
           format: date-time
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: Last update date and time of the billing automation in UTC timezone in ISO 8601 format.
+          format: date-time
+        CreatorProfileId:
+          type: string
+          description: Unique identifier of the user who created the billing automation.
+          format: uuid
+        UpdaterProfileId:
+          type: string
+          description: Unique identifier of the user who last updated the billing automation.
+          format: uuid
         ProcessingStartOffset:
           type: string
           description: Processing start offset. Applicable only if the billing automation `TriggerType` is set to `Reccuring`.

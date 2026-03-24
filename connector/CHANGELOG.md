@@ -1,3 +1,25 @@
+# 2026-03-24
+
+
+## POST /api/connector/v1/billingAutomations/add
+-  added the required property 'BillingAutomations/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdatedUtc' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/billingAutomations/getAll
+-  added the required property 'BillingAutomations/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdatedUtc' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdaterProfileId' to the response with the '200' status
+
+
+## POST /api/connector/v1/billingAutomations/update
+-  added the required property 'BillingAutomations/items/CreatorProfileId' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdatedUtc' to the response with the '200' status
+-  added the required property 'BillingAutomations/items/UpdaterProfileId' to the response with the '200' status
+
+
+
 # 2026-03-12
 
 
