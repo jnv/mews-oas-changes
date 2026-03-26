@@ -1,3 +1,15 @@
+# 2026-03-26
+
+
+## POST /api/connector/v1/paymentRequests/add
+-  added the new optional request property 'PaymentRequests/items/BillId'
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the optional property 'Payments/items/PaymentRequestId' to the response with the '200' status
+
+
+
 # 2026-03-24
 
 
