@@ -1,3 +1,12 @@
+# 2026-03-31
+
+
+## POST /api/connector/v1/payments/getAll
+- :warning: added the new 'Alternative' enum value to the 'Payments/items/Data/allOf[subschema #1: Payment data]/Discriminator/allOf[subschema #1: Payment data discriminator]/' response property for the response status '200'
+-  added the optional property 'Payments/items/Data/allOf[subschema #1: Payment data]/Alternative' to the response with the '200' status
+
+
+
 # 2026-03-26
 
 
