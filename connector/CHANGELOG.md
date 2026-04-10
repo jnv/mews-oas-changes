@@ -1,3 +1,11 @@
+# 2026-04-10
+
+
+## POST /api/connector/v1/configuration/get
+- :warning: added the new 'EmailClosedBillsAfterCheckout' enum value to the 'Enterprise/allOf[subschema #1: Enterprise]/AccountingConfiguration/allOf[subschema #1: Accounting configuration]/Options/items/' response property for the response status '200'
+
+
+
 # 2026-03-31
 
 
