@@ -1,3 +1,17 @@
+# 2026-04-15
+
+
+## POST /api/connector/v1/reservations/add
+-  added the new optional request property 'Reservations/items/AssignedResourceId'
+-  added the new optional request property 'Reservations/items/AssignedResourceLocked'
+
+
+## POST /api/connector/v1/reservations/price
+-  added the new optional request property 'Reservations/items/AssignedResourceId'
+-  added the new optional request property 'Reservations/items/AssignedResourceLocked'
+
+
+
 # 2026-04-10
 
 

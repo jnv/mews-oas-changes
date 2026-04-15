@@ -38889,6 +38889,15 @@ components:
           type: string
           description: Identifier of the requested `ResourceCategory`.
           format: uuid
+        AssignedResourceId:
+          type: string
+          description: Identifier of the assigned `Resource`.
+          format: uuid
+          nullable: true
+        AssignedResourceLocked:
+          type: boolean
+          description: Whether the reservation should be locked to the assigned `Resource`. (`null` or `false` if the reservation should not be locked)
+          nullable: true
         RateId:
           type: string
           description: Identifier of the reservation `Rate`.
