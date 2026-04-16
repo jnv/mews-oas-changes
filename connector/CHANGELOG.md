@@ -1,3 +1,16 @@
+# 2026-04-16
+
+
+## POST /api/connector/v1/exports/add
+-  added the new optional request property 'Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters'
+-  added the optional property 'Export/allOf[subschema #1: Export]/Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters' to the response with the '200' status
+
+
+## POST /api/connector/v1/exports/getAll
+-  added the optional property 'Exports/items/Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters' to the response with the '200' status
+
+
+
 # 2026-04-15
 
 

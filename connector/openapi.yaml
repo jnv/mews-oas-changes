@@ -6042,7 +6042,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportAddResult'
-              example: {"Export":{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}}}
+              example: {"Export":{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"},"LedgerEntryFilters":null}}}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6106,7 +6106,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportResult'
-              example: {"Exports":[{"Id":"3fa85f64-5717-4562-b3fd-2c963f66afa6","Status":"Success","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"ChainIds":null},"Files":[{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-1.jsonl?example=signature","SizeInBytes":1215279},{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-2.jsonl?example=signature","SizeInBytes":1398362}],"ExpiresUtc":"2023-10-26T11:42:28Z","Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}},{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"}}},{"Id":"706dc6d5-9511-4751-825e-538ce99da2ce","Status":"Processing","EntityType":"Company","Scope":{"EnterpriseIds":null,"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"]},"Files":[],"ExpiresUtc":null,"Filters":null},{"Id":"f776f20a-6f1a-4ddf-93f4-9dae95261415","Status":"Expired","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":"2023-10-24T14:12:30Z","Filters":null}]}
+              example: {"Exports":[{"Id":"3fa85f64-5717-4562-b3fd-2c963f66afa6","Status":"Success","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"ChainIds":null},"Files":[{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-1.jsonl?example=signature","SizeInBytes":1215279},{"Url":"https://example.com/exports/3fa85f64-5717-4562-b3fd-2c963f66afa6-2.jsonl?example=signature","SizeInBytes":1398362}],"ExpiresUtc":"2023-10-26T11:42:28Z","Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"},"LedgerEntryFilters":null}},{"Id":"09708665-0e31-4b23-b337-b0a000be0df0","Status":"Pending","EntityType":"Reservation","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":null,"Filters":{"UpdatedUtc":{"StartUtc":"2020-11-04T00:00:00Z","EndUtc":"2020-11-05T00:00:00Z"},"LedgerEntryFilters":null}},{"Id":"706dc6d5-9511-4751-825e-538ce99da2ce","Status":"Processing","EntityType":"Company","Scope":{"EnterpriseIds":null,"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"]},"Files":[],"ExpiresUtc":null,"Filters":null},{"Id":"f776f20a-6f1a-4ddf-93f4-9dae95261415","Status":"Expired","EntityType":"OrderItem","Scope":{"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"ChainIds":null},"Files":[],"ExpiresUtc":"2023-10-24T14:12:30Z","Filters":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -27636,6 +27636,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/TimeFilterInterval'
           description: Filters entities by the specified UTC update interval. The end of the interval must be no later than 5 minutes in the past. The maximum interval is 180 days.
+          nullable: true
+        LedgerEntryFilters:
+          allOf:
+            - $ref: '#/components/schemas/ExportLedgerEntryDataFilters'
+          description: Filters specific to the `LedgerEntry` entity type. Required when `EntityType` is `LedgerEntry`.
           nullable: true
       additionalProperties: false
       x-schema-id: ExportDataFilters
