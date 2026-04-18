@@ -1,3 +1,25 @@
+# 2026-04-18
+
+
+## POST /api/connector/v1/configuration/get
+-  added the optional property 'Enterprise/allOf[subschema #1: Enterprise]/ShortName' to the response with the '200' status
+
+
+## POST /api/connector/v1/enterprises/getAll
+-  added the optional property 'Enterprises/items/ShortName' to the response with the '200' status
+
+
+## POST /api/connector/v1/exports/add
+- :warning: the request property 'Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters/allOf[subschema #1: ExportLedgerEntryDataFilters -> subschema #1: Export ledger entry data filters]/Posting' became not nullable
+- :warning: the request property 'Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters/allOf[subschema #1: ExportLedgerEntryDataFilters -> subschema #1: Export ledger entry data filters]/Posting' became required
+-  the response property 'Export/allOf[subschema #1: Export]/Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters/allOf[subschema #1: ExportLedgerEntryDataFilters -> subschema #1: Export ledger entry data filters]/Posting' became required for the status '200'
+
+
+## POST /api/connector/v1/exports/getAll
+-  the response property 'Exports/items/Filters/allOf[subschema #1: Export data filters]/LedgerEntryFilters/allOf[subschema #1: ExportLedgerEntryDataFilters -> subschema #1: Export ledger entry data filters]/Posting' became required for the status '200'
+
+
+
 # 2026-04-16
 
 
