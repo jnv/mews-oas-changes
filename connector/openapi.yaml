@@ -5725,6 +5725,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/customers/getRelationships:
+    post:
+      tags:
+        - Customers
+      summary: Get customers relationships
+      description: 'Returns relationships between customers (e.g. Spouse, Friend) for the provided unique identifiers of customers.'
+      operationId: customers_getRelationships
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRelationshipFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"]}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerRelationshipResult'
+              example: {"CustomerRelationships":[{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","Relationship":"Other"},{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","Relationship":"Other"}],"Cursor":null}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/departments/getAll:
     post:
       tags:
@@ -24877,7 +24941,7 @@ components:
         Classifications:
           type: array
           items:
-            $ref: '#/components/schemas/CustomerClassificationsEnum'
+            $ref: '#/components/schemas/CustomerClassificationEnum'
           description: Classifications of the customer.
         Options:
           type: array
@@ -25074,7 +25138,12 @@ components:
           description: Paymaster account.
         Blacklist:
           type: boolean
-          description: Blacklist.
+          description: 'Synonym of Blocklist, left for backward compatibility.'
+          deprecated: true
+          x-deprecatedMessage: Use Blocklist instead.
+        Blocklist:
+          type: boolean
+          description: Blocklist.
         Media:
           type: boolean
           description: Media.
@@ -25367,8 +25436,9 @@ components:
         - InRoom
         - WaitingForRoom
         - Student
+        - Blocklist
       type: string
-      description: "\n\nPaymasterAccount\n\nBlacklist\n\nMedia\n\nLoyaltyProgram\n\nPreviousComplaint\n\nReturning\n\nStaff\n\nFriendOrFamily\n\nTopManagement\n\nImportant\n\nVeryImportant\n\nProblematic\n\nCashlist\n\nDisabledPerson\n\nMilitary\n\nAirline\n\nHealthCompliant\n\nInRoom\n\nWaitingForRoom\n\nStudent"
+      description: "\n\nPaymasterAccount\n\nBlacklist (Deprecated, use Blocklist instead.)\n\nMedia\n\nLoyaltyProgram\n\nPreviousComplaint\n\nReturning\n\nStaff\n\nFriendOrFamily\n\nTopManagement\n\nImportant\n\nVeryImportant\n\nProblematic\n\nCashlist\n\nDisabledPerson\n\nMilitary\n\nAirline\n\nHealthCompliant\n\nInRoom\n\nWaitingForRoom\n\nStudent\n\nBlocklist"
       x-enumNames:
         - PaymasterAccount
         - Blacklist
@@ -25390,8 +25460,10 @@ components:
         - InRoom
         - WaitingForRoom
         - Student
+        - Blocklist
       x-enumDescriptions:
         - ''
+        - 'Deprecated, use Blocklist instead.'
         - ''
         - ''
         - ''
@@ -25425,7 +25497,15 @@ components:
           title: Boolean update value
           allOf:
             - $ref: '#/components/schemas/BooleanUpdateValue'
-          description: Blacklist (or `null` if the value should not be updated).
+          description: 'Synonym of Blocklist, left for backward compatibility (`null` if the value should not be updated).'
+          nullable: true
+          deprecated: true
+          x-deprecatedMessage: Use Blocklist instead.
+        Blocklist:
+          title: Boolean update value
+          allOf:
+            - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Blocklist (or `null` if the value should not be updated).
           nullable: true
         Media:
           title: Boolean update value
@@ -25537,76 +25617,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomerClassificationUpdateParameters
-    CustomerClassificationsEnum:
-      title: Customer classification
-      enum:
-        - None
-        - PaymasterAccount
-        - Blacklist
-        - Media
-        - LoyaltyProgram
-        - PreviousComplaint
-        - Returning
-        - Staff
-        - FriendOrFamily
-        - TopManagement
-        - Important
-        - VeryImportant
-        - Problematic
-        - Cashlist
-        - DisabledPerson
-        - Military
-        - Airline
-        - HealthCompliant
-        - InRoom
-        - WaitingForRoom
-        - Student
-      type: string
-      description: "\n\nNone\n\nPaymasterAccount\n\nBlacklist\n\nMedia\n\nLoyaltyProgram\n\nPreviousComplaint\n\nReturning\n\nStaff\n\nFriendOrFamily\n\nTopManagement\n\nImportant\n\nVeryImportant\n\nProblematic\n\nCashlist\n\nDisabledPerson\n\nMilitary\n\nAirline\n\nHealthCompliant\n\nInRoom\n\nWaitingForRoom\n\nStudent"
-      x-enumNames:
-        - None
-        - PaymasterAccount
-        - Blacklist
-        - Media
-        - LoyaltyProgram
-        - PreviousComplaint
-        - Returning
-        - Staff
-        - FriendOrFamily
-        - TopManagement
-        - Important
-        - VeryImportant
-        - Problematic
-        - Cashlist
-        - DisabledPerson
-        - Military
-        - Airline
-        - HealthCompliant
-        - InRoom
-        - WaitingForRoom
-        - Student
-      x-enumDescriptions:
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
-        - ''
     CustomerExtent:
       title: Customer extent
       type: object
@@ -26000,6 +26010,138 @@ components:
         - ''
         - ''
         - ''
+    CustomerRelationship:
+      title: CustomerRelationship
+      required:
+        - CustomerId
+        - RelatedCustomerId
+        - Relationship
+      type: object
+      properties:
+        CustomerId:
+          type: string
+          description: Unique identifier of the customer in the relationship.
+          format: uuid
+        RelatedCustomerId:
+          type: string
+          description: Unique identifier of the related customer.
+          format: uuid
+        Relationship:
+          title: Customer relationship type
+          allOf:
+            - $ref: '#/components/schemas/CustomerRelationshipTypeEnum'
+          description: "Type of relationship from the related customer to this customer (e.g. Child = the related customer is the child of this customer).\n\nSpouse\n\nChild\n\nParent\n\nOtherFamily (Any familial relationship that doesn't fit for the options provided)\n\nFriend\n\nColleague\n\nOther"
+          x-enumNames:
+            - Spouse
+            - Child
+            - Parent
+            - OtherFamily
+            - Friend
+            - Colleague
+            - Other
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - Any familial relationship that doesn't fit for the options provided
+            - ''
+            - ''
+            - ''
+          x-extensible: true
+      additionalProperties: false
+      x-schema-id: CustomerRelationship
+    CustomerRelationshipFilterParameters:
+      title: CustomerRelationshipFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerIds
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        ChainIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          nullable: true
+        CustomerIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of `Customer`.
+      additionalProperties: false
+      x-schema-id: CustomerRelationshipFilterParameters
+    CustomerRelationshipResult:
+      title: CustomerRelationshipResult
+      required:
+        - CustomerRelationships
+      type: object
+      properties:
+        CustomerRelationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerRelationship'
+          description: The relationships for the customers.
+        Cursor:
+          type: string
+          description: 'Unique identifier of the item one newer in time order than the items to be returned. If Cursor is not specified, i.e. null, then the latest or most recent items will be returned.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomerRelationshipResult
+    CustomerRelationshipTypeEnum:
+      title: Customer relationship type
+      enum:
+        - Spouse
+        - Child
+        - Parent
+        - OtherFamily
+        - Friend
+        - Colleague
+        - Other
+      type: string
+      description: "\n\nSpouse\n\nChild\n\nParent\n\nOtherFamily (Any familial relationship that doesn't fit for the options provided)\n\nFriend\n\nColleague\n\nOther"
+      x-enumNames:
+        - Spouse
+        - Child
+        - Parent
+        - OtherFamily
+        - Friend
+        - Colleague
+        - Other
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - Any familial relationship that doesn't fit for the options provided
+        - ''
+        - ''
+        - ''
+      x-extensible: true
     CustomerResult:
       title: CustomerResult
       required:

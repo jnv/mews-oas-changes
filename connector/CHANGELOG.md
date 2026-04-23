@@ -1,3 +1,53 @@
+# 2026-04-23
+
+
+## POST /api/connector/v1/accounts/update
+-  added the new optional request property 'AccountUpdates/items/Customer/allOf[subschema #1: Customer update parameters]/Classifications/allOf[subschema #1: Customer update classifications]/Blocklist'
+-  added the optional property 'Accounts/items/Customer/allOf[subschema #1: Customer]/Classifications/allOf[subschema #1: Customer classifications]/Blocklist' to the response with the '200' status
+
+
+## POST /api/connector/v1/companionships/getAll
+- :warning: added the new 'Blocklist' enum value to the 'Customers/items/Classifications/items/' response property for the response status '200'
+-  removed the 'None' enum value from the 'Customers/items/Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/add
+- :warning: added the new 'Blocklist' enum value to the 'Classifications/items/' response property for the response status '200'
+-  added the new 'Blocklist' enum value to the request property 'Classifications/items/'
+-  removed the 'None' enum value from the 'Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/getAll
+- :warning: added the new 'Blocklist' enum value to the 'Customers/items/Classifications/items/' response property for the response status '200'
+-  removed the 'None' enum value from the 'Customers/items/Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/getRelationships
+-  endpoint added
+
+
+## POST /api/connector/v1/customers/search
+- :warning: added the new 'Blocklist' enum value to the 'Customers/items/Customer/allOf[subschema #1: Customer]/Classifications/items/' response property for the response status '200'
+-  removed the 'None' enum value from the 'Customers/items/Customer/allOf[subschema #1: Customer]/Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/customers/update
+- :warning: added the new 'Blocklist' enum value to the 'Classifications/items/' response property for the response status '200'
+-  added the new 'Blocklist' enum value to the request property 'Classifications/items/'
+-  removed the 'None' enum value from the 'Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'Blocklist' enum value to the 'Customers/items/Classifications/items/' response property for the response status '200'
+-  removed the 'None' enum value from the 'Customers/items/Classifications/items/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'Blocklist' enum value to the 'Customers/items/Classifications/items/' response property for the response status '200'
+-  removed the 'None' enum value from the 'Customers/items/Classifications/items/' response property for the response status '200'
+
+
+
 # 2026-04-18
 
 
