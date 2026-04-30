@@ -1,3 +1,11 @@
+# 2026-04-30
+
+
+## POST /api/connector/v1/billingAutomationPaymentPlans/add
+-  endpoint added
+
+
+
 # 2026-04-23
 
 
