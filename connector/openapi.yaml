@@ -7917,50 +7917,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderItemFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              OrderItemIds:
-                - 3e982ab5-6245-4c39-80af-1118d40e7494
-                - bd11dc4a-8f9e-442b-bb1e-f5361b31dfa2
-              ServiceOrderIds:
-                - ac5ef5eb-c5b2-4083-879f-83f04a5ebda5
-                - 5d603823-b40a-43a4-8244-d5d2b515deb5
-              ServiceIds:
-                - 294c7859-63ba-46ad-a8bf-34fad2019383
-                - 05089c0c-5d55-4756-827b-c4bcee1edf00
-              BillIds:
-                - d27ffe99-ff92-4afb-ac03-9268f24f0556
-                - 297de6f8-bd67-4ebd-98b6-ecc1cd8f920c
-              CreatedUtc:
-                StartUtc: '2023-03-01T00:00:00Z'
-                EndUtc: '2023-03-31T00:00:00Z'
-              UpdatedUtc:
-                StartUtc: '2023-03-01T00:00:00Z'
-                EndUtc: '2023-03-31T00:00:00Z'
-              ConsumedUtc:
-                StartUtc: '2023-03-01T00:00:00Z'
-                EndUtc: '2023-03-31T00:00:00Z'
-              CanceledUtc:
-                StartUtc: '2023-03-01T00:00:00Z'
-                EndUtc: '2023-03-31T00:00:00Z'
-              ClosedUtc:
-                StartUtc: '2023-03-01T00:00:00Z'
-                EndUtc: '2023-03-31T00:00:00Z'
-              AccountingStates:
-                - Open
-                - Closed
-              Types:
-                - CityTax
-                - SpaceOrder
-              Currency: EUR
-              Limitation:
-                Count: 10
-                Cursor: 
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","AccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"CreatedUtc":{"StartUtc":"2023-01-01T00:00:00Z","EndUtc":"2023-01-31T23:59:59Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -9907,7 +9864,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleRateCapacityOffsetUpdateParameters'
-            example: {"CapacityOffsetUpdates":[{"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","NegativeOccupancyAdjustment":{"Value":10.0},"ExtraOccupancyAdjustment":{"Value":20.0}},{"RateId":"b7e6a1c2-4f3a-4e2b-9c1d-2a5e7b8c9d0f","ExtraOccupancyAdjustment":{"Value":15.0}}]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CapacityOffsetUpdates":[{"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","NegativeOccupancyAdjustment":{"Value":10.0},"ExtraOccupancyAdjustment":{"Value":20.0}},{"RateId":"b7e6a1c2-4f3a-4e2b-9c1d-2a5e7b8c9d0f","ExtraOccupancyAdjustment":{"Value":15.0}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
