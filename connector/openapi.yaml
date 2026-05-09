@@ -5737,7 +5737,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerRelationshipFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"]}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -16890,7 +16890,7 @@ components:
         - SplitVatByClassificationOnBill
         - EmailClosedBillsAfterCheckout
       type: string
-      description: "\n\nOptionalCreditCardPaymentDetails (Optional credit card payment details)\n\nReceivableTrackingEnabled (Receivable tracking enabled)\n\nSeparateDepositsOnBill (Separate deposits on bill)\n\nAllowModifyingClosedBills (Allow modifying closed bills)\n\nRequireAccountingCategorySetup (Require accounting category setup)\n\nGroupTaxesOnBill (Group taxes on bill)\n\nDisplayEmployeeNameOnBill (Display employee name on bill)\n\nTaxDeclarationOnDeposit (Tax declaration on deposit)\n\nSplitVatByClassificationOnBill (Split VAT by classification on bill)\n\nEmailClosedBillsAfterCheckout (Send system closed bills automatically after check out)"
+      description: "\n\nOptionalCreditCardPaymentDetails (Optional credit card payment details)\n\nReceivableTrackingEnabled (Receivable tracking enabled)\n\nSeparateDepositsOnBill (Separate deposits on bill)\n\nAllowModifyingClosedBills (Allow modifying closed bills)\n\nRequireAccountingCategorySetup (Require accounting category setup)\n\nGroupTaxesOnBill (Group taxes on bill)\n\nDisplayEmployeeNameOnBill (Display employee name on bill)\n\nTaxDeclarationOnDeposit (Tax declaration on deposit)\n\nSplitVatByClassificationOnBill (Split VAT by classification on bill)\n\nEmailClosedBillsAfterCheckout (Send system closed bills automatically after checkout)"
       x-enumNames:
         - OptionalCreditCardPaymentDetails
         - ReceivableTrackingEnabled
@@ -16912,7 +16912,7 @@ components:
         - Display employee name on bill
         - Tax declaration on deposit
         - Split VAT by classification on bill
-        - Send system closed bills automatically after check out
+        - Send system closed bills automatically after checkout
       x-extensible: true
     AccountingItem:
       title: Accounting item
@@ -26145,7 +26145,7 @@ components:
           title: Customer relationship type
           allOf:
             - $ref: '#/components/schemas/CustomerRelationshipTypeEnum'
-          description: "Type of relationship from the related customer to this customer (e.g. Child = the related customer is the child of this customer).\n\nSpouse\n\nChild\n\nParent\n\nOtherFamily (Any familial relationship that doesn't fit for the options provided)\n\nFriend\n\nColleague\n\nOther"
+          description: "Type of relationship between the two customers (e.g. Child = the related customer is the child of this customer).\n\nSpouse\n\nChild\n\nParent\n\nOtherFamily (Any familial relationship that doesn't fit for the options provided)\n\nFriend\n\nColleague\n\nOther"
           x-enumNames:
             - Spouse
             - Child
@@ -27281,7 +27281,7 @@ components:
         UpdatedUtc:
           minLength: 1
           type: string
-          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
+          description: Last update date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         Name:
           minLength: 1
@@ -27524,7 +27524,7 @@ components:
         UpdatedUtc:
           minLength: 1
           type: string
-          description: Creation date and time of the enterprise in UTC timezone in ISO 8601 format.
+          description: Last update date and time of the enterprise in UTC timezone in ISO 8601 format.
           format: date-time
         Name:
           minLength: 1
