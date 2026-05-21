@@ -1,3 +1,11 @@
+# 2026-05-21
+
+
+## POST /api/connector/v1/paymentPlans/add
+- :warning: api path removed without deprecation
+
+
+
 # 2026-04-30
 
 
