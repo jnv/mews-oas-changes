@@ -1,3 +1,12 @@
+# 2026-05-26
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: removed the request property 'CheckOverbooking'
+- :warning: removed the request property 'CheckRateApplicability'
+
+
+
 # 2026-05-21
 
 

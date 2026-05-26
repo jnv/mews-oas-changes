@@ -32391,18 +32391,6 @@ components:
           items:
             $ref: '#/components/schemas/ReservationUpdateParameters'
           description: Array of properties to be updated in each reservation specified.
-        CheckOverbooking:
-          type: boolean
-          description: 'Indicates whether the system will check and prevent a booking being made in the case of an overbooking, i.e. where there is an insufficient number of resources available to meet the request.'
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: The value will be ignored.
-        CheckRateApplicability:
-          type: boolean
-          description: 'Indicates whether the system will check and prevent a booking being made using a restricted rate, e.g. a private rate. The default is true, i.e. the system will normally check for this unless the property is set to false.'
-          nullable: true
-          deprecated: true
-          x-deprecatedMessage: The value will be ignored.
         Reprice:
           type: boolean
           description: 'Whether the price should be updated to latest value for date/rate/category combination set in Mews. If not specified, the reservation price is updated.'
