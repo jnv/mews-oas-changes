@@ -2313,7 +2313,7 @@ paths:
       tags:
         - Bills
       summary: Get bill PDF
-      description: 'Creates a PDF version of the specified bill. In case it''s not possible to return PDF immediately, you must retry the call later while providing the unique event identifier that is returned from the first invocation.'
+      description: "Generates a PDF document of the specified bill. If the PDF cannot be returned immediately, retry the call later with the unique event identifier returned by the first invocation as `BillPrintEventId`.\r\n\r\nThis operation is subject to the [Mews Operations quota](https://help.mews.com/s/article/Quotas-in-Mews-Operations) \"Property Financial Document Print Event Weekly Count\". Each bill can be printed or previewed up to 30 times within 7 days. Requests that include an existing `BillPrintEventId` do not count against this quota."
       operationId: bills_getPdf
       requestBody:
         content:
@@ -11003,65 +11003,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleReservationUpdateParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              Client: Sample Client 1.0.0
-              Reason: Testing
-              CheckOverbooking: true
-              CheckRateApplicability: true
-              Reprice: true
-              ApplyCancellationFee: true
-              ReservationUpdates:
-                - ReservationId: 622605a9-2969-441f-9610-aa720099ae1c
-                  StartUtc:
-                    Value: '2019-10-01T14:00:00Z'
-                  EndUtc:
-                    Value: '2019-10-03T10:00:00Z'
-                  AssignedResourceId:
-                    Value: 16ce4335-2198-408b-8949-9722894a42fb
-                  AssignedResourceLocked:
-                    Value: 'false'
-                  ChannelNumber: 
-                  RequestedCategoryId: 
-                  TravelAgencyId:
-                    Value: 
-                  CompanyId:
-                    Value: 73ba34d1-f375-460c-bf2d-8a63e71677a6
-                  BusinessSegmentId: 
-                  Purpose:
-                    Value: Business
-                  RateId: 
-                  BookerId:
-                    Value: 92923102-bf91-4a4a-8ee8-9dcb79c9d6de
-                  TimeUnitPrices:
-                    Value:
-                      - Index: 0
-                        Amount:
-                          Currency: GBP
-                          GrossValue: 20
-                          TaxCodes:
-                            - UK-S
-                      - Index: 1
-                        Amount:
-                          Currency: GBP
-                          GrossValue: 30
-                          TaxCodes:
-                            - UK-S
-                  PersonCounts:
-                    Value:
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                  CreditCardId:
-                    Value: 5d802a8f-3238-42b2-94be-ab0300ab2b6c
-                  AvailabilityBlockId:
-                    Value: aaaa654a4a94-4f96-9efc-86da-bd26d8db
-                  Options:
-                    OwnerCheckedIn:
-                      Value: true
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationUpdates":[{"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","StartUtc":{"Value":"2019-10-01T14:00:00Z"},"EndUtc":{"Value":"2019-10-03T10:00:00Z"}}],"Reprice":true,"ApplyCancellationFee":true,"Reason":"Testing","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -11069,80 +11011,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationResult'
-              example:
-                BusinessSegments: 
-                Customers:
-                  - Address: 
-                    BirthDate: 
-                    BirthPlace: 
-                    CategoryId: 
-                    Classifications: [ ]
-                    CreatedUtc: '2016-01-01T00:00:00Z'
-                    Email: 
-                    FirstName: John
-                    Sex: 
-                    Id: 35d4b117-4e60-44a3-9580-c582117eff98
-                    IdentityCard: 
-                    LanguageCode: 
-                    LastName: Smith
-                    LoyaltyCode: 
-                    NationalityCode: US
-                    Notes: ''
-                    Number: '1'
-                    Passport: 
-                    Phone: '00420123456789'
-                    SecondLastName: 
-                    TaxIdentificationNumber: 
-                    Title: 
-                    UpdatedUtc: '2016-01-01T00:00:00Z'
-                    Visa: 
-                OrderItems: 
-                Products: 
-                RateGroups: 
-                Rates: 
-                ReservationGroups:
-                  - Id: c704dff3-7811-4af7-a3a0-7b2b0635ac59
-                    Name: 13-12-Smith-F712
-                Reservations:
-                  - Id: bfee2c44-1f84-4326-a862-5289598f6e2d
-                    ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-                    GroupId: 94843f6f-3be3-481b-a1c7-06458774c3df
-                    Number: '52'
-                    ChannelNumber: TW48ZP
-                    ChannelManager: ''
-                    ChannelManagerGroupNumber: 
-                    ChannelManagerNumber: 
-                    State: Processed
-                    Origin: Connector
-                    OriginDetail: 
-                    Purpose: Student
-                    CreatedUtc: '2016-02-20T14:58:02Z'
-                    UpdatedUtc: '2016-02-20T14:58:02Z'
-                    CancelledUtc: 
-                    StartUtc: '2016-02-20T13:00:00Z'
-                    EndUtc: '2016-02-22T11:00:00Z'
-                    ReleasedUtc: 
-                    RequestedCategoryId: 773d5e42-de1e-43a0-9ce6-f940faf2303f
-                    AssignedResourceId: 20e00c32-d561-4008-8609-82d8aa525714
-                    AssignedResourceLocked: false
-                    BusinessSegmentId: 
-                    CompanyId: 
-                    TravelAgencyId: 
-                    AvailabilityBlockId: 
-                    RateId: ed4b660b-19d0-434b-9360-a4de2ea42eda
-                    VoucherId: 
-                    CustomerId: 35d4b117-4e60-44a3-9580-c582117eff98
-                    PersonCounts:
-                      - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                        Count: 2
-                      - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                        Count: 2
-                Services: 
-                Resources: 
-                ResourceCategories: 
-                ResourceCategoryAssignments: 
-                Notes: 
-                Cursor: 8d02142f-31cf-4115-90bf-ae5200c7a1ba
+              example: {"Reservations":[{"Id":"0f515589-99b4-423d-b83a-b237009f0509","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","GroupId":"94843f6f-3be3-481b-a1c7-06458774c3df","Number":"50","ChannelNumber":"TW48ZP","ChannelManagerNumber":"","ChannelManagerGroupNumber":null,"ChannelManager":null,"State":"Confirmed","Origin":"Connector","OriginDetails":null,"Purpose":"Leisure","CreatedUtc":"2019-09-23T16:00:00Z","UpdatedUtc":"2019-09-28T17:00:00Z","CancelledUtc":null,"StartUtc":"2019-10-01T14:00:00Z","EndUtc":"2019-10-03T10:00:00Z","ReleasedUtc":null,"RequestedCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","AssignedSpaceId":null,"AssignedSpaceLocked":false,"AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","AssignedResourceLocked":false,"BusinessSegmentId":null,"CompanyId":null,"TravelAgencyId":null,"AvailabilityBlockId":null,"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"CreditCardId":null,"CancellationReason":null,"AdultCount":0,"ChildCount":0,"PersonCounts":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2}],"OwnerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanionIds":[],"ChannelManagerId":null,"Options":{"OwnerCheckedIn":false,"AllCompanionsCheckedIn":false,"AnyCompanionCheckedIn":false}}],"ReservationGroups":null,"Customers":null,"Services":null,"Products":null,"Resources":null,"ResourceCategories":null,"ResourceCategoryAssignments":null,"BusinessSegments":null,"Rates":null,"RateGroups":null,"Items":null,"OrderItems":null,"Notes":null,"QrCodeData":null,"Companies":null,"ResourceAccessTokens":null,"Cursor":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -14550,7 +14419,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/sourceAssignments/getAll:
     post:
       tags:
@@ -19915,7 +19783,7 @@ components:
           format: uuid
         BillPrintEventId:
           type: string
-          description: 'Unique identifier of the [Bill print event](https://mews-systems.gitbook.io/connector-api/operations/#bill-print-event) returned by previous invocation.'
+          description: Identifier of an existing bill print event returned by a previous call. Provide this value to retry retrieval of a pending PDF without consuming its "Property Financial Document Print Event Weekly Count" quota.
           format: uuid
           nullable: true
         PdfTemplate:
