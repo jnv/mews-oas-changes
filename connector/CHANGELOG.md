@@ -1,3 +1,20 @@
+# 2026-06-02
+
+
+## POST /api/connector/v1/products/getAll
+-  added the required property 'CustomerProducts/items/Options/allOf[subschema #1: Product options]/ExcludePriceFromOffer' to the response with the '200' status
+-  added the required property 'Products/items/Options/allOf[subschema #1: Product options]/ExcludePriceFromOffer' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the required property 'Products/items/Options/allOf[subschema #1: Product options]/ExcludePriceFromOffer' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the required property 'Products/items/Options/allOf[subschema #1: Product options]/ExcludePriceFromOffer' to the response with the '200' status
+
+
+
 # 2026-05-26
 
 

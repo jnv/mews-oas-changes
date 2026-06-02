@@ -36671,11 +36671,15 @@ components:
       title: Product options
       required:
         - BillAsPackage
+        - ExcludePriceFromOffer
       type: object
       properties:
         BillAsPackage:
           type: boolean
           description: Product should be displayed as part of a package.
+        ExcludePriceFromOffer:
+          type: boolean
+          description: Product's price should not be displayed separately on the offer.
       additionalProperties: false
       description: ''
       x-schema-id: ProductOptions
