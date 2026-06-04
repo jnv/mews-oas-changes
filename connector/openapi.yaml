@@ -8100,7 +8100,7 @@ paths:
       tags:
         - Orders
       summary: Add order
-      description: "Creates a new order, with the specified products and items. If the product being posted already exists in Mews, then use `ProductOrders`. If the product does *not* exist in Mews, then use `Items`. If the time of consumption is specified, this must be either in the future or within the Editable History Interval for the enterprise. Compared to a stay service order (i.e. a reservation), which is consumed over certain span of time, a product service order is consumed at a single point in time.\r\nNote this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).\r\n\r\n> ### Linking orders to reservations\r\n> Specify parameter `LinkedReservationId` in order to link the order to a guest reservation. This will greatly assist the property when using billing automation."
+      description: "Creates a new order, with the specified products and items. If the product being posted already exists in Mews, then use `ProductOrders`. If the product does *not* exist in Mews, then use `Items`. If the time of consumption is specified, this must be either in the future or within the Editable History Interval for the enterprise. Compared to a stay service order (i.e. a reservation), which is consumed over certain span of time, a product service order is consumed at a single point in time.\r\nNote this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).\r\n\r\n> ### Linking orders to reservations\r\n> Specify parameter `LinkedReservationId` in order to link the order to a guest reservation. This will greatly assist the property when using billing automation.\r\n> This parameter is also a prerequisite for the Allowances flow; without linking the order to the correct reservation, Allowances will not apply to those items. If this parameter is not set, Mews will attempt to predict the linked reservation, but accuracy cannot be guaranteed."
       operationId: orders_add
       requestBody:
         content:
@@ -12598,94 +12598,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/resourceFeatureAssignments/getAll:
-    post:
-      tags:
-        - Resource features
-      summary: Get all resource feature assignments
-      description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
-      operationId: resourceFeatureAssignments_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResourceFeatureAssignmentFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              ResourceFeatureIds:
-                - a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
-              ResourceFeatureAssignmentIds:
-                - ca2b5bf9-24f5-4faa-95ef-b65d38598b08
-              UpdatedUtc:
-                StartUtc: '2023-11-01T00:00:00Z'
-                EndUtc: '2023-11-30T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResourceFeatureAssignmentResult'
-              example:
-                ResourceFeatureAssignments:
-                  - Id: ca2b5bf9-24f5-4faa-95ef-b65d38598b08
-                    IsActive: true
-                    ResourceId: 18019693-c66f-4be8-a893-c3d89fd291cc
-                    FeatureId: a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
-                    CreatedUtc: '2023-11-03T00:00:00Z'
-                    UpdatedUtc: '2023-11-21T00:00:00Z'
-                Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/resourceFeatures/getAll:
     post:
       tags:
@@ -12734,6 +12646,94 @@ paths:
                     ShortNames:
                       en-US: AccessBath
                     Descriptions: { }
+                Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/resourceFeatureAssignments/getAll:
+    post:
+      tags:
+        - Resource features
+      summary: Get all resource feature assignments
+      description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
+      operationId: resourceFeatureAssignments_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceFeatureAssignmentFilterParameters'
+            example:
+              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
+              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
+              Client: Sample Client 1.0.0
+              EnterpriseIds:
+                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
+              ResourceFeatureIds:
+                - a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
+              ResourceFeatureAssignmentIds:
+                - ca2b5bf9-24f5-4faa-95ef-b65d38598b08
+              UpdatedUtc:
+                StartUtc: '2023-11-01T00:00:00Z'
+                EndUtc: '2023-11-30T00:00:00Z'
+              ActivityStates:
+                - Active
+              Limitation:
+                Count: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeatureAssignmentResult'
+              example:
+                ResourceFeatureAssignments:
+                  - Id: ca2b5bf9-24f5-4faa-95ef-b65d38598b08
+                    IsActive: true
+                    ResourceId: 18019693-c66f-4be8-a893-c3d89fd291cc
+                    FeatureId: a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
+                    CreatedUtc: '2023-11-03T00:00:00Z'
+                    UpdatedUtc: '2023-11-21T00:00:00Z'
                 Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
