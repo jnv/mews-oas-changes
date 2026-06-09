@@ -1,3 +1,13 @@
+# 2026-06-09
+
+
+## POST /api/connector/v1/availabilityBlocks/add
+- :warning: added the new required request property 'AvailabilityBlocks/items/TemplateRateId'
+-  the request property 'AvailabilityBlocks/items/RateId' became nullable
+-  the request property 'AvailabilityBlocks/items/RateId' became optional
+
+
+
 # 2026-06-02
 
 
