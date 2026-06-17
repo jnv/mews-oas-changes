@@ -3062,6 +3062,73 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/fiscalMachineCommands/getAll:
+    post:
+      tags:
+        - Commands
+      summary: Get all fiscal machine commands
+      description: 'Returns fiscal machine commands. The commands can be filtered either by unique command identifiers or by `Device` unique identifiers and command states. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: fiscalMachineCommands_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Get all commands filter parameters
+              oneOf:
+                - $ref: '#/components/schemas/CommandsGetAllFilterByCommandIdParameters'
+                - $ref: '#/components/schemas/CommandsGetAllFilterByStatesParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","DeviceIds":["d117866d-78de-4459-9077-42d7ea0120e3","7dafffff-a727-4917-a203-bd53995f21bf"],"States":["Processed","Processing"],"UpdatedUtc":{"StartUtc":"2025-01-10T00:00:00Z","EndUtc":"2025-01-17T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiscalMachineCommandDataV20250623Result'
+              example: {"Commands":[{"Id":"aa20961f-6d9e-4b35-ad25-071213530aec","State":"Processing","CreatedUtc":"2025-01-15T14:30:00Z","Creator":{"Discriminator":"Enterprise","EnterpriseProfile":{"ProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf"}},"FiscalMachineId":"FM-001","ApiUrl":"https://fiscal-machine.example.com/api","FiscalMachineData":"{\"printerPort\": \"COM1\", \"baudRate\": 9600}","TaxIdentifier":"12345678901","Device":{"Id":"d117866d-78de-4459-9077-42d7ea0120e3","Type":"FiscalMachine","Name":"Fiscal Printer FP-001","Identifier":null},"Bill":{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Hotel Invoice #1001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","AssociatedAccountIds":null,"CounterId":null,"State":"Closed","Type":"Invoice","Number":"1001","VariableSymbol":"VS001","CreatedUtc":"2025-01-15T10:00:00Z","UpdatedUtc":"2025-01-15T14:25:00Z","IssuedUtc":"2025-01-15T14:25:00Z","TaxedUtc":"2025-01-15T14:25:00Z","PaidUtc":null,"DueUtc":"2025-01-29T23:59:59Z","LastReminderDateUtc":null,"PurchaseOrderNumber":"PO-2025-001","Notes":"Hotel accommodation services","Options":null,"Owner":null,"AssociatedAccountsData":null,"EnterpriseData":null,"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null},"CommandData":{"Discriminator":"ItalianFiscalMachineData","ItalianFiscalMachineData":{"IsRefund":false,"RebatedReceiptNumber":null,"RebatedReceiptSequence":null,"RebatedReceiptDateTimeUtc":null,"PrinterSerialNumber":"FP001-123456"},"ItalianFiscalMachinePayload":null}},{"Id":"f2e8c456-1234-4567-89ab-cdef01234567","State":"Processed","CreatedUtc":"2025-01-15T13:15:00Z","Creator":{"Discriminator":"Enterprise","EnterpriseProfile":{"ProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf"}},"FiscalMachineId":"FM-002","ApiUrl":"https://fiscal-machine-2.example.com/api","FiscalMachineData":"{\"printerPort\": \"USB001\", \"certificatePath\": \"/etc/fiscal/cert.p12\"}","TaxIdentifier":"98765432109","Device":{"Id":"7dafffff-a727-4917-a203-bd53995f21bf","Type":"FiscalMachine","Name":"Fiscal Printer FP-002","Identifier":null},"Bill":{"Id":"12345678-1234-1234-1234-123456789012","Name":"Restaurant Bill #2001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","AssociatedAccountIds":null,"CounterId":null,"State":"Closed","Type":"Receipt","Number":"2001","VariableSymbol":"VS002","CreatedUtc":"2025-01-15T12:30:00Z","UpdatedUtc":"2025-01-15T13:10:00Z","IssuedUtc":"2025-01-15T13:10:00Z","TaxedUtc":"2025-01-15T13:10:00Z","PaidUtc":"2025-01-15T13:10:00Z","DueUtc":null,"LastReminderDateUtc":null,"PurchaseOrderNumber":null,"Notes":"Restaurant services - Table 15","Options":null,"Owner":null,"AssociatedAccountsData":null,"EnterpriseData":null,"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null},"CommandData":{"Discriminator":"ItalianFiscalMachinePayload","ItalianFiscalMachineData":null,"ItalianFiscalMachinePayload":{"Payload":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGZ2cF9kb2M+CiAgPGhlYWRlcj4KICAgIDx0aW1lc3RhbXA+MjAyNS0wMS0xNVQxMzoxMDowMFo8L3RpbWVzdGFtcD4KICA8L2hlYWRlcj4KICA8Ym9keT4KICAgIDxyZWNlaXB0X2RhdGE+U2FtcGxlIGZpc2NhbCByZWNlaXB0IGRhdGE8L3JlY2VpcHRfZGF0YT4KICA8L2JvZHk+CjwvZnZwX2RvYz4="}}}],"Cursor":"f2e8c456-1234-4567-89ab-cdef01234567"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/commands/getAllByIds:
     post:
       tags:
@@ -3517,73 +3584,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/fiscalMachineCommands/getAll:
-    post:
-      tags:
-        - Commands
-      summary: Get all fiscal machine commands
-      description: 'Returns fiscal machine commands. The commands can be filtered either by unique command identifiers or by `Device` unique identifiers and command states. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
-      operationId: fiscalMachineCommands_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: Get all commands filter parameters
-              oneOf:
-                - $ref: '#/components/schemas/CommandsGetAllFilterByCommandIdParameters'
-                - $ref: '#/components/schemas/CommandsGetAllFilterByStatesParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","DeviceIds":["d117866d-78de-4459-9077-42d7ea0120e3","7dafffff-a727-4917-a203-bd53995f21bf"],"States":["Processed","Processing"],"UpdatedUtc":{"StartUtc":"2025-01-10T00:00:00Z","EndUtc":"2025-01-17T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FiscalMachineCommandDataV20250623Result'
-              example: {"Commands":[{"Id":"aa20961f-6d9e-4b35-ad25-071213530aec","State":"Processing","CreatedUtc":"2025-01-15T14:30:00Z","Creator":{"Discriminator":"Enterprise","EnterpriseProfile":{"ProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf"}},"FiscalMachineId":"FM-001","ApiUrl":"https://fiscal-machine.example.com/api","FiscalMachineData":"{\"printerPort\": \"COM1\", \"baudRate\": 9600}","TaxIdentifier":"12345678901","Device":{"Id":"d117866d-78de-4459-9077-42d7ea0120e3","Type":"FiscalMachine","Name":"Fiscal Printer FP-001","Identifier":null},"Bill":{"Id":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Name":"Hotel Invoice #1001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","AssociatedAccountIds":null,"CounterId":null,"State":"Closed","Type":"Invoice","Number":"1001","VariableSymbol":"VS001","CreatedUtc":"2025-01-15T10:00:00Z","UpdatedUtc":"2025-01-15T14:25:00Z","IssuedUtc":"2025-01-15T14:25:00Z","TaxedUtc":"2025-01-15T14:25:00Z","PaidUtc":null,"DueUtc":"2025-01-29T23:59:59Z","LastReminderDateUtc":null,"PurchaseOrderNumber":"PO-2025-001","Notes":"Hotel accommodation services","Options":null,"Owner":null,"AssociatedAccountsData":null,"EnterpriseData":null,"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null},"CommandData":{"Discriminator":"ItalianFiscalMachineData","ItalianFiscalMachineData":{"IsRefund":false,"RebatedReceiptNumber":null,"RebatedReceiptSequence":null,"RebatedReceiptDateTimeUtc":null,"PrinterSerialNumber":"FP001-123456"},"ItalianFiscalMachinePayload":null}},{"Id":"f2e8c456-1234-4567-89ab-cdef01234567","State":"Processed","CreatedUtc":"2025-01-15T13:15:00Z","Creator":{"Discriminator":"Enterprise","EnterpriseProfile":{"ProfileId":"3cd637ef-4728-47f9-8fb1-afb900c9cdcf"}},"FiscalMachineId":"FM-002","ApiUrl":"https://fiscal-machine-2.example.com/api","FiscalMachineData":"{\"printerPort\": \"USB001\", \"certificatePath\": \"/etc/fiscal/cert.p12\"}","TaxIdentifier":"98765432109","Device":{"Id":"7dafffff-a727-4917-a203-bd53995f21bf","Type":"FiscalMachine","Name":"Fiscal Printer FP-002","Identifier":null},"Bill":{"Id":"12345678-1234-1234-1234-123456789012","Name":"Restaurant Bill #2001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","AssociatedAccountIds":null,"CounterId":null,"State":"Closed","Type":"Receipt","Number":"2001","VariableSymbol":"VS002","CreatedUtc":"2025-01-15T12:30:00Z","UpdatedUtc":"2025-01-15T13:10:00Z","IssuedUtc":"2025-01-15T13:10:00Z","TaxedUtc":"2025-01-15T13:10:00Z","PaidUtc":"2025-01-15T13:10:00Z","DueUtc":null,"LastReminderDateUtc":null,"PurchaseOrderNumber":null,"Notes":"Restaurant services - Table 15","Options":null,"Owner":null,"AssociatedAccountsData":null,"EnterpriseData":null,"CorrectionState":"Bill","CorrectionType":null,"CorrectedBillId":null},"CommandData":{"Discriminator":"ItalianFiscalMachinePayload","ItalianFiscalMachineData":null,"ItalianFiscalMachinePayload":{"Payload":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGZ2cF9kb2M+CiAgPGhlYWRlcj4KICAgIDx0aW1lc3RhbXA+MjAyNS0wMS0xNVQxMzoxMDowMFo8L3RpbWVzdGFtcD4KICA8L2hlYWRlcj4KICA8Ym9keT4KICAgIDxyZWNlaXB0X2RhdGE+U2FtcGxlIGZpc2NhbCByZWNlaXB0IGRhdGE8L3JlY2VpcHRfZGF0YT4KICA8L2JvZHk+CjwvZnZwX2RvYz4="}}}],"Cursor":"f2e8c456-1234-4567-89ab-cdef01234567"}
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/companies/add:
     post:
       tags:
@@ -10912,7 +10912,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleReservationUpdateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationUpdates":[{"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","StartUtc":{"Value":"2019-10-01T14:00:00Z"},"EndUtc":{"Value":"2019-10-03T10:00:00Z"}}],"Reprice":true,"ApplyCancellationFee":true,"Reason":"Testing","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationUpdates":[{"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","ChannelNumber":{"Value":"TW48ZP"},"StartUtc":{"Value":"2019-10-01T14:00:00Z"},"EndUtc":{"Value":"2019-10-03T10:00:00Z"},"PersonCounts":{"Value":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2},{"AgeCategoryId":"ab58c939-be30-4a60-8f75-ae1600c60c9f","Count":2}]},"AssignedResourceId":{"Value":"20e00c32-d561-4008-8609-82d8aa525714"},"RequestedCategoryId":{"Value":"773d5e42-de1e-43a0-9ce6-f940faf2303f"},"TravelAgencyId":{},"CompanyId":{"Value":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f"},"BusinessSegmentId":{"Value":"dc9188f6-fb61-412c-b3fd-af32dab082ed"},"Purpose":{"Value":"Business"},"RateId":{"Value":"ed4b660b-19d0-434b-9360-a4de2ea42eda"},"CreditCardId":{"Value":"e417dfe8-c813-4938-837b-36081199ce88"},"TimeUnitPrices":{"Value":[{"Index":0,"Amount":{"Currency":"GBP","TaxCodes":["UK-S"],"GrossValue":20.0}},{"Index":1,"Amount":{"Currency":"GBP","TaxCodes":["UK-S"],"GrossValue":30.0}}]},"BookerId":{"Value":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72"},"AssignedResourceLocked":{"Value":false},"AvailabilityBlockId":{"Value":"5ee074b1-6c86-48e8-915f-c7aa4702086f"},"Options":{"OwnerCheckedIn":{"Value":true}}}],"Reprice":true,"ApplyCancellationFee":true,"Reason":"Testing","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -10920,7 +10920,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationResult'
-              example: {"Reservations":[{"Id":"0f515589-99b4-423d-b83a-b237009f0509","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","GroupId":"94843f6f-3be3-481b-a1c7-06458774c3df","Number":"50","ChannelNumber":"TW48ZP","ChannelManagerNumber":"","ChannelManagerGroupNumber":null,"ChannelManager":null,"State":"Confirmed","Origin":"Connector","OriginDetails":null,"Purpose":"Leisure","CreatedUtc":"2019-09-23T16:00:00Z","UpdatedUtc":"2019-09-28T17:00:00Z","CancelledUtc":null,"StartUtc":"2019-10-01T14:00:00Z","EndUtc":"2019-10-03T10:00:00Z","ReleasedUtc":null,"RequestedCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","AssignedSpaceId":null,"AssignedSpaceLocked":false,"AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","AssignedResourceLocked":false,"BusinessSegmentId":null,"CompanyId":null,"TravelAgencyId":null,"AvailabilityBlockId":null,"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"CreditCardId":null,"CancellationReason":null,"AdultCount":0,"ChildCount":0,"PersonCounts":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2}],"OwnerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanionIds":[],"ChannelManagerId":null,"Options":{"OwnerCheckedIn":false,"AllCompanionsCheckedIn":false,"AnyCompanionCheckedIn":false}}],"ReservationGroups":null,"Customers":null,"Services":null,"Products":null,"Resources":null,"ResourceCategories":null,"ResourceCategoryAssignments":null,"BusinessSegments":null,"Rates":null,"RateGroups":null,"Items":null,"OrderItems":null,"Notes":null,"QrCodeData":null,"Companies":null,"ResourceAccessTokens":null,"Cursor":null}
+              example: {"Reservations":[{"Id":"0f515589-99b4-423d-b83a-b237009f0509","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","GroupId":"94843f6f-3be3-481b-a1c7-06458774c3df","Number":"50","ChannelNumber":"TW48ZP","ChannelManagerNumber":"","ChannelManagerGroupNumber":null,"ChannelManager":null,"State":"Confirmed","Origin":"Connector","OriginDetails":null,"Purpose":"Business","CreatedUtc":"2019-09-23T16:00:00Z","UpdatedUtc":"2019-09-28T17:00:00Z","CancelledUtc":null,"StartUtc":"2019-10-01T14:00:00Z","EndUtc":"2019-10-03T10:00:00Z","ReleasedUtc":null,"RequestedCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","AssignedSpaceId":null,"AssignedSpaceLocked":false,"AssignedResourceId":"20e00c32-d561-4008-8609-82d8aa525714","AssignedResourceLocked":false,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CompanyId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","TravelAgencyId":null,"AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"CreditCardId":"e417dfe8-c813-4938-837b-36081199ce88","CancellationReason":null,"AdultCount":0,"ChildCount":0,"PersonCounts":[{"AgeCategoryId":"1f67644f-052d-4863-acdf-ae1600c60ca0","Count":2},{"AgeCategoryId":"ab58c939-be30-4a60-8f75-ae1600c60c9f","Count":2}],"OwnerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanionIds":[],"ChannelManagerId":null,"Options":{"OwnerCheckedIn":true,"AllCompanionsCheckedIn":false,"AnyCompanionCheckedIn":false}}],"ReservationGroups":null,"Customers":null,"Services":null,"Products":null,"Resources":null,"ResourceCategories":null,"ResourceCategoryAssignments":null,"BusinessSegments":null,"Rates":null,"RateGroups":null,"Items":null,"OrderItems":null,"Notes":null,"QrCodeData":null,"Companies":null,"ResourceAccessTokens":null,"Cursor":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
