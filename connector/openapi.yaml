@@ -10472,6 +10472,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/reservations/price:
+    post:
+      tags:
+        - Reservations
+      summary: Price reservations
+      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
+      operationId: reservations_price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDataParameters'
+            example:
+              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
+              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
+              Client: Sample Client 1.0.0
+              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+              ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
+              Reservations:
+                - Identifier: '1234'
+                  StartUtc: '2018-01-01T14:00:00Z'
+                  EndUtc: '2018-01-02T10:00:00Z'
+                  RequestedCategoryId: 0a5da171-3663-4496-a61e-35ecbd78b9b1
+                  RateId: 33667cab-f17f-4089-ad07-c2cd50fa0df1
+                  Notes: Test reservation
+                  ProductOrders:
+                    - ProductId: 3dc5d79b-67ce-48ed-9238-47fcf5d1a59f
+                  PersonCounts:
+                    - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
+                      Count: 2
+                    - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
+                      Count: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationPricingResult'
+              example:
+                ReservationPrices:
+                  - Identifier: '1234'
+                    Total:
+                      Currency: GBP
+                      NetValue: 20
+                      GrossValue: 23
+                      TaxValues:
+                        - Code: UK-S
+                          Value: 3
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/reservations/getChannelManagerDetails:
     post:
       tags:
@@ -11694,97 +11785,6 @@ paths:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       deprecated: true
       x-deprecatedMessage: Use orderItems/getAll.
-  /api/connector/v1/reservations/price:
-    post:
-      tags:
-        - Reservations
-      summary: Price reservations
-      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
-      operationId: reservations_price
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReservationDataParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              ServiceId: bd26d8db-86da-4f96-9efc-e5a4654a4a94
-              Reservations:
-                - Identifier: '1234'
-                  StartUtc: '2018-01-01T14:00:00Z'
-                  EndUtc: '2018-01-02T10:00:00Z'
-                  RequestedCategoryId: 0a5da171-3663-4496-a61e-35ecbd78b9b1
-                  RateId: 33667cab-f17f-4089-ad07-c2cd50fa0df1
-                  Notes: Test reservation
-                  ProductOrders:
-                    - ProductId: 3dc5d79b-67ce-48ed-9238-47fcf5d1a59f
-                  PersonCounts:
-                    - AgeCategoryId: 1f67644f-052d-4863-acdf-ae1600c60ca0
-                      Count: 2
-                    - AgeCategoryId: ab58c939-be30-4a60-8f75-ae1600c60c9f
-                      Count: 2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReservationPricingResult'
-              example:
-                ReservationPrices:
-                  - Identifier: '1234'
-                    Total:
-                      Currency: GBP
-                      NetValue: 20
-                      GrossValue: 23
-                      TaxValues:
-                        - Code: UK-S
-                          Value: 3
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/resourceAccessTokens/getAll:
     post:
       tags:
@@ -12598,6 +12598,94 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/resourceFeatureAssignments/getAll:
+    post:
+      tags:
+        - Resource features
+      summary: Get all resource feature assignments
+      description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
+      operationId: resourceFeatureAssignments_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceFeatureAssignmentFilterParameters'
+            example:
+              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
+              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
+              Client: Sample Client 1.0.0
+              EnterpriseIds:
+                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
+              ResourceFeatureIds:
+                - a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
+              ResourceFeatureAssignmentIds:
+                - ca2b5bf9-24f5-4faa-95ef-b65d38598b08
+              UpdatedUtc:
+                StartUtc: '2023-11-01T00:00:00Z'
+                EndUtc: '2023-11-30T00:00:00Z'
+              ActivityStates:
+                - Active
+              Limitation:
+                Count: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeatureAssignmentResult'
+              example:
+                ResourceFeatureAssignments:
+                  - Id: ca2b5bf9-24f5-4faa-95ef-b65d38598b08
+                    IsActive: true
+                    ResourceId: 18019693-c66f-4be8-a893-c3d89fd291cc
+                    FeatureId: a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
+                    CreatedUtc: '2023-11-03T00:00:00Z'
+                    UpdatedUtc: '2023-11-21T00:00:00Z'
+                Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/resourceFeatures/getAll:
     post:
       tags:
@@ -12646,94 +12734,6 @@ paths:
                     ShortNames:
                       en-US: AccessBath
                     Descriptions: { }
-                Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
-        '400':
-          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '401':
-          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '403':
-          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '408':
-          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '204':
-          description: Server has successfully fulfilled the request and there is no additional information to send back.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '429':
-          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-        '500':
-          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConnectorApiExceptionResult'
-  /api/connector/v1/resourceFeatureAssignments/getAll:
-    post:
-      tags:
-        - Resource features
-      summary: Get all resource feature assignments
-      description: 'Returns all resource feature assignments. This operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/).'
-      operationId: resourceFeatureAssignments_getAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResourceFeatureAssignmentFilterParameters'
-            example:
-              ClientToken: E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D
-              AccessToken: C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D
-              Client: Sample Client 1.0.0
-              EnterpriseIds:
-                - 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                - 4d0201db-36f5-428b-8d11-4f0a65e960cc
-              ResourceFeatureIds:
-                - a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
-              ResourceFeatureAssignmentIds:
-                - ca2b5bf9-24f5-4faa-95ef-b65d38598b08
-              UpdatedUtc:
-                StartUtc: '2023-11-01T00:00:00Z'
-                EndUtc: '2023-11-30T00:00:00Z'
-              ActivityStates:
-                - Active
-              Limitation:
-                Count: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResourceFeatureAssignmentResult'
-              example:
-                ResourceFeatureAssignments:
-                  - Id: ca2b5bf9-24f5-4faa-95ef-b65d38598b08
-                    IsActive: true
-                    ResourceId: 18019693-c66f-4be8-a893-c3d89fd291cc
-                    FeatureId: a693dd8c-21fe-4dae-b450-ea3bd9ab3bb0
-                    CreatedUtc: '2023-11-03T00:00:00Z'
-                    UpdatedUtc: '2023-11-21T00:00:00Z'
                 Cursor: 3d5201ad-4a7b-4cbe-9c22-03dd79c28443
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
@@ -21914,6 +21914,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/CurrencyValueOld'
           description: Total price of the transaction
+        Type:
+          allOf:
+            - $ref: '#/components/schemas/CashierTransactionTypeEnum'
+          description: "Type of the cashier transaction. Not set for legacy transactions created before the type was tracked.\n\nCashIn (Cash received into the cashier.)\n\nCashOut (Cash paid out of the cashier.)\n\nCashOutTip (Cash paid out of the cashier as a tip.)\n\nCashOutExpense (Cash paid out of the cashier as an expense.)\n\nCashOutFloatAdjustment (Cash paid out of the cashier as a float adjustment.)"
+          nullable: true
       additionalProperties: false
       x-schema-id: CashierTransaction
     CashierTransactionParameters:
@@ -21986,6 +21991,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CashierTransactionResult
+    CashierTransactionTypeEnum:
+      title: Cashier transaction type
+      enum:
+        - CashIn
+        - CashOut
+        - CashOutTip
+        - CashOutExpense
+        - CashOutFloatAdjustment
+      type: string
+      description: "\n\nCashIn (Cash received into the cashier.)\n\nCashOut (Cash paid out of the cashier.)\n\nCashOutTip (Cash paid out of the cashier as a tip.)\n\nCashOutExpense (Cash paid out of the cashier as an expense.)\n\nCashOutFloatAdjustment (Cash paid out of the cashier as a float adjustment.)"
+      x-enumNames:
+        - CashIn
+        - CashOut
+        - CashOutTip
+        - CashOutExpense
+        - CashOutFloatAdjustment
+      x-enumDescriptions:
+        - Cash received into the cashier.
+        - Cash paid out of the cashier.
+        - Cash paid out of the cashier as a tip.
+        - Cash paid out of the cashier as an expense.
+        - Cash paid out of the cashier as a float adjustment.
     CategoryAdjustment:
       title: Resource category adjustment
       required:
@@ -26617,6 +26644,27 @@ components:
           format: double
       additionalProperties: false
       x-schema-id: DependentRatePricingParameters
+    DependentRateSetPricingParameters:
+      title: Dependent rate set pricing parameters
+      required:
+        - BaseRateId
+      type: object
+      properties:
+        BaseRateId:
+          minLength: 1
+          type: string
+          description: Unique identifier of the base rate.
+          x-schema-id: HybridIdentifier
+        RelativeAdjustment:
+          type: number
+          description: Relative amount which shows the difference between this rate and the base rate.
+          format: double
+        AbsoluteAdjustment:
+          type: number
+          description: Specific amount which shows the difference between this rate and the base rate.
+          format: double
+      additionalProperties: false
+      x-schema-id: DependentRateSetPricingParameters
     DependentTaxRateStrategy:
       title: Dependent tax rate strategy data
       required:
@@ -33153,7 +33201,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -34264,7 +34312,7 @@ components:
       additionalProperties: false
       x-schema-id: PassportScannerCommandData
     PaxCount:
-      title: PaxCount
+      title: Pax count
       required:
         - PersonCount
         - UnitCount
@@ -34272,11 +34320,11 @@ components:
       properties:
         PersonCount:
           type: integer
-          description: Predicted guest count that will be assigned to the Resource. The guest count must fit within the Resource Category maximum capacity.
+          description: Guest count assigned to the resource. Must not exceed the resource category capacity. Must be unique within the `PaxCounts` collection.
           format: int32
         UnitCount:
           type: integer
-          description: Positive number of adjustments that are assigned to `PersonCount`. The sum of all `UnitCount` in `PaxCounts` should match the adjustment value applied to the interval.
+          description: Number of blocked units assigned to this `PersonCount`. The sum of all `UnitCount` values in `PaxCounts` must equal the absolute value of `UnitCountAdjustment`.
           format: int32
       additionalProperties: false
       x-schema-id: PaxCount
@@ -36314,7 +36362,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -37228,7 +37276,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -38296,9 +38344,9 @@ components:
           description: 'Additional data for rates with base rate pricing. Used when `PricingType` is `BaseRatePricing`. Defaults are applied if not specified: amount is set to 10000 in default Enterprise''s currency and with its default accommodation tax rate code.'
           nullable: true
         DependentRatePricing:
-          title: Dependent rate pricing parameters
+          title: Dependent rate set pricing parameters
           allOf:
-            - $ref: '#/components/schemas/DependentRatePricingParameters'
+            - $ref: '#/components/schemas/DependentRateSetPricingParameters'
           description: Additional data for rate with dependent rate pricing. Required when `PricingType` is `DependentRatePricing`.
           nullable: true
       additionalProperties: false
@@ -44207,7 +44255,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaxCount'
-          description: Collection of predicted occupancy of availability adjustments. Relates how many adjustments are assigned to each count of guests.
+          description: Occupancy splits for the availability block adjustment. Applicable only when `AvailabilityBlockId` is set. Each entry assigns blocked units (`UnitCount`) to a specific guest count (`PersonCount`); `PersonCount` values must be unique within the collection. Sending a new request replaces all existing splits for the interval (last-writer-wins). Omitting this field on a block adjustment resets splits to a single default slot. Requires the multi-occupancy availability blocks feature to be enabled for the enterprise.
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceAvailabilityUpdateData
@@ -45514,6 +45562,18 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: SpaceDataUpdateParameters
+    StringIReadOnlyListUpdateValue:
+      title: String array update value
+      type: object
+      properties:
+        Value:
+          type: array
+          items:
+            type: string
+          description: Value which is to be updated.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: StringIReadOnlyListUpdateValue
     StringUpdateValue:
       title: String update value
       type: object
@@ -45913,7 +45973,9 @@ components:
       enum:
         - Unknown
         - IT_N1
+        - IT_N2_1
         - IT_N2_2
+        - IT_N3_4
         - IT_N3_5
         - IT_N4
         - IT_N5
@@ -45921,11 +45983,13 @@ components:
         - PL_NP
         - DE_NATO
       type: string
-      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
       x-enumNames:
         - Unknown
         - IT_N1
+        - IT_N2_1
         - IT_N2_2
+        - IT_N3_4
         - IT_N3_5
         - IT_N4
         - IT_N5
@@ -45935,7 +45999,9 @@ components:
       x-enumDescriptions:
         - Unknown tax exemption reason
         - N1 - Escluse ex art.15
+        - N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72
         - N2.2 - Non soggette – altri casi
+        - N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione
         - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
         - N4 - Esenti
         - N5 - Regime del margine / IVA non esposta in fattura
