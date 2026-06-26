@@ -8599,7 +8599,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
-      x-restricted: true
   /api/connector/v1/paymentRequests/getAll:
     post:
       tags:
@@ -20902,7 +20901,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaymentMethodsEnum'
-          description: Allowed payment methods to use for the payment plan.
+          description: Allowed payment methods to use for the payment plan. Currently only `Payment card` and `SEPA Direct Debit` are supported.
         Message:
           maxLength: 1000
           minLength: 1
