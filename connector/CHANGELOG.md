@@ -1,3 +1,19 @@
+# 2026-07-01
+
+
+## POST /api/connector/v1/resourceCategories/add
+-  endpoint added
+
+
+## POST /api/connector/v1/resourceCategories/delete
+-  endpoint added
+
+
+## POST /api/connector/v1/resourceCategories/update
+-  endpoint added
+
+
+
 # 2026-06-24
 
 

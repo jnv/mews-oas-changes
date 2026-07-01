@@ -12597,6 +12597,198 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/resourceCategories/add:
+    post:
+      tags:
+        - Resource categories
+      summary: Add resource categories
+      description: 'Adds one or more resource categories (also known as space categories or room types) to the specified services. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: resourceCategories_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleResourceCategoryAddParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceCategories":[{"ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","Type":"Room","Capacity":2,"ExtraCapacity":1,"Names":{"en-US":"Standard Double Room"},"ShortNames":{"en-US":"SDBL"},"Descriptions":{"en-US":"A standard room with a double bed."},"Classification":"StandardDouble","Ordering":1,"ExternalIdentifier":"STD-DBL","AccountingCategoryId":"90eff5aa-36b4-4689-80c0-ab3a00bb412e"}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCategoryModificationResult'
+              example: {"ResourceCategories":[{"Id":"773d5e42-de1e-43a0-9ce6-f940faf2303f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","IsActive":true,"Type":"Room","Classification":"StandardDouble","Names":{"en-US":"Standard Double Room"},"ShortNames":{"en-US":"SDBL"},"Descriptions":{"en-US":"A standard room with a double bed."},"Ordering":1,"Capacity":2,"ExtraCapacity":1,"ExternalIdentifier":"STD-DBL","AccountingCategoryId":"90eff5aa-36b4-4689-80c0-ab3a00bb412e"}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/resourceCategories/update:
+    post:
+      tags:
+        - Resource categories
+      summary: Update resource categories
+      description: 'Updates one or more existing resource categories. Only the fields that are set are updated. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: resourceCategories_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleResourceCategoryUpdateParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceCategoryUpdates":[{"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","Names":{"Value":{"en-US":"Superior Double Room"}},"Capacity":{"Value":3},"Ordering":{"Value":2}}],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceCategoryModificationResult'
+              example: {"ResourceCategories":[{"Id":"773d5e42-de1e-43a0-9ce6-f940faf2303f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","IsActive":true,"Type":"Room","Classification":"StandardDouble","Names":{"en-US":"Standard Double Room"},"ShortNames":{"en-US":"SDBL"},"Descriptions":{"en-US":"A standard room with a double bed."},"Ordering":1,"Capacity":2,"ExtraCapacity":1,"ExternalIdentifier":"STD-DBL","AccountingCategoryId":"90eff5aa-36b4-4689-80c0-ab3a00bb412e"}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/resourceCategories/delete:
+    post:
+      tags:
+        - Resource categories
+      summary: Delete resource categories
+      description: 'Deletes the specified resource categories. A resource category cannot be deleted while it still has active resources, overbookings, rate adjustments, channel manager mappings, product rules, promotions, restrictions or active reservations. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: resourceCategories_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceCategoryDeleteParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ResourceCategoryIds":["773d5e42-de1e-43a0-9ce6-f940faf2303f","47d6b462-35ec-467e-a565-b00300781a41"],"EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+              example: {}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/resourceFeatureAssignments/getAll:
     post:
       tags:
@@ -29818,6 +30010,20 @@ components:
       additionalProperties: false
       description: Limitation on the quantity of data returned.
       x-schema-id: Limitation
+    LocalizedStringsUpdateValue:
+      title: Localized text update value
+      type: object
+      properties:
+        Value:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: Value which is to be updated.
+          nullable: true
+          x-schema-id: LocalizedStrings
+      additionalProperties: false
+      x-schema-id: LocalizedStringsUpdateValue
     LoyaltyMembership:
       title: Loyalty membership
       required:
@@ -32420,6 +32626,76 @@ components:
           description: Resource block parameters.
       additionalProperties: false
       x-schema-id: MultipleResourceBlockAddParameters
+    MultipleResourceCategoryAddParameters:
+      title: Multiple resource category add parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ResourceCategories
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ResourceCategories:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategoryAddParameters'
+          description: Parameters of the new resource categories to be created.
+      additionalProperties: false
+      x-schema-id: MultipleResourceCategoryAddParameters
+    MultipleResourceCategoryUpdateParameters:
+      title: Multiple resource category update parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ResourceCategoryUpdates
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ResourceCategoryUpdates:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategoryUpdateParameters'
+          description: Details of the resource categories to be updated.
+      additionalProperties: false
+      x-schema-id: MultipleResourceCategoryUpdateParameters
     MultipleResourceUpdateParameters:
       title: MultipleResourceUpdateParameters
       required:
@@ -41387,6 +41663,132 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategory
+    ResourceCategoryAddParameters:
+      title: Resource category add parameters
+      required:
+        - Capacity
+        - ServiceId
+        - Type
+      type: object
+      properties:
+        ServiceId:
+          type: string
+          description: Unique identifier of the `Service` the resource category belongs to.
+          format: uuid
+        Type:
+          title: Resource category type
+          allOf:
+            - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
+          description: "Type of the category.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces"
+          x-enumNames:
+            - Room
+            - Bed
+            - Dorm
+            - Apartment
+            - Suite
+            - Villa
+            - Site
+            - Office
+            - MeetingRoom
+            - ParkingSpot
+            - Desk
+            - TeamArea
+            - Membership
+            - Tent
+            - CaravanOrRV
+            - UnequippedCampsite
+            - Bike
+            - ExtraBed
+            - Cot
+            - Crib
+            - ConferenceRoom
+            - Rooftop
+            - Garden
+            - Restaurant
+            - Amphitheater
+            - PrivateSpaces
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+        Capacity:
+          type: integer
+          description: Capacity that can be served (e.g. bed count). Must be a positive number.
+          format: int32
+        ExtraCapacity:
+          type: integer
+          description: Extra capacity that can be served (e.g. extra bed count). Must not be negative.
+          format: int32
+          nullable: true
+        Names:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the name.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        ShortNames:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the short name.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        Descriptions:
+          title: Localized text
+          type: object
+          additionalProperties:
+            type: string
+          description: All translations of the description.
+          nullable: true
+          x-schema-id: LocalizedStrings
+        Classification:
+          allOf:
+            - $ref: '#/components/schemas/ResourceClassificationEnum'
+          description: "Classification of the resource category.\n\nStandardSingle\n\nStandardDouble\n\nSuperiorTwin\n\nSuperiorDouble\n\nJuniorSuite\n\nSharedOrDorm\n\nOther\n\nSuperiorSingle\n\nTriple\n\nFamily\n\nStandardTwin\n\nStudio\n\nSuperiorTripleRoom\n\nOneBedroomApartment\n\nThreeBedroomsApartment\n\nTwoBedroomsApartment"
+          nullable: true
+        Ordering:
+          type: integer
+          description: 'Ordering of the category, lower number corresponds to lower category (note that neither uniqueness nor continuous sequence is guaranteed).'
+          format: int32
+          nullable: true
+        ExternalIdentifier:
+          maxLength: 255
+          type: string
+          description: Identifier of the resource category from an external system.
+          nullable: true
+        AccountingCategoryId:
+          type: string
+          description: Unique identifier of the accounting category.
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ResourceCategoryAddParameters
     ResourceCategoryAssignment:
       title: Resource category assignment
       required:
@@ -41592,6 +41994,42 @@ components:
           x-schema-id: ResourceAvailabilityMetricTypeInt32IEnumerableIDictionary
       additionalProperties: false
       x-schema-id: ResourceCategoryAvailabilityV20240122
+    ResourceCategoryDeleteParameters:
+      title: Resource category delete parameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - ResourceCategoryIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        ResourceCategoryIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the resource categories to be deleted.
+      additionalProperties: false
+      x-schema-id: ResourceCategoryDeleteParameters
     ResourceCategoryFilterParameters:
       title: ResourceCategoryFilterParameters
       required:
@@ -41785,6 +42223,20 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryImageAssignmentResult
+    ResourceCategoryModificationResult:
+      title: Resource category modification result
+      required:
+        - ResourceCategories
+      type: object
+      properties:
+        ResourceCategories:
+          maxItems: 100
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategory'
+          description: Resource categories affected by the operation.
+      additionalProperties: false
+      x-schema-id: ResourceCategoryModificationResult
     ResourceCategoryOccupancyState:
       title: Resource category occupancy state
       required:
@@ -41939,6 +42391,143 @@ components:
         - ''
         - ''
         - ''
+    ResourceCategoryTypeUpdateValue:
+      title: Resource category type update value
+      type: object
+      properties:
+        Value:
+          title: Resource category type
+          allOf:
+            - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
+          description: Value which is to be updated.
+          x-enumNames:
+            - Room
+            - Bed
+            - Dorm
+            - Apartment
+            - Suite
+            - Villa
+            - Site
+            - Office
+            - MeetingRoom
+            - ParkingSpot
+            - Desk
+            - TeamArea
+            - Membership
+            - Tent
+            - CaravanOrRV
+            - UnequippedCampsite
+            - Bike
+            - ExtraBed
+            - Cot
+            - Crib
+            - ConferenceRoom
+            - Rooftop
+            - Garden
+            - Restaurant
+            - Amphitheater
+            - PrivateSpaces
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+      additionalProperties: false
+      x-schema-id: ResourceCategoryTypeUpdateValue
+    ResourceCategoryUpdateParameters:
+      title: Resource category update parameters
+      required:
+        - ResourceCategoryId
+      type: object
+      properties:
+        ResourceCategoryId:
+          type: string
+          description: Unique identifier of the resource category to be updated.
+          format: uuid
+        Names:
+          title: Localized text update value
+          allOf:
+            - $ref: '#/components/schemas/LocalizedStringsUpdateValue'
+          description: All translations of the name (or null if it should not be updated).
+          nullable: true
+        ShortNames:
+          title: Localized text update value
+          allOf:
+            - $ref: '#/components/schemas/LocalizedStringsUpdateValue'
+          description: All translations of the short name (or null if it should not be updated).
+          nullable: true
+        Descriptions:
+          title: Localized text update value
+          allOf:
+            - $ref: '#/components/schemas/LocalizedStringsUpdateValue'
+          description: All translations of the description (or null if it should not be updated).
+          nullable: true
+        Type:
+          title: Resource category type update value
+          allOf:
+            - $ref: '#/components/schemas/ResourceCategoryTypeUpdateValue'
+          description: Type of the category (or null if it should not be updated).
+          nullable: true
+        Capacity:
+          title: Int32 update value
+          allOf:
+            - $ref: '#/components/schemas/Int32UpdateValue'
+          description: 'Capacity that can be served, e.g. bed count. Must be a positive number (or null if it should not be updated).'
+          nullable: true
+        ExtraCapacity:
+          title: Int32 update value
+          allOf:
+            - $ref: '#/components/schemas/Int32UpdateValue'
+          description: 'Extra capacity that can be served, e.g. extra bed count. Must not be negative (or null if it should not be updated).'
+          nullable: true
+        Ordering:
+          title: Int32 update value
+          allOf:
+            - $ref: '#/components/schemas/Int32UpdateValue'
+          description: 'Ordering of the category, lower number corresponds to lower category (or null if it should not be updated).'
+          nullable: true
+        Classification:
+          title: Resource classification update value
+          allOf:
+            - $ref: '#/components/schemas/ResourceClassificationNullableUpdateValue'
+          description: Classification of the resource category. Set the inner value to null to clear it (or null if it should not be updated).
+          nullable: true
+        ExternalIdentifier:
+          title: String update value
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: Identifier of the resource category from an external system. Set the inner value to null to clear it (or null if it should not be updated).
+          nullable: true
+        AccountingCategoryId:
+          title: Guid update value
+          allOf:
+            - $ref: '#/components/schemas/GuidNullableUpdateValue'
+          description: Unique identifier of the accounting category. Set the inner value to null to clear it (or null if it should not be updated).
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ResourceCategoryUpdateParameters
     ResourceClassification:
       title: Resource classification
       enum:
@@ -41960,6 +42549,72 @@ components:
         - TwoBedroomsApartment
       type: string
       description: Classification of the resource category.
+    ResourceClassificationEnum:
+      title: Resource classification
+      enum:
+        - StandardSingle
+        - StandardDouble
+        - SuperiorTwin
+        - SuperiorDouble
+        - JuniorSuite
+        - SharedOrDorm
+        - Other
+        - SuperiorSingle
+        - Triple
+        - Family
+        - StandardTwin
+        - Studio
+        - SuperiorTripleRoom
+        - OneBedroomApartment
+        - ThreeBedroomsApartment
+        - TwoBedroomsApartment
+      type: string
+      description: "Classification of the resource category.\n\nStandardSingle\n\nStandardDouble\n\nSuperiorTwin\n\nSuperiorDouble\n\nJuniorSuite\n\nSharedOrDorm\n\nOther\n\nSuperiorSingle\n\nTriple\n\nFamily\n\nStandardTwin\n\nStudio\n\nSuperiorTripleRoom\n\nOneBedroomApartment\n\nThreeBedroomsApartment\n\nTwoBedroomsApartment"
+      x-enumNames:
+        - StandardSingle
+        - StandardDouble
+        - SuperiorTwin
+        - SuperiorDouble
+        - JuniorSuite
+        - SharedOrDorm
+        - Other
+        - SuperiorSingle
+        - Triple
+        - Family
+        - StandardTwin
+        - Studio
+        - SuperiorTripleRoom
+        - OneBedroomApartment
+        - ThreeBedroomsApartment
+        - TwoBedroomsApartment
+      x-enumDescriptions:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+    ResourceClassificationNullableUpdateValue:
+      title: Resource classification update value
+      type: object
+      properties:
+        Value:
+          allOf:
+            - $ref: '#/components/schemas/ResourceClassificationEnum'
+          description: Value which is to be updated.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: ResourceClassificationNullableUpdateValue
     ResourceDataDiscriminator:
       title: Resource data discriminator
       enum:
