@@ -1,3 +1,17 @@
+# 2026-07-10
+
+
+## POST /api/connector/v1/counters/getAll
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'BillCounters/items/Type' response property for the response status '200'
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'BillPreviewCounters/items/Type' response property for the response status '200'
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'Counters/items/Type' response property for the response status '200'
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'ProformaCounters/items/Type' response property for the response status '200'
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'RegistrationCardCounters/items/Type' response property for the response status '200'
+- :warning: added the new 'PaymentSplitBillCounter' enum value to the 'ServiceOrderCounters/items/Type' response property for the response status '200'
+-  added the new 'PaymentSplitBillCounter' enum value to the request property 'Type/anyOf[subschema #1: Counter type discriminator]/'
+
+
+
 # 2026-07-01
 
 
