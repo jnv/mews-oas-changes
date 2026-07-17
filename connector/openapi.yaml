@@ -6234,7 +6234,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"},{"Id":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"ID7654321","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2024-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Brno","IdentityDocumentSupportNumber":"B-321"}],"Cursor":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4"}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456","IsVerified":true},{"Id":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"IdentityCard","Number":"ID7654321","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2024-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Brno","IdentityDocumentSupportNumber":"B-321","IsVerified":false}],"Cursor":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf4"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6413,7 +6413,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MultipleIdentityDocumentUpdateParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","Type":{"Value":"Passport"},"Number":{"Value":"123456789"},"ExpirationDate":{"Value":"2040-11-20T00:00:00Z"},"IssuanceDate":{"Value":"2020-11-20T00:00:00Z"},"IssuingCountryCode":{"Value":"CZ"},"IssuingCity":{"Value":"Prague"},"IdentityDocumentSupportNumber":{"Value":"S-123456"}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","Type":{"Value":"Passport"},"Number":{"Value":"123456789"},"ExpirationDate":{"Value":"2040-11-20T00:00:00Z"},"IssuanceDate":{"Value":"2020-11-20T00:00:00Z"},"IssuingCountryCode":{"Value":"CZ"},"IssuingCity":{"Value":"Prague"},"IdentityDocumentSupportNumber":{"Value":"S-123456"},"IsVerified":{"Value":true}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -6421,7 +6421,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentWriteResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456","IsVerified":true}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -6476,7 +6476,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IdentityDocumentsAddParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocuments":[{"CustomerId":"e8a72a69-c20b-4278-b699-ab0400a32ecc","Type":"Passport","Number":"123456789","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2020-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","IdentityDocuments":[{"CustomerId":"e8a72a69-c20b-4278-b699-ab0400a32ecc","Type":"Passport","Number":"123456789","ExpirationDate":"2040-11-20T00:00:00Z","IssuanceDate":"2020-11-20T00:00:00Z","IssuingCountryCode":"CZ","IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456","IsVerified":true}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
       responses:
         '200':
           description: OK
@@ -6484,7 +6484,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityDocumentWriteResult'
-              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456"}]}
+              example: {"IdentityDocuments":[{"Id":"e8a72a69-c20b-4278-b699-ab0400a32ecc","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"Passport","Number":"M1234567","ExpirationDate":"2040-10-24T00:00:00Z","IssuanceDate":"2024-10-24T00:00:00Z","IssuingCountryCode":"CZ","IssuingCountrySubdivisionCode":null,"IssuingCity":"Prague","IdentityDocumentSupportNumber":"S-123456","IsVerified":true}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -29146,6 +29146,12 @@ components:
             - $ref: '#/components/schemas/StringUpdateValue'
           description: Identity document support number. Only required for Spanish identity cards in Spanish hotels.
           nullable: true
+        IsVerified:
+          title: Boolean update value
+          allOf:
+            - $ref: '#/components/schemas/BooleanUpdateValue'
+          description: Whether the document has been verified (or `null` if the value should not be updated).
+          nullable: true
       additionalProperties: false
       x-schema-id: IdentityDocumentUpdateParameters
     IdentityDocumentV20241025:
@@ -29153,6 +29159,7 @@ components:
       required:
         - CustomerId
         - Id
+        - IsVerified
         - Number
         - Type
       type: object
@@ -29210,6 +29217,9 @@ components:
           type: string
           description: Identity document support number. Only required for Spanish identity cards in Spanish hotels.
           nullable: true
+        IsVerified:
+          type: boolean
+          description: Whether the document has been verified.
       additionalProperties: false
       x-schema-id: IdentityDocumentV20241025
     IdentityDocumentWriteResult:
@@ -29283,6 +29293,9 @@ components:
           type: string
           description: Identity document support number. Only required for Spanish identity cards in Spanish hotels.
           nullable: true
+        IsVerified:
+          type: boolean
+          description: Whether the document has been verified. Defaults to `false` when not specified.
       additionalProperties: false
       x-schema-id: IdentityDocumentsAddData
     IdentityDocumentsAddParameters:

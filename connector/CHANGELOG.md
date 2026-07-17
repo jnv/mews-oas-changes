@@ -1,3 +1,21 @@
+# 2026-07-17
+
+
+## POST /api/connector/v1/identityDocuments/add
+-  added the new optional request property 'IdentityDocuments/items/IsVerified'
+-  added the required property 'IdentityDocuments/items/IsVerified' to the response with the '200' status
+
+
+## POST /api/connector/v1/identityDocuments/getAll
+-  added the required property 'IdentityDocuments/items/IsVerified' to the response with the '200' status
+
+
+## POST /api/connector/v1/identityDocuments/update
+-  added the new optional request property 'IdentityDocuments/items/IsVerified'
+-  added the required property 'IdentityDocuments/items/IsVerified' to the response with the '200' status
+
+
+
 # 2026-07-10
 
 
