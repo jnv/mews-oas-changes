@@ -1,3 +1,57 @@
+# 2026-07-29
+
+
+## POST /api/connector/v1/customers/getRelationships
+-  added the new optional request property 'UpdatedUtc'
+-  added the required property 'CustomerRelationships/items/UpdatedUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'FR_261_7' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/products/getAll
+- :warning: added the new 'FR_261_7' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_261_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added the new 'FR_261_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/getAll
+- :warning: added the new 'FR_261_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added the new 'FR_261_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'FR_261_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'FR_261_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_262_00_BIS' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'FR_293_B' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+
 # 2026-07-17
 
 

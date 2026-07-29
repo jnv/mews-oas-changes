@@ -5737,7 +5737,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerRelationshipFilterParameters'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"Limitation":{"Count":100}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"UpdatedUtc":{"StartUtc":"2023-08-01T00:00:00Z","EndUtc":"2023-08-30T00:00:00Z"},"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"Limitation":{"Count":100}}
       responses:
         '200':
           description: OK
@@ -5745,7 +5745,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerRelationshipResult'
-              example: {"CustomerRelationships":[{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","Relationship":"Other"},{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","Relationship":"Other"}],"Cursor":null}
+              example: {"CustomerRelationships":[{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","Relationship":"Other","UpdatedUtc":"2023-08-01T12:00:00Z"},{"CustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf6","RelatedCustomerId":"cbe8a32e-3eb7-4226-baf4-69455a0eeaf5","Relationship":"Other","UpdatedUtc":"2023-08-01T12:00:00Z"}],"Cursor":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -26160,6 +26160,7 @@ components:
         - CustomerId
         - RelatedCustomerId
         - Relationship
+        - UpdatedUtc
       type: object
       properties:
         CustomerId:
@@ -26192,6 +26193,11 @@ components:
             - ''
             - ''
           x-extensible: true
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: Date and time when the relationship was last updated in UTC timezone in ISO 8601 format.
+          format: date-time
       additionalProperties: false
       x-schema-id: CustomerRelationship
     CustomerRelationshipFilterParameters:
@@ -26237,6 +26243,13 @@ components:
             type: string
             format: uuid
           description: Unique identifiers of `Customer`.
+        UpdatedUtc:
+          title: Time interval
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the relationship was updated.
+          nullable: true
+          x-max-interval-in-months: 3
       additionalProperties: false
       x-schema-id: CustomerRelationshipFilterParameters
     CustomerRelationshipResult:
@@ -33491,7 +33504,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -36652,7 +36665,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -37566,7 +37579,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -46651,8 +46664,11 @@ components:
         - PL_ZW
         - PL_NP
         - DE_NATO
+        - FR_261_7
+        - FR_262_00_BIS
+        - FR_293_B
       type: string
-      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)"
+      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
       x-enumNames:
         - Unknown
         - IT_N1
@@ -46665,6 +46681,9 @@ components:
         - PL_ZW
         - PL_NP
         - DE_NATO
+        - FR_261_7
+        - FR_262_00_BIS
+        - FR_293_B
       x-enumDescriptions:
         - Unknown tax exemption reason
         - N1 - Escluse ex art.15
@@ -46677,6 +46696,9 @@ components:
         - ZW - Zwolniony
         - NP - Nie podlega
         - NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen
+        - 'Exonération de TVA, article 261, 7 du CGI'
+        - 'Exonération de TVA, article 262-00 bis du CGI'
+        - 'TVA non applicable, article 293 B du CGI'
     TaxRate:
       title: Tax rate
       required:
