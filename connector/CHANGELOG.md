@@ -1,3 +1,11 @@
+# 2026-07-31
+
+
+## POST /api/connector/v1/payments/addCreditCard
+-  endpoint deprecated
+
+
+
 # 2026-07-29
 
 

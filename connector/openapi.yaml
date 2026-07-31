@@ -8919,7 +8919,7 @@ paths:
       tags:
         - Payments
       summary: Add credit card payment
-      description: "Adds a new credit card payment to a bill of the specified customer. Note that the payment is added to open bill of the customer, either to the specified one or the default one. This operation only serves to record a credit card payment that has already been taken outside of Mews or Mews' payment terminal, and does not actually charge the customer's credit card. \nThe bill can then be closed manually by a Mews user, or automatically via API with the [Close bill](https://mews-systems.gitbook.io/connector-api/operations/bills/#close-bill) operation."
+      description: 'Follow the [Payment automation use case](https://docs.mews.com/connector-api/use-cases/payment-automation) for processing credit card payments.'
       operationId: payments_addCreditCard
       requestBody:
         content:
@@ -8993,6 +8993,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      deprecated: true
+      x-deprecatedMessage: 'Follow the [Payment automation use case](https://docs.mews.com/connector-api/use-cases/payment-automation) for processing credit card payments.'
+      x-sunset: '2028-01-10'
   /api/connector/v1/payments/addExternal:
     post:
       tags:
