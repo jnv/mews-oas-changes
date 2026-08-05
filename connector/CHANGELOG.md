@@ -1,3 +1,23 @@
+# 2026-08-05
+
+
+## POST /api/connector/v1/cancellationPolicies/add
+-  endpoint added
+
+
+## POST /api/connector/v1/cancellationPolicies/delete
+-  endpoint added
+
+
+## POST /api/connector/v1/cancellationPolicies/update
+-  endpoint added
+
+
+## POST /api/connector/v1/identityDocuments/add
+-  the request property 'IdentityDocuments/items/IsVerified' became nullable
+
+
+
 # 2026-07-31
 
 
