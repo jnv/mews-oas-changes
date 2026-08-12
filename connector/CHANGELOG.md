@@ -1,3 +1,45 @@
+# 2026-08-12
+
+
+## POST /api/connector/v1/billingAutomations/add
+- :warning: added the new 'PrepaidOrVcc' enum value to the 'BillingAutomations/items/Prepayment/allOf[subschema #1: Billing automation prepayment type]/' response property for the response status '200'
+-  added the new 'PrepaidOrVcc' enum value to the request property 'BillingAutomations/items/Prepayment/allOf[subschema #1: Billing automation prepayment type]/'
+
+
+## POST /api/connector/v1/billingAutomations/getAll
+- :warning: added the new 'PrepaidOrVcc' enum value to the 'BillingAutomations/items/Prepayment/allOf[subschema #1: Billing automation prepayment type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/billingAutomations/update
+- :warning: added the new 'PrepaidOrVcc' enum value to the 'BillingAutomations/items/Prepayment/allOf[subschema #1: Billing automation prepayment type]/' response property for the response status '200'
+-  added the new 'PrepaidOrVcc' enum value to the request property 'BillingAutomationUpdates/items/Prepayment/allOf[subschema #1: Billing automation prepayment type update value]/Value/allOf[subschema #1: Billing automation prepayment type]/'
+
+
+## POST /api/connector/v1/cancellationPolicies/add
+-  added the required property 'CancellationPolicies/items/IsPortfolioManaged' to the response with the '200' status
+
+
+## POST /api/connector/v1/cancellationPolicies/getAll/2026-07-31
+-  endpoint added
+
+
+## POST /api/connector/v1/cancellationPolicies/update
+-  added the required property 'CancellationPolicies/items/IsPortfolioManaged' to the response with the '200' status
+
+
+## POST /api/connector/v1/rates/add
+-  added the new optional request property 'Rates/items/Pricing/allOf[subschema #1: Rate add pricing data parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate pricing parameters]/TaxCodes'
+
+
+## POST /api/connector/v1/rates/set
+-  added the new optional request property 'Rates/items/Pricing/allOf[subschema #1: Rate set pricing data parameters]/DependentRatePricing/allOf[subschema #1: Dependent rate set pricing parameters]/TaxCodes'
+
+
+## POST /api/connector/v1/reservations/generateGuestPortalLinks
+-  endpoint added
+
+
+
 # 2026-08-05
 
 

@@ -2783,6 +2783,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/cancellationPolicies/getAll/2026-07-31:
+    post:
+      tags:
+        - Cancellation policies
+      summary: Get all cancellation policies (ver 2026-07-31)
+      description: 'Returns the current versions of cancellation policies within the enterprise scope in the same shape as the `add`, `update` operations, including policies that are not currently assigned to any rate or reservation. Historical versions produced by fee-affecting updates are not returned. Optionally filtered by `CancellationPolicyIds`, `UpdatedUtc`, and `ActivityStates`; when no filter is provided all current cancellation policies within the enterprise scope are returned. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: cancellationPolicies_getAll_2026-07-31
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancellationPolicyFilterParametersV20260731'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CancellationPolicyIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"UpdatedUtc":{"StartUtc":"2026-07-01T00:00:00Z","EndUtc":"2026-07-31T00:00:00Z"},"ActivityStates":["Active"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationPolicyResultV20260731'
+              example: {"CancellationPolicies":[{"Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2023-02-02T00:00:00Z","UpdatedUtc":"2023-02-02T00:00:00Z","IsActive":true,"Applicability":"Start","FeeExtents":["TimeUnits","Products"],"ApplicabilityOffset":"P0M-1DT0H0M0S","FeeMaximumTimeUnits":1,"AbsoluteFee":{"Currency":"EUR","Value":50.0},"RelativeFee":0.5,"Name":"Standard cancellation policy","ExternalIdentifier":"standard-policy","IsPortfolioManaged":false}],"Cursor":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/cancellationPolicies/add:
     post:
       tags:
@@ -2803,7 +2867,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CancellationPolicyModificationResult'
-              example: {"CancellationPolicies":[{"Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2023-02-02T00:00:00Z","UpdatedUtc":"2023-02-02T00:00:00Z","IsActive":true,"Applicability":"Start","FeeExtents":["TimeUnits","Products"],"ApplicabilityOffset":"P0M-1DT0H0M0S","FeeMaximumTimeUnits":1,"AbsoluteFee":{"Currency":"EUR","Value":50.0},"RelativeFee":0.5,"Name":"Standard cancellation policy","ExternalIdentifier":"standard-policy"}]}
+              example: {"CancellationPolicies":[{"Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2023-02-02T00:00:00Z","UpdatedUtc":"2023-02-02T00:00:00Z","IsActive":true,"Applicability":"Start","FeeExtents":["TimeUnits","Products"],"ApplicabilityOffset":"P0M-1DT0H0M0S","FeeMaximumTimeUnits":1,"AbsoluteFee":{"Currency":"EUR","Value":50.0},"RelativeFee":0.5,"Name":"Standard cancellation policy","ExternalIdentifier":"standard-policy","IsPortfolioManaged":false}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -2867,7 +2931,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CancellationPolicyModificationResult'
-              example: {"CancellationPolicies":[{"Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2023-02-02T00:00:00Z","UpdatedUtc":"2023-02-02T00:00:00Z","IsActive":true,"Applicability":"Start","FeeExtents":["TimeUnits","Products"],"ApplicabilityOffset":"P0M-1DT0H0M0S","FeeMaximumTimeUnits":1,"AbsoluteFee":{"Currency":"EUR","Value":50.0},"RelativeFee":0.5,"Name":"Standard cancellation policy","ExternalIdentifier":"standard-policy"}]}
+              example: {"CancellationPolicies":[{"Id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2023-02-02T00:00:00Z","UpdatedUtc":"2023-02-02T00:00:00Z","IsActive":true,"Applicability":"Start","FeeExtents":["TimeUnits","Products"],"ApplicabilityOffset":"P0M-1DT0H0M0S","FeeMaximumTimeUnits":1,"AbsoluteFee":{"Currency":"EUR","Value":50.0},"RelativeFee":0.5,"Name":"Standard cancellation policy","ExternalIdentifier":"standard-policy","IsPortfolioManaged":false}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -11185,6 +11249,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/reservations/generateGuestPortalLinks:
+    post:
+      tags:
+        - Reservations
+      summary: Generate Guest portal links
+      description: 'Generates one or more Guest portal links for specific reservations and customers. These links can be used to grant guests direct access to their online check-in, key management, or other Guest portal functionalities. Links are single-use only. Reusing the same link multiple times may lead to a failed login attempt. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: reservations_generateGuestPortalLinks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleGuestPortalLinkParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","GuestPortalLinks":[{"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","GuestPortalLinkTypes":["Homepage","CheckIn"]}]}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuestPortalLinkResult'
+              example: {"GuestPortalLinks":[{"ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","GuestPortalUrls":[{"Url":"https://app.mews.com/User/SignIn/A0A0A0A0A0AA0A00A0AAA00000A00A0A-A0AAA00A00000000A00A00000AA00A0?utm_campaign=homepageExternalLink&utm_medium=api&utm_source=connector-api&language=en-US&enterpriseId=3fa85f64-5717-4562-b3fc-2c963f66afa6","GuestPortalLinkType":"Homepage","ExpiresUtc":"2025-01-01T10:00:00Z"},{"Url":"https://app.mews.com/User/SignIn/A0A0A0A0A0AA0A00A0AAA00000A00A0A-A0AAA00A00000000A00A00000AA00A0?utm_campaign=checkInExternalLink&utm_medium=api&utm_source=connector-api&language=en-US&enterpriseId=3fa85f64-5717-4562-b3fc-2c963f66afa6","GuestPortalLinkType":"CheckIn","ExpiresUtc":"2025-01-01T10:00:00Z"}]}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/reservations/update:
     post:
       tags:
@@ -20502,13 +20630,15 @@ components:
           title: Billing automation prepayment type
           allOf:
             - $ref: '#/components/schemas/BillingAutomationPrepaymentEnum'
-          description: "Type of prepayment.\n\nAll (All)\n\nPrepaid (Prepaid)"
+          description: "Type of prepayment.\n\nAll (Applies to reservations regardless of prepayment.)\n\nPrepaid (Applies only to reservations the OTA flagged as prepaid.)\n\nPrepaidOrVcc (Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.)"
           x-enumNames:
             - All
             - Prepaid
+            - PrepaidOrVcc
           x-enumDescriptions:
-            - All
-            - Prepaid
+            - Applies to reservations regardless of prepayment.
+            - Applies only to reservations the OTA flagged as prepaid.
+            - 'Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.'
         AssignmentTargetType:
           title: Billing automation assignment target type
           allOf:
@@ -20648,13 +20778,15 @@ components:
           title: Billing automation prepayment type
           allOf:
             - $ref: '#/components/schemas/BillingAutomationPrepaymentEnum'
-          description: "Type of prepayment.\n\nAll (All)\n\nPrepaid (Prepaid)"
+          description: "Type of prepayment.\n\nAll (Applies to reservations regardless of prepayment.)\n\nPrepaid (Applies only to reservations the OTA flagged as prepaid.)\n\nPrepaidOrVcc (Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.)"
           x-enumNames:
             - All
             - Prepaid
+            - PrepaidOrVcc
           x-enumDescriptions:
-            - All
-            - Prepaid
+            - Applies to reservations regardless of prepayment.
+            - Applies only to reservations the OTA flagged as prepaid.
+            - 'Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.'
         AssignmentTargetType:
           title: Billing automation assignment target type
           allOf:
@@ -21314,14 +21446,17 @@ components:
       enum:
         - All
         - Prepaid
+        - PrepaidOrVcc
       type: string
-      description: "\n\nAll (All)\n\nPrepaid (Prepaid)"
+      description: "\n\nAll (Applies to reservations regardless of prepayment.)\n\nPrepaid (Applies only to reservations the OTA flagged as prepaid.)\n\nPrepaidOrVcc (Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.)"
       x-enumNames:
         - All
         - Prepaid
+        - PrepaidOrVcc
       x-enumDescriptions:
-        - All
-        - Prepaid
+        - Applies to reservations regardless of prepayment.
+        - Applies only to reservations the OTA flagged as prepaid.
+        - 'Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.'
     BillingAutomationPrepaymentUpdateValue:
       title: Billing automation prepayment type update value
       type: object
@@ -21334,9 +21469,11 @@ components:
           x-enumNames:
             - All
             - Prepaid
+            - PrepaidOrVcc
           x-enumDescriptions:
-            - All
-            - Prepaid
+            - Applies to reservations regardless of prepayment.
+            - Applies only to reservations the OTA flagged as prepaid.
+            - 'Applies to reservations the OTA flagged as prepaid, and to reservations with a virtual credit card attached.'
       additionalProperties: false
       x-schema-id: BillingAutomationPrepaymentUpdateValue
     BillingAutomationResult:
@@ -22220,6 +22357,64 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CancellationPolicyFilterParameters
+    CancellationPolicyFilterParametersV20260731:
+      title: Cancellation policy filter parameters (ver 2026-07-31)
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        CancellationPolicyIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the requested cancellation policies. If not specified, all current cancellation policy versions within the enterprise scope are returned.'
+          nullable: true
+        UpdatedUtc:
+          title: Time interval
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the cancellation policy was updated.
+          nullable: true
+          x-max-interval-in-months: 3
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, only active records will be returned.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CancellationPolicyFilterParametersV20260731
     CancellationPolicyModificationData:
       title: Cancellation policy modification data
       required:
@@ -22231,6 +22426,7 @@ components:
         - FeeExtents
         - Id
         - IsActive
+        - IsPortfolioManaged
         - RelativeFee
         - UpdatedUtc
       type: object
@@ -22300,6 +22496,9 @@ components:
           type: string
           description: 'Identifier of the cancellation policy from an external system, unique within the enterprise, that can be used to reference the policy from your own system.'
           nullable: true
+        IsPortfolioManaged:
+          type: boolean
+          description: Whether the cancellation policy is managed by the portfolio. Policies managed by the portfolio cannot be updated or deleted through this resource.
       additionalProperties: false
       x-schema-id: CancellationPolicyModificationData
     CancellationPolicyModificationResult:
@@ -22335,6 +22534,25 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CancellationPolicyResult
+    CancellationPolicyResultV20260731:
+      title: Cancellation policy result (ver 2026-07-31)
+      required:
+        - CancellationPolicies
+      type: object
+      properties:
+        CancellationPolicies:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/CancellationPolicyModificationData'
+          description: The requested cancellation policies.
+        Cursor:
+          type: string
+          description: Opaque pagination cursor which can be used in `Limitation` to fetch further cancellation policies.
+          format: string
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CancellationPolicyResultV20260731
     CancellationPolicyUpdateParameters:
       title: Cancellation policy update parameters
       required:
@@ -27325,6 +27543,12 @@ components:
           type: number
           description: Specific amount which shows the difference between this rate and the base rate.
           format: double
+        TaxCodes:
+          type: array
+          items:
+            type: string
+          description: 'Tax codes applied to the dependent rate. An empty collection is a valid value that sets the rate to have no taxes (zero taxes defined). When omitted or `null`, the rate is created without tax codes.'
+          nullable: true
       additionalProperties: false
       x-schema-id: DependentRatePricingParameters
     DependentRateSetPricingParameters:
@@ -27346,6 +27570,12 @@ components:
           type: number
           description: Specific amount which shows the difference between this rate and the base rate.
           format: double
+        TaxCodes:
+          title: String array update value
+          allOf:
+            - $ref: '#/components/schemas/StringIReadOnlyListUpdateValue'
+          description: 'Tax codes applied to the dependent rate. Omit the property to keep the currently persisted tax codes unchanged. Provide a value to update them: an empty collection sets the rate to have no taxes (zero taxes defined), and `null` removes the previously persisted tax codes.'
+          nullable: true
       additionalProperties: false
       x-schema-id: DependentRateSetPricingParameters
     DependentTaxRateStrategy:
@@ -29176,6 +29406,124 @@ components:
           description: Name and version of the client application.
       additionalProperties: false
       x-schema-id: GetAllActiveCommandsParameters
+    GuestPortalLink:
+      title: Guest portal link details
+      required:
+        - CustomerId
+        - GuestPortalUrls
+        - ReservationId
+      type: object
+      properties:
+        ReservationId:
+          type: string
+          description: ID of the reservation which is accessible through the link.
+          format: uuid
+        CustomerId:
+          type: string
+          description: ID of the customer whose Guest portal account is accessible through the link.
+          format: uuid
+        GuestPortalUrls:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestPortalUrlDetails'
+          description: Collection of URLs pointing to Guest portal.
+      additionalProperties: false
+      x-schema-id: GuestPortalLink
+    GuestPortalLinkParameters:
+      title: Guest portal link parameters
+      required:
+        - CustomerId
+        - GuestPortalLinkTypes
+        - ReservationId
+      type: object
+      properties:
+        ReservationId:
+          type: string
+          description: ID of the reservation for which the link will be generated.
+          format: uuid
+        CustomerId:
+          type: string
+          description: ID of the customer for whom the link will be generated.
+          format: uuid
+        GuestPortalLinkTypes:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestPortalLinkTypeEnum'
+          description: Type of the link that will be generated.
+      additionalProperties: false
+      x-schema-id: GuestPortalLinkParameters
+    GuestPortalLinkResult:
+      title: GuestPortalLinkResult
+      required:
+        - GuestPortalLinks
+      type: object
+      properties:
+        GuestPortalLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestPortalLink'
+          description: Collection of requested links.
+      additionalProperties: false
+      x-schema-id: GuestPortalLinkResult
+    GuestPortalLinkTypeEnum:
+      title: Guest portal link type
+      enum:
+        - Homepage
+        - CheckIn
+        - CheckOut
+        - Chat
+        - Keys
+      type: string
+      description: "\n\nHomepage (Link points to Guest portal home page.)\n\nCheckIn (Link points to online check-in flow.)\n\nCheckOut (Link points to online check-out flow.)\n\nChat (Link points to messaging functionality.)\n\nKeys (Link points to a keys page (instructions, mobile, wallet).)"
+      x-enumNames:
+        - Homepage
+        - CheckIn
+        - CheckOut
+        - Chat
+        - Keys
+      x-enumDescriptions:
+        - Link points to Guest portal home page.
+        - Link points to online check-in flow.
+        - Link points to online check-out flow.
+        - Link points to messaging functionality.
+        - 'Link points to a keys page (instructions, mobile, wallet).'
+    GuestPortalUrlDetails:
+      title: Guest portal URL details
+      required:
+        - ExpiresUtc
+        - GuestPortalLinkType
+        - Url
+      type: object
+      properties:
+        Url:
+          minLength: 1
+          type: string
+          description: URL granting access to Guest portal.
+        GuestPortalLinkType:
+          title: Guest portal link type
+          allOf:
+            - $ref: '#/components/schemas/GuestPortalLinkTypeEnum'
+          description: "Type of the link.\n\nHomepage (Link points to Guest portal home page.)\n\nCheckIn (Link points to online check-in flow.)\n\nCheckOut (Link points to online check-out flow.)\n\nChat (Link points to messaging functionality.)\n\nKeys (Link points to a keys page (instructions, mobile, wallet).)"
+          x-enumNames:
+            - Homepage
+            - CheckIn
+            - CheckOut
+            - Chat
+            - Keys
+          x-enumDescriptions:
+            - Link points to Guest portal home page.
+            - Link points to online check-in flow.
+            - Link points to online check-out flow.
+            - Link points to messaging functionality.
+            - 'Link points to a keys page (instructions, mobile, wallet).'
+        ExpiresUtc:
+          minLength: 1
+          type: string
+          description: Expiration date and time of the link in UTC timezone in ISO 8601 format. After this time the link is invalidated and cannot be used to access Guest portal.
+          format: date-time
+      additionalProperties: false
+      x-schema-id: GuestPortalUrlDetails
     GuidIEnumerableUpdateValue:
       title: Guid array update value
       type: object
@@ -32562,6 +32910,36 @@ components:
           description: Unique identifiers of `Customer`.
       additionalProperties: false
       x-schema-id: MultipleCustomerParameters
+    MultipleGuestPortalLinkParameters:
+      title: MultipleGuestPortalLinkParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - GuestPortalLinks
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        GuestPortalLinks:
+          maxItems: 50
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestPortalLinkParameters'
+          description: Collection of link parameters.
+      additionalProperties: false
+      x-schema-id: MultipleGuestPortalLinkParameters
     MultipleIdentityDocumentUpdateParameters:
       title: Multiple identity document update parameters
       required:
