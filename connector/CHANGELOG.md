@@ -1,3 +1,11 @@
+# 2026-08-14
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the optional property 'Payments/items/Data/allOf[subschema #1: Payment data]/Alternative/allOf[subschema #1: Alternative payment data]/Transaction' to the response with the '200' status
+
+
+
 # 2026-08-12
 
 
