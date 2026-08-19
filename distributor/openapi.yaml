@@ -3142,6 +3142,9 @@ components:
         - Restaurant
         - Amphitheater
         - PrivateSpaces
+        - Cabin
+        - Pod
+        - SunBed
       type: string
     ResourceOccupancyPricing:
       title: ResourceOccupancyPricing
