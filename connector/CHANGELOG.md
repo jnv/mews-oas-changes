@@ -1,3 +1,35 @@
+# 2026-08-19
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the optional property 'CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the optional property 'CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/CustomTitleName' to the response with the '200' status
+
+
+
 # 2026-08-14
 
 
