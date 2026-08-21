@@ -1,3 +1,85 @@
+# 2026-08-21
+
+
+## POST /api/connector/v1/accounts/update
+-  added the optional property 'Accounts/items/Customer/allOf[subschema #1: Customer]/CustomTitleName' to the response with the '200' status
+
+
+## POST /api/connector/v1/paymentPolicies/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/paymentPolicyAssignments/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/resourceCategories/add
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+-  added the new 'Cabin' enum value to the request property 'ResourceCategories/items/Type/allOf[subschema #1: Resource category type]/'
+-  added the new 'Pod' enum value to the request property 'ResourceCategories/items/Type/allOf[subschema #1: Resource category type]/'
+-  added the new 'SunBed' enum value to the request property 'ResourceCategories/items/Type/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/resourceCategories/getAll
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/resourceCategories/update
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+-  added the new 'Cabin' enum value to the request property 'ResourceCategoryUpdates/items/Type/allOf[subschema #1: Resource category type update value]/Value/allOf[subschema #1: Resource category type]/'
+-  added the new 'Pod' enum value to the request property 'ResourceCategoryUpdates/items/Type/allOf[subschema #1: Resource category type update value]/Value/allOf[subschema #1: Resource category type]/'
+-  added the new 'SunBed' enum value to the request property 'ResourceCategoryUpdates/items/Type/allOf[subschema #1: Resource category type update value]/Value/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/resources/getAll
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+## POST /api/connector/v1/restrictions/clear
+-  added the new 'Cabin' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Pod' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'SunBed' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/restrictions/getAll
+- :warning: added the new 'Cabin' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'Restrictions/items/Conditions/allOf[subschema #1: Restriction condition]/ResourceCategoryType/allOf[subschema #1: Resource category type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/restrictions/set
+-  added the new 'Cabin' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'Pod' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+-  added the new 'SunBed' enum value to the request property 'Data/items/ResourceCategoryType/allOf[subschema #1: Resource category type]/'
+
+
+## POST /api/connector/v1/rules/getAll
+- :warning: added the new 'Cabin' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'Pod' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+- :warning: added the new 'SunBed' enum value to the 'ResourceCategories/items/Type' response property for the response status '200'
+
+
+
 # 2026-08-19
 
 
