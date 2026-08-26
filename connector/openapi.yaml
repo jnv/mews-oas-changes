@@ -7094,7 +7094,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","ActivityState":"Active","DeletedUtc":null,"CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7157,7 +7157,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","ActivityState":"Active","DeletedUtc":null,"CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -7220,7 +7220,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyMembershipResult'
-              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
+              example: {"LoyaltyMemberships":[{"Id":"905a4489-0960-4ac9-96ec-793f47365c92","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","LoyaltyProgramId":"f701dafb-5765-4cf4-b1dd-1f602a740ae5","State":"New","IsPrimary":true,"ProviderMembershipId":"PRV-MBR-9842XKLT","Code":"MBR-2025-AX49ZT73","MembershipNumber":"MBR-2025-AX49ZT73","Points":22,"ExpirationDate":"2029-11-04T13:00:00Z","Url":"https://rewards.example.com/member/PRV-MBR-9842XKLT","LoyaltyTierId":"69eedfd2-6f25-42fc-b3c8-39df70f85e37","ActivityState":"Active","DeletedUtc":null,"CreatorProfile":null,"UpdaterProfile":null}],"Cursor":"905a4489-0960-4ac9-96ec-793f47365c92"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -13439,7 +13439,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResourceResult'
-              example: {"Resources":[{"Id":"20e00c32-d561-4008-8609-82d8aa525714","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":null,"Name":"101","State":"Clean","Descriptions":{"en-US":"Standard room with city view"},"CreatedUtc":"2023-01-15T10:30:00Z","UpdatedUtc":"2023-06-15T14:20:00Z","Data":{"Discriminator":"Space","Value":{"FloorNumber":"1","LocationNotes":"Building A, near elevator"}},"ExternalNames":{"en-US":"Room 101"},"Directions":{"en-US":"Take elevator to first floor, turn right"}},{"Id":"1ec29188-01ca-4294-9983-fac59f85a448","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":"20e00c32-d561-4008-8609-82d8aa525714","Name":"101A","State":"Inspected","Descriptions":{"en-US":"Bed in room 101"},"CreatedUtc":"2023-01-15T10:35:00Z","UpdatedUtc":"2023-06-15T14:25:00Z","Data":{"Discriminator":"Object","Value":{}},"ExternalNames":{"en-US":"Bed A"},"Directions":{"en-US":"Located in room 101"}},{"Id":"a1b2c3d4-e5f6-7890-abcd-ef1234567890","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":null,"Name":"Suite 1","State":"Dirty","Descriptions":{"en-US":"Luxury suite with ocean view"},"CreatedUtc":"2023-02-01T09:00:00Z","UpdatedUtc":"2023-06-20T16:45:00Z","Data":{"Discriminator":"Space","Value":{"FloorNumber":"5","LocationNotes":"Penthouse level, private elevator access"}},"ExternalNames":{"en-US":"Presidential Suite"},"Directions":{"en-US":"Private elevator to penthouse level"}}],"ResourceCategories":null,"ResourceCategoryAssignments":null,"ResourceCategoryImageAssignments":null,"ResourceFeatures":null,"ResourceFeatureAssignments":null,"Cursor":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"}
+              example: {"Resources":[{"Id":"20e00c32-d561-4008-8609-82d8aa525714","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":null,"Name":"101","State":"Clean","Descriptions":{"en-US":"Standard room with city view"},"CreatedUtc":"2023-01-15T10:30:00Z","UpdatedUtc":"2023-06-15T14:20:00Z","DeletedUtc":null,"Data":{"Discriminator":"Space","Value":{"FloorNumber":"1","LocationNotes":"Building A, near elevator"}},"ExternalNames":{"en-US":"Room 101"},"Directions":{"en-US":"Take elevator to first floor, turn right"}},{"Id":"1ec29188-01ca-4294-9983-fac59f85a448","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":"20e00c32-d561-4008-8609-82d8aa525714","Name":"101A","State":"Inspected","Descriptions":{"en-US":"Bed in room 101"},"CreatedUtc":"2023-01-15T10:35:00Z","UpdatedUtc":"2023-06-15T14:25:00Z","DeletedUtc":null,"Data":{"Discriminator":"Object","Value":{}},"ExternalNames":{"en-US":"Bed A"},"Directions":{"en-US":"Located in room 101"}},{"Id":"a1b2c3d4-e5f6-7890-abcd-ef1234567890","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","IsActive":true,"ParentResourceId":null,"Name":"Suite 1","State":"Dirty","Descriptions":{"en-US":"Luxury suite with ocean view"},"CreatedUtc":"2023-02-01T09:00:00Z","UpdatedUtc":"2023-06-20T16:45:00Z","DeletedUtc":null,"Data":{"Discriminator":"Space","Value":{"FloorNumber":"5","LocationNotes":"Penthouse level, private elevator access"}},"ExternalNames":{"en-US":"Presidential Suite"},"Directions":{"en-US":"Private elevator to penthouse level"}}],"ResourceCategories":null,"ResourceCategoryAssignments":null,"ResourceCategoryImageAssignments":null,"ResourceFeatures":null,"ResourceFeatureAssignments":null,"Cursor":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -31020,6 +31020,7 @@ components:
       title: Loyalty membership
       required:
         - AccountId
+        - ActivityState
         - ChainId
         - CreatorProfile
         - Id
@@ -31097,6 +31098,22 @@ components:
           type: string
           description: Unique identifier of the loyalty tier.
           format: uuid
+          nullable: true
+        ActivityState:
+          title: Activity state
+          allOf:
+            - $ref: '#/components/schemas/ActivityStateEnum'
+          description: "Whether the loyalty membership is still active or has been deleted.\n\nDeleted\n\nActive"
+          x-enumNames:
+            - Deleted
+            - Active
+          x-enumDescriptions:
+            - ''
+            - ''
+        DeletedUtc:
+          type: string
+          description: Date and time when the loyalty membership was deleted (for inactive ones) in UTC timezone in ISO 8601 format.
+          format: date-time
           nullable: true
         CreatorProfile:
           title: Profile data
@@ -42340,6 +42357,10 @@ components:
           minLength: 1
           type: string
           description: Last update date and time of the resource in UTC timezone in ISO 8601 format.
+        DeletedUtc:
+          type: string
+          description: Date and time when the resource was deleted (for deleted ones) in UTC timezone in ISO 8601 format.
+          nullable: true
         Data:
           title: Resource data
           type: object

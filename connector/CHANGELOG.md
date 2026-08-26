@@ -1,3 +1,34 @@
+# 2026-08-26
+
+
+## POST /api/connector/v1/loyaltyMemberships/add
+-  added the optional property 'LoyaltyMemberships/items/DeletedUtc' to the response with the '200' status
+-  added the required property 'LoyaltyMemberships/items/ActivityState' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/getAll
+-  added the optional property 'LoyaltyMemberships/items/DeletedUtc' to the response with the '200' status
+-  added the required property 'LoyaltyMemberships/items/ActivityState' to the response with the '200' status
+
+
+## POST /api/connector/v1/loyaltyMemberships/update
+-  added the optional property 'LoyaltyMemberships/items/DeletedUtc' to the response with the '200' status
+-  added the required property 'LoyaltyMemberships/items/ActivityState' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Resources/items/DeletedUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Resources/items/DeletedUtc' to the response with the '200' status
+
+
+## POST /api/connector/v1/resources/getAll
+-  added the optional property 'Resources/items/DeletedUtc' to the response with the '200' status
+
+
+
 # 2026-08-21
 
 
