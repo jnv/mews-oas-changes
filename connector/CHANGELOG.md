@@ -1,3 +1,11 @@
+# 2026-08-28
+
+
+## POST /api/connector/v1/messageThreads/add
+-  added the new optional request property 'CustomerId'
+
+
+
 # 2026-08-26
 
 
