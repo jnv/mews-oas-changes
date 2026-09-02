@@ -25768,7 +25768,7 @@ components:
           nullable: true
         CustomTitleName:
           type: string
-          description: 'Name of the customer''s custom title, as configured in the chain''s guest titles. Mutually exclusive with `Title`.'
+          description: 'Name of the customer''s custom title, as configured in the chain''s guest titles. Mutually exclusive with `Title` – a customer has either a standard title or a custom title. Unlike `Title`, the value is not localized; display it as returned.'
           nullable: true
         Sex:
           allOf:
@@ -26082,7 +26082,7 @@ components:
           nullable: true
         CustomTitleName:
           type: string
-          description: 'Name of the customer''s custom title, as configured in the chain''s guest titles. Mutually exclusive with `Title`.'
+          description: 'Name of the customer''s custom title, as configured in the chain''s guest titles. Mutually exclusive with `Title` – a customer has either a standard title or a custom title. Unlike `Title`, the value is not localized; display it as returned.'
           nullable: true
         PreferredLanguageCode:
           type: string
