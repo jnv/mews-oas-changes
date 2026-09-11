@@ -9531,6 +9531,134 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/payouts/getAll:
+    post:
+      tags:
+        - Payouts
+      summary: Get all payouts
+      description: 'Returns payouts for reconciling bank deposits against Mews. Only payouts executed by a supported payment service provider are returned, currently `Stripe` and `Adyen`, so the results may not cover an enterprise''s full merchant balance. Constituent payment transactions are retrieved separately via [Get all payout transactions](https://mews-systems.gitbook.io/connector-api/operations/payouts#get-all-payout-transactions). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: payouts_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayoutFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PayoutDateUtc":{"StartUtc":"2023-08-01T00:00:00Z","EndUtc":"2023-08-31T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutResult'
+              example: {"Payouts":[{"Id":"a1b2c3d4-0000-4a00-8a00-000000000001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","State":"Paid","Provider":"Stripe","PayoutDateUtc":"2023-08-15T00:00:00Z","Amount":{"Currency":"EUR","Value":1250.00},"BankDescriptor":"MEWS PAYOUT 12345"}],"Cursor":null}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/payoutTransactions/getAll:
+    post:
+      tags:
+        - Payouts
+      summary: Get all payout transactions
+      description: 'Returns the payment transactions that compose payouts, filtered by payout. Only payouts executed by a supported payment service provider are covered, currently `Stripe` and `Adyen`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      operationId: payoutTransactions_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayoutTransactionFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","PayoutIds":["a1b2c3d4-0000-4a00-8a00-000000000001"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutTransactionResult'
+              example: {"PayoutTransactions":[{"Id":"a1b2c3d4-0000-4a00-8a00-000000000002","PayoutId":"a1b2c3d4-0000-4a00-8a00-000000000001","Type":"Charge","Amount":{"Currency":"EUR","Value":1312.50},"PaymentId":"f6313945-94c1-4e27-b402-031c2a8c989f","InvoiceReferences":["INV-2023-0042"],"CreatedUtc":"2023-08-14T10:15:00Z"}],"Cursor":null}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/preauthorizations/getAllByCustomers:
     post:
       tags:
@@ -37697,6 +37825,321 @@ components:
         - No additional data.
         - No additional data.
         - No additional data.
+    Payout:
+      title: Payout
+      required:
+        - Amount
+        - EnterpriseId
+        - Id
+        - Provider
+        - State
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique stable identifier of the payout.
+          format: uuid
+        EnterpriseId:
+          type: string
+          description: Unique identifier of the enterprise that owns the payout.
+          format: uuid
+        State:
+          title: Payout state
+          allOf:
+            - $ref: '#/components/schemas/PayoutStateEnum'
+          description: "Current state of the payout.\n\nPending (The payout has been initiated but is not yet confirmed as paid.)\n\nPaid (The payout has been paid out to the destination bank account.)\n\nFailed (The payout failed and the funds were not paid out.)"
+          x-enumNames:
+            - Pending
+            - Paid
+            - Failed
+          x-enumDescriptions:
+            - The payout has been initiated but is not yet confirmed as paid.
+            - The payout has been paid out to the destination bank account.
+            - The payout failed and the funds were not paid out.
+        Provider:
+          title: Payout provider
+          allOf:
+            - $ref: '#/components/schemas/PayoutProviderEnum'
+          description: "Payment service provider that executed the payout.\n\nAdyen (Adyen)\n\nStripe (Stripe)"
+          x-enumNames:
+            - Adyen
+            - Stripe
+          x-enumDescriptions:
+            - Adyen
+            - Stripe
+        PayoutDateUtc:
+          type: string
+          description: 'Date and time the payout was recorded in Mews, in UTC timezone in ISO 8601 format. This is not the date the funds arrived in the destination bank account.'
+          format: date-time
+          nullable: true
+        Amount:
+          title: Currency value (ver 2023-02-02)
+          allOf:
+            - $ref: '#/components/schemas/CurrencyValue'
+          description: 'Total net amount paid out to the destination bank account, after fees and deductions. The individual fee and deduction transactions are available through the payout''s transactions.'
+        BankDescriptor:
+          type: string
+          description: 'Payout descriptor currently configured for the integration, as used on bank statements. Reflects the current configuration and may differ from the descriptor shown on statements of older payouts.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: Payout
+    PayoutFilterParameters:
+      title: PayoutFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        PayoutIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the requested payouts.
+          nullable: true
+        PayoutDateUtc:
+          title: Time interval
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the payout was executed.
+          nullable: true
+          x-max-interval-in-months: 3
+        PayoutProviders:
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutProviderEnum'
+          description: Payment service providers to filter payouts by.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PayoutFilterParameters
+    PayoutProviderEnum:
+      title: Payout provider
+      enum:
+        - Adyen
+        - Stripe
+      type: string
+      description: "Payment service provider that executed a payout.\n\nAdyen (Adyen)\n\nStripe (Stripe)"
+      x-enumNames:
+        - Adyen
+        - Stripe
+      x-enumDescriptions:
+        - Adyen
+        - Stripe
+    PayoutResult:
+      title: PayoutResult
+      required:
+        - Payouts
+      type: object
+      properties:
+        Payouts:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/Payout'
+          description: The payouts.
+        Cursor:
+          type: string
+          description: 'Unique identifier of the last returned payout, used as the starting point of the next data page. Null when there are no more data.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PayoutResult
+    PayoutStateEnum:
+      title: Payout state
+      enum:
+        - Pending
+        - Paid
+        - Failed
+      type: string
+      description: "State of a payout.\n\nPending (The payout has been initiated but is not yet confirmed as paid.)\n\nPaid (The payout has been paid out to the destination bank account.)\n\nFailed (The payout failed and the funds were not paid out.)"
+      x-enumNames:
+        - Pending
+        - Paid
+        - Failed
+      x-enumDescriptions:
+        - The payout has been initiated but is not yet confirmed as paid.
+        - The payout has been paid out to the destination bank account.
+        - The payout failed and the funds were not paid out.
+    PayoutTransaction:
+      title: Payout transaction
+      required:
+        - Amount
+        - Id
+        - PayoutId
+        - Type
+      type: object
+      properties:
+        Id:
+          type: string
+          description: 'Unique stable identifier of the transaction, kept stable over time for re-fetch and reconciliation.'
+          format: uuid
+        PayoutId:
+          type: string
+          description: Unique identifier of the payout this transaction belongs to.
+          format: uuid
+        Type:
+          title: Payout transaction type
+          allOf:
+            - $ref: '#/components/schemas/PayoutTransactionTypeEnum'
+          description: "Type of the transaction.\n\nCharge (A payment charge included in the payout.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by the payment service provider.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nBalanceTopUp (A top-up of the account balance.)"
+          x-enumNames:
+            - Charge
+            - MerchantCommission
+            - PlatformFee
+            - CommissionAdjustment
+            - ReserveAdjustment
+            - BalanceTopUp
+          x-enumDescriptions:
+            - A payment charge included in the payout.
+            - Commission charged by Mews.
+            - Platform fee charged by the payment service provider.
+            - An adjustment to a previously charged commission.
+            - An adjustment to the chargeback reserve held for the account.
+            - A top-up of the account balance.
+        Amount:
+          title: Currency value (ver 2023-02-02)
+          allOf:
+            - $ref: '#/components/schemas/CurrencyValue'
+          description: Amount of the transaction.
+        PaymentId:
+          type: string
+          description: 'Unique identifier of the related payment, when the transaction is backed by one.'
+          format: uuid
+          nullable: true
+        InvoiceReferences:
+          maxItems: 100
+          type: array
+          items:
+            type: string
+          description: 'Invoice references associated with the transaction, when available.'
+          nullable: true
+        CreatedUtc:
+          type: string
+          description: 'Date and time the transaction was created, in UTC timezone in ISO 8601 format. This is the date of the underlying transaction rather than of the payout, so it can fall outside the interval used to filter payouts.'
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PayoutTransaction
+    PayoutTransactionFilterParameters:
+      title: PayoutTransactionFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+        - PayoutIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        PayoutIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the payouts whose transactions are requested.
+      additionalProperties: false
+      x-schema-id: PayoutTransactionFilterParameters
+    PayoutTransactionResult:
+      title: PayoutTransactionResult
+      required:
+        - PayoutTransactions
+      type: object
+      properties:
+        PayoutTransactions:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutTransaction'
+          description: The payout transactions.
+        Cursor:
+          type: string
+          description: 'Unique identifier of the last returned transaction, used as the starting point of the next data page. Null when there are no more data.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: PayoutTransactionResult
+    PayoutTransactionTypeEnum:
+      title: Payout transaction type
+      enum:
+        - Charge
+        - MerchantCommission
+        - PlatformFee
+        - CommissionAdjustment
+        - ReserveAdjustment
+        - BalanceTopUp
+      type: string
+      description: "Type of a payout transaction.\n\nCharge (A payment charge included in the payout.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by the payment service provider.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nBalanceTopUp (A top-up of the account balance.)"
+      x-enumNames:
+        - Charge
+        - MerchantCommission
+        - PlatformFee
+        - CommissionAdjustment
+        - ReserveAdjustment
+        - BalanceTopUp
+      x-enumDescriptions:
+        - A payment charge included in the payout.
+        - Commission charged by Mews.
+        - Platform fee charged by the payment service provider.
+        - An adjustment to a previously charged commission.
+        - An adjustment to the chargeback reserve held for the account.
+        - A top-up of the account balance.
     PayworksData:
       title: PayworksData
       type: object

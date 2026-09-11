@@ -1,3 +1,15 @@
+# 2026-09-11
+
+
+## POST /api/connector/v1/payoutTransactions/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/payouts/getAll
+-  endpoint added
+
+
+
 # 2026-08-28
 
 
