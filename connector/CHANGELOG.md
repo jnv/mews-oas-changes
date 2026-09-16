@@ -1,3 +1,60 @@
+# 2026-09-16
+
+
+## POST /api/connector/v1/billingAutomations/getAll
+- :warning: the 'BillingAutomationIds' request property's minItems was increased to '1'
+- :warning: the 'CompanyIds' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/bills/reissue
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitleGroups/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitles/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/exchangeRates/getAll
+- :warning: the 'EnterpriseIds' request property's minItems was increased to '1'
+- :warning: the 'Ids' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/orders/add
+-  added the non-success response with the status '422'
+
+
+## POST /api/connector/v1/payments/getAll
+-  added the new optional request property 'Recurring'
+-  added the required property 'Payments/items/Recurring' to the response with the '200' status
+
+
+## POST /api/connector/v1/resourceCategoryAssignments/getAll
+- :warning: the 'ResourceCategoryAssignmentIds' request property's minItems was increased to '1'
+- :warning: the 'ResourceCategoryIds' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/resourceCategoryImageAssignments/getAll
+- :warning: the 'ResourceCategoryIds' request property's minItems was increased to '1'
+- :warning: the 'ResourceCategoryImageAssignmentIds' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/resourceFeatures/getAll
+- :warning: the 'ServiceIds' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/resources/getOccupancyState
+- :warning: the 'ResourceCategoryIds' request property's minItems was increased to '1'
+
+
+## POST /api/connector/v1/restrictions/getAll
+- :warning: the 'RestrictionIds' request property's minItems was increased to '1'
+
+
+
 # 2026-09-11
 
 

@@ -2624,6 +2624,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/bills/reissue:
+    post:
+      tags:
+        - Bills
+      summary: Reissue bill
+      description: 'Reissues a closed bill or issued invoice. The operation credits the original document with a credit note and carries its items over to a new open bill, which can then be corrected and closed again. A bill can be reissued only once, and the operation rejects payment confirmations, split audit bills, corrective documents other than previously reissued bills, bills with rebated items and – at enterprises that track receivables – paid invoices. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: bills_reissue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillReissueParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","Reason":"Guest disputed the minibar charge","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillReissueResult'
+              example: {"CreditNote":{"Id":"6b3d5a2f-1c48-4f0e-9a7d-b1e2c3d4f5a6","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Closed","Type":"Invoice","Number":"CN-4","VariableSymbol":null,"CreatedUtc":"2017-02-03T09:12:44Z","IssuedUtc":"2017-02-03T09:12:44Z","TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-02-03T09:12:44Z","PurchaseOrderNumber":null,"Notes":null,"Options":null,"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":{"Discriminator":"BillCompanyData","Value":{"Id":"26afba60-06c3-455b-92db-0e3983be0b1d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":{"TaxIdentifier":"CZ24227781","CityOfRegistration":"Prague"},"BillingCode":"Billing code value","Name":"Acme, Inc.","FiscalIdentifier":"Fiscal identifier","AdditionalTaxIdentifier":"Additional tax identifier","DUNS":"150483782","Telephone":"+420123456789","TaxIdentifier":"CZ24227781","InvoicingEmail":"billing@acme.example","Department":"Billing"}},"CompanyDetails":null,"AssociatedAccountData":[{"Discriminator":"BillCustomerData","BillCustomerData":{"Id":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Address":{"Line1":"I.P. Pavlova 5","Line2":null,"City":"Prague","PostalCode":"12000","SubdivisionCode":"CZ-PR","CountryCode":"CZ"},"LegalIdentifiers":null,"BillingCode":null,"LastName":"Doe","FirstName":"John","SecondLastName":null,"TitlePrefix":null,"TaxIdentifier":"CZ7801011234"},"BillCompanyData":null}],"EnterpriseData":{"AdditionalTaxIdentifier":"XY00112233445","CompanyName":"The Sample Hotel Group AS","BankAccount":"CZ3808000000000012345678","BankName":"CESKA SPORITELNA A.S.","Iban":"CZ6508000000192000145399","Bic":"GIBACZPX"},"CorrectionState":"Bill","CorrectionType":"CreditNote","CorrectedBillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005"},"Bill":{"Id":"1f2e3d4c-5b6a-4798-8c9d-0e1f2a3b4c5d","Name":"Accommodation Charges","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","CustomerId":null,"CompanyId":null,"AssociatedAccountIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d"],"CounterId":null,"State":"Open","Type":"Receipt","Number":null,"VariableSymbol":null,"CreatedUtc":"2017-02-03T09:12:44Z","IssuedUtc":null,"TaxedUtc":null,"PaidUtc":null,"DueUtc":null,"LastReminderDateUtc":null,"UpdatedUtc":"2017-02-03T09:12:44Z","PurchaseOrderNumber":null,"Notes":null,"Options":null,"Revenue":[],"Payments":[],"OrderItems":[],"PaymentItems":[],"AssigneeData":null,"OwnerData":null,"CompanyDetails":null,"AssociatedAccountData":null,"EnterpriseData":null,"CorrectionState":"Bill","CorrectionType":"Reinstatement","CorrectedBillId":"6b3d5a2f-1c48-4f0e-9a7d-b1e2c3d4f5a6"}}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/businessSegments/getAll:
     post:
       tags:
@@ -5489,6 +5553,134 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/customTitleGroups/getAll:
+    post:
+      tags:
+        - Custom title groups
+      summary: Get all custom title groups
+      description: 'Returns custom title groups configured for the chain. Use [Get all custom titles](https://docs.mews.com/connector-api/operations/customtitles#get-all-custom-titles) to retrieve the titles within a group. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitleGroups_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTitleGroupFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleGroupIds":["4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","7a2e6d3c-3f8b-4b2a-8b6a-1e5c9d3a7f42"],"ActivityStates":["Active"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleGroupResultPage'
+              example: {"CustomTitleGroups":[{"Id":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Military ranks","IsEditable":true,"IsActive":true}],"Cursor":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitles/getAll:
+    post:
+      tags:
+        - Custom titles
+      summary: Get all custom titles
+      description: 'Returns custom titles, optionally filtered by `CustomTitleGroup` or `CustomTitle` unique identifiers. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitles_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTitleFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleGroupIds":["4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c"],"ActivityStates":["Active"],"ChainIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","5fcd1933-22f2-40b9-84da-7db04cbecec2"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleResultPage'
+              example: {"CustomTitles":[{"Id":"9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Sergeant","Code":"SGT","IsActive":true},{"Id":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Captain","Code":"CPT","IsActive":true}],"Cursor":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/customers/getAll:
     post:
       tags:
@@ -8414,6 +8606,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '422':
+          description: 'The request reuses an `IdempotencyKey` that was already used with a different request payload. Resend the original payload with that key, or use a new `IdempotencyKey` for the new payload.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/outletBills/add:
     post:
       tags:
@@ -9192,7 +9390,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentResult'
-              example: {"Payments":[{"Id":"f6313945-94c1-4e27-b402-031c2a8c989f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","PaymentRequestId":"bcc76295-4e47-4cf1-a7cb-afae00bd1c35","BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-3700.00,"GrossValue":-3700.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"GBP","NetValue":-3700.0,"GrossValue":-3700.0,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.0,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":null,"ChargedUtc":"2023-03-06T07:31:52Z","CreatedUtc":"2023-03-06T07:31:51Z","UpdatedUtc":"2023-03-06T07:31:53Z","SettlementUtc":null,"AccountingState":"Open","State":"Charged","Identifier":"ch_764309db-4bcd-4f2c-ad6a-1c178089deec","Type":"CreditCardPayment","Kind":"Payment","Data":{"Discriminator":"CreditCard","CreditCard":{"CreditCardId":"c922266b-291d-4e25-9df7-afbd007c1991","Transaction":null},"Invoice":null,"External":null,"Ghost":null,"Alternative":null},"PaymentOrigin":"Terminal"},{"Id":"be922eb7-bc5f-4877-b847-1120c0c2acd2","EnterpriseId":"4d0201db-36f5-428b-8d11-4f0a65e960cc","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","PaymentRequestId":"6282d17b-a068-4a9f-83d3-afae00c39bfb","BillId":"d23ac52f-9b86-4a03-a6fe-5822dfcfc5c4","ReservationId":"b7a3f5cb-1e69-4a5f-a069-10f461996d7f","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":"2023-03-02T12:12:35Z","ChargedUtc":"2023-03-02T12:12:32Z","CreatedUtc":"2023-03-02T12:12:32Z","UpdatedUtc":"2023-03-02T12:12:37Z","SettlementUtc":null,"AccountingState":"Closed","State":"Charged","Identifier":"","Type":"CashPayment","Kind":"Payment","Data":null,"PaymentOrigin":"PointOfSales"},{"Id":"a3e7f291-6c4d-4b8a-9f12-1d3e5c7b9a01","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","PaymentRequestId":null,"BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-500.00,"GrossValue":-500.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-500.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-500.00,"GrossValue":-500.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-500.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":null,"ClosedUtc":null,"ChargedUtc":null,"CreatedUtc":"2023-03-06T09:00:00Z","UpdatedUtc":"2023-03-06T09:00:01Z","SettlementUtc":null,"AccountingState":"Open","State":"Pending","Identifier":null,"Type":"AlternativePayment","Kind":"Payment","Data":{"Discriminator":"Alternative","CreditCard":null,"Invoice":null,"External":null,"Ghost":null,"Alternative":{"Type":"WireTransfer","Transaction":null}},"PaymentOrigin":"System"}],"Cursor":"a3e7f291-6c4d-4b8a-9f12-1d3e5c7b9a01"}
+              example: {"Payments":[{"Id":"f6313945-94c1-4e27-b402-031c2a8c989f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"c6f5c82d-621a-4c8a-903b-1b0a9a23b71f","AccountType":"Company","PaymentRequestId":"bcc76295-4e47-4cf1-a7cb-afae00bd1c35","BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-3700.00,"GrossValue":-3700.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"GBP","NetValue":-3700.0,"GrossValue":-3700.0,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-3700.0,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":null,"ChargedUtc":"2023-03-06T07:31:52Z","CreatedUtc":"2023-03-06T07:31:51Z","UpdatedUtc":"2023-03-06T07:31:53Z","SettlementUtc":null,"AccountingState":"Open","State":"Charged","Identifier":"ch_764309db-4bcd-4f2c-ad6a-1c178089deec","Type":"CreditCardPayment","Kind":"Payment","Data":{"Discriminator":"CreditCard","CreditCard":{"CreditCardId":"c922266b-291d-4e25-9df7-afbd007c1991","Transaction":null},"Invoice":null,"External":null,"Ghost":null,"Alternative":null},"PaymentOrigin":"Terminal","Recurring":false},{"Id":"be922eb7-bc5f-4877-b847-1120c0c2acd2","EnterpriseId":"4d0201db-36f5-428b-8d11-4f0a65e960cc","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","PaymentRequestId":"6282d17b-a068-4a9f-83d3-afae00c39bfb","BillId":"d23ac52f-9b86-4a03-a6fe-5822dfcfc5c4","ReservationId":"b7a3f5cb-1e69-4a5f-a069-10f461996d7f","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-300.00,"GrossValue":-300.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-300.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":"2023-03-02T12:12:35Z","ClosedUtc":"2023-03-02T12:12:35Z","ChargedUtc":"2023-03-02T12:12:32Z","CreatedUtc":"2023-03-02T12:12:32Z","UpdatedUtc":"2023-03-02T12:12:37Z","SettlementUtc":null,"AccountingState":"Closed","State":"Charged","Identifier":"","Type":"CashPayment","Kind":"Payment","Data":null,"PaymentOrigin":"PointOfSales","Recurring":false},{"Id":"a3e7f291-6c4d-4b8a-9f12-1d3e5c7b9a01","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","AccountId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","AccountType":"Customer","PaymentRequestId":null,"BillId":"ea087d64-3901-4eee-b0b7-9fce4c58a005","ReservationId":"0f515589-99b4-423d-b83a-b237009f0509","AccountingCategoryId":null,"Amount":{"Currency":"EUR","NetValue":-500.00,"GrossValue":-500.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-500.00,"TaxValue":0.0}]}},"OriginalAmount":{"Currency":"EUR","NetValue":-500.00,"GrossValue":-500.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":-500.00,"TaxValue":0.0}]}},"Notes":null,"SettlementId":null,"ConsumedUtc":null,"ClosedUtc":null,"ChargedUtc":null,"CreatedUtc":"2023-03-06T09:00:00Z","UpdatedUtc":"2023-03-06T09:00:01Z","SettlementUtc":null,"AccountingState":"Open","State":"Pending","Identifier":null,"Type":"AlternativePayment","Kind":"Payment","Data":{"Discriminator":"Alternative","CreditCard":null,"Invoice":null,"External":null,"Ghost":null,"Alternative":{"Type":"WireTransfer","Transaction":null}},"PaymentOrigin":"System","Recurring":false}],"Cursor":"a3e7f291-6c4d-4b8a-9f12-1d3e5c7b9a01"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -20620,6 +20818,68 @@ components:
           format: uuid
       additionalProperties: false
       x-schema-id: BillPrintEvent
+    BillReissueParameters:
+      title: BillReissueParameters
+      required:
+        - AccessToken
+        - BillId
+        - Client
+        - ClientToken
+        - Reason
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        BillId:
+          type: string
+          description: Unique identifier of the closed `Bill` to reissue.
+          format: uuid
+        Reason:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Reason for reissuing the bill.
+        CreditNoteCounterId:
+          type: string
+          description: 'Unique identifier of the `Counter` used to number the credit note. Required when the enterprise''s legal environment mandates a dedicated credit note counter, and must be omitted otherwise. Retrieve the available counters with [Get all counters](https://docs.mews.com/connector-api/operations/counters#get-all-counters) using `Type` set to `CreditNoteBillCounter` – when the enterprise requires one but has none configured, it must first be added in **Mews Operations**.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: BillReissueParameters
+    BillReissueResult:
+      title: BillReissueResult
+      required:
+        - Bill
+        - CreditNote
+      type: object
+      properties:
+        CreditNote:
+          title: Bill
+          allOf:
+            - $ref: '#/components/schemas/Bill'
+          description: The closed credit note crediting the reissued bill. Its `CorrectedBillId` is the identifier of the reissued bill.
+        Bill:
+          title: Bill
+          allOf:
+            - $ref: '#/components/schemas/Bill'
+          description: The new open bill carrying the items of the reissued bill. Its `CorrectedBillId` is the identifier of the credit note.
+      additionalProperties: false
+      x-schema-id: BillReissueResult
     BillState:
       title: Bill state
       enum:
@@ -21457,6 +21717,7 @@ components:
           nullable: true
         CompanyIds:
           maxItems: 100
+          minItems: 1
           type: array
           items:
             type: string
@@ -21465,6 +21726,7 @@ components:
           nullable: true
         BillingAutomationIds:
           maxItems: 100
+          minItems: 1
           type: array
           items:
             type: string
@@ -25768,6 +26030,7 @@ components:
           type: string
           description: Name and version of the client application.
         Ids:
+          minItems: 1
           type: array
           items:
             type: string
@@ -25775,6 +26038,7 @@ components:
           description: 'Unique identifiers of the Exchange Rates. If not specified, the operation returns all exchange rates.'
           nullable: true
         EnterpriseIds:
+          minItems: 1
           type: array
           items:
             type: string
@@ -25859,6 +26123,223 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CurrencyValueUpdateValue
+    CustomTitle:
+      title: Custom title
+      required:
+        - ChainId
+        - CustomTitleGroupId
+        - Id
+        - IsActive
+        - Name
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the custom title.
+          format: uuid
+        ChainId:
+          type: string
+          description: Unique identifier of the `Chain` the custom title belongs to.
+          format: uuid
+        CustomTitleGroupId:
+          type: string
+          description: Unique identifier of the `CustomTitleGroup` the custom title belongs to.
+          format: uuid
+        Name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the custom title.
+        Code:
+          maxLength: 100
+          type: string
+          description: Short code of the custom title.
+          nullable: true
+        IsActive:
+          type: boolean
+          description: Whether the custom title is active.
+      additionalProperties: false
+      x-schema-id: CustomTitle
+    CustomTitleFilterParameters:
+      title: CustomTitleFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        ChainIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          nullable: true
+        CustomTitleGroupIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `CustomTitleGroup` whose custom titles are requested.
+          nullable: true
+        CustomTitleIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of `CustomTitle`.
+          nullable: true
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, only active records will be returned.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleFilterParameters
+    CustomTitleGroup:
+      title: Custom title group
+      required:
+        - ChainId
+        - Id
+        - IsActive
+        - IsEditable
+        - Name
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique identifier of the custom title group.
+          format: uuid
+        ChainId:
+          type: string
+          description: Unique identifier of the `Chain` the custom title group belongs to.
+          format: uuid
+        Name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the custom title group.
+        IsEditable:
+          type: boolean
+          description: Whether the custom title group itself can be renamed or deleted. Groups managed by Mews are not editable. This governs the group only – the custom titles within it are always editable and can be managed regardless of this value.
+        IsActive:
+          type: boolean
+          description: Whether the custom title group is active. Inactive groups can still be referenced by existing custom titles – request them with the `ActivityStates` filter.
+      additionalProperties: false
+      x-schema-id: CustomTitleGroup
+    CustomTitleGroupFilterParameters:
+      title: CustomTitleGroupFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        ChainIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of `Chain`. If not specified, the operation returns data for all chains within scope of the Access Token.'
+          nullable: true
+        CustomTitleGroupIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of `CustomTitleGroup`.
+          nullable: true
+        ActivityStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityStates'
+          description: 'Whether to return only active, only deleted, or both types of record. If not specified, only active records will be returned.'
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupFilterParameters
+    CustomTitleGroupResultPage:
+      title: CustomTitleGroupResultPage
+      required:
+        - CustomTitleGroups
+      type: object
+      properties:
+        CustomTitleGroups:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleGroup'
+          description: The custom title groups.
+        Cursor:
+          type: string
+          description: Unique identifier of the last custom title group returned. Use it as the `Cursor` in `Limitation` on a subsequent request to fetch the next batch.
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupResultPage
+    CustomTitleResultPage:
+      title: CustomTitleResultPage
+      required:
+        - CustomTitles
+      type: object
+      properties:
+        CustomTitles:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitle'
+          description: The custom titles.
+        Cursor:
+          type: string
+          description: Unique identifier of the last custom title returned. Use it as the `Cursor` in `Limitation` on a subsequent request to fetch the next batch.
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleResultPage
     Customer:
       title: Customer
       required:
@@ -35856,6 +36337,7 @@ components:
         - EnterpriseId
         - Id
         - OriginalAmount
+        - Recurring
         - SettlementUtc
         - State
         - Type
@@ -36019,6 +36501,9 @@ components:
             - $ref: '#/components/schemas/PaymentOriginEnum'
           description: "Payment origin indicating how the payment was initiated.\n\nOther (Fallback value unmapped in the current version of the API.)\n\nSystem\n\nOperations\n\nAutomaticPayment\n\nPaymentRequest\n\nBookingEngine\n\nApi (Connector API.)\n\nTerminal\n\nChannelManager\n\nOnlineCheckout\n\nBillBalancing\n\nOnlineCheckin\n\nPointOfSales\n\nPaymentToInvoiceLinking"
           nullable: true
+        Recurring:
+          type: boolean
+          description: Whether the payment was collected for a payment plan.
       additionalProperties: false
       x-schema-id: Payment
     PaymentAlternativeData:
@@ -36441,6 +36926,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/PaymentDiscriminatorEnum'
           description: "Payment state of the item.\n\nPayment\n\nCreditCardPayment\n\nAlternativePayment\n\nCashPayment\n\nInvoicePayment\n\nExternalPayment\n\nGhostPayment\n\nTaxDeductedPayment"
+          nullable: true
+        Recurring:
+          type: boolean
+          description: 'Whether to return only payments collected for a payment plan, or only payments that were not. Omit the filter to return both. It narrows the other filters rather than bounding the result set on its own, so it cannot be the only filter provided.'
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentFilterParameters
@@ -43809,6 +44298,7 @@ components:
           nullable: true
         ResourceCategoryAssignmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -43817,6 +44307,7 @@ components:
           nullable: true
         ResourceCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -44122,6 +44613,7 @@ components:
           nullable: true
         ResourceCategoryImageAssignmentIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -44130,6 +44622,7 @@ components:
           nullable: true
         ResourceCategoryIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -44952,6 +45445,7 @@ components:
           nullable: true
         ServiceIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
@@ -45268,6 +45762,7 @@ components:
           description: Name and version of the client application.
         ResourceCategoryIds:
           maxItems: 5
+          minItems: 1
           type: array
           items:
             type: string
@@ -45577,6 +46072,7 @@ components:
           nullable: true
         RestrictionIds:
           maxItems: 1000
+          minItems: 1
           type: array
           items:
             type: string
