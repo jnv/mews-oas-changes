@@ -5617,6 +5617,198 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       x-restricted: true
+  /api/connector/v1/customTitleGroups/add:
+    post:
+      tags:
+        - Custom title groups
+      summary: Add custom title groups
+      description: 'Adds custom title groups to the chain. A group is created without any custom titles; use [Add custom titles](https://docs.mews.com/connector-api/operations/customtitles#add-custom-titles) to add them. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitleGroups_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleCustomTitleGroupAddParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleGroups":[{"Name":"Military ranks"}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleGroupWriteResult'
+              example: {"CustomTitleGroups":[{"Id":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Military ranks","IsEditable":true,"IsActive":true}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitleGroups/update:
+    post:
+      tags:
+        - Custom title groups
+      summary: Update custom title groups
+      description: 'Renames the specified custom title groups. Fails if any specified group has `IsEditable` set to `false` and its `Name` would actually change; a group whose `Name` is omitted, or resolves to its current value, is left as is regardless of `IsEditable`. Use [Add custom titles](https://docs.mews.com/connector-api/operations/customtitles#add-custom-titles), [Update custom titles](https://docs.mews.com/connector-api/operations/customtitles#update-custom-titles) or [Delete custom titles](https://docs.mews.com/connector-api/operations/customtitles#delete-custom-titles) to manage the titles within a group. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitleGroups_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleCustomTitleGroupUpdateParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleGroupUpdates":[{"CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":{"Value":"Military ranks"}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleGroupWriteResult'
+              example: {"CustomTitleGroups":[{"Id":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Name":"Military ranks","IsEditable":true,"IsActive":true}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitleGroups/delete:
+    post:
+      tags:
+        - Custom title groups
+      summary: Delete custom title groups
+      description: 'Deletes custom title groups, along with the custom titles within them. Fails if any specified group has `IsEditable` set to `false`. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitleGroups_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTitleGroupDeleteParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleGroupIds":["4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+              example: {}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/customTitles/getAll:
     post:
       tags:
@@ -5638,6 +5830,198 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomTitleResultPage'
               example: {"CustomTitles":[{"Id":"9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Sergeant","Code":"SGT","IsActive":true},{"Id":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Captain","Code":"CPT","IsActive":true}],"Cursor":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitles/add:
+    post:
+      tags:
+        - Custom titles
+      summary: Add custom titles
+      description: 'Adds custom titles to existing custom title groups. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitles_add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleCustomTitleAddParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitles":[{"CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Sergeant","Code":"SGT"},{"CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Captain","Code":"CPT"}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleWriteResult'
+              example: {"CustomTitles":[{"Id":"9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Sergeant","Code":"SGT","IsActive":true},{"Id":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Captain","Code":"CPT","IsActive":true}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitles/update:
+    post:
+      tags:
+        - Custom titles
+      summary: Update custom titles
+      description: 'Updates the specified custom titles. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitles_update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleCustomTitleUpdateParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleUpdates":[{"CustomTitleId":"9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e","Name":{"Value":"Sergeant Major"},"Code":{"Value":"SGM"}}],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTitleWriteResult'
+              example: {"CustomTitles":[{"Id":"9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Sergeant","Code":"SGT","IsActive":true},{"Id":"1d4a7c9e-6b3f-4e2a-8c1d-5f9b3a7e2c6d","ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CustomTitleGroupId":"4b1f6f0e-9e9a-4d94-9f3d-6c9a2f1a0b6c","Name":"Captain","Code":"CPT","IsActive":true}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
+  /api/connector/v1/customTitles/delete:
+    post:
+      tags:
+        - Custom titles
+      summary: Delete custom titles
+      description: 'Deletes custom titles. A `Customer` already assigned a deleted title keeps showing it in `CustomTitleName` until reassigned. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customTitles_delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTitleDeleteParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomTitleIds":["9c6b3e2d-2a7f-4c1b-9e5a-3d8f6b2c1a4e"],"ChainId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+              example: {}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -14599,6 +14983,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/sellLimits/getState:
+    post:
+      tags:
+        - Sell limits
+      summary: Get sell limit state
+      description: 'Returns the sell limit state of a daily service for the specified rates, resource categories and time interval. For each combination it returns the effective limit, the number of spaces already sold against it, and the number still available, so an integration can apply the same constraint that **Mews Operations** applies when a reservation is created. The operation returns an error when the property does not have sell limits enabled, or when the service does not use a time unit period of `Day`. The operation is not paginated, so the amount of state a request can ask for is capped: rates multiplied by requested resource categories (plus one for the across-all-categories dimension) multiplied by time units must not exceed 10000 combinations. A request over that returns an error naming the count, so narrow `RateIds`, `ResourceCategoryIds` or the time interval. Unmatched filter identifiers are ignored and do not count toward it. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: sellLimits_getState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellLimitFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateIds":["ed4b660b-19d0-434b-9360-a4de2ea42eda"],"ResourceCategoryIds":["773d5e42-de1e-43a0-9ce6-f940faf2303f"],"FirstTimeUnitStartUtc":"2026-11-01T00:00:00Z","LastTimeUnitStartUtc":"2026-11-03T00:00:00Z"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellLimitResult'
+              example: {"TimeUnitStartsUtc":["2026-11-01T00:00:00Z","2026-11-02T00:00:00Z","2026-11-03T00:00:00Z"],"RateSellLimits":[{"RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","ResourceCategorySellLimits":[{"ResourceCategoryId":null,"Limits":[5,5,null],"Sold":[3,5,4],"Available":[2,0,null]},{"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","Limits":[0,5,null],"Sold":[0,5,1],"Available":[0,0,null]}]}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/serviceOrderNotes/add:
     post:
       tags:
@@ -26160,6 +26608,65 @@ components:
           description: Whether the custom title is active.
       additionalProperties: false
       x-schema-id: CustomTitle
+    CustomTitleAddParameters:
+      title: Custom title add parameters
+      required:
+        - CustomTitleGroupId
+        - Name
+      type: object
+      properties:
+        CustomTitleGroupId:
+          type: string
+          description: Unique identifier of the `CustomTitleGroup` the custom title should be added to.
+          format: uuid
+        Name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the custom title.
+        Code:
+          maxLength: 100
+          type: string
+          description: Short code of the custom title.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleAddParameters
+    CustomTitleDeleteParameters:
+      title: CustomTitleDeleteParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitleIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitleIds:
+          maxItems: 30
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `CustomTitle` to be deleted.
+      additionalProperties: false
+      x-schema-id: CustomTitleDeleteParameters
     CustomTitleFilterParameters:
       title: CustomTitleFilterParameters
       required:
@@ -26251,6 +26758,55 @@ components:
           description: Whether the custom title group is active. Inactive groups can still be referenced by existing custom titles – request them with the `ActivityStates` filter.
       additionalProperties: false
       x-schema-id: CustomTitleGroup
+    CustomTitleGroupAddParameters:
+      title: Custom title group add parameters
+      required:
+        - Name
+      type: object
+      properties:
+        Name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: 'Name of the custom title group. The group is created without any custom titles; add them afterwards via [Add custom titles](https://docs.mews.com/connector-api/operations/customtitles#add-custom-titles).'
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupAddParameters
+    CustomTitleGroupDeleteParameters:
+      title: CustomTitleGroupDeleteParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitleGroupIds
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitleGroupIds:
+          maxItems: 30
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the `CustomTitleGroup` to be deleted.
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupDeleteParameters
     CustomTitleGroupFilterParameters:
       title: CustomTitleGroupFilterParameters
       required:
@@ -26321,6 +26877,40 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomTitleGroupResultPage
+    CustomTitleGroupUpdateParameters:
+      title: Custom title group update parameters
+      required:
+        - CustomTitleGroupId
+      type: object
+      properties:
+        CustomTitleGroupId:
+          type: string
+          description: Unique identifier of the `CustomTitleGroup` to be updated.
+          format: uuid
+        Name:
+          title: String update value
+          maxLength: 255
+          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: Name of the custom title group (or `null` if the name should not be updated).
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupUpdateParameters
+    CustomTitleGroupWriteResult:
+      title: CustomTitleGroupWriteResult
+      required:
+        - CustomTitleGroups
+      type: object
+      properties:
+        CustomTitleGroups:
+          maxItems: 100
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleGroup'
+          description: The custom title groups.
+      additionalProperties: false
+      x-schema-id: CustomTitleGroupWriteResult
     CustomTitleResultPage:
       title: CustomTitleResultPage
       required:
@@ -26340,6 +26930,47 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: CustomTitleResultPage
+    CustomTitleUpdateParameters:
+      title: Custom title update parameters
+      required:
+        - CustomTitleId
+      type: object
+      properties:
+        CustomTitleId:
+          type: string
+          description: Unique identifier of the `CustomTitle` to be updated.
+          format: uuid
+        Name:
+          title: String update value
+          maxLength: 255
+          minLength: 1
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: Name of the custom title (or `null` if the name should not be updated).
+          nullable: true
+        Code:
+          title: String update value
+          maxLength: 100
+          allOf:
+            - $ref: '#/components/schemas/StringUpdateValue'
+          description: Short code of the custom title (or `null` if the code should not be updated).
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomTitleUpdateParameters
+    CustomTitleWriteResult:
+      title: CustomTitleWriteResult
+      required:
+        - CustomTitles
+      type: object
+      properties:
+        CustomTitles:
+          maxItems: 100
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitle'
+          description: The custom titles.
+      additionalProperties: false
+      x-schema-id: CustomTitleWriteResult
     Customer:
       title: Customer
       required:
@@ -33646,6 +34277,146 @@ components:
           description: Unique identifiers of the companies to be deleted.
       additionalProperties: false
       x-schema-id: MultipleCompanyDeleteParameters
+    MultipleCustomTitleAddParameters:
+      title: MultipleCustomTitleAddParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitles
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitles:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleAddParameters'
+          description: Custom titles to be added.
+      additionalProperties: false
+      x-schema-id: MultipleCustomTitleAddParameters
+    MultipleCustomTitleGroupAddParameters:
+      title: MultipleCustomTitleGroupAddParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitleGroups
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitleGroups:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleGroupAddParameters'
+          description: Custom title groups to be added.
+      additionalProperties: false
+      x-schema-id: MultipleCustomTitleGroupAddParameters
+    MultipleCustomTitleGroupUpdateParameters:
+      title: MultipleCustomTitleGroupUpdateParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitleGroupUpdates
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitleGroupUpdates:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleGroupUpdateParameters'
+          description: Custom title groups to be updated.
+      additionalProperties: false
+      x-schema-id: MultipleCustomTitleGroupUpdateParameters
+    MultipleCustomTitleUpdateParameters:
+      title: MultipleCustomTitleUpdateParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomTitleUpdates
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ChainId:
+          type: string
+          description: 'Unique identifier of the chain. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomTitleUpdates:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTitleUpdateParameters'
+          description: Custom titles to be updated.
+      additionalProperties: false
+      x-schema-id: MultipleCustomTitleUpdateParameters
     MultipleCustomerParameters:
       title: MultipleCustomerParameters
       required:
@@ -40925,6 +41696,24 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: RateResult
+    RateSellLimit:
+      title: Rate sell limit
+      required:
+        - RateId
+        - ResourceCategorySellLimits
+      type: object
+      properties:
+        RateId:
+          type: string
+          description: Unique identifier of the `Rate`.
+          format: uuid
+        ResourceCategorySellLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategorySellLimit'
+          description: 'Sell limit state of the rate, per resource category. Contains one item for each resource category returned, preceded by an item whose `ResourceCategoryId` is null carrying the state across all resource categories. At most 10000 items, which is the combination ceiling reached with one rate over one time unit.'
+      additionalProperties: false
+      x-schema-id: RateSellLimit
     RateSetData:
       title: Set rate parameters
       required:
@@ -44713,6 +45502,43 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryResult
+    ResourceCategorySellLimit:
+      title: Resource category sell limit
+      required:
+        - Available
+        - Limits
+        - Sold
+      type: object
+      properties:
+        ResourceCategoryId:
+          type: string
+          description: Unique identifier of the `Resource category`. Null when the state applies across all resource categories.
+          format: uuid
+          nullable: true
+        Limits:
+          maxItems: 100
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Effective sell limits, that is the number of spaces that may be sold, for each time unit in `TimeUnitStartsUtc`. An element is null when no sell limit is configured for that time unit, which is different from a configured limit of `0`.'
+        Sold:
+          maxItems: 100
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Numbers of spaces already sold against the reported limit, for each time unit in `TimeUnitStartsUtc`. Counts confirmed, started, processed and optional reservations. Inquired reservations, and reservations picked up from an availability block sharing the rate, are not counted. A reservation is counted on each night of its stay, so it does not count towards its departure date. When no limit is configured for a time unit, the element is the number of spaces sold at this rate and resource category.'
+        Available:
+          maxItems: 100
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Numbers of spaces still available under the reported limit, for each time unit in `TimeUnitStartsUtc`, each equal to the corresponding `Limits` element minus the corresponding `Sold` element. An element is null when no sell limit is configured for that time unit. An element can be negative when the configured limit is lower than the number of spaces already sold.'
+      additionalProperties: false
+      description: 'This item gives the sell limit state of one `Resource category` for a `Rate`. When `ResourceCategoryId` is null, the item gives the state across all resource categories. A sell limit can apply at a broader level than this rate and resource category, for example on the `Rate group`. The values then apply to that broader level, and the other resource categories at that level give the same values. The applicable level can be different for each time unit. For one time unit, `Limits`, `Sold` and `Available` always give the state of the same level. When two levels are equally binding, the broader one is reported. These values are shared, and a sum across resource categories gives an incorrect total.'
+      x-schema-id: ResourceCategorySellLimit
     ResourceCategoryType:
       title: Resource category type
       enum:
@@ -47013,6 +47839,85 @@ components:
         - And
         - Or
       type: string
+    SellLimitFilterParameters:
+      title: SellLimitFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - FirstTimeUnitStartUtc
+        - LastTimeUnitStartUtc
+        - RateIds
+        - ServiceId
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        ServiceId:
+          type: string
+          description: Unique identifier of the `Service` whose sell limits are requested. The service must use a time unit period of `Day`.
+          format: uuid
+        RateIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the `Rate` for which sell limit state is returned. Subject to the combination cap described on the operation, so this bound and the resource category and interval bounds cannot all be used at their maximum together.'
+        ResourceCategoryIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the `Resource category` for which sell limit state is returned. The limit that applies across all resource categories is reported alongside them, as an item whose `ResourceCategoryId` is null.'
+          nullable: true
+        FirstTimeUnitStartUtc:
+          minLength: 1
+          type: string
+          description: 'Start of the time interval, expressed as the timestamp for the start of the first [time unit](https://docs.mews.com/connector-api/concepts/time-units), in UTC timezone ISO 8601 format.'
+          format: date-time
+        LastTimeUnitStartUtc:
+          minLength: 1
+          type: string
+          description: 'End of the time interval, expressed as the timestamp for the start of the last [time unit](https://docs.mews.com/connector-api/concepts/time-units), in UTC timezone ISO 8601 format. The interval can span at most 100 days.'
+          format: date-time
+      additionalProperties: false
+      x-schema-id: SellLimitFilterParameters
+    SellLimitResult:
+      title: SellLimitResult
+      required:
+        - RateSellLimits
+        - TimeUnitStartsUtc
+      type: object
+      properties:
+        TimeUnitStartsUtc:
+          maxItems: 100
+          type: array
+          items:
+            type: string
+          description: 'Starts of the [time units](https://docs.mews.com/connector-api/concepts/time-units) covered by the request, in ascending order, in UTC timezone ISO 8601 format. Every metric array in this response has exactly this many elements, in this order.'
+          format: date-time
+        RateSellLimits:
+          maxItems: 100
+          type: array
+          items:
+            $ref: '#/components/schemas/RateSellLimit'
+          description: 'Sell limit state of the requested rates. Empty when no requested rate belongs to the service, or when `ResourceCategoryIds` was sent and matched no resource category of the service.'
+      additionalProperties: false
+      x-schema-id: SellLimitResult
     SenderCoproduct:
       title: Sender
       required:

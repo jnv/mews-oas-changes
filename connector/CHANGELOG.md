@@ -1,3 +1,35 @@
+# 2026-09-18
+
+
+## POST /api/connector/v1/customTitleGroups/add
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitleGroups/delete
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitleGroups/update
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitles/add
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitles/delete
+-  endpoint added
+
+
+## POST /api/connector/v1/customTitles/update
+-  endpoint added
+
+
+## POST /api/connector/v1/sellLimits/getState
+-  endpoint added
+
+
+
 # 2026-09-16
 
 
