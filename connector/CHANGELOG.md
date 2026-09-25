@@ -1,3 +1,42 @@
+# 2026-09-25
+
+
+## POST /api/connector/v1/accounts/update
+-  added the new optional request property 'AccountUpdates/items/Customer/allOf[subschema #1: Customer update parameters]/CustomTitleId'
+-  added the optional property 'Accounts/items/Customer/allOf[subschema #1: Customer]/CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/companionships/getAll
+-  added the optional property 'Customers/items/CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/add
+-  added the new optional request property 'CustomTitleId'
+-  added the optional property 'CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/getAll
+-  added the optional property 'Customers/items/CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/search
+-  added the optional property 'Customers/items/Customer/allOf[subschema #1: Customer]/CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/customers/update
+-  added the new optional request property 'CustomTitleId'
+-  added the optional property 'CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Customers/items/CustomTitleId' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Customers/items/CustomTitleId' to the response with the '200' status
+
+
+
 # 2026-09-18
 
 
