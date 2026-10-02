@@ -1,3 +1,20 @@
+# 2026-10-02
+
+
+## POST /api/connector/v1/payoutTransactions/getAll
+-  added '#/components/schemas/BalanceTransactionTypeEnum' to the 'PayoutTransactions/items/Type' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/PayoutTransactionTypeEnum' from the 'PayoutTransactions/items/Type' response property 'allOf' list for the response status '200'
+-  the response property 'PayoutTransactions/items/CreatedUtc' became required for the status '200'
+
+
+## POST /api/connector/v1/payouts/getAll
+- :warning: removed the request property 'PayoutProviders'
+-  added the new optional request property 'PaymentProviders'
+-  added '#/components/schemas/PaymentProviderEnum' to the 'Payouts/items/Provider' response property 'allOf' list for the response status '200'
+-  removed '#/components/schemas/PayoutProviderEnum' from the 'Payouts/items/Provider' response property 'allOf' list for the response status '200'
+
+
+
 # 2026-09-25
 
 

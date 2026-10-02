@@ -10118,7 +10118,7 @@ paths:
       tags:
         - Payouts
       summary: Get all payouts
-      description: 'Returns payouts for reconciling bank deposits against Mews. Only payouts executed by a supported payment service provider are returned, currently `Stripe` and `Adyen`, so the results may not cover an enterprise''s full merchant balance. Constituent payment transactions are retrieved separately via [Get all payout transactions](https://mews-systems.gitbook.io/connector-api/operations/payouts#get-all-payout-transactions). Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      description: 'Returns payouts for reconciling bank deposits against Mews. Constituent transactions are retrieved separately via [Get all payout transactions](https://docs.mews.com/connector-api/operations/payouts#get-all-payout-transactions). Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
       operationId: payouts_getAll
       requestBody:
         content:
@@ -10182,7 +10182,7 @@ paths:
       tags:
         - Payouts
       summary: Get all payout transactions
-      description: 'Returns the payment transactions that compose payouts, filtered by payout. Only payouts executed by a supported payment service provider are covered, currently `Stripe` and `Adyen`. Note this operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      description: 'Returns the transactions that compose payouts, filtered by payout. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
       operationId: payoutTransactions_getAll
       requestBody:
         content:
@@ -20249,6 +20249,38 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
+    BalanceTransactionTypeEnum:
+      title: Balance transaction type
+      enum:
+        - Charge
+        - MerchantCommission
+        - PlatformFee
+        - Payout
+        - BalanceTopUp
+        - CommissionAdjustment
+        - ReserveAdjustment
+        - RollingBalanceAdjustment
+      type: string
+      description: "Type of a balance transaction.\n\nCharge (A payment charged to a guest, or its refund or chargeback.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by Mews.)\n\nPayout (A payout to the enterprise's bank account, decreasing the balance.)\n\nBalanceTopUp (A top-up of the balance.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nRollingBalanceAdjustment (The part of a payout cycle's settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.)"
+      x-enumNames:
+        - Charge
+        - MerchantCommission
+        - PlatformFee
+        - Payout
+        - BalanceTopUp
+        - CommissionAdjustment
+        - ReserveAdjustment
+        - RollingBalanceAdjustment
+      x-enumDescriptions:
+        - 'A payment charged to a guest, or its refund or chargeback.'
+        - Commission charged by Mews.
+        - Platform fee charged by Mews.
+        - 'A payout to the enterprise''s bank account, decreasing the balance.'
+        - A top-up of the balance.
+        - An adjustment to a previously charged commission.
+        - An adjustment to the chargeback reserve held for the account.
+        - 'The part of a payout cycle''s settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.'
+      x-extensible: true
     BaseRatePricingData:
       title: Base rate pricing
       required:
@@ -38449,6 +38481,32 @@ components:
       x-enumDescriptions:
         - Mews creates a task for hotel staff to initiate the settlement manually from the Mews UI. The integration is not the executor.
         - Mews automatically processes the settlement at the trigger moment without any human intervention.
+    PaymentProviderEnum:
+      title: Payment provider
+      enum:
+        - Adyen
+        - Stripe
+        - PayPal
+        - Braintree
+        - WireTransfer
+        - MewsFS
+      type: string
+      description: "Payment service provider that holds the balance.\n\nAdyen (Adyen)\n\nStripe (Stripe)\n\nPayPal (PayPal)\n\nBraintree (Braintree)\n\nWireTransfer (Wire transfer)\n\nMewsFS (Mews Financial Services)"
+      x-enumNames:
+        - Adyen
+        - Stripe
+        - PayPal
+        - Braintree
+        - WireTransfer
+        - MewsFS
+      x-enumDescriptions:
+        - Adyen
+        - Stripe
+        - PayPal
+        - Braintree
+        - Wire transfer
+        - Mews Financial Services
+      x-extensible: true
     PaymentRefundParameters:
       title: PaymentRefundParameters
       required:
@@ -39144,16 +39202,25 @@ components:
             - The payout has been paid out to the destination bank account.
             - The payout failed and the funds were not paid out.
         Provider:
-          title: Payout provider
+          title: Payment provider
           allOf:
-            - $ref: '#/components/schemas/PayoutProviderEnum'
-          description: "Payment service provider that executed the payout.\n\nAdyen (Adyen)\n\nStripe (Stripe)"
+            - $ref: '#/components/schemas/PaymentProviderEnum'
+          description: "Payment service provider that holds the balance the payout was made from.\n\nAdyen (Adyen)\n\nStripe (Stripe)\n\nPayPal (PayPal)\n\nBraintree (Braintree)\n\nWireTransfer (Wire transfer)\n\nMewsFS (Mews Financial Services)"
           x-enumNames:
             - Adyen
             - Stripe
+            - PayPal
+            - Braintree
+            - WireTransfer
+            - MewsFS
           x-enumDescriptions:
             - Adyen
             - Stripe
+            - PayPal
+            - Braintree
+            - Wire transfer
+            - Mews Financial Services
+          x-extensible: true
         PayoutDateUtc:
           type: string
           description: 'Date and time the payout was recorded in Mews, in UTC timezone in ISO 8601 format. This is not the date the funds arrived in the destination bank account.'
@@ -39220,29 +39287,15 @@ components:
           description: Interval in which the payout was executed.
           nullable: true
           x-max-interval-in-months: 3
-        PayoutProviders:
-          maxItems: 10
+        PaymentProviders:
           minItems: 1
           type: array
           items:
-            $ref: '#/components/schemas/PayoutProviderEnum'
+            $ref: '#/components/schemas/PaymentProviderEnum'
           description: Payment service providers to filter payouts by.
           nullable: true
       additionalProperties: false
       x-schema-id: PayoutFilterParameters
-    PayoutProviderEnum:
-      title: Payout provider
-      enum:
-        - Adyen
-        - Stripe
-      type: string
-      description: "Payment service provider that executed a payout.\n\nAdyen (Adyen)\n\nStripe (Stripe)"
-      x-enumNames:
-        - Adyen
-        - Stripe
-      x-enumDescriptions:
-        - Adyen
-        - Stripe
     PayoutResult:
       title: PayoutResult
       required:
@@ -39282,6 +39335,7 @@ components:
       title: Payout transaction
       required:
         - Amount
+        - CreatedUtc
         - Id
         - PayoutId
         - Type
@@ -39296,24 +39350,29 @@ components:
           description: Unique identifier of the payout this transaction belongs to.
           format: uuid
         Type:
-          title: Payout transaction type
+          title: Balance transaction type
           allOf:
-            - $ref: '#/components/schemas/PayoutTransactionTypeEnum'
-          description: "Type of the transaction.\n\nCharge (A payment charge included in the payout.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by the payment service provider.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nBalanceTopUp (A top-up of the account balance.)"
+            - $ref: '#/components/schemas/BalanceTransactionTypeEnum'
+          description: "Type of the transaction. Never `Payout`, because a payout is not one of its own transactions.\n\nCharge (A payment charged to a guest, or its refund or chargeback.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by Mews.)\n\nPayout (A payout to the enterprise's bank account, decreasing the balance.)\n\nBalanceTopUp (A top-up of the balance.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nRollingBalanceAdjustment (The part of a payout cycle's settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.)"
           x-enumNames:
             - Charge
             - MerchantCommission
             - PlatformFee
+            - Payout
+            - BalanceTopUp
             - CommissionAdjustment
             - ReserveAdjustment
-            - BalanceTopUp
+            - RollingBalanceAdjustment
           x-enumDescriptions:
-            - A payment charge included in the payout.
+            - 'A payment charged to a guest, or its refund or chargeback.'
             - Commission charged by Mews.
-            - Platform fee charged by the payment service provider.
+            - Platform fee charged by Mews.
+            - 'A payout to the enterprise''s bank account, decreasing the balance.'
+            - A top-up of the balance.
             - An adjustment to a previously charged commission.
             - An adjustment to the chargeback reserve held for the account.
-            - A top-up of the account balance.
+            - 'The part of a payout cycle''s settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.'
+          x-extensible: true
         Amount:
           title: Currency value (ver 2023-02-02)
           allOf:
@@ -39332,10 +39391,10 @@ components:
           description: 'Invoice references associated with the transaction, when available.'
           nullable: true
         CreatedUtc:
+          minLength: 1
           type: string
           description: 'Date and time the transaction was created, in UTC timezone in ISO 8601 format. This is the date of the underlying transaction rather than of the payout, so it can fall outside the interval used to filter payouts.'
           format: date-time
-          nullable: true
       additionalProperties: false
       x-schema-id: PayoutTransaction
     PayoutTransactionFilterParameters:
@@ -39402,31 +39461,6 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PayoutTransactionResult
-    PayoutTransactionTypeEnum:
-      title: Payout transaction type
-      enum:
-        - Charge
-        - MerchantCommission
-        - PlatformFee
-        - CommissionAdjustment
-        - ReserveAdjustment
-        - BalanceTopUp
-      type: string
-      description: "Type of a payout transaction.\n\nCharge (A payment charge included in the payout.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by the payment service provider.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nBalanceTopUp (A top-up of the account balance.)"
-      x-enumNames:
-        - Charge
-        - MerchantCommission
-        - PlatformFee
-        - CommissionAdjustment
-        - ReserveAdjustment
-        - BalanceTopUp
-      x-enumDescriptions:
-        - A payment charge included in the payout.
-        - Commission charged by Mews.
-        - Platform fee charged by the payment service provider.
-        - An adjustment to a previously charged commission.
-        - An adjustment to the chargeback reserve held for the account.
-        - A top-up of the account balance.
     PayworksData:
       title: PayworksData
       type: object
