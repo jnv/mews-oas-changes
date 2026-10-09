@@ -36029,7 +36029,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -39893,7 +39893,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -40807,7 +40807,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -50054,6 +50054,7 @@ components:
         - IT_N1
         - IT_N2_1
         - IT_N2_2
+        - IT_N3_1
         - IT_N3_4
         - IT_N3_5
         - IT_N4
@@ -50065,12 +50066,13 @@ components:
         - FR_262_00_BIS
         - FR_293_B
       type: string
-      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
       x-enumNames:
         - Unknown
         - IT_N1
         - IT_N2_1
         - IT_N2_2
+        - IT_N3_1
         - IT_N3_4
         - IT_N3_5
         - IT_N4
@@ -50086,6 +50088,7 @@ components:
         - N1 - Escluse ex art.15
         - N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72
         - N2.2 - Non soggette – altri casi
+        - N3.1 - Non imponibili – esportazioni
         - N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione
         - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
         - N4 - Esenti
