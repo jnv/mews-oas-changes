@@ -1572,7 +1572,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityAdjustmentResult'
-              example: {"AvailabilityAdjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"},{"Id":"7413724a-6c48-46d4-ab3a-afae01280999","AvailabilityBlockId":null,"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2023-02-19T23:00:00Z","LastTimeUnitStartUtc":"2023-02-23T23:00:00Z","UnitCount":5,"ActivityState":"Deleted","ReleaseOverrideUtc":null,"UpdatedUtc":"2023-02-28T23:00:00Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":null}],"Cursor":"7413724a-6c48-46d4-ab3a-afae01280999"}
+              example: {"AvailabilityAdjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":[{"PersonCount":2,"UnitCount":6}],"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"},{"Id":"7413724a-6c48-46d4-ab3a-afae01280999","AvailabilityBlockId":null,"ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2023-02-19T23:00:00Z","LastTimeUnitStartUtc":"2023-02-23T23:00:00Z","UnitCount":5,"ActivityState":"Deleted","ReleaseOverrideUtc":null,"UpdatedUtc":"2023-02-28T23:00:00Z","IsActive":false,"PaxCounts":[],"FirstTimeUnitReleaseUtc":null}],"Cursor":"7413724a-6c48-46d4-ab3a-afae01280999"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -1697,7 +1697,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityBlockResult'
-              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-04T13:00:00Z","FirstTimeUnitStartUtc":"2020-11-04T13:00:00Z","LastTimeUnitStartUtc":"2020-11-04T13:00:00Z","ReleasedUtc":"2020-11-04T13:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-0001","Name":"Wedding group","Notes":"Have a nice stay","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
+              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-04T13:00:00Z","FirstTimeUnitStartUtc":"2020-11-04T13:00:00Z","LastTimeUnitStartUtc":"2020-11-04T13:00:00Z","ReleasedUtc":"2020-11-04T13:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-0001","Name":"Wedding group","Notes":"Have a nice stay","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":[{"PersonCount":2,"UnitCount":6}],"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -1760,7 +1760,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityBlockAddResult'
-              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-04T13:00:00Z","FirstTimeUnitStartUtc":"2020-11-04T13:00:00Z","LastTimeUnitStartUtc":"2020-11-04T13:00:00Z","ReleasedUtc":"2020-11-04T13:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-0001","Name":"Wedding group","Notes":"Have a nice stay","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
+              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-04T13:00:00Z","FirstTimeUnitStartUtc":"2020-11-04T13:00:00Z","LastTimeUnitStartUtc":"2020-11-04T13:00:00Z","ReleasedUtc":"2020-11-04T13:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-0001","Name":"Wedding group","Notes":"Have a nice stay","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":[{"PersonCount":2,"UnitCount":6}],"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -1823,7 +1823,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailabilityBlockAddResult'
-              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Business","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-05T16:11:38Z","FirstTimeUnitStartUtc":"2021-07-05T00:00:00Z","LastTimeUnitStartUtc":"2021-07-15T00:00:00Z","ReleasedUtc":"2021-07-04T00:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-1002","Name":"Mr. Smith's block","Notes":"Welcome to Washington","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Canceled","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":"2022-10-12T15:12:49Z","CancellationReason":"ForceMajeure","CancellationReasonDetail":"Event was canceled due to rain."}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":null,"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
+              example: {"AvailabilityBlocks":[{"Id":"5ee074b1-6c86-48e8-915f-c7aa4702086f","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Confirmed","ReservationPurpose":"Business","CreatedUtc":"2020-11-04T13:00:00Z","UpdatedUtc":"2020-11-05T16:11:38Z","FirstTimeUnitStartUtc":"2021-07-05T00:00:00Z","LastTimeUnitStartUtc":"2021-07-15T00:00:00Z","ReleasedUtc":"2021-07-04T00:00:00Z","RollingReleaseOffset":null,"ExternalIdentifier":"Block-1002","Name":"Mr. Smith's block","Notes":"Welcome to Washington","PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":null,"AvailabilityBlockNumber":"478","ReleaseStrategy":"FixedRelease","PurchaseOrderNumber":"XX-123","BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":null,"CancellationReason":null,"CancellationReasonDetail":null},{"Id":"c32386aa-1cd2-414a-a823-489325842fbe","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","RateId":"ed4b660b-19d0-434b-9360-a4de2ea42eda","VoucherId":null,"BookerId":"ebd507c5-6bfd-4ca9-96aa-ffed6fa94f72","CompanyId":null,"TravelAgencyId":null,"Budget":{"Currency":"USD","Value":48.0,"Net":null,"Tax":null,"TaxRate":null},"State":"Canceled","ReservationPurpose":"Leisure","CreatedUtc":"2022-10-11T13:32:32Z","UpdatedUtc":"2022-10-11T13:32:32Z","FirstTimeUnitStartUtc":"2022-10-14T00:00:00Z","LastTimeUnitStartUtc":"2022-11-17T00:00:00Z","ReleasedUtc":null,"RollingReleaseOffset":"P3DT4H","ExternalIdentifier":"Block-0002","Name":"Rolling release","Notes":null,"PickupDistribution":"AllInOneGroup","IsActive":false,"QuoteId":"67eaf3c8-81e0-4ffb-b5f2-2b61803feb9c","AvailabilityBlockNumber":"479","ReleaseStrategy":"RollingRelease","PurchaseOrderNumber":null,"BusinessSegmentId":"dc9188f6-fb61-412c-b3fd-af32dab082ed","CanceledUtc":"2022-10-12T15:12:49Z","CancellationReason":"ForceMajeure","CancellationReasonDetail":"Event was canceled due to rain."}],"ServiceOrders":null,"Adjustments":[{"Id":"e19297af-373e-4701-b4ea-afae0129bded","AvailabilityBlockId":"5ee074b1-6c86-48e8-915f-c7aa4702086f","ResourceCategoryId":"773d5e42-de1e-43a0-9ce6-f940faf2303f","StartUtc":null,"EndUtc":null,"FirstTimeUnitStartUtc":"2021-10-14T00:00:00Z","LastTimeUnitStartUtc":"2021-10-17T00:00:00Z","UnitCount":6,"ActivityState":"Active","ReleaseOverrideUtc":"2021-10-13T00:00:00Z","UpdatedUtc":"2021-10-21T13:32:32Z","IsActive":false,"PaxCounts":[{"PersonCount":2,"UnitCount":6}],"FirstTimeUnitReleaseUtc":"2021-10-13T00:00:00Z"}],"Rates":null,"Cursor":"c32386aa-1cd2-414a-a823-489325842fbe"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -1866,6 +1866,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/availabilityBlocks/getAllocation:
+    post:
+      tags:
+        - Availability blocks
+      summary: Availability block allocation
+      description: 'Returns allocation details for a specified availability block. The data is grouped by time unit and by the resource categories the block allocates against (categories the block does not touch are not included), with a summary provided for the entire block. Each resource category also exposes `OccupancyAllocations` – one entry per defined occupancy slot, or a single combined entry (`PersonCount` = 0) mirroring the aggregate allocation when there is no per-slot breakdown. It always contains at least one entry. Response size scales with the block''s interval length (bounded by the environment''s `MaxAvailabilityBlockIntervalLength` quota) multiplied by the number of resource categories and occupancy slots. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: availabilityBlocks_getAllocation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilityBlockAllocationParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","AvailabilityBlockId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilityBlockAllocationResult'
+              example: {"SummaryMetrics":{"Released":0,"Available":6,"PickedUp":17},"TimeUnitStartsUtc":["2024-01-31T23:00:00Z","2024-02-01T23:00:00Z","2024-02-02T23:00:00Z","2024-02-03T23:00:00Z"],"ResourceCategoryAllocations":[{"ResourceCategoryId":"e17d4afc-25e6-4a8b-8ae9-b1f400a02df0","EnterpriseAvailable":[5,5,4,4],"Available":[0,0,0,0],"OriginalAvailability":[1,1,0,1],"PickedUp":[1,1,0,1],"OccupancyAllocations":[{"PersonCount":0,"UnitCount":[1,1,0,1],"PickedUp":[1,1,0,1],"EffectiveAvailable":[0,0,0,0],"OutgoingOffset":[0,0,0,0],"Overflow":[0,0,0,0]}]},{"ResourceCategoryId":"1268c440-21c5-415d-bf58-ac87008b2bda","EnterpriseAvailable":[10,7,9,10],"Available":[2,0,2,2],"OriginalAvailability":[5,5,5,5],"PickedUp":[3,5,3,3],"OccupancyAllocations":[{"PersonCount":1,"UnitCount":[2,2,2,2],"PickedUp":[1,2,1,1],"EffectiveAvailable":[1,0,1,1],"OutgoingOffset":[0,0,0,0],"Overflow":[0,0,0,0]},{"PersonCount":2,"UnitCount":[3,3,3,3],"PickedUp":[2,3,2,2],"EffectiveAvailable":[1,0,1,1],"OutgoingOffset":[0,0,0,0],"Overflow":[0,0,0,0]}]}]}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/billingAutomations/getAll:
     post:
       tags:
@@ -2708,7 +2772,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BusinessSegmentResult'
-              example: {"BusinessSegments":[{"Id":"7760b5cb-a666-41bb-9758-76bf5d1df399","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","IsActive":true,"Name":"Business","CreatedUtc":"2023-10-01T00:00:00Z","UpdatedUtc":"2023-10-01T00:00:00Z"},{"Id":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693","ServiceId":"8c1bd738-a505-4b29-aa71-9ecc2982b843","IsActive":true,"Name":"Leisure","CreatedUtc":"2023-10-01T00:00:00Z","UpdatedUtc":"2023-10-01T00:00:00Z"}],"Cursor":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693"}
+              example: {"BusinessSegments":[{"Id":"7760b5cb-a666-41bb-9758-76bf5d1df399","ServiceId":"bd26d8db-86da-4f96-9efc-e5a4654a4a94","IsActive":true,"Name":"Business","ExternalIdentifier":"CR123","CreatedUtc":"2023-10-01T00:00:00Z","UpdatedUtc":"2023-10-01T00:00:00Z"},{"Id":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693","ServiceId":"8c1bd738-a505-4b29-aa71-9ecc2982b843","IsActive":true,"Name":"Leisure","ExternalIdentifier":null,"CreatedUtc":"2023-10-01T00:00:00Z","UpdatedUtc":"2023-10-01T00:00:00Z"}],"Cursor":"54ec08b6-e6fc-48e9-b8ae-02943e0ac693"}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -19882,6 +19946,58 @@ components:
           description: Availability blocks.
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddResult
+    AvailabilityBlockAllocationParameters:
+      title: AvailabilityBlockAllocationParameters
+      required:
+        - AccessToken
+        - AvailabilityBlockId
+        - Client
+        - ClientToken
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        AvailabilityBlockId:
+          type: string
+          description: Unique identifier of the requested availability block.
+          format: uuid
+      additionalProperties: false
+      x-schema-id: AvailabilityBlockAllocationParameters
+    AvailabilityBlockAllocationResult:
+      title: AvailabilityBlockAllocationResult
+      required:
+        - ResourceCategoryAllocations
+        - SummaryMetrics
+        - TimeUnitStartsUtc
+      type: object
+      properties:
+        SummaryMetrics:
+          allOf:
+            - $ref: '#/components/schemas/SummaryMetrics'
+          description: Summary metrics for the whole availability block.
+        TimeUnitStartsUtc:
+          type: array
+          items:
+            type: string
+          description: Set of all time units covered by the time interval; expressed in UTC timezone ISO 8601 format.
+          format: date-time
+        ResourceCategoryAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceCategoryAllocation'
+          description: Summary allocation data by resource category.
+      additionalProperties: false
+      x-schema-id: AvailabilityBlockAllocationResult
     AvailabilityBlockAssignment:
       title: AvailabilityBlockAssignment
       type: object
@@ -22737,6 +22853,11 @@ components:
           minLength: 1
           type: string
           description: Name of the business segment.
+        ExternalIdentifier:
+          maxLength: 255
+          type: string
+          description: Identifier of the business segment in an external system.
+          nullable: true
         CreatedUtc:
           minLength: 1
           type: string
@@ -35616,6 +35737,53 @@ components:
       title: Object resource data update
       type: object
       additionalProperties: false
+    OccupancyAllocation:
+      title: OccupancyAllocation
+      required:
+        - EffectiveAvailable
+        - OutgoingOffset
+        - Overflow
+        - PersonCount
+        - PickedUp
+        - UnitCount
+      type: object
+      properties:
+        PersonCount:
+          type: integer
+          description: Guest count of the occupancy slot; `0` for the combined entry.
+          format: int32
+        UnitCount:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Number of units blocked for this slot, per time unit in `TimeUnitStartsUtc`. For a [time unit without an occupancy split](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks#time-units-without-an-occupancy-split), the slot with the lowest `PersonCount` shows the parent `OriginalAvailability` and every other slot shows `0`.'
+        PickedUp:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Number of reservations picked up against this slot, per time unit in `TimeUnitStartsUtc`.'
+        EffectiveAvailable:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Remaining capacity of this slot, per time unit in `TimeUnitStartsUtc`: `UnitCount − PickedUp − OutgoingOffset`. Can be negative when the slot has more pickups than its blocked count. For the combined entry, mirrors the parent `Available`.'
+        OutgoingOffset:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Number of units deducted from this slot to cover overflow on other slots, per time unit in `TimeUnitStartsUtc`.'
+        Overflow:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'Number of reservations picked up beyond this slot''s blocked count, per time unit in `TimeUnitStartsUtc`: `max(0, PickedUp − UnitCount)`.'
+      additionalProperties: false
+      x-schema-id: OccupancyAllocation
     OccupancyStateEnum:
       title: Occupancy state
       enum:
@@ -36029,7 +36197,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason an order item is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_2 (N3.2 - Non imponibili – cessioni intracomunitarie)\n\nIT_N3_3 (N3.3 - Non imponibili – cessioni verso San Marino)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N3_6 (N3.6 - Non imponibili – altre operazioni che non concorrono alla formazione del plafond)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nIT_N6_1 (N6.1 - Inversione contabile – cessione di rottami e altri materiali di recupero)\n\nIT_N6_2 (N6.2 - Inversione contabile – cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO)\n\nIT_N6_3 (N6.3 - Inversione contabile – subappalto nel settore edile)\n\nIT_N6_4 (N6.4 - Inversione contabile – cessione di fabbricati)\n\nIT_N6_5 (N6.5 - Inversione contabile – cessione di telefoni cellulari)\n\nIT_N6_6 (N6.6 - Inversione contabile – cessione di prodotti elettronici)\n\nIT_N6_7 (N6.7 - Inversione contabile – prestazioni comparto edile e settori connessi)\n\nIT_N6_8 (N6.8 - Inversione contabile – operazioni settore energetico)\n\nIT_N6_9 (N6.9 - Inversione contabile – altri casi)\n\nIT_N7 (N7 - IVA assolta in altro stato UE ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -37148,11 +37316,11 @@ components:
       properties:
         PersonCount:
           type: integer
-          description: Guest count assigned to the resource. Must not exceed the resource category capacity. Must be unique within the `PaxCounts` collection.
+          description: 'Guest count of the occupancy slot. Must not exceed the resource category total capacity (`Capacity` plus `ExtraCapacity`), and must be unique within `PaxCounts`. See [Multi-occupancy availability blocks](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks).'
           format: int32
         UnitCount:
           type: integer
-          description: Number of blocked units assigned to this `PersonCount`. The sum of all `UnitCount` values in `PaxCounts` must equal the absolute value of `UnitCountAdjustment`.
+          description: Number of blocked units assigned to this `PersonCount`; zero or positive. The sum of all `UnitCount` values in `PaxCounts` equals the absolute value of the adjustment's unit count.
           format: int32
       additionalProperties: false
       x-schema-id: PaxCount
@@ -39893,7 +40061,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason a product is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_2 (N3.2 - Non imponibili – cessioni intracomunitarie)\n\nIT_N3_3 (N3.3 - Non imponibili – cessioni verso San Marino)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N3_6 (N3.6 - Non imponibili – altre operazioni che non concorrono alla formazione del plafond)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nIT_N6_1 (N6.1 - Inversione contabile – cessione di rottami e altri materiali di recupero)\n\nIT_N6_2 (N6.2 - Inversione contabile – cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO)\n\nIT_N6_3 (N6.3 - Inversione contabile – subappalto nel settore edile)\n\nIT_N6_4 (N6.4 - Inversione contabile – cessione di fabbricati)\n\nIT_N6_5 (N6.5 - Inversione contabile – cessione di telefoni cellulari)\n\nIT_N6_6 (N6.6 - Inversione contabile – cessione di prodotti elettronici)\n\nIT_N6_7 (N6.7 - Inversione contabile – prestazioni comparto edile e settori connessi)\n\nIT_N6_8 (N6.8 - Inversione contabile – operazioni settore energetico)\n\nIT_N6_9 (N6.9 - Inversione contabile – altri casi)\n\nIT_N7 (N7 - IVA assolta in altro stato UE ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -40807,7 +40975,7 @@ components:
         TaxExemptionReason:
           allOf:
             - $ref: '#/components/schemas/TaxExemptionReasonTypeEnum'
-          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+          description: "Specifies the reason a rate is exempt from tax.\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_2 (N3.2 - Non imponibili – cessioni intracomunitarie)\n\nIT_N3_3 (N3.3 - Non imponibili – cessioni verso San Marino)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N3_6 (N3.6 - Non imponibili – altre operazioni che non concorrono alla formazione del plafond)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nIT_N6_1 (N6.1 - Inversione contabile – cessione di rottami e altri materiali di recupero)\n\nIT_N6_2 (N6.2 - Inversione contabile – cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO)\n\nIT_N6_3 (N6.3 - Inversione contabile – subappalto nel settore edile)\n\nIT_N6_4 (N6.4 - Inversione contabile – cessione di fabbricati)\n\nIT_N6_5 (N6.5 - Inversione contabile – cessione di telefoni cellulari)\n\nIT_N6_6 (N6.6 - Inversione contabile – cessione di prodotti elettronici)\n\nIT_N6_7 (N6.7 - Inversione contabile – prestazioni comparto edile e settori connessi)\n\nIT_N6_8 (N6.8 - Inversione contabile – operazioni settore energetico)\n\nIT_N6_9 (N6.9 - Inversione contabile – altri casi)\n\nIT_N7 (N7 - IVA assolta in altro stato UE ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
           nullable: true
         TaxExemptionLegalReference:
           type: string
@@ -45073,6 +45241,52 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: ResourceCategoryAddParameters
+    ResourceCategoryAllocation:
+      title: ResourceCategoryAllocation
+      required:
+        - Available
+        - EnterpriseAvailable
+        - OccupancyAllocations
+        - OriginalAvailability
+        - PickedUp
+        - ResourceCategoryId
+      type: object
+      properties:
+        ResourceCategoryId:
+          type: string
+          description: Unique identifier of the Resource category.
+          format: uuid
+        EnterpriseAvailable:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: The number of available Resources remaining on the Enterprise level under this Resource category. Provides information on how many additional Resources can still be allocated to the Availability block based on the matching date. The array values correspond to time units in `TimeUnitStartsUtc`.
+        Available:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'The number of Resources that are still available to be picked-up under this Availability block. The array values correspond to time units in `TimeUnitStartsUtc`. See `OccupancyAllocations[].EffectiveAvailable` for the overflow-aware per-slot remaining capacity.'
+        OriginalAvailability:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'The number of Resources originally allocated to this Availability block. Can be understood as the sum of all the Resources (available, picked-up and released) under this Availability block. This number remains static regardless of the amount of Resources picked-up or released throughout the Availability block''s life cycle. The array values correspond to time units in `TimeUnitStartsUtc`.'
+        PickedUp:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: 'The number of Resources that have been picked-up under this Availability block, and therefore are now associated with a reservation. The array values correspond to time units in `TimeUnitStartsUtc`.'
+        OccupancyAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/OccupancyAllocation'
+          description: 'Allocation per occupancy slot, ordered by `PersonCount` ascending. Contains one entry per distinct `PersonCount` defined in the interval or, when there is no per-slot breakdown, a single combined entry with `PersonCount` `0` whose `UnitCount`, `PickedUp` and `EffectiveAvailable` mirror the parent `OriginalAvailability`, `PickedUp` and `Available`, and whose `OutgoingOffset` and `Overflow` are `0`. For how reservations are matched to slots and how slots balance each other, see [Multi-occupancy availability blocks](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks).'
+      additionalProperties: false
+      x-schema-id: ResourceCategoryAllocation
     ResourceCategoryAssignment:
       title: Resource category assignment
       required:
@@ -48334,7 +48548,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaxCount'
-          description: Occupancy splits for the availability block adjustment. Applicable only when `AvailabilityBlockId` is set. Each entry assigns blocked units (`UnitCount`) to a specific guest count (`PersonCount`); `PersonCount` values must be unique within the collection. Sending a new request replaces all existing splits for the interval (last-writer-wins). Omitting this field on a block adjustment resets splits to a single default slot. Requires the multi-occupancy availability blocks feature to be enabled for the enterprise.
+          description: 'Occupancy split of the availability block adjustment; applicable only when `AvailabilityBlockId` is set. Each entry assigns blocked units (`UnitCount`) to a guest count (`PersonCount`). A request replaces the whole existing split for the interval; omitting this field or sending it empty resets it to a single default slot. More than one entry requires the multi-occupancy availability blocks feature to be enabled for the enterprise. See [Multi-occupancy availability blocks](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks).'
           nullable: true
       additionalProperties: false
       x-schema-id: ServiceAvailabilityUpdateData
@@ -49663,6 +49877,28 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: StringUpdateValue
+    SummaryMetrics:
+      title: SummaryMetrics
+      required:
+        - Available
+        - PickedUp
+        - Released
+      type: object
+      properties:
+        Released:
+          type: integer
+          description: The number of Resources released from the availability block.
+          format: int32
+        Available:
+          type: integer
+          description: The number of Resources that are still available to be picked-up under this Availability Block.
+          format: int32
+        PickedUp:
+          type: integer
+          description: 'The number of Resources that have been picked-up under this Availability Block, and therefore are now associated with a reservation.'
+          format: int32
+      additionalProperties: false
+      x-schema-id: SummaryMetrics
     SurchargeConfiguration:
       title: Surcharging fees configuration
       required:
@@ -50055,10 +50291,23 @@ components:
         - IT_N2_1
         - IT_N2_2
         - IT_N3_1
+        - IT_N3_2
+        - IT_N3_3
         - IT_N3_4
         - IT_N3_5
+        - IT_N3_6
         - IT_N4
         - IT_N5
+        - IT_N6_1
+        - IT_N6_2
+        - IT_N6_3
+        - IT_N6_4
+        - IT_N6_5
+        - IT_N6_6
+        - IT_N6_7
+        - IT_N6_8
+        - IT_N6_9
+        - IT_N7
         - PL_ZW
         - PL_NP
         - DE_NATO
@@ -50066,17 +50315,30 @@ components:
         - FR_262_00_BIS
         - FR_293_B
       type: string
-      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
+      description: "\n\nUnknown (Unknown tax exemption reason)\n\nIT_N1 (N1 - Escluse ex art.15)\n\nIT_N2_1 (N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72)\n\nIT_N2_2 (N2.2 - Non soggette – altri casi)\n\nIT_N3_1 (N3.1 - Non imponibili – esportazioni)\n\nIT_N3_2 (N3.2 - Non imponibili – cessioni intracomunitarie)\n\nIT_N3_3 (N3.3 - Non imponibili – cessioni verso San Marino)\n\nIT_N3_4 (N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione)\n\nIT_N3_5 (N3.5 - Non imponibili – a seguito di dichiarazioni d’intento)\n\nIT_N3_6 (N3.6 - Non imponibili – altre operazioni che non concorrono alla formazione del plafond)\n\nIT_N4 (N4 - Esenti)\n\nIT_N5 (N5 - Regime del margine / IVA non esposta in fattura)\n\nIT_N6_1 (N6.1 - Inversione contabile – cessione di rottami e altri materiali di recupero)\n\nIT_N6_2 (N6.2 - Inversione contabile – cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO)\n\nIT_N6_3 (N6.3 - Inversione contabile – subappalto nel settore edile)\n\nIT_N6_4 (N6.4 - Inversione contabile – cessione di fabbricati)\n\nIT_N6_5 (N6.5 - Inversione contabile – cessione di telefoni cellulari)\n\nIT_N6_6 (N6.6 - Inversione contabile – cessione di prodotti elettronici)\n\nIT_N6_7 (N6.7 - Inversione contabile – prestazioni comparto edile e settori connessi)\n\nIT_N6_8 (N6.8 - Inversione contabile – operazioni settore energetico)\n\nIT_N6_9 (N6.9 - Inversione contabile – altri casi)\n\nIT_N7 (N7 - IVA assolta in altro stato UE ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72)\n\nPL_ZW (ZW - Zwolniony)\n\nPL_NP (NP - Nie podlega)\n\nDE_NATO (NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen)\n\nFR_261_7 (Exonération de TVA, article 261, 7 du CGI)\n\nFR_262_00_BIS (Exonération de TVA, article 262-00 bis du CGI)\n\nFR_293_B (TVA non applicable, article 293 B du CGI)"
       x-enumNames:
         - Unknown
         - IT_N1
         - IT_N2_1
         - IT_N2_2
         - IT_N3_1
+        - IT_N3_2
+        - IT_N3_3
         - IT_N3_4
         - IT_N3_5
+        - IT_N3_6
         - IT_N4
         - IT_N5
+        - IT_N6_1
+        - IT_N6_2
+        - IT_N6_3
+        - IT_N6_4
+        - IT_N6_5
+        - IT_N6_6
+        - IT_N6_7
+        - IT_N6_8
+        - IT_N6_9
+        - IT_N7
         - PL_ZW
         - PL_NP
         - DE_NATO
@@ -50089,16 +50351,30 @@ components:
         - N2.1 - Non soggette ad IVA ai sensi degli artt. da 7 a 7-septies del d.P.R. n. 633/72
         - N2.2 - Non soggette – altri casi
         - N3.1 - Non imponibili – esportazioni
+        - N3.2 - Non imponibili – cessioni intracomunitarie
+        - N3.3 - Non imponibili – cessioni verso San Marino
         - N3.4 - Non imponibili – operazioni assimilate alle cessioni all’esportazione
         - N3.5 - Non imponibili – a seguito di dichiarazioni d’intento
+        - N3.6 - Non imponibili – altre operazioni che non concorrono alla formazione del plafond
         - N4 - Esenti
         - N5 - Regime del margine / IVA non esposta in fattura
+        - N6.1 - Inversione contabile – cessione di rottami e altri materiali di recupero
+        - N6.2 - Inversione contabile – cessione di oro e argento ai sensi della legge 7/2000 nonché di oreficeria usata ad OPO
+        - N6.3 - Inversione contabile – subappalto nel settore edile
+        - N6.4 - Inversione contabile – cessione di fabbricati
+        - N6.5 - Inversione contabile – cessione di telefoni cellulari
+        - N6.6 - Inversione contabile – cessione di prodotti elettronici
+        - N6.7 - Inversione contabile – prestazioni comparto edile e settori connessi
+        - N6.8 - Inversione contabile – operazioni settore energetico
+        - N6.9 - Inversione contabile – altri casi
+        - 'N7 - IVA assolta in altro stato UE ex art. 7-octies lett. a, b, art. 74-sexies DPR 633/72'
         - ZW - Zwolniony
         - NP - Nie podlega
         - NATO-ZAbk - Umsatzsteuerbefreiung gemäß Artikel 67(3) NATO-Zusatzabkommen
         - 'Exonération de TVA, article 261, 7 du CGI'
         - 'Exonération de TVA, article 262-00 bis du CGI'
         - 'TVA non applicable, article 293 B du CGI'
+      x-extensible: true
     TaxRate:
       title: Tax rate
       required:

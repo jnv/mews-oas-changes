@@ -1,3 +1,146 @@
+# 2026-10-14
+
+
+## POST /api/connector/v1/availabilityBlocks/getAllocation
+-  endpoint added
+
+
+## POST /api/connector/v1/businessSegments/getAll
+-  added the optional property 'BusinessSegments/items/ExternalIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/orderItems/getAll
+- :warning: added the new 'IT_N3_2' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'OrderItems/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/products/getAll
+- :warning: added the new 'IT_N3_2' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'CustomerProducts/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/add
+- :warning: added the new 'IT_N3_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/getAll
+- :warning: added the new 'IT_N3_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/rates/set
+- :warning: added the new 'IT_N3_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Rates/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+
+
+## POST /api/connector/v1/reservations/getAll
+- :warning: added the new 'IT_N3_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+-  added the optional property 'BusinessSegments/items/ExternalIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+- :warning: added the new 'IT_N3_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N3_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_1' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_2' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_3' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_4' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_5' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_6' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_8' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N6_9' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+- :warning: added the new 'IT_N7' enum value to the 'Products/items/TaxExemptionReason/allOf[subschema #1: Tax exemption reason type]/' response property for the response status '200'
+-  added the optional property 'BusinessSegments/items/ExternalIdentifier' to the response with the '200' status
+
+
+## POST /api/connector/v1/rules/getAll
+-  added the optional property 'BusinessSegments/items/ExternalIdentifier' to the response with the '200' status
+
+
+
 # 2026-10-09
 
 
