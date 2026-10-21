@@ -6129,6 +6129,132 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       x-restricted: true
+  /api/connector/v1/customerPhotos/getAll:
+    post:
+      tags:
+        - Customer photos
+      summary: Get all customer photos
+      description: 'Returns the photos of the specified customers, as metadata only – the image itself is not returned. A customer has at most one photo per enterprise, and customers without a photo are not returned. Photo identifiers change whenever a customer''s photo is replaced, so they should not be stored. This operation is available only to enterprises with the **Advanced Guest Experience** module. When several enterprises are requested, including by omitting `EnterpriseIds`, the request fails if any of them does not have the module. With a Portfolio Access Token covering more than 1,000 enterprises, `EnterpriseIds` must be specified. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customerPhotos_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPhotoFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerIds":["fadd5bb6-b428-45d5-94f8-fd0d89fece6d","bccdafd1-3e44-439d-861f-341526b597a9"],"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPhotoResult'
+              example: {"CustomerPhotos":[{"Id":"2e8b4c1d-9a3f-4f6e-b8d2-1c7a5e9f3d60","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2026-09-14T09:12:33Z"},{"Id":"6c1f2a9e-4b7d-4e2a-9c31-8d5f0e7a2b44","CustomerId":"bccdafd1-3e44-439d-861f-341526b597a9","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2026-09-21T16:45:08Z"}],"Cursor":"6c1f2a9e-4b7d-4e2a-9c31-8d5f0e7a2b44"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+  /api/connector/v1/customerPhotos/set:
+    post:
+      tags:
+        - Customer photos
+      summary: Set customer photo
+      description: 'Sets the photo of the specified customer for the enterprise. Only JPEG images (`image/jpeg`) are accepted, the content must be a valid JPEG, and the decoded image must not exceed 2 MB (2,000,000 bytes). A customer has at most one photo per enterprise: each call replaces the existing photo, and if calls overlap, the photo stored last is kept. Each stored photo gets a new identifier, so photo identifiers should not be stored. A failed call can safely be repeated. This operation is available only to enterprises with the **Advanced Guest Experience** module. Note this operation supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: customerPhotos_set
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPhotoSetParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","Type":"image/jpeg","Data":"/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDpKKKKAP/Z","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPhotoSetResult'
+              example: {"CustomerPhoto":{"Id":"9a4e2f7c-3b1d-4c8a-a6e5-2f0d7b9c1e38","CustomerId":"fadd5bb6-b428-45d5-94f8-fd0d89fece6d","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","CreatedUtc":"2026-10-02T10:24:51Z"}}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
   /api/connector/v1/customers/getAll:
     post:
       tags:
@@ -19947,7 +20073,7 @@ components:
       additionalProperties: false
       x-schema-id: AvailabilityBlockAddResult
     AvailabilityBlockAllocationParameters:
-      title: AvailabilityBlockAllocationParameters
+      title: Availability block allocation parameters
       required:
         - AccessToken
         - AvailabilityBlockId
@@ -19974,7 +20100,7 @@ components:
       additionalProperties: false
       x-schema-id: AvailabilityBlockAllocationParameters
     AvailabilityBlockAllocationResult:
-      title: AvailabilityBlockAllocationResult
+      title: Availability block allocation result
       required:
         - ResourceCategoryAllocations
         - SummaryMetrics
@@ -19982,6 +20108,7 @@ components:
       type: object
       properties:
         SummaryMetrics:
+          title: Availability block summary metrics
           allOf:
             - $ref: '#/components/schemas/SummaryMetrics'
           description: Summary metrics for the whole availability block.
@@ -28401,6 +28528,155 @@ components:
         - ''
         - ''
         - ''
+    CustomerPhoto:
+      title: Customer photo
+      required:
+        - CreatedUtc
+        - CustomerId
+        - EnterpriseId
+        - Id
+      type: object
+      properties:
+        Id:
+          type: string
+          description: 'Unique identifier of the photo. Each photo stored for a customer replaces the previous one and gets a new identifier, so photo identifiers should not be stored.'
+          format: uuid
+        CustomerId:
+          type: string
+          description: Unique identifier of the `Customer` the photo belongs to.
+          format: uuid
+        EnterpriseId:
+          type: string
+          description: Unique identifier of the enterprise the photo belongs to.
+          format: uuid
+        CreatedUtc:
+          minLength: 1
+          type: string
+          description: 'Date and time when the photo was stored in Mews, in UTC timezone in ISO 8601 format.'
+          format: date-time
+      additionalProperties: false
+      x-schema-id: CustomerPhoto
+    CustomerPhotoFilterParameters:
+      title: CustomerPhotoFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerIds
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        CustomerIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the customers whose photos are requested.
+      additionalProperties: false
+      x-schema-id: CustomerPhotoFilterParameters
+    CustomerPhotoResult:
+      title: CustomerPhotoResult
+      required:
+        - CustomerPhotos
+      type: object
+      properties:
+        CustomerPhotos:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerPhoto'
+          description: The customer photos.
+        Cursor:
+          type: string
+          description: 'Opaque pagination cursor, used in `Limitation` on a subsequent request to fetch the next page. Null when there are no more data.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: CustomerPhotoResult
+    CustomerPhotoSetParameters:
+      title: CustomerPhotoSetParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - CustomerId
+        - Data
+        - Type
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        EnterpriseId:
+          type: string
+          description: 'Unique identifier of the enterprise. Required when using [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property), ignored otherwise.'
+          format: uuid
+          nullable: true
+        CustomerId:
+          type: string
+          description: Unique identifier of the `Customer` whose photo is set.
+          format: uuid
+        Type:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: MIME type of the image. Only `image/jpeg` is accepted.
+        Data:
+          maxLength: 2666668
+          minLength: 1
+          type: string
+          description: 'Base64-encoded content of the image, without a `data:` URI prefix. The decoded image must be a valid JPEG and must not exceed 2 MB (2,000,000 bytes).'
+      additionalProperties: false
+      x-schema-id: CustomerPhotoSetParameters
+    CustomerPhotoSetResult:
+      title: CustomerPhotoSetResult
+      required:
+        - CustomerPhoto
+      type: object
+      properties:
+        CustomerPhoto:
+          title: Customer photo
+          allOf:
+            - $ref: '#/components/schemas/CustomerPhoto'
+          description: The stored customer photo.
+      additionalProperties: false
+      x-schema-id: CustomerPhotoSetResult
     CustomerRelationship:
       title: Customer relationship
       required:
@@ -35738,7 +36014,7 @@ components:
       type: object
       additionalProperties: false
     OccupancyAllocation:
-      title: OccupancyAllocation
+      title: Occupancy allocation
       required:
         - EffectiveAvailable
         - OutgoingOffset
@@ -35769,7 +36045,7 @@ components:
           items:
             type: integer
             format: int32
-          description: 'Remaining capacity of this slot, per time unit in `TimeUnitStartsUtc`: `UnitCount − PickedUp − OutgoingOffset`. Can be negative when the slot has more pickups than its blocked count. For the combined entry, mirrors the parent `Available`.'
+          description: 'Remaining capacity of this slot, per time unit in `TimeUnitStartsUtc`: `UnitCount - PickedUp - OutgoingOffset`. Can be negative when the slot has more pickups than its blocked count. `0` for every slot of a canceled block. Not set to `0` on released time units, where the parent `Available` is `0`. For the combined entry, mirrors the parent `Available`.'
         OutgoingOffset:
           type: array
           items:
@@ -35781,7 +36057,7 @@ components:
           items:
             type: integer
             format: int32
-          description: 'Number of reservations picked up beyond this slot''s blocked count, per time unit in `TimeUnitStartsUtc`: `max(0, PickedUp − UnitCount)`.'
+          description: 'Number of reservations picked up beyond this slot''s blocked count, per time unit in `TimeUnitStartsUtc`: `max(0, PickedUp - UnitCount)`.'
       additionalProperties: false
       x-schema-id: OccupancyAllocation
     OccupancyStateEnum:
@@ -37316,11 +37592,11 @@ components:
       properties:
         PersonCount:
           type: integer
-          description: 'Guest count of the occupancy slot. Must not exceed the resource category total capacity (`Capacity` plus `ExtraCapacity`), and must be unique within `PaxCounts`. See [Multi-occupancy availability blocks](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks).'
+          description: 'Guest count of the occupancy slot. Must be positive. Must not exceed the resource category total capacity (`Capacity` plus `ExtraCapacity`), and must be unique within `PaxCounts`. See [Multi-occupancy availability blocks](https://docs.mews.com/connector-api/concepts/multi-occupancy-availability-blocks).'
           format: int32
         UnitCount:
           type: integer
-          description: Number of blocked units assigned to this `PersonCount`; zero or positive. The sum of all `UnitCount` values in `PaxCounts` equals the absolute value of the adjustment's unit count.
+          description: Number of blocked units assigned to this `PersonCount`; zero or positive. The sum of all `UnitCount` values in `PaxCounts` must equal the absolute value of `UnitCountAdjustment.Value`.
           format: int32
       additionalProperties: false
       x-schema-id: PaxCount
@@ -45242,7 +45518,7 @@ components:
       additionalProperties: false
       x-schema-id: ResourceCategoryAddParameters
     ResourceCategoryAllocation:
-      title: ResourceCategoryAllocation
+      title: Resource category allocation
       required:
         - Available
         - EnterpriseAvailable
@@ -49878,7 +50154,7 @@ components:
       additionalProperties: false
       x-schema-id: StringUpdateValue
     SummaryMetrics:
-      title: SummaryMetrics
+      title: Availability block summary metrics
       required:
         - Available
         - PickedUp

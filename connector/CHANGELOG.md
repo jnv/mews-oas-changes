@@ -1,3 +1,15 @@
+# 2026-10-21
+
+
+## POST /api/connector/v1/customerPhotos/getAll
+-  endpoint added
+
+
+## POST /api/connector/v1/customerPhotos/set
+-  endpoint added
+
+
+
 # 2026-10-14
 
 
