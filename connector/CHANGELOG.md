@@ -1,3 +1,11 @@
+# 2026-11-05
+
+
+## POST /api/connector/v1/balanceTransactions/getAll
+-  endpoint added
+
+
+
 # 2026-10-21
 
 

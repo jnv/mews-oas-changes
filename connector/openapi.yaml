@@ -1930,6 +1930,70 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectorApiExceptionResult'
       x-restricted: true
+  /api/connector/v1/balanceTransactions/getAll:
+    post:
+      tags:
+        - Balance transactions
+      summary: Get all balance transactions
+      description: 'Returns the transactions that make up an enterprise''s Mews Payments balance – charges, commissions, fees, payouts and adjustments – for reconciling a bank feed against Mews. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
+      operationId: balanceTransactions_getAll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BalanceTransactionFilterParameters'
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","CreatedUtc":{"StartUtc":"2023-08-01T00:00:00Z","EndUtc":"2023-08-31T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6","4d0201db-36f5-428b-8d11-4f0a65e960cc"],"Limitation":{"Count":100}}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceTransactionResult'
+              example: {"BalanceTransactions":[{"Id":"b2c3d4e5-0000-4a00-8a00-000000000001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Type":"Charge","State":"Settled","Amount":{"Currency":"EUR","Value":320.00},"Provider":"Stripe","PaymentId":"f6313945-94c1-4e27-b402-031c2a8c989f","GatewayIdentifier":null,"Description":null,"PayoutId":"a1b2c3d4-0000-4a00-8a00-000000000001","CreatedUtc":"2023-08-14T09:12:33Z","SettledUtc":"2023-08-15T00:00:00Z","UpdatedUtc":"2023-08-15T00:00:00Z"},{"Id":"a1b2c3d4-0000-4a00-8a00-000000000001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Type":"Payout","State":"Settled","Amount":{"Currency":"EUR","Value":-1250.00},"Provider":"Stripe","PaymentId":null,"GatewayIdentifier":"po_1NqYcELkdIwHu7ixblOOWTVK","Description":null,"PayoutId":null,"CreatedUtc":"2023-08-15T00:00:00Z","SettledUtc":"2023-08-15T00:00:00Z","UpdatedUtc":"2023-08-15T00:00:00Z"},{"Id":"b2c3d4e5-0000-4a00-8a00-000000000003","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","Type":"Charge","State":"Unsettled","Amount":{"Currency":"EUR","Value":185.00},"Provider":"Stripe","PaymentId":"c3d4e5f6-0000-4a00-8a00-000000000001","GatewayIdentifier":null,"Description":null,"PayoutId":null,"CreatedUtc":"2023-08-16T14:27:05Z","SettledUtc":null,"UpdatedUtc":"2023-08-16T14:27:05Z"}],"Cursor":"b2c3d4e5-0000-4a00-8a00-000000000003"}
+        '400':
+          description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '401':
+          description: 'Error caused by usage of invalid ClientToken, AccessToken, or you may not have the necessary permission to use the endpoint.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '403':
+          description: Server error that should be reported to the end user of the client app. Happens for example when the server-side validation fails or when a business-logic check is violated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '408':
+          description: 'Error caused by heavy request that takes too long to process (typically tens of seconds). To get around this, request data in smaller batches. For more information, see [Request timeouts](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-timeouts)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '204':
+          description: Server has successfully fulfilled the request and there is no additional information to send back.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '429':
+          description: 'Error caused by too many requests sent in a given amount of time. Response contains `Retry-After` header indicating how long the user agent should wait before making a follow-up request. For more information, see [Request limits](https://mews-systems.gitbook.io/connector-api/guidelines/requests#request-limits).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+        '500':
+          description: 'Unexpected error on the Mews side. This may be due to a software fault. If such a situation occurs, the error will be logged and the development team notified, however you can raise an issue through GitHub on our [documentation repository](https://github.com/MewsSystems/gitbook-connector-api).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorApiExceptionResult'
+      x-restricted: true
   /api/connector/v1/billingAutomations/getAll:
     post:
       tags:
@@ -20492,6 +20556,240 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: AvailabilityBlockUpdateParameters
+    BalanceTransaction:
+      title: Balance transaction
+      required:
+        - Amount
+        - CreatedUtc
+        - EnterpriseId
+        - Id
+        - Provider
+        - State
+        - Type
+        - UpdatedUtc
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Unique stable identifier of the transaction.
+          format: uuid
+        EnterpriseId:
+          type: string
+          description: Unique identifier of the enterprise the transaction belongs to.
+          format: uuid
+        Type:
+          title: Balance transaction type
+          allOf:
+            - $ref: '#/components/schemas/BalanceTransactionTypeEnum'
+          description: "Type of the transaction.\n\nCharge (A payment charged to a guest, or its refund or chargeback.)\n\nMerchantCommission (Commission charged by Mews.)\n\nPlatformFee (Platform fee charged by Mews.)\n\nPayout (A payout to the enterprise's bank account, decreasing the balance.)\n\nBalanceTopUp (A top-up of the balance.)\n\nCommissionAdjustment (An adjustment to a previously charged commission.)\n\nReserveAdjustment (An adjustment to the chargeback reserve held for the account.)\n\nRollingBalanceAdjustment (The part of a payout cycle's settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.)"
+          x-enumNames:
+            - Charge
+            - MerchantCommission
+            - PlatformFee
+            - Payout
+            - BalanceTopUp
+            - CommissionAdjustment
+            - ReserveAdjustment
+            - RollingBalanceAdjustment
+          x-enumDescriptions:
+            - 'A payment charged to a guest, or its refund or chargeback.'
+            - Commission charged by Mews.
+            - Platform fee charged by Mews.
+            - 'A payout to the enterprise''s bank account, decreasing the balance.'
+            - A top-up of the balance.
+            - An adjustment to a previously charged commission.
+            - An adjustment to the chargeback reserve held for the account.
+            - 'The part of a payout cycle''s settled funds that the payment service provider did not transfer to the bank, recorded against that payout so its transactions reconcile with the amount paid. Negative when funds were deferred to a later payout, positive when previously deferred funds were released.'
+          x-extensible: true
+        State:
+          title: Payment settlement state
+          allOf:
+            - $ref: '#/components/schemas/PaymentSettlementStateEnum'
+          description: "Settlement state of the transaction.\n\nUnsettled (Not yet linked to a payout.)\n\nSettled (Linked to a `Payout`, or is itself a `Payout`.)"
+          x-enumNames:
+            - Unsettled
+            - Settled
+          x-enumDescriptions:
+            - Not yet linked to a payout.
+            - 'Linked to a `Payout`, or is itself a `Payout`.'
+        Amount:
+          title: Currency value (ver 2023-02-02)
+          allOf:
+            - $ref: '#/components/schemas/CurrencyValue'
+          description: 'Amount of the transaction, signed by its effect on the balance. A positive balance is owed to the enterprise by the payment service provider, a negative balance is owed by the enterprise.'
+        Provider:
+          title: Payment provider
+          allOf:
+            - $ref: '#/components/schemas/PaymentProviderEnum'
+          description: "Payment service provider that holds the balance the transaction belongs to.\n\nAdyen (Adyen)\n\nStripe (Stripe)\n\nPayPal (PayPal)\n\nBraintree (Braintree)\n\nWireTransfer (Wire transfer)\n\nMewsFS (Mews Financial Services)"
+          x-enumNames:
+            - Adyen
+            - Stripe
+            - PayPal
+            - Braintree
+            - WireTransfer
+            - MewsFS
+          x-enumDescriptions:
+            - Adyen
+            - Stripe
+            - PayPal
+            - Braintree
+            - Wire transfer
+            - Mews Financial Services
+          x-extensible: true
+        PaymentId:
+          type: string
+          description: 'Unique identifier of the related `Payment`, when the transaction is backed by one.'
+          format: uuid
+          nullable: true
+        GatewayIdentifier:
+          maxLength: 255
+          type: string
+          description: Identifier of the transaction at the payment service provider.
+          nullable: true
+        Description:
+          type: string
+          description: Description of the transaction.
+          nullable: true
+        PayoutId:
+          type: string
+          description: 'Unique identifier of the `Payout` that settled the transaction, always one returned by [Get all payouts](https://docs.mews.com/connector-api/operations/payouts#get-all-payouts). When a payout is merged into another one, its transactions are settled by the payout it was merged into. Null while the transaction is unsettled, and on a `Payout` transaction that was not merged into another one.'
+          format: uuid
+          nullable: true
+        CreatedUtc:
+          minLength: 1
+          type: string
+          description: 'Date and time when the transaction was recorded in Mews, in UTC timezone in ISO 8601 format. This is when Mews booked the transaction, not necessarily when the payment service provider processed it.'
+          format: date-time
+        SettledUtc:
+          type: string
+          description: 'Date and time when the transaction was settled, in UTC timezone in ISO 8601 format: when the `Payout` that settled it was recorded in Mews. For a `Payout` transaction that was not merged into another one, when it was itself recorded. Null while the transaction is unsettled.'
+          format: date-time
+          nullable: true
+        UpdatedUtc:
+          minLength: 1
+          type: string
+          description: 'Date and time when the transaction was last updated in Mews, in UTC timezone in ISO 8601 format.'
+          format: date-time
+      additionalProperties: false
+      x-schema-id: BalanceTransaction
+    BalanceTransactionFilterParameters:
+      title: BalanceTransactionFilterParameters
+      required:
+        - AccessToken
+        - Client
+        - ClientToken
+        - Limitation
+      type: object
+      properties:
+        ClientToken:
+          minLength: 1
+          type: string
+          description: Token identifying the client application.
+        AccessToken:
+          minLength: 1
+          type: string
+          description: Access token of the client application.
+        Client:
+          minLength: 1
+          type: string
+          description: Name and version of the client application.
+        Limitation:
+          allOf:
+            - $ref: '#/components/schemas/Limitation'
+          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+        EnterpriseIds:
+          maxItems: 1000
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the Enterprises. If not specified, the operation returns data for all enterprises within scope of the Access Token.'
+          nullable: true
+        BalanceTransactionIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the requested transactions.
+          nullable: true
+        CreatedUtc:
+          title: Time interval
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the transaction was recorded in Mews.
+          nullable: true
+          x-max-interval-in-months: 3
+        SettledUtc:
+          title: Time interval
+          allOf:
+            - $ref: '#/components/schemas/TimeFilterInterval'
+          description: Interval in which the transaction was settled.
+          nullable: true
+          x-max-interval-in-months: 3
+        States:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentSettlementStateEnum'
+          description: Settlement states to filter transactions by.
+          nullable: true
+        Types:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceTransactionTypeEnum'
+          description: Transaction types to filter transactions by.
+          nullable: true
+        PaymentProviders:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentProviderEnum'
+          description: Payment service providers to filter transactions by.
+          nullable: true
+        PayoutIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: 'Unique identifiers of the payouts whose transactions are requested, including transactions from payouts merged into them.'
+          nullable: true
+        PaymentIds:
+          maxItems: 100
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Unique identifiers of the payments whose transactions are requested.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: BalanceTransactionFilterParameters
+    BalanceTransactionResult:
+      title: BalanceTransactionResult
+      required:
+        - BalanceTransactions
+      type: object
+      properties:
+        BalanceTransactions:
+          maxItems: 1000
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceTransaction'
+          description: The balance transactions.
+        Cursor:
+          type: string
+          description: 'Opaque pagination cursor, used in `Limitation` on a subsequent request to fetch the next page. Null when there are no more data.'
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      x-schema-id: BalanceTransactionResult
     BalanceTransactionTypeEnum:
       title: Balance transaction type
       enum:
@@ -39363,6 +39661,19 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: PaymentResult
+    PaymentSettlementStateEnum:
+      title: Payment settlement state
+      enum:
+        - Unsettled
+        - Settled
+      type: string
+      description: "Settlement state of a payment or balance transaction.\n\nUnsettled (Not yet linked to a payout.)\n\nSettled (Linked to a `Payout`, or is itself a `Payout`.)"
+      x-enumNames:
+        - Unsettled
+        - Settled
+      x-enumDescriptions:
+        - Not yet linked to a payout.
+        - 'Linked to a `Payout`, or is itself a `Payout`.'
     PaymentState:
       title: Payment state
       enum:
