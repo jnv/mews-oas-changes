@@ -1,3 +1,31 @@
+# 2026-11-06
+
+
+## POST /api/connector/v1/companies/add
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+## POST /api/connector/v1/companies/getAll
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+## POST /api/connector/v1/companies/update
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/getAll
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+## POST /api/connector/v1/reservations/update
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+## POST /api/connector/v1/vouchers/getAll
+-  added the optional property 'Companies/items/Options/allOf[subschema #1: Company Options]/PurchaseOrderNumberRequired' to the response with the '200' status
+
+
+
 # 2026-11-05
 
 

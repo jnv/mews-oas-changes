@@ -19646,7 +19646,7 @@ components:
       type: object
       properties:
         Value:
-          maxItems: 20
+          maxItems: 25
           type: array
           items:
             type: string
@@ -25843,6 +25843,9 @@ components:
         AddTaxDeductedPaymentToInvoices:
           type: boolean
           description: Whether tax-deducted payments should be automatically added to invoices.
+        PurchaseOrderNumberRequired:
+          type: boolean
+          description: 'Whether the company requires a purchase order number on reservations where it is the partner company. [Add reservations](https://docs.mews.com/connector-api/operations/reservations#add-reservations) does not enforce it.'
       additionalProperties: false
       description: Options of the company.
       x-schema-id: CompanyOptions
@@ -51595,7 +51598,7 @@ components:
           format: uuid
           nullable: true
         AssignedRateIds:
-          maxItems: 20
+          maxItems: 25
           uniqueItems: true
           type: array
           items:
