@@ -1,3 +1,11 @@
+# 2026-11-10
+
+
+## POST /api/connector/v1/reservations/price
+-  added the required property 'ReservationPrices/items/AdditionalExpenses' to the response with the '200' status
+
+
+
 # 2026-11-06
 
 

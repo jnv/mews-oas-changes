@@ -10387,7 +10387,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PayoutResult'
-              example: {"Payouts":[{"Id":"a1b2c3d4-0000-4a00-8a00-000000000001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","State":"Paid","Provider":"Stripe","PayoutDateUtc":"2023-08-15T00:00:00Z","Amount":{"Currency":"EUR","Value":1250.00},"BankDescriptor":"MEWS PAYOUT 12345"}],"Cursor":null}
+              example: {"Payouts":[{"Id":"a1b2c3d4-0000-4a00-8a00-000000000001","EnterpriseId":"3fa85f64-5717-4562-b3fc-2c963f66afa6","State":"Paid","Provider":"Stripe","PayoutDateUtc":"2023-08-15T00:00:00Z","Amount":{"Currency":"EUR","Value":-1250.00},"BankDescriptor":"MEWS PAYOUT 12345"}],"Cursor":null}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -11827,7 +11827,7 @@ paths:
       tags:
         - Reservations
       summary: Price reservations
-      description: "Returns prices of reservations with the specified parameters.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
+      description: "Returns prices of reservations with the specified parameters.\r\nAdditional expenses, such as a city tax excluded from the price, are not part of `TotalAmount` and are returned separately in `AdditionalExpenses`.\r\nNote that the operation doesn't check the maximum capacity of requested resource category. Requesting person counts above the capacity will return prices for the maximum available capacity.\r\n\r\nThis operation supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/)."
       operationId: reservations_price
       requestBody:
         content:
@@ -11861,16 +11861,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReservationPricingResult'
-              example:
-                ReservationPrices:
-                  - Identifier: '1234'
-                    Total:
-                      Currency: GBP
-                      NetValue: 20
-                      GrossValue: 23
-                      TaxValues:
-                        - Code: UK-S
-                          Value: 3
+              example: {"ReservationPrices":[{"Identifier":"1234","TotalAmount":{"Currency":"GBP","NetValue":500.00,"GrossValue":600.00,"TaxValues":[{"Code":"UK-S","Value":100.00}],"Breakdown":{"Items":[{"TaxRateCode":"UK-S","NetValue":500.00,"TaxValue":100.00}]}},"AdditionalExpenses":[{"Type":"CityTax","Amount":{"Currency":"GBP","NetValue":30.00,"GrossValue":30.00,"TaxValues":[],"Breakdown":{"Items":[{"TaxRateCode":null,"NetValue":30.00,"TaxValue":0.00}]}}}],"Total":null}]}
         '400':
           description: 'Error caused by the client app, e.g. in case of malformed request or invalid identifier of a resource. In most cases, such an error signifies a bug in the client app (consumer of the API).'
           content:
@@ -39988,7 +39979,7 @@ components:
           title: Currency value (ver 2023-02-02)
           allOf:
             - $ref: '#/components/schemas/CurrencyValue'
-          description: 'Total net amount paid out to the destination bank account, after fees and deductions. The individual fee and deduction transactions are available through the payout''s transactions.'
+          description: 'Total net amount paid out to the destination bank account, after fees and deductions, signed by its effect on the balance: a payout that sends funds to the bank account is negative. The individual fee and deduction transactions are available through the payout''s transactions.'
         BankDescriptor:
           type: string
           description: 'Payout descriptor currently configured for the integration, as used on bank statements. Reflects the current configuration and may differ from the descriptor shown on statements of older payouts.'
@@ -44017,6 +44008,7 @@ components:
     ReservationPrice:
       title: Reservation price
       required:
+        - AdditionalExpenses
         - TotalAmount
       type: object
       properties:
@@ -44029,6 +44021,12 @@ components:
           allOf:
             - $ref: '#/components/schemas/Amount'
           description: Total price of the reservation.
+        AdditionalExpenses:
+          maxItems: 20
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationPriceAdditionalExpense'
+          description: 'Additional expenses of the reservation that are not included in `TotalAmount`, one item per type. The price the customer pays is `TotalAmount` plus the sum of these amounts. If the city tax is included in the price, the `CityTax` and `CityTaxDiscount` items cancel each other out.'
         Total:
           title: Currency value (ver 2018-06-07)
           allOf:
@@ -44039,6 +44037,67 @@ components:
           x-deprecatedMessage: Use `TotalAmount` instead.
       additionalProperties: false
       x-schema-id: ReservationPrice
+    ReservationPriceAdditionalExpense:
+      title: Reservation price additional expense
+      required:
+        - Amount
+        - Type
+      type: object
+      properties:
+        Type:
+          title: Order item type
+          allOf:
+            - $ref: '#/components/schemas/OrderItemTypeEnum'
+          description: "Type of the additional expense, for example `CityTax` or `CityTaxDiscount`.\n\nCancellationFee\n\nNightRebate\n\nProductOrderRebate\n\nAdditionalExpenseRebate\n\nDeposit\n\nExchangeRateDifference\n\nCustomItem\n\nServiceCharge\n\nCityTax\n\nCityTaxDiscount\n\nSpaceOrder\n\nProductOrder\n\nSurcharge\n\nTaxCorrection\n\nResourceUpgradeFee\n\nInvoiceFee\n\nMulticurrencyFee\n\nAllowanceDiscount\n\nAllowanceBreakage\n\nAllowanceContraBreakage"
+          x-enumNames:
+            - CancellationFee
+            - NightRebate
+            - ProductOrderRebate
+            - AdditionalExpenseRebate
+            - Deposit
+            - ExchangeRateDifference
+            - CustomItem
+            - ServiceCharge
+            - CityTax
+            - CityTaxDiscount
+            - SpaceOrder
+            - ProductOrder
+            - Surcharge
+            - TaxCorrection
+            - ResourceUpgradeFee
+            - InvoiceFee
+            - MulticurrencyFee
+            - AllowanceDiscount
+            - AllowanceBreakage
+            - AllowanceContraBreakage
+          x-enumDescriptions:
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+            - ''
+        Amount:
+          title: Amount
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+          description: Total amount of all additional expenses of this type for the whole reservation.
+      additionalProperties: false
+      x-schema-id: ReservationPriceAdditionalExpense
     ReservationPricingResult:
       title: ReservationPricingResult
       required:
