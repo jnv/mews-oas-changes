@@ -3145,6 +3145,8 @@ components:
         - Cabin
         - Pod
         - SunBed
+        - Boat
+        - Treehouse
       type: string
     ResourceOccupancyPricing:
       title: ResourceOccupancyPricing
