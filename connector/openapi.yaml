@@ -45774,7 +45774,7 @@ components:
           title: Resource category type
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Type of the category.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed"
+          description: "Type of the category.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed\n\nBoat\n\nTreehouse"
           x-enumNames:
             - Room
             - Bed
@@ -45805,7 +45805,11 @@ components:
             - Cabin
             - Pod
             - SunBed
+            - Boat
+            - Treehouse
           x-enumDescriptions:
+            - ''
+            - ''
             - ''
             - ''
             - ''
@@ -46495,6 +46499,8 @@ components:
         - Cabin
         - Pod
         - SunBed
+        - Boat
+        - Treehouse
       type: string
       description: Type of the category.
     ResourceCategoryTypeEnum:
@@ -46529,8 +46535,10 @@ components:
         - Cabin
         - Pod
         - SunBed
+        - Boat
+        - Treehouse
       type: string
-      description: "Type of the category.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed"
+      description: "Type of the category.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed\n\nBoat\n\nTreehouse"
       x-enumNames:
         - Room
         - Bed
@@ -46561,7 +46569,11 @@ components:
         - Cabin
         - Pod
         - SunBed
+        - Boat
+        - Treehouse
       x-enumDescriptions:
+        - ''
+        - ''
         - ''
         - ''
         - ''
@@ -46630,7 +46642,11 @@ components:
             - Cabin
             - Pod
             - SunBed
+            - Boat
+            - Treehouse
           x-enumDescriptions:
+            - ''
+            - ''
             - ''
             - ''
             - ''
@@ -47634,7 +47650,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed"
+          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed\n\nBoat\n\nTreehouse"
           nullable: true
         StartUtc:
           type: string
@@ -47695,7 +47711,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the restricted `Resource category type`.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed"
+          description: "Name of the restricted `Resource category type`.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed\n\nBoat\n\nTreehouse"
           nullable: true
         StartUtc:
           type: string
@@ -47959,7 +47975,7 @@ components:
         ResourceCategoryType:
           allOf:
             - $ref: '#/components/schemas/ResourceCategoryTypeEnum'
-          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed"
+          description: "Name of the `Resource category type` to which the restriction applies.\n\nRoom\n\nBed\n\nDorm\n\nApartment\n\nSuite\n\nVilla\n\nSite\n\nOffice\n\nMeetingRoom\n\nParkingSpot\n\nDesk\n\nTeamArea\n\nMembership\n\nTent\n\nCaravanOrRV\n\nUnequippedCampsite\n\nBike\n\nExtraBed\n\nCot\n\nCrib\n\nConferenceRoom\n\nRooftop\n\nGarden\n\nRestaurant\n\nAmphitheater\n\nPrivateSpaces\n\nCabin\n\nPod\n\nSunBed\n\nBoat\n\nTreehouse"
           nullable: true
         StartUtc:
           type: string
