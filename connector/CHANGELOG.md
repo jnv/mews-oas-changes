@@ -1,3 +1,13 @@
+# 2026-11-18
+
+
+## POST /api/connector/v1/sourceAssignments/getAll/2024-09-20
+- :warning: added '#/components/schemas/OpaqueCursorLimitation' to the 'Limitation' request property 'allOf' list
+- :warning: the 'Cursor' response's property type/format changed from 'string'/'string' to 'string'/'' for status '200'
+- :warning: removed '#/components/schemas/Limitation' from the 'Limitation' request property 'allOf' list
+
+
+
 # 2026-11-17
 
 

@@ -16158,14 +16158,14 @@ paths:
       tags:
         - Source assignments
       summary: Get all source assignments (ver 2024-09-20)
-      description: 'Returns all Sources assigned to Reservations. Each reservation can have multiple sources. Note this operation uses [Pagination](https://mews-systems.gitbook.io/connector-api/guidelines/pagination/) and supports [Portfolio Access Tokens](https://mews-systems.gitbook.io/connector-api/concepts/multi-property/).'
+      description: 'Returns all assignments of a `Source` to a `Reservation`. A reservation can have multiple sources. When a channel manager sent the same reservation in more than one booking, only the sources of the first booking are returned. Note this operation uses [Pagination](https://docs.mews.com/connector-api/guidelines/pagination) and supports [Portfolio Access Tokens](https://docs.mews.com/connector-api/concepts/multi-property).'
       operationId: sourceAssignments_getAll_2024-09-20
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SourceAssignmentFilterParametersV20240920'
-            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"UpdatedUtc":{"StartUtc":"2025-11-01T00:00:00Z","EndUtc":"2025-11-30T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"],"Limitation":{"Count":100}}
+            example: {"ClientToken":"E0D439EE522F44368DC78E1BFB03710C-D24FB11DBE31D4621C4817E028D9E1D","AccessToken":"C66EF7B239D24632943D115EDE9CB810-EA00F8FD8294692C940F6B5A8F9453D","Client":"Sample Client 1.0.0","Limitation":{"Count":100,"Cursor":"5411ffd5-72c6-4ab3-b179-708bcac73d08"},"ReservationIds":["9b59b50d-bd32-4ce5-add8-09ea0e1300e7"],"UpdatedUtc":{"StartUtc":"2025-11-01T00:00:00Z","EndUtc":"2025-11-30T00:00:00Z"},"EnterpriseIds":["3fa85f64-5717-4562-b3fc-2c963f66afa6"]}
       responses:
         '200':
           description: OK
@@ -36438,6 +36438,23 @@ components:
           nullable: true
       additionalProperties: false
       x-schema-id: OldTaxation
+    OpaqueCursorLimitation:
+      title: Opaque cursor limitation
+      required:
+        - Count
+      type: object
+      properties:
+        Count:
+          type: integer
+          description: Maximum number of items to return.
+          format: int32
+        Cursor:
+          maxLength: 512
+          type: string
+          description: Opaque pagination cursor from a previous response. Do not build or change it.
+          nullable: true
+      additionalProperties: false
+      x-schema-id: OpaqueCursorLimitation
     OrderAdditionOptions:
       title: Order addition options
       type: object
@@ -50312,9 +50329,10 @@ components:
           type: string
           description: Name and version of the client application.
         Limitation:
+          title: Opaque cursor limitation
           allOf:
-            - $ref: '#/components/schemas/Limitation'
-          description: Limitation on the quantity of data returned and optional Cursor for the starting point of data.
+            - $ref: '#/components/schemas/OpaqueCursorLimitation'
+          description: Limits the number of source assignments to return. The optional Cursor sets the point where the next page starts.
         ReservationIds:
           maxItems: 100
           minItems: 1
@@ -50373,8 +50391,7 @@ components:
           description: Assignments between `Reservation` and `Source`.
         Cursor:
           type: string
-          description: Opaque pagination cursor which can be used in `Limitation` to fetch newer source assignments.
-          format: string
+          description: Opaque pagination cursor which can be used in `Limitation` to fetch the next page.
           nullable: true
       additionalProperties: false
       x-schema-id: SourceAssignmentResultV20240920
@@ -50390,7 +50407,7 @@ components:
       properties:
         Id:
           type: string
-          description: Unique identifier of the source assignment.
+          description: 'Identifier of the source assignment. Reservations that a channel manager sends in one booking share the same `Id` for the same source, so the pair of `Id` and `ReservationId` identifies a source assignment.'
           format: uuid
         ReservationId:
           type: string
@@ -50402,11 +50419,11 @@ components:
           format: uuid
         IsPrimary:
           type: boolean
-          description: Specifies whether the source is primary for the `Reservation`.
+          description: 'Whether the channel manager marked the `Source` as primary. A reservation can have zero, one or more primary sources.'
         UpdatedUtc:
           minLength: 1
           type: string
-          description: Date and time of the source assignment last update in UTC timezone in ISO 8601 format.
+          description: Date and time of the last update of the source assignment in UTC timezone in ISO 8601 format. A source assignment that is no longer returned does not show as an update.
           format: date-time
       additionalProperties: false
       x-schema-id: SourceAssignmentV20240920
